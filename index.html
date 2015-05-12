@@ -40,17 +40,17 @@
 
     #main {
       overflow-y: auto;
-      height: 100%;
     }
 
     #lefttoc {
       background-color: aliceblue;
       overflow-y: auto;
-      height: 100%;
     }
 
-    .full-height {
-      height: 100%;
+    @media (min-width: 992px) {
+      .full-height {
+        height: 100%;
+      }
     }
 
     </style>
@@ -59,7 +59,7 @@
     <div class="container-fluid full-height">
     
     <div class="row full-height">
-    <div id="lefttoc" class="col-md-3" role="complementary">
+    <div id="lefttoc" class="col-md-3 full-height" role="complementary">
     <nav id="toc"><ol class="nav nav-pills nav-stacked"><li><a href="#common_workflow_language,_draft_2"> Common Workflow Language, Draft 2</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol><li><a href="#abstract"> Abstract</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol><li><a href="#status_of_this_document"> Status of This Document</a><ol class="nav nav-pills nav-stacked nav-secondary">
@@ -110,7 +110,7 @@
 </ol></li></ol></li></ol></li></ol></nav>
     </div>
     
-    <div class="col-md-9" role="main" id="main" data-spy="scroll" data-target="#toc"><h1 id="common_workflow_language,_draft_2">Common Workflow Language, Draft 2</h1><p>Authors:</p>
+    <div class="col-md-9 full-height" role="main" id="main" data-spy="scroll" data-target="#toc"><h1 id="common_workflow_language,_draft_2">Common Workflow Language, Draft 2</h1><p>Authors:</p>
 <ul>
 <li>Peter Amstutz <a href="mailto:peter.amstutz@curoverse.com">peter.amstutz@curoverse.com</a>, Curoverse</li>
 <li>Nebojša Tijanić <a href="mailto:nebojsa.tijanic@sbgenomics.com">nebojsa.tijanic@sbgenomics.com</a>, Seven Bridges Genomics</li>
