@@ -96,7 +96,8 @@
 <li><a href="#workflowoutputparameter">5.1.1 WorkflowOutputParameter</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol><li><a href="#workflowstep">5.1.2 WorkflowStep</a><ol class="nav nav-pills nav-stacked nav-secondary">
 <li><a href="#workflowstepinput">5.1.2.1 WorkflowStepInput</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#workflowstepoutput">5.1.2.2 WorkflowStepOutput</a><ol class="nav nav-pills nav-stacked nav-secondary">
+<li><a href="#linkmergemethod">5.1.2.1.1 LinkMergeMethod</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol></li></ol><li><a href="#workflowstepoutput">5.1.2.2 WorkflowStepOutput</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol></li></ol><li><a href="#datalink">5.1.3 DataLink</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol></li></ol><li><a href="#commandlinetool">5.2 CommandLineTool</a><ol class="nav nav-pills nav-stacked nav-secondary">
 <li><a href="#commandinputparameter">5.2.1 CommandInputParameter</a><ol class="nav nav-pills nav-stacked nav-secondary">
@@ -343,8 +344,8 @@ line program following the following protocol:</p>
 <ul>
 <li><p>On standard input, receive a JSON object with the following fields:</p>
 <ul>
-<li><p><strong>expressionDefs</strong>: A list of strings from the <code>expressionDefs</code> field, or
-<code>null</code> if <code>expressionDefs</code> is not specified.</p>
+<li><p><strong>engineConfig</strong>: A list of strings from the <code>engineConfig</code> field, or
+<code>null</code> if <code>engineConfig</code> is not specified.</p>
 </li>
 <li><p><strong>job</strong>: The input object of the current Process (context dependent).</p>
 </li>
@@ -565,18 +566,6 @@ when a value is associated with the parameter specified by
 <a href="#datalink"><code>DataLink.source</code></a>, that value is propagated to the destination
 parameter.  When all data links inbound to a given step are fufilled, the
 step is ready to execute.</p>
-<h1 id="multiple_inbound_data_links">Multiple inbound data links</h1><p>There may be multiple inbound data links sending data to a parameter (the
-"sink").  If so, the following rules apply to combine the inputs:</p>
-<ol>
-<li>The sink parameter type must be an array, or named in a <a href="#scatter">workflow scatter</a>
-operation.</li>
-<li>The source and sink parameters must be compatible types, or the source
-type must be compatible with single element type "items" type of the
-"sink" array type.</li>
-<li>Source parameters which are array of the same type are concatenated;
-source parameters which are single element types are appended added as
-single elements.</li>
-</ol>
 <h1 id="extensions">Extensions</h1><p><a href="#scatter">Scatter</a> and <a href="#Subworkflows">Subworkflows</a> are available
 as standard extensions to core workflow semantics.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>id</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>The unique identifier for this process object.</p>
@@ -634,6 +623,26 @@ used to generate and/or validate the output object.</p>
 <p>The input of a workflow step connects an upstream parameter (from the
 workflow inputs, or the outputs of other workflows steps) with the input
 parameters of the underlying process.</p>
+<p>If the sink parameter is an array, or named in a <a href="#scatter">workflow
+scatter</a> operation, there may be multiple inbound data links
+listed in the <code>connect</code> field.  The values from the input links are merged
+depending on the method specified in the <code>linkMerge</code> field.  If not
+specified, the default method is <strong>merge_nested</strong>:</p>
+<ul>
+<li><p><strong>merge_nested</strong> specifies that the input shall be an array consisting of
+exactly one entry for each input link.</p>
+</li>
+<li><p><strong>merge_flattened</strong></p>
+<ol>
+<li>The source and sink parameters must be compatible types, or the source
+type must be compatible with single element from the "items" type of
+the destination array parameter.</li>
+<li>Source parameters which are arrays are concatenated;
+source parameters which are single element types are appended as
+single elements.</li>
+</ol>
+</li>
+</ul>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#schema">Schema</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#schema">Schema</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.</p>
 </td></tr><tr><td><code>label</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A short, human-readable label of this parameter object.</p>
 </td></tr><tr><td><code>description</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A long, human-readable description of this parameter object.</p>
@@ -641,7 +650,11 @@ parameters of the underlying process.</p>
 </td></tr><tr><td><code>param</code></td><td><a href="#datatype">string</a></td><td>True</td><td><p>The input parameter of the underlying process (specified in the <code>run</code> field
 of <code>WorkflowStep</code>) that will get the value from <code>connect</code>.</p>
 </td></tr><tr><td><code>connect</code></td><td><a href="#datalink">DataLink</a> | array&lt;<a href="#datalink">DataLink</a>&gt;</td><td>False</td><td><p>Specifies one or more workflow parameters that will provide input to the underlying process parameter specified in <code>param</code>.</p>
-</td></tr></table><h1 id="workflowstepoutput">5.1.2.2 WorkflowStepOutput</h1><p>Extends <a href="#parameter">Parameter</a></p>
+</td></tr><tr><td><code>linkMerge</code></td><td><a href="#linkmergemethod">LinkMergeMethod</a></td><td>False</td><td><p>The method to use to merge multiple inbound links into a single array.
+If not specified, the default method is <strong>merge_nested</strong>:</p>
+</td></tr></table><h1 id="linkmergemethod">5.1.2.1.1 LinkMergeMethod</h1><p>Referenced by <a href="#workflowstepinput">WorkflowStepInput.linkMerge</a></p>
+<p>The input link merge method, described in <a href="#workflowstepinput">WorkflowStepInput</a></p>
+<h1 id="workflowstepoutput">5.1.2.2 WorkflowStepOutput</h1><p>Extends <a href="#parameter">Parameter</a></p>
 <p>Referenced by <a href="#workflowstep">WorkflowStep.outputs</a>,  <a href="#subworkflow">Subworkflow.outputs</a></p>
 <p>Associate an output parameter of the underlying process with a workflow
 parameter.  The workflow parameter (given in the <code>id</code> field) be may be used
@@ -1104,8 +1117,10 @@ earlier schema definitions.</p>
 </td></tr><tr><td><code>requirements</code></td><td>array&lt;<a href="#processrequirement">ProcessRequirement</a>&gt;</td><td>False</td><td><p>Requirements to run this expression engine, such as DockerRequirement
 for specifying a container with the engine.</p>
 </td></tr><tr><td><code>engineCommand</code></td><td><a href="#datatype">string</a> | array&lt;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>The command line to invoke the expression engine.</p>
-</td></tr><tr><td><code>expressionDefs</code></td><td>array&lt;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>Code fragments that should be evaluated before evaluating the script.
-Can be used to provide function definitions used in multiple places.</p>
+</td></tr><tr><td><code>engineConfig</code></td><td>array&lt;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>Additional configuration or code fragments that will also be passed to
+the expression engine.  The semantics of this field are defined by the
+underlying expression engine.  Intended for uses such as providing
+function definitions that will be called from CWL expressions.</p>
 </td></tr></table><h1 id="process">5.6 Process</h1><p>Extended by <a href="#commandlinetool">CommandLineTool</a>,  <a href="#expressiontool">ExpressionTool</a>,  <a href="#workflowstep">WorkflowStep</a>,  <a href="#workflow">Workflow</a>,  <a href="#subworkflow">Subworkflow</a></p>
 <p>The base executable type in CWL is the <code>Process</code> object defined by the
 document.  Note that the <code>Process</code> object is abstract and cannot be
