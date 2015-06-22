@@ -122,16 +122,17 @@
 </ol></li></ol><li><a href="#schemadefrequirement">5.5.6 SchemaDefRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
 <li><a href="#schemadef">5.5.6.1 SchemaDef</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol></li></ol><li><a href="#expressionenginerequirement">5.5.7 ExpressionEngineRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol></li></ol><li><a href="#process">5.6 Process</a><ol class="nav nav-pills nav-stacked nav-secondary">
-<li><a href="#parameter">5.6.1 Parameter</a><ol class="nav nav-pills nav-stacked nav-secondary">
-<li><a href="#schema">5.6.1.1 Schema</a><ol class="nav nav-pills nav-stacked nav-secondary">
-<li><a href="#datatype">5.6.1.1.1 Datatype</a><ol class="nav nav-pills nav-stacked nav-secondary">
-<li><a href="#file">5.6.1.1.1.1 File</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol></li></ol></li></ol><li><a href="#binding">5.6.1.2 Binding</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol></li></ol><li><a href="#inputparameter">5.6.2 InputParameter</a><ol class="nav nav-pills nav-stacked nav-secondary">
-<li><a href="#inputschema">5.6.2.1 InputSchema</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol></li></ol><li><a href="#outputparameter">5.6.3 OutputParameter</a><ol class="nav nav-pills nav-stacked nav-secondary">
-<li><a href="#outputschema">5.6.3.1 OutputSchema</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol></li></ol><li><a href="#datatype">5.6 Datatype</a><ol class="nav nav-pills nav-stacked nav-secondary">
+<li><a href="#file">5.6.1 File</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#any">5.6.2 Any</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol></li></ol><li><a href="#process">5.7 Process</a><ol class="nav nav-pills nav-stacked nav-secondary">
+<li><a href="#parameter">5.7.1 Parameter</a><ol class="nav nav-pills nav-stacked nav-secondary">
+<li><a href="#schema">5.7.1.1 Schema</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#binding">5.7.1.2 Binding</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol></li></ol><li><a href="#inputparameter">5.7.2 InputParameter</a><ol class="nav nav-pills nav-stacked nav-secondary">
+<li><a href="#inputschema">5.7.2.1 InputSchema</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol></li></ol><li><a href="#outputparameter">5.7.3 OutputParameter</a><ol class="nav nav-pills nav-stacked nav-secondary">
+<li><a href="#outputschema">5.7.3.1 OutputSchema</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol></li></ol></li></ol></li></ol></li></ol></nav>
     </div>
     
@@ -220,8 +221,9 @@ performs some computation, and produces output data.</p>
 <p>A <strong>input schema</strong> describes the valid format (required fields, data types)
 for an input object.</p>
 <p>A <strong>output schema</strong> describes the valid format for a output object.</p>
-<h1 id="syntax">2.2 Syntax</h1><p>Documents containing CWL objects are serialized and loaded using YAML syntax.
-A conforming implementation must accept all valid YAML documents.</p>
+<h1 id="syntax">2.2 Syntax</h1><p>Documents containing CWL objects are serialized and loaded using YAML
+syntax and UTF-8 text encoding.  A conforming implementation must accept
+all valid YAML documents.</p>
 <p>The CWL schema is defined using Avro Linked Data (avro-ld).  Avro-ld is an
 extension of the Apache Avro schema language to support additional
 annotations mapping Avro fields to RDF predicates via JSON-LD.</p>
@@ -593,10 +595,13 @@ provide the value of the output parameter.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#outputschema">OutputSchema</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#outputschema">OutputSchema</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.</p>
 </td></tr><tr><td><code>label</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A short, human-readable label of this parameter object.</p>
 </td></tr><tr><td><code>description</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A long, human-readable description of this parameter object.</p>
+</td></tr><tr><td><code>streamable</code></td><td><a href="#datatype">boolean</a></td><td>False</td><td><p>Currently only applies if <code>type</code> is <code>File</code>.  A value of <code>true</code>
+indicates that the file is read or written sequentially without
+seeking.  An implementation may use this flag to indicate whether it is
+valid to stream file contents using a named pipe.  Default: <code>false</code>.</p>
+</td></tr><tr><td><code>default</code></td><td><a href="#any">Any</a></td><td>False</td><td><p>The default value for this parameter if there is no <code>connect</code>
+field.</p>
 </td></tr><tr><td><code>id</code></td><td><a href="#datatype">string</a></td><td>True</td><td><p>The unique identifier for this parameter object.</p>
-</td></tr><tr><td><code>outputBinding</code></td><td><a href="#binding">Binding</a></td><td>False</td><td><p>Describes how to handle the concrete outputs of a process step (such as
-files created by a program) and describe them in the process output
-parameter.</p>
 </td></tr><tr><td><code>connect</code></td><td><a href="#datalink">DataLink</a> | array&lt;<a href="#datalink">DataLink</a>&gt;</td><td>False</td><td><p>Connect this parameter to one or parameters in the workflow
 which will provide the workflow output.</p>
 </td></tr></table><h1 id="workflowstep">5.1.2 WorkflowStep</h1><p>Extends <a href="#process">Process</a></p>
@@ -646,6 +651,12 @@ single elements.</li>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#schema">Schema</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#schema">Schema</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.</p>
 </td></tr><tr><td><code>label</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A short, human-readable label of this parameter object.</p>
 </td></tr><tr><td><code>description</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A long, human-readable description of this parameter object.</p>
+</td></tr><tr><td><code>streamable</code></td><td><a href="#datatype">boolean</a></td><td>False</td><td><p>Currently only applies if <code>type</code> is <code>File</code>.  A value of <code>true</code>
+indicates that the file is read or written sequentially without
+seeking.  An implementation may use this flag to indicate whether it is
+valid to stream file contents using a named pipe.  Default: <code>false</code>.</p>
+</td></tr><tr><td><code>default</code></td><td><a href="#any">Any</a></td><td>False</td><td><p>The default value for this parameter if there is no <code>connect</code>
+field.</p>
 </td></tr><tr><td><code>id</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A unique identifier for this workflow input parameter.</p>
 </td></tr><tr><td><code>param</code></td><td><a href="#datatype">string</a></td><td>True</td><td><p>The input parameter of the underlying process (specified in the <code>run</code> field
 of <code>WorkflowStep</code>) that will get the value from <code>connect</code>.</p>
@@ -663,6 +674,12 @@ with an output parameter of the process.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#schema">Schema</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#schema">Schema</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.</p>
 </td></tr><tr><td><code>label</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A short, human-readable label of this parameter object.</p>
 </td></tr><tr><td><code>description</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A long, human-readable description of this parameter object.</p>
+</td></tr><tr><td><code>streamable</code></td><td><a href="#datatype">boolean</a></td><td>False</td><td><p>Currently only applies if <code>type</code> is <code>File</code>.  A value of <code>true</code>
+indicates that the file is read or written sequentially without
+seeking.  An implementation may use this flag to indicate whether it is
+valid to stream file contents using a named pipe.  Default: <code>false</code>.</p>
+</td></tr><tr><td><code>default</code></td><td><a href="#any">Any</a></td><td>False</td><td><p>The default value for this parameter if there is no <code>connect</code>
+field.</p>
 </td></tr><tr><td><code>id</code></td><td><a href="#datatype">string</a></td><td>True</td><td><p>A unique identifier for this workflow output parameter.  This is the
 identifier to use in the <code>source</code> field of <code>DataLink</code> to connect the
 output value to downstream parameters.</p>
@@ -806,6 +823,12 @@ runtime environment and inputs may produce different results.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#commandinputschema">CommandInputSchema</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#commandinputschema">CommandInputSchema</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.</p>
 </td></tr><tr><td><code>label</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A short, human-readable label of this parameter object.</p>
 </td></tr><tr><td><code>description</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A long, human-readable description of this parameter object.</p>
+</td></tr><tr><td><code>streamable</code></td><td><a href="#datatype">boolean</a></td><td>False</td><td><p>Currently only applies if <code>type</code> is <code>File</code>.  A value of <code>true</code>
+indicates that the file is read or written sequentially without
+seeking.  An implementation may use this flag to indicate whether it is
+valid to stream file contents using a named pipe.  Default: <code>false</code>.</p>
+</td></tr><tr><td><code>default</code></td><td><a href="#any">Any</a></td><td>False</td><td><p>The default value for this parameter if there is no <code>connect</code>
+field.</p>
 </td></tr><tr><td><code>id</code></td><td><a href="#datatype">string</a></td><td>True</td><td><p>The unique identifier for this parameter object.</p>
 </td></tr><tr><td><code>inputBinding</code></td><td><a href="#commandlinebinding">CommandLineBinding</a></td><td>False</td><td><p>Describes how to handle the inputs of a process and convert them
 into a concrete form for execution, such as command line parameters.</p>
@@ -842,22 +865,21 @@ effective value.</p>
 <li><p><strong>null</strong>: Add nothing.</p>
 </li>
 </ul>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>loadContents</code></td><td><a href="#datatype">boolean</a></td><td>False</td><td><p>Read up to the first 64 KiB of text from the file and place it in the
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>loadContents</code></td><td><a href="#datatype">boolean</a></td><td>False</td><td><p>Only applies when <code>type</code> is <code>File</code>.  Read up to the first 64 KiB of text from the file and place it in the
 "contents" field of the file object for manipulation by expressions.</p>
-</td></tr><tr><td><code>streamable</code></td><td><a href="#datatype">boolean</a></td><td>False</td><td><p>Only applies when <code>type</code> is <code>File</code>.  A value of <code>true</code> indicates that the file will
-be read or written sequentially without seeking.  Default: <code>false</code>.</p>
-</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#datatype">string</a> | <a href="#expression">Expression</a> | array&lt;<a href="#datatype">string</a>&nbsp;|&nbsp;<a href="#expression">Expression</a>&gt;</td><td>False</td><td><p>Applies when <code>type</code> is <code>File</code>.  Describes files that must be
+</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#datatype">string</a> | <a href="#expression">Expression</a> | array&lt;<a href="#datatype">string</a>&nbsp;|&nbsp;<a href="#expression">Expression</a>&gt;</td><td>False</td><td><p>Only applies when <code>type</code> is <code>File</code>.  Describes files that must be
 included alongside the primary file.</p>
 <p>If the value is Expression, the context of the expression is the input
 or output File parameter to which this binding applies.</p>
 <p>Where the value is a string, it specifies that the following pattern
 should be applied to the primary file:</p>
-<h1>If string begins with one or more caret <code>^</code> characters, for each</h1>
-<pre><code>caret, remove the last file extension from the path (the last
-period `.` and all following characters).  If there are no file
-extensions, the path is unchanged.
-</code></pre>
-<h1>Append the remainder of the string to the end of the file path.</h1>
+<ol>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
+period <code>.</code> and all following characters).  If there are no file
+extensions, the path is unchanged.</li>
+<li>Append the remainder of the string to the end of the file path.</li>
+</ol>
 </td></tr><tr><td><code>position</code></td><td><a href="#datatype">int</a></td><td>False</td><td><p>The sorting key.  Default position is 0.</p>
 </td></tr><tr><td><code>prefix</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>Command line prefix to add before the value.</p>
 </td></tr><tr><td><code>separate</code></td><td><a href="#datatype">boolean</a></td><td>False</td><td><p>If true (default) then the prefix and value must be added as separate
@@ -889,6 +911,12 @@ into a concrete form for execution, such as command line parameters.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#commandoutputschema">CommandOutputSchema</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#commandoutputschema">CommandOutputSchema</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.</p>
 </td></tr><tr><td><code>label</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A short, human-readable label of this parameter object.</p>
 </td></tr><tr><td><code>description</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A long, human-readable description of this parameter object.</p>
+</td></tr><tr><td><code>streamable</code></td><td><a href="#datatype">boolean</a></td><td>False</td><td><p>Currently only applies if <code>type</code> is <code>File</code>.  A value of <code>true</code>
+indicates that the file is read or written sequentially without
+seeking.  An implementation may use this flag to indicate whether it is
+valid to stream file contents using a named pipe.  Default: <code>false</code>.</p>
+</td></tr><tr><td><code>default</code></td><td><a href="#any">Any</a></td><td>False</td><td><p>The default value for this parameter if there is no <code>connect</code>
+field.</p>
 </td></tr><tr><td><code>id</code></td><td><a href="#datatype">string</a></td><td>True</td><td><p>The unique identifier for this parameter object.</p>
 </td></tr><tr><td><code>outputBinding</code></td><td><a href="#commandoutputbinding">CommandOutputBinding</a></td><td>False</td><td><p>Describes how to handle the concrete outputs of a process step (such as
 files created by a program) and describe them in the process output
@@ -904,22 +932,21 @@ the following order:</p>
 <li>loadContents</li>
 <li>outputEval</li>
 </ul>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>loadContents</code></td><td><a href="#datatype">boolean</a></td><td>False</td><td><p>Read up to the first 64 KiB of text from the file and place it in the
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>loadContents</code></td><td><a href="#datatype">boolean</a></td><td>False</td><td><p>Only applies when <code>type</code> is <code>File</code>.  Read up to the first 64 KiB of text from the file and place it in the
 "contents" field of the file object for manipulation by expressions.</p>
-</td></tr><tr><td><code>streamable</code></td><td><a href="#datatype">boolean</a></td><td>False</td><td><p>Only applies when <code>type</code> is <code>File</code>.  A value of <code>true</code> indicates that the file will
-be read or written sequentially without seeking.  Default: <code>false</code>.</p>
-</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#datatype">string</a> | <a href="#expression">Expression</a> | array&lt;<a href="#datatype">string</a>&nbsp;|&nbsp;<a href="#expression">Expression</a>&gt;</td><td>False</td><td><p>Applies when <code>type</code> is <code>File</code>.  Describes files that must be
+</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#datatype">string</a> | <a href="#expression">Expression</a> | array&lt;<a href="#datatype">string</a>&nbsp;|&nbsp;<a href="#expression">Expression</a>&gt;</td><td>False</td><td><p>Only applies when <code>type</code> is <code>File</code>.  Describes files that must be
 included alongside the primary file.</p>
 <p>If the value is Expression, the context of the expression is the input
 or output File parameter to which this binding applies.</p>
 <p>Where the value is a string, it specifies that the following pattern
 should be applied to the primary file:</p>
-<h1>If string begins with one or more caret <code>^</code> characters, for each</h1>
-<pre><code>caret, remove the last file extension from the path (the last
-period `.` and all following characters).  If there are no file
-extensions, the path is unchanged.
-</code></pre>
-<h1>Append the remainder of the string to the end of the file path.</h1>
+<ol>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
+period <code>.</code> and all following characters).  If there are no file
+extensions, the path is unchanged.</li>
+<li>Append the remainder of the string to the end of the file path.</li>
+</ol>
 </td></tr><tr><td><code>glob</code></td><td><a href="#datatype">string</a> | <a href="#expression">Expression</a> | array&lt;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>Find files relative to the output directory, using POSIX glob(3)
 pathname matching.  If provided an array, match all patterns in the
 array.  If provided an expression, the expression must return a string
@@ -936,8 +963,8 @@ will include up to the first 64 KiB of file contents in the <code>contents</code
 </td></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>enum</code>, defines the set of valid symbols.</p>
 </td></tr><tr><td><code>items</code></td><td><a href="#datatype">Datatype</a> | <a href="#commandoutputschema">CommandOutputSchema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#commandoutputschema">CommandOutputSchema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>array</code>, defines the type of the array elements.</p>
 </td></tr><tr><td><code>values</code></td><td><a href="#datatype">Datatype</a> | <a href="#commandoutputschema">CommandOutputSchema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#commandoutputschema">CommandOutputSchema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>map</code>, defines the value type for the key/value pairs.</p>
-</td></tr><tr><td><code>outputBinding</code></td><td><a href="#commandoutputbinding">CommandOutputBinding</a></td><td>False</td><td><p>Describes how to handle the concrete outputs of a process (such as
-files created by a programs) and describe them in the process output
+</td></tr><tr><td><code>outputBinding</code></td><td><a href="#commandoutputbinding">CommandOutputBinding</a></td><td>False</td><td><p>Describes how to handle the concrete outputs of a process step (such as
+files created by a program) and describe them in the process output
 parameter.</p>
 </td></tr></table><h1 id="expressiontool">5.3 ExpressionTool</h1><p>Extends <a href="#process">Process</a></p>
 <p>Referenced by <a href="#workflowstep">WorkflowStep.run</a></p>
@@ -1121,36 +1148,7 @@ for specifying a container with the engine.</p>
 the expression engine.  The semantics of this field are defined by the
 underlying expression engine.  Intended for uses such as providing
 function definitions that will be called from CWL expressions.</p>
-</td></tr></table><h1 id="process">5.6 Process</h1><p>Extended by <a href="#commandlinetool">CommandLineTool</a>,  <a href="#expressiontool">ExpressionTool</a>,  <a href="#workflowstep">WorkflowStep</a>,  <a href="#workflow">Workflow</a>,  <a href="#subworkflow">Subworkflow</a></p>
-<p>The base executable type in CWL is the <code>Process</code> object defined by the
-document.  Note that the <code>Process</code> object is abstract and cannot be
-directly executed.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>id</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>The unique identifier for this process object.</p>
-</td></tr><tr><td><code>inputs</code></td><td>array&lt;<a href="#inputparameter">InputParameter</a>&gt;</td><td>True</td><td><p>Defines the input parameters of the process.  The process is ready to
-run when all required input parameters are associated with concrete
-values.  Input parameters include a schema for each parameter and is
-used to validate the input object, it may also be used build a user
-interface for constructing the input object.</p>
-</td></tr><tr><td><code>outputs</code></td><td>array&lt;<a href="#outputparameter">OutputParameter</a>&gt;</td><td>True</td><td><p>Defines the parameters representing the output of the process.  May be
-used to generate and/or validate the output object.</p>
-</td></tr><tr><td><code>requirements</code></td><td>array&lt;<a href="#processrequirement">ProcessRequirement</a>&gt;</td><td>False</td><td><p>Declares requirements that apply to either the runtime environment or the workflow engine that must be met in order to execute this process.  If an implementation cannot satisfy all requirements, or a requirement is listed which is not recognized by the implementation, it is a fatal error and the implementation must not attempt to run the process, unless overridden at user option.</p>
-</td></tr><tr><td><code>hints</code></td><td>array&lt;<a href="#processrequirement">ProcessRequirement</a>&gt;</td><td>False</td><td><p>Declares hints applying to either the runtime environment or the workflow engine that may be helpful in executing this process.  It is not an error if an implementation cannot satisfy all hints, however the implementation may report a warning.</p>
-</td></tr><tr><td><code>label</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A short, human-readable label of this process object.</p>
-</td></tr><tr><td><code>description</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A long, human-readable description of this process object.</p>
-</td></tr></table><h1 id="parameter">5.6.1 Parameter</h1><p>Extended by <a href="#inputparameter">InputParameter</a>,  <a href="#outputparameter">OutputParameter</a>,  <a href="#workflowstepinput">WorkflowStepInput</a>,  <a href="#workflowstepoutput">WorkflowStepOutput</a></p>
-<p>Define an input or output parameter to a process.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#schema">Schema</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#schema">Schema</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.</p>
-</td></tr><tr><td><code>label</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A short, human-readable label of this parameter object.</p>
-</td></tr><tr><td><code>description</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A long, human-readable description of this parameter object.</p>
-</td></tr></table><h1 id="schema">5.6.1.1 Schema</h1><p>Extended by <a href="#inputschema">InputSchema</a>,  <a href="#outputschema">OutputSchema</a>,  <a href="#schemadef">SchemaDef</a></p>
-<p>Referenced by <a href="#schema">Schema.type</a>,  <a href="#schema">Schema.fields</a>,  <a href="#schema">Schema.items</a>,  <a href="#schema">Schema.values</a>,  <a href="#parameter">Parameter.type</a>,  <a href="#workflowstepinput">WorkflowStepInput.type</a>,  <a href="#workflowstepoutput">WorkflowStepOutput.type</a>,  <a href="#schemadef">SchemaDef.type</a>,  <a href="#schemadef">SchemaDef.fields</a>,  <a href="#schemadef">SchemaDef.items</a>,  <a href="#schemadef">SchemaDef.values</a></p>
-<p>A schema defines a parameter type.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#schema">Schema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#schema">Schema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>True</td><td><p>The data type of this parameter.</p>
-</td></tr><tr><td><code>fields</code></td><td>array&lt;<a href="#schema">Schema</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>record</code>, defines the fields of the record.</p>
-</td></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>enum</code>, defines the set of valid symbols.</p>
-</td></tr><tr><td><code>items</code></td><td><a href="#datatype">Datatype</a> | <a href="#schema">Schema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#schema">Schema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>array</code>, defines the type of the array elements.</p>
-</td></tr><tr><td><code>values</code></td><td><a href="#datatype">Datatype</a> | <a href="#schema">Schema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#schema">Schema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>map</code>, defines the value type for the key/value pairs.</p>
-</td></tr></table><h1 id="datatype">5.6.1.1.1 Datatype</h1><p>Referenced by <a href="#schema">Schema.type</a>,  <a href="#schema">Schema.items</a>,  <a href="#schema">Schema.values</a>,  <a href="#parameter">Parameter.type</a>,  <a href="#inputschema">InputSchema.type</a>,  <a href="#inputschema">InputSchema.items</a>,  <a href="#inputschema">InputSchema.values</a>,  <a href="#outputschema">OutputSchema.type</a>,  <a href="#outputschema">OutputSchema.items</a>,  <a href="#outputschema">OutputSchema.values</a>,  <a href="#inputparameter">InputParameter.type</a>,  <a href="#outputparameter">OutputParameter.type</a>,  <a href="#commandinputschema">CommandInputSchema.type</a>,  <a href="#commandinputschema">CommandInputSchema.items</a>,  <a href="#commandinputschema">CommandInputSchema.values</a>,  <a href="#commandoutputschema">CommandOutputSchema.type</a>,  <a href="#commandoutputschema">CommandOutputSchema.items</a>,  <a href="#commandoutputschema">CommandOutputSchema.values</a>,  <a href="#commandinputparameter">CommandInputParameter.type</a>,  <a href="#commandoutputparameter">CommandOutputParameter.type</a>,  <a href="#workflowoutputparameter">WorkflowOutputParameter.type</a>,  <a href="#workflowstepinput">WorkflowStepInput.type</a>,  <a href="#workflowstepoutput">WorkflowStepOutput.type</a>,  <a href="#schemadef">SchemaDef.type</a>,  <a href="#schemadef">SchemaDef.items</a>,  <a href="#schemadef">SchemaDef.values</a></p>
+</td></tr></table><h1 id="datatype">5.6 Datatype</h1><p>Referenced by <a href="#schema">Schema.type</a>,  <a href="#schema">Schema.items</a>,  <a href="#schema">Schema.values</a>,  <a href="#parameter">Parameter.type</a>,  <a href="#inputschema">InputSchema.type</a>,  <a href="#inputschema">InputSchema.items</a>,  <a href="#inputschema">InputSchema.values</a>,  <a href="#outputschema">OutputSchema.type</a>,  <a href="#outputschema">OutputSchema.items</a>,  <a href="#outputschema">OutputSchema.values</a>,  <a href="#inputparameter">InputParameter.type</a>,  <a href="#outputparameter">OutputParameter.type</a>,  <a href="#commandinputschema">CommandInputSchema.type</a>,  <a href="#commandinputschema">CommandInputSchema.items</a>,  <a href="#commandinputschema">CommandInputSchema.values</a>,  <a href="#commandoutputschema">CommandOutputSchema.type</a>,  <a href="#commandoutputschema">CommandOutputSchema.items</a>,  <a href="#commandoutputschema">CommandOutputSchema.values</a>,  <a href="#commandinputparameter">CommandInputParameter.type</a>,  <a href="#commandoutputparameter">CommandOutputParameter.type</a>,  <a href="#workflowoutputparameter">WorkflowOutputParameter.type</a>,  <a href="#workflowstepinput">WorkflowStepInput.type</a>,  <a href="#workflowstepoutput">WorkflowStepOutput.type</a>,  <a href="#schemadef">SchemaDef.type</a>,  <a href="#schemadef">SchemaDef.items</a>,  <a href="#schemadef">SchemaDef.values</a></p>
 <p>CWL data types are based on Avro schema declarations.  Refer to the <a href="https://avro.apache.org/docs/current/spec.html#schemas">Avro
 schema declaration
 documentation</a> for
@@ -1173,8 +1171,8 @@ as a special record type.</p>
 <li><strong>map</strong>: An unordered collection of key/value pairs</li>
 </ul>
 <h1 id="file_type">File type</h1><p>See <a href="#file">File</a> below.</p>
-<h1 id="any_type">Any type</h1><p>The <strong>Any</strong> type validates for any non-null value.</p>
-<h1 id="file">5.6.1.1.1.1 File</h1><p>Referenced by <a href="#file">File.secondaryFiles</a></p>
+<h1 id="any_type">Any type</h1><p>See <a href="#any">Any</a> below.</p>
+<h1 id="file">5.6.1 File</h1><p>Referenced by <a href="#file">File.secondaryFiles</a></p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td>File_class</td><td>True</td><td><p>Must be <code>File</code> to indicate this object describes a file.</p>
 </td></tr><tr><td><code>path</code></td><td><a href="#datatype">string</a></td><td>True</td><td><p>The path to the file.</p>
 </td></tr><tr><td><code>checksum</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>Optional hash code for validating file integrity.  Currently must be in the form
@@ -1186,34 +1184,76 @@ indexes of the primary file, or external references which must be
 included when loading primary document.  A file object listed in
 <code>secondaryFiles</code> may itself include <code>secondaryFiles</code> for which the same
 rules apply.</p>
-</td></tr></table><h1 id="binding">5.6.1.2 Binding</h1><p>Extended by <a href="#commandlinebinding">CommandLineBinding</a>,  <a href="#commandoutputbinding">CommandOutputBinding</a></p>
-<p>Referenced by <a href="#inputschema">InputSchema.inputBinding</a>,  <a href="#outputschema">OutputSchema.outputBinding</a>,  <a href="#inputparameter">InputParameter.inputBinding</a>,  <a href="#outputparameter">OutputParameter.outputBinding</a>,  <a href="#workflowoutputparameter">WorkflowOutputParameter.outputBinding</a></p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>loadContents</code></td><td><a href="#datatype">boolean</a></td><td>False</td><td><p>Read up to the first 64 KiB of text from the file and place it in the
+</td></tr></table><h1 id="any">5.6.2 Any</h1><p>Referenced by <a href="#parameter">Parameter.default</a>,  <a href="#inputparameter">InputParameter.default</a>,  <a href="#outputparameter">OutputParameter.default</a>,  <a href="#commandinputparameter">CommandInputParameter.default</a>,  <a href="#commandoutputparameter">CommandOutputParameter.default</a>,  <a href="#workflowoutputparameter">WorkflowOutputParameter.default</a>,  <a href="#workflowstepinput">WorkflowStepInput.default</a>,  <a href="#workflowstepoutput">WorkflowStepOutput.default</a></p>
+<p>The <strong>Any</strong> type validates for any non-null value.</p>
+<h1 id="process">5.7 Process</h1><p>Extended by <a href="#commandlinetool">CommandLineTool</a>,  <a href="#expressiontool">ExpressionTool</a>,  <a href="#workflowstep">WorkflowStep</a>,  <a href="#workflow">Workflow</a>,  <a href="#subworkflow">Subworkflow</a></p>
+<p>The base executable type in CWL is the <code>Process</code> object defined by the
+document.  Note that the <code>Process</code> object is abstract and cannot be
+directly executed.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>id</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>The unique identifier for this process object.</p>
+</td></tr><tr><td><code>inputs</code></td><td>array&lt;<a href="#inputparameter">InputParameter</a>&gt;</td><td>True</td><td><p>Defines the input parameters of the process.  The process is ready to
+run when all required input parameters are associated with concrete
+values.  Input parameters include a schema for each parameter and is
+used to validate the input object, it may also be used build a user
+interface for constructing the input object.</p>
+</td></tr><tr><td><code>outputs</code></td><td>array&lt;<a href="#outputparameter">OutputParameter</a>&gt;</td><td>True</td><td><p>Defines the parameters representing the output of the process.  May be
+used to generate and/or validate the output object.</p>
+</td></tr><tr><td><code>requirements</code></td><td>array&lt;<a href="#processrequirement">ProcessRequirement</a>&gt;</td><td>False</td><td><p>Declares requirements that apply to either the runtime environment or the workflow engine that must be met in order to execute this process.  If an implementation cannot satisfy all requirements, or a requirement is listed which is not recognized by the implementation, it is a fatal error and the implementation must not attempt to run the process, unless overridden at user option.</p>
+</td></tr><tr><td><code>hints</code></td><td>array&lt;<a href="#processrequirement">ProcessRequirement</a>&gt;</td><td>False</td><td><p>Declares hints applying to either the runtime environment or the workflow engine that may be helpful in executing this process.  It is not an error if an implementation cannot satisfy all hints, however the implementation may report a warning.</p>
+</td></tr><tr><td><code>label</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A short, human-readable label of this process object.</p>
+</td></tr><tr><td><code>description</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A long, human-readable description of this process object.</p>
+</td></tr></table><h1 id="parameter">5.7.1 Parameter</h1><p>Extended by <a href="#inputparameter">InputParameter</a>,  <a href="#outputparameter">OutputParameter</a>,  <a href="#workflowstepinput">WorkflowStepInput</a>,  <a href="#workflowstepoutput">WorkflowStepOutput</a></p>
+<p>Define an input or output parameter to a process.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#schema">Schema</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#schema">Schema</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.</p>
+</td></tr><tr><td><code>label</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A short, human-readable label of this parameter object.</p>
+</td></tr><tr><td><code>description</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A long, human-readable description of this parameter object.</p>
+</td></tr><tr><td><code>streamable</code></td><td><a href="#datatype">boolean</a></td><td>False</td><td><p>Currently only applies if <code>type</code> is <code>File</code>.  A value of <code>true</code>
+indicates that the file is read or written sequentially without
+seeking.  An implementation may use this flag to indicate whether it is
+valid to stream file contents using a named pipe.  Default: <code>false</code>.</p>
+</td></tr><tr><td><code>default</code></td><td><a href="#any">Any</a></td><td>False</td><td><p>The default value for this parameter if there is no <code>connect</code>
+field.</p>
+</td></tr></table><h1 id="schema">5.7.1.1 Schema</h1><p>Extended by <a href="#inputschema">InputSchema</a>,  <a href="#outputschema">OutputSchema</a>,  <a href="#schemadef">SchemaDef</a></p>
+<p>Referenced by <a href="#schema">Schema.type</a>,  <a href="#schema">Schema.fields</a>,  <a href="#schema">Schema.items</a>,  <a href="#schema">Schema.values</a>,  <a href="#parameter">Parameter.type</a>,  <a href="#workflowstepinput">WorkflowStepInput.type</a>,  <a href="#workflowstepoutput">WorkflowStepOutput.type</a>,  <a href="#schemadef">SchemaDef.type</a>,  <a href="#schemadef">SchemaDef.fields</a>,  <a href="#schemadef">SchemaDef.items</a>,  <a href="#schemadef">SchemaDef.values</a></p>
+<p>A schema defines a parameter type.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#schema">Schema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#schema">Schema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>True</td><td><p>The data type of this parameter.</p>
+</td></tr><tr><td><code>fields</code></td><td>array&lt;<a href="#schema">Schema</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>record</code>, defines the fields of the record.</p>
+</td></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>enum</code>, defines the set of valid symbols.</p>
+</td></tr><tr><td><code>items</code></td><td><a href="#datatype">Datatype</a> | <a href="#schema">Schema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#schema">Schema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>array</code>, defines the type of the array elements.</p>
+</td></tr><tr><td><code>values</code></td><td><a href="#datatype">Datatype</a> | <a href="#schema">Schema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#schema">Schema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>map</code>, defines the value type for the key/value pairs.</p>
+</td></tr></table><h1 id="binding">5.7.1.2 Binding</h1><p>Extended by <a href="#commandlinebinding">CommandLineBinding</a>,  <a href="#commandoutputbinding">CommandOutputBinding</a></p>
+<p>Referenced by <a href="#inputschema">InputSchema.inputBinding</a>,  <a href="#inputparameter">InputParameter.inputBinding</a></p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>loadContents</code></td><td><a href="#datatype">boolean</a></td><td>False</td><td><p>Only applies when <code>type</code> is <code>File</code>.  Read up to the first 64 KiB of text from the file and place it in the
 "contents" field of the file object for manipulation by expressions.</p>
-</td></tr><tr><td><code>streamable</code></td><td><a href="#datatype">boolean</a></td><td>False</td><td><p>Only applies when <code>type</code> is <code>File</code>.  A value of <code>true</code> indicates that the file will
-be read or written sequentially without seeking.  Default: <code>false</code>.</p>
-</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#datatype">string</a> | <a href="#expression">Expression</a> | array&lt;<a href="#datatype">string</a>&nbsp;|&nbsp;<a href="#expression">Expression</a>&gt;</td><td>False</td><td><p>Applies when <code>type</code> is <code>File</code>.  Describes files that must be
+</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#datatype">string</a> | <a href="#expression">Expression</a> | array&lt;<a href="#datatype">string</a>&nbsp;|&nbsp;<a href="#expression">Expression</a>&gt;</td><td>False</td><td><p>Only applies when <code>type</code> is <code>File</code>.  Describes files that must be
 included alongside the primary file.</p>
 <p>If the value is Expression, the context of the expression is the input
 or output File parameter to which this binding applies.</p>
 <p>Where the value is a string, it specifies that the following pattern
 should be applied to the primary file:</p>
-<h1>If string begins with one or more caret <code>^</code> characters, for each</h1>
-<pre><code>caret, remove the last file extension from the path (the last
-period `.` and all following characters).  If there are no file
-extensions, the path is unchanged.
-</code></pre>
-<h1>Append the remainder of the string to the end of the file path.</h1>
-</td></tr></table><h1 id="inputparameter">5.6.2 InputParameter</h1><p>Extends <a href="#parameter">Parameter</a></p>
+<ol>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
+period <code>.</code> and all following characters).  If there are no file
+extensions, the path is unchanged.</li>
+<li>Append the remainder of the string to the end of the file path.</li>
+</ol>
+</td></tr></table><h1 id="inputparameter">5.7.2 InputParameter</h1><p>Extends <a href="#parameter">Parameter</a></p>
 <p>Extended by <a href="#commandinputparameter">CommandInputParameter</a></p>
 <p>Referenced by <a href="#process">Process.inputs</a>,  <a href="#expressiontool">ExpressionTool.inputs</a>,  <a href="#workflow">Workflow.inputs</a></p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#inputschema">InputSchema</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#inputschema">InputSchema</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.</p>
 </td></tr><tr><td><code>label</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A short, human-readable label of this parameter object.</p>
 </td></tr><tr><td><code>description</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A long, human-readable description of this parameter object.</p>
+</td></tr><tr><td><code>streamable</code></td><td><a href="#datatype">boolean</a></td><td>False</td><td><p>Currently only applies if <code>type</code> is <code>File</code>.  A value of <code>true</code>
+indicates that the file is read or written sequentially without
+seeking.  An implementation may use this flag to indicate whether it is
+valid to stream file contents using a named pipe.  Default: <code>false</code>.</p>
+</td></tr><tr><td><code>default</code></td><td><a href="#any">Any</a></td><td>False</td><td><p>The default value for this parameter if there is no <code>connect</code>
+field.</p>
 </td></tr><tr><td><code>id</code></td><td><a href="#datatype">string</a></td><td>True</td><td><p>The unique identifier for this parameter object.</p>
 </td></tr><tr><td><code>inputBinding</code></td><td><a href="#binding">Binding</a></td><td>False</td><td><p>Describes how to handle the inputs of a process and convert them
 into a concrete form for execution, such as command line parameters.</p>
-</td></tr></table><h1 id="inputschema">5.6.2.1 InputSchema</h1><p>Extends <a href="#schema">Schema</a></p>
+</td></tr></table><h1 id="inputschema">5.7.2.1 InputSchema</h1><p>Extends <a href="#schema">Schema</a></p>
 <p>Extended by <a href="#commandinputschema">CommandInputSchema</a></p>
 <p>Referenced by <a href="#inputschema">InputSchema.type</a>,  <a href="#inputschema">InputSchema.fields</a>,  <a href="#inputschema">InputSchema.items</a>,  <a href="#inputschema">InputSchema.values</a>,  <a href="#inputparameter">InputParameter.type</a></p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#inputschema">InputSchema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#inputschema">InputSchema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>True</td><td><p>The data type of this parameter.</p>
@@ -1223,17 +1263,20 @@ into a concrete form for execution, such as command line parameters.</p>
 </td></tr><tr><td><code>values</code></td><td><a href="#datatype">Datatype</a> | <a href="#inputschema">InputSchema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#inputschema">InputSchema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>map</code>, defines the value type for the key/value pairs.</p>
 </td></tr><tr><td><code>inputBinding</code></td><td><a href="#binding">Binding</a></td><td>False</td><td><p>Describes how to handle a value in the input object convert it
 into a concrete form for execution, such as command line parameters.</p>
-</td></tr></table><h1 id="outputparameter">5.6.3 OutputParameter</h1><p>Extends <a href="#parameter">Parameter</a></p>
+</td></tr></table><h1 id="outputparameter">5.7.3 OutputParameter</h1><p>Extends <a href="#parameter">Parameter</a></p>
 <p>Extended by <a href="#commandoutputparameter">CommandOutputParameter</a>,  <a href="#workflowoutputparameter">WorkflowOutputParameter</a></p>
 <p>Referenced by <a href="#process">Process.outputs</a>,  <a href="#expressiontool">ExpressionTool.outputs</a></p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#outputschema">OutputSchema</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#outputschema">OutputSchema</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.</p>
 </td></tr><tr><td><code>label</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A short, human-readable label of this parameter object.</p>
 </td></tr><tr><td><code>description</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A long, human-readable description of this parameter object.</p>
+</td></tr><tr><td><code>streamable</code></td><td><a href="#datatype">boolean</a></td><td>False</td><td><p>Currently only applies if <code>type</code> is <code>File</code>.  A value of <code>true</code>
+indicates that the file is read or written sequentially without
+seeking.  An implementation may use this flag to indicate whether it is
+valid to stream file contents using a named pipe.  Default: <code>false</code>.</p>
+</td></tr><tr><td><code>default</code></td><td><a href="#any">Any</a></td><td>False</td><td><p>The default value for this parameter if there is no <code>connect</code>
+field.</p>
 </td></tr><tr><td><code>id</code></td><td><a href="#datatype">string</a></td><td>True</td><td><p>The unique identifier for this parameter object.</p>
-</td></tr><tr><td><code>outputBinding</code></td><td><a href="#binding">Binding</a></td><td>False</td><td><p>Describes how to handle the concrete outputs of a process step (such as
-files created by a program) and describe them in the process output
-parameter.</p>
-</td></tr></table><h1 id="outputschema">5.6.3.1 OutputSchema</h1><p>Extends <a href="#schema">Schema</a></p>
+</td></tr></table><h1 id="outputschema">5.7.3.1 OutputSchema</h1><p>Extends <a href="#schema">Schema</a></p>
 <p>Extended by <a href="#commandoutputschema">CommandOutputSchema</a></p>
 <p>Referenced by <a href="#outputschema">OutputSchema.type</a>,  <a href="#outputschema">OutputSchema.fields</a>,  <a href="#outputschema">OutputSchema.items</a>,  <a href="#outputschema">OutputSchema.values</a>,  <a href="#outputparameter">OutputParameter.type</a>,  <a href="#workflowoutputparameter">WorkflowOutputParameter.type</a></p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#outputschema">OutputSchema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#outputschema">OutputSchema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>True</td><td><p>The data type of this parameter.</p>
@@ -1241,9 +1284,6 @@ parameter.</p>
 </td></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>enum</code>, defines the set of valid symbols.</p>
 </td></tr><tr><td><code>items</code></td><td><a href="#datatype">Datatype</a> | <a href="#outputschema">OutputSchema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#outputschema">OutputSchema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>array</code>, defines the type of the array elements.</p>
 </td></tr><tr><td><code>values</code></td><td><a href="#datatype">Datatype</a> | <a href="#outputschema">OutputSchema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#outputschema">OutputSchema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>map</code>, defines the value type for the key/value pairs.</p>
-</td></tr><tr><td><code>outputBinding</code></td><td><a href="#binding">Binding</a></td><td>False</td><td><p>Describes how to handle the concrete outputs of a process (such as
-files created by a programs) and describe them in the process output
-parameter.</p>
 </td></tr></table></div>
     </div>
     </div>
