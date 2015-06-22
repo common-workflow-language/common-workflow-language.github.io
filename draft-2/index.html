@@ -75,7 +75,7 @@
 </ol><li><a href="#introduction">1. Introduction</a><ol class="nav nav-pills nav-stacked nav-secondary">
 <li><a href="#introduction_to_draft_2">1.1 Introduction to draft 2</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol><li><a href="#purpose">1.2 Purpose</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#dependencies_on_other_specifications">1.3 Dependencies on Other Specifications</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#references_to_other_specifications">1.3 References to Other Specifications</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol><li><a href="#scope">1.4 Scope</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol><li><a href="#terminology">1.5 Terminology</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol></li></ol><li><a href="#data_model">2. Data model</a><ol class="nav nav-pills nav-stacked nav-secondary">
@@ -117,9 +117,8 @@
 <li><a href="#filedef">5.5.3.1 FileDef</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol></li></ol><li><a href="#envvarrequirement">5.5.4 EnvVarRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
 <li><a href="#environmentdef">5.5.4.1 EnvironmentDef</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol></li></ol><li><a href="#scatter">5.5.5 Scatter</a><ol class="nav nav-pills nav-stacked nav-secondary">
-<li><a href="#scattermethod">5.5.5.1 ScatterMethod</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol></li></ol><li><a href="#schemadefrequirement">5.5.6 SchemaDefRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol></li></ol><li><a href="#scatterfeaturerequirement">5.5.5 ScatterFeatureRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#schemadefrequirement">5.5.6 SchemaDefRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
 <li><a href="#schemadef">5.5.6.1 SchemaDef</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol></li></ol><li><a href="#expressionenginerequirement">5.5.7 ExpressionEngineRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol></li></ol><li><a href="#datatype">5.6 Datatype</a><ol class="nav nav-pills nav-stacked nav-secondary">
@@ -181,13 +180,15 @@ intended to define a data and execution model for Workflows and Command Line
 Tools that can be implemented on top of a variety of computing platforms,
 ranging from individual workstation to cluster, grid, cloud, and high
 performance computing systems.</p>
-<h1 id="dependencies_on_other_specifications">1.3 Dependencies on Other Specifications</h1><ul>
+<h1 id="references_to_other_specifications">1.3 References to Other Specifications</h1><ul>
 <li><a href="http://json.org">JSON</a></li>
 <li><a href="http://json-ld.org">JSON-LD</a></li>
 <li><a href="https://tools.ietf.org/html/draft-ietf-appsawg-json-pointer-04">JSON Pointer</a></li>
 <li><a href="http://yaml.org">YAML</a></li>
 <li><a href="https://avro.apache.org/docs/current/spec.html">Avro</a></li>
 <li><a href="https://tools.ietf.org/html/rfc3986">Uniform Resource Identifier (URI): Generic Syntax</a></li>
+<li><a href="https://www.ietf.org/rfc/rfc2279.txt">UTF-8</a></li>
+<li><a href="http://pubs.opengroup.org/onlinepubs/9699919799/">Portable Operating System Interface (POSIX.1-2008)</a></li>
 </ul>
 <h1 id="scope">1.4 Scope</h1><p>This document describes the CWL syntax, execution, and object model.  It
 is not intended to document a specific implementation of CWL, however it may
@@ -322,11 +323,18 @@ implementation cannot satisfy all hints.  The implementation may report a
 warning if a hint cannot be satisfied.</p>
 <p>Requirements are inherited.  A requirement specified in a Workflow applies
 to all workflow steps; a requirement specified on a workflow step will
-apply to the process implementation.  However, when determining how to
-apply a requirement, the closest instance of the requirement is used, that
-is, the requirement on a CommandLineTool will take precendence over the
-workflow step, and a requirement on a workflow step takes precedence over
-the workflow.</p>
+apply to the process implementation.</p>
+<p>If the same process requirement appears at different levels of the
+workflow, the most specific instance of the requirement is used, that is,
+an entry in <code>requirements</code> on a process implementation such as
+CommandLineTool will take precendence over an entry in <code>requirements</code>
+specified in a workflow step, and an entry in <code>requirements</code> on a workflow
+step takes precedence over the workflow.  Entries in <code>hints</code> are resolved
+the same way.</p>
+<p>Requirements override hints.  If a process implementation provides a
+process requirement in <code>hints</code> which is also provided in <code>requirements</code> by
+an enclosing workflow or workflow step, the enclosing <code>requirements</code> takes
+precedence.</p>
 <p>Process requirements are the primary mechanism for specifying extensions to
 the CWL core specification.</p>
 <h1 id="expressions">3.4 Expressions</h1><p>An expression is a fragment of executable code which is evaluated by
@@ -610,6 +618,38 @@ which will provide the workflow output.</p>
 underlying process implementation (such as <code>CommandLineTool</code>) in the <code>run</code>
 field and connects the input and output parameters of the underlying
 process to workflow parameters.</p>
+<h1 id="scatter/gather">Scatter/gather</h1><p>To use scatter/gather,
+<a href="#scatterfeaturerequirement">ScatterFeatureRequirement</a> must be specified
+in the workflow or workflow step requirements.</p>
+<p>A "scatter" operation specifies that the associated workflow step or
+subworkflow should execute separately over a list of input elements.  Each
+job making up a scatter operaution is independent and may be executed
+concurrently.</p>
+<p>The <code>scatter</code> field specifies one or more input parameters which will be
+scattered.  An input parameter may be listed more than once.  The declared
+type of each input parameter is implicitly wrapped in an array for each
+time it appears in the <code>scatter</code> field.  As a result, upstream parameters
+which are connected to scattered parameters may be arrays.</p>
+<p>All output parameters types are also implicitly wrapped in arrays; each job
+in the scatter results in an entry in the output array.</p>
+<p>If <code>scatter</code> declares more than one input parameter, he <code>scatterMethod</code>
+describes how to decompose the input into a discrete set of jobs.</p>
+<ul>
+<li><p><strong>dotproduct</strong> specifies that each the input arrays are aligned and one
+  element taken from each array to construct each job.  It is an error
+  if all input arrays are not the same length.</p>
+</li>
+<li><p><strong>nested_crossproduct</strong> specifies the cartesian product of the inputs,
+  producing a job for every combination of the scattered inputs.  The
+  output must be nested arrays for each level of scattering, in the
+  order that the input arrays are listed in the <code>scatter</code> field.</p>
+</li>
+<li><p><strong>flat_crossproduct</strong> specifies the cartesian product of the inputs,
+  producing a job for every combination of the scattered inputs.  The
+  output arrays must be flattened to a single level, but otherwise listed in the
+  order that the input arrays are listed in the <code>scatter</code> field.</p>
+</li>
+</ul>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>id</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>The unique identifier for this process object.</p>
 </td></tr><tr><td><code>inputs</code></td><td>array&lt;<a href="#workflowstepinput">WorkflowStepInput</a>&gt;</td><td>True</td><td><p>Defines the input parameters of the process.  The process is ready to
 run when all required input parameters are associated with concrete
@@ -623,6 +663,7 @@ used to generate and/or validate the output object.</p>
 </td></tr><tr><td><code>label</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A short, human-readable label of this process object.</p>
 </td></tr><tr><td><code>description</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A long, human-readable description of this process object.</p>
 </td></tr><tr><td><code>run</code></td><td><a href="#commandlinetool">CommandLineTool</a> | <a href="#expressiontool">ExpressionTool</a></td><td>True</td><td><p>Specifies the process to run.</p>
+</td></tr><tr><td><code>scatter</code></td><td><a href="#datatype">string</a> | array&lt;<a href="#datatype">string</a>&gt;</td><td>False</td><td></td></tr><tr><td><code>scatterMethod</code></td><td><a href="#scattermethod">ScatterMethod</a></td><td>False</td><td><p>Required if <code>scatter</code> is an array of more than one element.</p>
 </td></tr></table><h1 id="workflowstepinput">5.1.2.1 WorkflowStepInput</h1><p>Extends <a href="#parameter">Parameter</a></p>
 <p>Referenced by <a href="#workflowstep">WorkflowStep.inputs</a>,  <a href="#subworkflow">Subworkflow.inputs</a></p>
 <p>The input of a workflow step connects an upstream parameter (from the
@@ -634,8 +675,10 @@ listed in the <code>connect</code> field.  The values from the input links are m
 depending on the method specified in the <code>linkMerge</code> field.  If not
 specified, the default method is <strong>merge_nested</strong>:</p>
 <ul>
-<li><p><strong>merge_nested</strong> specifies that the input shall be an array consisting of
-exactly one entry for each input link.</p>
+<li><p><strong>merge_nested</strong></p>
+<p>The input shall be an array consisting of exactly one entry for each
+input link.  If merge_nested is specified with a single link, the value
+from the link is wrapped in a single-item list.</p>
 </li>
 <li><p><strong>merge_flattened</strong></p>
 <ol>
@@ -694,12 +737,13 @@ output parameter of another workflow step.</p>
 </td></tr></table><h1 id="commandlinetool">5.2 CommandLineTool</h1><p>Extends <a href="#process">Process</a></p>
 <p>Referenced by <a href="#workflowstep">WorkflowStep.run</a></p>
 <p>A CommandLineTool process is a process implementation for executing a
-standalone, non-interactive command line applications.  To help accomodate
-of the enormous variety in syntax and semantics for input, runtime
-environment, invocation, and output of arbitrary programs, CommandLineTool
-provides the concept of "input binding" to describe how to translate input
-parameters to an actual program invocation, and "output binding" to
-describe how generate output parameters from program output.</p>
+standalone, non-interactive command line application in a POSIX
+environment.  To help accomodate of the enormous variety in syntax and
+semantics for input, runtime environment, invocation, and output of
+arbitrary programs, CommandLineTool provides the concept of "input binding"
+to describe how to translate input parameters to an actual program
+invocation, and "output binding" to describe how generate output parameters
+from program output.</p>
 <h1 id="input_binding">Input binding</h1><p>The tool command line is built by applying command line bindings to the
 input object.  Bindings are listed either as part of an <a href="#commandlineinputparameter">input
 parameter</a> using the <code>inputBinding</code> field, or
@@ -991,7 +1035,7 @@ for information on how to define a expression engine.</p>
 ExpressionEngineRequirement defining which engine to use.</p>
 </td></tr><tr><td><code>script</code></td><td><a href="#datatype">string</a></td><td>True</td><td><p>The code to be executed by the expression engine.</p>
 </td></tr></table><h1 id="jsonpointer">5.4.1 JsonPointer</h1><p>Referenced by <a href="#expression">Expression.engine</a></p>
-<h1 id="processrequirement">5.5 ProcessRequirement</h1><p>Extended by <a href="#dockerrequirement">DockerRequirement</a>,  <a href="#subworkflows">Subworkflows</a>,  <a href="#createfilerequirement">CreateFileRequirement</a>,  <a href="#envvarrequirement">EnvVarRequirement</a>,  <a href="#scatter">Scatter</a>,  <a href="#schemadefrequirement">SchemaDefRequirement</a>,  <a href="#expressionenginerequirement">ExpressionEngineRequirement</a></p>
+<h1 id="processrequirement">5.5 ProcessRequirement</h1><p>Extended by <a href="#dockerrequirement">DockerRequirement</a>,  <a href="#subworkflows">Subworkflows</a>,  <a href="#createfilerequirement">CreateFileRequirement</a>,  <a href="#envvarrequirement">EnvVarRequirement</a>,  <a href="#scatterfeaturerequirement">ScatterFeatureRequirement</a>,  <a href="#schemadefrequirement">SchemaDefRequirement</a>,  <a href="#expressionenginerequirement">ExpressionEngineRequirement</a></p>
 <p>Referenced by <a href="#process">Process.requirements</a>,  <a href="#process">Process.hints</a>,  <a href="#commandlinetool">CommandLineTool.requirements</a>,  <a href="#commandlinetool">CommandLineTool.hints</a>,  <a href="#expressiontool">ExpressionTool.requirements</a>,  <a href="#expressiontool">ExpressionTool.hints</a>,  <a href="#workflowstep">WorkflowStep.requirements</a>,  <a href="#workflowstep">WorkflowStep.hints</a>,  <a href="#workflow">Workflow.requirements</a>,  <a href="#workflow">Workflow.hints</a>,  <a href="#subworkflow">Subworkflow.requirements</a>,  <a href="#subworkflow">Subworkflow.hints</a>,  <a href="#expressionenginerequirement">ExpressionEngineRequirement.requirements</a></p>
 <p>A process requirement declares a prerequisite that may or must be fufilled
 before executing a process.  See <a href="#process"><code>Process.hints</code></a> and
@@ -1082,43 +1126,11 @@ by the workflow platform when executing the command line tool.  May be the
 result of executing an expression, such as getting a parameter from input.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>envName</code></td><td><a href="#datatype">string</a></td><td>True</td><td><p>The environment variable name</p>
 </td></tr><tr><td><code>envValue</code></td><td><a href="#datatype">string</a> | <a href="#expression">Expression</a></td><td>True</td><td><p>The environment variable value</p>
-</td></tr></table><h1 id="scatter">5.5.5 Scatter</h1><p>Extends <a href="#processrequirement">ProcessRequirement</a></p>
-<p>Only valid when declared on a <a href="#workflowstep">WorkflowStep</a> or
-<a href="#subworkflow">Subworkflow</a>.</p>
-<p>A "scatter" operation specifies that the associated workflow step or
-subworkflow should execute separately over a list of input elements.  Each
-job making up a scatter operaution is independent and may be executed
-concurrently.</p>
-<p>The <code>scatter</code> field specifies one or more input parameters which will be
-scattered.  An input parameter may be listed more than once.  The declared
-type of each input parameter is implicitly wrapped in an array for each
-time it appears in the <code>scatter</code> field.  As a result, upstream parameters
-which are connected to scattered parameters may be arrays.</p>
-<p>All output parameters types are also implicitly wrapped in arrays; each job
-in the scatter results in an entry in the output array.</p>
-<p>If <code>scatter</code> declares more than one input parameter, he <code>scatterMethod</code>
-describes how to decompose the input into a discrete set of jobs.</p>
-<ul>
-<li><p><strong>dotproduct</strong> specifies that each the input arrays are lined up and
-  one element taken from each array to construct the job.  It is an
-  error if the input arrays are not all the same length.</p>
-</li>
-<li><p><strong>nested_crossproduct</strong> specifies the cartesian product of the inputs,
-  producing a job for every combination of the scattered inputs.  The
-  output arrays must be nested for each level of scattering, in the
-  order that the input arrays are listed in the <code>scatter</code> field.</p>
-</li>
-<li><p><strong>flat_crossproduct</strong> specifies the cartesian product of the inputs,
-  producing a job for every combination of the scattered inputs.  The
-  output arrays must be flattened to a single level, but otherwise listed in the
-  order that the input arrays are listed in the <code>scatter</code> field.</p>
-</li>
-</ul>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td>Scatter_class</td><td>True</td><td><p>Must be <code>Scatter</code> to indicate this is a Scatter object.</p>
-</td></tr><tr><td><code>scatter</code></td><td><a href="#datatype">string</a> | array&lt;<a href="#datatype">string</a>&gt;</td><td>True</td><td></td></tr><tr><td><code>scatterMethod</code></td><td><a href="#scattermethod">ScatterMethod</a></td><td>False</td><td><p>Required if <code>scatter</code> is an array of more than one element.</p>
-</td></tr></table><h1 id="scattermethod">5.5.5.1 ScatterMethod</h1><p>Referenced by <a href="#scatter">Scatter.scatterMethod</a></p>
-<p>The scatter method, as defined in <a href="#scatter">Scatter</a>.</p>
-<h1 id="schemadefrequirement">5.5.6 SchemaDefRequirement</h1><p>Extends <a href="#processrequirement">ProcessRequirement</a></p>
+</td></tr></table><h1 id="scatterfeaturerequirement">5.5.5 ScatterFeatureRequirement</h1><p>Extends <a href="#processrequirement">ProcessRequirement</a></p>
+<p>Indicates that the workflow infrastructure must support the <code>scatter</code> and
+<code>scatterMethod</code> fields of (WorkflowStep)(#workflowstep).</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td>ScatterFeatureRequirement_class</td><td>True</td><td><p>Must be <code>ScatterFeatureRequirement</code> to indicate this is a ScatterFeatureRequirement object.</p>
+</td></tr></table><h1 id="schemadefrequirement">5.5.6 SchemaDefRequirement</h1><p>Extends <a href="#processrequirement">ProcessRequirement</a></p>
 <p>This field consists of an
 array of type definitions which must be used when interpreting the <code>inputs</code> and
 <code>outputs</code> fields.  When a symbolic type is encountered that is not in
@@ -1173,6 +1185,9 @@ as a special record type.</p>
 <h1 id="file_type">File type</h1><p>See <a href="#file">File</a> below.</p>
 <h1 id="any_type">Any type</h1><p>See <a href="#any">Any</a> below.</p>
 <h1 id="file">5.6.1 File</h1><p>Referenced by <a href="#file">File.secondaryFiles</a></p>
+<p>Represents a file (or group of files if <code>secondaryFiles</code> is specified) that
+must be accessible by tools using standard POSIX file system call API such as
+open(2) and read(2).</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td>File_class</td><td>True</td><td><p>Must be <code>File</code> to indicate this object describes a file.</p>
 </td></tr><tr><td><code>path</code></td><td><a href="#datatype">string</a></td><td>True</td><td><p>The path to the file.</p>
 </td></tr><tr><td><code>checksum</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>Optional hash code for validating file integrity.  Currently must be in the form
