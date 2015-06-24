@@ -275,9 +275,9 @@ executing a command line tool.  It includes, but is not limited to, the
 hardware architecture, hardware resources, operating system, software runtime
 (if applicable, such as the Python interpreter or the JVM), libraries, modules,
 packages, utilities, and data files required to run the tool.</p>
-<p>A <strong>workflow platform</strong> is a specific hardware and software and implementation
+<p>A <strong>workflow platform</strong> is a specific hardware and software implementation
 capable of interpreting a CWL document and executing the processes specified by
-the document.  The responsibilities of the workflow infrastructure may include
+the document.  The responsibilities of the workflow platform may include
 scheduling process invocation, setting up the necessary runtime environment,
 making input data available, invoking the tool process, and collecting output.</p>
 <p>It is intended that the workflow platform has broad leeway outside of this
@@ -338,9 +338,10 @@ the CWL core specification.</p>
 <h1 id="expressions">3.4 Expressions</h1><p>An expression is a fragment of executable code which is evaluated by
 workflow platform to affect the inputs, outputs, or behavior of a process.
 In the generic execution sequence, expressions may be evaluated during step
-5 (process setup), step 6 (execute process), and/or step 7 (build output).
-Expressions are distinct from regular processes in that they are intended
-to modify the workflow</p>
+5 (process setup), step 6 (execute process), and/or step 7 (capture
+output).  Expressions are distinct from regular processes in that they are
+intended to modify the behavior of the workflow itself rather than perform
+the primary work of the workflow.</p>
 <p>An implementation must provide the predefined <code>cwl:JsonPointer</code> expression
 engine.  This expression engine specifies a <a href="https://tools.ietf.org/html/draft-ietf-appsawg-json-pointer-04">JSON
 Pointer</a>
@@ -361,6 +362,14 @@ line program following the following protocol:</p>
 be null.</p>
 </li>
 <li><p><strong>script</strong>: The code fragment to evaluate.</p>
+</li>
+<li><p><strong>outdir</strong>: When used in the context of a CommandLineTool, this is
+the designated output directory that will be used when executing the
+tool.  Null if not applicable.</p>
+</li>
+<li><p><strong>tmpdir</strong>: When used in the context of a CommandLineTool, this is
+the designated temporary directory that will be used when executing
+the tool.  Null if not applicable.</p>
 </li>
 </ul>
 </li>
@@ -482,7 +491,7 @@ stdout: output.txt
 # This is a two-step workflow which uses "revtool" and "sorttool" defined above.
 #
 class: Workflow
-description: "Reverse the lines in a document, then sort lines."
+description: "Reverse the lines in a document, then sort those lines."
 
 # Requirements specify prerequisites and extensions to the workflow.
 # In this example, DockerRequirement specifies a default Docker container
@@ -515,7 +524,7 @@ inputs:
 outputs:
   - id: "#output"
     type: File
-    connect: { source: "#sorted" }
+    source: "#sorted.output"
     description: "The output with the lines reversed and sorted."
 
 # The "steps" array lists the executable steps that make up the workflow.
@@ -530,16 +539,16 @@ outputs:
 # tool "sorttool.cwl#input".
 steps:
   - inputs:
-      - { param: "revtool.cwl#input", connect: { source: "#input" } }
+      - { id: "#rev.input", source: "#input" }
     outputs:
-      - { id: "#reversed", param: "revtool.cwl#output" }
+      - { id: "#rev.output" }
     run: { import: revtool.cwl }
 
   - inputs:
-      - { param: "sorttool.cwl#input", connect: { source: "#reversed" } }
-      - { param: "sorttool.cwl#reverse", connect: { source: "#reverse_sort" } }
+      - { id: "#sorted.input", source: "#rev.output" }
+      - { id: "#sorted.reverse", source: "#reverse_sort" }
     outputs:
-      - { id: "#sorted", param: "sorttool.cwl#output" }
+      - { id: "#sorted.output" }
     run: { import: sorttool.cwl }
 </code></pre>
 <p>Sample input object:</p>
@@ -658,7 +667,7 @@ describes how to decompose the input into a discrete set of jobs.</p>
 <h1 id="subworkflows">Subworkflows</h1><p>To specify a nested workflow as part of a workflow step,
 (SubworkflowFeatureRequirement)(#SubworkflowFeatureRequirement) must be
 specified in the workflow or workflow step requirements.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>id</code></td><td><a href="#datatype">string</a></td><td>True</td><td><p>The unique identifier for this workflow step.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>id</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>The unique identifier for this workflow step.</p>
 </td></tr><tr><td><code>inputs</code></td><td>array&lt;<a href="#workflowstepinput">WorkflowStepInput</a>&gt;</td><td>True</td><td><p>Defines the input parameters of the workflow step.  The process is ready to
 run when all required input parameters are associated with concrete
 values.  Input parameters include a schema for each parameter and is
@@ -772,7 +781,7 @@ designated output directory.</p>
 <p>The <code>TMPDIR</code> environment variable must be set in the runtime environment to
 the <strong>designated temporary directory</strong>.  Any files written to the
 designated temporary directory may be deleted by the workflow
-infrastructure when the tool invocation is complete.</p>
+platform when the tool invocation is complete.</p>
 <p>An implementation may forbid the tool from writing to any location in the
 runtime environment file system other than the designated temporary
 directory and designated output directory.  An implementation may provide
@@ -1028,8 +1037,11 @@ used to generate and/or validate the output object.
 </td></tr><tr><td><code>expression</code></td><td><a href="#expression">Expression</a></td><td>True</td><td><p>The expression to execute.  The expression must return a JSON object which
 matches the output parameters of the ExpressionTool.</p>
 </td></tr></table><h1 id="expression">5.4 Expression</h1><p>Referenced by <a href="#binding">Binding.secondaryFiles</a>,  <a href="#filedef">FileDef.filename</a>,  <a href="#filedef">FileDef.fileContent</a>,  <a href="#environmentdef">EnvironmentDef.envValue</a>,  <a href="#commandlinebinding">CommandLineBinding.secondaryFiles</a>,  <a href="#commandlinebinding">CommandLineBinding.valueFrom</a>,  <a href="#commandoutputbinding">CommandOutputBinding.secondaryFiles</a>,  <a href="#commandoutputbinding">CommandOutputBinding.glob</a>,  <a href="#commandoutputbinding">CommandOutputBinding.outputEval</a>,  <a href="#commandlinetool">CommandLineTool.stdin</a>,  <a href="#commandlinetool">CommandLineTool.stdout</a>,  <a href="#expressiontool">ExpressionTool.expression</a></p>
-<p>See <a href="#expressionenginerequirement">ExpressionEngineRequirement</a>
-for information on how to define a expression engine.</p>
+<p>Define an expression that will be evaluated and used to modify the behavior
+of a tool or workflow.  See <a href="#expressions">Expressions</a> for more
+information about expressions
+and <a href="#expressionenginerequirement">ExpressionEngineRequirement</a> for
+information on how to define a expression engine.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>engine</code></td><td><a href="#jsonpointer">JsonPointer</a> | <a href="#datatype">string</a></td><td>True</td><td><p>Either <code>cwl:JsonPointer</code> or a reference to an
 ExpressionEngineRequirement defining which engine to use.</p>
 </td></tr><tr><td><code>script</code></td><td><a href="#datatype">string</a></td><td>True</td><td><p>The code to be executed by the expression engine.</p>
@@ -1072,7 +1084,7 @@ will be used.</p>
 </td></tr><tr><td><code>dockerOutputDirectory</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>Set the designated output directory to a specific location inside the
 Docker container.</p>
 </td></tr></table><h1 id="subworkflowfeaturerequirement">5.5.2 SubworkflowFeatureRequirement</h1><p>Extends <a href="#processrequirement">ProcessRequirement</a></p>
-<p>Indicates that the workflow infrastructure must support nested workflows in
+<p>Indicates that the workflow platform must support nested workflows in
 the <code>run</code> field of (WorkflowStep)(#workflowstep).</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#subworkflowfeaturerequirement_class">SubworkflowFeatureRequirement_class</a></td><td>True</td><td><p>Must be <code>SubworkflowFeatureRequirement</code> to indicate this is a SubworkflowFeatureRequirement object. <em>Inherited from <a href="#processrequirement">ProcessRequirement</a></em></p>
 </td></tr></table><h1 id="createfilerequirement">5.5.3 CreateFileRequirement</h1><p>Extends <a href="#processrequirement">ProcessRequirement</a></p>
@@ -1106,7 +1118,7 @@ result of executing an expression, such as getting a parameter from input.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>envName</code></td><td><a href="#datatype">string</a></td><td>True</td><td><p>The environment variable name</p>
 </td></tr><tr><td><code>envValue</code></td><td><a href="#datatype">string</a> | <a href="#expression">Expression</a></td><td>True</td><td><p>The environment variable value</p>
 </td></tr></table><h1 id="scatterfeaturerequirement">5.5.5 ScatterFeatureRequirement</h1><p>Extends <a href="#processrequirement">ProcessRequirement</a></p>
-<p>Indicates that the workflow infrastructure must support the <code>scatter</code> and
+<p>Indicates that the workflow platform must support the <code>scatter</code> and
 <code>scatterMethod</code> fields of (WorkflowStep)(#workflowstep).</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#scatterfeaturerequirement_class">ScatterFeatureRequirement_class</a></td><td>True</td><td><p>Must be <code>ScatterFeatureRequirement</code> to indicate this is a ScatterFeatureRequirement object. <em>Inherited from <a href="#processrequirement">ProcessRequirement</a></em></p>
 </td></tr></table><h1 id="schemadefrequirement">5.5.6 SchemaDefRequirement</h1><p>Extends <a href="#processrequirement">ProcessRequirement</a></p>
