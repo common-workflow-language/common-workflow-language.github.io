@@ -90,6 +90,7 @@
 </ol><li><a href="#expressions">3.4 Expressions</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol><li><a href="#workflow_graph">3.5 Workflow graph</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol><li><a href="#success_and_failure">3.6 Success and failure</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#executing_cwl_documents_as_scripts">3.7 Executing CWL documents as scripts</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol></li></ol><li><a href="#sample_cwl_workflow">4. Sample CWL workflow</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol><li><a href="#reference">5. Reference</a><ol class="nav nav-pills nav-stacked nav-secondary">
 <li><a href="#workflow">5.1 Workflow</a><ol class="nav nav-pills nav-stacked nav-secondary">
@@ -412,8 +413,14 @@ complete <code>success</code> or are not executed, then the workflow status is
 status is <code>success</code>.</p>
 </li>
 </ul>
+<h1 id="executing_cwl_documents_as_scripts">3.7 Executing CWL documents as scripts</h1><p>By convention, a CWL document may begin with <code>#!/usr/bin/env cwl-runner</code>
+and be marked as executable (the POSIX "+x" permission bits) to enable it
+to be executed directly.  A workflow platform may support this mode of
+operation, if so, it must provide <code>cwl-runner</code> as an alias for the
+platform's CWL implementation.</p>
 <h1 id="sample_cwl_workflow">4. Sample CWL workflow</h1><p>revtool.cwl:</p>
-<pre><code>#
+<pre><code>#!/usr/bin/env cwl-runner
+#
 # Simplest example command line program wrapper for the Unix tool "rev".
 #
 class: CommandLineTool
@@ -451,7 +458,9 @@ baseCommand: rev
 stdout: output.txt
 </code></pre>
 <p>sorttool.cwl:</p>
-<pre><code># Example command line program wrapper for the Unix tool "sort"
+<pre><code>#!/usr/bin/env cwl-runner
+#
+# Example command line program wrapper for the Unix tool "sort"
 # demonstrating command line flags.
 class: CommandLineTool
 description: "Sort lines using the `sort` command"
@@ -487,7 +496,8 @@ baseCommand: sort
 stdout: output.txt
 </code></pre>
 <p>revsort.cwl:</p>
-<pre><code>#
+<pre><code>#!/usr/bin/env cwl-runner
+#
 # This is a two-step workflow which uses "revtool" and "sorttool" defined above.
 #
 class: Workflow
