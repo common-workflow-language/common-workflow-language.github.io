@@ -83,6 +83,7 @@
 </ol><li><a href="#syntax">2.2 Syntax</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol><li><a href="#identifiers">2.3 Identifiers</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol><li><a href="#document_preprocessing">2.4 Document preprocessing</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#extensions_and_metadata">2.5 Extensions and Metadata</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol></li></ol><li><a href="#execution_model">3. Execution model</a><ol class="nav nav-pills nav-stacked nav-secondary">
 <li><a href="#execution_concepts">3.1 Execution concepts</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol><li><a href="#generic_execution_process">3.2 Generic execution process</a><ol class="nav nav-pills nav-stacked nav-secondary">
@@ -99,6 +100,7 @@
 <li><a href="#workflowstepinput">5.1.2.1 WorkflowStepInput</a><ol class="nav nav-pills nav-stacked nav-secondary">
 <li><a href="#linkmergemethod">5.1.2.1.1 LinkMergeMethod</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol></li></ol><li><a href="#workflowstepoutput">5.1.2.2 WorkflowStepOutput</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#scattermethod">5.1.2.3 ScatterMethod</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol></li></ol></li></ol><li><a href="#commandlinetool">5.2 CommandLineTool</a><ol class="nav nav-pills nav-stacked nav-secondary">
 <li><a href="#commandinputparameter">5.2.1 CommandInputParameter</a><ol class="nav nav-pills nav-stacked nav-secondary">
 <li><a href="#commandlinebinding">5.2.1.1 CommandLineBinding</a><ol class="nav nav-pills nav-stacked nav-secondary">
@@ -146,7 +148,7 @@
 <li>Michael R. Crusoe <a href="mailto:mcrusoe@msu.edu">mcrusoe@msu.edu</a>, Michigan State University</li>
 <li>Hervé Ménager <a href="mailto:herve.menager@gmail.com">herve.menager@gmail.com</a>, Institut Pasteur</li>
 <li>Maxim Mikheev <a href="mailto:mikhmv@biodatomics.com">mikhmv@biodatomics.com</a>, BioDatomics</li>
-<li>Stian Soiland-Reyes <soiland-reyes@cs.manchester.ac.uk>, University of Manchester</li>
+<li>Stian Soiland-Reyes <a href="mailto:soiland-reyes@cs.manchester.ac.uk">soiland-reyes@cs.manchester.ac.uk</a>, University of Manchester</li>
 </ul>
 <h1 id="abstract">Abstract</h1><p>A Workflow is an analysis task represented by a directed graph describing a
 sequence of operations that transform an input data set to output.  This
@@ -221,6 +223,8 @@ performs some computation, and produces output data.</p>
 <p>A <strong>input schema</strong> describes the valid format (required fields, data types)
 for an input object.</p>
 <p>A <strong>output schema</strong> describes the valid format for a output object.</p>
+<p><strong>metadata</strong> is information about workflows, tools or input items that is
+not used directly in the computation.</p>
 <h1 id="syntax">2.2 Syntax</h1><p>Documents containing CWL objects are serialized and loaded using YAML
 syntax and UTF-8 text encoding.  A conforming implementation must accept
 all valid YAML documents.</p>
@@ -261,6 +265,16 @@ The URI referenced by <code>include</code> must be loaded as UTF-8 encoded text
 document and the <code>include</code> directive implicitly replaced by a string with
 the contents of the document.  Because the loaded resource is unparsed,
 URIs used with <code>include</code> must not include fragments.</p>
+<h1 id="extensions_and_metadata">2.5 Extensions and Metadata</h1><p>Implementation extensions not required for correct
+execution (for example, fields related to GUI rendering) may
+be stored in <a href="#requirements_and_hints">process hints</a>.</p>
+<p>Input metadata (for example, a lab sample identifier) may be explicitly
+represented within a workflow using input parameters which are propagated
+to output.  Future versions of this specification may define additional
+facilities for working with input/output metadata.</p>
+<p>Fields for tool and workflow metadata (for example, authorship for use in
+citations) are not defined in this specification.  Future versions of this
+specification may define such fields.</p>
 <h1 id="execution_model">3. Execution model</h1><h1 id="execution_concepts">3.1 Execution concepts</h1><p>A <strong>parameter</strong> is a named symbolic input or output of process, with an
 associated datatype or schema.  During execution, values are assigned to
 parameters to make the input object or output object used for concrete
@@ -584,16 +598,17 @@ steps:
 <p>A workflow is a process consisting of one or more <code>steps</code>.  Each
 step has input and output parameters defined by the <code>inputs</code> and <code>outputs</code>
 fields.  A workflow executes as described in <a href="#workflow_graph">execution model</a>.</p>
-<h1 id="dependencies">Dependencies</h1><p>Dependencies between parameters are expressed by <a href="#datalink">data links</a>
-on <a href="#workflowstepinput">workflow step input parameters</a>
-and <a href="#workflowoutputparameter">workflow output parameters</a>.</p>
-<p>A data link expresses the dependency of one parameter on another such that
-when a value is associated with the parameter specified by
-<a href="#datalink"><code>DataLink.source</code></a>, that value is propagated to the destination
-parameter.  When all data links inbound to a given step are fufilled, the
-step is ready to execute.</p>
-<h1 id="extensions">Extensions</h1><p><a href="#scatter">Scatter</a> and <a href="#Subworkflows">Subworkflows</a> are available
-as standard extensions to core workflow semantics.</p>
+<h1 id="dependencies">Dependencies</h1><p>Dependencies between parameters are expressed using the <code>source</code> field on
+<a href="#workflowstepinput">workflow step input parameters</a> and <a href="#workflowoutputparameter">workflow output
+parameters</a>.</p>
+<p>The <code>source</code> field expresses the dependency of one parameter on another
+such that when a value is associated with the parameter specified by
+<code>source</code>, that value is propagated to the destination parameter.  When all
+data links inbound to a given step are fufilled, the step is ready to
+execute.</p>
+<h1 id="extensions">Extensions</h1><p><a href="#scatterfeaturerequirement">ScatterFeatureRequirement</a> and
+<a href="#subworkflowfeaturerequirement">SubworkflowFeatureRequirement</a> are
+available as standard extensions to core workflow semantics.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>id</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>The unique identifier for this process object. <em>Inherited from <a href="#process">Process</a></em></p>
 </td></tr><tr><td><code>inputs</code></td><td>array&lt;<a href="#inputparameter">InputParameter</a>&gt;</td><td>True</td><td><p>Defines the input parameters of the process.  The process is ready to
 run when all required input parameters are associated with concrete
@@ -656,7 +671,7 @@ time it appears in the <code>scatter</code> field.  As a result, upstream parame
 which are connected to scattered parameters may be arrays.</p>
 <p>All output parameters types are also implicitly wrapped in arrays; each job
 in the scatter results in an entry in the output array.</p>
-<p>If <code>scatter</code> declares more than one input parameter, he <code>scatterMethod</code>
+<p>If <code>scatter</code> declares more than one input parameter, <code>scatterMethod</code>
 describes how to decompose the input into a discrete set of jobs.</p>
 <ul>
 <li><p><strong>dotproduct</strong> specifies that each the input arrays are aligned and one
@@ -675,7 +690,7 @@ describes how to decompose the input into a discrete set of jobs.</p>
 </li>
 </ul>
 <h1 id="subworkflows">Subworkflows</h1><p>To specify a nested workflow as part of a workflow step,
-(SubworkflowFeatureRequirement)(#SubworkflowFeatureRequirement) must be
+<a href="#subworkflowfeaturerequirement">SubworkflowFeatureRequirement</a> must be
 specified in the workflow or workflow step requirements.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>id</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>The unique identifier for this workflow step.</p>
 </td></tr><tr><td><code>inputs</code></td><td>array&lt;<a href="#workflowstepinput">WorkflowStepInput</a>&gt;</td><td>True</td><td><p>Defines the input parameters of the workflow step.  The process is ready to
@@ -695,7 +710,7 @@ used to generate and/or validate the output object.</p>
 <p>The input of a workflow step connects an upstream parameter (from the
 workflow inputs, or the outputs of other workflows steps) with the input
 parameters of the underlying process.</p>
-<p>If the sink parameter is an array, or named in a <a href="#scatter">workflow
+<p>If the sink parameter is an array, or named in a <a href="#workflowstep">workflow
 scatter</a> operation, there may be multiple inbound data links
 listed in the <code>connect</code> field.  The values from the input links are merged
 depending on the method specified in the <code>linkMerge</code> field.  If not
@@ -732,23 +747,25 @@ parameter.  The workflow parameter (given in the <code>id</code> field) be may b
 as a <code>source</code> to connect with input parameters of other workflow steps, or
 with an output parameter of the process.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>id</code></td><td><a href="#datatype">string</a></td><td>True</td><td><p>A unique identifier for this workflow output parameter.  This is the
-identifier to use in the <code>source</code> field of <code>DataLink</code> to connect the
-output value to downstream parameters.</p>
-</td></tr></table><h1 id="commandlinetool">5.2 CommandLineTool</h1><p>Extends <a href="#process">Process</a></p>
+identifier to use in the <code>source</code> field of <code>WorkflowStepInput</code> to
+connect the output value to downstream parameters.</p>
+</td></tr></table><h1 id="scattermethod">5.1.2.3 ScatterMethod</h1><p>Referenced by <a href="#workflowstep">WorkflowStep.scatterMethod</a></p>
+<p>The scatter method, as described in <a href="#workflowstep">workflow step scatter</a>.</p>
+<h1 id="commandlinetool">5.2 CommandLineTool</h1><p>Extends <a href="#process">Process</a></p>
 <p>A CommandLineTool process is a process implementation for executing a
-standalone, non-interactive command line application in a POSIX
-environment.  To help accomodate of the enormous variety in syntax and
-semantics for input, runtime environment, invocation, and output of
-arbitrary programs, CommandLineTool provides the concept of "input binding"
-to describe how to translate input parameters to an actual program
-invocation, and "output binding" to describe how generate output parameters
-from program output.</p>
+non-interactive application in a POSIX environment.  To help accomodate of
+the enormous variety in syntax and semantics for input, runtime
+environment, invocation, and output of arbitrary programs, CommandLineTool
+provides the concept of "input binding" to describe how to translate input
+parameters to an actual program invocation, and "output binding" to
+describe how generate output parameters from program output.</p>
 <h1 id="input_binding">Input binding</h1><p>The tool command line is built by applying command line bindings to the
-input object.  Bindings are listed either as part of an <a href="#commandlineinputparameter">input
+input object.  Bindings are listed either as part of an <a href="#commandinputparameter">input
 parameter</a> using the <code>inputBinding</code> field, or
 separately using the <code>arguments</code> field of the CommandLineTool.</p>
 <p>The algorithm to build the command line is as follows.  In this algorithm,
-the sort key is a list consisting of one or more numeric and string elements.</p>
+the sort key is a list consisting of one or more numeric and string
+elements.  Strings are sorted lexicographically based on UTF-8 encoding.</p>
 <ol>
 <li><p>Collect <code>CommandLineBinding</code> objects from <code>arguments</code>.  Assign a sorting
 key <code>[position, i]</code> where <code>position</code> is
@@ -767,9 +784,8 @@ at each nesting level.  If two bindings have the same position, the tie
 must be broken using the lexographic ordering of the field or parameter
 name immediately containing the binding.</p>
 </li>
-<li><p>Sort elements lexicographically using the assigned sorting keys.
-Numeric entries sort before strings.  Strings are sorted based on UTF-8
-encoding.</p>
+<li><p>Sort elements using the assigned sorting keys.  Numeric entries sort
+before strings.</p>
 </li>
 <li><p>In the sorted order, apply the rules defined in
 <a href="#commandlinebinding"><code>CommandLineBinding</code></a> to convert bindings to actual
