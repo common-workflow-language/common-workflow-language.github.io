@@ -635,7 +635,7 @@ concurrently, provided that dependencies between steps are met.</p>
 <p>Describe an output parameter of a workflow.  The parameter must be
 connected to one or more parameters defined in the workflow that will
 provide the value of the output parameter.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#outputschema">OutputSchema</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#outputschema">OutputSchema</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#outputschema">OutputSchema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#outputschema">OutputSchema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.
  <em>Inherited from <a href="#parameter">Parameter</a></em></p>
 </td></tr><tr><td><code>label</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A short, human-readable label of this parameter object. <em>Inherited from <a href="#parameter">Parameter</a></em></p>
 </td></tr><tr><td><code>description</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A long, human-readable description of this parameter object. <em>Inherited from <a href="#parameter">Parameter</a></em></p>
@@ -804,10 +804,16 @@ or process requirements.</p>
 output directory</strong>.</p>
 <p>The initial current working directory when executing the tool must be the
 designated output directory.</p>
+<p>When executing the tool, the child process must not inherit environment
+variables from the parent process.  The tool must execute in a new, empty
+environment, containing only environment variables defined by
+<a href="#envvarrequirement">EnvVarRequirement</a>, the default environment of the
+Docker container specified in <a href="#dockerrequirement">DockerRequirement</a> (if
+applicable), and <code>TMPDIR</code>.</p>
 <p>The <code>TMPDIR</code> environment variable must be set in the runtime environment to
 the <strong>designated temporary directory</strong>.  Any files written to the
-designated temporary directory may be deleted by the workflow
-platform when the tool invocation is complete.</p>
+designated temporary directory may be deleted by the workflow platform when
+the tool invocation is complete.</p>
 <p>An implementation may forbid the tool from writing to any location in the
 runtime environment file system other than the designated temporary
 directory and designated output directory.  An implementation may provide
@@ -883,7 +889,7 @@ runtime environment and inputs may produce different results.</p>
 </td></tr></table><h1 id="commandinputparameter">5.2.1 CommandInputParameter</h1><p>Extends <a href="#inputparameter">InputParameter</a></p>
 <p>Referenced by <a href="#commandlinetool">CommandLineTool.inputs</a></p>
 <p>An input parameter for a CommandLineTool.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#commandinputschema">CommandInputSchema</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#commandinputschema">CommandInputSchema</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#commandinputschema">CommandInputSchema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#commandinputschema">CommandInputSchema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.
  <em>Inherited from <a href="#parameter">Parameter</a></em></p>
 </td></tr><tr><td><code>label</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A short, human-readable label of this parameter object. <em>Inherited from <a href="#parameter">Parameter</a></em></p>
 </td></tr><tr><td><code>description</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A long, human-readable description of this parameter object. <em>Inherited from <a href="#parameter">Parameter</a></em></p>
@@ -978,7 +984,7 @@ into a concrete form for execution, such as command line parameters.
 </td></tr></table><h1 id="commandoutputparameter">5.2.2 CommandOutputParameter</h1><p>Extends <a href="#outputparameter">OutputParameter</a></p>
 <p>Referenced by <a href="#commandlinetool">CommandLineTool.outputs</a></p>
 <p>An output parameter for a CommandLineTool.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#commandoutputschema">CommandOutputSchema</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#commandoutputschema">CommandOutputSchema</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#commandoutputschema">CommandOutputSchema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#commandoutputschema">CommandOutputSchema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.
  <em>Inherited from <a href="#parameter">Parameter</a></em></p>
 </td></tr><tr><td><code>label</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A short, human-readable label of this parameter object. <em>Inherited from <a href="#parameter">Parameter</a></em></p>
 </td></tr><tr><td><code>description</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A long, human-readable description of this parameter object. <em>Inherited from <a href="#parameter">Parameter</a></em></p>
@@ -1236,7 +1242,7 @@ used to generate and/or validate the output object.</p>
 </td></tr><tr><td><code>description</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A long, human-readable description of this process object.</p>
 </td></tr></table><h1 id="parameter">5.7.1 Parameter</h1><p>Extended by <a href="#inputparameter">InputParameter</a>,  <a href="#outputparameter">OutputParameter</a></p>
 <p>Define an input or output parameter to a process.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#schema">Schema</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#schema">Schema</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#schema">Schema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#schema">Schema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.</p>
 </td></tr><tr><td><code>label</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A short, human-readable label of this parameter object.</p>
 </td></tr><tr><td><code>description</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A long, human-readable description of this parameter object.</p>
 </td></tr><tr><td><code>streamable</code></td><td><a href="#datatype">boolean</a></td><td>False</td><td><p>Currently only applies if <code>type</code> is <code>File</code>.  A value of <code>true</code>
@@ -1273,7 +1279,7 @@ extensions, the path is unchanged.</li>
 </td></tr></table><h1 id="inputparameter">5.7.2 InputParameter</h1><p>Extends <a href="#parameter">Parameter</a></p>
 <p>Extended by <a href="#commandinputparameter">CommandInputParameter</a></p>
 <p>Referenced by <a href="#process">Process.inputs</a>,  <a href="#expressiontool">ExpressionTool.inputs</a>,  <a href="#workflow">Workflow.inputs</a></p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#inputschema">InputSchema</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#inputschema">InputSchema</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#inputschema">InputSchema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#inputschema">InputSchema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.
  <em>Inherited from <a href="#parameter">Parameter</a></em></p>
 </td></tr><tr><td><code>label</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A short, human-readable label of this parameter object. <em>Inherited from <a href="#parameter">Parameter</a></em></p>
 </td></tr><tr><td><code>description</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A long, human-readable description of this parameter object. <em>Inherited from <a href="#parameter">Parameter</a></em></p>
@@ -1301,7 +1307,7 @@ into a concrete form for execution, such as command line parameters.</p>
 </td></tr></table><h1 id="outputparameter">5.7.3 OutputParameter</h1><p>Extends <a href="#parameter">Parameter</a></p>
 <p>Extended by <a href="#commandoutputparameter">CommandOutputParameter</a>,  <a href="#workflowoutputparameter">WorkflowOutputParameter</a></p>
 <p>Referenced by <a href="#process">Process.outputs</a>,  <a href="#expressiontool">ExpressionTool.outputs</a></p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#outputschema">OutputSchema</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#outputschema">OutputSchema</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#outputschema">OutputSchema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#outputschema">OutputSchema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.
  <em>Inherited from <a href="#parameter">Parameter</a></em></p>
 </td></tr><tr><td><code>label</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A short, human-readable label of this parameter object. <em>Inherited from <a href="#parameter">Parameter</a></em></p>
 </td></tr><tr><td><code>description</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A long, human-readable description of this parameter object. <em>Inherited from <a href="#parameter">Parameter</a></em></p>
