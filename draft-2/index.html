@@ -237,8 +237,10 @@ annotations mapping Avro fields to RDF predicates via JSON-LD.</p>
 base Apache Avro schema.</p>
 <p>An implementation may interpret a CWL document as
 <a href="http://json-ld.org">JSON-LD</a> and convert a CWL document to a <a href="http://www.w3.org/RDF/">Resource
-Description Framework (RDF)</a> using the JSON-LD
-context extracted from the avro-ld schema.</p>
+Description Framework (RDF)</a> using the
+CWL <a href="cwl-context.jsonld">JSON-LD Context</a> (extracted from the avro-ld schema).
+The CWL <a href="cwl.ttl">RDFS schema</a> defines the classes and properties used by
+CWL as JSON-LD.</p>
 <p>The latest draft-2 schema is defined here:
 <a href="https://github.com/common-workflow-language/common-workflow-language/blob/master/schemas/draft-2/cwl-avro.yml">https://github.com/common-workflow-language/common-workflow-language/blob/master/schemas/draft-2/cwl-avro.yml</a></p>
 <h1 id="identifiers">2.3 Identifiers</h1><p>If an object contains an <code>id</code> field, that is used to uniquely identify the
