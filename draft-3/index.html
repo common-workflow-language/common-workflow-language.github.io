@@ -1111,7 +1111,7 @@ the image.</p>
 <code>hints</code> or <code>requirements</code>, it may (or must) be run in the specified Docker
 container.</p>
 <p>The platform must first acquire or install the correct Docker image as
-specified by <code>dockerPull</code>, <code>dockerLoad</code> or <code>dockerFile</code>.</p>
+specified by <code>dockerPull</code>, <code>dockerImport</code>, <code>dockerLoad</code> or <code>dockerFile</code>.</p>
 <p>The platform must execute the tool in the container using <code>docker run</code> with
 the appropriate Docker image and tool command line.</p>
 <p>The workflow platform may provide input files and the designated output
@@ -1131,6 +1131,7 @@ environment as defined by Docker.</p>
 </td></tr><tr><td><code>dockerPull</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>Specify a Docker image to retrieve using <code>docker pull</code>.</p>
 </td></tr><tr><td><code>dockerLoad</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>Specify a HTTP URL from which to download a Docker image using <code>docker load</code>.</p>
 </td></tr><tr><td><code>dockerFile</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>Supply the contents of a Dockerfile which will be built using <code>docker build</code>.</p>
+</td></tr><tr><td><code>dockerImport</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>Provide HTTP URL to download and gunzip a Docker images using `docker import.</p>
 </td></tr><tr><td><code>dockerImageId</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>The image id that will be used for <code>docker run</code>.  May be a
 human-readable image name or the image identifier hash.  May be skipped
 if <code>dockerPull</code> is specified, in which case the <code>dockerPull</code> image id
