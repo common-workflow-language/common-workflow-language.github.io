@@ -26,7 +26,7 @@
       padding: 0px;
     }
 
-    ol > li > ol {
+    ol {
       list-style-type: none;
     }
     ol > li > ol > li {
@@ -69,18 +69,17 @@
     
     <div class="row full-height">
     <div id="lefttoc" class="col-md-3 full-height" role="complementary">
-    <nav id="toc"><ol class="nav nav-pills nav-stacked"><li><a href="#common_workflow_language"> Common Workflow Language</a><ol class="nav nav-pills nav-stacked nav-secondary">
-<li><a href="#cwl_specification"> CWL Specification</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#implementations"> Implementations</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#examples"> Examples</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#development_and_testing"> Development and testing</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#community_and_contributing"> Community and Contributing</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#participating_organizations"> Participating Organizations</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#individual_contributors"> Individual Contributors</a><ol class="nav nav-pills nav-stacked nav-secondary">
+    <nav id="toc"><ol class="nav nav-pills nav-stacked"><li><a href="#CWL_Specification"> CWL Specification</a><ol class="nav nav-pills nav-stacked nav-secondary">
+<li><a href="#Implementations"> Implementations</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#Examples"> Examples</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#Development_and_testing"> Development and testing</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#Community_and_Contributing"> Community and Contributing</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#Participating_Organizations"> Participating Organizations</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#Individual_Contributors"> Individual Contributors</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol></li></ol></li></ol></nav>
     </div>
     
-    <div class="col-md-9 full-height" role="main" id="main" data-spy="scroll" data-target="#toc"><h1 id="common_workflow_language">Common Workflow Language</h1><p>The Common Workflow Language (CWL) is an informal, multi-vendor working group
+    <div class="col-md-9 full-height" role="main" id="main" data-spy="scroll" data-target="#toc"><h1 id="Common_Workflow_Language">Common Workflow Language</h1><p>The Common Workflow Language (CWL) is an informal, multi-vendor working group
 consisting of various organizations and individuals that have an interest in
 portability of data analysis workflows.  Our goal is to create specifications
 that enable data scientists to describe analysis tools and workflows that are
@@ -90,33 +89,33 @@ powerful, easy to use, portable, and support reproducibility.</p>
 <a href="http://docker.com">Docker</a> for portable runtime environments.</p>
 <p>CWL is designed to express workflows for data-intensive science, such as
 Bioinformatics, Chemistry, Physics, and Astronomy.</p>
-<h1 id="cwl_specification">CWL Specification</h1><p>The current stable specification is draft 2:</p>
+<h2 id="CWL_Specification">CWL Specification</h1><p>The current stable specification is draft 2:</p>
 <p><a href="http://common-workflow-language.github.io/draft-2/">http://common-workflow-language.github.io/draft-2/</a></p>
 <p>The current work in progress specification is draft 3:</p>
 <p><a href="http://common-workflow-language.github.io/draft-3/">http://common-workflow-language.github.io/draft-3/</a></p>
-<h1 id="implementations">Implementations</h1><p>Implementations working on or currently capable of running the Common Workflow Language:</p>
+<h2 id="Implementations">Implementations</h1><p>Implementations working on or currently capable of running the Common Workflow Language:</p>
 <ul>
 <li><a href="https://github.com/common-workflow-language/common-workflow-language/tree/master/reference/">Reference implementation (Python)</a></li>
 <li><a href="https://github.com/rabix/rabix">Rabix</a></li>
 <li><a href="https://arvados.org">Arvados</a></li>
 <li><a href="https://github.com/yvdriess/precipes">Parallel Recipes</a></li>
 </ul>
-<h1 id="examples">Examples</h1><p><a href="https://github.com/common-workflow-language/workflows">Github repository of example tools and workflows.</a></p>
-<h1 id="development_and_testing">Development and testing</h1><p>The CWL effort is on Github:</p>
+<h2 id="Examples">Examples</h1><p><a href="https://github.com/common-workflow-language/workflows">Github repository of example tools and workflows.</a></p>
+<h2 id="Development_and_testing">Development and testing</h1><p>The CWL effort is on Github:</p>
 <p><a href="https://github.com/common-workflow-language/common-workflow-language">https://github.com/common-workflow-language/common-workflow-language</a></p>
 <p>There is a Jenkins server maintained by Curoverse that runs tests for the
 reference implementation, builds and uploads packages, and builds and uploads
 Docker images:</p>
 <p><a href="https://ci.curoverse.com/job/common-workflow-language/">https://ci.curoverse.com/job/common-workflow-language/</a></p>
 <p>Current build status: <a href="https://ci.curoverse.com/job/common-workflow-language/"><img src="https://ci.curoverse.com/buildStatus/icon?job=common-workflow-language" alt="Build Status"></a></p>
-<h1 id="community_and_contributing">Community and Contributing</h1><p>If you are interested in learning more or contributing ideas or code,
+<h2 id="Community_and_Contributing">Community and Contributing</h1><p>If you are interested in learning more or contributing ideas or code,
 <a href="https://gitter.im/common-workflow-language/common-workflow-language">come chat with us on Gitter</a>,
 check out <a href="https://twitter.com/search?q=%23CommonWL">#CommonWL on Twitter</a>,
 join the <a href="https://groups.google.com/forum/#!forum/common-workflow-language">mailing list common-workflow-language on Google Groups</a> or
 <a href="https://github.com/common-workflow-language/common-workflow-language">fork the repository</a>
 and send a pull request!</p>
 <p><a href="https://gitter.im/common-workflow-language/common-workflow-language?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Gitter"></a></p>
-<h1 id="participating_organizations">Participating Organizations</h1><ul>
+<h2 id="Participating_Organizations">Participating Organizations</h1><ul>
 <li><a href="http://curoverse.com">Curoverse</a></li>
 <li><a href="http://sbgenomics.com">Seven Bridges Genomics</a></li>
 <li><a href="http://galaxyproject.org/">Galaxy Project</a></li>
@@ -128,25 +127,25 @@ and send a pull request!</p>
 <li><a href="https://www.broadinstitute.org">Broad Institute</a></li>
 <li><a href="http://www.biodatomics.com/">BioDatomics</a></li>
 </ul>
-<h1 id="individual_contributors">Individual Contributors</h1><ul>
-<li>Peter Amstutz <peter.amstutz@curoverse.com></li>
+<h2 id="Individual_Contributors">Individual Contributors</h1><ul>
+<li>Peter Amstutz <a href="mailto:peter.amstutz@curoverse.com">peter.amstutz@curoverse.com</a></li>
 <li>John Chilton <a href="mailto:jmchilton@gmail.com">jmchilton@gmail.com</a></li>
-<li>Michael R. Crusoe <michael.crusoe@gmail.com></li>
+<li>Michael R. Crusoe <a href="mailto:michael.crusoe@gmail.com">michael.crusoe@gmail.com</a></li>
 <li>John Kern <a href="mailto:kern3020@gmail.com">kern3020@gmail.com</a></li>
-<li>Hervé Ménager <herve.menager@gmail.com></li>
+<li>Hervé Ménager <a href="mailto:herve.menager@gmail.com">herve.menager@gmail.com</a></li>
 <li>Maxim Mikheev <a href="mailto:mikhmv@biodatomics.com">mikhmv@biodatomics.com</a></li>
 <li>Tim Pierce <a href="mailto:twp@unchi.org">twp@unchi.org</a></li>
-<li>Stian Soiland-Reyes <soiland-reyes@cs.manchester.ac.uk></li>
-<li>Luka Stojanovic <luka.stojanovic@sbgenomics.com></li>
-<li>Nebojsa Tijanic <nebojsa.tijanic@sbgenomics.com></li>
-<li>Sinisa Ivkovic <sinisa.ivkovic@sbgenomics.com></li>
-<li>Robin Andeer <robin.andeer@gmail.com></li>
+<li>Stian Soiland-Reyes <a href="mailto:soiland-reyes@cs.manchester.ac.uk">soiland-reyes@cs.manchester.ac.uk</a></li>
+<li>Luka Stojanovic <a href="mailto:luka.stojanovic@sbgenomics.com">luka.stojanovic@sbgenomics.com</a></li>
+<li>Nebojsa Tijanic <a href="mailto:nebojsa.tijanic@sbgenomics.com">nebojsa.tijanic@sbgenomics.com</a></li>
+<li>Sinisa Ivkovic <a href="mailto:sinisa.ivkovic@sbgenomics.com">sinisa.ivkovic@sbgenomics.com</a></li>
+<li>Robin Andeer <a href="mailto:robin.andeer@gmail.com">robin.andeer@gmail.com</a></li>
 <li>Roman Valls Guimerà <a href="mailto:brainstorm@nopcode.org">brainstorm@nopcode.org</a></li>
-<li>Guillermo Carrasco Hernandez <guille.ch.88@gmail.com></li>
+<li>Guillermo Carrasco Hernandez <a href="mailto:guille.ch.88@gmail.com">guille.ch.88@gmail.com</a></li>
 <li>Brad Chapman <a href="mailto:bchapman@hsph.harvard.edu">bchapman@hsph.harvard.edu</a></li>
-<li>Josh Randall <joshua.randall@sanger.ac.uk></li>
+<li>Josh Randall <a href="mailto:joshua.randall@sanger.ac.uk">joshua.randall@sanger.ac.uk</a></li>
 <li>Andrey Kartashov <a href="mailto:porter@porter.st">porter@porter.st</a></li>
-<li>Dan Leehr <dan.leehr@duke.edu></li>
+<li>Dan Leehr <a href="mailto:dan.leehr@duke.edu">dan.leehr@duke.edu</a></li>
 </ul>
 </div>
     </div>

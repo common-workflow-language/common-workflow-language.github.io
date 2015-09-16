@@ -7,7 +7,7 @@
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <title>Common Workflow Language, Draft 3</title>
+    <title>https://w3id.org/cwl/cwl#Common Workflow Language, Draft 3</title>
     <style>
     html {
       height:100%;
@@ -26,7 +26,7 @@
       padding: 0px;
     }
 
-    ol > li > ol {
+    ol {
       list-style-type: none;
     }
     ol > li > ol > li {
@@ -69,74 +69,88 @@
     
     <div class="row full-height">
     <div id="lefttoc" class="col-md-3 full-height" role="complementary">
-    <nav id="toc"><ol class="nav nav-pills nav-stacked"><li><a href="#common_workflow_language,_draft_3"> Common Workflow Language, Draft 3</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#abstract"> Abstract</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#status_of_this_document"> Status of This Document</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#introduction">1. Introduction</a><ol class="nav nav-pills nav-stacked nav-secondary">
-<li><a href="#introduction_to_draft_3">1.1 Introduction to draft 3</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#purpose">1.2 Purpose</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#references_to_other_specifications">1.3 References to Other Specifications</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#scope">1.4 Scope</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#terminology">1.5 Terminology</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol></li></ol><li><a href="#data_model">2. Data model</a><ol class="nav nav-pills nav-stacked nav-secondary">
-<li><a href="#data_concepts">2.1 Data concepts</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#syntax">2.2 Syntax</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#identifiers">2.3 Identifiers</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#document_preprocessing">2.4 Document preprocessing</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#extensions_and_metadata">2.5 Extensions and Metadata</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol></li></ol><li><a href="#execution_model">3. Execution model</a><ol class="nav nav-pills nav-stacked nav-secondary">
-<li><a href="#execution_concepts">3.1 Execution concepts</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#generic_execution_process">3.2 Generic execution process</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#requirements_and_hints">3.3 Requirements and hints</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#expressions">3.4 Expressions</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#workflow_graph">3.5 Workflow graph</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#success_and_failure">3.6 Success and failure</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#executing_cwl_documents_as_scripts">3.7 Executing CWL documents as scripts</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol></li></ol><li><a href="#sample_cwl_workflow">4. Sample CWL workflow</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#reference">5. Reference</a><ol class="nav nav-pills nav-stacked nav-secondary">
-<li><a href="#workflow">5.1 Workflow</a><ol class="nav nav-pills nav-stacked nav-secondary">
-<li><a href="#workflowoutputparameter">5.1.1 WorkflowOutputParameter</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#workflowstep">5.1.2 WorkflowStep</a><ol class="nav nav-pills nav-stacked nav-secondary">
-<li><a href="#workflowstepinput">5.1.2.1 WorkflowStepInput</a><ol class="nav nav-pills nav-stacked nav-secondary">
-<li><a href="#linkmergemethod">5.1.2.1.1 LinkMergeMethod</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol></li></ol><li><a href="#workflowstepoutput">5.1.2.2 WorkflowStepOutput</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#scattermethod">5.1.2.3 ScatterMethod</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol></li></ol></li></ol><li><a href="#commandlinetool">5.2 CommandLineTool</a><ol class="nav nav-pills nav-stacked nav-secondary">
-<li><a href="#commandinputparameter">5.2.1 CommandInputParameter</a><ol class="nav nav-pills nav-stacked nav-secondary">
-<li><a href="#commandlinebinding">5.2.1.1 CommandLineBinding</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#commandinputschema">5.2.1.2 CommandInputSchema</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol></li></ol><li><a href="#commandoutputparameter">5.2.2 CommandOutputParameter</a><ol class="nav nav-pills nav-stacked nav-secondary">
-<li><a href="#commandoutputbinding">5.2.2.1 CommandOutputBinding</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#commandoutputschema">5.2.2.2 CommandOutputSchema</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol></li></ol></li></ol><li><a href="#expressiontool">5.3 ExpressionTool</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#expression">5.4 Expression</a><ol class="nav nav-pills nav-stacked nav-secondary">
-<li><a href="#jsonpointer">5.4.1 JsonPointer</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol></li></ol><li><a href="#processrequirement">5.5 ProcessRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
-<li><a href="#dockerrequirement">5.5.1 DockerRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#subworkflowfeaturerequirement">5.5.2 SubworkflowFeatureRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#createfilerequirement">5.5.3 CreateFileRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
-<li><a href="#filedef">5.5.3.1 FileDef</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol></li></ol><li><a href="#envvarrequirement">5.5.4 EnvVarRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
-<li><a href="#environmentdef">5.5.4.1 EnvironmentDef</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol></li></ol><li><a href="#scatterfeaturerequirement">5.5.5 ScatterFeatureRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#schemadefrequirement">5.5.6 SchemaDefRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
-<li><a href="#schemadef">5.5.6.1 SchemaDef</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol></li></ol><li><a href="#expressionenginerequirement">5.5.7 ExpressionEngineRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol></li></ol><li><a href="#datatype">5.6 Datatype</a><ol class="nav nav-pills nav-stacked nav-secondary">
-<li><a href="#file">5.6.1 File</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#any">5.6.2 Any</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol></li></ol><li><a href="#process">5.7 Process</a><ol class="nav nav-pills nav-stacked nav-secondary">
-<li><a href="#parameter">5.7.1 Parameter</a><ol class="nav nav-pills nav-stacked nav-secondary">
-<li><a href="#schema">5.7.1.1 Schema</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#binding">5.7.1.2 Binding</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol></li></ol><li><a href="#inputparameter">5.7.2 InputParameter</a><ol class="nav nav-pills nav-stacked nav-secondary">
-<li><a href="#inputschema">5.7.2.1 InputSchema</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol></li></ol><li><a href="#outputparameter">5.7.3 OutputParameter</a><ol class="nav nav-pills nav-stacked nav-secondary">
-<li><a href="#outputschema">5.7.3.1 OutputSchema</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol></li></ol></li></ol></li></ol></li></ol></nav>
+    <nav id="toc"><ol class="nav nav-pills nav-stacked"><li><a href="#Abstract"> Abstract</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#Status_of_This_Document"> Status of This Document</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#Introduction">1. Introduction</a><ol class="nav nav-pills nav-stacked nav-secondary">
+<li><a href="#Introduction_to_draft_3">1.1 Introduction to draft 3</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#Purpose">1.2 Purpose</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#References_to_Other_Specifications">1.3 References to Other Specifications</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#Scope">1.4 Scope</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#Terminology">1.5 Terminology</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol></li></ol><li><a href="#Data_model">2. Data model</a><ol class="nav nav-pills nav-stacked nav-secondary">
+<li><a href="#Data_concepts">2.1 Data concepts</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#Syntax">2.2 Syntax</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#Identifiers">2.3 Identifiers</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#Document_preprocessing">2.4 Document preprocessing</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#Extensions_and_Metadata">2.5 Extensions and Metadata</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol></li></ol><li><a href="#Execution_model">3. Execution model</a><ol class="nav nav-pills nav-stacked nav-secondary">
+<li><a href="#Execution_concepts">3.1 Execution concepts</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#Generic_execution_process">3.2 Generic execution process</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#Requirements_and_hints">3.3 Requirements and hints</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#Expressions">3.4 Expressions</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#Workflow_graph">3.5 Workflow graph</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#Success_and_failure">3.6 Success and failure</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#Executing_CWL_documents_as_scripts">3.7 Executing CWL documents as scripts</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol></li></ol><li><a href="#Sample_CWL_workflow">4. Sample CWL workflow</a><ol class="nav nav-pills nav-stacked nav-secondary">
+<li><a href="#Workflow">4.1 Workflow</a><ol class="nav nav-pills nav-stacked nav-secondary">
+<li><a href="#WorkflowOutputParameter">4.1.1 WorkflowOutputParameter</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#WorkflowStep">4.1.2 WorkflowStep</a><ol class="nav nav-pills nav-stacked nav-secondary">
+<li><a href="#WorkflowStepInput">4.1.2.1 WorkflowStepInput</a><ol class="nav nav-pills nav-stacked nav-secondary">
+<li><a href="#LinkMergeMethod">4.1.2.1.1 LinkMergeMethod</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol></li></ol><li><a href="#WorkflowStepOutput">4.1.2.2 WorkflowStepOutput</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#ScatterMethod">4.1.2.3 ScatterMethod</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol></li></ol></li></ol><li><a href="#CommandLineTool">4.2 CommandLineTool</a><ol class="nav nav-pills nav-stacked nav-secondary">
+<li><a href="#CommandInputParameter">4.2.1 CommandInputParameter</a><ol class="nav nav-pills nav-stacked nav-secondary">
+<li><a href="#CommandLineBinding">4.2.1.1 CommandLineBinding</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol></li></ol><li><a href="#CommandOutputParameter">4.2.2 CommandOutputParameter</a><ol class="nav nav-pills nav-stacked nav-secondary">
+<li><a href="#CommandOutputBinding">4.2.2.1 CommandOutputBinding</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol></li></ol></li></ol><li><a href="#ExpressionTool">4.3 ExpressionTool</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#Expression">4.4 Expression</a><ol class="nav nav-pills nav-stacked nav-secondary">
+<li><a href="#JsonPointer">4.4.1 JsonPointer</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol></li></ol><li><a href="#ProcessRequirement">4.5 ProcessRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
+<li><a href="#DockerRequirement">4.5.1 DockerRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#SubworkflowFeatureRequirement">4.5.2 SubworkflowFeatureRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#CreateFileRequirement">4.5.3 CreateFileRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
+<li><a href="#FileDef">4.5.3.1 FileDef</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol></li></ol><li><a href="#EnvVarRequirement">4.5.4 EnvVarRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
+<li><a href="#EnvironmentDef">4.5.4.1 EnvironmentDef</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol></li></ol><li><a href="#ScatterFeatureRequirement">4.5.5 ScatterFeatureRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#SchemaDefRequirement">4.5.6 SchemaDefRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#ExpressionEngineRequirement">4.5.7 ExpressionEngineRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol></li></ol><li><a href="#Process">4.6 Process</a><ol class="nav nav-pills nav-stacked nav-secondary">
+<li><a href="#Parameter">4.6.1 Parameter</a><ol class="nav nav-pills nav-stacked nav-secondary">
+<li><a href="#Binding">4.6.1.1 Binding</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol></li></ol><li><a href="#InputParameter">4.6.2 InputParameter</a><ol class="nav nav-pills nav-stacked nav-secondary">
+<li><a href="#InputRecordSchema">4.6.2.1 InputRecordSchema</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#InputEnumSchema">4.6.2.2 InputEnumSchema</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#InputArraySchema">4.6.2.3 InputArraySchema</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#CommandInputRecordField">4.6.2.4 CommandInputRecordField</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#CommandInputRecordSchema">4.6.2.5 CommandInputRecordSchema</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#CommandInputEnumSchema">4.6.2.6 CommandInputEnumSchema</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#CommandInputArraySchema">4.6.2.7 CommandInputArraySchema</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol></li></ol><li><a href="#OutputParameter">4.6.3 OutputParameter</a><ol class="nav nav-pills nav-stacked nav-secondary">
+<li><a href="#OutputRecordField">4.6.3.1 OutputRecordField</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#OutputRecordSchema">4.6.3.2 OutputRecordSchema</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#OutputEnumSchema">4.6.3.3 OutputEnumSchema</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#OutputArraySchema">4.6.3.4 OutputArraySchema</a><ol class="nav nav-pills nav-stacked nav-secondary">
+<li><a href="#CommandOutputArraySchema">4.6.3.4.1 CommandOutputArraySchema</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol></li></ol><li><a href="#CommandOutputRecordField">4.6.3.5 CommandOutputRecordField</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#CommandOutputRecordSchema">4.6.3.6 CommandOutputRecordSchema</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#CommandOutputEnumSchema">4.6.3.7 CommandOutputEnumSchema</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol></li></ol></li></ol></li></ol><li><a href="#PrimitiveType">5. PrimitiveType</a><ol class="nav nav-pills nav-stacked nav-secondary">
+<li><a href="#CWLType">5.1 CWLType</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol></li></ol><li><a href="#Any">6. Any</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#RecordField">7. RecordField</a><ol class="nav nav-pills nav-stacked nav-secondary">
+<li><a href="#InputRecordField">7.1 InputRecordField</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol></li></ol><li><a href="#RecordSchema">8. RecordSchema</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#EnumSchema">9. EnumSchema</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#ArraySchema">10. ArraySchema</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#File">11. File</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#Sink">12. Sink</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol></li></ol></nav>
     </div>
     
-    <div class="col-md-9 full-height" role="main" id="main" data-spy="scroll" data-target="#toc"><h1 id="common_workflow_language,_draft_3">Common Workflow Language, Draft 3</h1><p>Work in progress.</p>
+    <div class="col-md-9 full-height" role="main" id="main" data-spy="scroll" data-target="#toc"><p>Work in progress.</p>
 <p>This version:</p>
 <ul>
 <li><a href="https://w3id.org/cwl/draft-3/">https://w3id.org/cwl/draft-3/</a></li>
@@ -147,47 +161,47 @@
 </ul>
 <p>Authors:</p>
 <ul>
-<li>Peter Amstutz <peter.amstutz@curoverse.com>, Curoverse</li>
-<li>Nebojša Tijanić <nebojsa.tijanic@sbgenomics.com>, Seven Bridges Genomics</li>
+<li>Peter Amstutz <a href="mailto:peter.amstutz@curoverse.com">peter.amstutz@curoverse.com</a>, Curoverse</li>
+<li>Nebojša Tijanić <a href="mailto:nebojsa.tijanic@sbgenomics.com">nebojsa.tijanic@sbgenomics.com</a>, Seven Bridges Genomics</li>
 </ul>
 <p>Contributers:</p>
 <ul>
-<li>Luka Stojanovic <luka.stojanovic@sbgenomics.com>, Seven Bridges Genomics</li>
+<li>Luka Stojanovic <a href="mailto:luka.stojanovic@sbgenomics.com">luka.stojanovic@sbgenomics.com</a>, Seven Bridges Genomics</li>
 <li>John Chilton <a href="mailto:jmchilton@gmail.com">jmchilton@gmail.com</a>, Galaxy Project, Pennsylvania State University</li>
 <li>Michael R. Crusoe <a href="mailto:mcrusoe@msu.edu">mcrusoe@msu.edu</a>, Michigan State University</li>
-<li>Hervé Ménager <herve.menager@gmail.com>, Institut Pasteur</li>
+<li>Hervé Ménager <a href="mailto:herve.menager@gmail.com">herve.menager@gmail.com</a>, Institut Pasteur</li>
 <li>Maxim Mikheev <a href="mailto:mikhmv@biodatomics.com">mikhmv@biodatomics.com</a>, BioDatomics</li>
 <li>Stian Soiland-Reyes <a href="mailto:soiland-reyes@cs.manchester.ac.uk">soiland-reyes@cs.manchester.ac.uk</a>, University of Manchester</li>
 </ul>
-<h1 id="abstract">Abstract</h1><p>A Workflow is an analysis task represented by a directed graph describing a
+<h1 id="Abstract">Abstract</h1><p>A Workflow is an analysis task represented by a directed graph describing a
 sequence of operations that transform an input data set to output.  This
 specification defines the Common Workflow Language (CWL), a vendor-neutral
 standard for representing workflows and concrete process steps intended to
 be portable across a variety of computing platforms.</p>
-<h1 id="status_of_this_document">Status of This Document</h1><p>This document is the product of the <a href="https://groups.google.com/forum/#!forum/common-workflow-language">Common Workflow Language working
+<h1 id="Status_of_This_Document">Status of This Document</h1><p>This document is the product of the <a href="https://groups.google.com/forum/#!forum/common-workflow-language">Common Workflow Language working
 group</a>.  The
 latest version of this document is available in the "specification" directory at</p>
 <p><a href="https://github.com/common-workflow-language/common-workflow-language">https://github.com/common-workflow-language/common-workflow-language</a></p>
 <p>The products of the CWL working group (including this document) are made available
 under the terms of the Apache License, version 2.0.</p>
-<h1 id="introduction">1. Introduction</h1><p>The Common Workflow Language (CWL) working group is an informal, multi-vendor
+<h1 id="Introduction">1. Introduction</h1><p>The Common Workflow Language (CWL) working group is an informal, multi-vendor
 working group consisting of various organizations and individuals that have an
 interest in portability of data analysis workflows.  The goal is to create
 specifications like this one that enable data scientists to describe analysis
 tools and workflows that are powerful, easy to use, portable, and support
 reproducibility.</p>
-<h1 id="introduction_to_draft_3">1.1 Introduction to draft 3</h1><p>This specification represents the third milestone of the CWL group.  Since
+<h2 id="Introduction_to_draft_3">1.1 Introduction to draft 3</h1><p>This specification represents the third milestone of the CWL group.  Since
 draft-2, this draft introduces the following changes and additions:</p>
 <ul>
 <li>...</li>
 </ul>
-<h1 id="purpose">1.2 Purpose</h1><p>CWL is designed to express workflows for data-intensive science, such as
+<h2 id="Purpose">1.2 Purpose</h1><p>CWL is designed to express workflows for data-intensive science, such as
 Bioinformatics, Chemistry, Physics, and Astronomy.  This specification is
 intended to define a data and execution model for Workflows and Command Line
 Tools that can be implemented on top of a variety of computing platforms,
 ranging from an individual workstation to cluster, grid, cloud, and high
 performance computing systems.</p>
-<h1 id="references_to_other_specifications">1.3 References to Other Specifications</h1><ul>
+<h2 id="References_to_Other_Specifications">1.3 References to Other Specifications</h1><ul>
 <li><a href="http://json.org">JSON</a></li>
 <li><a href="http://json-ld.org">JSON-LD</a></li>
 <li><a href="https://tools.ietf.org/html/draft-ietf-appsawg-json-pointer-04">JSON Pointer</a></li>
@@ -198,10 +212,10 @@ performance computing systems.</p>
 <li><a href="http://pubs.opengroup.org/onlinepubs/9699919799/">Portable Operating System Interface (POSIX.1-2008)</a></li>
 <li><a href="http://www.w3.org/RDF/">Resource Description Framework (RDF)</a></li>
 </ul>
-<h1 id="scope">1.4 Scope</h1><p>This document describes the CWL syntax, execution, and object model.  It
+<h2 id="Scope">1.4 Scope</h1><p>This document describes the CWL syntax, execution, and object model.  It
 is not intended to document a specific implementation of CWL, however it may
 serve as a reference for the behavior of conforming implementations.</p>
-<h1 id="terminology">1.5 Terminology</h1><p>The terminology used to describe CWL documents is defined in the
+<h2 id="Terminology">1.5 Terminology</h1><p>The terminology used to describe CWL documents is defined in the
 Concepts section of the specification. The terms defined in the
 following list are used in building those definitions and in describing the
 actions of an CWL implementation:</p>
@@ -218,7 +232,7 @@ process and may report an error.</p>
 <p><strong>at user option</strong>: Conforming software may or must (depending on the modal verb in
 the sentence) behave as described; if it does, it must provide users a means to
 enable or disable the behavior described.</p>
-<h1 id="data_model">2. Data model</h1><h1 id="data_concepts">2.1 Data concepts</h1><p>An <strong>object</strong> is a data structure equivalent to the "object" type in JSON,
+<h1 id="Data_model">2. Data model</h1><h2 id="Data_concepts">2.1 Data concepts</h1><p>An <strong>object</strong> is a data structure equivalent to the "object" type in JSON,
 consisting of a unordered set of name/value pairs (referred to here as
 <strong>fields</strong>) and where the name is a string and the value is a string, number,
 boolean, array, or object.</p>
@@ -232,7 +246,7 @@ for an input object.</p>
 <p>An <strong>output schema</strong> describes the valid format for a output object.</p>
 <p><strong>Metadata</strong> is information about workflows, tools, or input items that is
 not used directly in the computation.</p>
-<h1 id="syntax">2.2 Syntax</h1><p>Documents containing CWL objects are serialized and loaded using YAML
+<h2 id="Syntax">2.2 Syntax</h1><p>Documents containing CWL objects are serialized and loaded using YAML
 syntax and UTF-8 text encoding.  A conforming implementation must accept
 all valid YAML documents.</p>
 <p>The CWL schema is defined using Avro Linked Data (avro-ld).  Avro-ld is an
@@ -248,7 +262,7 @@ The CWL <a href="https://w3id.org/cwl/draft-2/cwl.ttl">RDFS schema</a> defines t
 CWL as JSON-LD.</p>
 <p>The latest draft-2 schema is defined here:
 <a href="https://github.com/common-workflow-language/common-workflow-language/blob/master/schemas/draft-2/cwl-avro.yml">https://github.com/common-workflow-language/common-workflow-language/blob/master/schemas/draft-2/cwl-avro.yml</a></p>
-<h1 id="identifiers">2.3 Identifiers</h1><p>If an object contains an <code>id</code> field, that is used to uniquely identify the
+<h2 id="Identifiers">2.3 Identifiers</h1><p>If an object contains an <code>id</code> field, that is used to uniquely identify the
 object in that document.  The value of the <code>id</code> field must be unique over the
 entire document.  The format of the <code>id</code> field is that of a <a href="https://tools.ietf.org/html/rfc3986#section-3.5">relative fragment
 identifier</a>, and must start
@@ -261,7 +275,7 @@ in the directory "/home/example/work/" may be transformed to
 "file:///home/example/work/my_tool.cwl" and a relative fragment reference
 "#input" in this file may be transformed to
 "file:///home/example/work/my_tool.cwl#input".</p>
-<h1 id="document_preprocessing">2.4 Document preprocessing</h1><p>An implementation must resolve <code>import</code> directives.  An <code>import</code> directive
+<h2 id="Document_preprocessing">2.4 Document preprocessing</h1><p>An implementation must resolve <code>import</code> directives.  An <code>import</code> directive
 is an object consisting of the field <code>import</code> specifying a URI.  The URI
 referenced by <code>import</code> must be loaded as a CWL document (including
 recursive preprocessing) and then the <code>import</code> object is implicitly
@@ -274,7 +288,7 @@ The URI referenced by <code>include</code> must be loaded as UTF-8 encoded text
 document and the <code>include</code> directive implicitly replaced by a string with
 the contents of the document.  Because the loaded resource is unparsed,
 URIs used with <code>include</code> must not include fragments.</p>
-<h1 id="extensions_and_metadata">2.5 Extensions and Metadata</h1><p>Implementation extensions not required for correct
+<h2 id="Extensions_and_Metadata">2.5 Extensions and Metadata</h1><p>Implementation extensions not required for correct
 execution (for example, fields related to GUI rendering) may
 be stored in <a href="#requirements_and_hints">process hints</a>.</p>
 <p>Input metadata (for example, a lab sample identifier) may be explicitly
@@ -284,7 +298,7 @@ facilities for working with input/output metadata.</p>
 <p>Fields for tool and workflow metadata (for example, authorship for use in
 citations) are not defined in this specification.  Future versions of this
 specification may define such fields.</p>
-<h1 id="execution_model">3. Execution model</h1><h1 id="execution_concepts">3.1 Execution concepts</h1><p>A <strong>parameter</strong> is a named symbolic input or output of process, with an
+<h1 id="Execution_model">3. Execution model</h1><h2 id="Execution_concepts">3.1 Execution concepts</h1><p>A <strong>parameter</strong> is a named symbolic input or output of process, with an
 associated datatype or schema.  During execution, values are assigned to
 parameters to make the input object or output object used for concrete
 process invocation.</p>
@@ -323,7 +337,7 @@ reusing previous results.</li>
 <p>Conforming CWL processes must not assume anything about the runtime
 environment or workflow platform unless explicitly declared though the use
 of <a href="#processrequirement">process requirements</a>.</p>
-<h1 id="generic_execution_process">3.2 Generic execution process</h1><p>The generic execution sequence of a CWL process (including both workflows
+<h2 id="Generic_execution_process">3.2 Generic execution process</h1><p>The generic execution sequence of a CWL process (including both workflows
 and concrete process implementations) is as follows.</p>
 <ol>
 <li>Load and validate CWL document, yielding a process object.</li>
@@ -336,7 +350,7 @@ and concrete process implementations) is as follows.</p>
 <li>Validate the output object against the <code>outputs</code> schema for the process.</li>
 <li>Report the output object to the process caller.</li>
 </ol>
-<h1 id="requirements_and_hints">3.3 Requirements and hints</h1><p>A <strong><a href="#processrequirement">process requirement</a></strong> modifies the semantics or runtime
+<h2 id="Requirements_and_hints">3.3 Requirements and hints</h1><p>A <strong><a href="#processrequirement">process requirement</a></strong> modifies the semantics or runtime
 environment of a process.  If an implementation cannot satisfy all
 requirements, or a requirement is listed which is not recognized by the
 implementation, it is a fatal error and the implementation must not attempt
@@ -360,7 +374,7 @@ an enclosing workflow or workflow step, the enclosing <code>requirements</code> 
 precedence.</p>
 <p>Process requirements are the primary mechanism for specifying extensions to
 the CWL core specification.</p>
-<h1 id="expressions">3.4 Expressions</h1><p>An expression is a fragment of executable code which is evaluated by the
+<h2 id="Expressions">3.4 Expressions</h1><p>An expression is a fragment of executable code which is evaluated by the
 workflow platform to affect the inputs, outputs, or behavior of a process.
 In the generic execution sequence, expressions may be evaluated during step
 5 (process setup), step 6 (execute process), and/or step 7 (capture
@@ -410,7 +424,7 @@ operating system containers/jails to minimize the security risks associated
 with running untrusted code.</p>
 <p>The order in which expressions are evaluated within a process or workflow
 is undefined.</p>
-<h1 id="workflow_graph">3.5 Workflow graph</h1><p>A workflow describes a set of <strong>steps</strong> and the <strong>dependencies</strong> between
+<h2 id="Workflow_graph">3.5 Workflow graph</h1><p>A workflow describes a set of <strong>steps</strong> and the <strong>dependencies</strong> between
 those processes.  When a process produces output that will be consumed by a
 second process, the first process is a dependency of the second process.
 When there is a dependency, the workflow engine must execute the dependency
@@ -419,7 +433,7 @@ dependent process.  If two processes are defined in the workflow graph that
 are not directly or indirectly dependent, these processes are
 <strong>independent</strong>, and may execute in any order or execute concurrently.  A
 workflow is complete when all steps have been executed.</p>
-<h1 id="success_and_failure">3.6 Success and failure</h1><p>A completed process must result in one of <code>success</code>, <code>temporaryFailure</code> or
+<h2 id="Success_and_failure">3.6 Success and failure</h1><p>A completed process must result in one of <code>success</code>, <code>temporaryFailure</code> or
 <code>permanentFailure</code> states.  An implementation may choose to retry a process
 execution which resulted in <code>temporaryFailure</code>.  An implementation may
 choose to either continue running other steps of a workflow, or terminate
@@ -436,12 +450,12 @@ complete <code>success</code> or are not executed, then the workflow status is
 status is <code>success</code>.</p>
 </li>
 </ul>
-<h1 id="executing_cwl_documents_as_scripts">3.7 Executing CWL documents as scripts</h1><p>By convention, a CWL document may begin with <code>#!/usr/bin/env cwl-runner</code>
+<h2 id="Executing_CWL_documents_as_scripts">3.7 Executing CWL documents as scripts</h1><p>By convention, a CWL document may begin with <code>#!/usr/bin/env cwl-runner</code>
 and be marked as executable (the POSIX "+x" permission bits) to enable it
 to be executed directly.  A workflow platform may support this mode of
 operation; if so, it must provide <code>cwl-runner</code> as an alias for the
 platform's CWL implementation.</p>
-<h1 id="sample_cwl_workflow">4. Sample CWL workflow</h1><p>revtool.cwl:</p>
+<h1 id="Sample_CWL_workflow">4. Sample CWL workflow</h1><p>revtool.cwl:</p>
 <pre><code>#!/usr/bin/env cwl-runner
 #
 # Simplest example command line program wrapper for the Unix tool "rev".
@@ -602,12 +616,12 @@ steps:
     }
 }
 </code></pre>
-<h1 id="reference">5. Reference</h1><p>This section specifies the core object types that make up a CWL document.</p>
-<h1 id="workflow">5.1 Workflow</h1><p>Extends <a href="#process">Process</a></p>
+<p>This section specifies the core object types that make up a CWL document.</p>
+<h2 id="Workflow">4.1 Workflow</h1><p>Extends  <a href="#Process">Process</a></p>
 <p>A workflow is a process consisting of one or more <code>steps</code>.  Each
 step has input and output parameters defined by the <code>inputs</code> and <code>outputs</code>
 fields.  A workflow executes as described in <a href="#workflow_graph">execution model</a>.</p>
-<h1 id="dependencies">Dependencies</h1><p>Dependencies between parameters are expressed using the <code>source</code> field on
+<h2 id="Dependencies">Dependencies</h1><p>Dependencies between parameters are expressed using the <code>source</code> field on
 <a href="#workflowstepinput">workflow step input parameters</a> and <a href="#workflowoutputparameter">workflow output
 parameters</a>.</p>
 <p>The <code>source</code> field expresses the dependency of one parameter on another
@@ -615,58 +629,67 @@ such that when a value is associated with the parameter specified by
 <code>source</code>, that value is propagated to the destination parameter.  When all
 data links inbound to a given step are fufilled, the step is ready to
 execute.</p>
-<h1 id="extensions">Extensions</h1><p><a href="#scatterfeaturerequirement">ScatterFeatureRequirement</a> and
+<h2 id="Extensions">Extensions</h1><p><a href="#scatterfeaturerequirement">ScatterFeatureRequirement</a> and
 <a href="#subworkflowfeaturerequirement">SubworkflowFeatureRequirement</a> are
 available as standard extensions to core workflow semantics.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>id</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>The unique identifier for this process object. <em>Inherited from <a href="#process">Process</a></em></p>
-</td></tr><tr><td><code>inputs</code></td><td>array&lt;<a href="#inputparameter">InputParameter</a>&gt;</td><td>True</td><td><p>Defines the input parameters of the process.  The process is ready to
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>id</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>The unique identifier for this process object. <em>Inherited from <a href="#Process">Process</a></em></p>
+</td></tr><tr><td><code>inputs</code></td><td>array&lt;<a href="#InputParameter">InputParameter</a>&gt;</td><td>True</td><td><p>Defines the input parameters of the process.  The process is ready to
 run when all required input parameters are associated with concrete
 values.  Input parameters include a schema for each parameter which is
 used to validate the input object.  It may also be used build a user
 interface for constructing the input object.
- <em>Inherited from <a href="#process">Process</a></em></p>
-</td></tr><tr><td><code>outputs</code></td><td>array&lt;<a href="#workflowoutputparameter">WorkflowOutputParameter</a>&gt;</td><td>True</td><td><p>Defines the parameters representing the output of the process.  May be
+ <em>Inherited from <a href="#Process">Process</a></em></p>
+</td></tr><tr><td><code>outputs</code></td><td>array&lt;<a href="#WorkflowOutputParameter">WorkflowOutputParameter</a>&gt;</td><td>True</td><td><p>Defines the parameters representing the output of the process.  May be
 used to generate and/or validate the output object.
- <em>Inherited from <a href="#process">Process</a></em></p>
-</td></tr><tr><td><code>requirements</code></td><td>array&lt;<a href="#dockerrequirement">DockerRequirement</a> | <a href="#subworkflowfeaturerequirement">SubworkflowFeatureRequirement</a> | <a href="#createfilerequirement">CreateFileRequirement</a> | <a href="#envvarrequirement">EnvVarRequirement</a> | <a href="#scatterfeaturerequirement">ScatterFeatureRequirement</a> | <a href="#schemadefrequirement">SchemaDefRequirement</a> | <a href="#expressionenginerequirement">ExpressionEngineRequirement</a>&gt;</td><td>False</td><td><p>Declares requirements that apply to either the runtime environment or the workflow engine that must be met in order to execute this process.  If an implementation cannot satisfy all requirements, or a requirement is listed which is not recognized by the implementation, it is a fatal error and the implementation must not attempt to run the process, unless overridden at user option.
- <em>Inherited from <a href="#process">Process</a></em></p>
-</td></tr><tr><td><code>hints</code></td><td>array&lt;<a href="#any">Any</a>&gt;</td><td>False</td><td><p>Declares hints applying to either the runtime environment or the workflow engine that may be helpful in executing this process.  It is not an error if an implementation cannot satisfy all hints, however the implementation may report a warning.
- <em>Inherited from <a href="#process">Process</a></em></p>
-</td></tr><tr><td><code>label</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A short, human-readable label of this process object. <em>Inherited from <a href="#process">Process</a></em></p>
-</td></tr><tr><td><code>description</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A long, human-readable description of this process object. <em>Inherited from <a href="#process">Process</a></em></p>
-</td></tr><tr><td><code>class</code></td><td><a href="#workflow_class">Workflow_class</a></td><td>True</td><td><p>Must be <code>Workflow</code> to indicate this is a Workflow object.</p>
-</td></tr><tr><td><code>steps</code></td><td>array&lt;<a href="#workflowstep">WorkflowStep</a>&gt;</td><td>True</td><td><p>The individual steps that make up the workflow.  Each step is executed when all of its
+ <em>Inherited from <a href="#Process">Process</a></em></p>
+</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ExpressionEngineRequirement">ExpressionEngineRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
+workflow engine that must be met in order to execute this process.  If
+an implementation cannot satisfy all requirements, or a requirement is
+listed which is not recognized by the implementation, it is a fatal
+error and the implementation must not attempt to run the process,
+unless overridden at user option.
+ <em>Inherited from <a href="#Process">Process</a></em></p>
+</td></tr><tr><td><code>hints</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#Any">Any</a>&gt;</td><td>True</td><td><p>Declares hints applying to either the runtime environment or the
+workflow engine that may be helpful in executing this process.  It is
+not an error if an implementation cannot satisfy all hints, however
+the implementation may report a warning.
+ <em>Inherited from <a href="#Process">Process</a></em></p>
+</td></tr><tr><td><code>label</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A short, human-readable label of this process object. <em>Inherited from <a href="#Process">Process</a></em></p>
+</td></tr><tr><td><code>description</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A long, human-readable description of this process object. <em>Inherited from <a href="#Process">Process</a></em></p>
+</td></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td></td></tr><tr><td><code>steps</code></td><td>array&lt;<a href="#WorkflowStep">WorkflowStep</a>&gt;</td><td>True</td><td><p>The individual steps that make up the workflow.  Each step is executed when all of its
 input data links are fufilled.  An implementation may choose to execute
 the steps in a different order than listed and/or execute steps
 concurrently, provided that dependencies between steps are met.</p>
-</td></tr></table><h1 id="workflowoutputparameter">5.1.1 WorkflowOutputParameter</h1><p>Extends <a href="#outputparameter">OutputParameter</a></p>
-<p>Referenced by <a href="#workflow">Workflow.outputs</a></p>
+</td></tr></table><h2 id="WorkflowOutputParameter">4.1.1 WorkflowOutputParameter</h1><p>Extends  <a href="#OutputParameter">OutputParameter</a>,  <a href="#Sink">Sink</a></p>
 <p>Describe an output parameter of a workflow.  The parameter must be
 connected to one or more parameters defined in the workflow that will
 provide the value of the output parameter.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#outputschema">OutputSchema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#outputschema">OutputSchema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.
- <em>Inherited from <a href="#parameter">Parameter</a></em></p>
-</td></tr><tr><td><code>label</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A short, human-readable label of this parameter object. <em>Inherited from <a href="#parameter">Parameter</a></em></p>
-</td></tr><tr><td><code>description</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A long, human-readable description of this parameter object. <em>Inherited from <a href="#parameter">Parameter</a></em></p>
-</td></tr><tr><td><code>streamable</code></td><td><a href="#datatype">boolean</a></td><td>False</td><td><p>Currently only applies if <code>type</code> is <code>File</code>.  A value of <code>true</code>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">CWLType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Specify valid types of data that may be assigned to this parameter.
+ <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
+</td></tr><tr><td><code>label</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A short, human-readable label of this parameter object. <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
+</td></tr><tr><td><code>description</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A long, human-readable description of this parameter object. <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
+</td></tr><tr><td><code>streamable</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">boolean</a></td><td>True</td><td><p>Currently only applies if <code>type</code> is <code>File</code>.  A value of <code>true</code>
 indicates that the file is read or written sequentially without
 seeking.  An implementation may use this flag to indicate whether it is
 valid to stream file contents using a named pipe.  Default: <code>false</code>.
- <em>Inherited from <a href="#parameter">Parameter</a></em></p>
-</td></tr><tr><td><code>default</code></td><td><a href="#any">Any</a></td><td>False</td><td><p>The default value for this parameter if not provided in the input
+ <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
+</td></tr><tr><td><code>default</code></td><td><a href="#CWLType">null</a> | <a href="#Any">Any</a></td><td>True</td><td><p>The default value for this parameter if not provided in the input
 object.
- <em>Inherited from <a href="#parameter">Parameter</a></em></p>
-</td></tr><tr><td><code>id</code></td><td><a href="#datatype">string</a></td><td>True</td><td><p>The unique identifier for this parameter object. <em>Inherited from <a href="#outputparameter">OutputParameter</a></em></p>
-</td></tr><tr><td><code>source</code></td><td><a href="#datatype">string</a> | array&lt;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>Specifies one or more workflow parameters that will provide this output
-value.</p>
-</td></tr><tr><td><code>linkMerge</code></td><td><a href="#linkmergemethod">LinkMergeMethod</a></td><td>False</td><td><p>The method to use to merge multiple inbound links into a single array.
-If not specified, the default method is "merge_nested".</p>
-</td></tr></table><h1 id="workflowstep">5.1.2 WorkflowStep</h1><p>Referenced by <a href="#workflow">Workflow.steps</a></p>
-<p>A workflow step is an executable element of a workflow.  It specifies the
+ <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
+</td></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The unique identifier for this parameter object. <em>Inherited from <a href="#OutputParameter">OutputParameter</a></em></p>
+</td></tr><tr><td><code>outputBinding</code></td><td><a href="#CWLType">null</a> | <a href="#Binding">Binding</a></td><td>True</td><td><p>Describes how to handle the outputs of a process.
+ <em>Inherited from <a href="#OutputParameter">OutputParameter</a></em></p>
+</td></tr><tr><td><code>source</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Specifies one or more workflow parameters that will provide input to
+the underlying process parameter.
+ <em>Inherited from <a href="#Sink">Sink</a></em></p>
+</td></tr><tr><td><code>linkMerge</code></td><td><a href="#CWLType">null</a> | <a href="#LinkMergeMethod">LinkMergeMethod</a></td><td>True</td><td><p>The method to use to merge multiple inbound links into a single array.
+If not specified, the default method is "merge<em>nested".
+ _Inherited from <a href="#Sink">Sink</a></em></p>
+</td></tr></table><h2 id="WorkflowStep">4.1.2 WorkflowStep</h1><p>A workflow step is an executable element of a workflow.  It specifies the
 underlying process implementation (such as <code>CommandLineTool</code>) in the <code>run</code>
 field and connects the input and output parameters of the underlying
 process to workflow parameters.</p>
-<h1 id="scatter/gather">Scatter/gather</h1><p>To use scatter/gather,
+<h2 id="Scatter/gather">Scatter/gather</h1><p>To use scatter/gather,
 <a href="#scatterfeaturerequirement">ScatterFeatureRequirement</a> must be specified
 in the workflow or workflow step requirements.</p>
 <p>A "scatter" operation specifies that the associated workflow step or
@@ -698,33 +721,41 @@ describes how to decompose the input into a discrete set of jobs.</p>
   order that the input arrays are listed in the <code>scatter</code> field.</p>
 </li>
 </ul>
-<h1 id="subworkflows">Subworkflows</h1><p>To specify a nested workflow as part of a workflow step,
+<h2 id="Subworkflows">Subworkflows</h1><p>To specify a nested workflow as part of a workflow step,
 <a href="#subworkflowfeaturerequirement">SubworkflowFeatureRequirement</a> must be
 specified in the workflow or workflow step requirements.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>id</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>The unique identifier for this workflow step.</p>
-</td></tr><tr><td><code>inputs</code></td><td>array&lt;<a href="#workflowstepinput">WorkflowStepInput</a>&gt;</td><td>True</td><td><p>Defines the input parameters of the workflow step.  The process is ready to
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>id</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>The unique identifier for this workflow step.</p>
+</td></tr><tr><td><code>inputs</code></td><td>array&lt;<a href="#WorkflowStepInput">WorkflowStepInput</a>&gt;</td><td>True</td><td><p>Defines the input parameters of the workflow step.  The process is ready to
 run when all required input parameters are associated with concrete
 values.  Input parameters include a schema for each parameter which is
 used to validate the input object.  It may also be used build a user
 interface for constructing the input object.</p>
-</td></tr><tr><td><code>outputs</code></td><td>array&lt;<a href="#workflowstepoutput">WorkflowStepOutput</a>&gt;</td><td>True</td><td><p>Defines the parameters representing the output of the process.  May be
+</td></tr><tr><td><code>outputs</code></td><td>array&lt;<a href="#WorkflowStepOutput">WorkflowStepOutput</a>&gt;</td><td>True</td><td><p>Defines the parameters representing the output of the process.  May be
 used to generate and/or validate the output object.</p>
-</td></tr><tr><td><code>requirements</code></td><td>array&lt;<a href="#dockerrequirement">DockerRequirement</a> | <a href="#subworkflowfeaturerequirement">SubworkflowFeatureRequirement</a> | <a href="#createfilerequirement">CreateFileRequirement</a> | <a href="#envvarrequirement">EnvVarRequirement</a> | <a href="#scatterfeaturerequirement">ScatterFeatureRequirement</a> | <a href="#schemadefrequirement">SchemaDefRequirement</a> | <a href="#expressionenginerequirement">ExpressionEngineRequirement</a>&gt;</td><td>False</td><td><p>Declares requirements that apply to either the runtime environment or the workflow engine that must be met in order to execute this workflow step.  If an implementation cannot satisfy all requirements, or a requirement is listed which is not recognized by the implementation, it is a fatal error and the implementation must not attempt to run the process, unless overridden at user option.</p>
-</td></tr><tr><td><code>hints</code></td><td>array&lt;<a href="#any">Any</a>&gt;</td><td>False</td><td><p>Declares hints applying to either the runtime environment or the workflow engine that may be helpful in executing this workflow step.  It is not an error if an implementation cannot satisfy all hints, however the implementation may report a warning.</p>
-</td></tr><tr><td><code>label</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A short, human-readable label of this process object.</p>
-</td></tr><tr><td><code>description</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A long, human-readable description of this process object.</p>
-</td></tr><tr><td><code>run</code></td><td><a href="#commandlinetool">CommandLineTool</a> | <a href="#expressiontool">ExpressionTool</a> | <a href="#workflow">Workflow</a></td><td>True</td><td><p>Specifies the process to run.</p>
-</td></tr><tr><td><code>scatter</code></td><td><a href="#datatype">string</a> | array&lt;<a href="#datatype">string</a>&gt;</td><td>False</td><td></td></tr><tr><td><code>scatterMethod</code></td><td><a href="#scattermethod">ScatterMethod</a></td><td>False</td><td><p>Required if <code>scatter</code> is an array of more than one element.</p>
-</td></tr></table><h1 id="workflowstepinput">5.1.2.1 WorkflowStepInput</h1><p>Referenced by <a href="#workflowstep">WorkflowStep.inputs</a></p>
+</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ExpressionEngineRequirement">ExpressionEngineRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
+workflow engine that must be met in order to execute this workflow step.  If
+an implementation cannot satisfy all requirements, or a requirement is
+listed which is not recognized by the implementation, it is a fatal
+error and the implementation must not attempt to run the process,
+unless overridden at user option.</p>
+</td></tr><tr><td><code>hints</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#Any">Any</a>&gt;</td><td>True</td><td><p>Declares hints applying to either the runtime environment or the
+workflow engine that may be helpful in executing this workflow step.  It is
+not an error if an implementation cannot satisfy all hints, however
+the implementation may report a warning.</p>
+</td></tr><tr><td><code>label</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A short, human-readable label of this process object.</p>
+</td></tr><tr><td><code>description</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A long, human-readable description of this process object.</p>
+</td></tr><tr><td><code>run</code></td><td><a href="#CommandLineTool">CommandLineTool</a> | <a href="#ExpressionTool">ExpressionTool</a> | <a href="#Workflow">Workflow</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>Specifies the process to run.</p>
+</td></tr><tr><td><code>scatter</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td></td></tr><tr><td><code>scatterMethod</code></td><td><a href="#CWLType">null</a> | <a href="#ScatterMethod">ScatterMethod</a></td><td>True</td><td><p>Required if <code>scatter</code> is an array of more than one element.</p>
+</td></tr></table><h2 id="WorkflowStepInput">4.1.2.1 WorkflowStepInput</h1><p>Extends  <a href="#Sink">Sink</a></p>
 <p>The input of a workflow step connects an upstream parameter (from the
 workflow inputs, or the outputs of other workflows steps) with the input
 parameters of the underlying process.</p>
-<h1 id="input_object">Input object</h1><p>A WorkflowStepInput object must contain an <code>id</code> field in the form
+<h3 id="Input_object">Input object</h1><p>A WorkflowStepInput object must contain an <code>id</code> field in the form
 <code>#fieldname</code> or <code>#stepname.fieldname</code>.  When the <code>id</code> field contains a
 period <code>.</code> the field name consists of the characters following the final
 period.  This defines a field of the workflow step input object with the
 value of the <code>source</code> parameter(s).</p>
-<h1 id="merging">Merging</h1><p>If the sink parameter is an array, or named in a <a href="#workflowstep">workflow
+<h3 id="Merging">Merging</h1><p>If the sink parameter is an array, or named in a <a href="#workflowstep">workflow
 scatter</a> operation, there may be multiple inbound data links
 listed in the <code>connect</code> field.  The values from the input links are merged
 depending on the method specified in the <code>linkMerge</code> field.  If not
@@ -746,26 +777,25 @@ single elements.</li>
 </ol>
 </li>
 </ul>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>id</code></td><td><a href="#datatype">string</a></td><td>True</td><td><p>A unique identifier for this workflow input parameter.</p>
-</td></tr><tr><td><code>source</code></td><td><a href="#datatype">string</a> | array&lt;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>Specifies one or more workflow parameters that will provide input to
-the underlying process parameter.</p>
-</td></tr><tr><td><code>linkMerge</code></td><td><a href="#linkmergemethod">LinkMergeMethod</a></td><td>False</td><td><p>The method to use to merge multiple inbound links into a single array.
-If not specified, the default method is "merge_nested".</p>
-</td></tr><tr><td><code>default</code></td><td><a href="#any">Any</a></td><td>False</td><td><p>The default value for this parameter if there is no <code>source</code>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>source</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Specifies one or more workflow parameters that will provide input to
+the underlying process parameter.
+ <em>Inherited from <a href="#Sink">Sink</a></em></p>
+</td></tr><tr><td><code>linkMerge</code></td><td><a href="#CWLType">null</a> | <a href="#LinkMergeMethod">LinkMergeMethod</a></td><td>True</td><td><p>The method to use to merge multiple inbound links into a single array.
+If not specified, the default method is "merge<em>nested".
+ _Inherited from <a href="#Sink">Sink</a></em></p>
+</td></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>A unique identifier for this workflow input parameter.</p>
+</td></tr><tr><td><code>default</code></td><td><a href="#CWLType">null</a> | <a href="#Any">Any</a></td><td>True</td><td><p>The default value for this parameter if there is no <code>source</code>
 field.</p>
-</td></tr></table><h1 id="linkmergemethod">5.1.2.1.1 LinkMergeMethod</h1><p>Referenced by <a href="#workflowoutputparameter">WorkflowOutputParameter.linkMerge</a>,  <a href="#workflowstepinput">WorkflowStepInput.linkMerge</a></p>
-<p>The input link merge method, described in <a href="#workflowstepinput">WorkflowStepInput</a>.</p>
-<h1 id="workflowstepoutput">5.1.2.2 WorkflowStepOutput</h1><p>Referenced by <a href="#workflowstep">WorkflowStep.outputs</a></p>
-<p>Associate an output parameter of the underlying process with a workflow
+</td></tr></table><h2 id="LinkMergeMethod">4.1.2.1.1 LinkMergeMethod</h1><p>The input link merge method, described in <a href="#workflowstepinput">WorkflowStepInput</a>.</p>
+<h2 id="WorkflowStepOutput">4.1.2.2 WorkflowStepOutput</h1><p>Associate an output parameter of the underlying process with a workflow
 parameter.  The workflow parameter (given in the <code>id</code> field) be may be used
 as a <code>source</code> to connect with input parameters of other workflow steps, or
 with an output parameter of the process.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>id</code></td><td><a href="#datatype">string</a></td><td>True</td><td><p>A unique identifier for this workflow output parameter.  This is the
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>A unique identifier for this workflow output parameter.  This is the
 identifier to use in the <code>source</code> field of <code>WorkflowStepInput</code> to
 connect the output value to downstream parameters.</p>
-</td></tr></table><h1 id="scattermethod">5.1.2.3 ScatterMethod</h1><p>Referenced by <a href="#workflowstep">WorkflowStep.scatterMethod</a></p>
-<p>The scatter method, as described in <a href="#workflowstep">workflow step scatter</a>.</p>
-<h1 id="commandlinetool">5.2 CommandLineTool</h1><p>Extends <a href="#process">Process</a></p>
+</td></tr></table><h2 id="ScatterMethod">4.1.2.3 ScatterMethod</h1><p>The scatter method, as described in <a href="#workflowstep">workflow step scatter</a>.</p>
+<h2 id="CommandLineTool">4.2 CommandLineTool</h1><p>Extends  <a href="#Process">Process</a></p>
 <p>A CommandLineTool process is a process implementation for executing a
 non-interactive application in a POSIX environment.  To accommodate
 the enormous variety in syntax and semantics for input, runtime
@@ -773,7 +803,7 @@ environment, invocation, and output of arbitrary programs, CommandLineTool
 uses an "input binding" that describes how to translate input
 parameters to an actual program invocation, and an "output binding" that
 describes how to generate output parameters from program output.</p>
-<h1 id="input_binding">Input binding</h1><p>The tool command line is built by applying command line bindings to the
+<h2 id="Input_binding">Input binding</h1><p>The tool command line is built by applying command line bindings to the
 input object.  Bindings are listed either as part of an <a href="#commandinputparameter">input
 parameter</a> using the <code>inputBinding</code> field, or
 separately using the <code>arguments</code> field of the CommandLineTool.</p>
@@ -811,7 +841,7 @@ command line elements.</p>
 line.</p>
 </li>
 </ol>
-<h1 id="runtime_environment">Runtime environment</h1><p>All files listed in the input object must be made available in the runtime
+<h2 id="Runtime_environment">Runtime environment</h1><p>All files listed in the input object must be made available in the runtime
 environment.  The implementation may use a shared or distributed file
 system or transfer files via explicit download.  Implementations may choose
 not to provide access to files not explicitly specified by the input object
@@ -836,12 +866,12 @@ directory and designated output directory.  An implementation may provide
 read-only input files, and disallow in-place update of input files.</p>
 <p>The standard input stream and standard output stream may be redirected as
 described in the <code>stdin</code> and <code>stdout</code> fields.</p>
-<h1 id="extensions">Extensions</h1><p><a href="#dockerrequirement">DockerRequirement</a>,
+<h3 id="Extensions">Extensions</h1><p><a href="#dockerrequirement">DockerRequirement</a>,
 <a href="#createfilerequirement">CreateFileRequirement</a>, and
 <a href="#envvarrequirement">EnvVarRequirement</a> are available as standard
 extensions to core command line tool semantics for defining the runtime
 environment.</p>
-<h1 id="execution">Execution</h1><p>Once the command line is built and the runtime environment is created, the
+<h2 id="Execution">Execution</h1><p>Once the command line is built and the runtime environment is created, the
 actual tool is executed.</p>
 <p>The standard error stream and standard output stream (unless redirected by
 setting <code>stdout</code>) may be captured by platform logging facilities for
@@ -857,30 +887,37 @@ and non-zero exit codes are treated as failure.  This may be customized by
 providing the fields <code>successCodes</code>, <code>temporaryFailCodes</code>, and
 <code>permanentFailCodes</code>.  An implementation may choose to default unspecified
 non-zero exit codes to either <code>temporaryFailure</code> or <code>permanentFailure</code>.</p>
-<h1 id="output_binding">Output binding</h1><p>If the output directory contains a file named "cwl.output.json", that file
+<h2 id="Output_binding">Output binding</h1><p>If the output directory contains a file named "cwl.output.json", that file
 must be loaded and used as the output object.  Otherwise, the output object
 must be generated by walking the parameters listed in <code>outputs</code> and
 applying output bindings to the tool output.  Output bindings are
 associated with output parameters using the <code>outputBinding</code> field.  See
 <a href="#commandoutputbinding"><code>CommandOutputBinding</code></a> for details.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>id</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>The unique identifier for this process object. <em>Inherited from <a href="#process">Process</a></em></p>
-</td></tr><tr><td><code>inputs</code></td><td>array&lt;<a href="#commandinputparameter">CommandInputParameter</a>&gt;</td><td>True</td><td><p>Defines the input parameters of the process.  The process is ready to
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>id</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>The unique identifier for this process object. <em>Inherited from <a href="#Process">Process</a></em></p>
+</td></tr><tr><td><code>inputs</code></td><td>array&lt;<a href="#CommandInputParameter">CommandInputParameter</a>&gt;</td><td>True</td><td><p>Defines the input parameters of the process.  The process is ready to
 run when all required input parameters are associated with concrete
 values.  Input parameters include a schema for each parameter which is
 used to validate the input object.  It may also be used build a user
 interface for constructing the input object.
- <em>Inherited from <a href="#process">Process</a></em></p>
-</td></tr><tr><td><code>outputs</code></td><td>array&lt;<a href="#commandoutputparameter">CommandOutputParameter</a>&gt;</td><td>True</td><td><p>Defines the parameters representing the output of the process.  May be
+ <em>Inherited from <a href="#Process">Process</a></em></p>
+</td></tr><tr><td><code>outputs</code></td><td>array&lt;<a href="#CommandOutputParameter">CommandOutputParameter</a>&gt;</td><td>True</td><td><p>Defines the parameters representing the output of the process.  May be
 used to generate and/or validate the output object.
- <em>Inherited from <a href="#process">Process</a></em></p>
-</td></tr><tr><td><code>requirements</code></td><td>array&lt;<a href="#dockerrequirement">DockerRequirement</a> | <a href="#subworkflowfeaturerequirement">SubworkflowFeatureRequirement</a> | <a href="#createfilerequirement">CreateFileRequirement</a> | <a href="#envvarrequirement">EnvVarRequirement</a> | <a href="#scatterfeaturerequirement">ScatterFeatureRequirement</a> | <a href="#schemadefrequirement">SchemaDefRequirement</a> | <a href="#expressionenginerequirement">ExpressionEngineRequirement</a>&gt;</td><td>False</td><td><p>Declares requirements that apply to either the runtime environment or the workflow engine that must be met in order to execute this process.  If an implementation cannot satisfy all requirements, or a requirement is listed which is not recognized by the implementation, it is a fatal error and the implementation must not attempt to run the process, unless overridden at user option.
- <em>Inherited from <a href="#process">Process</a></em></p>
-</td></tr><tr><td><code>hints</code></td><td>array&lt;<a href="#any">Any</a>&gt;</td><td>False</td><td><p>Declares hints applying to either the runtime environment or the workflow engine that may be helpful in executing this process.  It is not an error if an implementation cannot satisfy all hints, however the implementation may report a warning.
- <em>Inherited from <a href="#process">Process</a></em></p>
-</td></tr><tr><td><code>label</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A short, human-readable label of this process object. <em>Inherited from <a href="#process">Process</a></em></p>
-</td></tr><tr><td><code>description</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A long, human-readable description of this process object. <em>Inherited from <a href="#process">Process</a></em></p>
-</td></tr><tr><td><code>class</code></td><td><a href="#commandlinetool_class">CommandLineTool_class</a></td><td>True</td><td><p>Must be <code>CommandLineTool</code> to indicate this is a CommandLineTool object.</p>
-</td></tr><tr><td><code>baseCommand</code></td><td><a href="#datatype">string</a> | array&lt;<a href="#datatype">string</a>&gt;</td><td>True</td><td><p>Specifies the program to execute.  If the value is an array, the first
+ <em>Inherited from <a href="#Process">Process</a></em></p>
+</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ExpressionEngineRequirement">ExpressionEngineRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
+workflow engine that must be met in order to execute this process.  If
+an implementation cannot satisfy all requirements, or a requirement is
+listed which is not recognized by the implementation, it is a fatal
+error and the implementation must not attempt to run the process,
+unless overridden at user option.
+ <em>Inherited from <a href="#Process">Process</a></em></p>
+</td></tr><tr><td><code>hints</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#Any">Any</a>&gt;</td><td>True</td><td><p>Declares hints applying to either the runtime environment or the
+workflow engine that may be helpful in executing this process.  It is
+not an error if an implementation cannot satisfy all hints, however
+the implementation may report a warning.
+ <em>Inherited from <a href="#Process">Process</a></em></p>
+</td></tr><tr><td><code>label</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A short, human-readable label of this process object. <em>Inherited from <a href="#Process">Process</a></em></p>
+</td></tr><tr><td><code>description</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A long, human-readable description of this process object. <em>Inherited from <a href="#Process">Process</a></em></p>
+</td></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td></td></tr><tr><td><code>baseCommand</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Specifies the program to execute.  If the value is an array, the first
 element is the program to execute, and subsequent elements are placed
 at the beginning of the command line in prior to any command line
 bindings.  If the program includes a path separator character it must
@@ -888,42 +925,40 @@ be an absolute path, otherwise it is an error.  If the program does not
 include a path separator, search the <code>$PATH</code> variable in the runtime
 environment of the workflow runner find the absolute path of the
 executable.</p>
-</td></tr><tr><td><code>arguments</code></td><td>array&lt;<a href="#datatype">string</a>&nbsp;|&nbsp;<a href="#commandlinebinding">CommandLineBinding</a>&gt;</td><td>False</td><td><p>Command line bindings which are not directly associated with input parameters.</p>
-</td></tr><tr><td><code>stdin</code></td><td><a href="#datatype">string</a> | <a href="#expression">Expression</a></td><td>False</td><td><p>A path to a file whose contents must be piped into the command's
+</td></tr><tr><td><code>arguments</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#CommandLineBinding">CommandLineBinding</a>&gt;</td><td>True</td><td><p>Command line bindings which are not directly associated with input parameters.</p>
+</td></tr><tr><td><code>stdin</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td><p>A path to a file whose contents must be piped into the command's
 standard input stream.</p>
-</td></tr><tr><td><code>stdout</code></td><td><a href="#datatype">string</a> | <a href="#expression">Expression</a></td><td>False</td><td><p>Capture the command's standard output stream to a file written to
+</td></tr><tr><td><code>stdout</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td><p>Capture the command's standard output stream to a file written to
 the designated output directory.</p>
 <p>If <code>stdout</code> is a string, it specifies the file name to use.</p>
 <p>If <code>stdout</code> is an expression, the expression is evaluated and must
 return a string with the file name to use to capture stdout.  If the
 return value is not a string, or the resulting path contains illegal
 characters (such as the path separator <code>/</code>) it is an error.</p>
-</td></tr><tr><td><code>successCodes</code></td><td>array&lt;<a href="#datatype">int</a>&gt;</td><td>False</td><td><p>Exit codes that indicate the process completed successfully.</p>
-</td></tr><tr><td><code>temporaryFailCodes</code></td><td>array&lt;<a href="#datatype">int</a>&gt;</td><td>False</td><td><p>Exit codes that indicate the process failed due to a possibly
+</td></tr><tr><td><code>successCodes</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#CWLType">int</a>&gt;</td><td>True</td><td><p>Exit codes that indicate the process completed successfully.</p>
+</td></tr><tr><td><code>temporaryFailCodes</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#CWLType">int</a>&gt;</td><td>True</td><td><p>Exit codes that indicate the process failed due to a possibly
 temporary condition, where excuting the process with the same
 runtime environment and inputs may produce different results.</p>
-</td></tr><tr><td><code>permanentFailCodes</code></td><td>array&lt;<a href="#datatype">int</a>&gt;</td><td>False</td><td><p>Exit codes that indicate the process failed due to a permanent logic error, where excuting the process with the same runtime environment and same inputs is expected to always fail.</p>
-</td></tr></table><h1 id="commandinputparameter">5.2.1 CommandInputParameter</h1><p>Extends <a href="#inputparameter">InputParameter</a></p>
-<p>Referenced by <a href="#commandlinetool">CommandLineTool.inputs</a></p>
+</td></tr><tr><td><code>permanentFailCodes</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#CWLType">int</a>&gt;</td><td>True</td><td><p>Exit codes that indicate the process failed due to a permanent logic error, where excuting the process with the same runtime environment and same inputs is expected to always fail.</p>
+</td></tr></table><h2 id="CommandInputParameter">4.2.1 CommandInputParameter</h1><p>Extends  <a href="#InputParameter">InputParameter</a></p>
 <p>An input parameter for a CommandLineTool.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#commandinputschema">CommandInputSchema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#commandinputschema">CommandInputSchema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.
- <em>Inherited from <a href="#parameter">Parameter</a></em></p>
-</td></tr><tr><td><code>label</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A short, human-readable label of this parameter object. <em>Inherited from <a href="#parameter">Parameter</a></em></p>
-</td></tr><tr><td><code>description</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A long, human-readable description of this parameter object. <em>Inherited from <a href="#parameter">Parameter</a></em></p>
-</td></tr><tr><td><code>streamable</code></td><td><a href="#datatype">boolean</a></td><td>False</td><td><p>Currently only applies if <code>type</code> is <code>File</code>.  A value of <code>true</code>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">CWLType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Specify valid types of data that may be assigned to this parameter.
+ <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
+</td></tr><tr><td><code>label</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A short, human-readable label of this parameter object. <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
+</td></tr><tr><td><code>description</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A long, human-readable description of this parameter object. <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
+</td></tr><tr><td><code>streamable</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">boolean</a></td><td>True</td><td><p>Currently only applies if <code>type</code> is <code>File</code>.  A value of <code>true</code>
 indicates that the file is read or written sequentially without
 seeking.  An implementation may use this flag to indicate whether it is
 valid to stream file contents using a named pipe.  Default: <code>false</code>.
- <em>Inherited from <a href="#parameter">Parameter</a></em></p>
-</td></tr><tr><td><code>default</code></td><td><a href="#any">Any</a></td><td>False</td><td><p>The default value for this parameter if not provided in the input
+ <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
+</td></tr><tr><td><code>default</code></td><td><a href="#CWLType">null</a> | <a href="#Any">Any</a></td><td>True</td><td><p>The default value for this parameter if not provided in the input
 object.
- <em>Inherited from <a href="#parameter">Parameter</a></em></p>
-</td></tr><tr><td><code>id</code></td><td><a href="#datatype">string</a></td><td>True</td><td><p>The unique identifier for this parameter object. <em>Inherited from <a href="#inputparameter">InputParameter</a></em></p>
-</td></tr><tr><td><code>inputBinding</code></td><td><a href="#commandlinebinding">CommandLineBinding</a></td><td>False</td><td><p>Describes how to handle the inputs of a process and convert them
+ <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
+</td></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The unique identifier for this parameter object. <em>Inherited from <a href="#InputParameter">InputParameter</a></em></p>
+</td></tr><tr><td><code>inputBinding</code></td><td><a href="#CWLType">null</a> | <a href="#CommandLineBinding">CommandLineBinding</a></td><td>True</td><td><p>Describes how to handle the inputs of a process and convert them
 into a concrete form for execution, such as command line parameters.
- <em>Inherited from <a href="#inputparameter">InputParameter</a></em></p>
-</td></tr></table><h1 id="commandlinebinding">5.2.1.1 CommandLineBinding</h1><p>Extends <a href="#binding">Binding</a></p>
-<p>Referenced by <a href="#commandinputschema">CommandInputSchema.inputBinding</a>,  <a href="#commandinputparameter">CommandInputParameter.inputBinding</a>,  <a href="#commandlinetool">CommandLineTool.arguments</a></p>
+ <em>Inherited from <a href="#InputParameter">InputParameter</a></em></p>
+</td></tr></table><h2 id="CommandLineBinding">4.2.1.1 CommandLineBinding</h1><p>Extends  <a href="#Binding">Binding</a></p>
 <p>When listed under <code>inputBinding</code> in the input schema, the term
 "value" refers to the the corresponding value in the input object.  For
 binding objects listed in <code>CommandLineTool.arguments</code>, the term "value"
@@ -955,10 +990,10 @@ effective value.</p>
 <li><p><strong>null</strong>: Add nothing.</p>
 </li>
 </ul>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>loadContents</code></td><td><a href="#datatype">boolean</a></td><td>False</td><td><p>Only applies when <code>type</code> is <code>File</code>.  Read up to the first 64 KiB of text from the file and place it in the
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>loadContents</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">boolean</a></td><td>True</td><td><p>Only applies when <code>type</code> is <code>File</code>.  Read up to the first 64 KiB of text from the file and place it in the
 "contents" field of the file object for manipulation by expressions.
- <em>Inherited from <a href="#binding">Binding</a></em></p>
-</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#datatype">string</a> | <a href="#expression">Expression</a> | array&lt;<a href="#datatype">string</a>&nbsp;|&nbsp;<a href="#expression">Expression</a>&gt;</td><td>False</td><td><p>Only applies when <code>type</code> is <code>File</code>.  Describes files that must be
+ <em>Inherited from <a href="#Binding">Binding</a></em></p>
+</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>True</td><td><p>Only applies when <code>type</code> is <code>File</code>.  Describes files that must be
 included alongside the primary file.</p>
 <p>If the value is an expression, the context of the expression is the input
 or output File parameter to which this binding applies.</p>
@@ -970,16 +1005,16 @@ caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.
-<em>Inherited from <a href="#binding">Binding</a></em></li>
+<em>Inherited from <a href="#Binding">Binding</a></em></li>
 </ol>
-</td></tr><tr><td><code>position</code></td><td><a href="#datatype">int</a></td><td>False</td><td><p>The sorting key.  Default position is 0.</p>
-</td></tr><tr><td><code>prefix</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>Command line prefix to add before the value.</p>
-</td></tr><tr><td><code>separate</code></td><td><a href="#datatype">boolean</a></td><td>False</td><td><p>If true (default), then the prefix and value must be added as separate
+</td></tr><tr><td><code>position</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">int</a></td><td>True</td><td><p>The sorting key.  Default position is 0.</p>
+</td></tr><tr><td><code>prefix</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>Command line prefix to add before the value.</p>
+</td></tr><tr><td><code>separate</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">boolean</a></td><td>True</td><td><p>If true (default), then the prefix and value must be added as separate
 command line arguments; if false, prefix and value must be concatenated
 into a single command line argument.</p>
-</td></tr><tr><td><code>itemSeparator</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>Join the array elements into a single string with the elements
+</td></tr><tr><td><code>itemSeparator</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>Join the array elements into a single string with the elements
 separated by by <code>itemSeparator</code>.</p>
-</td></tr><tr><td><code>valueFrom</code></td><td><a href="#datatype">string</a> | <a href="#expression">Expression</a></td><td>False</td><td><p>If <code>valueFrom</code> is a constant string value, use this as the value and
+</td></tr><tr><td><code>valueFrom</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td><p>If <code>valueFrom</code> is a constant string value, use this as the value and
 apply the binding rules above.</p>
 <p>If <code>valueFrom</code> is an expression, evaluate the expression to yield the
 actual value to use to build the command line and apply the binding
@@ -988,37 +1023,24 @@ parameter, the "context" of the expression will be the value of the
 input parameter.</p>
 <p>When a binding is part of the <code>CommandLineTool.arguments</code> field,
 the <code>valueFrom</code> field is required.</p>
-</td></tr></table><h1 id="commandinputschema">5.2.1.2 CommandInputSchema</h1><p>Extends <a href="#inputschema">InputSchema</a></p>
-<p>Referenced by <a href="#commandinputschema">CommandInputSchema.type</a>,  <a href="#commandinputschema">CommandInputSchema.fields</a>,  <a href="#commandinputschema">CommandInputSchema.items</a>,  <a href="#commandinputschema">CommandInputSchema.values</a>,  <a href="#commandinputparameter">CommandInputParameter.type</a></p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#commandinputschema">CommandInputSchema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#commandinputschema">CommandInputSchema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>True</td><td><p>The data type of this parameter. <em>Inherited from <a href="#schema">Schema</a></em></p>
-</td></tr><tr><td><code>fields</code></td><td>array&lt;<a href="#commandinputschema">CommandInputSchema</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>record</code>, defines the fields of the record. <em>Inherited from <a href="#schema">Schema</a></em></p>
-</td></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>enum</code>, defines the set of valid symbols. <em>Inherited from <a href="#schema">Schema</a></em></p>
-</td></tr><tr><td><code>items</code></td><td><a href="#datatype">Datatype</a> | <a href="#commandinputschema">CommandInputSchema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#commandinputschema">CommandInputSchema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>array</code>, defines the type of the array elements. <em>Inherited from <a href="#schema">Schema</a></em></p>
-</td></tr><tr><td><code>values</code></td><td><a href="#datatype">Datatype</a> | <a href="#commandinputschema">CommandInputSchema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#commandinputschema">CommandInputSchema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>map</code>, defines the value type for the key/value pairs. <em>Inherited from <a href="#schema">Schema</a></em></p>
-</td></tr><tr><td><code>inputBinding</code></td><td><a href="#commandlinebinding">CommandLineBinding</a></td><td>False</td><td><p>Describes how to handle a value in the input object convert it
-into a concrete form for execution, such as command line parameters.
- <em>Inherited from <a href="#inputschema">InputSchema</a></em></p>
-</td></tr></table><h1 id="commandoutputparameter">5.2.2 CommandOutputParameter</h1><p>Extends <a href="#outputparameter">OutputParameter</a></p>
-<p>Referenced by <a href="#commandlinetool">CommandLineTool.outputs</a></p>
+</td></tr></table><h2 id="CommandOutputParameter">4.2.2 CommandOutputParameter</h1><p>Extends  <a href="#OutputParameter">OutputParameter</a></p>
 <p>An output parameter for a CommandLineTool.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#commandoutputschema">CommandOutputSchema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#commandoutputschema">CommandOutputSchema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.
- <em>Inherited from <a href="#parameter">Parameter</a></em></p>
-</td></tr><tr><td><code>label</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A short, human-readable label of this parameter object. <em>Inherited from <a href="#parameter">Parameter</a></em></p>
-</td></tr><tr><td><code>description</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A long, human-readable description of this parameter object. <em>Inherited from <a href="#parameter">Parameter</a></em></p>
-</td></tr><tr><td><code>streamable</code></td><td><a href="#datatype">boolean</a></td><td>False</td><td><p>Currently only applies if <code>type</code> is <code>File</code>.  A value of <code>true</code>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">CWLType</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Specify valid types of data that may be assigned to this parameter.
+ <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
+</td></tr><tr><td><code>label</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A short, human-readable label of this parameter object. <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
+</td></tr><tr><td><code>description</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A long, human-readable description of this parameter object. <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
+</td></tr><tr><td><code>streamable</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">boolean</a></td><td>True</td><td><p>Currently only applies if <code>type</code> is <code>File</code>.  A value of <code>true</code>
 indicates that the file is read or written sequentially without
 seeking.  An implementation may use this flag to indicate whether it is
 valid to stream file contents using a named pipe.  Default: <code>false</code>.
- <em>Inherited from <a href="#parameter">Parameter</a></em></p>
-</td></tr><tr><td><code>default</code></td><td><a href="#any">Any</a></td><td>False</td><td><p>The default value for this parameter if not provided in the input
+ <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
+</td></tr><tr><td><code>default</code></td><td><a href="#CWLType">null</a> | <a href="#Any">Any</a></td><td>True</td><td><p>The default value for this parameter if not provided in the input
 object.
- <em>Inherited from <a href="#parameter">Parameter</a></em></p>
-</td></tr><tr><td><code>id</code></td><td><a href="#datatype">string</a></td><td>True</td><td><p>The unique identifier for this parameter object. <em>Inherited from <a href="#outputparameter">OutputParameter</a></em></p>
-</td></tr><tr><td><code>outputBinding</code></td><td><a href="#commandoutputbinding">CommandOutputBinding</a></td><td>False</td><td><p>Describes how to handle the concrete outputs of a process step (such as
-files created by a program) and describe them in the process output
-parameter.</p>
-</td></tr></table><h1 id="commandoutputbinding">5.2.2.1 CommandOutputBinding</h1><p>Extends <a href="#binding">Binding</a></p>
-<p>Referenced by <a href="#commandoutputschema">CommandOutputSchema.outputBinding</a>,  <a href="#commandoutputparameter">CommandOutputParameter.outputBinding</a></p>
+ <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
+</td></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The unique identifier for this parameter object. <em>Inherited from <a href="#OutputParameter">OutputParameter</a></em></p>
+</td></tr><tr><td><code>outputBinding</code></td><td><a href="#CWLType">null</a> | <a href="#CommandOutputBinding">CommandOutputBinding</a></td><td>True</td><td><p>Describes how to handle the outputs of a process.
+ <em>Inherited from <a href="#OutputParameter">OutputParameter</a></em></p>
+</td></tr></table><h2 id="CommandOutputBinding">4.2.2.1 CommandOutputBinding</h1><p>Extends  <a href="#Binding">Binding</a></p>
 <p>Describes how to generate an output parameter based on the files produced
 by a CommandLineTool.</p>
 <p>The output parameter is generated by applying these operations in
@@ -1028,10 +1050,10 @@ the following order:</p>
 <li>loadContents</li>
 <li>outputEval</li>
 </ul>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>loadContents</code></td><td><a href="#datatype">boolean</a></td><td>False</td><td><p>Only applies when <code>type</code> is <code>File</code>.  Read up to the first 64 KiB of text from the file and place it in the
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>loadContents</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">boolean</a></td><td>True</td><td><p>Only applies when <code>type</code> is <code>File</code>.  Read up to the first 64 KiB of text from the file and place it in the
 "contents" field of the file object for manipulation by expressions.
- <em>Inherited from <a href="#binding">Binding</a></em></p>
-</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#datatype">string</a> | <a href="#expression">Expression</a> | array&lt;<a href="#datatype">string</a>&nbsp;|&nbsp;<a href="#expression">Expression</a>&gt;</td><td>False</td><td><p>Only applies when <code>type</code> is <code>File</code>.  Describes files that must be
+ <em>Inherited from <a href="#Binding">Binding</a></em></p>
+</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>True</td><td><p>Only applies when <code>type</code> is <code>File</code>.  Describes files that must be
 included alongside the primary file.</p>
 <p>If the value is an expression, the context of the expression is the input
 or output File parameter to which this binding applies.</p>
@@ -1043,67 +1065,62 @@ caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.
-<em>Inherited from <a href="#binding">Binding</a></em></li>
+<em>Inherited from <a href="#Binding">Binding</a></em></li>
 </ol>
-</td></tr><tr><td><code>glob</code></td><td><a href="#datatype">string</a> | <a href="#expression">Expression</a> | array&lt;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>Find files relative to the output directory, using POSIX glob(3)
+</td></tr><tr><td><code>glob</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Find files relative to the output directory, using POSIX glob(3)
 pathname matching.  If provided an array, find files that match any
 pattern in the array.  If provided an expression, the expression must
 return a string or an array of strings, which will then be evaluated as
 one or more glob patterns.  Only files which actually exist will be
 matched and returned.</p>
-</td></tr><tr><td><code>outputEval</code></td><td><a href="#expression">Expression</a></td><td>False</td><td><p>Evaluate an expression to generate the output value.  If <code>glob</code> was
+</td></tr><tr><td><code>outputEval</code></td><td><a href="#CWLType">null</a> | <a href="#Expression">Expression</a></td><td>True</td><td><p>Evaluate an expression to generate the output value.  If <code>glob</code> was
 specified, the script <code>context</code> will be an array containing any files that were
 matched.  Additionally, if <code>loadContents</code> is <code>true</code>, the File objects
 will include up to the first 64 KiB of file contents in the <code>contents</code> field.</p>
-</td></tr></table><h1 id="commandoutputschema">5.2.2.2 CommandOutputSchema</h1><p>Extends <a href="#outputschema">OutputSchema</a></p>
-<p>Referenced by <a href="#commandoutputschema">CommandOutputSchema.type</a>,  <a href="#commandoutputschema">CommandOutputSchema.fields</a>,  <a href="#commandoutputschema">CommandOutputSchema.items</a>,  <a href="#commandoutputschema">CommandOutputSchema.values</a>,  <a href="#commandoutputparameter">CommandOutputParameter.type</a></p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#commandoutputschema">CommandOutputSchema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#commandoutputschema">CommandOutputSchema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>True</td><td><p>The data type of this parameter. <em>Inherited from <a href="#schema">Schema</a></em></p>
-</td></tr><tr><td><code>fields</code></td><td>array&lt;<a href="#commandoutputschema">CommandOutputSchema</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>record</code>, defines the fields of the record. <em>Inherited from <a href="#schema">Schema</a></em></p>
-</td></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>enum</code>, defines the set of valid symbols. <em>Inherited from <a href="#schema">Schema</a></em></p>
-</td></tr><tr><td><code>items</code></td><td><a href="#datatype">Datatype</a> | <a href="#commandoutputschema">CommandOutputSchema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#commandoutputschema">CommandOutputSchema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>array</code>, defines the type of the array elements. <em>Inherited from <a href="#schema">Schema</a></em></p>
-</td></tr><tr><td><code>values</code></td><td><a href="#datatype">Datatype</a> | <a href="#commandoutputschema">CommandOutputSchema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#commandoutputschema">CommandOutputSchema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>map</code>, defines the value type for the key/value pairs. <em>Inherited from <a href="#schema">Schema</a></em></p>
-</td></tr><tr><td><code>outputBinding</code></td><td><a href="#commandoutputbinding">CommandOutputBinding</a></td><td>False</td><td><p>Describes how to handle the concrete outputs of a process step (such as
-files created by a program) and describe them in the process output
-parameter.</p>
-</td></tr></table><h1 id="expressiontool">5.3 ExpressionTool</h1><p>Extends <a href="#process">Process</a></p>
+</td></tr></table><h2 id="ExpressionTool">4.3 ExpressionTool</h1><p>Extends  <a href="#Process">Process</a></p>
 <p>Execute an expression as a process step.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>id</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>The unique identifier for this process object. <em>Inherited from <a href="#process">Process</a></em></p>
-</td></tr><tr><td><code>inputs</code></td><td>array&lt;<a href="#inputparameter">InputParameter</a>&gt;</td><td>True</td><td><p>Defines the input parameters of the process.  The process is ready to
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>id</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>The unique identifier for this process object. <em>Inherited from <a href="#Process">Process</a></em></p>
+</td></tr><tr><td><code>inputs</code></td><td>array&lt;<a href="#InputParameter">InputParameter</a>&gt;</td><td>True</td><td><p>Defines the input parameters of the process.  The process is ready to
 run when all required input parameters are associated with concrete
 values.  Input parameters include a schema for each parameter which is
 used to validate the input object.  It may also be used build a user
 interface for constructing the input object.
- <em>Inherited from <a href="#process">Process</a></em></p>
-</td></tr><tr><td><code>outputs</code></td><td>array&lt;<a href="#outputparameter">OutputParameter</a>&gt;</td><td>True</td><td><p>Defines the parameters representing the output of the process.  May be
+ <em>Inherited from <a href="#Process">Process</a></em></p>
+</td></tr><tr><td><code>outputs</code></td><td>array&lt;<a href="#OutputParameter">OutputParameter</a>&gt;</td><td>True</td><td><p>Defines the parameters representing the output of the process.  May be
 used to generate and/or validate the output object.
- <em>Inherited from <a href="#process">Process</a></em></p>
-</td></tr><tr><td><code>requirements</code></td><td>array&lt;<a href="#dockerrequirement">DockerRequirement</a> | <a href="#subworkflowfeaturerequirement">SubworkflowFeatureRequirement</a> | <a href="#createfilerequirement">CreateFileRequirement</a> | <a href="#envvarrequirement">EnvVarRequirement</a> | <a href="#scatterfeaturerequirement">ScatterFeatureRequirement</a> | <a href="#schemadefrequirement">SchemaDefRequirement</a> | <a href="#expressionenginerequirement">ExpressionEngineRequirement</a>&gt;</td><td>False</td><td><p>Declares requirements that apply to either the runtime environment or the workflow engine that must be met in order to execute this process.  If an implementation cannot satisfy all requirements, or a requirement is listed which is not recognized by the implementation, it is a fatal error and the implementation must not attempt to run the process, unless overridden at user option.
- <em>Inherited from <a href="#process">Process</a></em></p>
-</td></tr><tr><td><code>hints</code></td><td>array&lt;<a href="#any">Any</a>&gt;</td><td>False</td><td><p>Declares hints applying to either the runtime environment or the workflow engine that may be helpful in executing this process.  It is not an error if an implementation cannot satisfy all hints, however the implementation may report a warning.
- <em>Inherited from <a href="#process">Process</a></em></p>
-</td></tr><tr><td><code>label</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A short, human-readable label of this process object. <em>Inherited from <a href="#process">Process</a></em></p>
-</td></tr><tr><td><code>description</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A long, human-readable description of this process object. <em>Inherited from <a href="#process">Process</a></em></p>
-</td></tr><tr><td><code>class</code></td><td><a href="#expressiontool_class">ExpressionTool_class</a></td><td>True</td><td><p>Must be <code>ExpressionTool</code> to indicate this is a ExpressionTool object.</p>
-</td></tr><tr><td><code>expression</code></td><td><a href="#expression">Expression</a></td><td>True</td><td><p>The expression to execute.  The expression must return a JSON object which
+ <em>Inherited from <a href="#Process">Process</a></em></p>
+</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ExpressionEngineRequirement">ExpressionEngineRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
+workflow engine that must be met in order to execute this process.  If
+an implementation cannot satisfy all requirements, or a requirement is
+listed which is not recognized by the implementation, it is a fatal
+error and the implementation must not attempt to run the process,
+unless overridden at user option.
+ <em>Inherited from <a href="#Process">Process</a></em></p>
+</td></tr><tr><td><code>hints</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#Any">Any</a>&gt;</td><td>True</td><td><p>Declares hints applying to either the runtime environment or the
+workflow engine that may be helpful in executing this process.  It is
+not an error if an implementation cannot satisfy all hints, however
+the implementation may report a warning.
+ <em>Inherited from <a href="#Process">Process</a></em></p>
+</td></tr><tr><td><code>label</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A short, human-readable label of this process object. <em>Inherited from <a href="#Process">Process</a></em></p>
+</td></tr><tr><td><code>description</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A long, human-readable description of this process object. <em>Inherited from <a href="#Process">Process</a></em></p>
+</td></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td></td></tr><tr><td><code>expression</code></td><td><a href="#Expression">Expression</a></td><td>True</td><td><p>The expression to execute.  The expression must return a JSON object which
 matches the output parameters of the ExpressionTool.</p>
-</td></tr></table><h1 id="expression">5.4 Expression</h1><p>Referenced by <a href="#binding">Binding.secondaryFiles</a>,  <a href="#filedef">FileDef.filename</a>,  <a href="#filedef">FileDef.fileContent</a>,  <a href="#environmentdef">EnvironmentDef.envValue</a>,  <a href="#commandlinebinding">CommandLineBinding.secondaryFiles</a>,  <a href="#commandlinebinding">CommandLineBinding.valueFrom</a>,  <a href="#commandoutputbinding">CommandOutputBinding.secondaryFiles</a>,  <a href="#commandoutputbinding">CommandOutputBinding.glob</a>,  <a href="#commandoutputbinding">CommandOutputBinding.outputEval</a>,  <a href="#commandlinetool">CommandLineTool.stdin</a>,  <a href="#commandlinetool">CommandLineTool.stdout</a>,  <a href="#expressiontool">ExpressionTool.expression</a></p>
-<p>Define an expression that will be evaluated and used to modify the behavior
+</td></tr></table><h2 id="Expression">4.4 Expression</h1><p>Define an expression that will be evaluated and used to modify the behavior
 of a tool or workflow.  See <a href="#expressions">Expressions</a> for more
 information about expressions
 and <a href="#expressionenginerequirement">ExpressionEngineRequirement</a> for
 information on how to define a expression engine.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>engine</code></td><td><a href="#jsonpointer">JsonPointer</a> | <a href="#datatype">string</a></td><td>True</td><td><p>Either <code>cwl:JsonPointer</code> or a reference to an
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>engine</code></td><td><a href="#JsonPointer">JsonPointer</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>Either <code>cwl:JsonPointer</code> or a reference to an
 ExpressionEngineRequirement defining which engine to use.</p>
-</td></tr><tr><td><code>script</code></td><td><a href="#datatype">string</a></td><td>True</td><td><p>The code to be executed by the expression engine.</p>
-</td></tr></table><h1 id="jsonpointer">5.4.1 JsonPointer</h1><p>Referenced by <a href="#expression">Expression.engine</a></p>
-<h1 id="processrequirement">5.5 ProcessRequirement</h1><p>Extended by <a href="#dockerrequirement">DockerRequirement</a>,  <a href="#subworkflowfeaturerequirement">SubworkflowFeatureRequirement</a>,  <a href="#createfilerequirement">CreateFileRequirement</a>,  <a href="#envvarrequirement">EnvVarRequirement</a>,  <a href="#scatterfeaturerequirement">ScatterFeatureRequirement</a>,  <a href="#schemadefrequirement">SchemaDefRequirement</a>,  <a href="#expressionenginerequirement">ExpressionEngineRequirement</a></p>
+</td></tr><tr><td><code>script</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The code to be executed by the expression engine.</p>
+</td></tr></table><h2 id="JsonPointer">4.4.1 JsonPointer</h1><h2 id="ProcessRequirement">4.5 ProcessRequirement</h1><p>Extended by <a href="#DockerRequirement">DockerRequirement</a>,  <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a>,  <a href="#CreateFileRequirement">CreateFileRequirement</a>,  <a href="#EnvVarRequirement">EnvVarRequirement</a>,  <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a>,  <a href="#SchemaDefRequirement">SchemaDefRequirement</a>,  <a href="#ExpressionEngineRequirement">ExpressionEngineRequirement</a></p>
 <p>A process requirement declares a prerequisite that may or must be fulfilled
 before executing a process.  See <a href="#process"><code>Process.hints</code></a> and
 <a href="#process"><code>Process.requirements</code></a>.</p>
 <p>Process requirements are the primary mechanism for specifying extensions to
 the CWL core specification.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#datatype">string</a></td><td>True</td><td><p>The specific requirement type.</p>
-</td></tr></table><h1 id="dockerrequirement">5.5.1 DockerRequirement</h1><p>Extends <a href="#processrequirement">ProcessRequirement</a></p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The specific requirement type.</p>
+</td></tr></table><h2 id="DockerRequirement">4.5.1 DockerRequirement</h1><p>Extends  <a href="#ProcessRequirement">ProcessRequirement</a></p>
 <p>Indicates that a workflow component should be run in a
 <a href="http://docker.com">Docker</a> container, and specifies how to fetch or build
 the image.</p>
@@ -1123,37 +1140,36 @@ assume anything about the contents of the Docker container, such as the
 presence or absence of specific software, except to assume that the
 generated command line represents a valid command within the runtime
 environment of the container.</p>
-<h1 id="interaction_with_other_requirements">Interaction with other requirements</h1><p>If <a href="#envvarrequirement">EnvVarRequirement</a> is specified alongside a
+<h3 id="Interaction_with_other_requirements">Interaction with other requirements</h1><p>If <a href="#envvarrequirement">EnvVarRequirement</a> is specified alongside a
 DockerRequirement, the environment variables must be provided to Docker
 using <code>--env</code> or <code>--env-file</code> and interact with the container's preexisting
 environment as defined by Docker.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#dockerrequirement_class">DockerRequirement_class</a></td><td>True</td><td><p>Must be <code>DockerRequirement</code> to indicate this is a DockerRequirement object. <em>Inherited from <a href="#processrequirement">ProcessRequirement</a></em></p>
-</td></tr><tr><td><code>dockerPull</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>Specify a Docker image to retrieve using <code>docker pull</code>.</p>
-</td></tr><tr><td><code>dockerLoad</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>Specify a HTTP URL from which to download a Docker image using <code>docker load</code>.</p>
-</td></tr><tr><td><code>dockerFile</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>Supply the contents of a Dockerfile which will be built using <code>docker build</code>.</p>
-</td></tr><tr><td><code>dockerImport</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>Provide HTTP URL to download and gunzip a Docker images using `docker import.</p>
-</td></tr><tr><td><code>dockerImageId</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>The image id that will be used for <code>docker run</code>.  May be a
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The specific requirement type. <em>Inherited from <a href="#ProcessRequirement">ProcessRequirement</a></em></p>
+</td></tr><tr><td><code>dockerPull</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>Specify a Docker image to retrieve using <code>docker pull</code>.</p>
+</td></tr><tr><td><code>dockerLoad</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>Specify a HTTP URL from which to download a Docker image using <code>docker load</code>.</p>
+</td></tr><tr><td><code>dockerFile</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>Supply the contents of a Dockerfile which will be built using <code>docker build</code>.</p>
+</td></tr><tr><td><code>dockerImport</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>Provide HTTP URL to download and gunzip a Docker images using `docker import.</p>
+</td></tr><tr><td><code>dockerImageId</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>The image id that will be used for <code>docker run</code>.  May be a
 human-readable image name or the image identifier hash.  May be skipped
 if <code>dockerPull</code> is specified, in which case the <code>dockerPull</code> image id
 must be used.</p>
-</td></tr><tr><td><code>dockerOutputDirectory</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>Set the designated output directory to a specific location inside the
+</td></tr><tr><td><code>dockerOutputDirectory</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>Set the designated output directory to a specific location inside the
 Docker container.</p>
-</td></tr></table><h1 id="subworkflowfeaturerequirement">5.5.2 SubworkflowFeatureRequirement</h1><p>Extends <a href="#processrequirement">ProcessRequirement</a></p>
+</td></tr></table><h2 id="SubworkflowFeatureRequirement">4.5.2 SubworkflowFeatureRequirement</h1><p>Extends  <a href="#ProcessRequirement">ProcessRequirement</a></p>
 <p>Indicates that the workflow platform must support nested workflows in
 the <code>run</code> field of (WorkflowStep)(#workflowstep).</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#subworkflowfeaturerequirement_class">SubworkflowFeatureRequirement_class</a></td><td>True</td><td><p>Must be <code>SubworkflowFeatureRequirement</code> to indicate this is a SubworkflowFeatureRequirement object. <em>Inherited from <a href="#processrequirement">ProcessRequirement</a></em></p>
-</td></tr></table><h1 id="createfilerequirement">5.5.3 CreateFileRequirement</h1><p>Extends <a href="#processrequirement">ProcessRequirement</a></p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The specific requirement type. <em>Inherited from <a href="#ProcessRequirement">ProcessRequirement</a></em></p>
+</td></tr></table><h2 id="CreateFileRequirement">4.5.3 CreateFileRequirement</h1><p>Extends  <a href="#ProcessRequirement">ProcessRequirement</a></p>
 <p>Define a list of files that must be created by the workflow
 platform in the designated output directory prior to executing the command
 line tool.  See <code>FileDef</code> for details.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#createfilerequirement_class">CreateFileRequirement_class</a></td><td>True</td><td><p>Must be <code>CreateFileRequirement</code> to indicate this is a CreateFileRequirement object. <em>Inherited from <a href="#processrequirement">ProcessRequirement</a></em></p>
-</td></tr><tr><td><code>fileDef</code></td><td>array&lt;<a href="#filedef">FileDef</a>&gt;</td><td>True</td><td><p>The list of files.</p>
-</td></tr></table><h1 id="filedef">5.5.3.1 FileDef</h1><p>Referenced by <a href="#createfilerequirement">CreateFileRequirement.fileDef</a></p>
-<p>Define a file that must be placed in the designated output directory
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The specific requirement type. <em>Inherited from <a href="#ProcessRequirement">ProcessRequirement</a></em></p>
+</td></tr><tr><td><code>fileDef</code></td><td>array&lt;<a href="#FileDef">FileDef</a>&gt;</td><td>True</td><td><p>The list of files.</p>
+</td></tr></table><h2 id="FileDef">4.5.3.1 FileDef</h1><p>Define a file that must be placed in the designated output directory
 prior to executing the command line tool.  May be the result of executing
 an expression, such as building a configuration file from a template.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>filename</code></td><td><a href="#datatype">string</a> | <a href="#expression">Expression</a></td><td>True</td><td><p>The name of the file to create in the output directory.</p>
-</td></tr><tr><td><code>fileContent</code></td><td><a href="#datatype">string</a> | <a href="#expression">Expression</a></td><td>True</td><td><p>If the value is a string literal or an expression which evaluates to a
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>filename</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td><p>The name of the file to create in the output directory.</p>
+</td></tr><tr><td><code>fileContent</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td><p>If the value is a string literal or an expression which evaluates to a
 string, a new file must be created with the string as the file contents.</p>
 <p>If the value is an expression that evaluates to a File object, this
 indicates the referenced file should be added to the designated output
@@ -1161,22 +1177,21 @@ directory prior to executing the tool.</p>
 <p>Files added in this way may be read-only, and may be provided
 by bind mounts or file system links to avoid
 unnecessary copying of the input file.</p>
-</td></tr></table><h1 id="envvarrequirement">5.5.4 EnvVarRequirement</h1><p>Extends <a href="#processrequirement">ProcessRequirement</a></p>
+</td></tr></table><h2 id="EnvVarRequirement">4.5.4 EnvVarRequirement</h1><p>Extends  <a href="#ProcessRequirement">ProcessRequirement</a></p>
 <p>Define a list of environment variables which will be set in the
 execution environment of the tool.  See <code>EnvironmentDef</code> for details.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#envvarrequirement_class">EnvVarRequirement_class</a></td><td>True</td><td><p>Must be <code>EnvVarRequirement</code> to indicate this is a EnvVarRequirement object. <em>Inherited from <a href="#processrequirement">ProcessRequirement</a></em></p>
-</td></tr><tr><td><code>envDef</code></td><td>array&lt;<a href="#environmentdef">EnvironmentDef</a>&gt;</td><td>True</td><td><p>The list of environment variables.</p>
-</td></tr></table><h1 id="environmentdef">5.5.4.1 EnvironmentDef</h1><p>Referenced by <a href="#envvarrequirement">EnvVarRequirement.envDef</a></p>
-<p>Define an environment variable that will be set in the runtime environment
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The specific requirement type. <em>Inherited from <a href="#ProcessRequirement">ProcessRequirement</a></em></p>
+</td></tr><tr><td><code>envDef</code></td><td>array&lt;<a href="#EnvironmentDef">EnvironmentDef</a>&gt;</td><td>True</td><td><p>The list of environment variables.</p>
+</td></tr></table><h2 id="EnvironmentDef">4.5.4.1 EnvironmentDef</h1><p>Define an environment variable that will be set in the runtime environment
 by the workflow platform when executing the command line tool.  May be the
 result of executing an expression, such as getting a parameter from input.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>envName</code></td><td><a href="#datatype">string</a></td><td>True</td><td><p>The environment variable name</p>
-</td></tr><tr><td><code>envValue</code></td><td><a href="#datatype">string</a> | <a href="#expression">Expression</a></td><td>True</td><td><p>The environment variable value</p>
-</td></tr></table><h1 id="scatterfeaturerequirement">5.5.5 ScatterFeatureRequirement</h1><p>Extends <a href="#processrequirement">ProcessRequirement</a></p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>envName</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The environment variable name</p>
+</td></tr><tr><td><code>envValue</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td><p>The environment variable value</p>
+</td></tr></table><h2 id="ScatterFeatureRequirement">4.5.5 ScatterFeatureRequirement</h1><p>Extends  <a href="#ProcessRequirement">ProcessRequirement</a></p>
 <p>Indicates that the workflow platform must support the <code>scatter</code> and
 <code>scatterMethod</code> fields of <a href="#workflowstep">WorkflowStep</a>.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#scatterfeaturerequirement_class">ScatterFeatureRequirement_class</a></td><td>True</td><td><p>Must be <code>ScatterFeatureRequirement</code> to indicate this is a ScatterFeatureRequirement object. <em>Inherited from <a href="#processrequirement">ProcessRequirement</a></em></p>
-</td></tr></table><h1 id="schemadefrequirement">5.5.6 SchemaDefRequirement</h1><p>Extends <a href="#processrequirement">ProcessRequirement</a></p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The specific requirement type. <em>Inherited from <a href="#ProcessRequirement">ProcessRequirement</a></em></p>
+</td></tr></table><h2 id="SchemaDefRequirement">4.5.6 SchemaDefRequirement</h1><p>Extends  <a href="#ProcessRequirement">ProcessRequirement</a></p>
 <p>This field consists of an
 array of type definitions which must be used when interpreting the <code>inputs</code> and
 <code>outputs</code> fields.  When a symbolic type is encountered that is not in
@@ -1185,108 +1200,58 @@ the type is defined in <code>schemaDefs</code> and use that definition.  If the 
 found in <code>schemaDefs</code>, it is an error.  The entries in <code>schemaDefs</code> must be
 processed in the order listed such that later schema definitions may refer to
 earlier schema definitions.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#schemadefrequirement_class">SchemaDefRequirement_class</a></td><td>True</td><td><p>Must be <code>SchemaDefRequirement</code> to indicate this is a SchemaDefRequirement object. <em>Inherited from <a href="#processrequirement">ProcessRequirement</a></em></p>
-</td></tr><tr><td><code>types</code></td><td>array&lt;<a href="#schemadef">SchemaDef</a>&gt;</td><td>True</td><td><p>The list of type definitions.</p>
-</td></tr></table><h1 id="schemadef">5.5.6.1 SchemaDef</h1><p>Extends <a href="#schema">Schema</a></p>
-<p>Referenced by <a href="#schemadefrequirement">SchemaDefRequirement.types</a></p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#schema">Schema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#schema">Schema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>True</td><td><p>The data type of this parameter. <em>Inherited from <a href="#schema">Schema</a></em></p>
-</td></tr><tr><td><code>fields</code></td><td>array&lt;<a href="#schema">Schema</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>record</code>, defines the fields of the record. <em>Inherited from <a href="#schema">Schema</a></em></p>
-</td></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>enum</code>, defines the set of valid symbols. <em>Inherited from <a href="#schema">Schema</a></em></p>
-</td></tr><tr><td><code>items</code></td><td><a href="#datatype">Datatype</a> | <a href="#schema">Schema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#schema">Schema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>array</code>, defines the type of the array elements. <em>Inherited from <a href="#schema">Schema</a></em></p>
-</td></tr><tr><td><code>values</code></td><td><a href="#datatype">Datatype</a> | <a href="#schema">Schema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#schema">Schema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>map</code>, defines the value type for the key/value pairs. <em>Inherited from <a href="#schema">Schema</a></em></p>
-</td></tr><tr><td><code>name</code></td><td><a href="#datatype">string</a></td><td>True</td><td><p>The type name being defined.</p>
-</td></tr></table><h1 id="expressionenginerequirement">5.5.7 ExpressionEngineRequirement</h1><p>Extends <a href="#processrequirement">ProcessRequirement</a></p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The specific requirement type. <em>Inherited from <a href="#ProcessRequirement">ProcessRequirement</a></em></p>
+</td></tr><tr><td><code>types</code></td><td>array&lt;<a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a>&gt;</td><td>True</td><td><p>The list of type definitions.</p>
+</td></tr></table><h2 id="ExpressionEngineRequirement">4.5.7 ExpressionEngineRequirement</h1><p>Extends  <a href="#ProcessRequirement">ProcessRequirement</a></p>
 <p>Define an expression engine, as described in <a href="#expressions">Expressions</a>.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#expressionenginerequirement_class">ExpressionEngineRequirement_class</a></td><td>True</td><td><p>Must be <code>ExpressionEngineRequirement</code> to indicate this is a ExpressionEngineRequirement object. <em>Inherited from <a href="#processrequirement">ProcessRequirement</a></em></p>
-</td></tr><tr><td><code>id</code></td><td><a href="#datatype">string</a></td><td>True</td><td><p>Used to identify the expression engine in the <code>engine</code> field of Expressions.</p>
-</td></tr><tr><td><code>requirements</code></td><td>array&lt;<a href="#dockerrequirement">DockerRequirement</a> | <a href="#subworkflowfeaturerequirement">SubworkflowFeatureRequirement</a> | <a href="#createfilerequirement">CreateFileRequirement</a> | <a href="#envvarrequirement">EnvVarRequirement</a> | <a href="#scatterfeaturerequirement">ScatterFeatureRequirement</a> | <a href="#schemadefrequirement">SchemaDefRequirement</a> | <a href="#expressionenginerequirement">ExpressionEngineRequirement</a>&gt;</td><td>False</td><td><p>Requirements to run this expression engine, such as DockerRequirement
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The specific requirement type. <em>Inherited from <a href="#ProcessRequirement">ProcessRequirement</a></em></p>
+</td></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>Used to identify the expression engine in the <code>engine</code> field of Expressions.</p>
+</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ExpressionEngineRequirement">ExpressionEngineRequirement</a>&gt;</td><td>True</td><td><p>Requirements to run this expression engine, such as DockerRequirement
 for specifying a container to run the engine.</p>
-</td></tr><tr><td><code>engineCommand</code></td><td><a href="#datatype">string</a> | array&lt;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>The command line to invoke the expression engine.</p>
-</td></tr><tr><td><code>engineConfig</code></td><td>array&lt;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>Additional configuration or code fragments that will also be passed to
+</td></tr><tr><td><code>engineCommand</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>The command line to invoke the expression engine.</p>
+</td></tr><tr><td><code>engineConfig</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Additional configuration or code fragments that will also be passed to
 the expression engine.  The semantics of this field are defined by the
 underlying expression engine.  Intended for uses such as providing
 function definitions that will be called from CWL expressions.</p>
-</td></tr></table><h1 id="datatype">5.6 Datatype</h1><p>Referenced by <a href="#schema">Schema.type</a>,  <a href="#schema">Schema.items</a>,  <a href="#schema">Schema.values</a>,  <a href="#parameter">Parameter.type</a>,  <a href="#inputschema">InputSchema.type</a>,  <a href="#inputschema">InputSchema.items</a>,  <a href="#inputschema">InputSchema.values</a>,  <a href="#outputschema">OutputSchema.type</a>,  <a href="#outputschema">OutputSchema.items</a>,  <a href="#outputschema">OutputSchema.values</a>,  <a href="#inputparameter">InputParameter.type</a>,  <a href="#outputparameter">OutputParameter.type</a>,  <a href="#schemadef">SchemaDef.type</a>,  <a href="#schemadef">SchemaDef.items</a>,  <a href="#schemadef">SchemaDef.values</a>,  <a href="#commandinputschema">CommandInputSchema.type</a>,  <a href="#commandinputschema">CommandInputSchema.items</a>,  <a href="#commandinputschema">CommandInputSchema.values</a>,  <a href="#commandoutputschema">CommandOutputSchema.type</a>,  <a href="#commandoutputschema">CommandOutputSchema.items</a>,  <a href="#commandoutputschema">CommandOutputSchema.values</a>,  <a href="#commandinputparameter">CommandInputParameter.type</a>,  <a href="#commandoutputparameter">CommandOutputParameter.type</a>,  <a href="#workflowoutputparameter">WorkflowOutputParameter.type</a></p>
-<p>CWL data types are based on Avro schema declarations.  Refer to the <a href="https://avro.apache.org/docs/current/spec.html#schemas">Avro
-schema declaration
-documentation</a> for
-detailed information.  In addition, CWL defines <a href="#file"><code>File</code></a>
-as a special record type.</p>
-<h1 id="primitive_types">Primitive types</h1><ul>
-<li><strong>null</strong>: no value</li>
-<li><strong>boolean</strong>: a binary value</li>
-<li><strong>int</strong>: 32-bit signed integer</li>
-<li><strong>long</strong>: 64-bit signed integer</li>
-<li><strong>float</strong>: single precision (32-bit) IEEE 754 floating-point number</li>
-<li><strong>double</strong>: double precision (64-bit) IEEE 754 floating-point number</li>
-<li><strong>bytes</strong>: sequence of uninterpreted 8-bit unsigned bytes</li>
-<li><strong>string</strong>: Unicode character sequence</li>
-</ul>
-<h1 id="complex_types">Complex types</h1><ul>
-<li><strong>record</strong>: An object with one or more fields defined by name and type</li>
-<li><strong>enum</strong>: A value from a finite set of symbolic values</li>
-<li><strong>array</strong>: An ordered sequence of values</li>
-<li><strong>map</strong>: An unordered collection of key/value pairs</li>
-</ul>
-<h1 id="file_type">File type</h1><p>See <a href="#file">File</a> below.</p>
-<h1 id="any_type">Any type</h1><p>See <a href="#any">Any</a> below.</p>
-<h1 id="file">5.6.1 File</h1><p>Referenced by <a href="#file">File.secondaryFiles</a></p>
-<p>Represents a file (or group of files if <code>secondaryFiles</code> is specified) that
-must be accessible by tools using standard POSIX file system call API such as
-open(2) and read(2).</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#file_class">File_class</a></td><td>True</td><td><p>Must be <code>File</code> to indicate this object describes a file.</p>
-</td></tr><tr><td><code>path</code></td><td><a href="#datatype">string</a></td><td>True</td><td><p>The path to the file.</p>
-</td></tr><tr><td><code>checksum</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>Optional hash code for validating file integrity.  Currently must be in the form
-"sha1$ + hexidecimal string" using the SHA-1 algorithm.</p>
-</td></tr><tr><td><code>size</code></td><td><a href="#datatype">long</a></td><td>False</td><td><p>Optional file size.</p>
-</td></tr><tr><td><code>secondaryFiles</code></td><td>array&lt;<a href="#file">File</a>&gt;</td><td>False</td><td><p>A list of additional files that are associated with the primary file
-and must be transferred alongside the primary file.  Examples include
-indexes of the primary file, or external references which must be
-included when loading primary document.  A file object listed in
-<code>secondaryFiles</code> may itself include <code>secondaryFiles</code> for which the same
-rules apply.</p>
-</td></tr></table><h1 id="any">5.6.2 Any</h1><p>Referenced by <a href="#parameter">Parameter.default</a>,  <a href="#inputparameter">InputParameter.default</a>,  <a href="#outputparameter">OutputParameter.default</a>,  <a href="#process">Process.hints</a>,  <a href="#commandinputparameter">CommandInputParameter.default</a>,  <a href="#commandoutputparameter">CommandOutputParameter.default</a>,  <a href="#commandlinetool">CommandLineTool.hints</a>,  <a href="#expressiontool">ExpressionTool.hints</a>,  <a href="#workflowoutputparameter">WorkflowOutputParameter.default</a>,  <a href="#workflowstepinput">WorkflowStepInput.default</a>,  <a href="#workflowstep">WorkflowStep.hints</a>,  <a href="#workflow">Workflow.hints</a></p>
-<p>The <strong>Any</strong> type validates for any non-null value.</p>
-<h1 id="process">5.7 Process</h1><p>Extended by <a href="#commandlinetool">CommandLineTool</a>,  <a href="#expressiontool">ExpressionTool</a>,  <a href="#workflow">Workflow</a></p>
+</td></tr></table><h2 id="Process">4.6 Process</h1><p>Extended by <a href="#CommandLineTool">CommandLineTool</a>,  <a href="#ExpressionTool">ExpressionTool</a>,  <a href="#Workflow">Workflow</a></p>
 <p>The base executable type in CWL is the <code>Process</code> object defined by the
 document.  Note that the <code>Process</code> object is abstract and cannot be
 directly executed.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>id</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>The unique identifier for this process object.</p>
-</td></tr><tr><td><code>inputs</code></td><td>array&lt;<a href="#inputparameter">InputParameter</a>&gt;</td><td>True</td><td><p>Defines the input parameters of the process.  The process is ready to
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>id</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>The unique identifier for this process object.</p>
+</td></tr><tr><td><code>inputs</code></td><td>array&lt;<a href="#InputParameter">InputParameter</a>&gt;</td><td>True</td><td><p>Defines the input parameters of the process.  The process is ready to
 run when all required input parameters are associated with concrete
 values.  Input parameters include a schema for each parameter which is
 used to validate the input object.  It may also be used build a user
 interface for constructing the input object.</p>
-</td></tr><tr><td><code>outputs</code></td><td>array&lt;<a href="#outputparameter">OutputParameter</a>&gt;</td><td>True</td><td><p>Defines the parameters representing the output of the process.  May be
+</td></tr><tr><td><code>outputs</code></td><td>array&lt;<a href="#OutputParameter">OutputParameter</a>&gt;</td><td>True</td><td><p>Defines the parameters representing the output of the process.  May be
 used to generate and/or validate the output object.</p>
-</td></tr><tr><td><code>requirements</code></td><td>array&lt;<a href="#dockerrequirement">DockerRequirement</a> | <a href="#subworkflowfeaturerequirement">SubworkflowFeatureRequirement</a> | <a href="#createfilerequirement">CreateFileRequirement</a> | <a href="#envvarrequirement">EnvVarRequirement</a> | <a href="#scatterfeaturerequirement">ScatterFeatureRequirement</a> | <a href="#schemadefrequirement">SchemaDefRequirement</a> | <a href="#expressionenginerequirement">ExpressionEngineRequirement</a>&gt;</td><td>False</td><td><p>Declares requirements that apply to either the runtime environment or the workflow engine that must be met in order to execute this process.  If an implementation cannot satisfy all requirements, or a requirement is listed which is not recognized by the implementation, it is a fatal error and the implementation must not attempt to run the process, unless overridden at user option.</p>
-</td></tr><tr><td><code>hints</code></td><td>array&lt;<a href="#any">Any</a>&gt;</td><td>False</td><td><p>Declares hints applying to either the runtime environment or the workflow engine that may be helpful in executing this process.  It is not an error if an implementation cannot satisfy all hints, however the implementation may report a warning.</p>
-</td></tr><tr><td><code>label</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A short, human-readable label of this process object.</p>
-</td></tr><tr><td><code>description</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A long, human-readable description of this process object.</p>
-</td></tr></table><h1 id="parameter">5.7.1 Parameter</h1><p>Extended by <a href="#inputparameter">InputParameter</a>,  <a href="#outputparameter">OutputParameter</a></p>
+</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ExpressionEngineRequirement">ExpressionEngineRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
+workflow engine that must be met in order to execute this process.  If
+an implementation cannot satisfy all requirements, or a requirement is
+listed which is not recognized by the implementation, it is a fatal
+error and the implementation must not attempt to run the process,
+unless overridden at user option.</p>
+</td></tr><tr><td><code>hints</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#Any">Any</a>&gt;</td><td>True</td><td><p>Declares hints applying to either the runtime environment or the
+workflow engine that may be helpful in executing this process.  It is
+not an error if an implementation cannot satisfy all hints, however
+the implementation may report a warning.</p>
+</td></tr><tr><td><code>label</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A short, human-readable label of this process object.</p>
+</td></tr><tr><td><code>description</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A long, human-readable description of this process object.</p>
+</td></tr></table><h2 id="Parameter">4.6.1 Parameter</h1><p>Extended by <a href="#InputParameter">InputParameter</a>,  <a href="#OutputParameter">OutputParameter</a></p>
 <p>Define an input or output parameter to a process.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#schema">Schema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#schema">Schema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.</p>
-</td></tr><tr><td><code>label</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A short, human-readable label of this parameter object.</p>
-</td></tr><tr><td><code>description</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A long, human-readable description of this parameter object.</p>
-</td></tr><tr><td><code>streamable</code></td><td><a href="#datatype">boolean</a></td><td>False</td><td><p>Currently only applies if <code>type</code> is <code>File</code>.  A value of <code>true</code>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">CWLType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Specify valid types of data that may be assigned to this parameter.</p>
+</td></tr><tr><td><code>label</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A short, human-readable label of this parameter object.</p>
+</td></tr><tr><td><code>description</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A long, human-readable description of this parameter object.</p>
+</td></tr><tr><td><code>streamable</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">boolean</a></td><td>True</td><td><p>Currently only applies if <code>type</code> is <code>File</code>.  A value of <code>true</code>
 indicates that the file is read or written sequentially without
 seeking.  An implementation may use this flag to indicate whether it is
 valid to stream file contents using a named pipe.  Default: <code>false</code>.</p>
-</td></tr><tr><td><code>default</code></td><td><a href="#any">Any</a></td><td>False</td><td><p>The default value for this parameter if not provided in the input
+</td></tr><tr><td><code>default</code></td><td><a href="#CWLType">null</a> | <a href="#Any">Any</a></td><td>True</td><td><p>The default value for this parameter if not provided in the input
 object.</p>
-</td></tr></table><h1 id="schema">5.7.1.1 Schema</h1><p>Extended by <a href="#inputschema">InputSchema</a>,  <a href="#outputschema">OutputSchema</a>,  <a href="#schemadef">SchemaDef</a></p>
-<p>Referenced by <a href="#schema">Schema.type</a>,  <a href="#schema">Schema.fields</a>,  <a href="#schema">Schema.items</a>,  <a href="#schema">Schema.values</a>,  <a href="#parameter">Parameter.type</a>,  <a href="#schemadef">SchemaDef.type</a>,  <a href="#schemadef">SchemaDef.fields</a>,  <a href="#schemadef">SchemaDef.items</a>,  <a href="#schemadef">SchemaDef.values</a></p>
-<p>A schema defines a parameter type.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#schema">Schema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#schema">Schema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>True</td><td><p>The data type of this parameter.</p>
-</td></tr><tr><td><code>fields</code></td><td>array&lt;<a href="#schema">Schema</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>record</code>, defines the fields of the record.</p>
-</td></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>enum</code>, defines the set of valid symbols.</p>
-</td></tr><tr><td><code>items</code></td><td><a href="#datatype">Datatype</a> | <a href="#schema">Schema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#schema">Schema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>array</code>, defines the type of the array elements.</p>
-</td></tr><tr><td><code>values</code></td><td><a href="#datatype">Datatype</a> | <a href="#schema">Schema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#schema">Schema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>map</code>, defines the value type for the key/value pairs.</p>
-</td></tr></table><h1 id="binding">5.7.1.2 Binding</h1><p>Extended by <a href="#commandlinebinding">CommandLineBinding</a>,  <a href="#commandoutputbinding">CommandOutputBinding</a></p>
-<p>Referenced by <a href="#inputschema">InputSchema.inputBinding</a>,  <a href="#inputparameter">InputParameter.inputBinding</a></p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>loadContents</code></td><td><a href="#datatype">boolean</a></td><td>False</td><td><p>Only applies when <code>type</code> is <code>File</code>.  Read up to the first 64 KiB of text from the file and place it in the
+</td></tr></table><h2 id="Binding">4.6.1.1 Binding</h1><p>Extended by <a href="#CommandLineBinding">CommandLineBinding</a>,  <a href="#CommandOutputBinding">CommandOutputBinding</a></p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>loadContents</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">boolean</a></td><td>True</td><td><p>Only applies when <code>type</code> is <code>File</code>.  Read up to the first 64 KiB of text from the file and place it in the
 "contents" field of the file object for manipulation by expressions.</p>
-</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#datatype">string</a> | <a href="#expression">Expression</a> | array&lt;<a href="#datatype">string</a>&nbsp;|&nbsp;<a href="#expression">Expression</a>&gt;</td><td>False</td><td><p>Only applies when <code>type</code> is <code>File</code>.  Describes files that must be
+</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>True</td><td><p>Only applies when <code>type</code> is <code>File</code>.  Describes files that must be
 included alongside the primary file.</p>
 <p>If the value is an expression, the context of the expression is the input
 or output File parameter to which this binding applies.</p>
@@ -1299,58 +1264,158 @@ period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
 </ol>
-</td></tr></table><h1 id="inputparameter">5.7.2 InputParameter</h1><p>Extends <a href="#parameter">Parameter</a></p>
-<p>Extended by <a href="#commandinputparameter">CommandInputParameter</a></p>
-<p>Referenced by <a href="#process">Process.inputs</a>,  <a href="#expressiontool">ExpressionTool.inputs</a>,  <a href="#workflow">Workflow.inputs</a></p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#inputschema">InputSchema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#inputschema">InputSchema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.
- <em>Inherited from <a href="#parameter">Parameter</a></em></p>
-</td></tr><tr><td><code>label</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A short, human-readable label of this parameter object. <em>Inherited from <a href="#parameter">Parameter</a></em></p>
-</td></tr><tr><td><code>description</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A long, human-readable description of this parameter object. <em>Inherited from <a href="#parameter">Parameter</a></em></p>
-</td></tr><tr><td><code>streamable</code></td><td><a href="#datatype">boolean</a></td><td>False</td><td><p>Currently only applies if <code>type</code> is <code>File</code>.  A value of <code>true</code>
+</td></tr></table><h2 id="InputParameter">4.6.2 InputParameter</h1><p>Extends  <a href="#Parameter">Parameter</a></p>
+<p>Extended by <a href="#CommandInputParameter">CommandInputParameter</a></p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">CWLType</a> | <a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Specify valid types of data that may be assigned to this parameter.
+ <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
+</td></tr><tr><td><code>label</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A short, human-readable label of this parameter object. <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
+</td></tr><tr><td><code>description</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A long, human-readable description of this parameter object. <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
+</td></tr><tr><td><code>streamable</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">boolean</a></td><td>True</td><td><p>Currently only applies if <code>type</code> is <code>File</code>.  A value of <code>true</code>
 indicates that the file is read or written sequentially without
 seeking.  An implementation may use this flag to indicate whether it is
 valid to stream file contents using a named pipe.  Default: <code>false</code>.
- <em>Inherited from <a href="#parameter">Parameter</a></em></p>
-</td></tr><tr><td><code>default</code></td><td><a href="#any">Any</a></td><td>False</td><td><p>The default value for this parameter if not provided in the input
+ <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
+</td></tr><tr><td><code>default</code></td><td><a href="#CWLType">null</a> | <a href="#Any">Any</a></td><td>True</td><td><p>The default value for this parameter if not provided in the input
 object.
- <em>Inherited from <a href="#parameter">Parameter</a></em></p>
-</td></tr><tr><td><code>id</code></td><td><a href="#datatype">string</a></td><td>True</td><td><p>The unique identifier for this parameter object.</p>
-</td></tr><tr><td><code>inputBinding</code></td><td><a href="#binding">Binding</a></td><td>False</td><td><p>Describes how to handle the inputs of a process and convert them
+ <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
+</td></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The unique identifier for this parameter object.</p>
+</td></tr><tr><td><code>inputBinding</code></td><td><a href="#CWLType">null</a> | <a href="#Binding">Binding</a></td><td>True</td><td><p>Describes how to handle the inputs of a process and convert them
 into a concrete form for execution, such as command line parameters.</p>
-</td></tr></table><h1 id="inputschema">5.7.2.1 InputSchema</h1><p>Extends <a href="#schema">Schema</a></p>
-<p>Extended by <a href="#commandinputschema">CommandInputSchema</a></p>
-<p>Referenced by <a href="#inputschema">InputSchema.type</a>,  <a href="#inputschema">InputSchema.fields</a>,  <a href="#inputschema">InputSchema.items</a>,  <a href="#inputschema">InputSchema.values</a>,  <a href="#inputparameter">InputParameter.type</a></p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#inputschema">InputSchema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#inputschema">InputSchema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>True</td><td><p>The data type of this parameter. <em>Inherited from <a href="#schema">Schema</a></em></p>
-</td></tr><tr><td><code>fields</code></td><td>array&lt;<a href="#inputschema">InputSchema</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>record</code>, defines the fields of the record. <em>Inherited from <a href="#schema">Schema</a></em></p>
-</td></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>enum</code>, defines the set of valid symbols. <em>Inherited from <a href="#schema">Schema</a></em></p>
-</td></tr><tr><td><code>items</code></td><td><a href="#datatype">Datatype</a> | <a href="#inputschema">InputSchema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#inputschema">InputSchema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>array</code>, defines the type of the array elements. <em>Inherited from <a href="#schema">Schema</a></em></p>
-</td></tr><tr><td><code>values</code></td><td><a href="#datatype">Datatype</a> | <a href="#inputschema">InputSchema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#inputschema">InputSchema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>map</code>, defines the value type for the key/value pairs. <em>Inherited from <a href="#schema">Schema</a></em></p>
-</td></tr><tr><td><code>inputBinding</code></td><td><a href="#binding">Binding</a></td><td>False</td><td><p>Describes how to handle a value in the input object convert it
-into a concrete form for execution, such as command line parameters.</p>
-</td></tr></table><h1 id="outputparameter">5.7.3 OutputParameter</h1><p>Extends <a href="#parameter">Parameter</a></p>
-<p>Extended by <a href="#commandoutputparameter">CommandOutputParameter</a>,  <a href="#workflowoutputparameter">WorkflowOutputParameter</a></p>
-<p>Referenced by <a href="#process">Process.outputs</a>,  <a href="#expressiontool">ExpressionTool.outputs</a></p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#outputschema">OutputSchema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#outputschema">OutputSchema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.
- <em>Inherited from <a href="#parameter">Parameter</a></em></p>
-</td></tr><tr><td><code>label</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A short, human-readable label of this parameter object. <em>Inherited from <a href="#parameter">Parameter</a></em></p>
-</td></tr><tr><td><code>description</code></td><td><a href="#datatype">string</a></td><td>False</td><td><p>A long, human-readable description of this parameter object. <em>Inherited from <a href="#parameter">Parameter</a></em></p>
-</td></tr><tr><td><code>streamable</code></td><td><a href="#datatype">boolean</a></td><td>False</td><td><p>Currently only applies if <code>type</code> is <code>File</code>.  A value of <code>true</code>
+</td></tr></table><h2 id="InputRecordSchema">4.6.2.1 InputRecordSchema</h1><p>Extends  <a href="#RecordSchema">RecordSchema</a></p>
+<p>Extended by <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a></p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#Record_symbol">Record_symbol</a></td><td>True</td><td><p>Must be <code>record</code> <em>Inherited from <a href="#RecordSchema">RecordSchema</a></em></p>
+</td></tr><tr><td><code>fields</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#InputRecordField">InputRecordField</a>&gt;</td><td>True</td><td><p>Defines the fields of the record. <em>Inherited from <a href="#RecordSchema">RecordSchema</a></em></p>
+</td></tr></table><h2 id="InputEnumSchema">4.6.2.2 InputEnumSchema</h1><p>Extends  <a href="#EnumSchema">EnumSchema</a></p>
+<p>Extended by <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a></p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#Enum_symbol">Enum_symbol</a></td><td>True</td><td><p>Must be <code>enum</code> <em>Inherited from <a href="#EnumSchema">EnumSchema</a></em></p>
+</td></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the set of valid symbols. <em>Inherited from <a href="#EnumSchema">EnumSchema</a></em></p>
+</td></tr><tr><td><code>inputBinding</code></td><td><a href="#CWLType">null</a> | <a href="#Binding">Binding</a></td><td>True</td><td></td></tr></table><h2 id="InputArraySchema">4.6.2.3 InputArraySchema</h1><p>Extends  <a href="#ArraySchema">ArraySchema</a></p>
+<p>Extended by <a href="#CommandInputArraySchema">CommandInputArraySchema</a></p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#Array_symbol">Array_symbol</a></td><td>True</td><td><p>Must be <code>array</code> <em>Inherited from <a href="#ArraySchema">ArraySchema</a></em></p>
+</td></tr><tr><td><code>items</code></td><td><a href="#PrimitiveType">PrimitiveType</a> | <a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the type of the array elements. <em>Inherited from <a href="#ArraySchema">ArraySchema</a></em></p>
+</td></tr><tr><td><code>inputBinding</code></td><td><a href="#CWLType">null</a> | <a href="#Binding">Binding</a></td><td>True</td><td></td></tr></table><h2 id="CommandInputRecordField">4.6.2.4 CommandInputRecordField</h1><p>Extends  <a href="#InputRecordField">InputRecordField</a></p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The name of the field
+ <em>Inherited from <a href="#RecordField">RecordField</a></em></p>
+</td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A documentation string for this field
+ <em>Inherited from <a href="#RecordField">RecordField</a></em></p>
+</td></tr><tr><td><code>type</code></td><td><a href="#PrimitiveType">PrimitiveType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>The field type
+ <em>Inherited from <a href="#RecordField">RecordField</a></em></p>
+</td></tr><tr><td><code>inputBinding</code></td><td><a href="#CWLType">null</a> | <a href="#CommandLineBinding">CommandLineBinding</a></td><td>True</td><td><p><em>Inherited from <a href="#InputRecordField">InputRecordField</a></em></p>
+</td></tr></table><h2 id="CommandInputRecordSchema">4.6.2.5 CommandInputRecordSchema</h1><p>Extends  <a href="#InputRecordSchema">InputRecordSchema</a></p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#Record_symbol">Record_symbol</a></td><td>True</td><td><p>Must be <code>record</code> <em>Inherited from <a href="#RecordSchema">RecordSchema</a></em></p>
+</td></tr><tr><td><code>fields</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#CommandInputRecordField">CommandInputRecordField</a>&gt;</td><td>True</td><td><p>Defines the fields of the record. <em>Inherited from <a href="#RecordSchema">RecordSchema</a></em></p>
+</td></tr></table><h2 id="CommandInputEnumSchema">4.6.2.6 CommandInputEnumSchema</h1><p>Extends  <a href="#InputEnumSchema">InputEnumSchema</a></p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#Enum_symbol">Enum_symbol</a></td><td>True</td><td><p>Must be <code>enum</code> <em>Inherited from <a href="#EnumSchema">EnumSchema</a></em></p>
+</td></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the set of valid symbols. <em>Inherited from <a href="#EnumSchema">EnumSchema</a></em></p>
+</td></tr><tr><td><code>inputBinding</code></td><td><a href="#CWLType">null</a> | <a href="#CommandLineBinding">CommandLineBinding</a></td><td>True</td><td><p><em>Inherited from <a href="#InputEnumSchema">InputEnumSchema</a></em></p>
+</td></tr></table><h2 id="CommandInputArraySchema">4.6.2.7 CommandInputArraySchema</h1><p>Extends  <a href="#InputArraySchema">InputArraySchema</a></p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#Array_symbol">Array_symbol</a></td><td>True</td><td><p>Must be <code>array</code> <em>Inherited from <a href="#ArraySchema">ArraySchema</a></em></p>
+</td></tr><tr><td><code>items</code></td><td><a href="#PrimitiveType">PrimitiveType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the type of the array elements. <em>Inherited from <a href="#ArraySchema">ArraySchema</a></em></p>
+</td></tr><tr><td><code>inputBinding</code></td><td><a href="#CWLType">null</a> | <a href="#CommandLineBinding">CommandLineBinding</a></td><td>True</td><td><p><em>Inherited from <a href="#InputArraySchema">InputArraySchema</a></em></p>
+</td></tr></table><h2 id="OutputParameter">4.6.3 OutputParameter</h1><p>Extends  <a href="#Parameter">Parameter</a></p>
+<p>Extended by <a href="#CommandOutputParameter">CommandOutputParameter</a>,  <a href="#WorkflowOutputParameter">WorkflowOutputParameter</a></p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">CWLType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Specify valid types of data that may be assigned to this parameter.
+ <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
+</td></tr><tr><td><code>label</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A short, human-readable label of this parameter object. <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
+</td></tr><tr><td><code>description</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A long, human-readable description of this parameter object. <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
+</td></tr><tr><td><code>streamable</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">boolean</a></td><td>True</td><td><p>Currently only applies if <code>type</code> is <code>File</code>.  A value of <code>true</code>
 indicates that the file is read or written sequentially without
 seeking.  An implementation may use this flag to indicate whether it is
 valid to stream file contents using a named pipe.  Default: <code>false</code>.
- <em>Inherited from <a href="#parameter">Parameter</a></em></p>
-</td></tr><tr><td><code>default</code></td><td><a href="#any">Any</a></td><td>False</td><td><p>The default value for this parameter if not provided in the input
+ <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
+</td></tr><tr><td><code>default</code></td><td><a href="#CWLType">null</a> | <a href="#Any">Any</a></td><td>True</td><td><p>The default value for this parameter if not provided in the input
 object.
- <em>Inherited from <a href="#parameter">Parameter</a></em></p>
-</td></tr><tr><td><code>id</code></td><td><a href="#datatype">string</a></td><td>True</td><td><p>The unique identifier for this parameter object.</p>
-</td></tr></table><h1 id="outputschema">5.7.3.1 OutputSchema</h1><p>Extends <a href="#schema">Schema</a></p>
-<p>Extended by <a href="#commandoutputschema">CommandOutputSchema</a></p>
-<p>Referenced by <a href="#outputschema">OutputSchema.type</a>,  <a href="#outputschema">OutputSchema.fields</a>,  <a href="#outputschema">OutputSchema.items</a>,  <a href="#outputschema">OutputSchema.values</a>,  <a href="#outputparameter">OutputParameter.type</a>,  <a href="#workflowoutputparameter">WorkflowOutputParameter.type</a></p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#datatype">Datatype</a> | <a href="#outputschema">OutputSchema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#outputschema">OutputSchema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>True</td><td><p>The data type of this parameter. <em>Inherited from <a href="#schema">Schema</a></em></p>
-</td></tr><tr><td><code>fields</code></td><td>array&lt;<a href="#outputschema">OutputSchema</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>record</code>, defines the fields of the record. <em>Inherited from <a href="#schema">Schema</a></em></p>
-</td></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>enum</code>, defines the set of valid symbols. <em>Inherited from <a href="#schema">Schema</a></em></p>
-</td></tr><tr><td><code>items</code></td><td><a href="#datatype">Datatype</a> | <a href="#outputschema">OutputSchema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#outputschema">OutputSchema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>array</code>, defines the type of the array elements. <em>Inherited from <a href="#schema">Schema</a></em></p>
-</td></tr><tr><td><code>values</code></td><td><a href="#datatype">Datatype</a> | <a href="#outputschema">OutputSchema</a> | <a href="#datatype">string</a> | array&lt;<a href="#datatype">Datatype</a>&nbsp;|&nbsp;<a href="#outputschema">OutputSchema</a>&nbsp;|&nbsp;<a href="#datatype">string</a>&gt;</td><td>False</td><td><p>When <code>type</code> is <code>map</code>, defines the value type for the key/value pairs. <em>Inherited from <a href="#schema">Schema</a></em></p>
+ <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
+</td></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The unique identifier for this parameter object.</p>
+</td></tr><tr><td><code>outputBinding</code></td><td><a href="#CWLType">null</a> | <a href="#Binding">Binding</a></td><td>True</td><td><p>Describes how to handle the outputs of a process.</p>
+</td></tr></table><h2 id="OutputRecordField">4.6.3.1 OutputRecordField</h1><p>Extends  <a href="#RecordSchema">RecordSchema</a></p>
+<p>Extended by <a href="#CommandOutputRecordField">CommandOutputRecordField</a></p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#Record_symbol">Record_symbol</a></td><td>True</td><td><p>Must be <code>record</code> <em>Inherited from <a href="#RecordSchema">RecordSchema</a></em></p>
+</td></tr><tr><td><code>fields</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#RecordField">RecordField</a>&gt;</td><td>True</td><td><p>Defines the fields of the record. <em>Inherited from <a href="#RecordSchema">RecordSchema</a></em></p>
+</td></tr><tr><td><code>outputBinding</code></td><td><a href="#CWLType">null</a> | <a href="#Binding">Binding</a></td><td>True</td><td></td></tr></table><h2 id="OutputRecordSchema">4.6.3.2 OutputRecordSchema</h1><p>Extends  <a href="#RecordSchema">RecordSchema</a></p>
+<p>Extended by <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a></p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#Record_symbol">Record_symbol</a></td><td>True</td><td><p>Must be <code>record</code> <em>Inherited from <a href="#RecordSchema">RecordSchema</a></em></p>
+</td></tr><tr><td><code>fields</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#OutputRecordField">OutputRecordField</a>&gt;</td><td>True</td><td><p>Defines the fields of the record. <em>Inherited from <a href="#RecordSchema">RecordSchema</a></em></p>
+</td></tr></table><h2 id="OutputEnumSchema">4.6.3.3 OutputEnumSchema</h1><p>Extends  <a href="#EnumSchema">EnumSchema</a></p>
+<p>Extended by <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a></p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#Enum_symbol">Enum_symbol</a></td><td>True</td><td><p>Must be <code>enum</code> <em>Inherited from <a href="#EnumSchema">EnumSchema</a></em></p>
+</td></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the set of valid symbols. <em>Inherited from <a href="#EnumSchema">EnumSchema</a></em></p>
+</td></tr><tr><td><code>outputBinding</code></td><td><a href="#CWLType">null</a> | <a href="#Binding">Binding</a></td><td>True</td><td></td></tr></table><h2 id="OutputArraySchema">4.6.3.4 OutputArraySchema</h1><p>Extends  <a href="#ArraySchema">ArraySchema</a></p>
+<p>Extended by <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a></p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#Array_symbol">Array_symbol</a></td><td>True</td><td><p>Must be <code>array</code> <em>Inherited from <a href="#ArraySchema">ArraySchema</a></em></p>
+</td></tr><tr><td><code>items</code></td><td><a href="#PrimitiveType">PrimitiveType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the type of the array elements. <em>Inherited from <a href="#ArraySchema">ArraySchema</a></em></p>
+</td></tr><tr><td><code>outputBinding</code></td><td><a href="#CWLType">null</a> | <a href="#Binding">Binding</a></td><td>True</td><td></td></tr></table><h2 id="CommandOutputArraySchema">4.6.3.4.1 CommandOutputArraySchema</h1><p>Extends  <a href="#OutputArraySchema">OutputArraySchema</a></p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#Array_symbol">Array_symbol</a></td><td>True</td><td><p>Must be <code>array</code> <em>Inherited from <a href="#ArraySchema">ArraySchema</a></em></p>
+</td></tr><tr><td><code>items</code></td><td><a href="#PrimitiveType">PrimitiveType</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the type of the array elements. <em>Inherited from <a href="#ArraySchema">ArraySchema</a></em></p>
+</td></tr><tr><td><code>outputBinding</code></td><td><a href="#CWLType">null</a> | <a href="#CommandOutputBinding">CommandOutputBinding</a></td><td>True</td><td><p><em>Inherited from <a href="#OutputArraySchema">OutputArraySchema</a></em></p>
+</td></tr></table><h2 id="CommandOutputRecordField">4.6.3.5 CommandOutputRecordField</h1><p>Extends  <a href="#OutputRecordField">OutputRecordField</a></p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#Record_symbol">Record_symbol</a></td><td>True</td><td><p>Must be <code>record</code> <em>Inherited from <a href="#RecordSchema">RecordSchema</a></em></p>
+</td></tr><tr><td><code>fields</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#RecordField">RecordField</a>&gt;</td><td>True</td><td><p>Defines the fields of the record. <em>Inherited from <a href="#RecordSchema">RecordSchema</a></em></p>
+</td></tr><tr><td><code>outputBinding</code></td><td><a href="#CWLType">null</a> | <a href="#CommandOutputBinding">CommandOutputBinding</a></td><td>True</td><td><p><em>Inherited from <a href="#OutputRecordField">OutputRecordField</a></em></p>
+</td></tr></table><h2 id="CommandOutputRecordSchema">4.6.3.6 CommandOutputRecordSchema</h1><p>Extends  <a href="#OutputRecordSchema">OutputRecordSchema</a></p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#Record_symbol">Record_symbol</a></td><td>True</td><td><p>Must be <code>record</code> <em>Inherited from <a href="#RecordSchema">RecordSchema</a></em></p>
+</td></tr><tr><td><code>fields</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#CommandOutputRecordField">CommandOutputRecordField</a>&gt;</td><td>True</td><td><p>Defines the fields of the record. <em>Inherited from <a href="#RecordSchema">RecordSchema</a></em></p>
+</td></tr></table><h2 id="CommandOutputEnumSchema">4.6.3.7 CommandOutputEnumSchema</h1><p>Extends  <a href="#OutputEnumSchema">OutputEnumSchema</a></p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#Enum_symbol">Enum_symbol</a></td><td>True</td><td><p>Must be <code>enum</code> <em>Inherited from <a href="#EnumSchema">EnumSchema</a></em></p>
+</td></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the set of valid symbols. <em>Inherited from <a href="#EnumSchema">EnumSchema</a></em></p>
+</td></tr><tr><td><code>outputBinding</code></td><td><a href="#CWLType">null</a> | <a href="#CommandOutputBinding">CommandOutputBinding</a></td><td>True</td><td><p><em>Inherited from <a href="#OutputEnumSchema">OutputEnumSchema</a></em></p>
+</td></tr></table><h2 id="PrimitiveType">5. PrimitiveType</h1><p>Extended by <a href="#CWLType">CWLType</a></p>
+<p>Salad data types are based on Avro schema declarations.  Refer to the
+<a href="https://avro.apache.org/docs/current/spec.html#schemas">Avro schema declaration documentation</a> for
+detailed information.</p>
+<h3 id="Simple_types">Simple types</h1><ul>
+<li><strong>null</strong>: no value</li>
+<li><strong>boolean</strong>: a binary value</li>
+<li><strong>int</strong>: 32-bit signed integer</li>
+<li><strong>long</strong>: 64-bit signed integer</li>
+<li><strong>float</strong>: single precision (32-bit) IEEE 754 floating-point number</li>
+<li><strong>double</strong>: double precision (64-bit) IEEE 754 floating-point number</li>
+<li><strong>string</strong>: Unicode character sequence</li>
+</ul>
+<h2 id="CWLType">5.1 CWLType</h1><p>Extends  <a href="#PrimitiveType">PrimitiveType</a></p>
+<h2 id="Any">6. Any</h1><p>The <strong>Any</strong> type validates for any non-null value.</p>
+<h2 id="RecordField">7. RecordField</h1><p>Extended by <a href="#InputRecordField">InputRecordField</a></p>
+<p>A field of a record.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The name of the field</p>
+</td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A documentation string for this field</p>
+</td></tr><tr><td><code>type</code></td><td><a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>The field type</p>
+</td></tr></table><h2 id="InputRecordField">7.1 InputRecordField</h1><p>Extends  <a href="#RecordField">RecordField</a></p>
+<p>Extended by <a href="#CommandInputRecordField">CommandInputRecordField</a></p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The name of the field
+ <em>Inherited from <a href="#RecordField">RecordField</a></em></p>
+</td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A documentation string for this field
+ <em>Inherited from <a href="#RecordField">RecordField</a></em></p>
+</td></tr><tr><td><code>type</code></td><td><a href="#PrimitiveType">PrimitiveType</a> | <a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>The field type
+ <em>Inherited from <a href="#RecordField">RecordField</a></em></p>
+</td></tr><tr><td><code>inputBinding</code></td><td><a href="#CWLType">null</a> | <a href="#Binding">Binding</a></td><td>True</td><td></td></tr></table><h2 id="RecordSchema">8. RecordSchema</h1><p>Extended by <a href="#InputRecordSchema">InputRecordSchema</a>,  <a href="#OutputRecordField">OutputRecordField</a>,  <a href="#OutputRecordSchema">OutputRecordSchema</a></p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#Record_symbol">Record_symbol</a></td><td>True</td><td><p>Must be <code>record</code></p>
+</td></tr><tr><td><code>fields</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#RecordField">RecordField</a>&gt;</td><td>True</td><td><p>Defines the fields of the record.</p>
+</td></tr></table><h2 id="EnumSchema">9. EnumSchema</h1><p>Extended by <a href="#InputEnumSchema">InputEnumSchema</a>,  <a href="#OutputEnumSchema">OutputEnumSchema</a></p>
+<p>Define an enumerated type.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#Enum_symbol">Enum_symbol</a></td><td>True</td><td><p>Must be <code>enum</code></p>
+</td></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the set of valid symbols.</p>
+</td></tr></table><h2 id="ArraySchema">10. ArraySchema</h1><p>Extended by <a href="#InputArraySchema">InputArraySchema</a>,  <a href="#OutputArraySchema">OutputArraySchema</a></p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#Array_symbol">Array_symbol</a></td><td>True</td><td><p>Must be <code>array</code></p>
+</td></tr><tr><td><code>items</code></td><td><a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the type of the array elements.</p>
+</td></tr></table><h2 id="File">11. File</h1><p>Represents a file (or group of files if <code>secondaryFiles</code> is specified) that
+must be accessible by tools using standard POSIX file system call API such as
+open(2) and read(2).</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#File_class">File_class</a></td><td>True</td><td><p>Must be <code>File</code> to indicate this object describes a file.</p>
+</td></tr><tr><td><code>path</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The path to the file.</p>
+</td></tr><tr><td><code>checksum</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>Optional hash code for validating file integrity.  Currently must be in the form
+"sha1$ + hexidecimal string" using the SHA-1 algorithm.</p>
+</td></tr><tr><td><code>size</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">long</a></td><td>True</td><td><p>Optional file size.</p>
+</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#File">File</a>&gt;</td><td>True</td><td><p>A list of additional files that are associated with the primary file
+and must be transferred alongside the primary file.  Examples include
+indexes of the primary file, or external references which must be
+included when loading primary document.  A file object listed in
+<code>secondaryFiles</code> may itself include <code>secondaryFiles</code> for which the same
+rules apply.</p>
+</td></tr></table><h2 id="Sink">12. Sink</h1><p>Extended by <a href="#WorkflowOutputParameter">WorkflowOutputParameter</a>,  <a href="#WorkflowStepInput">WorkflowStepInput</a></p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>source</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Specifies one or more workflow parameters that will provide input to
+the underlying process parameter.</p>
+</td></tr><tr><td><code>linkMerge</code></td><td><a href="#CWLType">null</a> | <a href="#LinkMergeMethod">LinkMergeMethod</a></td><td>True</td><td><p>The method to use to merge multiple inbound links into a single array.
+If not specified, the default method is "merge_nested".</p>
 </td></tr></table></div>
     </div>
     </div>
