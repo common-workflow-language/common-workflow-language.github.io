@@ -724,7 +724,7 @@ describes how to decompose the input into a discrete set of jobs.</p>
 <h2 id="Subworkflows">Subworkflows</h1><p>To specify a nested workflow as part of a workflow step,
 <a href="#subworkflowfeaturerequirement">SubworkflowFeatureRequirement</a> must be
 specified in the workflow or workflow step requirements.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>id</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>The unique identifier for this workflow step.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The unique identifier for this workflow step.</p>
 </td></tr><tr><td><code>inputs</code></td><td>array&lt;<a href="#WorkflowStepInput">WorkflowStepInput</a>&gt;</td><td>True</td><td><p>Defines the input parameters of the workflow step.  The process is ready to
 run when all required input parameters are associated with concrete
 values.  Input parameters include a schema for each parameter which is
