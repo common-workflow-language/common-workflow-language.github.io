@@ -32,6 +32,7 @@
         "InputRecordField": "https://w3id.org/cwl/cwl#InputRecordField", 
         "InputRecordSchema": "https://w3id.org/cwl/cwl#InputRecordSchema", 
         "JsonPointer": "https://w3id.org/cwl/cwl#JsonPointer", 
+        "MultipleInputFeatureRequirement": "https://w3id.org/cwl/cwl#MultipleInputFeatureRequirement", 
         "OutputArraySchema": "https://w3id.org/cwl/cwl#OutputArraySchema", 
         "OutputEnumSchema": "https://w3id.org/cwl/cwl#OutputEnumSchema", 
         "OutputParameter": "https://w3id.org/cwl/cwl#OutputParameter", 

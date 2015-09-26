@@ -88,6 +88,9 @@ cwl:InputRecordField a rdfs:Class ;
 cwl:InputRecordSchema a rdfs:Class ;
     rdfs:subClassOf sld:RecordSchema .
 
+cwl:MultipleInputFeatureRequirement a rdfs:Class ;
+    rdfs:subClassOf cwl:ProcessRequirement .
+
 cwl:OutputArraySchema a rdfs:Class ;
     rdfs:subClassOf sld:ArraySchema .
 
