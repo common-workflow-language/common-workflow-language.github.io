@@ -239,9 +239,6 @@ rdfs:label a rdf:Property ;
 <https://w3id.org/cwl/cwl#File/checksum> a rdf:Property ;
     rdfs:domain cwl:File .
 
-<https://w3id.org/cwl/cwl#File/path> a rdf:Property ;
-    rdfs:domain cwl:File .
-
 <https://w3id.org/cwl/cwl#File/size> a rdf:Property ;
     rdfs:domain cwl:File .
 

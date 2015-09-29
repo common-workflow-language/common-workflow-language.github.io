@@ -125,7 +125,9 @@
         "outputBinding": "cwl:outputBinding", 
         "outputEval": "https://w3id.org/cwl/cwl#CommandOutputBinding/outputEval", 
         "outputs": "cwl:outputs", 
-        "path": "https://w3id.org/cwl/cwl#File/path", 
+        "path": {
+            "@type": "@id"
+        }, 
         "permanentFailCodes": "https://w3id.org/cwl/cwl#CommandLineTool/permanentFailCodes", 
         "position": "https://w3id.org/cwl/cwl#CommandLineBinding/position", 
         "prefix": "https://w3id.org/cwl/cwl#CommandLineBinding/prefix", 
