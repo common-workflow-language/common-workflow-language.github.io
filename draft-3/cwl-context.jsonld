@@ -69,6 +69,10 @@
             "@type": "@vocab"
         }, 
         "cwl": "https://w3id.org/cwl/cwl#", 
+        "cwlVersion": {
+            "@id": "https://w3id.org/cwl/cwl#cwlVersion", 
+            "@type": "@id"
+        }, 
         "dct": "http://purl.org/dc/terms/", 
         "default": "cwl:default", 
         "description": "rdfs:comment", 
@@ -81,6 +85,7 @@
         "dockerPull": "https://w3id.org/cwl/cwl#DockerRequirement/dockerPull", 
         "dotproduct": "https://w3id.org/cwl/cwl#dotproduct", 
         "double": "http://www.w3.org/2001/XMLSchema#double", 
+        "draft-3.dev1": "https://w3id.org/cwl/cwl#draft-3.dev1", 
         "engine": {
             "@id": "https://w3id.org/cwl/cwl#engine", 
             "@type": "@id"

@@ -147,7 +147,8 @@
 </ol><li><a href="#EnumSchema">9. EnumSchema</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol><li><a href="#ArraySchema">10. ArraySchema</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol><li><a href="#File">11. File</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#Sink">12. Sink</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#CWLVersions">12. CWLVersions</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#Sink">13. Sink</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol></li></ol></nav>
     </div>
     
@@ -657,6 +658,7 @@ the implementation may report a warning.
  <em>Inherited from <a href="#Process">Process</a></em></p>
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A short, human-readable label of this process object. <em>Inherited from <a href="#Process">Process</a></em></p>
 </td></tr><tr><td><code>description</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A long, human-readable description of this process object. <em>Inherited from <a href="#Process">Process</a></em></p>
+</td></tr><tr><td><code>cwlVersion</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>CWL document version <em>Inherited from <a href="#Process">Process</a></em></p>
 </td></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td></td></tr><tr><td><code>steps</code></td><td>array&lt;<a href="#WorkflowStep">WorkflowStep</a>&gt;</td><td>True</td><td><p>The individual steps that make up the workflow.  Each step is executed when all of its
 input data links are fufilled.  An implementation may choose to execute
 the steps in a different order than listed and/or execute steps
@@ -921,6 +923,7 @@ the implementation may report a warning.
  <em>Inherited from <a href="#Process">Process</a></em></p>
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A short, human-readable label of this process object. <em>Inherited from <a href="#Process">Process</a></em></p>
 </td></tr><tr><td><code>description</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A long, human-readable description of this process object. <em>Inherited from <a href="#Process">Process</a></em></p>
+</td></tr><tr><td><code>cwlVersion</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>CWL document version <em>Inherited from <a href="#Process">Process</a></em></p>
 </td></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td></td></tr><tr><td><code>baseCommand</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Specifies the program to execute.  If the value is an array, the first
 element is the program to execute, and subsequent elements are placed
 at the beginning of the command line in prior to any command line
@@ -1107,6 +1110,7 @@ the implementation may report a warning.
  <em>Inherited from <a href="#Process">Process</a></em></p>
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A short, human-readable label of this process object. <em>Inherited from <a href="#Process">Process</a></em></p>
 </td></tr><tr><td><code>description</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A long, human-readable description of this process object. <em>Inherited from <a href="#Process">Process</a></em></p>
+</td></tr><tr><td><code>cwlVersion</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>CWL document version <em>Inherited from <a href="#Process">Process</a></em></p>
 </td></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td></td></tr><tr><td><code>expression</code></td><td><a href="#Expression">Expression</a></td><td>True</td><td><p>The expression to execute.  The expression must return a JSON object which
 matches the output parameters of the ExpressionTool.</p>
 </td></tr></table><h2 id="Expression">4.4 Expression</h1><p>Define an expression that will be evaluated and used to modify the behavior
@@ -1245,6 +1249,7 @@ not an error if an implementation cannot satisfy all hints, however
 the implementation may report a warning.</p>
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A short, human-readable label of this process object.</p>
 </td></tr><tr><td><code>description</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A long, human-readable description of this process object.</p>
+</td></tr><tr><td><code>cwlVersion</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>CWL document version</p>
 </td></tr></table><h2 id="Parameter">4.6.1 Parameter</h1><p>Extended by <a href="#InputParameter">InputParameter</a>,  <a href="#OutputParameter">OutputParameter</a></p>
 <p>Define an input or output parameter to a process.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">CWLType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Specify valid types of data that may be assigned to this parameter.</p>
@@ -1419,7 +1424,8 @@ indexes of the primary file, or external references which must be
 included when loading primary document.  A file object listed in
 <code>secondaryFiles</code> may itself include <code>secondaryFiles</code> for which the same
 rules apply.</p>
-</td></tr></table><h2 id="Sink">12. Sink</h1><p>Extended by <a href="#WorkflowOutputParameter">WorkflowOutputParameter</a>,  <a href="#WorkflowStepInput">WorkflowStepInput</a></p>
+</td></tr></table><h2 id="CWLVersions">12. CWLVersions</h1><p>Version symbols for published CWL document versions.</p>
+<h2 id="Sink">13. Sink</h1><p>Extended by <a href="#WorkflowOutputParameter">WorkflowOutputParameter</a>,  <a href="#WorkflowStepInput">WorkflowStepInput</a></p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>source</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Specifies one or more workflow parameters that will provide input to
 the underlying process parameter.</p>
 </td></tr><tr><td><code>linkMerge</code></td><td><a href="#CWLType">null</a> | <a href="#LinkMergeMethod">LinkMergeMethod</a></td><td>True</td><td><p>The method to use to merge multiple inbound links into a single array.
