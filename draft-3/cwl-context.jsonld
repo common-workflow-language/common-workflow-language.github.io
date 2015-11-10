@@ -45,6 +45,7 @@
         "RecordSchema": "https://w3id.org/cwl/salad#RecordSchema", 
         "ScatterFeatureRequirement": "https://w3id.org/cwl/cwl#ScatterFeatureRequirement", 
         "SchemaDefRequirement": "https://w3id.org/cwl/cwl#SchemaDefRequirement", 
+        "ShellCommandRequirement": "https://w3id.org/cwl/cwl#ShellCommandRequirement", 
         "Sink": "https://w3id.org/cwl/cwl#Sink", 
         "SubworkflowFeatureRequirement": "https://w3id.org/cwl/cwl#SubworkflowFeatureRequirement", 
         "Workflow": "https://w3id.org/cwl/cwl#Workflow", 
@@ -156,6 +157,7 @@
         "script": "https://w3id.org/cwl/cwl#Expression/script", 
         "secondaryFiles": "cwl:secondaryFiles", 
         "separate": "https://w3id.org/cwl/cwl#CommandLineBinding/separate", 
+        "shellQuote": "https://w3id.org/cwl/cwl#CommandLineBinding/shellQuote", 
         "size": "https://w3id.org/cwl/cwl#File/size", 
         "sld": "https://w3id.org/cwl/salad#", 
         "source": {

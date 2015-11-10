@@ -118,6 +118,7 @@
 </ol><li><a href="#MultipleInputFeatureRequirement">4.5.6 MultipleInputFeatureRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol><li><a href="#SchemaDefRequirement">4.5.7 SchemaDefRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol><li><a href="#ExpressionEngineRequirement">4.5.8 ExpressionEngineRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#ShellCommandRequirement">4.5.9 ShellCommandRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol></li></ol><li><a href="#Process">4.6 Process</a><ol class="nav nav-pills nav-stacked nav-secondary">
 <li><a href="#Parameter">4.6.1 Parameter</a><ol class="nav nav-pills nav-stacked nav-secondary">
 <li><a href="#Binding">4.6.1.1 Binding</a><ol class="nav nav-pills nav-stacked nav-secondary">
@@ -170,7 +171,7 @@
 <ul>
 <li>Luka Stojanovic <a href="mailto:luka.stojanovic@sbgenomics.com">luka.stojanovic@sbgenomics.com</a>, Seven Bridges Genomics</li>
 <li>John Chilton <a href="mailto:jmchilton@gmail.com">jmchilton@gmail.com</a>, Galaxy Project, Pennsylvania State University</li>
-<li>Michael R. Crusoe <a href="mailto:mcrusoe@msu.edu">mcrusoe@msu.edu</a>, Michigan State University</li>
+<li>Michael R. Crusoe <a href="mailto:crusoe@ucdavis.edu">crusoe@ucdavis.edu</a>, University of California, Davis</li>
 <li>Hervé Ménager <a href="mailto:herve.menager@gmail.com">herve.menager@gmail.com</a>, Institut Pasteur</li>
 <li>Maxim Mikheev <a href="mailto:mikhmv@biodatomics.com">mikhmv@biodatomics.com</a>, BioDatomics</li>
 <li>Stian Soiland-Reyes <a href="mailto:soiland-reyes@cs.manchester.ac.uk">soiland-reyes@cs.manchester.ac.uk</a>, University of Manchester</li>
@@ -638,13 +639,13 @@ available as standard extensions to core workflow semantics.</p>
 </td></tr><tr><td><code>inputs</code></td><td>array&lt;<a href="#InputParameter">InputParameter</a>&gt;</td><td>True</td><td><p>Defines the input parameters of the process.  The process is ready to
 run when all required input parameters are associated with concrete
 values.  Input parameters include a schema for each parameter which is
-used to validate the input object.  It may also be used build a user
+used to validate the input object.  It may also be used to build a user
 interface for constructing the input object.
  <em>Inherited from <a href="#Process">Process</a></em></p>
 </td></tr><tr><td><code>outputs</code></td><td>array&lt;<a href="#WorkflowOutputParameter">WorkflowOutputParameter</a>&gt;</td><td>True</td><td><p>Defines the parameters representing the output of the process.  May be
 used to generate and/or validate the output object.
  <em>Inherited from <a href="#Process">Process</a></em></p>
-</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ExpressionEngineRequirement">ExpressionEngineRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
+</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ExpressionEngineRequirement">ExpressionEngineRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
 workflow engine that must be met in order to execute this process.  If
 an implementation cannot satisfy all requirements, or a requirement is
 listed which is not recognized by the implementation, it is a fatal
@@ -697,7 +698,7 @@ process to workflow parameters.</p>
 in the workflow or workflow step requirements.</p>
 <p>A "scatter" operation specifies that the associated workflow step or
 subworkflow should execute separately over a list of input elements.  Each
-job making up a scatter operaution is independent and may be executed
+job making up a scatter operation is independent and may be executed
 concurrently.</p>
 <p>The <code>scatter</code> field specifies one or more input parameters which will be
 scattered.  An input parameter may be listed more than once.  The declared
@@ -735,7 +736,7 @@ used to validate the input object.  It may also be used build a user
 interface for constructing the input object.</p>
 </td></tr><tr><td><code>outputs</code></td><td>array&lt;<a href="#WorkflowStepOutput">WorkflowStepOutput</a>&gt;</td><td>True</td><td><p>Defines the parameters representing the output of the process.  May be
 used to generate and/or validate the output object.</p>
-</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ExpressionEngineRequirement">ExpressionEngineRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
+</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ExpressionEngineRequirement">ExpressionEngineRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
 workflow engine that must be met in order to execute this workflow step.  If
 an implementation cannot satisfy all requirements, or a requirement is
 listed which is not recognized by the implementation, it is a fatal
@@ -903,13 +904,13 @@ associated with output parameters using the <code>outputBinding</code> field.  S
 </td></tr><tr><td><code>inputs</code></td><td>array&lt;<a href="#CommandInputParameter">CommandInputParameter</a>&gt;</td><td>True</td><td><p>Defines the input parameters of the process.  The process is ready to
 run when all required input parameters are associated with concrete
 values.  Input parameters include a schema for each parameter which is
-used to validate the input object.  It may also be used build a user
+used to validate the input object.  It may also be used to build a user
 interface for constructing the input object.
  <em>Inherited from <a href="#Process">Process</a></em></p>
 </td></tr><tr><td><code>outputs</code></td><td>array&lt;<a href="#CommandOutputParameter">CommandOutputParameter</a>&gt;</td><td>True</td><td><p>Defines the parameters representing the output of the process.  May be
 used to generate and/or validate the output object.
  <em>Inherited from <a href="#Process">Process</a></em></p>
-</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ExpressionEngineRequirement">ExpressionEngineRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
+</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ExpressionEngineRequirement">ExpressionEngineRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
 workflow engine that must be met in order to execute this process.  If
 an implementation cannot satisfy all requirements, or a requirement is
 listed which is not recognized by the implementation, it is a fatal
@@ -1030,6 +1031,9 @@ parameter, the "context" of the expression will be the value of the
 input parameter.</p>
 <p>When a binding is part of the <code>CommandLineTool.arguments</code> field,
 the <code>valueFrom</code> field is required.</p>
+</td></tr><tr><td><code>shellQuote</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">boolean</a></td><td>True</td><td><p>If <code>ShellCommandRequirement</code> is in the requirements for the current command,
+this controls whether the value is quoted on the command line (default is true).
+Use <code>shellQuote: false</code> to inject metacharacters for operations such as pipes.</p>
 </td></tr></table><h2 id="CommandOutputParameter">4.2.2 CommandOutputParameter</h1><p>Extends  <a href="#OutputParameter">OutputParameter</a></p>
 <p>An output parameter for a CommandLineTool.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">CWLType</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Specify valid types of data that may be assigned to this parameter.
@@ -1090,13 +1094,13 @@ will include up to the first 64 KiB of file contents in the <code>contents</code
 </td></tr><tr><td><code>inputs</code></td><td>array&lt;<a href="#InputParameter">InputParameter</a>&gt;</td><td>True</td><td><p>Defines the input parameters of the process.  The process is ready to
 run when all required input parameters are associated with concrete
 values.  Input parameters include a schema for each parameter which is
-used to validate the input object.  It may also be used build a user
+used to validate the input object.  It may also be used to build a user
 interface for constructing the input object.
  <em>Inherited from <a href="#Process">Process</a></em></p>
 </td></tr><tr><td><code>outputs</code></td><td>array&lt;<a href="#OutputParameter">OutputParameter</a>&gt;</td><td>True</td><td><p>Defines the parameters representing the output of the process.  May be
 used to generate and/or validate the output object.
  <em>Inherited from <a href="#Process">Process</a></em></p>
-</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ExpressionEngineRequirement">ExpressionEngineRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
+</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ExpressionEngineRequirement">ExpressionEngineRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
 workflow engine that must be met in order to execute this process.  If
 an implementation cannot satisfy all requirements, or a requirement is
 listed which is not recognized by the implementation, it is a fatal
@@ -1121,7 +1125,7 @@ information on how to define a expression engine.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>engine</code></td><td><a href="#JsonPointer">JsonPointer</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>Either <code>cwl:JsonPointer</code> or a reference to an
 ExpressionEngineRequirement defining which engine to use.</p>
 </td></tr><tr><td><code>script</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The code to be executed by the expression engine.</p>
-</td></tr></table><h2 id="JsonPointer">4.4.1 JsonPointer</h1><h2 id="ProcessRequirement">4.5 ProcessRequirement</h1><p>Extended by <a href="#DockerRequirement">DockerRequirement</a>,  <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a>,  <a href="#CreateFileRequirement">CreateFileRequirement</a>,  <a href="#EnvVarRequirement">EnvVarRequirement</a>,  <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a>,  <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a>,  <a href="#SchemaDefRequirement">SchemaDefRequirement</a>,  <a href="#ExpressionEngineRequirement">ExpressionEngineRequirement</a></p>
+</td></tr></table><h2 id="JsonPointer">4.4.1 JsonPointer</h1><h2 id="ProcessRequirement">4.5 ProcessRequirement</h1><p>Extended by <a href="#DockerRequirement">DockerRequirement</a>,  <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a>,  <a href="#CreateFileRequirement">CreateFileRequirement</a>,  <a href="#EnvVarRequirement">EnvVarRequirement</a>,  <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a>,  <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a>,  <a href="#SchemaDefRequirement">SchemaDefRequirement</a>,  <a href="#ExpressionEngineRequirement">ExpressionEngineRequirement</a>,  <a href="#ShellCommandRequirement">ShellCommandRequirement</a></p>
 <p>A process requirement declares a prerequisite that may or must be fulfilled
 before executing a process.  See <a href="#process"><code>Process.hints</code></a> and
 <a href="#process"><code>Process.requirements</code></a>.</p>
@@ -1218,13 +1222,22 @@ earlier schema definitions.</p>
 <p>Define an expression engine, as described in <a href="#expressions">Expressions</a>.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The specific requirement type. <em>Inherited from <a href="#ProcessRequirement">ProcessRequirement</a></em></p>
 </td></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>Used to identify the expression engine in the <code>engine</code> field of Expressions.</p>
-</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ExpressionEngineRequirement">ExpressionEngineRequirement</a>&gt;</td><td>True</td><td><p>Requirements to run this expression engine, such as DockerRequirement
+</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ExpressionEngineRequirement">ExpressionEngineRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a>&gt;</td><td>True</td><td><p>Requirements to run this expression engine, such as DockerRequirement
 for specifying a container to run the engine.</p>
 </td></tr><tr><td><code>engineCommand</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>The command line to invoke the expression engine.</p>
 </td></tr><tr><td><code>engineConfig</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Additional configuration or code fragments that will also be passed to
 the expression engine.  The semantics of this field are defined by the
 underlying expression engine.  Intended for uses such as providing
 function definitions that will be called from CWL expressions.</p>
+</td></tr></table><h2 id="ShellCommandRequirement">4.5.9 ShellCommandRequirement</h1><p>Extends  <a href="#ProcessRequirement">ProcessRequirement</a></p>
+<p>Modify the behavior of CommandLineTool to generate a single string
+containing a shell command line.  Each item in the argument list must be
+joined into a string separated by single spaces and quoted to prevent
+intepretation by the shell, unless <code>CommandLineBinding</code> for that argument
+contains <code>shellQuote: false</code>.  If <code>shellQuote: false</code> is specified, the
+argument is joined into the command string without quoting, which allows
+the use of shell metacharacters such as <code>|</code> for pipes.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The specific requirement type. <em>Inherited from <a href="#ProcessRequirement">ProcessRequirement</a></em></p>
 </td></tr></table><h2 id="Process">4.6 Process</h1><p>Extended by <a href="#CommandLineTool">CommandLineTool</a>,  <a href="#ExpressionTool">ExpressionTool</a>,  <a href="#Workflow">Workflow</a></p>
 <p>The base executable type in CWL is the <code>Process</code> object defined by the
 document.  Note that the <code>Process</code> object is abstract and cannot be
@@ -1233,11 +1246,11 @@ directly executed.</p>
 </td></tr><tr><td><code>inputs</code></td><td>array&lt;<a href="#InputParameter">InputParameter</a>&gt;</td><td>True</td><td><p>Defines the input parameters of the process.  The process is ready to
 run when all required input parameters are associated with concrete
 values.  Input parameters include a schema for each parameter which is
-used to validate the input object.  It may also be used build a user
+used to validate the input object.  It may also be used to build a user
 interface for constructing the input object.</p>
 </td></tr><tr><td><code>outputs</code></td><td>array&lt;<a href="#OutputParameter">OutputParameter</a>&gt;</td><td>True</td><td><p>Defines the parameters representing the output of the process.  May be
 used to generate and/or validate the output object.</p>
-</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ExpressionEngineRequirement">ExpressionEngineRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
+</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ExpressionEngineRequirement">ExpressionEngineRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
 workflow engine that must be met in order to execute this process.  If
 an implementation cannot satisfy all requirements, or a requirement is
 listed which is not recognized by the implementation, it is a fatal
