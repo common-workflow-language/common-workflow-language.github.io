@@ -61,17 +61,15 @@ cwl:EnvVarRequirement a rdfs:Class ;
 
 cwl:EnvironmentDef a rdfs:Class .
 
-cwl:Expression a rdfs:Class .
-
-cwl:ExpressionEngineRequirement a rdfs:Class ;
-    rdfs:subClassOf cwl:ProcessRequirement .
-
 cwl:ExpressionTool a rdfs:Class ;
     rdfs:subClassOf cwl:Process .
 
 cwl:File a rdfs:Class .
 
 cwl:FileDef a rdfs:Class .
+
+cwl:InlineJavascriptRequirement a rdfs:Class ;
+    rdfs:subClassOf cwl:ProcessRequirement .
 
 cwl:InputArraySchema a rdfs:Class ;
     rdfs:subClassOf sld:ArraySchema .
@@ -230,15 +228,6 @@ rdfs:label a rdf:Property ;
 <https://w3id.org/cwl/cwl#EnvironmentDef/envValue> a rdf:Property ;
     rdfs:domain cwl:EnvironmentDef .
 
-<https://w3id.org/cwl/cwl#Expression/script> a rdf:Property ;
-    rdfs:domain cwl:Expression .
-
-<https://w3id.org/cwl/cwl#ExpressionEngineRequirement/engineCommand> a rdf:Property ;
-    rdfs:domain cwl:ExpressionEngineRequirement .
-
-<https://w3id.org/cwl/cwl#ExpressionEngineRequirement/engineConfig> a rdf:Property ;
-    rdfs:domain cwl:ExpressionEngineRequirement .
-
 <https://w3id.org/cwl/cwl#ExpressionTool/expression> a rdf:Property ;
     rdfs:domain cwl:ExpressionTool .
 
@@ -253,6 +242,9 @@ rdfs:label a rdf:Property ;
 
 <https://w3id.org/cwl/cwl#FileDef/filename> a rdf:Property ;
     rdfs:domain cwl:FileDef .
+
+<https://w3id.org/cwl/cwl#InlineJavascriptRequirement/expressionLib> a rdf:Property ;
+    rdfs:domain cwl:InlineJavascriptRequirement .
 
 <https://w3id.org/cwl/cwl#Parameter/streamable> a rdf:Property ;
     rdfs:domain cwl:Parameter .
@@ -291,8 +283,7 @@ cwl:outputs a rdf:Property ;
         cwl:WorkflowStep .
 
 cwl:requirements a rdf:Property ;
-    rdfs:domain cwl:ExpressionEngineRequirement,
-        cwl:Process,
+    rdfs:domain cwl:Process,
         cwl:WorkflowStep .
 
 cwl:secondaryFiles a rdf:Property ;

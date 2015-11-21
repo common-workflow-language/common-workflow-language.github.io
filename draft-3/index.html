@@ -87,10 +87,11 @@
 <li><a href="#Execution_concepts">3.1 Execution concepts</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol><li><a href="#Generic_execution_process">3.2 Generic execution process</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol><li><a href="#Requirements_and_hints">3.3 Requirements and hints</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#Expressions">3.4 Expressions</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#Workflow_graph">3.5 Workflow graph</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#Success_and_failure">3.6 Success and failure</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#Executing_CWL_documents_as_scripts">3.7 Executing CWL documents as scripts</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#Parameter_references">3.4 Parameter references</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#Expressions">3.5 Expressions</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#Workflow_graph">3.6 Workflow graph</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#Success_and_failure">3.7 Success and failure</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#Executing_CWL_documents_as_scripts">3.8 Executing CWL documents as scripts</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol></li></ol><li><a href="#Sample_CWL_workflow">4. Sample CWL workflow</a><ol class="nav nav-pills nav-stacked nav-secondary">
 <li><a href="#Workflow">4.1 Workflow</a><ol class="nav nav-pills nav-stacked nav-secondary">
 <li><a href="#WorkflowOutputParameter">4.1.1 WorkflowOutputParameter</a><ol class="nav nav-pills nav-stacked nav-secondary">
@@ -106,8 +107,7 @@
 <li><a href="#CommandOutputBinding">4.2.2.1 CommandOutputBinding</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol></li></ol></li></ol><li><a href="#ExpressionTool">4.3 ExpressionTool</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol><li><a href="#Expression">4.4 Expression</a><ol class="nav nav-pills nav-stacked nav-secondary">
-<li><a href="#JsonPointer">4.4.1 JsonPointer</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol></li></ol><li><a href="#ProcessRequirement">4.5 ProcessRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#ProcessRequirement">4.5 ProcessRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
 <li><a href="#DockerRequirement">4.5.1 DockerRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol><li><a href="#SubworkflowFeatureRequirement">4.5.2 SubworkflowFeatureRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol><li><a href="#CreateFileRequirement">4.5.3 CreateFileRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
@@ -116,8 +116,8 @@
 <li><a href="#EnvironmentDef">4.5.4.1 EnvironmentDef</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol></li></ol><li><a href="#ScatterFeatureRequirement">4.5.5 ScatterFeatureRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol><li><a href="#MultipleInputFeatureRequirement">4.5.6 MultipleInputFeatureRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#SchemaDefRequirement">4.5.7 SchemaDefRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#ExpressionEngineRequirement">4.5.8 ExpressionEngineRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#InlineJavascriptRequirement">4.5.7 InlineJavascriptRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#SchemaDefRequirement">4.5.8 SchemaDefRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol><li><a href="#ShellCommandRequirement">4.5.9 ShellCommandRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol></li></ol><li><a href="#Process">4.6 Process</a><ol class="nav nav-pills nav-stacked nav-secondary">
 <li><a href="#Parameter">4.6.1 Parameter</a><ol class="nav nav-pills nav-stacked nav-secondary">
@@ -377,57 +377,105 @@ an enclosing workflow or workflow step, the enclosing <code>requirements</code> 
 precedence.</p>
 <p>Process requirements are the primary mechanism for specifying extensions to
 the CWL core specification.</p>
-<h2 id="Expressions">3.4 Expressions</h1><p>An expression is a fragment of executable code which is evaluated by the
-workflow platform to affect the inputs, outputs, or behavior of a process.
-In the generic execution sequence, expressions may be evaluated during step
-5 (process setup), step 6 (execute process), and/or step 7 (capture
-output).  Expressions are distinct from regular processes in that they are
-intended to modify the behavior of the workflow itself rather than perform
-the primary work of the workflow.</p>
-<p>An implementation must provide the predefined <code>cwl:JsonPointer</code> expression
-engine.  This expression engine specifies a <a href="https://tools.ietf.org/html/draft-ietf-appsawg-json-pointer-04">JSON
-Pointer</a>
-into an expression input object consisting of the <code>job</code> and <code>context</code>
-fields described below.</p>
-<p>An expression engine defined with
-<a href="#expressionenginerequirement">ExpressionEngineRequirement</a> is a command
-line program following the following protocol:</p>
+<h2 id="Parameter_references">3.4 Parameter references</h1><p>Parameter references are denoted by the syntax <code>$(...)</code> and may be used in
+any field permitting the pseudo-type <code>Expression</code>, as specified by this
+document.  Conforming implementations must support parameter
+references.  Parameter references use the following subset of
+<a href="http://www.ecma-international.org/ecma-262/5.1/">Javascript/ECMAScript 5.1</a> syntax:</p>
+<p>symbol::    {Unicode alphanumeric}+
+singleq::   '[' ''' ( {character} - ''' | '\' ''' )<em> ''' ']'
+doubleq::   '[' '"' ( {character} - '"' | '\' '"' )</em> '"' ']'
+index::     '[' {decimal digit}+ ']'
+segment::   '.' {symbol} | {singleq} | {doubleq} | {index}
+parameter:: '$' '(' {symbol} {segment}* ')'</p>
+<p>Use the following algorithm to resolve a parameter reference:</p>
+<ol>
+<li>Match the leading symbol as key</li>
+<li>Look up the key in the parameter context (described below) to get the current value.
+It is an error if the key is not found in the parameter context.</li>
+<li>If there are no subsequent segments, terminate and return current value</li>
+<li>Else, match the next segment</li>
+<li>Extract the symbol, string, or index from the segment as key</li>
+<li>Look up the key in current value and assign as new current value.  If
+the key is a symbol or string, the current value must be an object.
+If the key is an index, the current value must be an array or string.
+It is an error if the key does not match the required type, or the key is not found or out
+of range.</li>
+<li>Repeat steps 3-6</li>
+</ol>
+<p>The root namspace is the parameter context.  The following parameters must
+be provided:</p>
 <ul>
-<li><p>On standard input, receive a JSON object with the following fields:</p>
+<li><code>inputs</code>: The input object to the current Process.</li>
+<li><code>self</code>: A context-specific value.  The contextual values for 'self' are
+documented for specific fields elsewhere in this specification.  If
+a contextual value of 'self' is not documented for a field, it
+must be 'null'.</li>
+<li><code>runtime</code>: An object containing configuration specific to the Process
+type.  Values include <code>tmpdir</code>, <code>outdir</code>, and values associated with
+<a href="#resourcerequirement">ResourceRequirement</a>.
+Other fields under <code>runtime</code> are listed elsewhere in this document.</li>
+</ul>
+<p>If the value of a field has no leading or trailing non-whitespace
+characters around a parameter reference, the effective value of the field
+becomes the value of the referenced parameter, preserving the return type.</p>
+<p>If the value of a field has non-whitespace leading or trailing characters
+around an parameter reference, it is subject to string interpolation.  The
+effective value of the field is a string containing the leading characters;
+followed by the string value of the parameter reference; followed by the
+trailing characters.  The string value of the parameter reference is its
+textual JSON representation with the following rules:</p>
 <ul>
-<li><p><strong>engineConfig</strong>: A list of strings from the <code>engineConfig</code> field.
-Null if <code>engineConfig</code> is not specified.</p>
-</li>
-<li><p><strong>job</strong>: The input object of the current Process (context dependent).</p>
-</li>
-<li><p><strong>context</strong>: The specific value being transformed (context dependent).  May
-be null.</p>
-</li>
-<li><p><strong>script</strong>: The code fragment to evaluate.</p>
-</li>
-<li><p><strong>outdir</strong>: When used in the context of a CommandLineTool, this is
-the designated output directory that will be used when executing the
-tool.  Null if not applicable.</p>
-</li>
-<li><p><strong>tmpdir</strong>: When used in the context of a CommandLineTool, this is
-the designated temporary directory that will be used when executing
-the tool.  Null if not applicable.</p>
-</li>
+<li>Leading and trailing quotes are stripped from strings</li>
+<li>Objects entries are sorted by key</li>
 </ul>
-</li>
-<li><p>On standard output, print a single JSON value (string, number, array, object,
-boolean, or null) for the return value.</p>
-</li>
-</ul>
+<p>Multiple parameter references may appear in a single field.  This case is
+must be treated as a string interpolation.  After interpolating the first
+parameter reference, interpolation must be recursively applied to the
+trailing characters to yield the final string value.</p>
+<h2 id="Expressions">3.5 Expressions</h1><p>An expression is a fragment of <a href="http://www.ecma-international.org/ecma-262/5.1/">Javascript/ECMAScript
+5.1</a> code which is
+evaluated by the workflow platform to affect the inputs, outputs, or
+behavior of a process.  In the generic execution sequence, expressions may
+be evaluated during step 5 (process setup), step 6 (execute process),
+and/or step 7 (capture output).  Expressions are distinct from regular
+processes in that they are intended to modify the behavior of the workflow
+itself rather than perform the primary work of the workflow.</p>
+<p>To declare the use of expressions, the document must include the process
+requirement <code>InlineJavascriptRequirement</code>.  Expressions may be used in any
+field permitting the pseudo-type <code>Expression</code>, as specified by this
+document.</p>
+<p>Expressions are denoted by the syntax <code>$(...)</code> or <code>${...}</code>.  A code
+fragment wrapped in the <code>$(...)</code> syntax must be evaluated as a
+<a href="http://www.ecma-international.org/ecma-262/5.1/#sec-11">ECMAScript expression</a>.  A
+code fragment wrapped in the <code>${...}</code> syntax must be evaluated as a
+<a href="http://www.ecma-international.org/ecma-262/5.1/#sec-13">EMACScript function body</a>
+for an anonymous, zero-argument function.  Expressions must return a valid JSON
+data type: one of null, string, number, boolean, array, object.
+Implementations must permit any syntatically valid Javascript and account
+for nesting of parenthesis or braces and that strings that may contain
+parenthesis or braces when scanning for expressions.</p>
+<p>The runtime must include any code defined in the <a href="#inlinejavascriptrequirement">"expressionLib" field of
+InlineJavascriptRequirement</a> prior to
+executing the actual expression.</p>
+<p>Before executing the expression, the runtime must initialize as global
+variables the fields of the parameter context described above.</p>
+<p>The effective value of the field after expression evaluation follows the
+same rules as parameter references discussed above.  Multiple expressions
+may appear in a single field.</p>
 <p>Expressions must be evaluated in an isolated context (a "sandbox") which
-permits no side effects to leak outside the context, and permit no outside
-data to leak into the context.</p>
-<p>Implementations may apply limits, such as process isolation, timeouts, and
-operating system containers/jails to minimize the security risks associated
-with running untrusted code.</p>
-<p>The order in which expressions are evaluated within a process or workflow
-is undefined.</p>
-<h2 id="Workflow_graph">3.5 Workflow graph</h1><p>A workflow describes a set of <strong>steps</strong> and the <strong>dependencies</strong> between
+permits no side effects to leak outside the context.  Expressions also must
+be evaluated in <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-4.2.2">Javascript strict mode</a>.</p>
+<p>The order in which expressions are evaluated is undefined except where
+otherwise noted in this document.</p>
+<p>An implementation may choose to implement parameter references by
+evalutating as a Javascript expression.  The results of evaluating
+parameter references must be identical whether implemented by Javascript
+evaluation or some other means.</p>
+<p>Implementations may apply other limits, such as process isolation, timeouts,
+and operating system containers/jails to minimize the security risks associated
+with running untrusted code embedded in a CWL document.</p>
+<h2 id="Workflow_graph">3.6 Workflow graph</h1><p>A workflow describes a set of <strong>steps</strong> and the <strong>dependencies</strong> between
 those processes.  When a process produces output that will be consumed by a
 second process, the first process is a dependency of the second process.
 When there is a dependency, the workflow engine must execute the dependency
@@ -436,7 +484,7 @@ dependent process.  If two processes are defined in the workflow graph that
 are not directly or indirectly dependent, these processes are
 <strong>independent</strong>, and may execute in any order or execute concurrently.  A
 workflow is complete when all steps have been executed.</p>
-<h2 id="Success_and_failure">3.6 Success and failure</h1><p>A completed process must result in one of <code>success</code>, <code>temporaryFailure</code> or
+<h2 id="Success_and_failure">3.7 Success and failure</h1><p>A completed process must result in one of <code>success</code>, <code>temporaryFailure</code> or
 <code>permanentFailure</code> states.  An implementation may choose to retry a process
 execution which resulted in <code>temporaryFailure</code>.  An implementation may
 choose to either continue running other steps of a workflow, or terminate
@@ -453,7 +501,7 @@ complete <code>success</code> or are not executed, then the workflow status is
 status is <code>success</code>.</p>
 </li>
 </ul>
-<h2 id="Executing_CWL_documents_as_scripts">3.7 Executing CWL documents as scripts</h1><p>By convention, a CWL document may begin with <code>#!/usr/bin/env cwl-runner</code>
+<h2 id="Executing_CWL_documents_as_scripts">3.8 Executing CWL documents as scripts</h1><p>By convention, a CWL document may begin with <code>#!/usr/bin/env cwl-runner</code>
 and be marked as executable (the POSIX "+x" permission bits) to enable it
 to be executed directly.  A workflow platform may support this mode of
 operation; if so, it must provide <code>cwl-runner</code> as an alias for the
@@ -645,7 +693,7 @@ interface for constructing the input object.
 </td></tr><tr><td><code>outputs</code></td><td>array&lt;<a href="#WorkflowOutputParameter">WorkflowOutputParameter</a>&gt;</td><td>True</td><td><p>Defines the parameters representing the output of the process.  May be
 used to generate and/or validate the output object.
  <em>Inherited from <a href="#Process">Process</a></em></p>
-</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ExpressionEngineRequirement">ExpressionEngineRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
+</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
 workflow engine that must be met in order to execute this process.  If
 an implementation cannot satisfy all requirements, or a requirement is
 listed which is not recognized by the implementation, it is a fatal
@@ -736,7 +784,7 @@ used to validate the input object.  It may also be used build a user
 interface for constructing the input object.</p>
 </td></tr><tr><td><code>outputs</code></td><td>array&lt;<a href="#WorkflowStepOutput">WorkflowStepOutput</a>&gt;</td><td>True</td><td><p>Defines the parameters representing the output of the process.  May be
 used to generate and/or validate the output object.</p>
-</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ExpressionEngineRequirement">ExpressionEngineRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
+</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
 workflow engine that must be met in order to execute this workflow step.  If
 an implementation cannot satisfy all requirements, or a requirement is
 listed which is not recognized by the implementation, it is a fatal
@@ -910,7 +958,7 @@ interface for constructing the input object.
 </td></tr><tr><td><code>outputs</code></td><td>array&lt;<a href="#CommandOutputParameter">CommandOutputParameter</a>&gt;</td><td>True</td><td><p>Defines the parameters representing the output of the process.  May be
 used to generate and/or validate the output object.
  <em>Inherited from <a href="#Process">Process</a></em></p>
-</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ExpressionEngineRequirement">ExpressionEngineRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
+</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
 workflow engine that must be met in order to execute this process.  If
 an implementation cannot satisfy all requirements, or a requirement is
 listed which is not recognized by the implementation, it is a fatal
@@ -1084,7 +1132,7 @@ pattern in the array.  If provided an expression, the expression must
 return a string or an array of strings, which will then be evaluated as
 one or more glob patterns.  Only files which actually exist will be
 matched and returned.</p>
-</td></tr><tr><td><code>outputEval</code></td><td><a href="#CWLType">null</a> | <a href="#Expression">Expression</a></td><td>True</td><td><p>Evaluate an expression to generate the output value.  If <code>glob</code> was
+</td></tr><tr><td><code>outputEval</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td><p>Evaluate an expression to generate the output value.  If <code>glob</code> was
 specified, the script <code>context</code> will be an array containing any files that were
 matched.  Additionally, if <code>loadContents</code> is <code>true</code>, the File objects
 will include up to the first 64 KiB of file contents in the <code>contents</code> field.</p>
@@ -1100,7 +1148,7 @@ interface for constructing the input object.
 </td></tr><tr><td><code>outputs</code></td><td>array&lt;<a href="#OutputParameter">OutputParameter</a>&gt;</td><td>True</td><td><p>Defines the parameters representing the output of the process.  May be
 used to generate and/or validate the output object.
  <em>Inherited from <a href="#Process">Process</a></em></p>
-</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ExpressionEngineRequirement">ExpressionEngineRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
+</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
 workflow engine that must be met in order to execute this process.  If
 an implementation cannot satisfy all requirements, or a requirement is
 listed which is not recognized by the implementation, it is a fatal
@@ -1115,17 +1163,10 @@ the implementation may report a warning.
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A short, human-readable label of this process object. <em>Inherited from <a href="#Process">Process</a></em></p>
 </td></tr><tr><td><code>description</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A long, human-readable description of this process object. <em>Inherited from <a href="#Process">Process</a></em></p>
 </td></tr><tr><td><code>cwlVersion</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>CWL document version <em>Inherited from <a href="#Process">Process</a></em></p>
-</td></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td></td></tr><tr><td><code>expression</code></td><td><a href="#Expression">Expression</a></td><td>True</td><td><p>The expression to execute.  The expression must return a JSON object which
+</td></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td></td></tr><tr><td><code>expression</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td><p>The expression to execute.  The expression must return a JSON object which
 matches the output parameters of the ExpressionTool.</p>
-</td></tr></table><h2 id="Expression">4.4 Expression</h1><p>Define an expression that will be evaluated and used to modify the behavior
-of a tool or workflow.  See <a href="#expressions">Expressions</a> for more
-information about expressions
-and <a href="#expressionenginerequirement">ExpressionEngineRequirement</a> for
-information on how to define a expression engine.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>engine</code></td><td><a href="#JsonPointer">JsonPointer</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>Either <code>cwl:JsonPointer</code> or a reference to an
-ExpressionEngineRequirement defining which engine to use.</p>
-</td></tr><tr><td><code>script</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The code to be executed by the expression engine.</p>
-</td></tr></table><h2 id="JsonPointer">4.4.1 JsonPointer</h1><h2 id="ProcessRequirement">4.5 ProcessRequirement</h1><p>Extended by <a href="#DockerRequirement">DockerRequirement</a>,  <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a>,  <a href="#CreateFileRequirement">CreateFileRequirement</a>,  <a href="#EnvVarRequirement">EnvVarRequirement</a>,  <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a>,  <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a>,  <a href="#SchemaDefRequirement">SchemaDefRequirement</a>,  <a href="#ExpressionEngineRequirement">ExpressionEngineRequirement</a>,  <a href="#ShellCommandRequirement">ShellCommandRequirement</a></p>
+</td></tr></table><h2 id="Expression">4.4 Expression</h1><p>Not a real type.  Indicates that a field must allow expressions.</p>
+<h2 id="ProcessRequirement">4.5 ProcessRequirement</h1><p>Extended by <a href="#DockerRequirement">DockerRequirement</a>,  <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a>,  <a href="#CreateFileRequirement">CreateFileRequirement</a>,  <a href="#EnvVarRequirement">EnvVarRequirement</a>,  <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a>,  <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a>,  <a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a>,  <a href="#SchemaDefRequirement">SchemaDefRequirement</a>,  <a href="#ShellCommandRequirement">ShellCommandRequirement</a></p>
 <p>A process requirement declares a prerequisite that may or must be fulfilled
 before executing a process.  See <a href="#process"><code>Process.hints</code></a> and
 <a href="#process"><code>Process.requirements</code></a>.</p>
@@ -1207,7 +1248,15 @@ result of executing an expression, such as getting a parameter from input.</p>
 <p>Indicates that the workflow platform must support multiple inbound data links
 listed in the <code>source</code> field of <a href="#workflowstepinput">WorkflowStepInput</a>.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The specific requirement type. <em>Inherited from <a href="#ProcessRequirement">ProcessRequirement</a></em></p>
-</td></tr></table><h2 id="SchemaDefRequirement">4.5.7 SchemaDefRequirement</h1><p>Extends  <a href="#ProcessRequirement">ProcessRequirement</a></p>
+</td></tr></table><h2 id="InlineJavascriptRequirement">4.5.7 InlineJavascriptRequirement</h1><p>Extends  <a href="#ProcessRequirement">ProcessRequirement</a></p>
+<p>Indicates that the workflow platform must support inline Javascript expressions.
+If this requirement is not present, the workflow platform must not perform expression
+interpolatation.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The specific requirement type. <em>Inherited from <a href="#ProcessRequirement">ProcessRequirement</a></em></p>
+</td></tr><tr><td><code>expressionLib</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Additional code fragments that will also be inserted
+before executing the expression code.  Allows for function definitions that may
+be called from CWL expressions.</p>
+</td></tr></table><h2 id="SchemaDefRequirement">4.5.8 SchemaDefRequirement</h1><p>Extends  <a href="#ProcessRequirement">ProcessRequirement</a></p>
 <p>This field consists of an
 array of type definitions which must be used when interpreting the <code>inputs</code> and
 <code>outputs</code> fields.  When a symbolic type is encountered that is not in
@@ -1218,17 +1267,6 @@ processed in the order listed such that later schema definitions may refer to
 earlier schema definitions.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The specific requirement type. <em>Inherited from <a href="#ProcessRequirement">ProcessRequirement</a></em></p>
 </td></tr><tr><td><code>types</code></td><td>array&lt;<a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a>&gt;</td><td>True</td><td><p>The list of type definitions.</p>
-</td></tr></table><h2 id="ExpressionEngineRequirement">4.5.8 ExpressionEngineRequirement</h1><p>Extends  <a href="#ProcessRequirement">ProcessRequirement</a></p>
-<p>Define an expression engine, as described in <a href="#expressions">Expressions</a>.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The specific requirement type. <em>Inherited from <a href="#ProcessRequirement">ProcessRequirement</a></em></p>
-</td></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>Used to identify the expression engine in the <code>engine</code> field of Expressions.</p>
-</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ExpressionEngineRequirement">ExpressionEngineRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a>&gt;</td><td>True</td><td><p>Requirements to run this expression engine, such as DockerRequirement
-for specifying a container to run the engine.</p>
-</td></tr><tr><td><code>engineCommand</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>The command line to invoke the expression engine.</p>
-</td></tr><tr><td><code>engineConfig</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Additional configuration or code fragments that will also be passed to
-the expression engine.  The semantics of this field are defined by the
-underlying expression engine.  Intended for uses such as providing
-function definitions that will be called from CWL expressions.</p>
 </td></tr></table><h2 id="ShellCommandRequirement">4.5.9 ShellCommandRequirement</h1><p>Extends  <a href="#ProcessRequirement">ProcessRequirement</a></p>
 <p>Modify the behavior of CommandLineTool to generate a single string
 containing a shell command line.  Each item in the argument list must be
@@ -1250,7 +1288,7 @@ used to validate the input object.  It may also be used to build a user
 interface for constructing the input object.</p>
 </td></tr><tr><td><code>outputs</code></td><td>array&lt;<a href="#OutputParameter">OutputParameter</a>&gt;</td><td>True</td><td><p>Defines the parameters representing the output of the process.  May be
 used to generate and/or validate the output object.</p>
-</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ExpressionEngineRequirement">ExpressionEngineRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
+</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
 workflow engine that must be met in order to execute this process.  If
 an implementation cannot satisfy all requirements, or a requirement is
 listed which is not recognized by the implementation, it is a fatal
