@@ -110,6 +110,9 @@ cwl:Process a rdfs:Class .
 
 cwl:ProcessRequirement a rdfs:Class .
 
+cwl:ResourceRequirement a rdfs:Class ;
+    rdfs:subClassOf cwl:ProcessRequirement .
+
 cwl:ScatterFeatureRequirement a rdfs:Class ;
     rdfs:subClassOf cwl:ProcessRequirement .
 
@@ -248,6 +251,30 @@ rdfs:label a rdf:Property ;
 
 <https://w3id.org/cwl/cwl#Parameter/streamable> a rdf:Property ;
     rdfs:domain cwl:Parameter .
+
+<https://w3id.org/cwl/cwl#ResourceRequirement/coresMax> a rdf:Property ;
+    rdfs:domain cwl:ResourceRequirement .
+
+<https://w3id.org/cwl/cwl#ResourceRequirement/coresMin> a rdf:Property ;
+    rdfs:domain cwl:ResourceRequirement .
+
+<https://w3id.org/cwl/cwl#ResourceRequirement/outdirMax> a rdf:Property ;
+    rdfs:domain cwl:ResourceRequirement .
+
+<https://w3id.org/cwl/cwl#ResourceRequirement/outdirMin> a rdf:Property ;
+    rdfs:domain cwl:ResourceRequirement .
+
+<https://w3id.org/cwl/cwl#ResourceRequirement/ramMax> a rdf:Property ;
+    rdfs:domain cwl:ResourceRequirement .
+
+<https://w3id.org/cwl/cwl#ResourceRequirement/ramMin> a rdf:Property ;
+    rdfs:domain cwl:ResourceRequirement .
+
+<https://w3id.org/cwl/cwl#ResourceRequirement/tmpdirMax> a rdf:Property ;
+    rdfs:domain cwl:ResourceRequirement .
+
+<https://w3id.org/cwl/cwl#ResourceRequirement/tmpdirMin> a rdf:Property ;
+    rdfs:domain cwl:ResourceRequirement .
 
 <https://w3id.org/cwl/cwl#SchemaDefRequirement/types> a rdf:Property ;
     rdfs:domain cwl:SchemaDefRequirement .

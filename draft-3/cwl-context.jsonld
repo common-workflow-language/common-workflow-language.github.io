@@ -42,6 +42,7 @@
         "ProcessRequirement": "https://w3id.org/cwl/cwl#ProcessRequirement", 
         "RecordField": "https://w3id.org/cwl/salad#RecordField", 
         "RecordSchema": "https://w3id.org/cwl/salad#RecordSchema", 
+        "ResourceRequirement": "https://w3id.org/cwl/cwl#ResourceRequirement", 
         "ScatterFeatureRequirement": "https://w3id.org/cwl/cwl#ScatterFeatureRequirement", 
         "SchemaDefRequirement": "https://w3id.org/cwl/cwl#SchemaDefRequirement", 
         "ShellCommandRequirement": "https://w3id.org/cwl/cwl#ShellCommandRequirement", 
@@ -68,6 +69,8 @@
             "@id": "@type", 
             "@type": "@vocab"
         }, 
+        "coresMax": "https://w3id.org/cwl/cwl#ResourceRequirement/coresMax", 
+        "coresMin": "https://w3id.org/cwl/cwl#ResourceRequirement/coresMin", 
         "cwl": "https://w3id.org/cwl/cwl#", 
         "cwlVersion": {
             "@id": "https://w3id.org/cwl/cwl#cwlVersion", 
@@ -123,6 +126,8 @@
         "name": "@id", 
         "nested_crossproduct": "https://w3id.org/cwl/cwl#nested_crossproduct", 
         "null": "https://w3id.org/cwl/salad#null", 
+        "outdirMax": "https://w3id.org/cwl/cwl#ResourceRequirement/outdirMax", 
+        "outdirMin": "https://w3id.org/cwl/cwl#ResourceRequirement/outdirMin", 
         "outputBinding": "cwl:outputBinding", 
         "outputEval": "https://w3id.org/cwl/cwl#CommandOutputBinding/outputEval", 
         "outputs": "cwl:outputs", 
@@ -132,6 +137,8 @@
         "permanentFailCodes": "https://w3id.org/cwl/cwl#CommandLineTool/permanentFailCodes", 
         "position": "https://w3id.org/cwl/cwl#CommandLineBinding/position", 
         "prefix": "https://w3id.org/cwl/cwl#CommandLineBinding/prefix", 
+        "ramMax": "https://w3id.org/cwl/cwl#ResourceRequirement/ramMax", 
+        "ramMin": "https://w3id.org/cwl/cwl#ResourceRequirement/ramMin", 
         "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#", 
         "rdfs": "http://www.w3.org/2000/01/rdf-schema#", 
         "record": "https://w3id.org/cwl/salad#record", 
@@ -170,6 +177,8 @@
             "identity": true
         }, 
         "temporaryFailCodes": "https://w3id.org/cwl/cwl#CommandLineTool/temporaryFailCodes", 
+        "tmpdirMax": "https://w3id.org/cwl/cwl#ResourceRequirement/tmpdirMax", 
+        "tmpdirMin": "https://w3id.org/cwl/cwl#ResourceRequirement/tmpdirMin", 
         "type": {
             "@id": "https://w3id.org/cwl/salad#type", 
             "@type": "@vocab"

@@ -119,6 +119,7 @@
 </ol><li><a href="#InlineJavascriptRequirement">4.5.7 InlineJavascriptRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol><li><a href="#SchemaDefRequirement">4.5.8 SchemaDefRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol><li><a href="#ShellCommandRequirement">4.5.9 ShellCommandRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
+</ol><li><a href="#ResourceRequirement">4.5.10 ResourceRequirement</a><ol class="nav nav-pills nav-stacked nav-secondary">
 </ol></li></ol><li><a href="#Process">4.6 Process</a><ol class="nav nav-pills nav-stacked nav-secondary">
 <li><a href="#Parameter">4.6.1 Parameter</a><ol class="nav nav-pills nav-stacked nav-secondary">
 <li><a href="#Binding">4.6.1.1 Binding</a><ol class="nav nav-pills nav-stacked nav-secondary">
@@ -411,10 +412,13 @@ be provided:</p>
 documented for specific fields elsewhere in this specification.  If
 a contextual value of 'self' is not documented for a field, it
 must be 'null'.</li>
-<li><code>runtime</code>: An object containing configuration specific to the Process
-type.  Values include <code>tmpdir</code>, <code>outdir</code>, and values associated with
-<a href="#resourcerequirement">ResourceRequirement</a>.
-Other fields under <code>runtime</code> are listed elsewhere in this document.</li>
+<li><code>runtime</code>: An object containing configuration details.  Specific to the
+<a href="#process">Process</a> type.  An implementation may provide may provide
+opaque strings for any or all fields of <code>runtime</code>.  These must be
+filled in by the platform after processing the Tool but before actual
+execution.  Parameter references and expressions may only use the
+literal string value of the field and must not perform computation on
+the contents.</li>
 </ul>
 <p>If the value of a field has no leading or trailing non-whitespace
 characters around a parameter reference, the effective value of the field
@@ -693,7 +697,7 @@ interface for constructing the input object.
 </td></tr><tr><td><code>outputs</code></td><td>array&lt;<a href="#WorkflowOutputParameter">WorkflowOutputParameter</a>&gt;</td><td>True</td><td><p>Defines the parameters representing the output of the process.  May be
 used to generate and/or validate the output object.
  <em>Inherited from <a href="#Process">Process</a></em></p>
-</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
+</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="#ResourceRequirement">ResourceRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
 workflow engine that must be met in order to execute this process.  If
 an implementation cannot satisfy all requirements, or a requirement is
 listed which is not recognized by the implementation, it is a fatal
@@ -784,7 +788,7 @@ used to validate the input object.  It may also be used build a user
 interface for constructing the input object.</p>
 </td></tr><tr><td><code>outputs</code></td><td>array&lt;<a href="#WorkflowStepOutput">WorkflowStepOutput</a>&gt;</td><td>True</td><td><p>Defines the parameters representing the output of the process.  May be
 used to generate and/or validate the output object.</p>
-</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
+</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="#ResourceRequirement">ResourceRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
 workflow engine that must be met in order to execute this workflow step.  If
 an implementation cannot satisfy all requirements, or a requirement is
 listed which is not recognized by the implementation, it is a fatal
@@ -899,31 +903,57 @@ line.</p>
 <h2 id="Runtime_environment">Runtime environment</h1><p>All files listed in the input object must be made available in the runtime
 environment.  The implementation may use a shared or distributed file
 system or transfer files via explicit download.  Implementations may choose
-not to provide access to files not explicitly specified by the input object
+not to provide access to files not explicitly specified in the input object
 or process requirements.</p>
 <p>Output files produced by tool execution must be written to the <strong>designated
-output directory</strong>.</p>
-<p>The initial current working directory when executing the tool must be the
-designated output directory.</p>
-<p>When executing the tool, the child process must not inherit environment
-variables from the parent process.  The tool must execute in a new, empty
-environment, containing only environment variables defined by
-<a href="#envvarrequirement">EnvVarRequirement</a>, the default environment of the
-Docker container specified in <a href="#dockerrequirement">DockerRequirement</a> (if
-applicable), and <code>TMPDIR</code>.</p>
-<p>The <code>TMPDIR</code> environment variable must be set in the runtime environment to
-the <strong>designated temporary directory</strong>.  Any files written to the
-designated temporary directory may be deleted by the workflow platform when
-the tool invocation is complete.</p>
+output directory</strong>.  The initial current working directory when executing
+the tool must be the designated output directory.</p>
+<p>Files may also be written to the <strong>designated temporary directory</strong>.  Any
+files written to the designated temporary directory may be deleted by the
+workflow platform immediately after the tool terminates.</p>
+<p>When executing the tool, the tool must execute in a new, empty environment
+with only the environment variables described below; the child process must
+not inherit environment variables from the parent process except where
+specified or at user option.</p>
+<ul>
+<li><code>HOME</code> must be set to the designated output directory.</li>
+<li><code>TMPDIR</code> must be set to the designated temporary directory.
+when the tool invocation and output collection is complete.</li>
+<li><code>PATH</code> may be inherited from the parent process, except when run in a
+container that provides its own <code>PATH</code>.</li>
+<li>Variables defined by <a href="#envvarrequirement">EnvVarRequirement</a></li>
+<li>The default environment of the container, such as when using
+<a href="#dockerrequirement">DockerRequirement</a></li>
+</ul>
 <p>An implementation may forbid the tool from writing to any location in the
 runtime environment file system other than the designated temporary
 directory and designated output directory.  An implementation may provide
-read-only input files, and disallow in-place update of input files.</p>
+read-only input files, and disallow in-place update of input files.  The
+designated temporary directory and designated output directory may reside
+on different mount points on different file systems.</p>
+<p>The <code>runtime</code> section available in <a href="#parameterreferences">parameter references</a>
+and <a href="#expressions">expressions</a> contains the following fields.  As noted
+earlier, an implementation may perform deferred resolution of runtime fields by providing
+opaque strings for any or all of the following fields; parameter references
+and expressions may only use the literal string value of the field and must
+not perform computation on the contents.</p>
+<ul>
+<li><code>runtime.outdir</code>: an absolute path to the designated output directory</li>
+<li><code>runtime.tmpdir</code>: an absolute path to the designated temporary directory</li>
+<li><code>runtime.cores</code>:  number of CPU cores reserved for the tool process</li>
+<li><code>runtime.ram</code>:    amount of RAM in mebibytes (2**20) reserved for the tool process</li>
+<li><code>runtime.outdirSize</code>: reserved storage space available in the designated output directory</li>
+<li><code>runtime.tmpdirSize</code>: reserved storage space available in the designated temporary directory</li>
+</ul>
+<p>See <a href="#resourcerequirement">ResourceRequirement</a> for details on how to
+describe the hardware resources required by a tool.</p>
 <p>The standard input stream and standard output stream may be redirected as
 described in the <code>stdin</code> and <code>stdout</code> fields.</p>
 <h3 id="Extensions">Extensions</h1><p><a href="#dockerrequirement">DockerRequirement</a>,
-<a href="#createfilerequirement">CreateFileRequirement</a>, and
-<a href="#envvarrequirement">EnvVarRequirement</a> are available as standard
+<a href="#createfilerequirement">CreateFileRequirement</a>,
+<a href="#envvarrequirement">EnvVarRequirement</a>,
+<a href="#shellcommandrequirement">ShellCommandRequirement</a>, and
+<a href="#resourcerequirement">ResourceRequirement</a> are available as standard
 extensions to core command line tool semantics for defining the runtime
 environment.</p>
 <h2 id="Execution">Execution</h1><p>Once the command line is built and the runtime environment is created, the
@@ -958,7 +988,7 @@ interface for constructing the input object.
 </td></tr><tr><td><code>outputs</code></td><td>array&lt;<a href="#CommandOutputParameter">CommandOutputParameter</a>&gt;</td><td>True</td><td><p>Defines the parameters representing the output of the process.  May be
 used to generate and/or validate the output object.
  <em>Inherited from <a href="#Process">Process</a></em></p>
-</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
+</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="#ResourceRequirement">ResourceRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
 workflow engine that must be met in order to execute this process.  If
 an implementation cannot satisfy all requirements, or a requirement is
 listed which is not recognized by the implementation, it is a fatal
@@ -1148,7 +1178,7 @@ interface for constructing the input object.
 </td></tr><tr><td><code>outputs</code></td><td>array&lt;<a href="#OutputParameter">OutputParameter</a>&gt;</td><td>True</td><td><p>Defines the parameters representing the output of the process.  May be
 used to generate and/or validate the output object.
  <em>Inherited from <a href="#Process">Process</a></em></p>
-</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
+</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="#ResourceRequirement">ResourceRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
 workflow engine that must be met in order to execute this process.  If
 an implementation cannot satisfy all requirements, or a requirement is
 listed which is not recognized by the implementation, it is a fatal
@@ -1166,7 +1196,7 @@ the implementation may report a warning.
 </td></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td></td></tr><tr><td><code>expression</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td><p>The expression to execute.  The expression must return a JSON object which
 matches the output parameters of the ExpressionTool.</p>
 </td></tr></table><h2 id="Expression">4.4 Expression</h1><p>Not a real type.  Indicates that a field must allow expressions.</p>
-<h2 id="ProcessRequirement">4.5 ProcessRequirement</h1><p>Extended by <a href="#DockerRequirement">DockerRequirement</a>,  <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a>,  <a href="#CreateFileRequirement">CreateFileRequirement</a>,  <a href="#EnvVarRequirement">EnvVarRequirement</a>,  <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a>,  <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a>,  <a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a>,  <a href="#SchemaDefRequirement">SchemaDefRequirement</a>,  <a href="#ShellCommandRequirement">ShellCommandRequirement</a></p>
+<h2 id="ProcessRequirement">4.5 ProcessRequirement</h1><p>Extended by <a href="#DockerRequirement">DockerRequirement</a>,  <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a>,  <a href="#CreateFileRequirement">CreateFileRequirement</a>,  <a href="#EnvVarRequirement">EnvVarRequirement</a>,  <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a>,  <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a>,  <a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a>,  <a href="#SchemaDefRequirement">SchemaDefRequirement</a>,  <a href="#ShellCommandRequirement">ShellCommandRequirement</a>,  <a href="#ResourceRequirement">ResourceRequirement</a></p>
 <p>A process requirement declares a prerequisite that may or must be fulfilled
 before executing a process.  See <a href="#process"><code>Process.hints</code></a> and
 <a href="#process"><code>Process.requirements</code></a>.</p>
@@ -1276,6 +1306,30 @@ contains <code>shellQuote: false</code>.  If <code>shellQuote: false</code> is s
 argument is joined into the command string without quoting, which allows
 the use of shell metacharacters such as <code>|</code> for pipes.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The specific requirement type. <em>Inherited from <a href="#ProcessRequirement">ProcessRequirement</a></em></p>
+</td></tr></table><h2 id="ResourceRequirement">4.5.10 ResourceRequirement</h1><p>Extends  <a href="#ProcessRequirement">ProcessRequirement</a></p>
+<p>Specify basic hardware resource requirements.</p>
+<p>"min" is the minimum amount of a resource that must be reserved to schedule
+a job. If "min" cannot be satisfied, the job should not be run.</p>
+<p>"max" is the maximum amount of a resource that the job shall be permitted
+to use. If a node has sufficient resources, multiple jobs may be scheduled
+on a single node provided each job's "max" resource requirements are
+met. If a job attempts to exceed its "max" resource allocation, an
+implementation may deny additional resources, which may result in job
+failure.</p>
+<p>If "min" is specified but "max" is not, then "max" == "min"
+If "max" is specified by "min" is not, then "min" == "max".</p>
+<p>It is an error if max &lt; min.</p>
+<p>It is an error if the value of any of these fields is negative.</p>
+<p>If neither "min" nor "max" is specified for a resource, an implementation may provide a default.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The specific requirement type. <em>Inherited from <a href="#ProcessRequirement">ProcessRequirement</a></em></p>
+</td></tr><tr><td><code>coresMin</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">long</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td><p>Minimum reserved number of CPU cores</p>
+</td></tr><tr><td><code>coresMax</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">int</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td><p>Maximum reserved number of CPU cores</p>
+</td></tr><tr><td><code>ramMin</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">long</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td><p>Minimum reserved RAM in mebibytes (2**20)</p>
+</td></tr><tr><td><code>ramMax</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">long</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td><p>Maximum reserved RAM in mebibytes (2**20)</p>
+</td></tr><tr><td><code>tmpdirMin</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">long</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td><p>Minimum reserved filesystem based storage for the designated temporary directory, in mebibytes (2**20)</p>
+</td></tr><tr><td><code>tmpdirMax</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">long</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td><p>Maximum reserved filesystem based storage for the designated temporary directory, in mebibytes (2**20)</p>
+</td></tr><tr><td><code>outdirMin</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">long</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td><p>Minimum reserved filesystem based storage for the designated output directory, in mebibytes (2**20)</p>
+</td></tr><tr><td><code>outdirMax</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">long</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td><p>Maximum reserved filesystem based storage for the designated output directory, in mebibytes (2**20)</p>
 </td></tr></table><h2 id="Process">4.6 Process</h1><p>Extended by <a href="#CommandLineTool">CommandLineTool</a>,  <a href="#ExpressionTool">ExpressionTool</a>,  <a href="#Workflow">Workflow</a></p>
 <p>The base executable type in CWL is the <code>Process</code> object defined by the
 document.  Note that the <code>Process</code> object is abstract and cannot be
@@ -1288,7 +1342,7 @@ used to validate the input object.  It may also be used to build a user
 interface for constructing the input object.</p>
 </td></tr><tr><td><code>outputs</code></td><td>array&lt;<a href="#OutputParameter">OutputParameter</a>&gt;</td><td>True</td><td><p>Defines the parameters representing the output of the process.  May be
 used to generate and/or validate the output object.</p>
-</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
+</td></tr><tr><td><code>requirements</code></td><td><a href="#CWLType">null</a> | array&lt;<a href="#DockerRequirement">DockerRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#CreateFileRequirement">CreateFileRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="#ResourceRequirement">ResourceRequirement</a>&gt;</td><td>True</td><td><p>Declares requirements that apply to either the runtime environment or the
 workflow engine that must be met in order to execute this process.  If
 an implementation cannot satisfy all requirements, or a requirement is
 listed which is not recognized by the implementation, it is a fatal
