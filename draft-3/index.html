@@ -510,6 +510,11 @@ and be marked as executable (the POSIX "+x" permission bits) to enable it
 to be executed directly.  A workflow platform may support this mode of
 operation; if so, it must provide <code>cwl-runner</code> as an alias for the
 platform's CWL implementation.</p>
+<p>A CWL input object document may similarly begin with <code>#!/usr/bin/env
+cwl-runner</code> and be marked as executable.  In this case, the input object
+must include the field "cwl:tool" supplying a URI to the default CWL
+document that should be executed with the fields of the input object as
+input parameters.</p>
 <h1 id="Sample_CWL_workflow">4. Sample CWL workflow</h1><p>revtool.cwl:</p>
 <pre><code>#!/usr/bin/env cwl-runner
 #
