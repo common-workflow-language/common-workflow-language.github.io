@@ -737,6 +737,16 @@ valid to stream file contents using a named pipe.  Default: <code>false</code>.
 </td></tr><tr><td><code>default</code></td><td><a href="#CWLType">null</a> | <a href="#Any">Any</a></td><td>True</td><td><p>The default value for this parameter if not provided in the input
 object.
  <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
+</td></tr><tr><td><code>format</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></td><td>True</td><td><p>Only applies if <code>type</code> is <code>File</code> or array of <code>File</code>.</p>
+<p>For input parameters, this must be one or more URIs of a concept nodes
+that represents file formats which are allowed as input to this
+parameter, preferrably defined within an ontology.  If no ontology is
+available, file formats may be tested by exact match.  See
+(FormatOntologyRequirement)[#formatontologyrequirement] for more
+information.</p>
+<p>For output parameters, this is the file format that will be assigned to
+the output parameter.
+ <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
 </td></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The unique identifier for this parameter object. <em>Inherited from <a href="#OutputParameter">OutputParameter</a></em></p>
 </td></tr><tr><td><code>outputBinding</code></td><td><a href="#CWLType">null</a> | <a href="#Binding">Binding</a></td><td>True</td><td><p>Describes how to handle the outputs of a process.
  <em>Inherited from <a href="#OutputParameter">OutputParameter</a></em></p>
@@ -805,7 +815,7 @@ not an error if an implementation cannot satisfy all hints, however
 the implementation may report a warning.</p>
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A short, human-readable label of this process object.</p>
 </td></tr><tr><td><code>description</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>A long, human-readable description of this process object.</p>
-</td></tr><tr><td><code>run</code></td><td><a href="#CommandLineTool">CommandLineTool</a> | <a href="#ExpressionTool">ExpressionTool</a> | <a href="#Workflow">Workflow</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>Specifies the process to run.</p>
+</td></tr><tr><td><code>run</code></td><td><a href="#CWLType">string</a> | <a href="#CommandLineTool">CommandLineTool</a> | <a href="#ExpressionTool">ExpressionTool</a> | <a href="#Workflow">Workflow</a></td><td>True</td><td><p>Specifies the process to run.</p>
 </td></tr><tr><td><code>scatter</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td></td></tr><tr><td><code>scatterMethod</code></td><td><a href="#CWLType">null</a> | <a href="#ScatterMethod">ScatterMethod</a></td><td>True</td><td><p>Required if <code>scatter</code> is an array of more than one element.</p>
 </td></tr></table><h2 id="WorkflowStepInput">4.1.2.1 WorkflowStepInput</h1><p>Extends  <a href="#Sink">Sink</a></p>
 <p>The input of a workflow step connects an upstream parameter (from the
@@ -1045,6 +1055,16 @@ valid to stream file contents using a named pipe.  Default: <code>false</code>.
 </td></tr><tr><td><code>default</code></td><td><a href="#CWLType">null</a> | <a href="#Any">Any</a></td><td>True</td><td><p>The default value for this parameter if not provided in the input
 object.
  <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
+</td></tr><tr><td><code>format</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></td><td>True</td><td><p>Only applies if <code>type</code> is <code>File</code> or array of <code>File</code>.</p>
+<p>For input parameters, this must be one or more URIs of a concept nodes
+that represents file formats which are allowed as input to this
+parameter, preferrably defined within an ontology.  If no ontology is
+available, file formats may be tested by exact match.  See
+(FormatOntologyRequirement)[#formatontologyrequirement] for more
+information.</p>
+<p>For output parameters, this is the file format that will be assigned to
+the output parameter.
+ <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
 </td></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The unique identifier for this parameter object. <em>Inherited from <a href="#InputParameter">InputParameter</a></em></p>
 </td></tr><tr><td><code>inputBinding</code></td><td><a href="#CWLType">null</a> | <a href="#CommandLineBinding">CommandLineBinding</a></td><td>True</td><td><p>Describes how to handle the inputs of a process and convert them
 into a concrete form for execution, such as command line parameters.
@@ -1130,6 +1150,16 @@ valid to stream file contents using a named pipe.  Default: <code>false</code>.
  <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
 </td></tr><tr><td><code>default</code></td><td><a href="#CWLType">null</a> | <a href="#Any">Any</a></td><td>True</td><td><p>The default value for this parameter if not provided in the input
 object.
+ <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
+</td></tr><tr><td><code>format</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></td><td>True</td><td><p>Only applies if <code>type</code> is <code>File</code> or array of <code>File</code>.</p>
+<p>For input parameters, this must be one or more URIs of a concept nodes
+that represents file formats which are allowed as input to this
+parameter, preferrably defined within an ontology.  If no ontology is
+available, file formats may be tested by exact match.  See
+(FormatOntologyRequirement)[#formatontologyrequirement] for more
+information.</p>
+<p>For output parameters, this is the file format that will be assigned to
+the output parameter.
  <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
 </td></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The unique identifier for this parameter object. <em>Inherited from <a href="#OutputParameter">OutputParameter</a></em></p>
 </td></tr><tr><td><code>outputBinding</code></td><td><a href="#CWLType">null</a> | <a href="#CommandOutputBinding">CommandOutputBinding</a></td><td>True</td><td><p>Describes how to handle the outputs of a process.
@@ -1371,6 +1401,15 @@ seeking.  An implementation may use this flag to indicate whether it is
 valid to stream file contents using a named pipe.  Default: <code>false</code>.</p>
 </td></tr><tr><td><code>default</code></td><td><a href="#CWLType">null</a> | <a href="#Any">Any</a></td><td>True</td><td><p>The default value for this parameter if not provided in the input
 object.</p>
+</td></tr><tr><td><code>format</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></td><td>True</td><td><p>Only applies if <code>type</code> is <code>File</code> or array of <code>File</code>.</p>
+<p>For input parameters, this must be one or more URIs of a concept nodes
+that represents file formats which are allowed as input to this
+parameter, preferrably defined within an ontology.  If no ontology is
+available, file formats may be tested by exact match.  See
+(FormatOntologyRequirement)[#formatontologyrequirement] for more
+information.</p>
+<p>For output parameters, this is the file format that will be assigned to
+the output parameter.</p>
 </td></tr></table><h2 id="Binding">4.6.1.1 Binding</h1><p>Extended by <a href="#CommandLineBinding">CommandLineBinding</a>,  <a href="#CommandOutputBinding">CommandOutputBinding</a></p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>loadContents</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">boolean</a></td><td>True</td><td><p>Only applies when <code>type</code> is <code>File</code>.  Read up to the first 64 KiB of text from the file and place it in the
 "contents" field of the file object for manipulation by expressions.</p>
@@ -1400,6 +1439,16 @@ valid to stream file contents using a named pipe.  Default: <code>false</code>.
  <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
 </td></tr><tr><td><code>default</code></td><td><a href="#CWLType">null</a> | <a href="#Any">Any</a></td><td>True</td><td><p>The default value for this parameter if not provided in the input
 object.
+ <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
+</td></tr><tr><td><code>format</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></td><td>True</td><td><p>Only applies if <code>type</code> is <code>File</code> or array of <code>File</code>.</p>
+<p>For input parameters, this must be one or more URIs of a concept nodes
+that represents file formats which are allowed as input to this
+parameter, preferrably defined within an ontology.  If no ontology is
+available, file formats may be tested by exact match.  See
+(FormatOntologyRequirement)[#formatontologyrequirement] for more
+information.</p>
+<p>For output parameters, this is the file format that will be assigned to
+the output parameter.
  <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
 </td></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The unique identifier for this parameter object.</p>
 </td></tr><tr><td><code>inputBinding</code></td><td><a href="#CWLType">null</a> | <a href="#Binding">Binding</a></td><td>True</td><td><p>Describes how to handle the inputs of a process and convert them
@@ -1448,6 +1497,16 @@ valid to stream file contents using a named pipe.  Default: <code>false</code>.
  <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
 </td></tr><tr><td><code>default</code></td><td><a href="#CWLType">null</a> | <a href="#Any">Any</a></td><td>True</td><td><p>The default value for this parameter if not provided in the input
 object.
+ <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
+</td></tr><tr><td><code>format</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></td><td>True</td><td><p>Only applies if <code>type</code> is <code>File</code> or array of <code>File</code>.</p>
+<p>For input parameters, this must be one or more URIs of a concept nodes
+that represents file formats which are allowed as input to this
+parameter, preferrably defined within an ontology.  If no ontology is
+available, file formats may be tested by exact match.  See
+(FormatOntologyRequirement)[#formatontologyrequirement] for more
+information.</p>
+<p>For output parameters, this is the file format that will be assigned to
+the output parameter.
  <em>Inherited from <a href="#Parameter">Parameter</a></em></p>
 </td></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The unique identifier for this parameter object.</p>
 </td></tr><tr><td><code>outputBinding</code></td><td><a href="#CWLType">null</a> | <a href="#Binding">Binding</a></td><td>True</td><td><p>Describes how to handle the outputs of a process.</p>
@@ -1534,6 +1593,16 @@ indexes of the primary file, or external references which must be
 included when loading primary document.  A file object listed in
 <code>secondaryFiles</code> may itself include <code>secondaryFiles</code> for which the same
 rules apply.</p>
+</td></tr><tr><td><code>format</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a></td><td>True</td><td><p>The format of the file.  This must be a URI of a concept node that
+represents the file format, preferrably defined within an ontology.
+If no ontology is available, file formats may be tested by exact match.</p>
+<p>Reasoning about format compatability must be done by checking that an
+input file format is the same or <code>rdfs:subClassOf</code> the format required
+by the input parameter.</p>
+<p>If no ontologies are specified in <code>formatOntologies</code>, the runtime may
+perform exact file format matches.</p>
+<p>File format ontologies are provided in the "@schema" section of the
+file's "@context".</p>
 </td></tr></table><h2 id="CWLVersions">12. CWLVersions</h1><p>Version symbols for published CWL document versions.</p>
 <h2 id="Sink">13. Sink</h1><p>Extended by <a href="#WorkflowOutputParameter">WorkflowOutputParameter</a>,  <a href="#WorkflowStepInput">WorkflowStepInput</a></p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>source</code></td><td><a href="#CWLType">null</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Specifies one or more workflow parameters that will provide input to

@@ -90,6 +90,7 @@
         "double": "http://www.w3.org/2001/XMLSchema#double", 
         "draft-3.dev1": "https://w3id.org/cwl/cwl#draft-3.dev1", 
         "draft-3.dev2": "https://w3id.org/cwl/cwl#draft-3.dev2", 
+        "draft-3.dev3": "https://w3id.org/cwl/cwl#draft-3.dev3", 
         "enum": "https://w3id.org/cwl/salad#enum", 
         "envDef": "https://w3id.org/cwl/cwl#EnvVarRequirement/envDef", 
         "envName": "https://w3id.org/cwl/cwl#EnvironmentDef/envName", 
@@ -103,6 +104,11 @@
         "flat_crossproduct": "https://w3id.org/cwl/cwl#flat_crossproduct", 
         "float": "http://www.w3.org/2001/XMLSchema#float", 
         "foaf": "http://xmlns.com/foaf/0.1/", 
+        "format": {
+            "@id": "https://w3id.org/cwl/cwl#format", 
+            "@type": "@id", 
+            "identity": true
+        }, 
         "glob": "https://w3id.org/cwl/cwl#CommandOutputBinding/glob", 
         "hints": {
             "@id": "https://w3id.org/cwl/cwl#hints", 
