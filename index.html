@@ -3,84 +3,37 @@
     <html>
     <head>
     <meta charset="UTF-8">
-    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <title>Common Workflow Language</title>
+    <title>mmon Workflow Language</title>
     <style>
-    html {
-      height:100%;
+    :target {
+      padding-top: 61px;
+      margin-top: -61px;
     }
-
     body {
-      height:100%;
-      position: relative;
+      padding-top: 61px;
     }
-
-    #main {
-     background-color: white;
+    .tocnav ol {
+      list-style: none
     }
-
-    .nav > li > a {
-      padding: 0px;
-    }
-
-    ol {
-      list-style-type: none;
-    }
-    ol > li > ol > li {
-      padding-left: 1em;
-    }
-
-    .nav-secondary > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
-      text-decoration: underline;
-      color: #337AB7;
-      background-color: transparent;
-    }
-
-    #main {
-      overflow-y: auto;
-    }
-
-    #lefttoc {
-      background-color: aliceblue;
-      overflow-y: auto;
-    }
-
-    #toc {
-      margin-top: 1em;
-      margin-bottom: 2em;
-    }
-
-    @media (min-width: 992px) {
-      .full-height {
-        height: 100%;
-      }
-      #lefttoc {
-        border-right: thin solid #C0C0C0;
-      }
-    }
-
     </style>
     </head>
     <body>
-    <div class="container-fluid full-height">
     
-    <div class="row full-height">
-    <div id="lefttoc" class="col-md-3 full-height" role="complementary">
-    <nav id="toc"><ol class="nav nav-pills nav-stacked"><li><a href="#CWL_Specification"> CWL Specification</a><ol class="nav nav-pills nav-stacked nav-secondary">
-<li><a href="#Implementations"> Implementations</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#Examples"> Examples</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#Development_and_testing"> Development and testing</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#Community_and_Contributing"> Community and Contributing</a><ol class="nav nav-pills nav-stacked nav-secondary">
-<li><a href="#Code_of_Conduct"> Code of Conduct</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol></li></ol><li><a href="#Participating_Organizations"> Participating Organizations</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol><li><a href="#Individual_Contributors"> Individual Contributors</a><ol class="nav nav-pills nav-stacked nav-secondary">
-</ol></li></ol></li></ol></nav>
-    </div>
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">CWL</a>
     
-    <div class="col-md-9 full-height" role="main" id="main" data-spy="scroll" data-target="#toc"><h1 id="Common_Workflow_Language">Common Workflow Language</h1><p>The Common Workflow Language (CWL) is an informal, multi-vendor working group
+          </div>
+        </div>
+      </nav>
+    
+    <div class="container">
+    
+    <div class="row">
+    
+    <div class="col-md-12" role="main" id="main"><h1 id="Common_Workflow_Language">Common Workflow Language</h1><p>The Common Workflow Language (CWL) is an informal, multi-vendor working group
 consisting of various organizations and individuals that have an interest in
 portability of data analysis workflows.  Our goal is to create specifications
 that enable data scientists to describe analysis tools and workflows that are
