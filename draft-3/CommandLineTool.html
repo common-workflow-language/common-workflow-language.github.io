@@ -675,10 +675,9 @@ If no ontology is available, file formats may be tested by exact match.</p>
 <p>Reasoning about format compatability must be done by checking that an
 input file format is the same or <code>rdfs:subClassOf</code> the format required
 by the input parameter.</p>
-<p>If no ontologies are specified in <code>formatOntologies</code>, the runtime may
-perform exact file format matches.</p>
-<p>File format ontologies are provided in the "@schema" section of the
-file's "@context".</p>
+<p>File format ontologies may be provided in the "$schema" metadata at the
+root of the document.  If no ontologies are specified in <code>$schema</code>, the
+runtime may perform exact file format matches.</p>
 </td></tr></table><h2 id="CommandInputRecordSchema">5.1.3 CommandInputRecordSchema</h1><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Record_symbol</td><td>True</td><td><p>Must be <code>record</code></p>
 </td></tr><tr><td><code>fields</code></td><td>array&lt;<a href="#CommandInputRecordField">CommandInputRecordField</a>&gt;</td><td>False</td><td><p>Defines the fields of the record.</p>
 </td></tr></table><h2 id="CommandInputRecordField">5.1.4 CommandInputRecordField</h1><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The name of the field</p>
@@ -724,8 +723,8 @@ effective value.</p>
 "contents" field of the file object for manipulation by expressions.</p>
 </td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only applies when <code>type</code> is <code>File</code>.  Describes files that must be
 included alongside the primary file.</p>
-<p>If the value is an expression, the context of the expression is the input
-or output File parameter to which this binding applies.</p>
+<p>If the value is an expression, the value of <code>self</code> in the expression
+must be the primary input or output File to which this binding applies.</p>
 <p>If the value is a string, it specifies that the following pattern
 should be applied to the primary file:</p>
 <ol>
@@ -747,7 +746,7 @@ apply the binding rules above.</p>
 <p>If <code>valueFrom</code> is an expression, evaluate the expression to yield the
 actual value to use to build the command line and apply the binding
 rules above.  If the inputBinding is associated with an input
-parameter, the "context" of the expression will be the value of the
+parameter, the value of <code>self</code> in the expression will be the value of the
 input parameter.</p>
 <p>When a binding is part of the <code>CommandLineTool.arguments</code> field,
 the <code>valueFrom</code> field is required.</p>
@@ -807,8 +806,8 @@ the following order:</p>
 "contents" field of the file object for manipulation by expressions.</p>
 </td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only applies when <code>type</code> is <code>File</code>.  Describes files that must be
 included alongside the primary file.</p>
-<p>If the value is an expression, the context of the expression is the input
-or output File parameter to which this binding applies.</p>
+<p>If the value is an expression, the value of <code>self</code> in the expression
+must be the primary input or output File to which this binding applies.</p>
 <p>If the value is a string, it specifies that the following pattern
 should be applied to the primary file:</p>
 <ol>
@@ -825,9 +824,10 @@ return a string or an array of strings, which will then be evaluated as
 one or more glob patterns.  Only files which actually exist will be
 matched and returned.</p>
 </td></tr><tr><td><code>outputEval</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>False</td><td><p>Evaluate an expression to generate the output value.  If <code>glob</code> was
-specified, the script <code>context</code> will be an array containing any files that were
-matched.  Additionally, if <code>loadContents</code> is <code>true</code>, the File objects
-will include up to the first 64 KiB of file contents in the <code>contents</code> field.</p>
+specified, the value of <code>self</code> must be an array containing any files
+that were matched.  Additionally, if <code>loadContents</code> is <code>true</code>, the File
+objects will include up to the first 64 KiB of file contents in the
+<code>contents</code> field.</p>
 </td></tr></table><h2 id="CommandOutputEnumSchema">5.2.3 CommandOutputEnumSchema</h1><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Enum_symbol</td><td>True</td><td><p>Must be <code>enum</code></p>
 </td></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the set of valid symbols.</p>
 </td></tr><tr><td><code>outputBinding</code></td><td><a href="#CommandOutputBinding">CommandOutputBinding</a></td><td>False</td><td></td></tr></table><h2 id="CommandOutputArraySchema">5.2.4 CommandOutputArraySchema</h1><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Array_symbol</td><td>True</td><td><p>Must be <code>array</code></p>
