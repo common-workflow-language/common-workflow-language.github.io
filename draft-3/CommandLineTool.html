@@ -105,33 +105,29 @@ under the terms of the Apache License, version 2.0.</p>
 </ol><li><a href="#Output_binding">4.4 Output binding</a><ol>
 </ol></li></ol><li><a href="#CommandLineTool">5. CommandLineTool</a><ol>
 <li><a href="#CommandInputParameter">5.1 CommandInputParameter</a><ol>
-<li><a href="#CWLType">5.1.1 CWLType</a><ol>
-</ol><li><a href="#File">5.1.2 File</a><ol>
-</ol><li><a href="#CommandInputRecordSchema">5.1.3 CommandInputRecordSchema</a><ol>
-</ol><li><a href="#CommandInputRecordField">5.1.4 CommandInputRecordField</a><ol>
-<li><a href="#PrimitiveType">5.1.4.1 PrimitiveType</a><ol>
-</ol><li><a href="#CommandInputEnumSchema">5.1.4.2 CommandInputEnumSchema</a><ol>
-</ol><li><a href="#CommandLineBinding">5.1.4.3 CommandLineBinding</a><ol>
-</ol><li><a href="#Expression">5.1.4.4 Expression</a><ol>
-</ol><li><a href="#CommandInputArraySchema">5.1.4.5 CommandInputArraySchema</a><ol>
-</ol></li></ol><li><a href="#Any">5.1.5 Any</a><ol>
+<li><a href="#Expression">5.1.1 Expression</a><ol>
+</ol><li><a href="#CWLType">5.1.2 CWLType</a><ol>
+</ol><li><a href="#File">5.1.3 File</a><ol>
+</ol><li><a href="#CommandInputRecordSchema">5.1.4 CommandInputRecordSchema</a><ol>
+<li><a href="#CommandInputRecordField">5.1.4.1 CommandInputRecordField</a><ol>
+<li><a href="#PrimitiveType">5.1.4.1.1 PrimitiveType</a><ol>
+</ol><li><a href="#CommandInputEnumSchema">5.1.4.1.2 CommandInputEnumSchema</a><ol>
+<li><a href="#CommandLineBinding">5.1.4.1.2.1 CommandLineBinding</a><ol>
+</ol></li></ol><li><a href="#CommandInputArraySchema">5.1.4.1.3 CommandInputArraySchema</a><ol>
+</ol></li></ol></li></ol><li><a href="#Any">5.1.5 Any</a><ol>
 </ol></li></ol><li><a href="#CommandOutputParameter">5.2 CommandOutputParameter</a><ol>
 <li><a href="#CommandOutputRecordSchema">5.2.1 CommandOutputRecordSchema</a><ol>
-</ol><li><a href="#CommandOutputRecordField">5.2.2 CommandOutputRecordField</a><ol>
-<li><a href="#RecordField">5.2.2.1 RecordField</a><ol>
-<li><a href="#RecordSchema">5.2.2.1.1 RecordSchema</a><ol>
-</ol><li><a href="#EnumSchema">5.2.2.1.2 EnumSchema</a><ol>
-</ol><li><a href="#ArraySchema">5.2.2.1.3 ArraySchema</a><ol>
-</ol></li></ol><li><a href="#CommandOutputBinding">5.2.2.2 CommandOutputBinding</a><ol>
-</ol></li></ol><li><a href="#CommandOutputEnumSchema">5.2.3 CommandOutputEnumSchema</a><ol>
-</ol><li><a href="#CommandOutputArraySchema">5.2.4 CommandOutputArraySchema</a><ol>
-</ol></li></ol><li><a href="#InlineJavascriptRequirement">5.3 InlineJavascriptRequirement</a><ol>
+<li><a href="#CommandOutputRecordField">5.2.1.1 CommandOutputRecordField</a><ol>
+<li><a href="#CommandOutputEnumSchema">5.2.1.1.1 CommandOutputEnumSchema</a><ol>
+<li><a href="#CommandOutputBinding">5.2.1.1.1.1 CommandOutputBinding</a><ol>
+</ol></li></ol><li><a href="#CommandOutputArraySchema">5.2.1.1.2 CommandOutputArraySchema</a><ol>
+</ol></li></ol></li></ol></li></ol><li><a href="#InlineJavascriptRequirement">5.3 InlineJavascriptRequirement</a><ol>
 </ol><li><a href="#SchemaDefRequirement">5.4 SchemaDefRequirement</a><ol>
 <li><a href="#InputRecordSchema">5.4.1 InputRecordSchema</a><ol>
-</ol><li><a href="#InputRecordField">5.4.2 InputRecordField</a><ol>
-<li><a href="#InputEnumSchema">5.4.2.1 InputEnumSchema</a><ol>
-</ol><li><a href="#InputArraySchema">5.4.2.2 InputArraySchema</a><ol>
-</ol></li></ol></li></ol><li><a href="#DockerRequirement">5.5 DockerRequirement</a><ol>
+<li><a href="#InputRecordField">5.4.1.1 InputRecordField</a><ol>
+<li><a href="#InputEnumSchema">5.4.1.1.1 InputEnumSchema</a><ol>
+</ol><li><a href="#InputArraySchema">5.4.1.1.2 InputArraySchema</a><ol>
+</ol></li></ol></li></ol></li></ol><li><a href="#DockerRequirement">5.5 DockerRequirement</a><ol>
 </ol><li><a href="#CreateFileRequirement">5.6 CreateFileRequirement</a><ol>
 </ol><li><a href="#FileDef">5.7 FileDef</a><ol>
 </ol><li><a href="#EnvVarRequirement">5.8 EnvVarRequirement</a><ol>
@@ -634,16 +630,20 @@ runtime environment and inputs may produce different results.</p>
 </td></tr><tr><td><code>permanentFailCodes</code></td><td>array&lt;<a href="#CWLType">int</a>&gt;</td><td>False</td><td><p>Exit codes that indicate the process failed due to a permanent logic error, where excuting the process with the same runtime environment and same inputs is expected to always fail.</p>
 </td></tr></table><h2 id="CommandInputParameter">5.1 CommandInputParameter</h1><p>An input parameter for a CommandLineTool.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The unique identifier for this parameter object.</p>
-</td></tr><tr><td><code>type</code></td><td><a href="#CWLType">CWLType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.</p>
-</td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this parameter object.</p>
-</td></tr><tr><td><code>description</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A long, human-readable description of this parameter object.</p>
-</td></tr><tr><td><code>streamable</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Currently only applies if <code>type</code> is <code>File</code>.  A value of <code>true</code>
-indicates that the file is read or written sequentially without
-seeking.  An implementation may use this flag to indicate whether it is
-valid to stream file contents using a named pipe.  Default: <code>false</code>.</p>
-</td></tr><tr><td><code>default</code></td><td><a href="#Any">Any</a></td><td>False</td><td><p>The default value for this parameter if not provided in the input
-object.</p>
-</td></tr><tr><td><code>format</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></td><td>False</td><td><p>Only applies if <code>type</code> is <code>File</code> or array of <code>File</code>.</p>
+</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>Describes files that must be included alongside the primary file(s).</p>
+<p>If the value is an expression, the value of <code>self</code> in the expression
+must be the primary input or output File to which this binding applies.</p>
+<p>If the value is a string, it specifies that the following pattern
+should be applied to the primary file:</p>
+<ol>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
+period <code>.</code> and all following characters).  If there are no file
+extensions, the path is unchanged.</li>
+<li>Append the remainder of the string to the end of the file path.</li>
+</ol>
+</td></tr><tr><td><code>format</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>For input parameters, this must be one or more URIs of a concept nodes
 that represents file formats which are allowed as input to this
 parameter, preferrably defined within an ontology.  If no ontology is
@@ -652,10 +652,24 @@ available, file formats may be tested by exact match.  See
 information.</p>
 <p>For output parameters, this is the file format that will be assigned to
 the output parameter.</p>
+</td></tr><tr><td><code>streamable</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>A value of <code>true</code> indicates that the file is read or written
+sequentially without seeking.  An implementation may use this flag to
+indicate whether it is valid to stream file contents using a named
+pipe.  Default: <code>false</code>.</p>
+</td></tr><tr><td><code>type</code></td><td><a href="#CWLType">CWLType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.</p>
+</td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this parameter object.</p>
+</td></tr><tr><td><code>description</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A long, human-readable description of this parameter object.</p>
 </td></tr><tr><td><code>inputBinding</code></td><td><a href="#CommandLineBinding">CommandLineBinding</a></td><td>False</td><td><p>Describes how to handle the inputs of a process and convert them
 into a concrete form for execution, such as command line parameters.</p>
-</td></tr></table><h2 id="CWLType">5.1.1 CWLType</h1><p>Extends primitive types with the concept of a file as a first class type.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>null</code></td><td> no value</td></tr><tr><td><code>boolean</code></td><td> a binary value</td></tr><tr><td><code>int</code></td><td> 32-bit signed integer</td></tr><tr><td><code>long</code></td><td> 64-bit signed integer</td></tr><tr><td><code>float</code></td><td> single precision (32-bit) IEEE 754 floating-point number</td></tr><tr><td><code>double</code></td><td> double precision (64-bit) IEEE 754 floating-point number</td></tr><tr><td><code>string</code></td><td> Unicode character sequence</td></tr><tr><td><code>File</code></td><td> A File object</td></tr></table><h2 id="File">5.1.2 File</h1><p>Represents a file (or group of files if <code>secondaryFiles</code> is specified) that
+</td></tr><tr><td><code>default</code></td><td><a href="#Any">Any</a></td><td>False</td><td><p>The default value for this parameter if not provided in the input
+object.</p>
+</td></tr></table><h2 id="Expression">5.1.1 Expression</h1><p>Not a real type.  Indicates that a field must allow runtime parameter
+references.  If <a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a>
+is declared and supported by the platform, the field must also allow
+Javascript expressions.</p>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>ExpressionPlaceholder</code></td><td></td></tr></table><h2 id="CWLType">5.1.2 CWLType</h1><p>Extends primitive types with the concept of a file as a first class type.</p>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>null</code></td><td> no value</td></tr><tr><td><code>boolean</code></td><td> a binary value</td></tr><tr><td><code>int</code></td><td> 32-bit signed integer</td></tr><tr><td><code>long</code></td><td> 64-bit signed integer</td></tr><tr><td><code>float</code></td><td> single precision (32-bit) IEEE 754 floating-point number</td></tr><tr><td><code>double</code></td><td> double precision (64-bit) IEEE 754 floating-point number</td></tr><tr><td><code>string</code></td><td> Unicode character sequence</td></tr><tr><td><code>File</code></td><td> A File object</td></tr></table><h2 id="File">5.1.3 File</h1><p>Represents a file (or group of files if <code>secondaryFiles</code> is specified) that
 must be accessible by tools using standard POSIX file system call API such as
 open(2) and read(2).</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td>File_class</td><td>True</td><td><p>Must be <code>File</code> to indicate this object describes a file.</p>
@@ -678,17 +692,71 @@ by the input parameter.</p>
 <p>File format ontologies may be provided in the "$schema" metadata at the
 root of the document.  If no ontologies are specified in <code>$schema</code>, the
 runtime may perform exact file format matches.</p>
-</td></tr></table><h2 id="CommandInputRecordSchema">5.1.3 CommandInputRecordSchema</h1><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Record_symbol</td><td>True</td><td><p>Must be <code>record</code></p>
+</td></tr></table><h2 id="CommandInputRecordSchema">5.1.4 CommandInputRecordSchema</h1><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Record_symbol</td><td>True</td><td><p>Must be <code>record</code></p>
 </td></tr><tr><td><code>fields</code></td><td>array&lt;<a href="#CommandInputRecordField">CommandInputRecordField</a>&gt;</td><td>False</td><td><p>Defines the fields of the record.</p>
-</td></tr></table><h2 id="CommandInputRecordField">5.1.4 CommandInputRecordField</h1><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The name of the field</p>
+</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>Describes files that must be included alongside the primary file(s).</p>
+<p>If the value is an expression, the value of <code>self</code> in the expression
+must be the primary input or output File to which this binding applies.</p>
+<p>If the value is a string, it specifies that the following pattern
+should be applied to the primary file:</p>
+<ol>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
+period <code>.</code> and all following characters).  If there are no file
+extensions, the path is unchanged.</li>
+<li>Append the remainder of the string to the end of the file path.</li>
+</ol>
+</td></tr><tr><td><code>format</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>For input parameters, this must be one or more URIs of a concept nodes
+that represents file formats which are allowed as input to this
+parameter, preferrably defined within an ontology.  If no ontology is
+available, file formats may be tested by exact match.  See
+(FormatOntologyRequirement)[#formatontologyrequirement] for more
+information.</p>
+<p>For output parameters, this is the file format that will be assigned to
+the output parameter.</p>
+</td></tr><tr><td><code>streamable</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>A value of <code>true</code> indicates that the file is read or written
+sequentially without seeking.  An implementation may use this flag to
+indicate whether it is valid to stream file contents using a named
+pipe.  Default: <code>false</code>.</p>
+</td></tr></table><h2 id="CommandInputRecordField">5.1.4.1 CommandInputRecordField</h1><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The name of the field</p>
 </td></tr><tr><td><code>type</code></td><td><a href="#PrimitiveType">PrimitiveType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>The field type</p>
 </td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A documentation string for this field</p>
-</td></tr><tr><td><code>inputBinding</code></td><td><a href="#CommandLineBinding">CommandLineBinding</a></td><td>False</td><td></td></tr></table><h2 id="PrimitiveType">5.1.4.1 PrimitiveType</h1><p>Salad data types are based on Avro schema declarations.  Refer to the
+</td></tr><tr><td><code>inputBinding</code></td><td><a href="#CommandLineBinding">CommandLineBinding</a></td><td>False</td><td></td></tr></table><h2 id="PrimitiveType">5.1.4.1.1 PrimitiveType</h1><p>Salad data types are based on Avro schema declarations.  Refer to the
 <a href="https://avro.apache.org/docs/current/spec.html#schemas">Avro schema declaration documentation</a> for
 detailed information.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>null</code></td><td></td></tr><tr><td><code>boolean</code></td><td></td></tr><tr><td><code>int</code></td><td></td></tr><tr><td><code>long</code></td><td></td></tr><tr><td><code>float</code></td><td></td></tr><tr><td><code>double</code></td><td></td></tr><tr><td><code>string</code></td><td></td></tr></table><h2 id="CommandInputEnumSchema">5.1.4.2 CommandInputEnumSchema</h1><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Enum_symbol</td><td>True</td><td><p>Must be <code>enum</code></p>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>null</code></td><td></td></tr><tr><td><code>boolean</code></td><td></td></tr><tr><td><code>int</code></td><td></td></tr><tr><td><code>long</code></td><td></td></tr><tr><td><code>float</code></td><td></td></tr><tr><td><code>double</code></td><td></td></tr><tr><td><code>string</code></td><td></td></tr></table><h2 id="CommandInputEnumSchema">5.1.4.1.2 CommandInputEnumSchema</h1><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Enum_symbol</td><td>True</td><td><p>Must be <code>enum</code></p>
 </td></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the set of valid symbols.</p>
-</td></tr><tr><td><code>inputBinding</code></td><td><a href="#CommandLineBinding">CommandLineBinding</a></td><td>False</td><td></td></tr></table><h2 id="CommandLineBinding">5.1.4.3 CommandLineBinding</h1><p>When listed under <code>inputBinding</code> in the input schema, the term
+</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>Describes files that must be included alongside the primary file(s).</p>
+<p>If the value is an expression, the value of <code>self</code> in the expression
+must be the primary input or output File to which this binding applies.</p>
+<p>If the value is a string, it specifies that the following pattern
+should be applied to the primary file:</p>
+<ol>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
+period <code>.</code> and all following characters).  If there are no file
+extensions, the path is unchanged.</li>
+<li>Append the remainder of the string to the end of the file path.</li>
+</ol>
+</td></tr><tr><td><code>format</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>For input parameters, this must be one or more URIs of a concept nodes
+that represents file formats which are allowed as input to this
+parameter, preferrably defined within an ontology.  If no ontology is
+available, file formats may be tested by exact match.  See
+(FormatOntologyRequirement)[#formatontologyrequirement] for more
+information.</p>
+<p>For output parameters, this is the file format that will be assigned to
+the output parameter.</p>
+</td></tr><tr><td><code>streamable</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>A value of <code>true</code> indicates that the file is read or written
+sequentially without seeking.  An implementation may use this flag to
+indicate whether it is valid to stream file contents using a named
+pipe.  Default: <code>false</code>.</p>
+</td></tr><tr><td><code>inputBinding</code></td><td><a href="#CommandLineBinding">CommandLineBinding</a></td><td>False</td><td></td></tr></table><h2 id="CommandLineBinding">5.1.4.1.2.1 CommandLineBinding</h1><p>When listed under <code>inputBinding</code> in the input schema, the term
 "value" refers to the the corresponding value in the input object.  For
 binding objects listed in <code>CommandLineTool.arguments</code>, the term "value"
 refers to the effective value after evaluating <code>valueFrom</code>.</p>
@@ -719,21 +787,9 @@ effective value.</p>
 <li><p><strong>null</strong>: Add nothing.</p>
 </li>
 </ul>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>loadContents</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Only applies when <code>type</code> is <code>File</code>.  Read up to the first 64 KiB of text from the file and place it in the
-"contents" field of the file object for manipulation by expressions.</p>
-</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only applies when <code>type</code> is <code>File</code>.  Describes files that must be
-included alongside the primary file.</p>
-<p>If the value is an expression, the value of <code>self</code> in the expression
-must be the primary input or output File to which this binding applies.</p>
-<p>If the value is a string, it specifies that the following pattern
-should be applied to the primary file:</p>
-<ol>
-<li>If string begins with one or more caret <code>^</code> characters, for each
-caret, remove the last file extension from the path (the last
-period <code>.</code> and all following characters).  If there are no file
-extensions, the path is unchanged.</li>
-<li>Append the remainder of the string to the end of the file path.</li>
-</ol>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>loadContents</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>Read up to the first 64 KiB of text from the file and place it in the
+"contents" field of the file object for use by expressions.</p>
 </td></tr><tr><td><code>position</code></td><td><a href="#CWLType">int</a></td><td>False</td><td><p>The sorting key.  Default position is 0.</p>
 </td></tr><tr><td><code>prefix</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>Command line prefix to add before the value.</p>
 </td></tr><tr><td><code>separate</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>If true (default), then the prefix and value must be added as separate
@@ -753,59 +809,10 @@ the <code>valueFrom</code> field is required.</p>
 </td></tr><tr><td><code>shellQuote</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>If <code>ShellCommandRequirement</code> is in the requirements for the current command,
 this controls whether the value is quoted on the command line (default is true).
 Use <code>shellQuote: false</code> to inject metacharacters for operations such as pipes.</p>
-</td></tr></table><h2 id="Expression">5.1.4.4 Expression</h1><p>Not a real type.  Indicates that a field must allow expressions.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>ExpressionPlaceholder</code></td><td></td></tr></table><h2 id="CommandInputArraySchema">5.1.4.5 CommandInputArraySchema</h1><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Array_symbol</td><td>True</td><td><p>Must be <code>array</code></p>
+</td></tr></table><h2 id="CommandInputArraySchema">5.1.4.1.3 CommandInputArraySchema</h1><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Array_symbol</td><td>True</td><td><p>Must be <code>array</code></p>
 </td></tr><tr><td><code>items</code></td><td><a href="#PrimitiveType">PrimitiveType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the type of the array elements.</p>
-</td></tr><tr><td><code>inputBinding</code></td><td><a href="#CommandLineBinding">CommandLineBinding</a></td><td>False</td><td></td></tr></table><h2 id="Any">5.1.5 Any</h1><p>The <strong>Any</strong> type validates for any non-null value.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>Any</code></td><td></td></tr></table><h2 id="CommandOutputParameter">5.2 CommandOutputParameter</h1><p>An output parameter for a CommandLineTool.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The unique identifier for this parameter object.</p>
-</td></tr><tr><td><code>type</code></td><td><a href="#CWLType">CWLType</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.</p>
-</td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this parameter object.</p>
-</td></tr><tr><td><code>description</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A long, human-readable description of this parameter object.</p>
-</td></tr><tr><td><code>streamable</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Currently only applies if <code>type</code> is <code>File</code>.  A value of <code>true</code>
-indicates that the file is read or written sequentially without
-seeking.  An implementation may use this flag to indicate whether it is
-valid to stream file contents using a named pipe.  Default: <code>false</code>.</p>
-</td></tr><tr><td><code>default</code></td><td><a href="#Any">Any</a></td><td>False</td><td><p>The default value for this parameter if not provided in the input
-object.</p>
-</td></tr><tr><td><code>format</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></td><td>False</td><td><p>Only applies if <code>type</code> is <code>File</code> or array of <code>File</code>.</p>
-<p>For input parameters, this must be one or more URIs of a concept nodes
-that represents file formats which are allowed as input to this
-parameter, preferrably defined within an ontology.  If no ontology is
-available, file formats may be tested by exact match.  See
-(FormatOntologyRequirement)[#formatontologyrequirement] for more
-information.</p>
-<p>For output parameters, this is the file format that will be assigned to
-the output parameter.</p>
-</td></tr><tr><td><code>outputBinding</code></td><td><a href="#CommandOutputBinding">CommandOutputBinding</a></td><td>False</td><td><p>Describes how to handle the outputs of a process.</p>
-</td></tr></table><h2 id="CommandOutputRecordSchema">5.2.1 CommandOutputRecordSchema</h1><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Record_symbol</td><td>True</td><td><p>Must be <code>record</code></p>
-</td></tr><tr><td><code>fields</code></td><td>array&lt;<a href="#CommandOutputRecordField">CommandOutputRecordField</a>&gt;</td><td>False</td><td><p>Defines the fields of the record.</p>
-</td></tr></table><h2 id="CommandOutputRecordField">5.2.2 CommandOutputRecordField</h1><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Record_symbol</td><td>True</td><td><p>Must be <code>record</code></p>
-</td></tr><tr><td><code>fields</code></td><td>array&lt;<a href="#RecordField">RecordField</a>&gt;</td><td>False</td><td><p>Defines the fields of the record.</p>
-</td></tr><tr><td><code>outputBinding</code></td><td><a href="#CommandOutputBinding">CommandOutputBinding</a></td><td>False</td><td></td></tr></table><h2 id="RecordField">5.2.2.1 RecordField</h1><p>A field of a record.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The name of the field</p>
-</td></tr><tr><td><code>type</code></td><td><a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>The field type</p>
-</td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A documentation string for this field</p>
-</td></tr></table><h2 id="RecordSchema">5.2.2.1.1 RecordSchema</h1><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Record_symbol</td><td>True</td><td><p>Must be <code>record</code></p>
-</td></tr><tr><td><code>fields</code></td><td>array&lt;<a href="#RecordField">RecordField</a>&gt;</td><td>False</td><td><p>Defines the fields of the record.</p>
-</td></tr></table><h2 id="EnumSchema">5.2.2.1.2 EnumSchema</h1><p>Define an enumerated type.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Enum_symbol</td><td>True</td><td><p>Must be <code>enum</code></p>
-</td></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the set of valid symbols.</p>
-</td></tr></table><h2 id="ArraySchema">5.2.2.1.3 ArraySchema</h1><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Array_symbol</td><td>True</td><td><p>Must be <code>array</code></p>
-</td></tr><tr><td><code>items</code></td><td><a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the type of the array elements.</p>
-</td></tr></table><h2 id="CommandOutputBinding">5.2.2.2 CommandOutputBinding</h1><p>Describes how to generate an output parameter based on the files produced
-by a CommandLineTool.</p>
-<p>The output parameter is generated by applying these operations in
-the following order:</p>
-<ul>
-<li>glob</li>
-<li>loadContents</li>
-<li>outputEval</li>
-</ul>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>loadContents</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Only applies when <code>type</code> is <code>File</code>.  Read up to the first 64 KiB of text from the file and place it in the
-"contents" field of the file object for manipulation by expressions.</p>
-</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only applies when <code>type</code> is <code>File</code>.  Describes files that must be
-included alongside the primary file.</p>
+</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>Describes files that must be included alongside the primary file(s).</p>
 <p>If the value is an expression, the value of <code>self</code> in the expression
 must be the primary input or output File to which this binding applies.</p>
 <p>If the value is a string, it specifies that the following pattern
@@ -817,21 +824,169 @@ period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
 </ol>
-</td></tr><tr><td><code>glob</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>Find files relative to the output directory, using POSIX glob(3)
+</td></tr><tr><td><code>format</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>For input parameters, this must be one or more URIs of a concept nodes
+that represents file formats which are allowed as input to this
+parameter, preferrably defined within an ontology.  If no ontology is
+available, file formats may be tested by exact match.  See
+(FormatOntologyRequirement)[#formatontologyrequirement] for more
+information.</p>
+<p>For output parameters, this is the file format that will be assigned to
+the output parameter.</p>
+</td></tr><tr><td><code>streamable</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>A value of <code>true</code> indicates that the file is read or written
+sequentially without seeking.  An implementation may use this flag to
+indicate whether it is valid to stream file contents using a named
+pipe.  Default: <code>false</code>.</p>
+</td></tr><tr><td><code>inputBinding</code></td><td><a href="#CommandLineBinding">CommandLineBinding</a></td><td>False</td><td></td></tr></table><h2 id="Any">5.1.5 Any</h1><p>The <strong>Any</strong> type validates for any non-null value.</p>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>Any</code></td><td></td></tr></table><h2 id="CommandOutputParameter">5.2 CommandOutputParameter</h1><p>An output parameter for a CommandLineTool.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The unique identifier for this parameter object.</p>
+</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>Describes files that must be included alongside the primary file(s).</p>
+<p>If the value is an expression, the value of <code>self</code> in the expression
+must be the primary input or output File to which this binding applies.</p>
+<p>If the value is a string, it specifies that the following pattern
+should be applied to the primary file:</p>
+<ol>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
+period <code>.</code> and all following characters).  If there are no file
+extensions, the path is unchanged.</li>
+<li>Append the remainder of the string to the end of the file path.</li>
+</ol>
+</td></tr><tr><td><code>format</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>For input parameters, this must be one or more URIs of a concept nodes
+that represents file formats which are allowed as input to this
+parameter, preferrably defined within an ontology.  If no ontology is
+available, file formats may be tested by exact match.  See
+(FormatOntologyRequirement)[#formatontologyrequirement] for more
+information.</p>
+<p>For output parameters, this is the file format that will be assigned to
+the output parameter.</p>
+</td></tr><tr><td><code>streamable</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>A value of <code>true</code> indicates that the file is read or written
+sequentially without seeking.  An implementation may use this flag to
+indicate whether it is valid to stream file contents using a named
+pipe.  Default: <code>false</code>.</p>
+</td></tr><tr><td><code>type</code></td><td><a href="#CWLType">CWLType</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.</p>
+</td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this parameter object.</p>
+</td></tr><tr><td><code>description</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A long, human-readable description of this parameter object.</p>
+</td></tr><tr><td><code>outputBinding</code></td><td><a href="#CommandOutputBinding">CommandOutputBinding</a></td><td>False</td><td><p>Describes how to handle the outputs of a process.</p>
+</td></tr></table><h2 id="CommandOutputRecordSchema">5.2.1 CommandOutputRecordSchema</h1><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Record_symbol</td><td>True</td><td><p>Must be <code>record</code></p>
+</td></tr><tr><td><code>fields</code></td><td>array&lt;<a href="#CommandOutputRecordField">CommandOutputRecordField</a>&gt;</td><td>False</td><td><p>Defines the fields of the record.</p>
+</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>Describes files that must be included alongside the primary file(s).</p>
+<p>If the value is an expression, the value of <code>self</code> in the expression
+must be the primary input or output File to which this binding applies.</p>
+<p>If the value is a string, it specifies that the following pattern
+should be applied to the primary file:</p>
+<ol>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
+period <code>.</code> and all following characters).  If there are no file
+extensions, the path is unchanged.</li>
+<li>Append the remainder of the string to the end of the file path.</li>
+</ol>
+</td></tr><tr><td><code>format</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>For input parameters, this must be one or more URIs of a concept nodes
+that represents file formats which are allowed as input to this
+parameter, preferrably defined within an ontology.  If no ontology is
+available, file formats may be tested by exact match.  See
+(FormatOntologyRequirement)[#formatontologyrequirement] for more
+information.</p>
+<p>For output parameters, this is the file format that will be assigned to
+the output parameter.</p>
+</td></tr><tr><td><code>streamable</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>A value of <code>true</code> indicates that the file is read or written
+sequentially without seeking.  An implementation may use this flag to
+indicate whether it is valid to stream file contents using a named
+pipe.  Default: <code>false</code>.</p>
+</td></tr></table><h2 id="CommandOutputRecordField">5.2.1.1 CommandOutputRecordField</h1><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The name of the field</p>
+</td></tr><tr><td><code>type</code></td><td><a href="#PrimitiveType">PrimitiveType</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>The field type</p>
+</td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A documentation string for this field</p>
+</td></tr><tr><td><code>outputBinding</code></td><td><a href="#CommandOutputBinding">CommandOutputBinding</a></td><td>False</td><td></td></tr></table><h2 id="CommandOutputEnumSchema">5.2.1.1.1 CommandOutputEnumSchema</h1><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Enum_symbol</td><td>True</td><td><p>Must be <code>enum</code></p>
+</td></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the set of valid symbols.</p>
+</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>Describes files that must be included alongside the primary file(s).</p>
+<p>If the value is an expression, the value of <code>self</code> in the expression
+must be the primary input or output File to which this binding applies.</p>
+<p>If the value is a string, it specifies that the following pattern
+should be applied to the primary file:</p>
+<ol>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
+period <code>.</code> and all following characters).  If there are no file
+extensions, the path is unchanged.</li>
+<li>Append the remainder of the string to the end of the file path.</li>
+</ol>
+</td></tr><tr><td><code>format</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>For input parameters, this must be one or more URIs of a concept nodes
+that represents file formats which are allowed as input to this
+parameter, preferrably defined within an ontology.  If no ontology is
+available, file formats may be tested by exact match.  See
+(FormatOntologyRequirement)[#formatontologyrequirement] for more
+information.</p>
+<p>For output parameters, this is the file format that will be assigned to
+the output parameter.</p>
+</td></tr><tr><td><code>streamable</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>A value of <code>true</code> indicates that the file is read or written
+sequentially without seeking.  An implementation may use this flag to
+indicate whether it is valid to stream file contents using a named
+pipe.  Default: <code>false</code>.</p>
+</td></tr><tr><td><code>outputBinding</code></td><td><a href="#CommandOutputBinding">CommandOutputBinding</a></td><td>False</td><td></td></tr></table><h2 id="CommandOutputBinding">5.2.1.1.1.1 CommandOutputBinding</h1><p>Describes how to generate an output parameter based on the files produced
+by a CommandLineTool.</p>
+<p>The output parameter is generated by applying these operations in
+the following order:</p>
+<ul>
+<li>glob</li>
+<li>loadContents</li>
+<li>outputEval</li>
+</ul>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>glob</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>Find files relative to the output directory, using POSIX glob(3)
 pathname matching.  If provided an array, find files that match any
 pattern in the array.  If provided an expression, the expression must
 return a string or an array of strings, which will then be evaluated as
-one or more glob patterns.  Only files which actually exist will be
-matched and returned.</p>
+one or more glob patterns.  Must only match and return files which
+actually exist.</p>
+</td></tr><tr><td><code>loadContents</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>For each file matched in <code>glob</code>, read up to
+the first 64 KiB of text from the file and place it in the <code>contents</code>
+field of the file object for manipulation by <code>outputEval</code>.</p>
 </td></tr><tr><td><code>outputEval</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>False</td><td><p>Evaluate an expression to generate the output value.  If <code>glob</code> was
-specified, the value of <code>self</code> must be an array containing any files
-that were matched.  Additionally, if <code>loadContents</code> is <code>true</code>, the File
-objects will include up to the first 64 KiB of file contents in the
-<code>contents</code> field.</p>
-</td></tr></table><h2 id="CommandOutputEnumSchema">5.2.3 CommandOutputEnumSchema</h1><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Enum_symbol</td><td>True</td><td><p>Must be <code>enum</code></p>
-</td></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the set of valid symbols.</p>
-</td></tr><tr><td><code>outputBinding</code></td><td><a href="#CommandOutputBinding">CommandOutputBinding</a></td><td>False</td><td></td></tr></table><h2 id="CommandOutputArraySchema">5.2.4 CommandOutputArraySchema</h1><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Array_symbol</td><td>True</td><td><p>Must be <code>array</code></p>
+specified, the value of <code>self</code> must be an array containing file objects
+that were matched.  If no files were matched, <code>self' must be a zero
+length array; if a single file was matched, the value of</code>self<code>is an
+array of a single element.  Additionally, if</code>loadContents<code>is</code>true<code>,
+the File objects must include up to the first 64 KiB of file contents
+in the</code>contents` field.</p>
+</td></tr></table><h2 id="CommandOutputArraySchema">5.2.1.1.2 CommandOutputArraySchema</h1><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Array_symbol</td><td>True</td><td><p>Must be <code>array</code></p>
 </td></tr><tr><td><code>items</code></td><td><a href="#PrimitiveType">PrimitiveType</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the type of the array elements.</p>
+</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>Describes files that must be included alongside the primary file(s).</p>
+<p>If the value is an expression, the value of <code>self</code> in the expression
+must be the primary input or output File to which this binding applies.</p>
+<p>If the value is a string, it specifies that the following pattern
+should be applied to the primary file:</p>
+<ol>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
+period <code>.</code> and all following characters).  If there are no file
+extensions, the path is unchanged.</li>
+<li>Append the remainder of the string to the end of the file path.</li>
+</ol>
+</td></tr><tr><td><code>format</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>For input parameters, this must be one or more URIs of a concept nodes
+that represents file formats which are allowed as input to this
+parameter, preferrably defined within an ontology.  If no ontology is
+available, file formats may be tested by exact match.  See
+(FormatOntologyRequirement)[#formatontologyrequirement] for more
+information.</p>
+<p>For output parameters, this is the file format that will be assigned to
+the output parameter.</p>
+</td></tr><tr><td><code>streamable</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>A value of <code>true</code> indicates that the file is read or written
+sequentially without seeking.  An implementation may use this flag to
+indicate whether it is valid to stream file contents using a named
+pipe.  Default: <code>false</code>.</p>
 </td></tr><tr><td><code>outputBinding</code></td><td><a href="#CommandOutputBinding">CommandOutputBinding</a></td><td>False</td><td></td></tr></table><h2 id="InlineJavascriptRequirement">5.3 InlineJavascriptRequirement</h1><p>Indicates that the workflow platform must support inline Javascript expressions.
 If this requirement is not present, the workflow platform must not perform expression
 interpolatation.</p>
@@ -850,14 +1005,95 @@ to earlier schema definitions.</p>
 </td></tr><tr><td><code>types</code></td><td>array&lt;<a href="#InputRecordSchema">InputRecordSchema</a>&nbsp;|&nbsp;<a href="#InputEnumSchema">InputEnumSchema</a>&nbsp;|&nbsp;<a href="#InputArraySchema">InputArraySchema</a>&gt;</td><td>True</td><td><p>The list of type definitions.</p>
 </td></tr></table><h2 id="InputRecordSchema">5.4.1 InputRecordSchema</h1><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Record_symbol</td><td>True</td><td><p>Must be <code>record</code></p>
 </td></tr><tr><td><code>fields</code></td><td>array&lt;<a href="#InputRecordField">InputRecordField</a>&gt;</td><td>False</td><td><p>Defines the fields of the record.</p>
-</td></tr></table><h2 id="InputRecordField">5.4.2 InputRecordField</h1><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The name of the field</p>
+</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>Describes files that must be included alongside the primary file(s).</p>
+<p>If the value is an expression, the value of <code>self</code> in the expression
+must be the primary input or output File to which this binding applies.</p>
+<p>If the value is a string, it specifies that the following pattern
+should be applied to the primary file:</p>
+<ol>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
+period <code>.</code> and all following characters).  If there are no file
+extensions, the path is unchanged.</li>
+<li>Append the remainder of the string to the end of the file path.</li>
+</ol>
+</td></tr><tr><td><code>format</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>For input parameters, this must be one or more URIs of a concept nodes
+that represents file formats which are allowed as input to this
+parameter, preferrably defined within an ontology.  If no ontology is
+available, file formats may be tested by exact match.  See
+(FormatOntologyRequirement)[#formatontologyrequirement] for more
+information.</p>
+<p>For output parameters, this is the file format that will be assigned to
+the output parameter.</p>
+</td></tr><tr><td><code>streamable</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>A value of <code>true</code> indicates that the file is read or written
+sequentially without seeking.  An implementation may use this flag to
+indicate whether it is valid to stream file contents using a named
+pipe.  Default: <code>false</code>.</p>
+</td></tr></table><h2 id="InputRecordField">5.4.1.1 InputRecordField</h1><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The name of the field</p>
 </td></tr><tr><td><code>type</code></td><td><a href="#PrimitiveType">PrimitiveType</a> | <a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>The field type</p>
 </td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A documentation string for this field</p>
-</td></tr><tr><td><code>inputBinding</code></td><td><a href="#CommandLineBinding">CommandLineBinding</a> | <a href="#CommandOutputBinding">CommandOutputBinding</a></td><td>False</td><td></td></tr></table><h2 id="InputEnumSchema">5.4.2.1 InputEnumSchema</h1><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Enum_symbol</td><td>True</td><td><p>Must be <code>enum</code></p>
+</td></tr><tr><td><code>inputBinding</code></td><td><a href="#CommandLineBinding">CommandLineBinding</a></td><td>False</td><td></td></tr></table><h2 id="InputEnumSchema">5.4.1.1.1 InputEnumSchema</h1><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Enum_symbol</td><td>True</td><td><p>Must be <code>enum</code></p>
 </td></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the set of valid symbols.</p>
-</td></tr><tr><td><code>inputBinding</code></td><td><a href="#CommandLineBinding">CommandLineBinding</a> | <a href="#CommandOutputBinding">CommandOutputBinding</a></td><td>False</td><td></td></tr></table><h2 id="InputArraySchema">5.4.2.2 InputArraySchema</h1><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Array_symbol</td><td>True</td><td><p>Must be <code>array</code></p>
+</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>Describes files that must be included alongside the primary file(s).</p>
+<p>If the value is an expression, the value of <code>self</code> in the expression
+must be the primary input or output File to which this binding applies.</p>
+<p>If the value is a string, it specifies that the following pattern
+should be applied to the primary file:</p>
+<ol>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
+period <code>.</code> and all following characters).  If there are no file
+extensions, the path is unchanged.</li>
+<li>Append the remainder of the string to the end of the file path.</li>
+</ol>
+</td></tr><tr><td><code>format</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>For input parameters, this must be one or more URIs of a concept nodes
+that represents file formats which are allowed as input to this
+parameter, preferrably defined within an ontology.  If no ontology is
+available, file formats may be tested by exact match.  See
+(FormatOntologyRequirement)[#formatontologyrequirement] for more
+information.</p>
+<p>For output parameters, this is the file format that will be assigned to
+the output parameter.</p>
+</td></tr><tr><td><code>streamable</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>A value of <code>true</code> indicates that the file is read or written
+sequentially without seeking.  An implementation may use this flag to
+indicate whether it is valid to stream file contents using a named
+pipe.  Default: <code>false</code>.</p>
+</td></tr><tr><td><code>inputBinding</code></td><td><a href="#CommandLineBinding">CommandLineBinding</a></td><td>False</td><td></td></tr></table><h2 id="InputArraySchema">5.4.1.1.2 InputArraySchema</h1><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Array_symbol</td><td>True</td><td><p>Must be <code>array</code></p>
 </td></tr><tr><td><code>items</code></td><td><a href="#PrimitiveType">PrimitiveType</a> | <a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the type of the array elements.</p>
-</td></tr><tr><td><code>inputBinding</code></td><td><a href="#CommandLineBinding">CommandLineBinding</a> | <a href="#CommandOutputBinding">CommandOutputBinding</a></td><td>False</td><td></td></tr></table><h2 id="DockerRequirement">5.5 DockerRequirement</h1><p>Indicates that a workflow component should be run in a
+</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>Describes files that must be included alongside the primary file(s).</p>
+<p>If the value is an expression, the value of <code>self</code> in the expression
+must be the primary input or output File to which this binding applies.</p>
+<p>If the value is a string, it specifies that the following pattern
+should be applied to the primary file:</p>
+<ol>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
+period <code>.</code> and all following characters).  If there are no file
+extensions, the path is unchanged.</li>
+<li>Append the remainder of the string to the end of the file path.</li>
+</ol>
+</td></tr><tr><td><code>format</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>For input parameters, this must be one or more URIs of a concept nodes
+that represents file formats which are allowed as input to this
+parameter, preferrably defined within an ontology.  If no ontology is
+available, file formats may be tested by exact match.  See
+(FormatOntologyRequirement)[#formatontologyrequirement] for more
+information.</p>
+<p>For output parameters, this is the file format that will be assigned to
+the output parameter.</p>
+</td></tr><tr><td><code>streamable</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>A value of <code>true</code> indicates that the file is read or written
+sequentially without seeking.  An implementation may use this flag to
+indicate whether it is valid to stream file contents using a named
+pipe.  Default: <code>false</code>.</p>
+</td></tr><tr><td><code>inputBinding</code></td><td><a href="#CommandLineBinding">CommandLineBinding</a></td><td>False</td><td></td></tr></table><h2 id="DockerRequirement">5.5 DockerRequirement</h1><p>Indicates that a workflow component should be run in a
 <a href="http://docker.com">Docker</a> container, and specifies how to fetch or build
 the image.</p>
 <p>If a CommandLineTool lists <code>DockerRequirement</code> under

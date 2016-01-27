@@ -281,96 +281,108 @@ field, the field name must be replace with the vocabulary term.</p>
 and is not part of the vocabulary, no processing occurs.</p>
 </li>
 </ul>
-<p>Field name resolution is not relative.  It must not be affected by the base
-URI.</p>
-<h3 id="Field_name_resolution_example">3.1.1 Field name resolution example</h1><p>Given the following schema fragment and namespace:</p>
-<pre><code>  [{
-    "name": "base",
-    "jsonldPredicate": "http://example.com/base"
-  }]
-</code></pre>
-<pre><code>  "$namespaces": {
+<p>Field name resolution is not relative.  It must not be affected by the
+base URI.</p>
+<h3 id="Field_name_resolution_example">3.1.1 Field name resolution example</h1><p>Given the following schema:</p>
+<pre><code>{
+  "$namespaces": {
     "acid": "http://example.com/acid#"
-  }
+  },
+  "$graph": [{
+    "name": "ExampleType",
+    "type": "record",
+    "fields": [{
+      "name": "base",
+      "type": "string",
+      "jsonldPredicate": "http://example.com/base"
+    }]
+  }]
+}
 </code></pre>
 <p>Process the following example:</p>
-<pre><code>{
-  "base": "one",
-  "form": {
-    "http://example.com/base": "two",
-    "http://example.com/three": "three",
-  },
-  "acid:four": "four"
-}
+<pre><code>    {
+      "base": "one",
+      "form": {
+        "http://example.com/base": "two",
+        "http://example.com/three": "three",
+      },
+      "acid:four": "four"
+    }
 </code></pre>
 <p>This becomes:</p>
-<pre><code>{
-  "base": "one",
-  "form": {
-    "base": "two",
-    "http://example.com/three": "three",
-  },
-  "http://example.com/acid#four": "four"
-}
+<pre><code>    {
+      "base": "one",
+      "form": {
+        "base": "two",
+        "http://example.com/three": "three",
+      },
+      "http://example.com/acid#four": "four"
+    }
 </code></pre>
-<h2 id="Identifier_resolution">3.2 Identifier resolution</h1><p>The schema may designate one or more fields as identifier fields to
-identify specific objects.  Processing must resolve relative identifiers to
-absolute identifiers using the following rules:</p>
+<h2 id="Identifier_resolution">3.2 Identifier resolution</h1><p>The schema may designate one or more fields as identifier fields to identify
+specific objects.  Processing must resolve relative identifiers to absolute
+identifiers using the following rules:</p>
 <ul>
 <li><p>If an identifier URI is prefixed with <code>#</code> it is a URI relative
 fragment identifier.  It is resolved relative to the base URI by setting
 or replacing the fragment portion of the base URI.</p>
 </li>
-<li><p>If an identifier URI does not contain a scheme and is not prefixed
-<code>#</code> it is a parent relative fragment identifier.  It is resolved relative
-to the base URI by the following rule: if the base URI does not contain a
+<li><p>If an identifier URI does not contain a scheme and is not prefixed <code>#</code> it
+is a parent relative fragment identifier.  It is resolved relative to the
+base URI by the following rule: if the base URI does not contain a
 document fragment, set the fragment portion of the base URI.  If the base
 URI does contain a document fragment, append a slash <code>/</code> followed by the
 identifier field to the fragment portion of the base URI.</p>
 </li>
 <li><p>If an identifier URI begins with a namespace prefix declared in
-<code>$namespaces</code> followed by a colon <code>:</code>, the prefix and colon must be replaced
-by the namespace declared in <code>$namespaces</code>.</p>
+<code>$namespaces</code> followed by a colon <code>:</code>, the prefix and colon must be
+replaced by the namespace declared in <code>$namespaces</code>.</p>
 </li>
-<li><p>If an identifier URI is an absolute URI consisting of a scheme and
-path, no processing occurs.</p>
+<li><p>If an identifier URI is an absolute URI consisting of a scheme and path,
+no processing occurs.</p>
 </li>
 </ul>
 <p>When preprocessing visits a node containing an identifier, that identifier
 must be used as the base URI to process child nodes.</p>
 <p>It is an error for more than one object in a document to have the same
 absolute URI.</p>
-<h3 id="Identifier_resolution_example">3.2.1 Identifier resolution example</h1><p>Given the following schema fragment and namespace:</p>
-<pre><code>  [{
-    "name": "id",
-    "jsonldPredicate": "@id"
-  }]
-</code></pre>
-<pre><code>  "$namespaces": {
+<h3 id="Identifier_resolution_example">3.2.1 Identifier resolution example</h1><p>Given the following schema:</p>
+<pre><code>{
+  "$namespaces": {
     "acid": "http://example.com/acid#"
-  }
+  },
+  "$graph": [{
+    "name": "ExampleType",
+    "type": "record",
+    "fields": [{
+      "name": "id",
+      "type": "string",
+      "jsonldPredicate": "@id"
+    }]
+  }]
+}
 </code></pre>
 <p>Process the following example:</p>
-<pre><code>{
-  "id": "http://example.com/base",
-  "form": {
-    "id": "one",
-    "things": [
-      {
-        "id": "two"
-      },
-      {
-        "id": "#three",
-      },
-      {
-        "id": "four#five",
-      },
-      {
-        "id": "acid:six",
+<pre><code>    {
+      "id": "http://example.com/base",
+      "form": {
+        "id": "one",
+        "things": [
+          {
+            "id": "two"
+          },
+          {
+            "id": "#three",
+          },
+          {
+            "id": "four#five",
+          },
+          {
+            "id": "acid:six",
+          }
+        ]
       }
-    ]
-  }
-}
+    }
 </code></pre>
 <p>This becomes:</p>
 <pre><code>{
@@ -385,7 +397,7 @@ absolute URI.</p>
         "id": "http://example.com/base#three"
       },
       {
-        "id": "http://example.com/base#one/four#five",
+        "id": "http://example.com/four#five",
       },
       {
         "id": "http://example.com/acid#six",
@@ -402,21 +414,21 @@ following rules:</p>
 fragment identifier.  It is resolved relative to the base URI by setting
 or replacing the fragment portion of the base URI.</p>
 </li>
-<li><p>If a reference URI does not contain a scheme and is not prefixed with
-<code>#</code> it is a path relative reference.  If the reference URI contains <code>#</code>
-in any position other than the first character, the reference URI must be
-divided into a path portion and a fragment portion split on the first
-instance of <code>#</code>.  The path portion is resolved relative to the base URI
-by the following rule: if the path portion of the base URI ends in a
-slash <code>/</code>, append the path portion of the reference URI to the path
-portion of the base URI.  If the path portion of the base URI does not
-end in a slash, replace the final path segment with the path portion of
-the reference URI.  Replace the fragment portion of the base URI with the
-fragment portion of the reference URI.</p>
+<li><p>If a reference URI does not contain a scheme and is not prefixed with <code>#</code>
+it is a path relative reference.  If the reference URI contains <code>#</code> in any
+position other than the first character, the reference URI must be divided
+into a path portion and a fragment portion split on the first instance of
+<code>#</code>.  The path portion is resolved relative to the base URI by the following
+rule: if the path portion of the base URI ends in a slash <code>/</code>, append the
+path portion of the reference URI to the path portion of the base URI.  If
+the path portion of the base URI does not end in a slash, replace the final
+path segment with the path portion of the reference URI.  Replace the
+fragment portion of the base URI with the fragment portion of the reference
+URI.</p>
 </li>
-<li><p>If a reference URI begins with a namespace prefix declared in
-<code>$namespaces</code> followed by a colon <code>:</code>, the prefix and colon must be replaced
-by the namespace declared in <code>$namespaces</code>.</p>
+<li><p>If a reference URI begins with a namespace prefix declared in <code>$namespaces</code>
+followed by a colon <code>:</code>, the prefix and colon must be replaced by the
+namespace declared in <code>$namespaces</code>.</p>
 </li>
 <li><p>If a reference URI is an absolute URI consisting of a scheme and path,
 no processing occurs.</p>
@@ -424,20 +436,27 @@ no processing occurs.</p>
 </ul>
 <p>Link resolution must not affect the base URI used to resolve identifiers
 and other links.</p>
-<h3 id="Link_resolution_example">3.3.1 Link resolution example</h1><p>Given the following schema fragment and namespace:</p>
+<h3 id="Link_resolution_example">3.3.1 Link resolution example</h1><p>Given the following schema:</p>
 <pre><code>{
-  "name": "link"
-  "jsonldPredicate": {
-     "_type": "@id"
-   }
-}
-</code></pre>
-<pre><code>  "$namespaces": {
+  "$namespaces": {
     "acid": "http://example.com/acid#"
-  }
+  },
+  "$graph": [{
+    "name": "ExampleType",
+    "type": "record",
+    "fields": [{
+      "name": "link",
+      "type": "string",
+      "jsonldPredicate": {
+        "_type": "@id"
+      }
+    }]
+  }]
+}
 </code></pre>
 <p>Process the following example:</p>
 <pre><code>{
+  "$base": "http://example.com/base",
   "link": "http://example.com/base/zero",
   "form": {
     "link": "one",
@@ -460,6 +479,7 @@ and other links.</p>
 </code></pre>
 <p>This becomes:</p>
 <pre><code>{
+  "$base": "http://example.com/base",
   "link": "http://example.com/base/zero",
   "form": {
     "link": "http://example.com/one",
@@ -481,61 +501,70 @@ and other links.</p>
 }
 </code></pre>
 <h2 id="Vocabulary_resolution">3.4 Vocabulary resolution</h1><p>The schema may designate one or more vocabulary fields which use terms
-defined in the vocabulary.  Processing must resolve vocabulary fields to
-either vocabulary terms or absolute URIs by first applying the link
-resolution rules defined above, then applying the following additional
-rule:</p>
-<ul>
-<li>If a reference URI is a vocabulary field, and there is a vocabulary
+  defined in the vocabulary.  Processing must resolve vocabulary fields to
+  either vocabulary terms or absolute URIs by first applying the link
+  resolution rules defined above, then applying the following additional
+  rule:</p>
+<pre><code>* If a reference URI is a vocabulary field, and there is a vocabulary
 term which maps to the resolved URI, the reference must be replace with
-the vocabulary term.</li>
-</ul>
-<h3 id="Vocabulary_resolution_example">3.4.1 Vocabulary resolution example</h1><p>Given the following schema fragment:</p>
-<pre><code>[{
-  "name": "voc"
-  "jsonldPredicate": {
-     "_type": "@vocab"
-   }
-},
-{
-  "names": "Colors",
-  "type": "enum",
-  "symbols": ["http://example.com/acid#red"]
-]
+the vocabulary term.
+</code></pre>
+<h3 id="Vocabulary_resolution_example">3.4.1 Vocabulary resolution example</h1><p>Given the following schema:</p>
+<pre><code>{
+  "$namespaces": {
+    "acid": "http://example.com/acid#"
+  },
+  "$graph": [{
+    "name": "Colors",
+    "type": "enum",
+    "symbols": ["acid:red"]
+  },
+  {
+    "name": "ExampleType",
+    "type": "record",
+    "fields": [{
+      "name": "voc",
+      "type": "string",
+      "jsonldPredicate": {
+        "_type": "@vocab"
+      }
+    }]
+  }]
+}
 </code></pre>
 <p>Process the following example:</p>
-<pre><code>{
-  "form": {
-    "things": [
-      {
-        "voc": "red",
-      },
-      {
-        "voc": "http://example.com/acid#red",
-      },
-      {
-        "voc": "http://example.com/acid#blue",
+<pre><code>    {
+      "form": {
+        "things": [
+          {
+            "voc": "red",
+          },
+          {
+            "voc": "http://example.com/acid#red",
+          },
+          {
+            "voc": "http://example.com/acid#blue",
+          }
+        ]
       }
-    ]
-  }
-}
+    }
 </code></pre>
 <p>This becomes:</p>
-<pre><code>{
-  "form": {
-    "things": [
-      {
-        "voc": "red",
-      },
-      {
-        "voc": "red",
-      },
-      {
-        "voc": "http://example.com/acid#blue",
+<pre><code>    {
+      "form": {
+        "things": [
+          {
+            "voc": "red",
+          },
+          {
+            "voc": "red",
+          },
+          {
+            "voc": "http://example.com/acid#blue",
+          }
+        ]
       }
-    ]
-  }
-}
+    }
 </code></pre>
 <h2 id="Import">3.5 Import</h1><p>During preprocessing traversal, an implementation must resolve <code>$import</code>
 directives.  An <code>$import</code> directive is an object consisting of exactly one
