@@ -522,9 +522,7 @@ extensions, the path is unchanged.</li>
 <p>For input parameters, this must be one or more URIs of a concept nodes
 that represents file formats which are allowed as input to this
 parameter, preferrably defined within an ontology.  If no ontology is
-available, file formats may be tested by exact match.  See
-(FormatOntologyRequirement)[#formatontologyrequirement] for more
-information.</p>
+available, file formats may be tested by exact match.</p>
 <p>For output parameters, this is the file format that will be assigned to
 the output parameter.</p>
 </td></tr><tr><td><code>streamable</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
@@ -563,8 +561,11 @@ rules apply.</p>
 represents the file format, preferrably defined within an ontology.
 If no ontology is available, file formats may be tested by exact match.</p>
 <p>Reasoning about format compatability must be done by checking that an
-input file format is the same or <code>rdfs:subClassOf</code> the format required
-by the input parameter.</p>
+input file format is the same, <code>owl:equivalentClass</code> or
+<code>rdfs:subClassOf</code> the format required by the input parameter.
+<code>owl:equivalentClass</code> is transitive with <code>rdfs:subClassOf</code>, e.g. if
+<code>&lt;B&gt; owl:equivalentClass &lt;C&gt;</code> and <code>&lt;B&gt; owl:subclassOf &lt;A&gt;</code> then infer
+<code>&lt;C&gt; owl:subclassOf &lt;A&gt;</code>.</p>
 <p>File format ontologies may be provided in the "$schema" metadata at the
 root of the document.  If no ontologies are specified in <code>$schema</code>, the
 runtime may perform exact file format matches.</p>
@@ -587,9 +588,7 @@ extensions, the path is unchanged.</li>
 <p>For input parameters, this must be one or more URIs of a concept nodes
 that represents file formats which are allowed as input to this
 parameter, preferrably defined within an ontology.  If no ontology is
-available, file formats may be tested by exact match.  See
-(FormatOntologyRequirement)[#formatontologyrequirement] for more
-information.</p>
+available, file formats may be tested by exact match.</p>
 <p>For output parameters, this is the file format that will be assigned to
 the output parameter.</p>
 </td></tr><tr><td><code>streamable</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
@@ -622,9 +621,7 @@ extensions, the path is unchanged.</li>
 <p>For input parameters, this must be one or more URIs of a concept nodes
 that represents file formats which are allowed as input to this
 parameter, preferrably defined within an ontology.  If no ontology is
-available, file formats may be tested by exact match.  See
-(FormatOntologyRequirement)[#formatontologyrequirement] for more
-information.</p>
+available, file formats may be tested by exact match.</p>
 <p>For output parameters, this is the file format that will be assigned to
 the output parameter.</p>
 </td></tr><tr><td><code>streamable</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
@@ -676,9 +673,7 @@ extensions, the path is unchanged.</li>
 <p>For input parameters, this must be one or more URIs of a concept nodes
 that represents file formats which are allowed as input to this
 parameter, preferrably defined within an ontology.  If no ontology is
-available, file formats may be tested by exact match.  See
-(FormatOntologyRequirement)[#formatontologyrequirement] for more
-information.</p>
+available, file formats may be tested by exact match.</p>
 <p>For output parameters, this is the file format that will be assigned to
 the output parameter.</p>
 </td></tr><tr><td><code>streamable</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
@@ -845,9 +840,7 @@ extensions, the path is unchanged.</li>
 <p>For input parameters, this must be one or more URIs of a concept nodes
 that represents file formats which are allowed as input to this
 parameter, preferrably defined within an ontology.  If no ontology is
-available, file formats may be tested by exact match.  See
-(FormatOntologyRequirement)[#formatontologyrequirement] for more
-information.</p>
+available, file formats may be tested by exact match.</p>
 <p>For output parameters, this is the file format that will be assigned to
 the output parameter.</p>
 </td></tr><tr><td><code>streamable</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
@@ -877,9 +870,7 @@ extensions, the path is unchanged.</li>
 <p>For input parameters, this must be one or more URIs of a concept nodes
 that represents file formats which are allowed as input to this
 parameter, preferrably defined within an ontology.  If no ontology is
-available, file formats may be tested by exact match.  See
-(FormatOntologyRequirement)[#formatontologyrequirement] for more
-information.</p>
+available, file formats may be tested by exact match.</p>
 <p>For output parameters, this is the file format that will be assigned to
 the output parameter.</p>
 </td></tr><tr><td><code>streamable</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
@@ -959,9 +950,7 @@ extensions, the path is unchanged.</li>
 <p>For input parameters, this must be one or more URIs of a concept nodes
 that represents file formats which are allowed as input to this
 parameter, preferrably defined within an ontology.  If no ontology is
-available, file formats may be tested by exact match.  See
-(FormatOntologyRequirement)[#formatontologyrequirement] for more
-information.</p>
+available, file formats may be tested by exact match.</p>
 <p>For output parameters, this is the file format that will be assigned to
 the output parameter.</p>
 </td></tr><tr><td><code>streamable</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
@@ -1023,9 +1012,7 @@ extensions, the path is unchanged.</li>
 <p>For input parameters, this must be one or more URIs of a concept nodes
 that represents file formats which are allowed as input to this
 parameter, preferrably defined within an ontology.  If no ontology is
-available, file formats may be tested by exact match.  See
-(FormatOntologyRequirement)[#formatontologyrequirement] for more
-information.</p>
+available, file formats may be tested by exact match.</p>
 <p>For output parameters, this is the file format that will be assigned to
 the output parameter.</p>
 </td></tr><tr><td><code>streamable</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
@@ -1058,9 +1045,7 @@ extensions, the path is unchanged.</li>
 <p>For input parameters, this must be one or more URIs of a concept nodes
 that represents file formats which are allowed as input to this
 parameter, preferrably defined within an ontology.  If no ontology is
-available, file formats may be tested by exact match.  See
-(FormatOntologyRequirement)[#formatontologyrequirement] for more
-information.</p>
+available, file formats may be tested by exact match.</p>
 <p>For output parameters, this is the file format that will be assigned to
 the output parameter.</p>
 </td></tr><tr><td><code>streamable</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
