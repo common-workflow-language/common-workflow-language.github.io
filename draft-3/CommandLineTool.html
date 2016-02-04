@@ -550,8 +550,13 @@ container that provides its own <code>PATH</code>.</li>
 runtime environment file system other than the designated temporary directory,
 system temporary directory, and designated output directory.  An implementation
 may provide read-only input files, and disallow in-place update of input files.
-The designated temporary directory and designated output directory may reside
-on different mount points on different file systems.</p>
+The designated temporary directory, system temporary directory and designated
+output directory may each reside on different mount points on different file
+systems.</p>
+<p>An implementation may forbid the tool from directly accessing network
+resources.  Correct tools must not assume any network access.  Future versions
+of the specification may incorporate optional process requirements that
+describe the networking needs of a tool.</p>
 <p>The <code>runtime</code> section available in <a href="#Parameter_references">parameter references</a>
 and <a href="#Expressions">expressions</a> contains the following fields.  As noted
 earlier, an implementation may perform deferred resolution of runtime fields by providing
