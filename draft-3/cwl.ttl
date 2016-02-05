@@ -1,15 +1,10 @@
 @prefix @base: <https://w3id.org/cwl/cwl#> .
-@prefix avro: <https://w3id.org/cwl/avro#> .
 @prefix cwl: <https://w3id.org/cwl/cwl#> .
-@prefix dct: <http://purl.org/dc/terms/> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sld: <https://w3id.org/cwl/salad#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-
-cwl:Binding a rdfs:Class .
 
 cwl:CommandInputArraySchema a rdfs:Class ;
     rdfs:subClassOf cwl:InputArraySchema .
@@ -27,7 +22,7 @@ cwl:CommandInputRecordSchema a rdfs:Class ;
     rdfs:subClassOf cwl:InputRecordSchema .
 
 cwl:CommandLineBinding a rdfs:Class ;
-    rdfs:subClassOf cwl:Binding .
+    rdfs:subClassOf cwl:InputBinding .
 
 cwl:CommandLineTool a rdfs:Class ;
     rdfs:subClassOf cwl:Process .
@@ -36,7 +31,7 @@ cwl:CommandOutputArraySchema a rdfs:Class ;
     rdfs:subClassOf cwl:OutputArraySchema .
 
 cwl:CommandOutputBinding a rdfs:Class ;
-    rdfs:subClassOf cwl:Binding .
+    rdfs:subClassOf cwl:OutputBinding .
 
 cwl:CommandOutputEnumSchema a rdfs:Class ;
     rdfs:subClassOf cwl:OutputEnumSchema .
@@ -72,10 +67,14 @@ cwl:InlineJavascriptRequirement a rdfs:Class ;
     rdfs:subClassOf cwl:ProcessRequirement .
 
 cwl:InputArraySchema a rdfs:Class ;
-    rdfs:subClassOf sld:ArraySchema .
+    rdfs:subClassOf cwl:InputSchema,
+        sld:ArraySchema .
+
+cwl:InputBinding a rdfs:Class .
 
 cwl:InputEnumSchema a rdfs:Class ;
-    rdfs:subClassOf sld:EnumSchema .
+    rdfs:subClassOf cwl:InputSchema,
+        sld:EnumSchema .
 
 cwl:InputParameter a rdfs:Class ;
     rdfs:subClassOf cwl:Parameter .
@@ -84,27 +83,40 @@ cwl:InputRecordField a rdfs:Class ;
     rdfs:subClassOf sld:RecordField .
 
 cwl:InputRecordSchema a rdfs:Class ;
-    rdfs:subClassOf sld:RecordSchema .
+    rdfs:subClassOf cwl:InputSchema,
+        sld:RecordSchema .
+
+cwl:InputSchema a rdfs:Class ;
+    rdfs:subClassOf cwl:SchemaBase .
 
 cwl:MultipleInputFeatureRequirement a rdfs:Class ;
     rdfs:subClassOf cwl:ProcessRequirement .
 
 cwl:OutputArraySchema a rdfs:Class ;
-    rdfs:subClassOf sld:ArraySchema .
+    rdfs:subClassOf cwl:OutputSchema,
+        sld:ArraySchema .
+
+cwl:OutputBinding a rdfs:Class .
 
 cwl:OutputEnumSchema a rdfs:Class ;
-    rdfs:subClassOf sld:EnumSchema .
+    rdfs:subClassOf cwl:OutputSchema,
+        sld:EnumSchema .
 
 cwl:OutputParameter a rdfs:Class ;
     rdfs:subClassOf cwl:Parameter .
 
 cwl:OutputRecordField a rdfs:Class ;
-    rdfs:subClassOf sld:RecordSchema .
+    rdfs:subClassOf sld:RecordField .
 
 cwl:OutputRecordSchema a rdfs:Class ;
-    rdfs:subClassOf sld:RecordSchema .
+    rdfs:subClassOf cwl:OutputSchema,
+        sld:RecordSchema .
 
-cwl:Parameter a rdfs:Class .
+cwl:OutputSchema a rdfs:Class ;
+    rdfs:subClassOf cwl:SchemaBase .
+
+cwl:Parameter a rdfs:Class ;
+    rdfs:subClassOf cwl:SchemaBase .
 
 cwl:Process a rdfs:Class .
 
@@ -116,6 +128,8 @@ cwl:ResourceRequirement a rdfs:Class ;
 cwl:ScatterFeatureRequirement a rdfs:Class ;
     rdfs:subClassOf cwl:ProcessRequirement .
 
+cwl:SchemaBase a rdfs:Class .
+
 cwl:SchemaDefRequirement a rdfs:Class ;
     rdfs:subClassOf cwl:ProcessRequirement .
 
@@ -123,6 +137,9 @@ cwl:ShellCommandRequirement a rdfs:Class ;
     rdfs:subClassOf cwl:ProcessRequirement .
 
 cwl:Sink a rdfs:Class .
+
+cwl:StepInputExpressionRequirement a rdfs:Class ;
+    rdfs:subClassOf cwl:ProcessRequirement .
 
 cwl:SubworkflowFeatureRequirement a rdfs:Class ;
     rdfs:subClassOf cwl:ProcessRequirement .
@@ -143,24 +160,38 @@ cwl:WorkflowStepOutput a rdfs:Class .
 
 sld:ArraySchema a rdfs:Class .
 
+sld:DocType a rdfs:Class .
+
+sld:Documentation a rdfs:Class ;
+    rdfs:subClassOf sld:DocType,
+        sld:NamedType .
+
 sld:EnumSchema a rdfs:Class .
+
+sld:JsonldPredicate a rdfs:Class .
+
+sld:NamedType a rdfs:Class .
 
 sld:RecordField a rdfs:Class .
 
 sld:RecordSchema a rdfs:Class .
 
-rdfs:comment a rdf:Property ;
-    rdfs:domain cwl:Parameter,
-        cwl:Process,
-        cwl:WorkflowStep .
+sld:SaladEnumSchema a rdfs:Class ;
+    rdfs:subClassOf sld:EnumSchema,
+        sld:SchemaDefinedType .
 
-rdfs:label a rdf:Property ;
-    rdfs:domain cwl:Parameter,
-        cwl:Process,
-        cwl:WorkflowStep .
+sld:SaladRecordField a rdfs:Class ;
+    rdfs:subClassOf sld:RecordField .
 
-<https://w3id.org/cwl/cwl#Binding/loadContents> a rdf:Property ;
-    rdfs:domain cwl:Binding .
+sld:SaladRecordSchema a rdfs:Class ;
+    rdfs:subClassOf sld:NamedType,
+        sld:RecordSchema,
+        sld:SchemaDefinedType .
+
+sld:SchemaDefinedType a rdfs:Class ;
+    rdfs:subClassOf sld:DocType .
+
+sld:SpecializeDef a rdfs:Class .
 
 <https://w3id.org/cwl/cwl#CommandLineBinding/itemSeparator> a rdf:Property ;
     rdfs:domain cwl:CommandLineBinding .
@@ -175,9 +206,6 @@ rdfs:label a rdf:Property ;
     rdfs:domain cwl:CommandLineBinding .
 
 <https://w3id.org/cwl/cwl#CommandLineBinding/shellQuote> a rdf:Property ;
-    rdfs:domain cwl:CommandLineBinding .
-
-<https://w3id.org/cwl/cwl#CommandLineBinding/valueFrom> a rdf:Property ;
     rdfs:domain cwl:CommandLineBinding .
 
 <https://w3id.org/cwl/cwl#CommandLineTool/permanentFailCodes> a rdf:Property ;
@@ -249,9 +277,6 @@ rdfs:label a rdf:Property ;
 <https://w3id.org/cwl/cwl#InlineJavascriptRequirement/expressionLib> a rdf:Property ;
     rdfs:domain cwl:InlineJavascriptRequirement .
 
-<https://w3id.org/cwl/cwl#Parameter/streamable> a rdf:Property ;
-    rdfs:domain cwl:Parameter .
-
 <https://w3id.org/cwl/cwl#ResourceRequirement/coresMax> a rdf:Property ;
     rdfs:domain cwl:ResourceRequirement .
 
@@ -276,6 +301,9 @@ rdfs:label a rdf:Property ;
 <https://w3id.org/cwl/cwl#ResourceRequirement/tmpdirMin> a rdf:Property ;
     rdfs:domain cwl:ResourceRequirement .
 
+<https://w3id.org/cwl/cwl#SchemaBase/streamable> a rdf:Property ;
+    rdfs:domain cwl:SchemaBase .
+
 <https://w3id.org/cwl/cwl#SchemaDefRequirement/types> a rdf:Property ;
     rdfs:domain cwl:SchemaDefRequirement .
 
@@ -286,7 +314,7 @@ rdfs:label a rdf:Property ;
     rdfs:domain cwl:Workflow .
 
 cwl:default a rdf:Property ;
-    rdfs:domain cwl:Parameter,
+    rdfs:domain cwl:InputParameter,
         cwl:WorkflowStepInput .
 
 cwl:inputBinding a rdf:Property ;
@@ -298,6 +326,10 @@ cwl:inputBinding a rdf:Property ;
 cwl:inputs a rdf:Property ;
     rdfs:domain cwl:Process,
         cwl:WorkflowStep .
+
+cwl:loadContents a rdf:Property ;
+    rdfs:domain cwl:CommandOutputBinding,
+        cwl:InputBinding .
 
 cwl:outputBinding a rdf:Property ;
     rdfs:domain cwl:OutputArraySchema,
@@ -314,13 +346,53 @@ cwl:requirements a rdf:Property ;
         cwl:WorkflowStep .
 
 cwl:secondaryFiles a rdf:Property ;
-    rdfs:domain cwl:Binding,
-        cwl:File .
+    rdfs:domain cwl:File,
+        cwl:SchemaBase .
+
+cwl:valueFrom a rdf:Property ;
+    rdfs:domain cwl:CommandLineBinding,
+        cwl:WorkflowStepInput .
+
+<https://w3id.org/cwl/salad#JsonldPredicate/_container> a rdf:Property ;
+    rdfs:domain sld:JsonldPredicate .
+
+<https://w3id.org/cwl/salad#JsonldPredicate/_type> a rdf:Property ;
+    rdfs:domain sld:JsonldPredicate .
+
+<https://w3id.org/cwl/salad#JsonldPredicate/identity> a rdf:Property ;
+    rdfs:domain sld:JsonldPredicate .
+
+<https://w3id.org/cwl/salad#JsonldPredicate/noLinkCheck> a rdf:Property ;
+    rdfs:domain sld:JsonldPredicate .
+
+<https://w3id.org/cwl/salad#SaladRecordSchema/abstract> a rdf:Property ;
+    rdfs:domain sld:SaladRecordSchema .
+
+<https://w3id.org/cwl/salad#SaladRecordSchema/specialize> a rdf:Property ;
+    rdfs:domain sld:SaladRecordSchema .
+
+<https://w3id.org/cwl/salad#SchemaDefinedType/documentRoot> a rdf:Property ;
+    rdfs:domain sld:SchemaDefinedType .
 
 sld:doc a rdf:Property ;
-    rdfs:domain sld:RecordField .
+    rdfs:domain sld:DocType,
+        sld:RecordField .
 
 sld:fields a rdf:Property ;
     rdfs:domain sld:RecordSchema .
+
+sld:jsonldPredicate a rdf:Property ;
+    rdfs:domain sld:SaladRecordField,
+        sld:SchemaDefinedType .
+
+<rdfs:comment> a rdf:Property ;
+    rdfs:domain cwl:Parameter,
+        cwl:Process,
+        cwl:WorkflowStep .
+
+<rdfs:label> a rdf:Property ;
+    rdfs:domain cwl:Parameter,
+        cwl:Process,
+        cwl:WorkflowStep .
 
 

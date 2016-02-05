@@ -1,0 +1,76 @@
+@prefix @base: <https://w3id.org/cwl/salad#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sld: <https://w3id.org/cwl/salad#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+sld:ArraySchema a rdfs:Class .
+
+sld:DocType a rdfs:Class .
+
+sld:Documentation a rdfs:Class ;
+    rdfs:subClassOf sld:DocType,
+        sld:NamedType .
+
+sld:EnumSchema a rdfs:Class .
+
+sld:JsonldPredicate a rdfs:Class .
+
+sld:NamedType a rdfs:Class .
+
+sld:RecordField a rdfs:Class .
+
+sld:RecordSchema a rdfs:Class .
+
+sld:SaladEnumSchema a rdfs:Class ;
+    rdfs:subClassOf sld:EnumSchema,
+        sld:SchemaDefinedType .
+
+sld:SaladRecordField a rdfs:Class ;
+    rdfs:subClassOf sld:RecordField .
+
+sld:SaladRecordSchema a rdfs:Class ;
+    rdfs:subClassOf sld:NamedType,
+        sld:RecordSchema,
+        sld:SchemaDefinedType .
+
+sld:SchemaDefinedType a rdfs:Class ;
+    rdfs:subClassOf sld:DocType .
+
+sld:SpecializeDef a rdfs:Class .
+
+<https://w3id.org/cwl/salad#JsonldPredicate/_container> a rdf:Property ;
+    rdfs:domain sld:JsonldPredicate .
+
+<https://w3id.org/cwl/salad#JsonldPredicate/_type> a rdf:Property ;
+    rdfs:domain sld:JsonldPredicate .
+
+<https://w3id.org/cwl/salad#JsonldPredicate/identity> a rdf:Property ;
+    rdfs:domain sld:JsonldPredicate .
+
+<https://w3id.org/cwl/salad#JsonldPredicate/noLinkCheck> a rdf:Property ;
+    rdfs:domain sld:JsonldPredicate .
+
+<https://w3id.org/cwl/salad#SaladRecordSchema/abstract> a rdf:Property ;
+    rdfs:domain sld:SaladRecordSchema .
+
+<https://w3id.org/cwl/salad#SaladRecordSchema/specialize> a rdf:Property ;
+    rdfs:domain sld:SaladRecordSchema .
+
+<https://w3id.org/cwl/salad#SchemaDefinedType/documentRoot> a rdf:Property ;
+    rdfs:domain sld:SchemaDefinedType .
+
+sld:doc a rdf:Property ;
+    rdfs:domain sld:DocType,
+        sld:RecordField .
+
+sld:fields a rdf:Property ;
+    rdfs:domain sld:RecordSchema .
+
+sld:jsonldPredicate a rdf:Property ;
+    rdfs:domain sld:SaladRecordField,
+        sld:SchemaDefinedType .
+
+
