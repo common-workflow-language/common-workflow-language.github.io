@@ -181,6 +181,7 @@
         "outputEval": "https://w3id.org/cwl/cwl#CommandOutputBinding/outputEval", 
         "outputs": "cwl:outputs", 
         "path": {
+            "@id": "https://w3id.org/cwl/cwl#path", 
             "@type": "@id"
         }, 
         "permanentFailCodes": "https://w3id.org/cwl/cwl#CommandLineTool/permanentFailCodes", 
