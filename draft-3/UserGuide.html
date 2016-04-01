@@ -55,7 +55,7 @@ specification, draft 3.</p>
 </ol><li><a href="#Array_inputs">2.8 Array inputs</a><ol>
 </ol><li><a href="#Record_inputs,_dependent_and_mutually_exclusive_parameters">2.9 Record inputs, dependent and mutually exclusive parameters</a><ol>
 </ol><li><a href="#Environment_variables">2.10 Environment variables</a><ol>
-</ol><li><a href="#Creating_configuation_files_at_runtime">2.11 Creating configuation files at runtime</a><ol>
+</ol><li><a href="#Creating_files_at_runtime">2.11 Creating files at runtime</a><ol>
 </ol><li><a href="#Staging_input_files_in_the_output_directory">2.12 Staging input files in the output directory</a><ol>
 </ol></li></ol></li></ol></nav>
 
@@ -700,22 +700,94 @@ outputs: []
 <p>Now invoke <code>cwl-runner</code> with the tool wrapper and the input object on the
 command line:</p>
 <pre><code>$ cwltool example-env.cwl example-echo-job.json
-/home/peter/work/cwl-venv/bin/cwltool 1.0.20160325210917
-[job 140710387785808] /home/peter/work/common-workflow-language/draft-3/examples$ env
+[job 140710387785808] /home/example$ env
 PATH=/bin:/usr/bin:/usr/local/bin
 HELLO=Hello world!
 TMPDIR=/tmp/tmp63Obpk
 Final process status is success
 {}
 </code></pre>
-<h2 id="Creating_configuation_files_at_runtime">2.11 Creating configuation files at runtime</h1><p>Some tools will expect to read their input configuration from a file
-rather than (or in addition to) the command line parameters.  To create
-such a file, use <code>CreateFileRequirement</code>.</p>
+<h2 id="Creating_files_at_runtime">2.11 Creating files at runtime</h1><p>Sometimes you need to create a file on the fly from input parameters,
+such as tools which expect to read their input configuration from a file
+rather than the command line parameters.  To do this, use
+<code>CreateFileRequirement</code>.</p>
+<p><em>example-createfile.cwl</em></p>
+<pre><code>class: CommandLineTool
+cwlVersion: cwl:draft-3
+baseCommand: ["cat", "example.conf"]
+
+requirements:
+  - class: CreateFileRequirement
+    fileDef:
+      - filename: example.conf
+        fileContent: |
+          CONFIGVAR=$(inputs.message)
+
+inputs:
+  - id: message
+    type: string
+outputs: []
+</code></pre>
+<p><em>example-echo-job.json</em></p>
+<pre><code>{
+    "message": "Hello world!"
+}
+</code></pre>
+<p>Now invoke <code>cwl-runner</code> with the tool wrapper and the input object on the
+command line:</p>
+<pre><code>$ cwltool example-createfile.cwl example-echo-job.json
+[job 140528604979344] /home/example$ cat example.conf
+CONFIGVAR=Hello world!
+Final process status is success
+{}
+</code></pre>
 <h2 id="Staging_input_files_in_the_output_directory">2.12 Staging input files in the output directory</h1><p>Normally, input files are located in a read-only directory separate from
 the output directory.  This causes problems if the underlying tool
-expects to write its output alongside the input file in the same
-directory.  Use  <code>CreateFileRequirement</code> to place a file in the output
-directory.</p>
+expects to write its output files alongside the input file in the same
+directory.  You use <code>CreateFileRequirement</code> to stage input
+files into the output directory.</p>
+<p><em>example-linkfile.cwl</em></p>
+<pre><code>cwlVersion: cwl:draft-3
+class: CommandLineTool
+baseCommand: javac
+hints:
+  - class: DockerRequirement
+    dockerPull: java:7
+baseCommand: javac
+
+requirements:
+  - class: InlineJavascriptRequirement
+  - class: CreateFileRequirement
+    fileDef:
+      - filename: $(inputs.src.path.split('/').slice(-1)[0])
+        fileContent: $(inputs.src)
+
+inputs:
+  - id: src
+    type: File
+    inputBinding:
+      position: 1
+      valueFrom: $(inputs.src.path.split('/').slice(-1)[0])
+
+outputs:
+  - id: classfile
+    type: File
+    outputBinding:
+      glob: "*.class"
+</code></pre>
+<p><em>example-echo-job.json</em></p>
+<pre><code>{
+    "message": "Hello world!"
+}
+</code></pre>
+<p>Now invoke <code>cwl-runner</code> with the tool wrapper and the input object on the
+command line:</p>
+<pre><code>$ cwltool example-createfile.cwl example-echo-job.json
+[job 140528604979344] /home/example$ cat example.conf
+CONFIGVAR=Hello world!
+Final process status is success
+{}
+</code></pre>
 </div>
     </div>
     </div>
