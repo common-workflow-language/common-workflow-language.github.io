@@ -51,12 +51,11 @@ specification, draft 3.</p>
 </ol><li><a href="#Capturing_a_tool's_standard_output_stream">2.4 Capturing a tool's standard output stream</a><ol>
 </ol><li><a href="#Parameter_references">2.5 Parameter references</a><ol>
 </ol><li><a href="#Running_tools_inside_Docker">2.6 Running tools inside Docker</a><ol>
-</ol><li><a href="#Additional_arguments_and_runtime_parameters">2.7 Additional arguments and runtime parameters</a><ol>
+</ol><li><a href="#Additional_command_line_arguments_and_runtime_parameters">2.7 Additional command line arguments and runtime parameters</a><ol>
 </ol><li><a href="#Array_inputs">2.8 Array inputs</a><ol>
 </ol><li><a href="#Record_inputs,_dependent_and_mutually_exclusive_parameters">2.9 Record inputs, dependent and mutually exclusive parameters</a><ol>
 </ol><li><a href="#Environment_variables">2.10 Environment variables</a><ol>
-</ol><li><a href="#Creating_files_at_runtime">2.11 Creating files at runtime</a><ol>
-</ol><li><a href="#Staging_input_files_in_the_output_directory">2.12 Staging input files in the output directory</a><ol>
+</ol><li><a href="#Javascript_expressions">2.11 Javascript expressions</a><ol>
 </ol></li></ol></li></ol></nav>
 
 <h1 id="Introduction">1. Introduction</h1><p>CWL is a way to describe command line tools and connect them together to create
@@ -450,7 +449,7 @@ container.  In this example, the path to the script <code>hello.js</code> is
 <code>/home/example/hello.js</code> outside the container but
 <code>/var/lib/cwl/job369354770_examples/hello.js</code> inside the container, as
 reflected in the invocation of the <code>node</code> command.</p>
-<h2 id="Additional_arguments_and_runtime_parameters">2.7 Additional arguments and runtime parameters</h1><p>Sometimes tools require additional command line options that don't
+<h2 id="Additional_command_line_arguments_and_runtime_parameters">2.7 Additional command line arguments and runtime parameters</h1><p>Sometimes tools require additional command line options that don't
 correspond exactly to input parameters.</p>
 <p>In this example, we will wrap the Java compiler to compile a java source
 file to a class file.  By default, <code>javac</code> will create the class files in
@@ -707,7 +706,43 @@ TMPDIR=/tmp/tmp63Obpk
 Final process status is success
 {}
 </code></pre>
-<h2 id="Creating_files_at_runtime">2.11 Creating files at runtime</h1><p>Sometimes you need to create a file on the fly from input parameters,
+<h2 id="Javascript_expressions">2.11 Javascript expressions</h1><p>Stuff.</p>
+<p><em>example-expression.cwl</em></p>
+<pre><code>cwlVersion: cwl:draft-3
+class: CommandLineTool
+baseCommand: echo
+
+requirements:
+  - class: InlineJavascriptRequirement
+
+inputs: []
+outputs: []
+arguments:
+  - valueFrom: $(1+1)
+    prefix: -A
+  - valueFrom: $("/foo/bar/baz".split('/').slice(-1)[0])
+    prefix: -B
+  - valueFrom: |
+      ${
+        var r = [];
+        for (var i = 10; i &gt;= 1; i--) {
+          r.push(i);
+        }
+        return r;
+      }
+    prefix: -C
+</code></pre>
+<pre><code>$ cwl-runner example-expression.cwl empty.json
+[job 140000594593168] /home/example$ echo -A 2 -B baz -C 10 9 8 7 6 5 4 3 2 1
+-A 2 -B baz -C 10 9 8 7 6 5 4 3 2 1
+Final process status is success
+{}
+</code></pre>
+<p>You can only use expressions in certain fields.  These are: <code>filename</code>,
+<code>fileContent</code>, <code>envValue</code>, <code>valueFrom</code>, <code>glob</code>, <code>outputEval</code>, <code>stdin</code>,
+<code>stdout</code>, <code>coresMin</code>, <code>coresMax</code>, <code>ramMin</code>, <code>ramMax</code>, <code>tmpdirMin</code>,
+<code>tmpdirMax</code>, <code>outdirMin</code>, and <code>outdirMax</code>.</p>
+<h2 id="Creating_files_at_runtime">Creating files at runtime</h1><p>Sometimes you need to create a file on the fly from input parameters,
 such as tools which expect to read their input configuration from a file
 rather than the command line parameters.  To do this, use
 <code>CreateFileRequirement</code>.</p>
@@ -741,7 +776,7 @@ CONFIGVAR=Hello world!
 Final process status is success
 {}
 </code></pre>
-<h2 id="Staging_input_files_in_the_output_directory">2.12 Staging input files in the output directory</h1><p>Normally, input files are located in a read-only directory separate from
+<h2 id="Staging_input_files_in_the_output_directory">Staging input files in the output directory</h1><p>Normally, input files are located in a read-only directory separate from
 the output directory.  This causes problems if the underlying tool
 expects to write its output files alongside the input file in the same
 directory.  You use <code>CreateFileRequirement</code> to stage input
@@ -749,7 +784,6 @@ files into the output directory.</p>
 <p><em>example-linkfile.cwl</em></p>
 <pre><code>cwlVersion: cwl:draft-3
 class: CommandLineTool
-baseCommand: javac
 hints:
   - class: DockerRequirement
     dockerPull: java:7
@@ -775,18 +809,27 @@ outputs:
     outputBinding:
       glob: "*.class"
 </code></pre>
-<p><em>example-echo-job.json</em></p>
+<p><em>example-arguments-job.json</em></p>
 <pre><code>{
-    "message": "Hello world!"
+  "src": {
+    "class": "File",
+    "path": "Hello.java"
+  }
 }
 </code></pre>
 <p>Now invoke <code>cwl-runner</code> with the tool wrapper and the input object on the
 command line:</p>
-<pre><code>$ cwltool example-createfile.cwl example-echo-job.json
-[job 140528604979344] /home/example$ cat example.conf
-CONFIGVAR=Hello world!
+<pre><code>$ cwl-runner example-linkfile.cwl example-arguments-job.json
+[job 139928309171664] /home/example$ docker run -i --volume=/home/peter/work/common-workflow-language/draft-3/examples/Hello.java:/var/lib/cwl/job557617295_examples/Hello.java:ro --volume=/home/peter/work/common-workflow-language/draft-3/examples:/var/spool/cwl:rw --volume=/tmp/tmpmNbApw:/tmp:rw --workdir=/var/spool/cwl --read-only=true --net=none --user=1001 --rm --env=TMPDIR=/tmp java:7 javac Hello.java
 Final process status is success
-{}
+{
+"classfile": {
+  "size": 416,
+  "path": "/home/peter/work/common-workflow-language/draft-3/examples/Hello.class",
+  "checksum": "sha1$2f7ac33c1f3aac3f1fec7b936b6562422c85b38a",
+  "class": "File"
+  }
+}
 </code></pre>
 </div>
     </div>
