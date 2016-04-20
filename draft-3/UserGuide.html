@@ -75,7 +75,7 @@ parallel across many nodes.</p>
 writes a message to the terminal or job log, and produces no permanent
 output.  CWL documents are written in <a href="http://json.org">JSON</a> or
 <a href="http://yaml.org">YAML</a>, or a mix of the two.</p>
-<p><em>example-1st.cwl</em></p>
+<p><em>1st.cwl</em></p>
 <pre><code>cwlVersion: cwl:draft-3
 class: CommandLineTool
 baseCommand: echo
@@ -87,14 +87,12 @@ inputs:
 outputs: []
 </code></pre>
 <p>Use a JSON object in a separate file to describe the input of a run:</p>
-<p><em>example-echo-job.json</em></p>
-<pre><code>{
-    "message": "Hello world!"
-}
+<p><em>echo-job.yml</em></p>
+<pre><code>message: Hello world!
 </code></pre>
 <p>Now invoke <code>cwl-runner</code> with the tool wrapper and the input object on the
 command line:</p>
-<pre><code>$ cwl-runner example-echo.cwl example-echo-job.json
+<pre><code>$ cwl-runner 1st.cwl echo-job.yml
 [job 140199012414352] $ echo 'Hello world!'
 Hello world!
 Final process status is success
@@ -132,7 +130,7 @@ and <em>null</em>; complex types are <em>array</em> and <em>record</em>; in addi
 special types <em>File</em> and <em>Any</em>.</p>
 <p>The following example demonstrates some input parameters with different
 types and appearing on the command line in different ways:</p>
-<p><em>example-inp.cwl</em></p>
+<p><em>inp.cwl</em></p>
 <pre><code>cwlVersion: cwl:draft-3
 class: CommandLineTool
 baseCommand: echo
@@ -162,22 +160,19 @@ inputs:
 
 outputs: []
 </code></pre>
-<p><em>example-inp-job.json</em></p>
-<pre><code>{
-    "example_flag": true,
-    "example_string": "hello",
-    "example_int": 42,
-    "example_file": {
-        "class": "File",
-        "path": "whale.txt"
-    }
-}
+<p><em>inp-job.yml</em></p>
+<pre><code>example_flag: true
+example_string: hello
+example_int: 42
+example_file:
+  class: File
+  path: whale.txt
 </code></pre>
 <p>Notice that "example_file", as a <code>File</code> type, must be provided as an
 object with the fields <code>class: File</code> and <code>path</code>.</p>
 <p>Invoke <code>cwl-runner</code> with the tool wrapper and the input object on the
 command line:</p>
-<pre><code>$ cwl-runner example-inp.cwl example-inp-job.json
+<pre><code>$ cwl-runner inp.cwl inp-job.yml
 [job 140020149614160] /home/example$ echo -f -i42 --example-string hello --file=/home/example/whale.txt
 -f -i42 --example-string hello --file=/home/example/whale.txt
 Final process status is success
@@ -250,7 +245,7 @@ designated output directory.  The underlying tool or script must record
 its results in the form of files created in the output directory.  The
 output parameters returned by the CWL tool are either the output files
 themselves, or come from examining the content of those files.</p>
-<p><em>example-tar.cwl</em></p>
+<p><em>tar.cwl</em></p>
 <pre><code>cwlVersion: cwl:draft-3
 class: CommandLineTool
 baseCommand: [tar, xf]
@@ -265,17 +260,14 @@ outputs:
     outputBinding:
       glob: hello.txt
 </code></pre>
-<p><em>example-tar-job.json</em></p>
-<pre><code>{
-    "tarfile": {
-        "class": "File",
-        "path": "hello.tar"
-    }
-}
+<p><em>tar-job.yml</em></p>
+<pre><code>tarfile:
+  class: File
+  path: hello.tar
 </code></pre>
 <p>Invoke <code>cwl-runner</code> with the tool wrapper and the input object on the
 command line:</p>
-<pre><code>$ cwl-runner example-tar.cwl example-tar-job.json
+<pre><code>$ cwl-runner tar.cwl tar-job.yml
 [job 139868145165200] $ tar xf /home/example/hello.tar
 Final process status is success
 {
@@ -301,7 +293,7 @@ pattern.</p>
 <h2 id="Capturing_a_tool's_standard_output_stream">2.4 Capturing a tool's standard output stream</h1><p>To capture a tool's standard output stream, add the <code>stdout</code> field with
 the name of the file where the output stream should go.  Then use <code>glob</code>
 on <code>outputBinding</code> to return the file.</p>
-<p><em>example-stdout.cwl</em></p>
+<p><em>stdout.cwl</em></p>
 <pre><code>cwlVersion: cwl:draft-3
 class: CommandLineTool
 baseCommand: echo
@@ -317,14 +309,12 @@ outputs:
     outputBinding:
       glob: output.txt
 </code></pre>
-<p><em>example-echo-job.json</em></p>
-<pre><code>{
-    "message": "Hello world!"
-}
+<p><em>echo-job.yml</em></p>
+<pre><code>message: Hello world!
 </code></pre>
 <p>Now invoke <code>cwl-runner</code> providing the tool wrapper and the input object
 on the command line:</p>
-<pre><code>$ cwl-runner example-stdout.cwl example-echo-job.json
+<pre><code>$ cwl-runner stdout.cwl echo-job.yml
 [job 140199012414352] $ echo 'Hello world!' &gt; output.txt
 Final process status is success
 {
@@ -343,7 +333,7 @@ However, that example was very limited becuase it assumed that the file
 we were interested in was called "hello.txt".  In this example, you will
 see how to reference the value of input parameters dynamically from other
 fields.</p>
-<p><em>example-tar-param.cwl</em></p>
+<p><em>tar-param.cwl</em></p>
 <pre><code>cwlVersion: cwl:draft-3
 class: CommandLineTool
 baseCommand: [tar, xf]
@@ -362,18 +352,15 @@ outputs:
     outputBinding:
       glob: $(inputs.extractfile)
 </code></pre>
-<p><em>example-tar-param-job.json</em></p>
-<pre><code>{
-    "tarfile": {
-        "class": "File",
-        "path": "hello.tar"
-    },
-    "extractfile": "goodbye.txt"
-}
+<p><em>tar-param-job.yml</em></p>
+<pre><code>tarfile:
+  class: File
+  path: hello.tar
+extractfile: goodbye.txt
 </code></pre>
 <p>Invoke <code>cwl-runner</code> with the tool wrapper and the input object on the
 command line:</p>
-<pre><code>$ cwl-runner example-tar-param.cwl example-tar-param-job.json
+<pre><code>$ cwl-runner example-tar-param.cwl example-tar-param-job.yml
 [job 139868145165200] $ tar xf /home/example/hello.tar goodbye.txt
 Final process status is success
 {
@@ -412,14 +399,13 @@ automatically, allowing you to use Docker to simplify your software
 management while avoiding the complexity of invoking and managing Docker
 containers.</p>
 <p>This example runs a simple Node.js script inside a Docker container.</p>
-<p><em>example-docker.cwl</em></p>
+<p><em>docker.cwl</em></p>
 <pre><code>cwlVersion: cwl:draft-3
 class: CommandLineTool
 baseCommand: node
 hints:
   - class: DockerRequirement
     dockerPull: node:slim
-baseCommand: node
 inputs:
   - id: src
     type: File
@@ -427,17 +413,14 @@ inputs:
       position: 1
 outputs: []
 </code></pre>
-<p><em>example-docker-job.json</em></p>
-<pre><code>{
-  "src": {
-    "class": "File",
-    "path": "hello.js"
-  }
-}
+<p><em>docker-job.yml</em></p>
+<pre><code>src:
+  class: File
+  path: hello.js
 </code></pre>
 <p>Now invoke <code>cwl-runner</code> providing the tool wrapper and the input object
 on the command line:</p>
-<pre><code>$ cwl-runner example-docker.cwl example-docker-job.json
+<pre><code>$ cwl-runner example-docker.cwl example-docker-job.yml
 [job 140259721854416] /home/example$ docker run -i --volume=/home/example/hello.js:/var/lib/cwl/job369354770_examples/hello.js:ro --volume=/home/example:/var/spool/cwl:rw --volume=/tmp/tmpDLs5hm:/tmp:rw --workdir=/var/spool/cwl --read-only=true --net=none --user=1001 --rm --env=TMPDIR=/tmp node:slim node /var/lib/cwl/job369354770_examples/hello.js
 Hello world!
 Final process status is success
@@ -457,7 +440,7 @@ the same directory as the source file.  However, CWL input files (and the
 directories in which they appear) may be read-only, so we need to
 instruct javac to write the class file to the designated output directory
 instead.</p>
-<p><em>example-arguments.cwl</em></p>
+<p><em>arguments.cwl</em></p>
 <pre><code>cwlVersion: cwl:draft-3
 class: CommandLineTool
 baseCommand: javac
@@ -479,17 +462,14 @@ outputs:
     outputBinding:
       glob: "*.class"
 </code></pre>
-<p><em>example-arguments-job.json</em></p>
-<pre><code>{
-  "src": {
-    "class": "File",
-    "path": "Hello.java"
-  }
-}
+<p><em>arguments-job.yml</em></p>
+<pre><code>src:
+  class: File
+  path: Hello.java
 </code></pre>
 <p>Now invoke <code>cwl-runner</code> providing the tool wrapper and the input object
 on the command line:</p>
-<pre><code>$ cwl-runner example-arguments.cwl example-arguments-job.json
+<pre><code>$ cwl-runner example-arguments.cwl example-arguments-job.yml
 [job 140051188854928] /home/example$ docker run -i --volume=/home/example/Hello.java:/var/lib/cwl/job710906416_example/Hello.java:ro --volume=/home/example:/var/spool/cwl:rw --volume=/tmp/tmpdlQDWi:/tmp:rw --workdir=/var/spool/cwl --read-only=true --net=none --user=1001 --rm --env=TMPDIR=/tmp java:7 javac -d /var/spool/cwl /var/lib/cwl/job710906416_examples/Hello.java
 Final process status is success
 {
@@ -519,7 +499,7 @@ section of the CWL specification for details.</p>
 line.  To specify an array parameter, the array definition is nested
 under the <code>type</code> field with <code>type: array</code> and <code>items</code> defining the valid
 data types that may appear in the array.</p>
-<p><em>example-array.cwl</em></p>
+<p><em>array-inputs.cwl</em></p>
 <pre><code>cwlVersion: cwl:draft-3
 class: CommandLineTool
 inputs:
@@ -554,16 +534,14 @@ inputs:
 outputs: []
 baseCommand: echo
 </code></pre>
-<p><em>example-array-job.json</em></p>
-<pre><code>{
-    "filesA": ["one", "two", "three"],
-    "filesB": ["four", "five", "six"],
-    "filesC": ["seven", "eight", "nine"]
-}
+<p><em>array-inputs-job.yml</em></p>
+<pre><code>filesA: [one, two, three]
+filesB: [four, five, six]
+filesC: [seven, eight, nine]
 </code></pre>
 <p>Now invoke <code>cwl-runner</code> providing the tool wrapper and the input object
 on the command line:</p>
-<pre><code>$ cwl-runner example-array.cwl example-array-job.json
+<pre><code>$ cwl-runner array-inputs.cwl array-inputs-job.yml
 /home/peter/work/cwl-venv/bin/cwltool 1.0.20160325210917
 [job 140334923640912] /home/peter/work/common-workflow-language/draft-3/examples$ echo -A one two three -B=four -B=five -B=six -C=seven,eight,nine
 -A one two three -B=four -B=five -B=six -C=seven,eight,nine
@@ -582,7 +560,7 @@ types.</p>
 together (they are dependent) or several arguments that cannot be
 provided together (they are exclusive).  You can use records and type
 unions to group parameters together to describe these two conditions.</p>
-<p><em>example-record.cwl</em></p>
+<p><em>record.cwl</em></p>
 <pre><code>cwlVersion: cwl:draft-3
 class: CommandLineTool
 inputs:
@@ -618,35 +596,27 @@ inputs:
 outputs: []
 baseCommand: echo
 </code></pre>
-<p><em>example-record-job1.json</em></p>
-<pre><code>{
-    "dependent_parameters": {
-        "itemA": "one"
-    },
-    "exclusive_parameters": {
-        "itemC": "three"
-    }
-}
+<p><em>record-job1.yml</em></p>
+<pre><code>dependent_parameters:
+  itemA: one
+exclusive_parameters:
+  itemC: three
 </code></pre>
-<pre><code>$ cwl-runner example-record.cwl example-record-job1.json
+<pre><code>$ cwl-runner record.cwl record-job1.yml
 Workflow error:
   Error validating input record, could not validate field `dependent_parameters` because
   missing required field `itemB`
 </code></pre>
 <p>In the first example, you can't provide <code>itemA</code> without also providing <code>itemB</code>.</p>
-<p><em>example-record-job2.json</em></p>
-<pre><code>{
-    "dependent_parameters": {
-        "itemA": "one",
-        "itemB": "two"
-    },
-    "exclusive_parameters": {
-        "itemC": "three",
-        "itemD": "four"
-    }
-}
+<p><em>record-job2.yml</em></p>
+<pre><code>dependent_parameters:
+  itemA: one
+  itemB: two
+exclusive_parameters:
+  itemC: three
+  itemD: four
 </code></pre>
-<pre><code>$ cwl-runner example-record.cwl example-record-job2.json
+<pre><code>$ cwl-runner record.cwl record-job2.yml
 [job 140566927111376] /home/example$ echo -A one -B two -C three
 -A one -B two -C three
 Final process status is success
@@ -654,19 +624,15 @@ Final process status is success
 </code></pre>
 <p>In the second example, <code>itemC</code> and <code>itemD</code> are exclusive, so only <code>itemC</code>
 is added to the command line and <code>itemD</code> is ignored.</p>
-<p><em>example-record-job3.json</em></p>
-<pre><code>{
-    "dependent_parameters": {
-        "itemA": "one",
-        "itemB": "two"
-    },
-    "exclusive_parameters": {
-        "itemC": "three",
-        "itemD": "four"
-    }
-}
+<p><em>record-job3.yml</em></p>
+<pre><code>dependent_parameters:
+  itemA: one
+  itemB: two
+exclusive_parameters:
+  itemC: three
+  itemD: four
 </code></pre>
-<pre><code>$ cwl-runner example-record.cwl example-record-job3.json
+<pre><code>$ cwl-runner record.cwl record-job3.yml
 [job 140606932172880] /home/example$ echo -A one -B two -D four
 -A one -B two -D four
 Final process status is success
@@ -677,7 +643,7 @@ command line.</p>
 <h2 id="Environment_variables">2.10 Environment variables</h1><p>Tools run in a restricted environment and do not inherit most environment
 variables from the parent process.  You can set environment variables for
 the tool using <code>EnvVarRequirement</code>.</p>
-<p><em>example-env.cwl</em></p>
+<p><em>env.cwl</em></p>
 <pre><code>cwlVersion: cwl:draft-3
 class: CommandLineTool
 baseCommand: env
@@ -691,14 +657,12 @@ inputs:
     type: string
 outputs: []
 </code></pre>
-<p><em>example-echo-job.json</em></p>
-<pre><code>{
-    "message": "Hello world!"
-}
+<p><em>echo-job.yml</em></p>
+<pre><code>message: Hello world!
 </code></pre>
 <p>Now invoke <code>cwl-runner</code> with the tool wrapper and the input object on the
 command line:</p>
-<pre><code>$ cwltool example-env.cwl example-echo-job.json
+<pre><code>$ cwl-runner env.cwl echo-job.yml
 [job 140710387785808] /home/example$ env
 PATH=/bin:/usr/bin:/usr/local/bin
 HELLO=Hello world!
@@ -706,8 +670,11 @@ TMPDIR=/tmp/tmp63Obpk
 Final process status is success
 {}
 </code></pre>
-<h2 id="Javascript_expressions">2.11 Javascript expressions</h1><p>Stuff.</p>
-<p><em>example-expression.cwl</em></p>
+<h2 id="Javascript_expressions">2.11 Javascript expressions</h1><p>If you need to manipulate input parameters, include the requirement
+<code>InlineJavascriptRequirement</code> and then anywhere a parameter reference is
+legal you can provide a fragment of Javascript that will be evaluated by
+the CWL runner.</p>
+<p><em>expression.cwl</em></p>
 <pre><code>cwlVersion: cwl:draft-3
 class: CommandLineTool
 baseCommand: echo
@@ -732,7 +699,7 @@ arguments:
       }
     prefix: -C
 </code></pre>
-<pre><code>$ cwl-runner example-expression.cwl empty.json
+<pre><code>$ cwl-runner expression.cwl empty.yml
 [job 140000594593168] /home/example$ echo -A 2 -B baz -C 10 9 8 7 6 5 4 3 2 1
 -A 2 -B baz -C 10 9 8 7 6 5 4 3 2 1
 Final process status is success
@@ -746,7 +713,7 @@ Final process status is success
 such as tools which expect to read their input configuration from a file
 rather than the command line parameters.  To do this, use
 <code>CreateFileRequirement</code>.</p>
-<p><em>example-createfile.cwl</em></p>
+<p><em>createfile.cwl</em></p>
 <pre><code>class: CommandLineTool
 cwlVersion: cwl:draft-3
 baseCommand: ["cat", "example.conf"]
@@ -763,14 +730,12 @@ inputs:
     type: string
 outputs: []
 </code></pre>
-<p><em>example-echo-job.json</em></p>
-<pre><code>{
-    "message": "Hello world!"
-}
+<p><em>echo-job.yml</em></p>
+<pre><code>message: Hello world!
 </code></pre>
 <p>Now invoke <code>cwl-runner</code> with the tool wrapper and the input object on the
 command line:</p>
-<pre><code>$ cwltool example-createfile.cwl example-echo-job.json
+<pre><code>$ cwltool createfile.cwl echo-job.yml
 [job 140528604979344] /home/example$ cat example.conf
 CONFIGVAR=Hello world!
 Final process status is success
@@ -779,9 +744,10 @@ Final process status is success
 <h2 id="Staging_input_files_in_the_output_directory">Staging input files in the output directory</h1><p>Normally, input files are located in a read-only directory separate from
 the output directory.  This causes problems if the underlying tool
 expects to write its output files alongside the input file in the same
-directory.  You use <code>CreateFileRequirement</code> to stage input
-files into the output directory.</p>
-<p><em>example-linkfile.cwl</em></p>
+directory.  You use <code>CreateFileRequirement</code> to stage input files into the
+output directory.  In this example, we use a Javascript expression to
+extract the base name of the input file from its leading directory path.</p>
+<p><em>linkfile.cwl</em></p>
 <pre><code>cwlVersion: cwl:draft-3
 class: CommandLineTool
 hints:
@@ -809,17 +775,14 @@ outputs:
     outputBinding:
       glob: "*.class"
 </code></pre>
-<p><em>example-arguments-job.json</em></p>
-<pre><code>{
-  "src": {
-    "class": "File",
-    "path": "Hello.java"
-  }
-}
+<p><em>arguments-job.yml</em></p>
+<pre><code>src:
+  class: File
+  path: Hello.java
 </code></pre>
 <p>Now invoke <code>cwl-runner</code> with the tool wrapper and the input object on the
 command line:</p>
-<pre><code>$ cwl-runner example-linkfile.cwl example-arguments-job.json
+<pre><code>$ cwl-runner linkfile.cwl arguments-job.yml
 [job 139928309171664] /home/example$ docker run -i --volume=/home/peter/work/common-workflow-language/draft-3/examples/Hello.java:/var/lib/cwl/job557617295_examples/Hello.java:ro --volume=/home/peter/work/common-workflow-language/draft-3/examples:/var/spool/cwl:rw --volume=/tmp/tmpmNbApw:/tmp:rw --workdir=/var/spool/cwl --read-only=true --net=none --user=1001 --rm --env=TMPDIR=/tmp java:7 javac Hello.java
 Final process status is success
 {
