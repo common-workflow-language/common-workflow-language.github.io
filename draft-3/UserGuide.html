@@ -41,6 +41,7 @@
 <p>This guide will introduce you to writing tool wrappers and workflows using the
 Common Workflow Language (CWL).  This guide describes the current stable
 specification, draft 3.</p>
+<p>Note: This document is a work in progress.  Not all features are covered, yet.</p>
 <h1 id="toc">Table of contents</h1>
                <nav class="tocnav"><ol><li><a href="#A_Gentle_Introduction_to_the_Common_Workflow_Language"> A Gentle Introduction to the Common Workflow Language</a><ol>
 </ol><li><a href="#Introduction">1. Introduction</a><ol>
@@ -53,9 +54,10 @@ specification, draft 3.</p>
 </ol><li><a href="#Running_tools_inside_Docker">2.6 Running tools inside Docker</a><ol>
 </ol><li><a href="#Additional_command_line_arguments_and_runtime_parameters">2.7 Additional command line arguments and runtime parameters</a><ol>
 </ol><li><a href="#Array_inputs">2.8 Array inputs</a><ol>
-</ol><li><a href="#Record_inputs,_dependent_and_mutually_exclusive_parameters">2.9 Record inputs, dependent and mutually exclusive parameters</a><ol>
-</ol><li><a href="#Environment_variables">2.10 Environment variables</a><ol>
-</ol><li><a href="#Javascript_expressions">2.11 Javascript expressions</a><ol>
+</ol><li><a href="#Array_outputs">2.9 Array outputs</a><ol>
+</ol><li><a href="#Record_inputs,_dependent_and_mutually_exclusive_parameters">2.10 Record inputs, dependent and mutually exclusive parameters</a><ol>
+</ol><li><a href="#Environment_variables">2.11 Environment variables</a><ol>
+</ol><li><a href="#Javascript_expressions">2.12 Javascript expressions</a><ol>
 </ol></li></ol></li></ol></nav>
 
 <h1 id="Introduction">1. Introduction</h1><p>CWL is a way to describe command line tools and connect them together to create
@@ -75,7 +77,7 @@ parallel across many nodes.</p>
 writes a message to the terminal or job log, and produces no permanent
 output.  CWL documents are written in <a href="http://json.org">JSON</a> or
 <a href="http://yaml.org">YAML</a>, or a mix of the two.</p>
-<p><em>1st.cwl</em></p>
+<p><em>1st-tool.cwl</em></p>
 <pre><code>cwlVersion: cwl:draft-3
 class: CommandLineTool
 baseCommand: echo
@@ -92,7 +94,7 @@ outputs: []
 </code></pre>
 <p>Now invoke <code>cwl-runner</code> with the tool wrapper and the input object on the
 command line:</p>
-<pre><code>$ cwl-runner 1st.cwl echo-job.yml
+<pre><code>$ cwl-runner 1st-tool.cwl echo-job.yml
 [job 140199012414352] $ echo 'Hello world!'
 Hello world!
 Final process status is success
@@ -360,7 +362,7 @@ extractfile: goodbye.txt
 </code></pre>
 <p>Invoke <code>cwl-runner</code> with the tool wrapper and the input object on the
 command line:</p>
-<pre><code>$ cwl-runner example-tar-param.cwl example-tar-param-job.yml
+<pre><code>$ cwl-runner tar-param.cwl tar-param-job.yml
 [job 139868145165200] $ tar xf /home/example/hello.tar goodbye.txt
 Final process status is success
 {
@@ -542,8 +544,7 @@ filesC: [seven, eight, nine]
 <p>Now invoke <code>cwl-runner</code> providing the tool wrapper and the input object
 on the command line:</p>
 <pre><code>$ cwl-runner array-inputs.cwl array-inputs-job.yml
-/home/peter/work/cwl-venv/bin/cwltool 1.0.20160325210917
-[job 140334923640912] /home/peter/work/common-workflow-language/draft-3/examples$ echo -A one two three -B=four -B=five -B=six -C=seven,eight,nine
+[job 140334923640912] /home/example$ echo -A one two three -B=four -B=five -B=six -C=seven,eight,nine
 -A one two three -B=four -B=five -B=six -C=seven,eight,nine
 Final process status is success
 {}
@@ -556,7 +557,55 @@ values should be concatenated into a single argument separated by the
 item separator string.</p>
 <p>You can specify arrays of arrays, arrays of records, and other complex
 types.</p>
-<h2 id="Record_inputs,_dependent_and_mutually_exclusive_parameters">2.9 Record inputs, dependent and mutually exclusive parameters</h1><p>Sometimes an underlying tool has several arguments that must be provided
+<h2 id="Array_outputs">2.9 Array outputs</h1><p>You can also capture multiple output files into an array of files using <code>glob</code>.</p>
+<p><em>array-outputs.cwl</em></p>
+<pre><code>cwlVersion: cwl:draft-3
+class: CommandLineTool
+baseCommand: touch
+inputs:
+  - id: touchfiles
+    type:
+      type: array
+      items: string
+    inputBinding:
+      position: 1
+outputs:
+  - id: output
+    type:
+      type: array
+      items: File
+    outputBinding:
+      glob: "*.txt"
+</code></pre>
+<p><em>array-outpust-job.yml</em></p>
+<pre><code>touchfiles:
+  - foo.txt
+  - bar.dat
+  - baz.txt
+</code></pre>
+<p>Now invoke <code>cwl-runner</code> providing the tool wrapper and the input object
+on the command line:</p>
+<pre><code>$ cwl-runner array-outputs.cwl array-outputs-job.yml
+[job 140190876078160] /home/example$ touch foo.txt bar.dat baz.txt
+Final process status is success
+{
+  "output": [
+    {
+      "size": 0,
+      "path": "/home/peter/work/common-workflow-language/draft-3/examples/foo.txt",
+      "checksum": "sha1$da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "class": "File"
+    },
+    {
+      "size": 0,
+      "path": "/home/peter/work/common-workflow-language/draft-3/examples/baz.txt",
+      "checksum": "sha1$da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "class": "File"
+    }
+  ]
+}
+</code></pre>
+<h2 id="Record_inputs,_dependent_and_mutually_exclusive_parameters">2.10 Record inputs, dependent and mutually exclusive parameters</h1><p>Sometimes an underlying tool has several arguments that must be provided
 together (they are dependent) or several arguments that cannot be
 provided together (they are exclusive).  You can use records and type
 unions to group parameters together to describe these two conditions.</p>
@@ -640,7 +689,7 @@ Final process status is success
 </code></pre>
 <p>In the third example, only <code>itemD</code> is provided, so it appears on the
 command line.</p>
-<h2 id="Environment_variables">2.10 Environment variables</h1><p>Tools run in a restricted environment and do not inherit most environment
+<h2 id="Environment_variables">2.11 Environment variables</h1><p>Tools run in a restricted environment and do not inherit most environment
 variables from the parent process.  You can set environment variables for
 the tool using <code>EnvVarRequirement</code>.</p>
 <p><em>env.cwl</em></p>
@@ -670,7 +719,7 @@ TMPDIR=/tmp/tmp63Obpk
 Final process status is success
 {}
 </code></pre>
-<h2 id="Javascript_expressions">2.11 Javascript expressions</h1><p>If you need to manipulate input parameters, include the requirement
+<h2 id="Javascript_expressions">2.12 Javascript expressions</h1><p>If you need to manipulate input parameters, include the requirement
 <code>InlineJavascriptRequirement</code> and then anywhere a parameter reference is
 legal you can provide a fragment of Javascript that will be evaluated by
 the CWL runner.</p>
@@ -783,17 +832,143 @@ outputs:
 <p>Now invoke <code>cwl-runner</code> with the tool wrapper and the input object on the
 command line:</p>
 <pre><code>$ cwl-runner linkfile.cwl arguments-job.yml
-[job 139928309171664] /home/example$ docker run -i --volume=/home/peter/work/common-workflow-language/draft-3/examples/Hello.java:/var/lib/cwl/job557617295_examples/Hello.java:ro --volume=/home/peter/work/common-workflow-language/draft-3/examples:/var/spool/cwl:rw --volume=/tmp/tmpmNbApw:/tmp:rw --workdir=/var/spool/cwl --read-only=true --net=none --user=1001 --rm --env=TMPDIR=/tmp java:7 javac Hello.java
+[job 139928309171664] /home/example$ docker run -i --volume=/home/example/Hello.java:/var/lib/cwl/job557617295_examples/Hello.java:ro --volume=/home/example:/var/spool/cwl:rw --volume=/tmp/tmpmNbApw:/tmp:rw --workdir=/var/spool/cwl --read-only=true --net=none --user=1001 --rm --env=TMPDIR=/tmp java:7 javac Hello.java
 Final process status is success
 {
 "classfile": {
   "size": 416,
-  "path": "/home/peter/work/common-workflow-language/draft-3/examples/Hello.class",
+  "path": "/home/example/Hello.class",
   "checksum": "sha1$2f7ac33c1f3aac3f1fec7b936b6562422c85b38a",
   "class": "File"
   }
 }
 </code></pre>
+<h1 id="Writing_Workflows">Writing Workflows</h1><h2 id="First_workflow">First workflow</h1><p>This workflow extracts a java source file from a tar file and then
+compiles it.</p>
+<p><em>1st-workflow.cwl</em></p>
+<pre><code>cwlVersion: cwl:draft-3
+class: Workflow
+inputs:
+  - id: inp
+    type: File
+  - id: ex
+    type: string
+
+outputs:
+  - id: classout
+    type: File
+    source: "#compile/classfile"
+
+steps:
+  - id: untar
+    run: tar-param.cwl
+    inputs:
+      - id: tarfile
+        source: "#inp"
+      - id: extractfile
+        source: "#ex"
+    outputs:
+      - id: example_out
+
+  - id: compile
+    run: arguments.cwl
+    inputs:
+      - id: src
+        source: "#untar/example_out"
+    outputs:
+      - id: classfile
+</code></pre>
+<p>Use a JSON object in a separate file to describe the input of a run:</p>
+<p><em>1st-workflow-job.yml</em></p>
+<pre><code>inp:
+  class: File
+  path: hello.tar
+ex: Hello.java
+</code></pre>
+<p>Now invoke <code>cwl-runner</code> with the tool wrapper and the input object on the
+command line:</p>
+<pre><code>$ cwl-runner 1st-workflow.cwl 1st-workflow-job.yml
+[job untar] /tmp/tmp94qFiM$ tar xf /home/example/hello.tar Hello.java
+[step untar] completion status is success
+[job compile] /tmp/tmpu1iaKL$ docker run -i --volume=/tmp/tmp94qFiM/Hello.java:/var/lib/cwl/job301600808_tmp94qFiM/Hello.java:ro --volume=/tmp/tmpu1iaKL:/var/spool/cwl:rw --volume=/tmp/tmpfZnNdR:/tmp:rw --workdir=/var/spool/cwl --read-only=true --net=none --user=1001 --rm --env=TMPDIR=/tmp java:7 javac -d /var/spool/cwl /var/lib/cwl/job301600808_tmp94qFiM/Hello.java
+[step compile] completion status is success
+[workflow 1st-workflow.cwl] outdir is /home/example
+Final process status is success
+{
+  "classout": {
+    "path": "/home/example/Hello.class",
+    "checksum": "sha1$2f7ac33c1f3aac3f1fec7b936b6562422c85b38a",
+    "class": "File",
+    "size": 416
+  }
+}
+</code></pre>
+<p>What's going on here?  Let's break it down:</p>
+<pre><code>cwlVersion: cwl:draft-3
+class: Workflow
+</code></pre>
+<p>The 'cwlVersion<code>field indicates the version of the CWL spec used by the
+document.  The</code>class` field indicates this document describes a workflow.</p>
+<pre><code>inputs:
+  - id: inp
+    type: File
+  - id: ex
+    type: string
+</code></pre>
+<p>The <code>inputs</code> section describes the inputs of the workflow.  This is a
+list of input parameters where each parameter consists of an identifier
+and a data type.  These parameters can be used as sources for input to
+specific workflows steps.</p>
+<pre><code>outputs:
+  - id: classout
+    type: File
+    source: "#compile/classfile"
+</code></pre>
+<p>The <code>outputs</code> section describes the outputs of the workflow.  This is a
+list of output parameters where each parameter consists of an identifier
+and a data type.  The <code>source</code> connects the output parameter <code>classfile</code>
+of the <code>compile</code> step to the workflow output parameter <code>classout</code>.</p>
+<pre><code>steps:
+  - id: untar
+    run: tar-param.cwl
+    inputs:
+      - id: tarfile
+        source: "#inp"
+      - id: extractfile
+        source: "#ex"
+    outputs:
+      - id: example_out
+</code></pre>
+<p>The <code>steps</code> section describes the actual steps of the workflow.  In this
+example, the first step extracts a file from a tar file, and the second
+step compiles the file from the first step using the java compiler.
+Workflow steps are not necessarily run in the order they are listed,
+instead the order is determined by the dependencies between steps (using
+<code>source</code>).  In addition, workflow steps which do not depend on one
+another may run in parallel.</p>
+<p>The first step, <code>untar</code> runs <code>tar-param.cwl</code> (described previously in
+<a href="#Parameter_references">Parameter references</a>).  This tool has two input
+parameters, <code>tarfile</code> and <code>extractfile</code> and one output parameter
+<code>example_out</code>.</p>
+<p>The <code>inputs</code> section of the workflow step connects these two input
+parameters to the inputs of the workflow, <code>#inp</code> and <code>#ex</code> using
+<code>source</code>.  This means that when the workflow step is executed, the values
+assigned to <code>#inp</code> and <code>#ex</code> will be used for the parameters <code>tarfile</code>
+and <code>extractfile</code> in order to run the tool.</p>
+<p>The <code>outputs</code> section of the workflow step lists the output parameters
+that are expected from the tool.</p>
+<pre><code>  - id: compile
+    run: arguments.cwl
+    inputs:
+      - id: src
+        source: "#untar/example_out"
+    outputs:
+      - id: classfile
+</code></pre>
+<p>The second step <code>compile</code> depends on the results from the first step by
+connecting the input parameter <code>src</code> to the output parameter of <code>untar</code>
+using <code>#untar/example_out</code>.  The output of this step <code>classfile</code> is
+connected to the <code>outputs</code> section for the Workflow, described above.</p>
 </div>
     </div>
     </div>
