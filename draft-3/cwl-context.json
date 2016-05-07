@@ -95,7 +95,7 @@
         "cwl": "https://w3id.org/cwl/cwl#", 
         "cwlVersion": {
             "@id": "https://w3id.org/cwl/cwl#cwlVersion", 
-            "@type": "@id"
+            "@type": "@vocab"
         }, 
         "default": "cwl:default", 
         "description": "rdfs:comment", 
