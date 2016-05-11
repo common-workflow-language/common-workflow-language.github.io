@@ -712,6 +712,16 @@ with the URI is not an error.</p>
 </td></tr><tr><td><code>noLinkCheck</code></td><td><a href="#PrimitiveType">boolean</a></td><td>False</td><td><p>If true, this indicates that link validation traversal must stop at
 this field.  This field (it is is a URI) or any fields under it (if it
 is an object or array) are not subject to link checking.</p>
+</td></tr><tr><td><code>mapSubject</code></td><td><a href="#PrimitiveType">string</a></td><td>False</td><td><p>If the value of the field is a JSON object, it must be transformed
+into an array of JSON objects, where each key-value pair from the
+source JSON object is a list item, the list items must be JSON objects,
+and the key is assigned to the field specified by <code>mapSubject</code>.</p>
+</td></tr><tr><td><code>mapPredicate</code></td><td><a href="#PrimitiveType">string</a></td><td>False</td><td><p>Only applies if <code>mapSubject</code> is also provided.  If the value of the
+field is a JSON object, it is transformed as described in <code>mapSubject</code>,
+with the addition that when the value of a map item is not an object,
+the item is transformed to a JSON object with the key assigned to the
+field specified by <code>mapSubject</code> and the value assigned to the field
+specified by <code>mapPredicate</code>.</p>
 </td></tr></table><h2 id="SpecializeDef">4.2 SpecializeDef</h2><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>specializeFrom</code></td><td><a href="#PrimitiveType">string</a></td><td>True</td><td><p>The data type to be replaced</p>
 </td></tr><tr><td><code>specializeTo</code></td><td><a href="#PrimitiveType">string</a></td><td>True</td><td><p>The new data type to replace with</p>
 </td></tr></table><h2 id="SaladEnumSchema">5. SaladEnumSchema</h2><p>Define an enumerated type.</p>

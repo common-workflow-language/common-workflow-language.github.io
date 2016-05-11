@@ -16,6 +16,7 @@
         "CommandOutputRecordField": "https://w3id.org/cwl/cwl#CommandOutputRecordField", 
         "CommandOutputRecordSchema": "https://w3id.org/cwl/cwl#CommandOutputRecordSchema", 
         "CreateFileRequirement": "https://w3id.org/cwl/cwl#CreateFileRequirement", 
+        "Directory": "https://w3id.org/cwl/cwl#Directory", 
         "DocType": "https://w3id.org/cwl/salad#DocType", 
         "DockerRequirement": "https://w3id.org/cwl/cwl#DockerRequirement", 
         "Documentation": "https://w3id.org/cwl/salad#Documentation", 
@@ -99,6 +100,7 @@
         }, 
         "default": "cwl:default", 
         "description": "rdfs:comment", 
+        "dirDef": "https://w3id.org/cwl/cwl#initialWorkDir/dirDef", 
         "doc": "sld:doc", 
         "docAfter": {
             "@id": "https://w3id.org/cwl/salad#docAfter", 
@@ -129,8 +131,12 @@
         "draft-3.dev3": "https://w3id.org/cwl/cwl#draft-3.dev3", 
         "draft-3.dev4": "https://w3id.org/cwl/cwl#draft-3.dev4", 
         "draft-3.dev5": "https://w3id.org/cwl/cwl#draft-3.dev5", 
+        "draft-4.dev1": "https://w3id.org/cwl/cwl#draft-4.dev1", 
         "enum": "https://w3id.org/cwl/salad#enum", 
-        "envDef": "https://w3id.org/cwl/cwl#EnvVarRequirement/envDef", 
+        "envDef": {
+            "mapPredicate": "envValue", 
+            "mapSubject": "envName"
+        }, 
         "envName": "https://w3id.org/cwl/cwl#EnvironmentDef/envName", 
         "envValue": "https://w3id.org/cwl/cwl#EnvironmentDef/envValue", 
         "expression": "https://w3id.org/cwl/cwl#ExpressionTool/expression", 
@@ -153,12 +159,23 @@
         "glob": "https://w3id.org/cwl/cwl#CommandOutputBinding/glob", 
         "hints": {
             "@id": "https://w3id.org/cwl/cwl#hints", 
+            "mapSubject": "class", 
             "noLinkCheck": true
         }, 
         "id": "@id", 
         "identity": "https://w3id.org/cwl/salad#JsonldPredicate/identity", 
+        "in": {
+            "@id": "https://w3id.org/cwl/cwl#in", 
+            "mapPredicate": "source", 
+            "mapSubject": "id"
+        }, 
+        "initialWorkDir": "https://w3id.org/cwl/cwl#initialWorkDir", 
         "inputBinding": "cwl:inputBinding", 
-        "inputs": "cwl:inputs", 
+        "inputs": {
+            "@id": "https://w3id.org/cwl/cwl#inputs", 
+            "mapPredicate": "type", 
+            "mapSubject": "id"
+        }, 
         "int": "http://www.w3.org/2001/XMLSchema#int", 
         "itemSeparator": "https://w3id.org/cwl/cwl#CommandLineBinding/itemSeparator", 
         "items": {
@@ -170,17 +187,28 @@
         "linkMerge": "https://w3id.org/cwl/cwl#Sink/linkMerge", 
         "loadContents": "cwl:loadContents", 
         "long": "http://www.w3.org/2001/XMLSchema#long", 
+        "mapPredicate": "https://w3id.org/cwl/salad#JsonldPredicate/mapPredicate", 
+        "mapSubject": "https://w3id.org/cwl/salad#JsonldPredicate/mapSubject", 
         "merge_flattened": "https://w3id.org/cwl/cwl#LinkMergeMethod/merge_flattened", 
         "merge_nested": "https://w3id.org/cwl/cwl#LinkMergeMethod/merge_nested", 
         "name": "@id", 
         "nested_crossproduct": "https://w3id.org/cwl/cwl#ScatterMethod/nested_crossproduct", 
         "noLinkCheck": "https://w3id.org/cwl/salad#JsonldPredicate/noLinkCheck", 
         "null": "https://w3id.org/cwl/salad#null", 
+        "out": {
+            "@id": "https://w3id.org/cwl/cwl#out", 
+            "@type": "@id", 
+            "identity": true
+        }, 
         "outdirMax": "https://w3id.org/cwl/cwl#ResourceRequirement/outdirMax", 
         "outdirMin": "https://w3id.org/cwl/cwl#ResourceRequirement/outdirMin", 
         "outputBinding": "cwl:outputBinding", 
         "outputEval": "https://w3id.org/cwl/cwl#CommandOutputBinding/outputEval", 
-        "outputs": "cwl:outputs", 
+        "outputs": {
+            "@id": "https://w3id.org/cwl/cwl#outputs", 
+            "mapPredicate": "type", 
+            "mapSubject": "id"
+        }, 
         "path": {
             "@id": "https://w3id.org/cwl/cwl#path", 
             "@type": "@id"
@@ -191,7 +219,10 @@
         "ramMax": "https://w3id.org/cwl/cwl#ResourceRequirement/ramMax", 
         "ramMin": "https://w3id.org/cwl/cwl#ResourceRequirement/ramMin", 
         "record": "https://w3id.org/cwl/salad#record", 
-        "requirements": "cwl:requirements", 
+        "requirements": {
+            "@id": "https://w3id.org/cwl/cwl#requirements", 
+            "mapSubject": "class"
+        }, 
         "run": {
             "@id": "https://w3id.org/cwl/cwl#run", 
             "@type": "@id"
@@ -225,7 +256,9 @@
         }, 
         "stdin": "https://w3id.org/cwl/cwl#CommandLineTool/stdin", 
         "stdout": "https://w3id.org/cwl/cwl#CommandLineTool/stdout", 
-        "steps": "https://w3id.org/cwl/cwl#Workflow/steps", 
+        "steps": {
+            "mapSubject": "id"
+        }, 
         "streamable": "https://w3id.org/cwl/cwl#SchemaBase/streamable", 
         "string": "http://www.w3.org/2001/XMLSchema#string", 
         "successCodes": "https://w3id.org/cwl/cwl#CommandLineTool/successCodes", 

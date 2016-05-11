@@ -16,6 +16,10 @@
     .tocnav ol {
       list-style: none
     }
+    pre {
+      margin-left: 2em;
+      margin-right: 2em;
+    }
     </style>
     </head>
     <body>
@@ -43,11 +47,15 @@ powerful, easy to use, portable, and support reproducibility.</p>
 <a href="http://docker.com">Docker</a> for portable runtime environments.</p>
 <p>CWL is designed to express workflows for data-intensive science, such as
 Bioinformatics, Medical Imaging, Chemistry, Physics, and Astronomy.</p>
-<h2 id="CWL_Specification">CWL Specification</h1><p>The current stable specification is <a href="http://www.commonwl.org/draft-3/">draft 3</a>:</p>
+<h2 id="CWL_User_Guide">CWL User Guide</h2><p><a href="http://www.commonwl.org/draft-3/UserGuide.html">User guide for the current stable specification (draft-3)</a>,
+provides a gentle introduction to writing CWL command line tool and workflow descriptions.</p>
+<h2 id="CWL_Specification">CWL Specification</h2><p>The current stable specification is <a href="http://www.commonwl.org/draft-3/">draft 3</a>:</p>
 <p><a href="http://www.commonwl.org/draft-3/">http://www.commonwl.org/draft-3/</a></p>
+<p>The next work-in-progress specification is <a href="http://www.commonwl.org/draft-4/">draft 4</a>:</p>
+<p><a href="http://www.commonwl.org/draft-4/">http://www.commonwl.org/draft-4/</a></p>
 <p>Older drafts: <a href="https://github.com/common-workflow-language/common-workflow-language/tree/master/draft-1">draft-1</a>, <a href="http://www.commonwl.org/draft-2/">draft-2</a></p>
-<h3 id="Citation">Citation</h1><p>Please cite <a href="https://dx.doi.org/10.6084/m9.figshare.3115156.v1">https://dx.doi.org/10.6084/m9.figshare.3115156.v1</a></p>
-<h2 id="Implementations">Implementations</h1><p>Some of the software supporting running Common Workflow Language tools or workflows:</p>
+<h3 id="Citation">Citation</h3><p>Please cite <a href="https://dx.doi.org/10.6084/m9.figshare.3115156.v1">https://dx.doi.org/10.6084/m9.figshare.3115156.v1</a></p>
+<h2 id="Implementations">Implementations</h2><p>Some of the software supporting running Common Workflow Language tools or workflows:</p>
 <ul>
 <li><a href="https://github.com/common-workflow-language/cwltool">cwltool (reference implementation)</a>,
 <a href="https://github.com/common-workflow-language/common-workflow-language/wiki/cwltool-%28reference-implementation%29">cwltool wiki page</a></li>
@@ -67,11 +75,11 @@ Bioinformatics, Medical Imaging, Chemistry, Physics, and Astronomy.</p>
 <a href="https://github.com/common-workflow-language/common-workflow-language/wiki/SciDAP">Airflow wiki page</a></li>
 <li><a href="https://github.com/common-workflow-language/cwl2script">cwl2script</a>,
 <a href="https://github.com/common-workflow-language/common-workflow-language/wiki/cwl2script">cwl2script page</a></li>
-<li><a href="http://taverna.incubator.apache.org/">Apache Taverna</a>, 
+<li><a href="http://taverna.incubator.apache.org/">Apache Taverna</a>,
 <a href="https://github.com/common-workflow-language/common-workflow-language/wiki/Taverna">Apache Taverna wiki page</a></li>
 </ul>
-<h2 id="Examples">Examples</h1><p><a href="https://github.com/common-workflow-language/workflows">Github repository of example tools and workflows.</a></p>
-<h2 id="Development_and_testing">Development and testing</h1><p><a href="https://github.com/common-workflow-language/common-workflow-language">The CWL project is on Github.</a></p>
+<h2 id="Examples">Examples</h2><p><a href="https://github.com/common-workflow-language/workflows">Github repository of example tools and workflows.</a></p>
+<h2 id="Development_and_testing">Development and testing</h2><p><a href="https://github.com/common-workflow-language/common-workflow-language">The CWL project is on Github.</a></p>
 <p><a href="https://github.com/common-workflow-language/common-workflow-language/stargazers"><img src="https://img.shields.io/github/stars/common-workflow-language/common-workflow-language.svg" alt="GitHub
 stars"></a></p>
 <p>There is a Jenkins server maintained by Curoverse that runs tests for the
@@ -79,7 +87,7 @@ reference implementation, builds and uploads packages, and builds and uploads
 Docker images:</p>
 <p><a href="https://ci.curoverse.com/job/common-workflow-language/">https://ci.curoverse.com/job/common-workflow-language/</a></p>
 <p>Current build status: <a href="https://ci.curoverse.com/job/common-workflow-language/"><img src="https://ci.curoverse.com/buildStatus/icon?job=common-workflow-language" alt="Build Status"></a></p>
-<h2 id="Community_and_Contributing">Community and Contributing</h1><p>If you are interested in learning more or contributing ideas or code,
+<h2 id="Community_and_Contributing">Community and Contributing</h2><p>If you are interested in learning more or contributing ideas or code,
 <a href="https://gitter.im/common-workflow-language/common-workflow-language">come chat with us on Gitter</a>,
 check out <a href="https://twitter.com/search?q=%23CommonWL">#CommonWL on Twitter</a>,
 join the <a href="https://groups.google.com/forum/#!forum/common-workflow-language">mailing list common-workflow-language on Google Groups</a> or
@@ -88,7 +96,7 @@ and send a pull request!</p>
 <p><a href="https://gitter.im/common-workflow-language/common-workflow-language?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Gitter"></a></p>
 <p>Your CWL Community Engineer, Michael R. Crusoe, publishes a blog about his work
 with weekly updates at <a href="http://mrc.commonwl.org">http://mrc.commonwl.org</a>.</p>
-<h3 id="Code_of_Conduct">Code of Conduct</h1><p>The CWL Project is dedicated to providing a harassment-free experience for
+<h3 id="Code_of_Conduct">Code of Conduct</h3><p>The CWL Project is dedicated to providing a harassment-free experience for
 everyone, regardless of gender, gender identity and expression, sexual
 orientation, disability, physical appearance, body size, age, race, or
 religion. We do not tolerate harassment of participants in any form.</p>
@@ -98,7 +106,7 @@ Anyone who violates this code of conduct may be sanctioned or expelled from
 these spaces at the discretion of the leadership team.</p>
 <p>For more details, see our <a href="https://github.com/common-workflow-language/common-workflow-language/blob/master/CODE_OF_CONDUCT.md">Code of
 Conduct</a></p>
-<h2 id="Participating_Organizations">Participating Organizations</h1><ul>
+<h2 id="Participating_Organizations">Participating Organizations</h2><ul>
 <li><a href="http://curoverse.com">Curoverse</a></li>
 <li><a href="http://sbgenomics.com">Seven Bridges Genomics</a></li>
 <li><a href="http://galaxyproject.org/">Galaxy Project</a></li>
@@ -112,7 +120,7 @@ Conduct</a></p>
 <li><a href="http://www.biodatomics.com/">BioDatomics</a></li>
 <li><a href="http://www.gla.ac.uk/researchinstitutes/cancersciences/ics/facilities/wwcrc/">Wolfson Wohl Cancer Research Centre</a></li>
 </ul>
-<h2 id="Individual_Contributors">Individual Contributors</h1><p>(Alphabetical)</p>
+<h2 id="Individual_Contributors">Individual Contributors</h2><p>(Alphabetical)</p>
 <ul>
 <li>Peter Amstutz <a href="mailto:peter.amstutz@curoverse.com">peter.amstutz@curoverse.com</a></li>
 <li>Robin Andeer <a href="mailto:robin.andeer@gmail.com">robin.andeer@gmail.com</a></li>

@@ -4,7 +4,7 @@
     <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <title>Common Workflow Language (CWL) Workflow Description, draft 3</title>
+    <title>Common Workflow Language (CWL) Workflow Description, draft 4</title>
     <style>
     :target {
       padding-top: 61px;
@@ -41,9 +41,9 @@
     
     <div class="row">
     
-    <div class="col-md-12" role="main" id="main"><h1 id="Common_Workflow_Language_(CWL)_Workflow_Description,_draft_3">Common Workflow Language (CWL) Workflow Description, draft 3</h1><p>This version:</p>
+    <div class="col-md-12" role="main" id="main"><h1 id="Common_Workflow_Language_(CWL)_Workflow_Description,_draft_4">Common Workflow Language (CWL) Workflow Description, draft 4</h1><p>This version:</p>
 <ul>
-<li><a href="https://w3id.org/cwl/draft-3/">https://w3id.org/cwl/draft-3/</a></li>
+<li><a href="https://w3id.org/cwl/draft-4/">https://w3id.org/cwl/draft-4/</a></li>
 </ul>
 <p>Current version:</p>
 <ul>
@@ -72,16 +72,16 @@ description, a vendor-neutral standard for representing workflows
 intended to be portable across a variety of computing platforms.</p>
 <h1 id="Status_of_This_Document">Status of This Document</h1><p>This document is the product of the <a href="https://groups.google.com/forum/#!forum/common-workflow-language">Common Workflow Language working
 group</a>.  The
-latest version of this document is available in the "draft-3" directory at</p>
+latest version of this document is available in the "draft-4" directory at</p>
 <p><a href="https://github.com/common-workflow-language/common-workflow-language">https://github.com/common-workflow-language/common-workflow-language</a></p>
 <p>The products of the CWL working group (including this document) are made available
 under the terms of the Apache License, version 2.0.</p>
 <h1 id="toc">Table of contents</h1>
-               <nav class="tocnav"><ol><li><a href="#Common_Workflow_Language_(CWL)_Workflow_Description,_draft_3"> Common Workflow Language (CWL) Workflow Description, draft 3</a><ol>
+               <nav class="tocnav"><ol><li><a href="#Common_Workflow_Language_(CWL)_Workflow_Description,_draft_4"> Common Workflow Language (CWL) Workflow Description, draft 4</a><ol>
 </ol><li><a href="#Abstract"> Abstract</a><ol>
 </ol><li><a href="#Status_of_This_Document"> Status of This Document</a><ol>
 </ol><li><a href="#Introduction">1. Introduction</a><ol>
-<li><a href="#Introduction_to_draft_3">1.1 Introduction to draft 3</a><ol>
+<li><a href="#Introduction_to_draft_4">1.1 Introduction to draft 4</a><ol>
 </ol><li><a href="#Purpose">1.2 Purpose</a><ol>
 </ol><li><a href="#References_to_Other_Specifications">1.3 References to Other Specifications</a><ol>
 </ol><li><a href="#Scope">1.4 Scope</a><ol>
@@ -104,14 +104,15 @@ under the terms of the Apache License, version 2.0.</p>
 <li><a href="#WorkflowOutputParameter">4.1 WorkflowOutputParameter</a><ol>
 <li><a href="#Expression">4.1.1 Expression</a><ol>
 </ol><li><a href="#CWLType">4.1.2 CWLType</a><ol>
-</ol><li><a href="#File">4.1.3 File</a><ol>
-</ol><li><a href="#OutputRecordSchema">4.1.4 OutputRecordSchema</a><ol>
-<li><a href="#OutputRecordField">4.1.4.1 OutputRecordField</a><ol>
-<li><a href="#PrimitiveType">4.1.4.1.1 PrimitiveType</a><ol>
-</ol><li><a href="#OutputEnumSchema">4.1.4.1.2 OutputEnumSchema</a><ol>
-<li><a href="#CommandOutputBinding">4.1.4.1.2.1 CommandOutputBinding</a><ol>
-</ol></li></ol><li><a href="#OutputArraySchema">4.1.4.1.3 OutputArraySchema</a><ol>
-</ol></li></ol></li></ol><li><a href="#LinkMergeMethod">4.1.5 LinkMergeMethod</a><ol>
+<li><a href="#File">4.1.2.1 File</a><ol>
+</ol><li><a href="#Directory">4.1.2.2 Directory</a><ol>
+</ol></li></ol><li><a href="#OutputRecordSchema">4.1.3 OutputRecordSchema</a><ol>
+<li><a href="#OutputRecordField">4.1.3.1 OutputRecordField</a><ol>
+<li><a href="#PrimitiveType">4.1.3.1.1 PrimitiveType</a><ol>
+</ol><li><a href="#OutputEnumSchema">4.1.3.1.2 OutputEnumSchema</a><ol>
+<li><a href="#CommandOutputBinding">4.1.3.1.2.1 CommandOutputBinding</a><ol>
+</ol></li></ol><li><a href="#OutputArraySchema">4.1.3.1.3 OutputArraySchema</a><ol>
+</ol></li></ol></li></ol><li><a href="#LinkMergeMethod">4.1.4 LinkMergeMethod</a><ol>
 </ol></li></ol><li><a href="#WorkflowStep">4.2 WorkflowStep</a><ol>
 <li><a href="#WorkflowStepInput">4.2.1 WorkflowStepInput</a><ol>
 <li><a href="#Any">4.2.1.1 Any</a><ol>
@@ -140,20 +141,10 @@ interest in portability of data analysis workflows.  The goal is to create
 specifications like this one that enable data scientists to describe analysis
 tools and workflows that are powerful, easy to use, portable, and support
 reproducibility.</p>
-<h2 id="Introduction_to_draft_3">1.1 Introduction to draft 3</h2><p>This specification represents the third milestone of the CWL group.  Since
-draft-2, this draft introduces the following changes and additions:</p>
+<h2 id="Introduction_to_draft_4">1.1 Introduction to draft 4</h2><p>This specification represents the fourth milestone of the CWL group.
+Since draft-3, this draft introduces the following changes and additions:</p>
 <ul>
-<li>Greatly simplified naming within a document with scoped identifiers, as
-described in the <a href="SchemaSalad.html">Schema Salad specification</a>.</li>
-<li>The draft-2 concept of pluggable expression engines has been replaced
-by a [streamlined expression syntax)[#Parameter_references]
-and standardization on <a href="#Expressions">Javascript</a>.</li>
-<li><a href="#File">File</a> objects can now include a <code>format</code> field to indicate
-the file type.</li>
-<li>The addition of <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a>.</li>
-<li>The addition of <a href="#StepInputExpressionRequirement">StepInputExpressionRequirement</a>.</li>
-<li>The separation of Workflow and CommandLineTool components into
-separate specifications.</li>
+<li>The 'inputs' and 'outputs' fields have been renamed 'in' and 'out'.</li>
 </ul>
 <h2 id="Purpose">1.2 Purpose</h2><p>The Common Workflow Language Command Line Tool Description express
 workflows for data-intensive science, such as Bioinformatics, Chemistry,
@@ -212,7 +203,7 @@ preprocessing steps described in the
 <a href="SchemaSalad.html">Semantic Annotations for Linked Avro Data (SALAD) Specification</a>.
 A implementation may formally validate the structure of a CWL document using
 SALAD schemas located at
-<a href="https://github.com/common-workflow-language/common-workflow-language/tree/master/draft-3">https://github.com/common-workflow-language/common-workflow-language/tree/master/draft-3</a></p>
+<a href="https://github.com/common-workflow-language/common-workflow-language/tree/master/draft-4">https://github.com/common-workflow-language/common-workflow-language/tree/master/draft-4</a></p>
 <h2 id="Identifiers">2.3 Identifiers</h2><p>If an object contains an <code>id</code> field, that is used to uniquely identify the
 object in that document.  The value of the <code>id</code> field must be unique over the
 entire document.  Identifiers may be resolved relative to other the document
@@ -551,7 +542,7 @@ references.  If <a href="#InlineJavascriptRequirement">InlineJavascriptRequireme
 is declared and supported by the platform, the field must also allow
 Javascript expressions.</p>
 <h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>ExpressionPlaceholder</code></td><td></td></tr></table><h2 id="CWLType">4.1.2 CWLType</h2><p>Extends primitive types with the concept of a file as a first class type.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>null</code></td><td> no value</td></tr><tr><td><code>boolean</code></td><td> a binary value</td></tr><tr><td><code>int</code></td><td> 32-bit signed integer</td></tr><tr><td><code>long</code></td><td> 64-bit signed integer</td></tr><tr><td><code>float</code></td><td> single precision (32-bit) IEEE 754 floating-point number</td></tr><tr><td><code>double</code></td><td> double precision (64-bit) IEEE 754 floating-point number</td></tr><tr><td><code>string</code></td><td> Unicode character sequence</td></tr><tr><td><code>File</code></td><td> A File object</td></tr></table><h2 id="File">4.1.3 File</h2><p>Represents a file (or group of files if <code>secondaryFiles</code> is specified) that
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>null</code></td><td> no value</td></tr><tr><td><code>boolean</code></td><td> a binary value</td></tr><tr><td><code>int</code></td><td> 32-bit signed integer</td></tr><tr><td><code>long</code></td><td> 64-bit signed integer</td></tr><tr><td><code>float</code></td><td> single precision (32-bit) IEEE 754 floating-point number</td></tr><tr><td><code>double</code></td><td> double precision (64-bit) IEEE 754 floating-point number</td></tr><tr><td><code>string</code></td><td> Unicode character sequence</td></tr><tr><td><code>File</code></td><td> A File object</td></tr></table><h2 id="File">4.1.2.1 File</h2><p>Represents a file (or group of files if <code>secondaryFiles</code> is specified) that
 must be accessible by tools using standard POSIX file system call API such as
 open(2) and read(2).</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td>File_class</td><td>True</td><td><p>Must be <code>File</code> to indicate this object describes a file.</p>
@@ -577,7 +568,11 @@ input file format is the same, <code>owl:equivalentClass</code> or
 <p>File format ontologies may be provided in the "$schema" metadata at the
 root of the document.  If no ontologies are specified in <code>$schema</code>, the
 runtime may perform exact file format matches.</p>
-</td></tr></table><h2 id="OutputRecordSchema">4.1.4 OutputRecordSchema</h2><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Record_symbol</td><td>True</td><td><p>Must be <code>record</code></p>
+</td></tr></table><h2 id="Directory">4.1.2.2 Directory</h2><p>Represents a directory to present to a command line tool. This could be a virtual
+directory, made of files assembled from a number of concrete directories.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td>Directory_class</td><td>True</td><td><p>Must be <code>Directory</code> to indicate this object describes a Directory.</p>
+</td></tr><tr><td><code>path</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The path to the directory.</p>
+</td></tr></table><h2 id="OutputRecordSchema">4.1.3 OutputRecordSchema</h2><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Record_symbol</td><td>True</td><td><p>Must be <code>record</code></p>
 </td></tr><tr><td><code>fields</code></td><td>array&lt;<a href="#OutputRecordField">OutputRecordField</a>&gt;</td><td>False</td><td><p>Defines the fields of the record.</p>
 </td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Describes files that must be included alongside the primary file(s).</p>
@@ -604,13 +599,13 @@ the output parameter.</p>
 sequentially without seeking.  An implementation may use this flag to
 indicate whether it is valid to stream file contents using a named
 pipe.  Default: <code>false</code>.</p>
-</td></tr></table><h2 id="OutputRecordField">4.1.4.1 OutputRecordField</h2><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The name of the field</p>
+</td></tr></table><h2 id="OutputRecordField">4.1.3.1 OutputRecordField</h2><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The name of the field</p>
 </td></tr><tr><td><code>type</code></td><td><a href="#PrimitiveType">PrimitiveType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>The field type</p>
 </td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A documentation string for this field</p>
-</td></tr><tr><td><code>outputBinding</code></td><td><a href="#CommandOutputBinding">CommandOutputBinding</a></td><td>False</td><td></td></tr></table><h2 id="PrimitiveType">4.1.4.1.1 PrimitiveType</h2><p>Salad data types are based on Avro schema declarations.  Refer to the
+</td></tr><tr><td><code>outputBinding</code></td><td><a href="#CommandOutputBinding">CommandOutputBinding</a></td><td>False</td><td></td></tr></table><h2 id="PrimitiveType">4.1.3.1.1 PrimitiveType</h2><p>Salad data types are based on Avro schema declarations.  Refer to the
 <a href="https://avro.apache.org/docs/current/spec.html#schemas">Avro schema declaration documentation</a> for
 detailed information.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>null</code></td><td></td></tr><tr><td><code>boolean</code></td><td></td></tr><tr><td><code>int</code></td><td></td></tr><tr><td><code>long</code></td><td></td></tr><tr><td><code>float</code></td><td></td></tr><tr><td><code>double</code></td><td></td></tr><tr><td><code>string</code></td><td></td></tr></table><h2 id="OutputEnumSchema">4.1.4.1.2 OutputEnumSchema</h2><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Enum_symbol</td><td>True</td><td><p>Must be <code>enum</code></p>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>null</code></td><td></td></tr><tr><td><code>boolean</code></td><td></td></tr><tr><td><code>int</code></td><td></td></tr><tr><td><code>long</code></td><td></td></tr><tr><td><code>float</code></td><td></td></tr><tr><td><code>double</code></td><td></td></tr><tr><td><code>string</code></td><td></td></tr></table><h2 id="OutputEnumSchema">4.1.3.1.2 OutputEnumSchema</h2><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Enum_symbol</td><td>True</td><td><p>Must be <code>enum</code></p>
 </td></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the set of valid symbols.</p>
 </td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Describes files that must be included alongside the primary file(s).</p>
@@ -637,7 +632,7 @@ the output parameter.</p>
 sequentially without seeking.  An implementation may use this flag to
 indicate whether it is valid to stream file contents using a named
 pipe.  Default: <code>false</code>.</p>
-</td></tr><tr><td><code>outputBinding</code></td><td><a href="#CommandOutputBinding">CommandOutputBinding</a></td><td>False</td><td></td></tr></table><h2 id="CommandOutputBinding">4.1.4.1.2.1 CommandOutputBinding</h2><p>Describes how to generate an output parameter based on the files produced
+</td></tr><tr><td><code>outputBinding</code></td><td><a href="#CommandOutputBinding">CommandOutputBinding</a></td><td>False</td><td></td></tr></table><h2 id="CommandOutputBinding">4.1.3.1.2.1 CommandOutputBinding</h2><p>Describes how to generate an output parameter based on the files produced
 by a CommandLineTool.</p>
 <p>The output parameter is generated by applying these operations in
 the following order:</p>
@@ -662,7 +657,7 @@ length array; if a single file was matched, the value of</code>self<code>is an
 array of a single element.  Additionally, if</code>loadContents<code>is</code>true<code>,
 the File objects must include up to the first 64 KiB of file contents
 in the</code>contents` field.</p>
-</td></tr></table><h2 id="OutputArraySchema">4.1.4.1.3 OutputArraySchema</h2><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Array_symbol</td><td>True</td><td><p>Must be <code>array</code></p>
+</td></tr></table><h2 id="OutputArraySchema">4.1.3.1.3 OutputArraySchema</h2><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Array_symbol</td><td>True</td><td><p>Must be <code>array</code></p>
 </td></tr><tr><td><code>items</code></td><td><a href="#PrimitiveType">PrimitiveType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the type of the array elements.</p>
 </td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Describes files that must be included alongside the primary file(s).</p>
@@ -689,7 +684,7 @@ the output parameter.</p>
 sequentially without seeking.  An implementation may use this flag to
 indicate whether it is valid to stream file contents using a named
 pipe.  Default: <code>false</code>.</p>
-</td></tr><tr><td><code>outputBinding</code></td><td><a href="#CommandOutputBinding">CommandOutputBinding</a></td><td>False</td><td></td></tr></table><h2 id="LinkMergeMethod">4.1.5 LinkMergeMethod</h2><p>The input link merge method, described in <a href="#WorkflowStepInput">WorkflowStepInput</a>.</p>
+</td></tr><tr><td><code>outputBinding</code></td><td><a href="#CommandOutputBinding">CommandOutputBinding</a></td><td>False</td><td></td></tr></table><h2 id="LinkMergeMethod">4.1.4 LinkMergeMethod</h2><p>The input link merge method, described in <a href="#WorkflowStepInput">WorkflowStepInput</a>.</p>
 <h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>merge_nested</code></td><td></td></tr><tr><td><code>merge_flattened</code></td><td></td></tr></table><h2 id="WorkflowStep">4.2 WorkflowStep</h2><p>A workflow step is an executable element of a workflow.  It specifies the
 underlying process implementation (such as <code>CommandLineTool</code>) in the <code>run</code>
 field and connects the input and output parameters of the underlying
@@ -730,12 +725,12 @@ describes how to decompose the input into a discrete set of jobs.</p>
 <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> must be
 specified in the workflow or workflow step requirements.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The unique identifier for this workflow step.</p>
-</td></tr><tr><td><code>inputs</code></td><td>array&lt;<a href="#WorkflowStepInput">WorkflowStepInput</a>&gt;</td><td>True</td><td><p>Defines the input parameters of the workflow step.  The process is ready to
+</td></tr><tr><td><code>in</code></td><td>array&lt;<a href="#WorkflowStepInput">WorkflowStepInput</a>&gt;</td><td>True</td><td><p>Defines the input parameters of the workflow step.  The process is ready to
 run when all required input parameters are associated with concrete
 values.  Input parameters include a schema for each parameter which is
 used to validate the input object.  It may also be used build a user
 interface for constructing the input object.</p>
-</td></tr><tr><td><code>outputs</code></td><td>array&lt;<a href="#WorkflowStepOutput">WorkflowStepOutput</a>&gt;</td><td>True</td><td><p>Defines the parameters representing the output of the process.  May be
+</td></tr><tr><td><code>out</code></td><td>array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#WorkflowStepOutput">WorkflowStepOutput</a>&gt;</td><td>True</td><td><p>Defines the parameters representing the output of the process.  May be
 used to generate and/or validate the output object.</p>
 </td></tr><tr><td><code>run</code></td><td><a href="#CWLType">string</a> | <a href="CommandLineTool.html#CommandLineTool">CommandLineTool</a> | <a href="#ExpressionTool">ExpressionTool</a> | <a href="#Workflow">Workflow</a></td><td>True</td><td><p>Specifies the process to run.</p>
 </td></tr><tr><td><code>requirements</code></td><td>array&lt;<a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a> | <a href="CommandLineTool.html#CreateFileRequirement">CreateFileRequirement</a> | <a href="CommandLineTool.html#EnvVarRequirement">EnvVarRequirement</a> | <a href="CommandLineTool.html#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="CommandLineTool.html#ResourceRequirement">ResourceRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#StepInputExpressionRequirement">StepInputExpressionRequirement</a>&gt;</td><td>False</td><td><p>Declares requirements that apply to either the runtime environment or the
@@ -1066,7 +1061,7 @@ pipe.  Default: <code>false</code>.</p>
 </td></tr><tr><td><code>description</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A long, human-readable description of this parameter object.</p>
 </td></tr><tr><td><code>outputBinding</code></td><td><a href="#CommandOutputBinding">CommandOutputBinding</a></td><td>False</td><td><p>Describes how to handle the outputs of a process.</p>
 </td></tr></table><h2 id="CWLVersions">4.2.10.3 CWLVersions</h2><p>Version symbols for published CWL document versions.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>draft-2</code></td><td></td></tr><tr><td><code>draft-3.dev1</code></td><td></td></tr><tr><td><code>draft-3.dev2</code></td><td></td></tr><tr><td><code>draft-3.dev3</code></td><td></td></tr><tr><td><code>draft-3.dev4</code></td><td></td></tr><tr><td><code>draft-3.dev5</code></td><td></td></tr><tr><td><code>draft-3</code></td><td></td></tr></table></div>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>draft-2</code></td><td></td></tr><tr><td><code>draft-3.dev1</code></td><td></td></tr><tr><td><code>draft-3.dev2</code></td><td></td></tr><tr><td><code>draft-3.dev3</code></td><td></td></tr><tr><td><code>draft-3.dev4</code></td><td></td></tr><tr><td><code>draft-3.dev5</code></td><td></td></tr><tr><td><code>draft-3</code></td><td></td></tr><tr><td><code>draft-4.dev1</code></td><td></td></tr></table></div>
     </div>
     </div>
     </body>
