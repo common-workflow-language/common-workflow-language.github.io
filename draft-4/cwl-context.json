@@ -254,6 +254,7 @@
             "@id": "https://w3id.org/cwl/salad#specializeTo", 
             "@type": "@id"
         }, 
+        "stderr": "https://w3id.org/cwl/cwl#CommandLineTool/stderr", 
         "stdin": "https://w3id.org/cwl/cwl#CommandLineTool/stdin", 
         "stdout": "https://w3id.org/cwl/cwl#CommandLineTool/stdout", 
         "steps": {

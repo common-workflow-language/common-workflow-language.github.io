@@ -631,6 +631,13 @@ the implementation may report a warning.</p>
 </td></tr><tr><td><code>arguments</code></td><td>array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#CommandLineBinding">CommandLineBinding</a>&gt;</td><td>False</td><td><p>Command line bindings which are not directly associated with input parameters.</p>
 </td></tr><tr><td><code>stdin</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>False</td><td><p>A path to a file whose contents must be piped into the command's
 standard input stream.</p>
+</td></tr><tr><td><code>stderr</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>False</td><td><p>Capture the command's standard error stream to a file written to
+the designated output directory.</p>
+<p>If <code>stderr</code> is a string, it specifies the file name to use.</p>
+<p>If <code>stderr</code> is an expression, the expression is evaluated and must
+return a string with the file name to use to capture stderr.  If the
+return value is not a string, or the resulting path contains illegal
+characters (such as the path separator <code>/</code>) it is an error.</p>
 </td></tr><tr><td><code>stdout</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>False</td><td><p>Capture the command's standard output stream to a file written to
 the designated output directory.</p>
 <p>If <code>stdout</code> is a string, it specifies the file name to use.</p>

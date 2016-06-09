@@ -215,6 +215,9 @@ sld:SpecializeDef a rdfs:Class .
 <https://w3id.org/cwl/cwl#CommandLineTool/permanentFailCodes> a rdf:Property ;
     rdfs:domain cwl:CommandLineTool .
 
+<https://w3id.org/cwl/cwl#CommandLineTool/stderr> a rdf:Property ;
+    rdfs:domain cwl:CommandLineTool .
+
 <https://w3id.org/cwl/cwl#CommandLineTool/stdin> a rdf:Property ;
     rdfs:domain cwl:CommandLineTool .
 
