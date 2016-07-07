@@ -159,10 +159,29 @@ specifications like this one that enable data scientists to describe analysis
 tools and workflows that are powerful, easy to use, portable, and support
 reproducibility.</p>
 <h2 id="Introduction_to_v1.0">1.1 Introduction to v1.0</h2><p>This specification represents the first full release from the CWL group.
-Since draft-3, this draft introduces the following changes and additions:</p>
+Since draft-3, version 1.0 introduces the following changes and additions:</p>
 <ul>
 <li>The <a href="#Directory">Directory</a> type.</li>
-<li>"id: name" is now "name"; "class: Classname" is now "Classname".</li>
+<li>Syntax simplifcations: denoted by the <code>map&lt;&gt;</code> syntax. Example: inputs
+contains a list of items, each with an id. Now one can specify
+a mapping of that identifier to the corresponding
+<code>CommandInputParamater</code>.<pre><code>inputs:
+ - id: one
+   type: string
+   doc: First input parameter
+ - id: two
+   type: int
+   doc: Second input parameter
+</code></pre>
+can be<pre><code>inputs:
+ one:
+  type: string
+  doc: First input parameter
+ two:
+  type: int
+  doc: Second input parameter
+</code></pre>
+</li>
 <li><a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a>: list of
 files and subdirectories to be present in the output directory prior
 to execution.</li>
