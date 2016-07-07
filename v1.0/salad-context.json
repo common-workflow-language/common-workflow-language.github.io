@@ -25,7 +25,7 @@
         "array": "https://w3id.org/cwl/salad#array", 
         "boolean": "http://www.w3.org/2001/XMLSchema#boolean", 
         "dct": "http://purl.org/dc/terms/", 
-        "doc": "sld:doc", 
+        "doc": "rdfs:comment", 
         "docAfter": {
             "@id": "https://w3id.org/cwl/salad#docAfter", 
             "@type": "@id"
@@ -44,15 +44,21 @@
         "enum": "https://w3id.org/cwl/salad#enum", 
         "extends": {
             "@id": "https://w3id.org/cwl/salad#extends", 
-            "@type": "@id"
+            "@type": "@id", 
+            "refScope": 1
         }, 
-        "fields": "sld:fields", 
+        "fields": {
+            "@id": "https://w3id.org/cwl/salad#fields", 
+            "mapPredicate": "type", 
+            "mapSubject": "name"
+        }, 
         "float": "http://www.w3.org/2001/XMLSchema#float", 
         "identity": "https://w3id.org/cwl/salad#JsonldPredicate/identity", 
         "int": "http://www.w3.org/2001/XMLSchema#int", 
         "items": {
             "@id": "https://w3id.org/cwl/salad#items", 
-            "@type": "@vocab"
+            "@type": "@vocab", 
+            "refScope": 2
         }, 
         "jsonldPredicate": "sld:jsonldPredicate", 
         "long": "http://www.w3.org/2001/XMLSchema#long", 
@@ -64,15 +70,22 @@
         "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#", 
         "rdfs": "http://www.w3.org/2000/01/rdf-schema#", 
         "record": "https://w3id.org/cwl/salad#record", 
+        "refScope": "https://w3id.org/cwl/salad#JsonldPredicate/refScope", 
         "sld": "https://w3id.org/cwl/salad#", 
-        "specialize": "https://w3id.org/cwl/salad#SaladRecordSchema/specialize", 
+        "specialize": {
+            "@id": "https://w3id.org/cwl/salad#specialize", 
+            "mapPredicate": "specializeTo", 
+            "mapSubject": "specializeFrom"
+        }, 
         "specializeFrom": {
             "@id": "https://w3id.org/cwl/salad#specializeFrom", 
-            "@type": "@id"
+            "@type": "@id", 
+            "refScope": 1
         }, 
         "specializeTo": {
             "@id": "https://w3id.org/cwl/salad#specializeTo", 
-            "@type": "@id"
+            "@type": "@id", 
+            "refScope": 1
         }, 
         "string": "http://www.w3.org/2001/XMLSchema#string", 
         "symbols": {
@@ -82,8 +95,11 @@
         }, 
         "type": {
             "@id": "https://w3id.org/cwl/salad#type", 
-            "@type": "@vocab"
+            "@type": "@vocab", 
+            "refScope": 2, 
+            "typeDSL": true
         }, 
+        "typeDSL": "https://w3id.org/cwl/salad#JsonldPredicate/typeDSL", 
         "xsd": "http://www.w3.org/2001/XMLSchema#"
     }
 }

@@ -41,6 +41,10 @@ sld:SchemaDefinedType a rdfs:Class ;
 
 sld:SpecializeDef a rdfs:Class .
 
+rdfs:comment a rdf:Property ;
+    rdfs:domain sld:DocType,
+        sld:RecordField .
+
 <https://w3id.org/cwl/salad#JsonldPredicate/_container> a rdf:Property ;
     rdfs:domain sld:JsonldPredicate .
 
@@ -59,21 +63,17 @@ sld:SpecializeDef a rdfs:Class .
 <https://w3id.org/cwl/salad#JsonldPredicate/noLinkCheck> a rdf:Property ;
     rdfs:domain sld:JsonldPredicate .
 
-<https://w3id.org/cwl/salad#SaladRecordSchema/abstract> a rdf:Property ;
-    rdfs:domain sld:SaladRecordSchema .
+<https://w3id.org/cwl/salad#JsonldPredicate/refScope> a rdf:Property ;
+    rdfs:domain sld:JsonldPredicate .
 
-<https://w3id.org/cwl/salad#SaladRecordSchema/specialize> a rdf:Property ;
+<https://w3id.org/cwl/salad#JsonldPredicate/typeDSL> a rdf:Property ;
+    rdfs:domain sld:JsonldPredicate .
+
+<https://w3id.org/cwl/salad#SaladRecordSchema/abstract> a rdf:Property ;
     rdfs:domain sld:SaladRecordSchema .
 
 <https://w3id.org/cwl/salad#SchemaDefinedType/documentRoot> a rdf:Property ;
     rdfs:domain sld:SchemaDefinedType .
-
-sld:doc a rdf:Property ;
-    rdfs:domain sld:DocType,
-        sld:RecordField .
-
-sld:fields a rdf:Property ;
-    rdfs:domain sld:RecordSchema .
 
 sld:jsonldPredicate a rdf:Property ;
     rdfs:domain sld:SaladRecordField,

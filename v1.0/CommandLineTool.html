@@ -1,0 +1,1197 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <title>Common Workflow Language (CWL) Command Line Tool Description, v1.0</title>
+    <style>
+    :target {
+      padding-top: 61px;
+      margin-top: -61px;
+    }
+    body {
+      padding-top: 61px;
+    }
+    .tocnav ol {
+      list-style: none
+    }
+    pre {
+      margin-left: 2em;
+      margin-right: 2em;
+    }
+    </style>
+    </head>
+    <body>
+    
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="index.html"><img src='../CWL-Logo-Header.png' style='height: 61px; margin-top: -20px; margin-left: -20px'></img></a>
+    
+                <ul class="nav navbar-nav">
+                  <li><a href="#toc">Table of contents</a></li>
+                </ul>
+        
+          </div>
+        </div>
+      </nav>
+    
+    <div class="container">
+    
+    <div class="row">
+    
+    <div class="col-md-12" role="main" id="main"><h1 id="Common_Workflow_Language_(CWL)_Command_Line_Tool_Description,_v1.0">Common Workflow Language (CWL) Command Line Tool Description, v1.0</h1><p>This version:</p>
+<ul>
+<li><a href="https://w3id.org/cwl/v1.0/">https://w3id.org/cwl/v1.0/</a></li>
+</ul>
+<p>Current version:</p>
+<ul>
+<li><a href="https://w3id.org/cwl/">https://w3id.org/cwl/</a></li>
+</ul>
+<p>Authors:</p>
+<ul>
+<li>Peter Amstutz <a href="mailto:peter.amstutz@curoverse.com">peter.amstutz@curoverse.com</a>, Arvados Project, Curoverse</li>
+<li>Michael R. Crusoe <a href="mailto:michael.crusoe@gmail.com">michael.crusoe@gmail.com</a>, Common Workflow Language
+project</li>
+<li>Nebojša Tijanić <a href="mailto:nebojsa.tijanic@sbgenomics.com">nebojsa.tijanic@sbgenomics.com</a>, Seven Bridges Genomics</li>
+</ul>
+<p>Contributers:</p>
+<ul>
+<li>Brad Chapman <a href="mailto:bchapman@hsph.harvard.edu">bchapman@hsph.harvard.edu</a>, Harvard Chan School of Public Health</li>
+<li>John Chilton <a href="mailto:jmchilton@gmail.com">jmchilton@gmail.com</a>, Galaxy Project, Pennsylvania State University</li>
+<li>Michael Heuer <a href="mailto:heuermh@berkeley.edu,">heuermh@berkeley.edu,</a>,UC Berkeley AMPLab</li>
+<li>Andrey Kartashov <a href="mailto:Andrey.Kartashov@cchmc.org">Andrey.Kartashov@cchmc.org</a>, Cincinnati Children's Hospital</li>
+<li>Dan Leehr <a href="mailto:dan.leehr@duke.edu">dan.leehr@duke.edu</a>, Duke University</li>
+<li>Hervé Ménager <a href="mailto:herve.menager@gmail.com">herve.menager@gmail.com</a>, Institut Pasteur</li>
+<li>Maya Nedeljkovich <a href="mailto:maja.nedeljkovic@sbgenomics.com">maja.nedeljkovic@sbgenomics.com</a>, Seven Bridges Genomics</li>
+<li>Matt Scales <a href="mailto:mscales@icr.ac.uk">mscales@icr.ac.uk</a>, Institute of Cancer Research, London</li>
+<li>Stian Soiland-Reyes <a href="mailto:soiland-reyes@cs.manchester.ac.uk">soiland-reyes@cs.manchester.ac.uk</a>, University of Manchester</li>
+<li>Luka Stojanovic <a href="mailto:luka.stojanovic@sbgenomics.com">luka.stojanovic@sbgenomics.com</a>, Seven Bridges Genomics</li>
+</ul>
+<h1 id="Abstract">Abstract</h1><p>A Command Line Tool is a non-interactive executable program that reads
+some input, performs a computation, and terminates after producing some
+output.  Command line programs are a flexible unit of code sharing and
+reuse, unfortunately the syntax and input/output semantics among command
+line programs is extremely heterogeneous. A common layer for describing
+the syntax and semantics of programs can reduce this incidental
+complexity by providing a consistent way to connect programs together.
+This specification defines the Common Workflow Language (CWL) Command
+Line Tool Description, a vendor-neutral standard for describing the
+syntax and input/output semantics of command line programs.</p>
+<h1 id="Status_of_this_document">Status of this document</h1><p>This document is the product of the <a href="https://groups.google.com/forum/#!forum/common-workflow-language">Common Workflow Language working
+group</a>.  The
+latest version of this document is available in the "v1.0" directory at</p>
+<p><a href="https://github.com/common-workflow-language/common-workflow-language">https://github.com/common-workflow-language/common-workflow-language</a></p>
+<p>The products of the CWL working group (including this document) are made available
+under the terms of the Apache License, version 2.0.</p>
+<h1 id="toc">Table of contents</h1>
+               <nav class="tocnav"><ol><li><a href="#Common_Workflow_Language_(CWL)_Command_Line_Tool_Description,_v1.0"> Common Workflow Language (CWL) Command Line Tool Description, v1.0</a><ol>
+</ol><li><a href="#Abstract"> Abstract</a><ol>
+</ol><li><a href="#Status_of_this_document"> Status of this document</a><ol>
+</ol><li><a href="#Introduction">1. Introduction</a><ol>
+<li><a href="#Introduction_to_v1.0">1.1 Introduction to v1.0</a><ol>
+</ol><li><a href="#Purpose">1.2 Purpose</a><ol>
+</ol><li><a href="#References_to_other_specifications">1.3 References to other specifications</a><ol>
+</ol><li><a href="#Scope">1.4 Scope</a><ol>
+</ol><li><a href="#Terminology">1.5 Terminology</a><ol>
+</ol></li></ol><li><a href="#Data_model">2. Data model</a><ol>
+<li><a href="#Data_concepts">2.1 Data concepts</a><ol>
+</ol><li><a href="#Syntax">2.2 Syntax</a><ol>
+</ol><li><a href="#Identifiers">2.3 Identifiers</a><ol>
+</ol><li><a href="#Document_preprocessing">2.4 Document preprocessing</a><ol>
+</ol><li><a href="#Extensions_and_metadata">2.5 Extensions and metadata</a><ol>
+</ol></li></ol><li><a href="#Execution_model">3. Execution model</a><ol>
+<li><a href="#Execution_concepts">3.1 Execution concepts</a><ol>
+</ol><li><a href="#Generic_execution_process">3.2 Generic execution process</a><ol>
+</ol><li><a href="#Requirements_and_hints">3.3 Requirements and hints</a><ol>
+</ol><li><a href="#Parameter_references">3.4 Parameter references</a><ol>
+</ol><li><a href="#Expressions">3.5 Expressions</a><ol>
+</ol><li><a href="#Executing_CWL_documents_as_scripts">3.6 Executing CWL documents as scripts</a><ol>
+</ol><li><a href="#Discovering_CWL_documents_on_a_local_filesystem">3.7 Discovering CWL documents on a local filesystem</a><ol>
+</ol></li></ol><li><a href="#Running_a_Command">4. Running a Command</a><ol>
+<li><a href="#Input_binding">4.1 Input binding</a><ol>
+</ol><li><a href="#Runtime_environment">4.2 Runtime environment</a><ol>
+</ol><li><a href="#Execution">4.3 Execution</a><ol>
+</ol><li><a href="#Output_binding">4.4 Output binding</a><ol>
+</ol></li></ol><li><a href="#CommandLineTool">5. CommandLineTool</a><ol>
+<li><a href="#CommandInputParameter">5.1 CommandInputParameter</a><ol>
+<li><a href="#Expression">5.1.1 Expression</a><ol>
+</ol><li><a href="#CommandLineBinding">5.1.2 CommandLineBinding</a><ol>
+</ol><li><a href="#Any">5.1.3 Any</a><ol>
+</ol><li><a href="#CWLType">5.1.4 CWLType</a><ol>
+</ol><li><a href="#File">5.1.5 File</a><ol>
+<li><a href="#Directory">5.1.5.1 Directory</a><ol>
+</ol></li></ol><li><a href="#CommandInputRecordSchema">5.1.6 CommandInputRecordSchema</a><ol>
+</ol><li><a href="#CommandInputRecordField">5.1.7 CommandInputRecordField</a><ol>
+<li><a href="#CommandInputEnumSchema">5.1.7.1 CommandInputEnumSchema</a><ol>
+</ol><li><a href="#CommandInputArraySchema">5.1.7.2 CommandInputArraySchema</a><ol>
+</ol></li></ol></li></ol><li><a href="#CommandOutputParameter">5.2 CommandOutputParameter</a><ol>
+<li><a href="#stdout">5.2.1 stdout</a><ol>
+</ol><li><a href="#stderr">5.2.2 stderr</a><ol>
+</ol><li><a href="#CommandOutputBinding">5.2.3 CommandOutputBinding</a><ol>
+</ol><li><a href="#CommandOutputRecordSchema">5.2.4 CommandOutputRecordSchema</a><ol>
+</ol><li><a href="#CommandOutputRecordField">5.2.5 CommandOutputRecordField</a><ol>
+<li><a href="#CommandOutputEnumSchema">5.2.5.1 CommandOutputEnumSchema</a><ol>
+</ol><li><a href="#CommandOutputArraySchema">5.2.5.2 CommandOutputArraySchema</a><ol>
+</ol></li></ol></li></ol><li><a href="#InlineJavascriptRequirement">5.3 InlineJavascriptRequirement</a><ol>
+</ol><li><a href="#SchemaDefRequirement">5.4 SchemaDefRequirement</a><ol>
+<li><a href="#InputRecordSchema">5.4.1 InputRecordSchema</a><ol>
+</ol><li><a href="#InputRecordField">5.4.2 InputRecordField</a><ol>
+<li><a href="#InputEnumSchema">5.4.2.1 InputEnumSchema</a><ol>
+</ol><li><a href="#InputArraySchema">5.4.2.2 InputArraySchema</a><ol>
+</ol></li></ol></li></ol><li><a href="#DockerRequirement">5.5 DockerRequirement</a><ol>
+</ol><li><a href="#SoftwareRequirement">5.6 SoftwareRequirement</a><ol>
+</ol><li><a href="#SoftwarePackage">5.7 SoftwarePackage</a><ol>
+</ol><li><a href="#InitialWorkDirRequirement">5.8 InitialWorkDirRequirement</a><ol>
+<li><a href="#Dirent">5.8.1 Dirent</a><ol>
+</ol></li></ol><li><a href="#EnvVarRequirement">5.9 EnvVarRequirement</a><ol>
+</ol><li><a href="#EnvironmentDef">5.10 EnvironmentDef</a><ol>
+</ol><li><a href="#ShellCommandRequirement">5.11 ShellCommandRequirement</a><ol>
+</ol><li><a href="#ResourceRequirement">5.12 ResourceRequirement</a><ol>
+</ol><li><a href="#CWLVersion">5.13 CWLVersion</a><ol>
+</ol></li></ol></li></ol></nav>
+
+<h1 id="Introduction">1. Introduction</h1><p>The Common Workflow Language (CWL) working group is an informal, multi-vendor
+working group consisting of various organizations and individuals that have an
+interest in portability of data analysis workflows.  The goal is to create
+specifications like this one that enable data scientists to describe analysis
+tools and workflows that are powerful, easy to use, portable, and support
+reproducibility.</p>
+<h2 id="Introduction_to_v1.0">1.1 Introduction to v1.0</h2><p>This specification represents the first full release from the CWL group.
+Since draft-3, this draft introduces the following changes and additions:</p>
+<ul>
+<li>The <a href="#Directory">Directory</a> type.</li>
+<li>"id: name" is now "name"; "class: Classname" is now "Classname".</li>
+<li><a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a>: list of
+files and subdirectories to be present in the output directory prior
+to execution.</li>
+<li>Shortcuts for specifying the standard <a href="#stdout">output</a> and/or
+<a href="#stderr">error</a> streams as a (streamable) File output.</li>
+<li><a href="#SoftwareRequirement">SoftwareRequirement</a> for describing software
+dependencies of a tool.</li>
+</ul>
+<h2 id="Purpose">1.2 Purpose</h2><p>Standalone programs are a flexible and interoperable form of code reuse.
+Unlike monolithic applications, applications and analysis workflows which
+are composed of multiple separate programs can be written in multiple
+languages and execute concurrently on multiple hosts.  However, POSIX
+does not dictate computer-readable grammar or semantics for program input
+and output, resulting in extremely heterogeneous command line grammar and
+input/output semantics among program.  This is a particular problem in
+distributed computing (multi-node compute clusters) and virtualized
+environments (such as Docker containers) where it is often necessary to
+provision resources such as input files before executing the program.</p>
+<p>Often this gap is filled by hard coding program invocation and
+implicitly assuming requirements will be met, or abstracting program
+invocation with wrapper scripts or descriptor documents.  Unfortunately,
+where these approaches are application or platform specific it creates a
+significant barrier to reproducibility and portability, as methods
+developed for one platform must be manually ported to be used on new
+platforms.  Similarly it creates redundant work, as wrappers for popular
+tools must be rewritten for each application or platform in use.</p>
+<p>The Common Workflow Language Command Line Tool Description is designed to
+provide a common standard description of grammar and semantics for
+invoking programs used in data-intensive fields such as Bioinformatics,
+Chemistry, Physics, Astronomy, and Statistics.  This specification
+defines a precise data and execution model for Command Line Tools that
+can be implemented on a variety of computing platforms, ranging from a
+single workstation to cluster, grid, cloud, and high performance
+computing platforms.</p>
+<h2 id="References_to_other_specifications">1.3 References to other specifications</h2><p><strong>Javascript Object Notation (JSON)</strong>: <a href="http://json.org">http://json.org</a></p>
+<p><strong>JSON Linked Data (JSON-LD)</strong>: <a href="http://json-ld.org">http://json-ld.org</a></p>
+<p><strong>YAML</strong>: <a href="http://yaml.org">http://yaml.org</a></p>
+<p><strong>Avro</strong>: <a href="https://avro.apache.org/docs/current/spec.html">https://avro.apache.org/docs/current/spec.html</a></p>
+<p><strong>Uniform Resource Identifier (URI) Generic Syntax</strong>: <a href="https://tools.ietf.org/html/rfc3986">https://tools.ietf.org/html/rfc3986</a>)</p>
+<p><strong>Internationalized Resource Identifiers (IRIs)</strong>:
+<a href="https://tools.ietf.org/html/rfc3987">https://tools.ietf.org/html/rfc3987</a></p>
+<p><strong>Portable Operating System Interface (POSIX.1-2008)</strong>: <a href="http://pubs.opengroup.org/onlinepubs/9699919799/">http://pubs.opengroup.org/onlinepubs/9699919799/</a></p>
+<p><strong>Resource Description Framework (RDF)</strong>: <a href="http://www.w3.org/RDF/">http://www.w3.org/RDF/</a></p>
+<h2 id="Scope">1.4 Scope</h2><p>This document describes CWL syntax, execution, and object model.  It
+is not intended to document a CWL specific implementation, however it may
+serve as a reference for the behavior of conforming implementations.</p>
+<h2 id="Terminology">1.5 Terminology</h2><p>The terminology used to describe CWL documents is defined in the
+Concepts section of the specification. The terms defined in the
+following list are used in building those definitions and in describing the
+actions of a CWL implementation:</p>
+<p><strong>may</strong>: Conforming CWL documents and CWL implementations are permitted but
+not required to behave as described.</p>
+<p><strong>must</strong>: Conforming CWL documents and CWL implementations are required to behave
+as described; otherwise they are in error.</p>
+<p><strong>error</strong>: A violation of the rules of this specification; results are
+undefined. Conforming implementations may detect and report an error and may
+recover from it.</p>
+<p><strong>fatal error</strong>: A violation of the rules of this specification; results are
+undefined. Conforming implementations must not continue to execute the current
+process and may report an error.</p>
+<p><strong>at user option</strong>: Conforming software may or must (depending on the modal verb in
+the sentence) behave as described; if it does, it must provide users a means to
+enable or disable the behavior described.</p>
+<p><strong>deprecated</strong>: Conforming software may implement a behavior for backwards
+compatibility.  Portable CWL documents should not rely on deprecated behavior.
+Behavior marked as deprecated may be removed entirely from future revisions of
+the CWL specification.</p>
+<h1 id="Data_model">2. Data model</h1><h2 id="Data_concepts">2.1 Data concepts</h2><p>An <strong>object</strong> is a data structure equivalent to the "object" type in JSON,
+consisting of a unordered set of name/value pairs (referred to here as
+<strong>fields</strong>) and where the name is a string and the value is a string, number,
+boolean, array, or object.</p>
+<p>A <strong>document</strong> is a file containing a serialized object, or an array of objects.</p>
+<p>A <strong>process</strong> is a basic unit of computation which accepts input data,
+performs some computation, and produces output data. Examples include
+CommandLineTools, Workflows, and ExpressionTools.</p>
+<p>An <strong>input object</strong> is an object describing the inputs to an invocation of
+a process.</p>
+<p>An <strong>output object</strong> is an object describing the output resulting from an
+invocation of a process.</p>
+<p>An <strong>input schema</strong> describes the valid format (required fields, data types)
+for an input object.</p>
+<p>An <strong>output schema</strong> describes the valid format for an output object.</p>
+<p><strong>Metadata</strong> is information about workflows, tools, or input items.</p>
+<h2 id="Syntax">2.2 Syntax</h2><p>CWL documents must consist of an object or array of objects represented using
+JSON or YAML syntax.  Upon loading, a CWL implementation must apply the
+preprocessing steps described in the
+<a href="SchemaSalad.html">Semantic Annotations for Linked Avro Data (SALAD) Specification</a>.
+An implementation may formally validate the structure of a CWL document using
+SALAD schemas located at
+<a href="https://github.com/common-workflow-language/common-workflow-language/tree/master/draft-4">https://github.com/common-workflow-language/common-workflow-language/tree/master/draft-4</a></p>
+<h2 id="Identifiers">2.3 Identifiers</h2><p>If an object contains an <code>id</code> field, that is used to uniquely identify the
+object in that document.  The value of the <code>id</code> field must be unique over the
+entire document.  Identifiers may be resolved relative to other the document
+base and/or other identifiers following the rules are described in the
+<a href="SchemaSalad.html#Identifier_resolution">Schema Salad specification</a>.</p>
+<p>An implementation may choose to only honor references to object types for
+which the <code>id</code> field is explicitly listed in this specification.</p>
+<h2 id="Document_preprocessing">2.4 Document preprocessing</h2><p>An implementation must resolve <a href="SchemaSalad.html#Import">$import</a> and
+<a href="SchemaSalad.html#Import">$include</a> directives as described in the
+<a href="SchemaSalad.html">Schema Salad specification</a>.</p>
+<p>Another transformation defined in Schema salad is simplification of data type definitions.
+Type <code>&lt;T&gt;</code> ending with <code>?</code> should be transformed to <code>[&lt;T&gt;, "null"]</code>.
+Type <code>&lt;T&gt;</code> ending with <code>[]</code> should be transformed to <code>{"type": "array", "items": &lt;T&gt;}</code></p>
+<h2 id="Extensions_and_metadata">2.5 Extensions and metadata</h2><p>Input metadata (for example, a lab sample identifier) may be represented within
+a tool or workflow using input parameters which are explicitly propagated to
+output.  Future versions of this specification may define additional facilities
+for working with input/output metadata.</p>
+<p>Implementation extensions not required for correct execution (for example,
+fields related to GUI presentation) and metadata about the tool or workflow
+itself (for example, authorship for use in citations) may be provided as
+additional fields on any object.  Such extensions fields must use a namespace
+prefix listed in the <code>$namespaces</code> section of the document as described in the
+<a href="SchemaSalad.html#Explicit_context">Schema Salad specification</a>.</p>
+<p>Implementation extensions which modify execution semantics must be <a href="#Requirements_and_hints">listed in
+the <code>requirements</code> field</a>.</p>
+<h1 id="Execution_model">3. Execution model</h1><h2 id="Execution_concepts">3.1 Execution concepts</h2><p>A <strong>parameter</strong> is a named symbolic input or output of process, with an
+associated datatype or schema.  During execution, values are assigned to
+parameters to make the input object or output object used for concrete
+process invocation.</p>
+<p>A <strong>CommandLineTool</strong> is a process characterized by the execution of a
+standalone, non-interactive program which is invoked on some input,
+produces output, and then terminates.</p>
+<p>A <strong>workflow</strong> is a process characterized by multiple subprocess steps,
+where step outputs are connected to the inputs of downstream steps to
+form a directed acylic graph, and independent steps may run concurrently.</p>
+<p>A <strong>runtime environment</strong> is the actual hardware and software environment when
+executing a command line tool.  It includes, but is not limited to, the
+hardware architecture, hardware resources, operating system, software runtime
+(if applicable, such as the specific Python interpreter or the specific Java
+virtual machine), libraries, modules, packages, utilities, and data files
+required to run the tool.</p>
+<p>A <strong>workflow platform</strong> is a specific hardware and software implementation
+capable of interpreting CWL documents and executing the processes specified by
+the document.  The responsibilities of the workflow platform may include
+scheduling process invocation, setting up the necessary runtime environment,
+making input data available, invoking the tool process, and collecting output.</p>
+<p>A workflow platform may choose to only implement the Command Line Tool
+Description part of the CWL specification.</p>
+<p>It is intended that the workflow platform has broad leeway outside of this
+specification to optimize use of computing resources and enforce policies
+not covered by this specification.  Some areas that are currently out of
+scope for CWL specification but may be handled by a specific workflow
+platform include:</p>
+<ul>
+<li>Data security and permissions</li>
+<li>Scheduling tool invocations on remote cluster or cloud compute nodes.</li>
+<li>Using virtual machines or operating system containers to manage the runtime
+(except as described in <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a>).</li>
+<li>Using remote or distributed file systems to manage input and output files.</li>
+<li>Transforming file paths.</li>
+<li>Determining if a process has previously been executed, and if so skipping it
+and reusing previous results.</li>
+<li>Pausing, resuming or checkpointing processes or workflows.</li>
+</ul>
+<p>Conforming CWL processes must not assume anything about the runtime
+environment or workflow platform unless explicitly declared though the use
+of <a href="#Requirements_and_hints">process requirements</a>.</p>
+<h2 id="Generic_execution_process">3.2 Generic execution process</h2><p>The generic execution sequence of a CWL process (including workflows and
+command line line tools) is as follows.</p>
+<ol>
+<li>Load, process and validate a CWL document, yielding a process object.</li>
+<li>Load input object.</li>
+<li>Validate the input object against the <code>inputs</code> schema for the process.</li>
+<li>Validate process requirements are met.</li>
+<li>Perform any further setup required by the specific process type.</li>
+<li>Execute the process.</li>
+<li>Capture results of process execution into the output object.</li>
+<li>Validate the output object against the <code>outputs</code> schema for the process.</li>
+<li>Report the output object to the process caller.</li>
+</ol>
+<h2 id="Requirements_and_hints">3.3 Requirements and hints</h2><p>A <strong>process requirement</strong> modifies the semantics or runtime
+environment of a process.  If an implementation cannot satisfy all
+requirements, or a requirement is listed which is not recognized by the
+implementation, it is a fatal error and the implementation must not attempt
+to run the process, unless overridden at user option.</p>
+<p>A <strong>hint</strong> is similar to a requirement; however, it is not an error if an
+implementation cannot satisfy all hints.  The implementation may report a
+warning if a hint cannot be satisfied.</p>
+<p>Requirements are inherited.  A requirement specified in a Workflow applies
+to all workflow steps; a requirement specified on a workflow step will
+apply to the process implementation of that step and any of its substeps.</p>
+<p>If the same process requirement appears at different levels of the
+workflow, the most specific instance of the requirement is used, that is,
+an entry in <code>requirements</code> on a process implementation such as
+CommandLineTool will take precedence over an entry in <code>requirements</code>
+specified in a workflow step, and an entry in <code>requirements</code> on a workflow
+step takes precedence over the workflow.  Entries in <code>hints</code> are resolved
+the same way.</p>
+<p>Requirements override hints.  If a process implementation provides a
+process requirement in <code>hints</code> which is also provided in <code>requirements</code> by
+an enclosing workflow or workflow step, the enclosing <code>requirements</code> takes
+precedence.</p>
+<h2 id="Parameter_references">3.4 Parameter references</h2><p>Parameter references are denoted by the syntax <code>$(...)</code> and may be used in any
+field permitting the pseudo-type <code>Expression</code>, as specified by this document.
+Conforming implementations must support parameter references.  Parameter
+references use the following subset of
+<a href="http://www.ecma-international.org/ecma-262/5.1/">Javascript/ECMAScript 5.1</a>
+syntax, but they are designed to not require a Javascript engine for evaluation.</p>
+<p>In the following BNF grammar, character classes, and grammar rules are denoted
+in '{}', '-' denotes exclusion from a character class, '(())' denotes grouping,
+'|' denotes alternates, trailing '*' denotes zero or more repeats, '+' denote
+one or more repeats, '/' escapes these special characters, and all other
+characters are literal values.</p>
+<p>
+<table class="table">
+<tr><td>symbol::             </td><td>{Unicode alphanumeric}+</td></tr>
+<tr><td>singleq::            </td><td>[' (( {character - '} | \' ))* ']</td></tr>
+<tr><td>doubleq::            </td><td>[" (( {character - "} | \" ))* "]</td></tr>
+<tr><td>index::              </td><td>[ {decimal digit}+ ]</td></tr>
+<tr><td>segment::            </td><td>. {symbol} | {singleq} | {doubleq} | {index}</td></tr>
+<tr><td>parameter reference::</td><td>$( {symbol} {segment}*)</td></tr>
+</table>
+</p><p>Use the following algorithm to resolve a parameter reference:</p>
+<ol>
+<li>Match the leading symbol as the key</li>
+<li>Look up the key in the parameter context (described below) to get the current value.
+It is an error if the key is not found in the parameter context.</li>
+<li>If there are no subsequent segments, terminate and return current value</li>
+<li>Else, match the next segment</li>
+<li>Extract the symbol, string, or index from the segment as the key</li>
+<li>Look up the key in current value and assign as new current value.  If
+the key is a symbol or string, the current value must be an object.
+If the key is an index, the current value must be an array or string.
+It is an error if the key does not match the required type, or the key is not found or out
+of range.</li>
+<li>Repeat steps 3-6</li>
+</ol>
+<p>The root namespace is the parameter context.  The following parameters must
+be provided:</p>
+<ul>
+<li><code>inputs</code>: The input object to the current Process.</li>
+<li><code>self</code>: A context-specific value.  The contextual values for 'self' are
+documented for specific fields elsewhere in this specification.  If
+a contextual value of 'self' is not documented for a field, it
+must be 'null'.</li>
+<li><code>runtime</code>: An object containing configuration details.  Specific to the
+process type.  An implementation may provide may provide
+opaque strings for any or all fields of <code>runtime</code>.  These must be
+filled in by the platform after processing the Tool but before actual
+execution.  Parameter references and expressions may only use the
+literal string value of the field and must not perform computation on
+the contents.</li>
+</ul>
+<p>If the value of a field has no leading or trailing non-whitespace
+characters around a parameter reference, the effective value of the field
+becomes the value of the referenced parameter, preserving the return type.</p>
+<p>If the value of a field has non-whitespace leading or trailing characters
+around a parameter reference, it is subject to string interpolation.  The
+effective value of the field is a string containing the leading characters,
+followed by the string value of the parameter reference, followed by the
+trailing characters.  The string value of the parameter reference is its
+textual JSON representation with the following rules:</p>
+<ul>
+<li>Leading and trailing quotes are stripped from strings</li>
+<li>Objects entries are sorted by key</li>
+</ul>
+<p>Multiple parameter references may appear in a single field.  This case
+must be treated as a string interpolation.  After interpolating the first
+parameter reference, interpolation must be recursively applied to the
+trailing characters to yield the final string value.</p>
+<h2 id="Expressions">3.5 Expressions</h2><p>An expression is a fragment of <a href="http://www.ecma-international.org/ecma-262/5.1/">Javascript/ECMAScript
+5.1</a> code evaluated by the
+workflow platform to affect the inputs, outputs, or
+behavior of a process.  In the generic execution sequence, expressions may
+be evaluated during step 5 (process setup), step 6 (execute process),
+and/or step 7 (capture output).  Expressions are distinct from regular
+processes in that they are intended to modify the behavior of the workflow
+itself rather than perform the primary work of the workflow.</p>
+<p>To declare the use of expressions, the document must include the process
+requirement <code>InlineJavascriptRequirement</code>.  Expressions may be used in any
+field permitting the pseudo-type <code>Expression</code>, as specified by this
+document.</p>
+<p>Expressions are denoted by the syntax <code>$(...)</code> or <code>${...}</code>.  A code
+fragment wrapped in the <code>$(...)</code> syntax must be evaluated as a
+<a href="http://www.ecma-international.org/ecma-262/5.1/#sec-11">ECMAScript expression</a>.  A
+code fragment wrapped in the <code>${...}</code> syntax must be evaluated as a
+<a href="http://www.ecma-international.org/ecma-262/5.1/#sec-13">EMACScript function body</a>
+for an anonymous, zero-argument function.  Expressions must return a valid JSON
+data type: one of null, string, number, boolean, array, object. Other return
+values must result in a <code>permanentFailure</code>. Implementations must permit any
+syntactically valid Javascript and account for nesting of parenthesis or braces
+and that strings that may contain parenthesis or braces when scanning for
+expressions.</p>
+<p>The runtime must include any code defined in the <a href="#InlineJavascriptRequirement">"expressionLib" field of
+InlineJavascriptRequirement</a> prior to
+executing the actual expression.</p>
+<p>Before executing the expression, the runtime must initialize as global
+variables the fields of the parameter context described above.</p>
+<p>The effective value of the field after expression evaluation follows the
+same rules as parameter references discussed above.  Multiple expressions
+may appear in a single field.</p>
+<p>Expressions must be evaluated in an isolated context (a "sandbox") which
+permits no side effects to leak outside the context.  Expressions also must
+be evaluated in <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-4.2.2">Javascript strict mode</a>.</p>
+<p>The order in which expressions are evaluated is undefined except where
+otherwise noted in this document.</p>
+<p>An implementation may choose to implement parameter references by
+evaluating as a Javascript expression.  The results of evaluating
+parameter references must be identical whether implemented by Javascript
+evaluation or some other means.</p>
+<p>Implementations may apply other limits, such as process isolation, timeouts,
+and operating system containers/jails to minimize the security risks associated
+with running untrusted code embedded in a CWL document.</p>
+<p>Exceptions thrown from an exception must result in a <code>permanentFailure</code> of the
+process.</p>
+<h2 id="Executing_CWL_documents_as_scripts">3.6 Executing CWL documents as scripts</h2><p>By convention, a CWL document may begin with <code>#!/usr/bin/env cwl-runner</code>
+and be marked as executable (the POSIX "+x" permission bits) to enable it
+to be executed directly.  A workflow platform may support this mode of
+operation; if so, it must provide <code>cwl-runner</code> as an alias for the
+platform's CWL implementation.</p>
+<p>A CWL input object document may similarly begin with <code>#!/usr/bin/env
+cwl-runner</code> and be marked as executable.  In this case, the input object
+must include the field <code>cwl:tool</code> supplying an IRI to the default CWL
+document that should be executed using the fields of the input object as
+input parameters.</p>
+<h2 id="Discovering_CWL_documents_on_a_local_filesystem">3.7 Discovering CWL documents on a local filesystem</h2><p>To discover CWL documents look in the following locations:</p>
+<p><code>/usr/share/commonwl/</code></p>
+<p><code>/usr/local/share/commonwl/</code></p>
+<p><code>$XDG_DATA_HOME/commonwl/</code> (usually <code>$HOME/.local/share/commonwl</code>)</p>
+<p><code>$XDF_DATA_HOME</code> is from the <a href="http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html">XDG Base Directory
+Specification</a></p>
+<h1 id="Running_a_Command">4. Running a Command</h1><p>To accommodate the enormous variety in syntax and semantics for input, runtime
+environment, invocation, and output of arbitrary programs, a CommandLineTool
+defines an "input binding" that describes how to translate abstract input
+parameters to an concrete program invocation, and an "output binding" that
+describes how to generate output parameters from program output.</p>
+<h2 id="Input_binding">4.1 Input binding</h2><p>The tool command line is built by applying command line bindings to the
+input object.  Bindings are listed either as part of an <a href="#CommandInputParameter">input
+parameter</a> using the <code>inputBinding</code> field, or
+separately using the <code>arguments</code> field of the CommandLineTool.</p>
+<p>The algorithm to build the command line is as follows.  In this algorithm,
+the sort key is a list consisting of one or more numeric or string
+elements.  Strings are sorted lexicographically based on UTF-8 encoding.</p>
+<ol>
+<li><p>Collect <code>CommandLineBinding</code> objects from <code>arguments</code>.  Assign a sorting
+key <code>[position, i]</code> where <code>position</code> is
+<a href="#CommandLineBinding"><code>CommandLineBinding.position</code></a> and <code>i</code>
+is the index in the <code>arguments</code> list.</p>
+</li>
+<li><p>Collect <code>CommandLineBinding</code> objects from the <code>inputs</code> schema and
+associate them with values from the input object.  Where the input type
+is a record, array, or map, recursively walk the schema and input object,
+collecting nested <code>CommandLineBinding</code> objects and associating them with
+values from the input object.</p>
+</li>
+<li><p>Create a sorting key by taking the value of the <code>position</code> field at
+each level leading to each leaf binding object.  If <code>position</code> is not
+specified, it is not added to the sorting key.  For bindings on arrays
+and maps, the sorting key must include the array index or map key
+following the position.  If and only if two bindings have the same sort
+key, the tie must be broken using the ordering of the field or parameter
+name immediately containing the leaf binding.</p>
+</li>
+<li><p>Sort elements using the assigned sorting keys.  Numeric entries sort
+before strings.</p>
+</li>
+<li><p>In the sorted order, apply the rules defined in
+<a href="#CommandLineBinding"><code>CommandLineBinding</code></a> to convert bindings to actual
+command line elements.</p>
+</li>
+<li><p>Insert elements from <code>baseCommand</code> at the beginning of the command
+line.</p>
+</li>
+</ol>
+<h2 id="Runtime_environment">4.2 Runtime environment</h2><p>All files listed in the input object must be made available in the runtime
+environment.  The implementation may use a shared or distributed file
+system or transfer files via explicit download to the host.  Implementations
+may choose not to provide access to files not explicitly specified in the input
+object or process requirements.</p>
+<p>Output files produced by tool execution must be written to the <strong>designated
+output directory</strong>.  The initial current working directory when executing
+the tool must be the designated output directory.</p>
+<p>Files may also be written to the <strong>designated temporary directory</strong>.  This
+directory must be isolated and not shared with other processes.  Any files
+written to the designated temporary directory may be automatically deleted by
+the workflow platform immediately after the tool terminates.</p>
+<p>For compatibility, files may be written to the <strong>system temporary directory</strong>
+which must be located at <code>/tmp</code>.  Because the system temporary directory may be
+shared with other processes on the system, files placed in the system temporary
+directory are not guaranteed to be deleted automatically.  A tool
+must not use the system temporary directory as a backchannel communication with
+other tools.  It is valid for the system temporary directory to be the same as
+the designated temporary directory.</p>
+<p>When executing the tool, the tool must execute in a new, empty environment
+with only the environment variables described below; the child process must
+not inherit environment variables from the parent process except as
+specified or at user option.</p>
+<ul>
+<li><code>HOME</code> must be set to the designated output directory.</li>
+<li><code>TMPDIR</code> must be set to the designated temporary directory.</li>
+<li><code>PATH</code> may be inherited from the parent process, except when run in a
+container that provides its own <code>PATH</code>.</li>
+<li>Variables defined by <a href="#EnvVarRequirement">EnvVarRequirement</a></li>
+<li>The default environment of the container, such as when using
+<a href="#DockerRequirement">DockerRequirement</a></li>
+</ul>
+<p>An implementation may forbid the tool from writing to any location in the
+runtime environment file system other than the designated temporary directory,
+system temporary directory, and designated output directory.  An implementation
+may provide read-only input files, and disallow in-place update of input files.
+The designated temporary directory, system temporary directory and designated
+output directory may each reside on different mount points on different file
+systems.</p>
+<p>An implementation may forbid the tool from directly accessing network
+resources.  Correct tools must not assume any network access.  Future versions
+of the specification may incorporate optional process requirements that
+describe the networking needs of a tool.</p>
+<p>The <code>runtime</code> section available in <a href="#Parameter_references">parameter references</a>
+and <a href="#Expressions">expressions</a> contains the following fields.  As noted
+earlier, an implementation may perform deferred resolution of runtime fields by providing
+opaque strings for any or all of the following fields; parameter references
+and expressions may only use the literal string value of the field and must
+not perform computation on the contents.</p>
+<ul>
+<li><code>runtime.outdir</code>: an absolute path to the designated output directory</li>
+<li><code>runtime.tmpdir</code>: an absolute path to the designated temporary directory</li>
+<li><code>runtime.cores</code>:  number of CPU cores reserved for the tool process</li>
+<li><code>runtime.ram</code>:    amount of RAM in mebibytes (2**20) reserved for the tool process</li>
+<li><code>runtime.outdirSize</code>: reserved storage space available in the designated output directory</li>
+<li><code>runtime.tmpdirSize</code>: reserved storage space available in the designated temporary directory</li>
+</ul>
+<p>See <a href="#ResourceRequirement">ResourceRequirement</a> for details on how to
+describe the hardware resources required by a tool.</p>
+<p>The standard input stream and standard output stream may be redirected as
+described in the <code>stdin</code> and <code>stdout</code> fields.</p>
+<h2 id="Execution">4.3 Execution</h2><p>Once the command line is built and the runtime environment is created, the
+actual tool is executed.</p>
+<p>The standard error stream and standard output stream (unless redirected by
+setting <code>stdout</code> or <code>stderr</code>) may be captured by platform logging facilities
+for storage and reporting.</p>
+<p>Tools may be multithreaded or spawn child processes; however, when the
+parent process exits, the tool is considered finished regardless of whether
+any detached child processes are still running.  Tools must not require any
+kind of console, GUI, or web based user interaction in order to start and
+run to completion.</p>
+<p>The exit code of the process indicates if the process completed
+successfully.  By convention, an exit code of zero is treated as success
+and non-zero exit codes are treated as failure.  This may be customized by
+providing the fields <code>successCodes</code>, <code>temporaryFailCodes</code>, and
+<code>permanentFailCodes</code>.  An implementation may choose to default unspecified
+non-zero exit codes to either <code>temporaryFailure</code> or <code>permanentFailure</code>.</p>
+<h2 id="Output_binding">4.4 Output binding</h2><p>If the output directory contains a file named "cwl.output.json", that file
+must be loaded and used as the output object.  Otherwise, the output object
+must be generated by walking the parameters listed in <code>outputs</code> and
+applying output bindings to the tool output.  Output bindings are
+associated with output parameters using the <code>outputBinding</code> field.  See
+<a href="#CommandOutputBinding"><code>CommandOutputBinding</code></a> for details.</p>
+<h2 id="CommandLineTool">5. CommandLineTool</h2><p>This defines the schema of the CWL Command Line Tool Description document.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>inputs</code></td><td>array&lt;<a href="#CommandInputParameter">CommandInputParameter</a>&gt; | map&lt;<a href="#CommandInputParameter">CommandInputParameter</a>.id,&nbsp;<a href="#CommandInputParameter">CommandInputParameter</a>.type&gt | map&lt;<a href="#CommandInputParameter">CommandInputParameter</a>.id,&nbsp;<a href="#CommandInputParameter">CommandInputParameter</a>&gt</td><td>Optional</td><td><p>Defines the input parameters of the process.  The process is ready to
+run when all required input parameters are associated with concrete
+values.  Input parameters include a schema for each parameter which is
+used to validate the input object.  It may also be used to build a user
+interface for constructing the input object.</p>
+</td></tr><tr><td><code>outputs</code></td><td>array&lt;<a href="#CommandOutputParameter">CommandOutputParameter</a>&gt; | map&lt;<a href="#CommandOutputParameter">CommandOutputParameter</a>.id,&nbsp;<a href="#CommandOutputParameter">CommandOutputParameter</a>.type&gt | map&lt;<a href="#CommandOutputParameter">CommandOutputParameter</a>.id,&nbsp;<a href="#CommandOutputParameter">CommandOutputParameter</a>&gt</td><td>Optional</td><td><p>Defines the parameters representing the output of the process.  May be
+used to generate and/or validate the output object.</p>
+</td></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>Optional</td><td></td></tr><tr><td><code>baseCommand</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>Optional</td><td><p>Specifies the program to execute.  If the value is an array, the first
+element is the program to execute, and subsequent elements are placed
+at the beginning of the command line in prior to any command line
+bindings.  If the program includes a path separator character it must
+be an absolute path, otherwise it is an error.  If the program does not
+include a path separator, search the <code>$PATH</code> variable in the runtime
+environment of the workflow runner find the absolute path of the
+executable.</p>
+</td></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>The unique identifier for this process object.</p>
+</td></tr><tr><td><code>requirements</code></td><td>array&lt;<a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#DockerRequirement">DockerRequirement</a> | <a href="#SoftwareRequirement">SoftwareRequirement</a> | <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="#ResourceRequirement">ResourceRequirement</a>&gt;</td><td>Required</td><td><p>Declares requirements that apply to either the runtime environment or the
+workflow engine that must be met in order to execute this process.  If
+an implementation cannot satisfy all requirements, or a requirement is
+listed which is not recognized by the implementation, it is a fatal
+error and the implementation must not attempt to run the process,
+unless overridden at user option.</p>
+</td></tr><tr><td><code>hints</code></td><td>array&lt;<a href="#Any">Any</a>&gt;</td><td>Required</td><td><p>Declares hints applying to either the runtime environment or the
+workflow engine that may be helpful in executing this process.  It is
+not an error if an implementation cannot satisfy all hints, however
+the implementation may report a warning.</p>
+</td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>A short, human-readable label of this process object.</p>
+</td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>A long, human-readable description of this process object.</p>
+</td></tr><tr><td><code>cwlVersion</code></td><td><a href="#CWLVersion">CWLVersion</a></td><td>Required</td><td><p>CWL document version. Always required at the document root. Not
+required for a Process embedded inside another Process.</p>
+</td></tr><tr><td><code>arguments</code></td><td>array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&nbsp;|&nbsp;<a href="#CommandLineBinding">CommandLineBinding</a>&gt;</td><td>Required</td><td><p>Command line bindings which are not directly associated with input parameters.</p>
+</td></tr><tr><td><code>stdin</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>Required</td><td><p>A path to a file whose contents must be piped into the command's
+standard input stream.</p>
+</td></tr><tr><td><code>stderr</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>Required</td><td><p>Capture the command's standard error stream to a file written to
+the designated output directory.</p>
+<p>If <code>stderr</code> is a string, it specifies the file name to use.</p>
+<p>If <code>stderr</code> is an expression, the expression is evaluated and must
+return a string with the file name to use to capture stderr.  If the
+return value is not a string, or the resulting path contains illegal
+characters (such as the path separator <code>/</code>) it is an error.</p>
+</td></tr><tr><td><code>stdout</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>Required</td><td><p>Capture the command's standard output stream to a file written to
+the designated output directory.</p>
+<p>If <code>stdout</code> is a string, it specifies the file name to use.</p>
+<p>If <code>stdout</code> is an expression, the expression is evaluated and must
+return a string with the file name to use to capture stdout.  If the
+return value is not a string, or the resulting path contains illegal
+characters (such as the path separator <code>/</code>) it is an error.</p>
+</td></tr><tr><td><code>successCodes</code></td><td>array&lt;<a href="#CWLType">int</a>&gt;</td><td>Required</td><td><p>Exit codes that indicate the process completed successfully.</p>
+</td></tr><tr><td><code>temporaryFailCodes</code></td><td>array&lt;<a href="#CWLType">int</a>&gt;</td><td>Required</td><td><p>Exit codes that indicate the process failed due to a possibly
+temporary condition, where executing the process with the same
+runtime environment and inputs may produce different results.</p>
+</td></tr><tr><td><code>permanentFailCodes</code></td><td>array&lt;<a href="#CWLType">int</a>&gt;</td><td>Required</td><td><p>Exit codes that indicate the process failed due to a permanent logic error, where executing the process with the same runtime environment and same inputs is expected to always fail.</p>
+</td></tr></table><h2 id="CommandInputParameter">5.1 CommandInputParameter</h2><p>An input parameter for a CommandLineTool.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>Optional</td><td><p>The unique identifier for this parameter object.</p>
+</td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>A short, human-readable label of this object.</p>
+</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>Required</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>Describes files that must be included alongside the primary file(s).</p>
+<p>If the value is an expression, the value of <code>self</code> in the expression
+must be the primary input or output File to which this binding applies.</p>
+<p>If the value is a string, it specifies that the following pattern
+should be applied to the primary file:</p>
+<ol>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
+period <code>.</code> and all following characters).  If there are no file
+extensions, the path is unchanged.</li>
+<li>Append the remainder of the string to the end of the file path.</li>
+</ol>
+</td></tr><tr><td><code>format</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></td><td>Required</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>For input parameters, this must be one or more IRIs of concept nodes
+that represents file formats which are allowed as input to this
+parameter, preferrably defined within an ontology.  If no ontology is
+available, file formats may be tested by exact match.</p>
+<p>For output parameters, this is the file format that will be assigned to
+the output parameter.</p>
+</td></tr><tr><td><code>streamable</code></td><td><a href="#CWLType">boolean</a></td><td>Required</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>A value of <code>true</code> indicates that the file is read or written
+sequentially without seeking.  An implementation may use this flag to
+indicate whether it is valid to stream file contents using a named
+pipe.  Default: <code>false</code>.</p>
+</td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>Required</td><td><p>A documentation string for this type, or an array of strings which should be concatenated.</p>
+</td></tr><tr><td><code>inputBinding</code></td><td><a href="#CommandLineBinding">CommandLineBinding</a></td><td>Required</td><td><p>Describes how to handle the inputs of a process and convert them
+into a concrete form for execution, such as command line parameters.</p>
+</td></tr><tr><td><code>default</code></td><td><a href="#Any">Any</a></td><td>Required</td><td><p>The default value for this parameter if not provided in the input
+object.</p>
+</td></tr><tr><td><code>type</code></td><td><a href="#CWLType">CWLType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>Required</td><td><p>Specify valid types of data that may be assigned to this parameter.</p>
+</td></tr></table><h2 id="Expression">5.1.1 Expression</h2><p>'Expression' is not a real type.  It indicates that a field must allow
+runtime parameter references.  If <a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a>
+is declared and supported by the platform, the field must also allow
+Javascript expressions.</p>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>ExpressionPlaceholder</code></td><td></td></tr></table><h2 id="CommandLineBinding">5.1.2 CommandLineBinding</h2><p>When listed under <code>inputBinding</code> in the input schema, the term
+"value" refers to the the corresponding value in the input object.  For
+binding objects listed in <code>CommandLineTool.arguments</code>, the term "value"
+refers to the effective value after evaluating <code>valueFrom</code>.</p>
+<p>The binding behavior when building the command line depends on the data
+type of the value.  If there is a mismatch between the type described by
+the input schema and the effective value, such as resulting from an
+expression evaluation, an implementation must use the data type of the
+effective value.</p>
+<ul>
+<li><p><strong>string</strong>: Add <code>prefix</code> and the string to the command line.</p>
+</li>
+<li><p><strong>number</strong>: Add <code>prefix</code> and decimal representation to command line.</p>
+</li>
+<li><p><strong>boolean</strong>: If true, add <code>prefix</code> to the command line.  If false, add
+  nothing.</p>
+</li>
+<li><p><strong>File</strong>: Add <code>prefix</code> and the value of
+<a href="#File"><code>File.path</code></a> to the command line.</p>
+</li>
+<li><p><strong>array</strong>: If <code>itemSeparator</code> is specified, add <code>prefix</code> and the join
+  the array into a single string with <code>itemSeparator</code> separating the
+  items.  Otherwise first add <code>prefix</code>, then recursively process
+  individual elements.</p>
+</li>
+<li><p><strong>object</strong>: Add <code>prefix</code> only, and recursively add object fields for
+  which <code>inputBinding</code> is specified.</p>
+</li>
+<li><p><strong>null</strong>: Add nothing.</p>
+</li>
+</ul>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>loadContents</code></td><td><a href="#CWLType">boolean</a></td><td>Required</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>Read up to the first 64 KiB of text from the file and place it in the
+"contents" field of the file object for use by expressions.</p>
+</td></tr><tr><td><code>position</code></td><td><a href="#CWLType">int</a></td><td>Required</td><td><p>The sorting key.  Default position is 0.</p>
+</td></tr><tr><td><code>prefix</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>Command line prefix to add before the value.</p>
+</td></tr><tr><td><code>separate</code></td><td><a href="#CWLType">boolean</a></td><td>Required</td><td><p>If true (default), then the prefix and value must be added as separate
+command line arguments; if false, prefix and value must be concatenated
+into a single command line argument.</p>
+</td></tr><tr><td><code>itemSeparator</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>Join the array elements into a single string with the elements
+separated by by <code>itemSeparator</code>.</p>
+</td></tr><tr><td><code>valueFrom</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>Required</td><td><p>If <code>valueFrom</code> is a constant string value, use this as the value and
+apply the binding rules above.</p>
+<p>If <code>valueFrom</code> is an expression, evaluate the expression to yield the
+actual value to use to build the command line and apply the binding
+rules above.  If the inputBinding is associated with an input
+parameter, the value of <code>self</code> in the expression will be the value of the
+input parameter.</p>
+<p>When a binding is part of the <code>CommandLineTool.arguments</code> field,
+the <code>valueFrom</code> field is required.</p>
+</td></tr><tr><td><code>shellQuote</code></td><td><a href="#CWLType">boolean</a></td><td>Required</td><td><p>If <code>ShellCommandRequirement</code> is in the requirements for the current command,
+this controls whether the value is quoted on the command line (default is true).
+Use <code>shellQuote: false</code> to inject metacharacters for operations such as pipes.</p>
+</td></tr></table><h2 id="Any">5.1.3 Any</h2><p>The <strong>Any</strong> type validates for any non-null value.</p>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>Any</code></td><td></td></tr></table><h2 id="CWLType">5.1.4 CWLType</h2><p>Extends primitive types with the concept of a file and directory as a builtin type.</p>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>null</code></td><td> no value</td></tr><tr><td><code>boolean</code></td><td> a binary value</td></tr><tr><td><code>int</code></td><td> 32-bit signed integer</td></tr><tr><td><code>long</code></td><td> 64-bit signed integer</td></tr><tr><td><code>float</code></td><td> single precision (32-bit) IEEE 754 floating-point number</td></tr><tr><td><code>double</code></td><td> double precision (64-bit) IEEE 754 floating-point number</td></tr><tr><td><code>string</code></td><td> Unicode character sequence</td></tr><tr><td><code>File</code></td><td> A File object</td></tr><tr><td><code>Directory</code></td><td> A Directory object</td></tr></table><h2 id="File">5.1.5 File</h2><p>Represents a file (or group of files if <code>secondaryFiles</code> is specified) that
+must be accessible by tools using standard POSIX file system call API such as
+open(2) and read(2).</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td>File_class</td><td>Optional</td><td><p>Must be <code>File</code> to indicate this object describes a file.</p>
+</td></tr><tr><td><code>location</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>An IRI that identifies the file resource.  This may be a relative
+reference, in which case it must be resolved using the base IRI of the
+document.  The location may refer to a local or remote resource; the
+implementation must use the IRI to retrieve file content.  If an
+implementation is unable to retrieve the file content stored at a
+remote resource (due to unsupported protocol, access denied, or other
+issue) it must signal an error.</p>
+<p>If the <code>location</code> field is not provided, the <code>contents</code> field must be
+provided.  The implementation must assign a unique identifier for
+the <code>location</code> field.</p>
+<p>If the <code>path</code> field is provided but the <code>location</code> field is not, an
+implementation may assign the value of the <code>path</code> field to <code>location</code>,
+then follow the rules above.</p>
+</td></tr><tr><td><code>path</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>The local host path where the File is available when a CommandLineTool is
+executed.  This field must be set by the implementation.  The final
+path component must match the value of <code>basename</code>.  This field
+must not be used in any other context.  The command line tool being
+executed must be able to to access the file at <code>path</code> using the POSIX
+<code>open(2)</code> syscall.</p>
+<p>As a special case, if the <code>path</code> field is provided but the <code>location</code>
+field is not, an implementation may assign the value of the <code>path</code>
+field to <code>location</code>, and remove the <code>path</code> field.</p>
+<p>If the <code>path</code> contains <a href="http://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_02">POSIX shell metacharacters</a>
+(<code>|</code>,<code>&amp;</code>, <code>;</code>, <code>&lt;</code>, <code>&gt;</code>, <code>(</code>,<code>)</code>, <code>$</code>,<code>`</code>, <code>\</code>, <code>"</code>, <code>'</code>,
+<code>&lt;space&gt;</code>, <code>&lt;tab&gt;</code>, and <code>&lt;newline&gt;</code>) or characters
+<a href="http://www.iana.org/assignments/idna-tables-6.3.0/idna-tables-6.3.0.xhtml">not allowed</a>
+for <a href="https://tools.ietf.org/html/rfc6452">Internationalized Domain Names for Applications</a>
+then implementations may terminate the process with a
+<code>permanentFailure</code>.</p>
+</td></tr><tr><td><code>basename</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>The base name of the file, that is, the name of the file without any
+leading directory path.  The base name must not contain a slash <code>/</code>.</p>
+<p>If not provided, the implementation must set this field based on the
+<code>location</code> field by taking the final path component after parsing
+<code>location</code> as an IRI.  If <code>basename</code> is provided, it is not required to
+match the value from <code>location</code>.</p>
+<p>When this file is made available to a CommandLineTool, it must be named
+with <code>basename</code>, i.e. the final component of the <code>path</code> field must match
+<code>basename</code>.</p>
+</td></tr><tr><td><code>dirname</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>The name of the directory containing file, that is, the path leading up
+to the final slash in the path such that <code>dirname + '/' + basename ==
+path</code>.</p>
+<p>The implementation must set this field based on the value of <code>path</code>
+prior to evaluating parameter references or expressions in a
+CommandLineTool document.  This field must not be used in any other
+context.</p>
+</td></tr><tr><td><code>nameroot</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>The basename root such that <code>nameroot + nameext == basename</code>, and
+<code>nameext</code> is empty or begins with a period and contains at most one
+period.  For the purposess of path splitting leading periods on the
+basename are ignored; a basename of <code>.cshrc</code> will have a nameroot of
+<code>.cshrc</code>.</p>
+<p>The implementation must set this field automatically based on the value
+of <code>basename</code> prior to evaluating parameter references or expressions.</p>
+</td></tr><tr><td><code>nameext</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>The basename extension such that <code>nameroot + nameext == basename</code>, and
+<code>nameext</code> is empty or begins with a period and contains at most one
+period.  Leading periods on the basename are ignored; a basename of
+<code>.cshrc</code> will have an empty <code>nameext</code>.</p>
+<p>The implementation must set this field automatically based on the value
+of <code>basename</code> prior to evaluating parameter references or expressions.</p>
+</td></tr><tr><td><code>checksum</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>Optional hash code for validating file integrity.  Currently must be in the form
+"sha1$ + hexadecimal string" using the SHA-1 algorithm.</p>
+</td></tr><tr><td><code>size</code></td><td><a href="#CWLType">long</a></td><td>Required</td><td><p>Optional file size</p>
+</td></tr><tr><td><code>secondaryFiles</code></td><td>array&lt;<a href="#File">File</a>&nbsp;|&nbsp;<a href="#Directory">Directory</a>&gt;</td><td>Required</td><td><p>A list of additional files that are associated with the primary file
+and must be transferred alongside the primary file.  Examples include
+indexes of the primary file, or external references which must be
+included when loading primary document.  A file object listed in
+<code>secondaryFiles</code> may itself include <code>secondaryFiles</code> for which the same
+rules apply.</p>
+</td></tr><tr><td><code>format</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>The format of the file: this must be an IRI of a concept node that
+represents the file format, preferrably defined within an ontology.
+If no ontology is available, file formats may be tested by exact match.</p>
+<p>Reasoning about format compatability must be done by checking that an
+input file format is the same, <code>owl:equivalentClass</code> or
+<code>rdfs:subClassOf</code> the format required by the input parameter.
+<code>owl:equivalentClass</code> is transitive with <code>rdfs:subClassOf</code>, e.g. if
+<code>&lt;B&gt; owl:equivalentClass &lt;C&gt;</code> and <code>&lt;B&gt; owl:subclassOf &lt;A&gt;</code> then infer
+<code>&lt;C&gt; owl:subclassOf &lt;A&gt;</code>.</p>
+<p>File format ontologies may be provided in the "$schema" metadata at the
+root of the document.  If no ontologies are specified in <code>$schema</code>, the
+runtime may perform exact file format matches.</p>
+</td></tr><tr><td><code>contents</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>File contents literal.  Maximum of 64 KiB.</p>
+<p>If neither <code>location</code> nor <code>path</code> is provided, <code>contents</code> must be
+non-null.  The implementation must assign a unique identifier for the
+<code>location</code> field.  When the file is staged as input to CommandLineTool,
+the value of <code>contents</code> must be written to a file.</p>
+<p>If <code>loadContents</code> of <code>inputBinding</code> or <code>outputBinding</code> is true and
+<code>location</code> is valid, the implementation must read up to the first 64
+KiB of text from the file and place it in the "contents" field.</p>
+</td></tr></table><h2 id="Directory">5.1.5.1 Directory</h2><p>Represents a directory to present to a command line tool.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td>Directory_class</td><td>Optional</td><td><p>Must be <code>Directory</code> to indicate this object describes a Directory.</p>
+</td></tr><tr><td><code>location</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>An IRI that identifies the directory resource.  This may be a relative
+reference, in which case it must be resolved using the base IRI of the
+document.  The location may refer to a local or remote resource.  If
+the <code>listing</code> field is not set, the implementation must use the
+location IRI to retrieve directory listing.  If an implementation is
+unable to retrieve the directory listing stored at a remote resource (due to
+unsupported protocol, access denied, or other issue) it must signal an
+error.</p>
+<p>If the <code>location</code> field is not provided, the <code>listing</code> field must be
+provided.  The implementation must assign a unique identifier for
+the <code>location</code> field.</p>
+<p>If the <code>path</code> field is provided but the <code>location</code> field is not, an
+implementation may assign the value of the <code>path</code> field to <code>location</code>,
+then follow the rules above.</p>
+</td></tr><tr><td><code>path</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>The local path where the Directory is made available prior to executing a
+CommandLineTool.  This must be set by the implementation.  This field
+must not be used in any other context.  The command line tool being
+executed must be able to to access the directory at <code>path</code> using the POSIX
+<code>opendir(2)</code> syscall.</p>
+<p>If the <code>path</code> contains <a href="http://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_02">POSIX shell metacharacters</a>
+(<code>|</code>,<code>&amp;</code>, <code>;</code>, <code>&lt;</code>, <code>&gt;</code>, <code>(</code>,<code>)</code>, <code>$</code>,<code>`</code>, <code>\</code>, <code>"</code>, <code>'</code>,
+<code>&lt;space&gt;</code>, <code>&lt;tab&gt;</code>, and <code>&lt;newline&gt;</code>) or characters
+<a href="http://www.iana.org/assignments/idna-tables-6.3.0/idna-tables-6.3.0.xhtml">not allowed</a>
+for <a href="https://tools.ietf.org/html/rfc6452">Internationalized Domain Names for Applications</a>
+then implementations may terminate the process with a
+<code>permanentFailure</code>.</p>
+</td></tr><tr><td><code>basename</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>The base name of the directory, that is, the name of the file without any
+leading directory path.  The base name must not contain a slash <code>/</code>.</p>
+<p>If not provided, the implementation must set this field based on the
+<code>location</code> field by taking the final path component after parsing
+<code>location</code> as an IRI.  If <code>basename</code> is provided, it is not required to
+match the value from <code>location</code>.</p>
+<p>When this file is made available to a CommandLineTool, it must be named
+with <code>basename</code>, i.e. the final component of the <code>path</code> field must match
+<code>basename</code>.</p>
+</td></tr><tr><td><code>listing</code></td><td>array&lt;<a href="#File">File</a>&nbsp;|&nbsp;<a href="#Directory">Directory</a>&gt;</td><td>Required</td><td><p>List of files or subdirectories contained in this directory.  The name
+of each file or subdirectory is determined by the <code>basename</code> field of
+each <code>File</code> or <code>Directory</code> object.  It is an error if a <code>File</code> shares a
+<code>basename</code> with any other entry in <code>listing</code>.  If two or more
+<code>Directory</code> object share the same <code>basename</code>, this must be treated as
+equivalent to a single subdirectory with the listings recursively
+merged.</p>
+</td></tr></table><h2 id="CommandInputRecordSchema">5.1.6 CommandInputRecordSchema</h2><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Record_symbol</td><td>Optional</td><td><p>Must be <code>record</code></p>
+</td></tr><tr><td><code>fields</code></td><td>array&lt;<a href="#CommandInputRecordField">CommandInputRecordField</a>&gt;</td><td>Required</td><td><p>Defines the fields of the record.</p>
+</td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>A short, human-readable label of this object.</p>
+</td></tr></table><h2 id="CommandInputRecordField">5.1.7 CommandInputRecordField</h2><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#CWLType">string</a></td><td>Optional</td><td><p>The name of the field</p>
+</td></tr><tr><td><code>type</code></td><td><a href="#CWLType">CWLType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>Optional</td><td><p>The field type</p>
+</td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>A documentation string for this field</p>
+</td></tr><tr><td><code>inputBinding</code></td><td><a href="#CommandLineBinding">CommandLineBinding</a></td><td>Required</td><td></td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>A short, human-readable label of this process object.</p>
+</td></tr></table><h2 id="CommandInputEnumSchema">5.1.7.1 CommandInputEnumSchema</h2><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#CWLType">string</a>&gt;</td><td>Optional</td><td><p>Defines the set of valid symbols.</p>
+</td></tr><tr><td><code>type</code></td><td>Enum_symbol</td><td>Optional</td><td><p>Must be <code>enum</code></p>
+</td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>A short, human-readable label of this object.</p>
+</td></tr><tr><td><code>inputBinding</code></td><td><a href="#CommandLineBinding">CommandLineBinding</a></td><td>Required</td><td></td></tr></table><h2 id="CommandInputArraySchema">5.1.7.2 CommandInputArraySchema</h2><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>items</code></td><td><a href="#CWLType">CWLType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>Optional</td><td><p>Defines the type of the array elements.</p>
+</td></tr><tr><td><code>type</code></td><td>Array_symbol</td><td>Optional</td><td><p>Must be <code>array</code></p>
+</td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>A short, human-readable label of this object.</p>
+</td></tr><tr><td><code>inputBinding</code></td><td><a href="#CommandLineBinding">CommandLineBinding</a></td><td>Required</td><td></td></tr></table><h2 id="CommandOutputParameter">5.2 CommandOutputParameter</h2><p>An output parameter for a CommandLineTool.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>Optional</td><td><p>The unique identifier for this parameter object.</p>
+</td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>A short, human-readable label of this object.</p>
+</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>Required</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>Describes files that must be included alongside the primary file(s).</p>
+<p>If the value is an expression, the value of <code>self</code> in the expression
+must be the primary input or output File to which this binding applies.</p>
+<p>If the value is a string, it specifies that the following pattern
+should be applied to the primary file:</p>
+<ol>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
+period <code>.</code> and all following characters).  If there are no file
+extensions, the path is unchanged.</li>
+<li>Append the remainder of the string to the end of the file path.</li>
+</ol>
+</td></tr><tr><td><code>format</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></td><td>Required</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>For input parameters, this must be one or more IRIs of concept nodes
+that represents file formats which are allowed as input to this
+parameter, preferrably defined within an ontology.  If no ontology is
+available, file formats may be tested by exact match.</p>
+<p>For output parameters, this is the file format that will be assigned to
+the output parameter.</p>
+</td></tr><tr><td><code>streamable</code></td><td><a href="#CWLType">boolean</a></td><td>Required</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>A value of <code>true</code> indicates that the file is read or written
+sequentially without seeking.  An implementation may use this flag to
+indicate whether it is valid to stream file contents using a named
+pipe.  Default: <code>false</code>.</p>
+</td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>Required</td><td><p>A documentation string for this type, or an array of strings which should be concatenated.</p>
+</td></tr><tr><td><code>outputBinding</code></td><td><a href="#CommandOutputBinding">CommandOutputBinding</a></td><td>Required</td><td><p>Describes how to handle the outputs of a process.</p>
+</td></tr><tr><td><code>type</code></td><td><a href="#CWLType">CWLType</a> | <a href="#stdout">stdout</a> | <a href="#stderr">stderr</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>Required</td><td><p>Specify valid types of data that may be assigned to this parameter.</p>
+</td></tr></table><h2 id="stdout">5.2.1 stdout</h2><p>Only valid as a <code>type</code> for a <code>CommandLineTool</code> output with no
+<code>outputBinding</code> set.</p>
+<p>The following</p>
+<pre><code>outputs:
+   an_output_name:
+   type: stdout
+
+stdout: a_stdout_file
+</code></pre>
+<p>is equivalent to</p>
+<pre><code>outputs:
+  an_output_name:
+    type: File
+    streamable: true
+    outputBinding:
+      glob: a_stdout_file
+
+stdout: a_stdout_file
+</code></pre>
+<p>If there is no <code>stdout</code> name provided, a random filename will be created.
+For example, the following</p>
+<pre><code>outputs:
+  an_output_name:
+    type: stdout
+</code></pre>
+<p>is equivalent to</p>
+<pre><code>outputs:
+  an_output_name:
+    type: File
+    streamable: true
+    outputBinding:
+      glob: random_stdout_filenameABCDEFG
+
+stdout: random_stdout_filenameABCDEFG
+</code></pre>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>stdout</code></td><td></td></tr></table><h2 id="stderr">5.2.2 stderr</h2><p>Only valid as a <code>type</code> for a <code>CommandLineTool</code> output with no
+<code>outputBinding</code> set.</p>
+<p>The following</p>
+<pre><code>outputs:
+  an_output_name:
+  type: stderr
+
+stderr: a_stderr_file
+</code></pre>
+<p>is equivalent to</p>
+<pre><code>outputs:
+  an_output_name:
+    type: File
+    streamable: true
+    outputBinding:
+      glob: a_stderr_file
+
+stderr: a_stderr_file
+</code></pre>
+<p>If there is no <code>stderr</code> name provided, a random filename will be created.
+For example, the following</p>
+<pre><code>outputs:
+  an_output_name:
+    type: stderr
+</code></pre>
+<p>is equivalent to</p>
+<pre><code>outputs:
+  an_output_name:
+    type: File
+    streamable: true
+    outputBinding:
+      glob: random_stderr_filenameABCDEFG
+
+stderr: random_stderr_filenameABCDEFG
+</code></pre>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>stderr</code></td><td></td></tr></table><h2 id="CommandOutputBinding">5.2.3 CommandOutputBinding</h2><p>Describes how to generate an output parameter based on the files produced
+by a CommandLineTool.</p>
+<p>The output parameter is generated by applying these operations in
+the following order:</p>
+<ul>
+<li>glob</li>
+<li>loadContents</li>
+<li>outputEval</li>
+</ul>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>glob</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>Required</td><td><p>Find files relative to the output directory, using POSIX glob(3)
+pathname matching.  If an array is provided, find files that match any
+pattern in the array.  If an expression is provided, the expression must
+return a string or an array of strings, which will then be evaluated as
+one or more glob patterns.  Must only match and return files which
+actually exist.</p>
+</td></tr><tr><td><code>loadContents</code></td><td><a href="#CWLType">boolean</a></td><td>Required</td><td><p>For each file matched in <code>glob</code>, read up to
+the first 64 KiB of text from the file and place it in the <code>contents</code>
+field of the file object for manipulation by <code>outputEval</code>.</p>
+</td></tr><tr><td><code>outputEval</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>Required</td><td><p>Evaluate an expression to generate the output value.  If <code>glob</code> was
+specified, the value of <code>self</code> must be an array containing file objects
+that were matched.  If no files were matched, <code>self</code> must be a zero
+length array; if a single file was matched, the value of <code>self</code> is an
+array of a single element.  Additionally, if <code>loadContents</code> is <code>true</code>,
+the File objects must include up to the first 64 KiB of file contents
+in the <code>contents</code> field.</p>
+</td></tr></table><h2 id="CommandOutputRecordSchema">5.2.4 CommandOutputRecordSchema</h2><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Record_symbol</td><td>Optional</td><td><p>Must be <code>record</code></p>
+</td></tr><tr><td><code>fields</code></td><td>array&lt;<a href="#CommandOutputRecordField">CommandOutputRecordField</a>&gt;</td><td>Required</td><td><p>Defines the fields of the record.</p>
+</td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>A short, human-readable label of this object.</p>
+</td></tr></table><h2 id="CommandOutputRecordField">5.2.5 CommandOutputRecordField</h2><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#CWLType">string</a></td><td>Optional</td><td><p>The name of the field</p>
+</td></tr><tr><td><code>type</code></td><td><a href="#CWLType">CWLType</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>Optional</td><td><p>The field type</p>
+</td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>A documentation string for this field</p>
+</td></tr><tr><td><code>outputBinding</code></td><td><a href="#CommandOutputBinding">CommandOutputBinding</a></td><td>Required</td><td></td></tr></table><h2 id="CommandOutputEnumSchema">5.2.5.1 CommandOutputEnumSchema</h2><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#CWLType">string</a>&gt;</td><td>Optional</td><td><p>Defines the set of valid symbols.</p>
+</td></tr><tr><td><code>type</code></td><td>Enum_symbol</td><td>Optional</td><td><p>Must be <code>enum</code></p>
+</td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>A short, human-readable label of this object.</p>
+</td></tr><tr><td><code>outputBinding</code></td><td><a href="#CommandOutputBinding">CommandOutputBinding</a></td><td>Required</td><td></td></tr></table><h2 id="CommandOutputArraySchema">5.2.5.2 CommandOutputArraySchema</h2><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>items</code></td><td><a href="#CWLType">CWLType</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>Optional</td><td><p>Defines the type of the array elements.</p>
+</td></tr><tr><td><code>type</code></td><td>Array_symbol</td><td>Optional</td><td><p>Must be <code>array</code></p>
+</td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>A short, human-readable label of this object.</p>
+</td></tr><tr><td><code>outputBinding</code></td><td><a href="#CommandOutputBinding">CommandOutputBinding</a></td><td>Required</td><td></td></tr></table><h2 id="InlineJavascriptRequirement">5.3 InlineJavascriptRequirement</h2><p>Indicates that the workflow platform must support inline Javascript expressions.
+If this requirement is not present, the workflow platform must not perform expression
+interpolatation.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>Optional</td><td><p>Always 'InlineJavascriptRequirement'</p>
+</td></tr><tr><td><code>expressionLib</code></td><td>array&lt;<a href="#CWLType">string</a>&gt;</td><td>Required</td><td><p>Additional code fragments that will also be inserted
+before executing the expression code.  Allows for function definitions that may
+be called from CWL expressions.</p>
+</td></tr></table><h2 id="SchemaDefRequirement">5.4 SchemaDefRequirement</h2><p>This field consists of an array of type definitions which must be used when
+interpreting the <code>inputs</code> and <code>outputs</code> fields.  When a <code>type</code> field
+contain a IRI, the implementation must check if the type is defined in
+<code>schemaDefs</code> and use that definition.  If the type is not found in
+<code>schemaDefs</code>, it is an error.  The entries in <code>schemaDefs</code> must be
+processed in the order listed such that later schema definitions may refer
+to earlier schema definitions.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>Optional</td><td><p>Always 'SchemaDefRequirement'</p>
+</td></tr><tr><td><code>types</code></td><td>array&lt;<a href="#InputRecordSchema">InputRecordSchema</a>&nbsp;|&nbsp;<a href="#InputEnumSchema">InputEnumSchema</a>&nbsp;|&nbsp;<a href="#InputArraySchema">InputArraySchema</a>&gt;</td><td>Optional</td><td><p>The list of type definitions.</p>
+</td></tr></table><h2 id="InputRecordSchema">5.4.1 InputRecordSchema</h2><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Record_symbol</td><td>Optional</td><td><p>Must be <code>record</code></p>
+</td></tr><tr><td><code>fields</code></td><td>array&lt;<a href="#InputRecordField">InputRecordField</a>&gt;</td><td>Required</td><td><p>Defines the fields of the record.</p>
+</td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>A short, human-readable label of this object.</p>
+</td></tr></table><h2 id="InputRecordField">5.4.2 InputRecordField</h2><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#CWLType">string</a></td><td>Optional</td><td><p>The name of the field</p>
+</td></tr><tr><td><code>type</code></td><td><a href="#CWLType">CWLType</a> | <a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>Optional</td><td><p>The field type</p>
+</td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>A documentation string for this field</p>
+</td></tr><tr><td><code>inputBinding</code></td><td><a href="#CommandLineBinding">CommandLineBinding</a></td><td>Required</td><td></td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>A short, human-readable label of this process object.</p>
+</td></tr></table><h2 id="InputEnumSchema">5.4.2.1 InputEnumSchema</h2><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#CWLType">string</a>&gt;</td><td>Optional</td><td><p>Defines the set of valid symbols.</p>
+</td></tr><tr><td><code>type</code></td><td>Enum_symbol</td><td>Optional</td><td><p>Must be <code>enum</code></p>
+</td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>A short, human-readable label of this object.</p>
+</td></tr><tr><td><code>inputBinding</code></td><td><a href="#CommandLineBinding">CommandLineBinding</a></td><td>Required</td><td></td></tr></table><h2 id="InputArraySchema">5.4.2.2 InputArraySchema</h2><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>items</code></td><td><a href="#CWLType">CWLType</a> | <a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>Optional</td><td><p>Defines the type of the array elements.</p>
+</td></tr><tr><td><code>type</code></td><td>Array_symbol</td><td>Optional</td><td><p>Must be <code>array</code></p>
+</td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>A short, human-readable label of this object.</p>
+</td></tr><tr><td><code>inputBinding</code></td><td><a href="#CommandLineBinding">CommandLineBinding</a></td><td>Required</td><td></td></tr></table><h2 id="DockerRequirement">5.5 DockerRequirement</h2><p>Indicates that a workflow component should be run in a
+<a href="http://docker.com">Docker</a> container, and specifies how to fetch or build
+the image.</p>
+<p>If a CommandLineTool lists <code>DockerRequirement</code> under
+<code>hints</code> (or <code>requirements</code>), it may (or must) be run in the specified Docker
+container.</p>
+<p>The platform must first acquire or install the correct Docker image as
+specified by <code>dockerPull</code>, <code>dockerImport</code>, <code>dockerLoad</code> or <code>dockerFile</code>.</p>
+<p>The platform must execute the tool in the container using <code>docker run</code> with
+the appropriate Docker image and tool command line.</p>
+<p>The workflow platform may provide input files and the designated output
+directory through the use of volume bind mounts.  The platform may rewrite
+file paths in the input object to correspond to the Docker bind mounted
+locations.</p>
+<p>When running a tool contained in Docker, the workflow platform must not
+assume anything about the contents of the Docker container, such as the
+presence or absence of specific software, except to assume that the
+generated command line represents a valid command within the runtime
+environment of the container.</p>
+<h4 id="Interaction_with_other_requirements">Interaction with other requirements</h4><p>If <a href="#EnvVarRequirement">EnvVarRequirement</a> is specified alongside a
+DockerRequirement, the environment variables must be provided to Docker
+using <code>--env</code> or <code>--env-file</code> and interact with the container's preexisting
+environment as defined by Docker.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>Optional</td><td><p>Always 'DockerRequirement'</p>
+</td></tr><tr><td><code>dockerPull</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>Specify a Docker image to retrieve using <code>docker pull</code>.</p>
+</td></tr><tr><td><code>dockerLoad</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>Specify a HTTP URL from which to download a Docker image using <code>docker load</code>.</p>
+</td></tr><tr><td><code>dockerFile</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>Supply the contents of a Dockerfile which will be built using <code>docker build</code>.</p>
+</td></tr><tr><td><code>dockerImport</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>Provide HTTP URL to download and gunzip a Docker images using `docker import.</p>
+</td></tr><tr><td><code>dockerImageId</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>The image id that will be used for <code>docker run</code>.  May be a
+human-readable image name or the image identifier hash.  May be skipped
+if <code>dockerPull</code> is specified, in which case the <code>dockerPull</code> image id
+must be used.</p>
+</td></tr><tr><td><code>dockerOutputDirectory</code></td><td><a href="#CWLType">string</a></td><td>Required</td><td><p>Set the designated output directory to a specific location inside the
+Docker container.</p>
+</td></tr></table><h2 id="SoftwareRequirement">5.6 SoftwareRequirement</h2><p>A list of software packages that should be configured in the environment of
+the defined process.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>Optional</td><td><p>Always 'SoftwareRequirement'</p>
+</td></tr><tr><td><code>packages</code></td><td><a href="#SoftwarePackage">SoftwarePackage</a></td><td>Required</td><td><p>The list of software to be configured.</p>
+</td></tr></table><h2 id="SoftwarePackage">5.7 SoftwarePackage</h2><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#CWLType">string</a></td><td>Optional</td><td><p>The common name of the software to be configured.</p>
+</td></tr><tr><td><code>version</code></td><td>array&lt;<a href="#CWLType">string</a>&gt;</td><td>Required</td><td><p>The (optional) version of the software to configured.</p>
+</td></tr><tr><td><code>specs</code></td><td>array&lt;<a href="#CWLType">string</a>&gt;</td><td>Required</td><td><p>Must be one or more IRIs identifying resources for installing or
+enabling the software.  Implementations may provide resolvers which map
+well-known software spec IRIs to some configuration action.</p>
+<p>For example, an IRI <code>https://packages.debian.org/jessie/bowtie</code> could
+be resolved with <code>apt-get install bowtie</code>.  An IRI
+<code>https://anaconda.org/bioconda/bowtie</code> could be resolved with <code>conda
+install -c bioconda bowtie</code>.</p>
+<p>Tools may also provide IRIs to index entries such as
+<a href="http://www.identifiers.org/rrid/">RRID</a>, such as
+<code>http://identifiers.org/rrid/RRID:SCR_005476</code></p>
+</td></tr></table><h2 id="InitialWorkDirRequirement">5.8 InitialWorkDirRequirement</h2><p>Define a list of files and subdirectories that must be created by the workflow platform in the designated output directory prior to executing the command line tool.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>Optional</td><td><p>InitialWorkDirRequirement</p>
+</td></tr><tr><td><code>listing</code></td><td>array&lt;<a href="#File">File</a> | <a href="#Directory">Directory</a> | <a href="#Dirent">Dirent</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a>&gt; | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>Optional</td><td><p>The list of files or subdirectories that must be placed in the
+designated output directory prior to executing the command line tool.</p>
+<p>May be an expression.  If so, the expression return value must validate
+as <code>{type: array, items: [File, Directory]}</code>.</p>
+</td></tr></table><h2 id="Dirent">5.8.1 Dirent</h2><p>Define a file or subdirectory that must be placed in the designated output
+directory prior to executing the command line tool.  May be the result of
+executing an expression, such as building a configuration file from a
+template.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>entry</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>Optional</td><td><p>If the value is a string literal or an expression which evaluates to a
+string, a new file must be created with the string as the file contents.</p>
+<p>If the value is an expression that evaluates to a <code>File</code> object, this
+indicates the referenced file should be added to the designated output
+directory prior to executing the tool.</p>
+<p>If the value is an expression that evaluates to a <code>Dirent</code> object, this
+indicates that the File or Directory in <code>entry</code> should be added to the
+designated output directory with the name in <code>entryname</code>.</p>
+<p>If <code>writable</code> is false, the file may be made available using a bind
+mount or file system link to avoid unnecessary copying of the input
+file.</p>
+</td></tr><tr><td><code>entryname</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>Required</td><td><p>The name of the file or subdirectory to create in the output directory.
+If <code>entry</code> is a File or Directory, this overrides <code>basename</code>.  Optional.</p>
+</td></tr><tr><td><code>writable</code></td><td><a href="#CWLType">boolean</a></td><td>Required</td><td><p>If true, the file or directory must be writable by the tool.  Changes
+to the file or directory must be isolated and not visible by any other
+CommandLineTool process.  This may be implemented by making a copy of
+the original file or directory.  Default false (files and directories
+read-only by default).</p>
+</td></tr></table><h2 id="EnvVarRequirement">5.9 EnvVarRequirement</h2><p>Define a list of environment variables which will be set in the
+execution environment of the tool.  See <code>EnvironmentDef</code> for details.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>Optional</td><td><p>Always 'EnvVarRequirement'</p>
+</td></tr><tr><td><code>envDef</code></td><td>array&lt;<a href="#EnvironmentDef">EnvironmentDef</a>&gt; | map&lt;<a href="#EnvironmentDef">EnvironmentDef</a>.envName,&nbsp;<a href="#EnvironmentDef">EnvironmentDef</a>.envValue&gt | map&lt;<a href="#EnvironmentDef">EnvironmentDef</a>.envName,&nbsp;<a href="#EnvironmentDef">EnvironmentDef</a>&gt</td><td>Optional</td><td><p>The list of environment variables.</p>
+</td></tr></table><h2 id="EnvironmentDef">5.10 EnvironmentDef</h2><p>Define an environment variable that will be set in the runtime environment
+by the workflow platform when executing the command line tool.  May be the
+result of executing an expression, such as getting a parameter from input.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>envName</code></td><td><a href="#CWLType">string</a></td><td>Optional</td><td><p>The environment variable name</p>
+</td></tr><tr><td><code>envValue</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>Optional</td><td><p>The environment variable value</p>
+</td></tr></table><h2 id="ShellCommandRequirement">5.11 ShellCommandRequirement</h2><p>Modify the behavior of CommandLineTool to generate a single string
+containing a shell command line.  Each item in the argument list must be
+joined into a string separated by single spaces and quoted to prevent
+intepretation by the shell, unless <code>CommandLineBinding</code> for that argument
+contains <code>shellQuote: false</code>.  If <code>shellQuote: false</code> is specified, the
+argument is joined into the command string without quoting, which allows
+the use of shell metacharacters such as <code>|</code> for pipes.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>Optional</td><td><p>Always 'ShellCommandRequirement'</p>
+</td></tr></table><h2 id="ResourceRequirement">5.12 ResourceRequirement</h2><p>Specify basic hardware resource requirements.</p>
+<p>"min" is the minimum amount of a resource that must be reserved to schedule
+a job. If "min" cannot be satisfied, the job should not be run.</p>
+<p>"max" is the maximum amount of a resource that the job shall be permitted
+to use. If a node has sufficient resources, multiple jobs may be scheduled
+on a single node provided each job's "max" resource requirements are
+met. If a job attempts to exceed its "max" resource allocation, an
+implementation may deny additional resources, which may result in job
+failure.</p>
+<p>If "min" is specified but "max" is not, then "max" == "min"
+If "max" is specified by "min" is not, then "min" == "max".</p>
+<p>It is an error if max &lt; min.</p>
+<p>It is an error if the value of any of these fields is negative.</p>
+<p>If neither "min" nor "max" is specified for a resource, an implementation may provide a default.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>Optional</td><td><p>Always 'ResourceRequirement'</p>
+</td></tr><tr><td><code>coresMin</code></td><td><a href="#CWLType">long</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>Required</td><td><p>Minimum reserved number of CPU cores</p>
+</td></tr><tr><td><code>coresMax</code></td><td><a href="#CWLType">int</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>Required</td><td><p>Maximum reserved number of CPU cores</p>
+</td></tr><tr><td><code>ramMin</code></td><td><a href="#CWLType">long</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>Required</td><td><p>Minimum reserved RAM in mebibytes (2**20)</p>
+</td></tr><tr><td><code>ramMax</code></td><td><a href="#CWLType">long</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>Required</td><td><p>Maximum reserved RAM in mebibytes (2**20)</p>
+</td></tr><tr><td><code>tmpdirMin</code></td><td><a href="#CWLType">long</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>Required</td><td><p>Minimum reserved filesystem based storage for the designated temporary directory, in mebibytes (2**20)</p>
+</td></tr><tr><td><code>tmpdirMax</code></td><td><a href="#CWLType">long</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>Required</td><td><p>Maximum reserved filesystem based storage for the designated temporary directory, in mebibytes (2**20)</p>
+</td></tr><tr><td><code>outdirMin</code></td><td><a href="#CWLType">long</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>Required</td><td><p>Minimum reserved filesystem based storage for the designated output directory, in mebibytes (2**20)</p>
+</td></tr><tr><td><code>outdirMax</code></td><td><a href="#CWLType">long</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>Required</td><td><p>Maximum reserved filesystem based storage for the designated output directory, in mebibytes (2**20)</p>
+</td></tr></table><h2 id="CWLVersion">5.13 CWLVersion</h2><p>Version symbols for published CWL document versions.</p>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>draft-2</code></td><td></td></tr><tr><td><code>draft-3.dev1</code></td><td></td></tr><tr><td><code>draft-3.dev2</code></td><td></td></tr><tr><td><code>draft-3.dev3</code></td><td></td></tr><tr><td><code>draft-3.dev4</code></td><td></td></tr><tr><td><code>draft-3.dev5</code></td><td></td></tr><tr><td><code>draft-3</code></td><td></td></tr><tr><td><code>draft-4.dev1</code></td><td></td></tr><tr><td><code>draft-4.dev2</code></td><td></td></tr><tr><td><code>draft-4.dev3</code></td><td></td></tr><tr><td><code>v1.0.dev4</code></td><td></td></tr><tr><td><code>v1.0</code></td><td></td></tr></table></div>
+    </div>
+    </div>
+    </body>
+    </html>
