@@ -196,9 +196,10 @@
             "mapPredicate": "type", 
             "mapSubject": "id"
         }, 
+        "package": "@id", 
         "packages": {
             "mapPredicate": "specs", 
-            "mapSubject": "name"
+            "mapSubject": "package"
         }, 
         "path": {
             "@id": "https://w3id.org/cwl/cwl#path", 
