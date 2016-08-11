@@ -137,7 +137,7 @@ run the tool.  Each parameter has an <code>id</code> for the name of parameter, 
 <code>type</code> describing what types of values are valid for that parameter.</p>
 <p>Available primitive types are <em>string</em>, <em>int</em>, <em>long</em>, <em>float</em>, <em>double</em>,
 and <em>null</em>; complex types are <em>array</em> and <em>record</em>; in addition there are
-special types <em>File</em> and <em>Any</em>.</p>
+special types <em>File</em>, <em>Directory</em> and <em>Any</em>.</p>
 <p>The following example demonstrates some input parameters with different
 types and appearing on the command line in different ways:</p>
 <p><em>inp.cwl</em></p>
@@ -696,7 +696,6 @@ is added to the command line and <code>itemD</code> is ignored.</p>
   itemA: one
   itemB: two
 exclusive_parameters:
-  itemC: three
   itemD: four
 </code></pre>
 <pre><code>$ cwl-runner record.cwl record-job3.yml
@@ -777,7 +776,7 @@ Final process status is success
 <h2 id="Creating_files_at_runtime">2.13 Creating files at runtime</h2><p>Sometimes you need to create a file on the fly from input parameters,
 such as tools which expect to read their input configuration from a file
 rather than the command line parameters.  To do this, use
-<code>CreateFileRequirement</code>.</p>
+<code>InitialWorkDirRequirement</code>.</p>
 <p><em>createfile.cwl</em></p>
 <pre><code>class: CommandLineTool
 cwlVersion: v1.0
@@ -808,7 +807,7 @@ Final process status is success
 <h2 id="Staging_input_files_in_the_output_directory">2.14 Staging input files in the output directory</h2><p>Normally, input files are located in a read-only directory separate from
 the output directory.  This causes problems if the underlying tool
 expects to write its output files alongside the input file in the same
-directory.  You use <code>CreateFileRequirement</code> to stage input files into the
+directory.  You use <code>InitialWorkDirRequirement</code> to stage input files into the
 output directory.  In this example, we use a Javascript expression to
 extract the base name of the input file from its leading directory path.</p>
 <p><em>linkfile.cwl</em></p>

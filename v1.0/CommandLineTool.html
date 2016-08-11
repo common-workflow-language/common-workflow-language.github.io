@@ -56,7 +56,7 @@
 project</li>
 <li>Nebojša Tijanić <a href="mailto:nebojsa.tijanic@sbgenomics.com">nebojsa.tijanic@sbgenomics.com</a>, Seven Bridges Genomics</li>
 </ul>
-<p>Contributers:</p>
+<p>Contributors:</p>
 <ul>
 <li>Brad Chapman <a href="mailto:bchapman@hsph.harvard.edu">bchapman@hsph.harvard.edu</a>, Harvard Chan School of Public Health</li>
 <li>John Chilton <a href="mailto:jmchilton@gmail.com">jmchilton@gmail.com</a>, Galaxy Project, Pennsylvania State University</li>
@@ -91,10 +91,11 @@ under the terms of the Apache License, version 2.0.</p>
 </ol><li><a href="#Status_of_this_document"> Status of this document</a><ol>
 </ol><li><a href="#Introduction">1. Introduction</a><ol>
 <li><a href="#Introduction_to_v1.0">1.1 Introduction to v1.0</a><ol>
-</ol><li><a href="#Purpose">1.2 Purpose</a><ol>
-</ol><li><a href="#References_to_other_specifications">1.3 References to other specifications</a><ol>
-</ol><li><a href="#Scope">1.4 Scope</a><ol>
-</ol><li><a href="#Terminology">1.5 Terminology</a><ol>
+</ol><li><a href="#Errata">1.2 Errata</a><ol>
+</ol><li><a href="#Purpose">1.3 Purpose</a><ol>
+</ol><li><a href="#References_to_other_specifications">1.4 References to other specifications</a><ol>
+</ol><li><a href="#Scope">1.5 Scope</a><ol>
+</ol><li><a href="#Terminology">1.6 Terminology</a><ol>
 </ol></li></ol><li><a href="#Data_model">2. Data model</a><ol>
 <li><a href="#Data_concepts">2.1 Data concepts</a><ol>
 </ol><li><a href="#Syntax">2.2 Syntax</a><ol>
@@ -189,8 +190,13 @@ to execution.</li>
 <a href="#stderr">error</a> streams as a (streamable) File output.</li>
 <li><a href="#SoftwareRequirement">SoftwareRequirement</a> for describing software
 dependencies of a tool.</li>
+<li>The common <code>description</code> field has been renamed to <code>doc</code>.</li>
 </ul>
-<h2 id="Purpose">1.2 Purpose</h2><p>Standalone programs are a flexible and interoperable form of code reuse.
+<h2 id="Errata">1.2 Errata</h2><p>Post v1.0 release changes to the spec.</p>
+<ul>
+<li>13 July 2016: Mark <code>baseCommand</code> as optional and update descriptive text.</li>
+</ul>
+<h2 id="Purpose">1.3 Purpose</h2><p>Standalone programs are a flexible and interoperable form of code reuse.
 Unlike monolithic applications, applications and analysis workflows which
 are composed of multiple separate programs can be written in multiple
 languages and execute concurrently on multiple hosts.  However, POSIX
@@ -216,7 +222,7 @@ defines a precise data and execution model for Command Line Tools that
 can be implemented on a variety of computing platforms, ranging from a
 single workstation to cluster, grid, cloud, and high performance
 computing platforms.</p>
-<h2 id="References_to_other_specifications">1.3 References to other specifications</h2><p><strong>Javascript Object Notation (JSON)</strong>: <a href="http://json.org">http://json.org</a></p>
+<h2 id="References_to_other_specifications">1.4 References to other specifications</h2><p><strong>Javascript Object Notation (JSON)</strong>: <a href="http://json.org">http://json.org</a></p>
 <p><strong>JSON Linked Data (JSON-LD)</strong>: <a href="http://json-ld.org">http://json-ld.org</a></p>
 <p><strong>YAML</strong>: <a href="http://yaml.org">http://yaml.org</a></p>
 <p><strong>Avro</strong>: <a href="https://avro.apache.org/docs/current/spec.html">https://avro.apache.org/docs/current/spec.html</a></p>
@@ -225,10 +231,10 @@ computing platforms.</p>
 <a href="https://tools.ietf.org/html/rfc3987">https://tools.ietf.org/html/rfc3987</a></p>
 <p><strong>Portable Operating System Interface (POSIX.1-2008)</strong>: <a href="http://pubs.opengroup.org/onlinepubs/9699919799/">http://pubs.opengroup.org/onlinepubs/9699919799/</a></p>
 <p><strong>Resource Description Framework (RDF)</strong>: <a href="http://www.w3.org/RDF/">http://www.w3.org/RDF/</a></p>
-<h2 id="Scope">1.4 Scope</h2><p>This document describes CWL syntax, execution, and object model.  It
+<h2 id="Scope">1.5 Scope</h2><p>This document describes CWL syntax, execution, and object model.  It
 is not intended to document a CWL specific implementation, however it may
 serve as a reference for the behavior of conforming implementations.</p>
-<h2 id="Terminology">1.5 Terminology</h2><p>The terminology used to describe CWL documents is defined in the
+<h2 id="Terminology">1.6 Terminology</h2><p>The terminology used to describe CWL documents is defined in the
 Concepts section of the specification. The terms defined in the
 following list are used in building those definitions and in describing the
 actions of a CWL implementation:</p>
@@ -640,15 +646,7 @@ used to validate the input object.  It may also be used to build a user
 interface for constructing the input object.</p>
 </td></tr><tr><td><code>outputs</code></td><td>array&lt;<a href="#CommandOutputParameter">CommandOutputParameter</a>&gt; | map&lt;<a href="#CommandOutputParameter">CommandOutputParameter</a>.id,&nbsp;<a href="#CommandOutputParameter">CommandOutputParameter</a>.type&gt | map&lt;<a href="#CommandOutputParameter">CommandOutputParameter</a>.id,&nbsp;<a href="#CommandOutputParameter">CommandOutputParameter</a>&gt</td><td>True</td><td><p>Defines the parameters representing the output of the process.  May be
 used to generate and/or validate the output object.</p>
-</td></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td></td></tr><tr><td><code>baseCommand</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Specifies the program to execute.  If the value is an array, the first
-element is the program to execute, and subsequent elements are placed
-at the beginning of the command line in prior to any command line
-bindings.  If the program includes a path separator character it must
-be an absolute path, otherwise it is an error.  If the program does not
-include a path separator, search the <code>$PATH</code> variable in the runtime
-environment of the workflow runner find the absolute path of the
-executable.</p>
-</td></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>The unique identifier for this process object.</p>
+</td></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td></td></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>The unique identifier for this process object.</p>
 </td></tr><tr><td><code>requirements</code></td><td>array&lt;<a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#DockerRequirement">DockerRequirement</a> | <a href="#SoftwareRequirement">SoftwareRequirement</a> | <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="#ResourceRequirement">ResourceRequirement</a>&gt;</td><td>False</td><td><p>Declares requirements that apply to either the runtime environment or the
 workflow engine that must be met in order to execute this process.  If
 an implementation cannot satisfy all requirements, or a requirement is
@@ -663,6 +661,19 @@ the implementation may report a warning.</p>
 </td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A long, human-readable description of this process object.</p>
 </td></tr><tr><td><code>cwlVersion</code></td><td><a href="#CWLVersion">CWLVersion</a></td><td>False</td><td><p>CWL document version. Always required at the document root. Not
 required for a Process embedded inside another Process.</p>
+</td></tr><tr><td><code>baseCommand</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>Specifies the program to execute.  If an array, the first element of
+the array is the command to execute, and subsequent elements are
+mandatory command line arguments.  The elements in <code>baseCommand</code> must
+appear before any command line bindings from <code>inputBinding</code> or
+<code>arguments</code>.</p>
+<p>If <code>baseCommand</code> is not provided or is an empty array, the first
+element of the command line produced after processing <code>inputBinding</code> or
+<code>arguments</code> must be used as the program to execute.</p>
+<p>If the program includes a path separator character it must
+be an absolute path, otherwise it is an error.  If the program does not
+include a path separator, search the <code>$PATH</code> variable in the runtime
+environment of the workflow runner find the absolute path of the
+executable.</p>
 </td></tr><tr><td><code>arguments</code></td><td>array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&nbsp;|&nbsp;<a href="#CommandLineBinding">CommandLineBinding</a>&gt;</td><td>False</td><td><p>Command line bindings which are not directly associated with input parameters.</p>
 </td></tr><tr><td><code>stdin</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>False</td><td><p>A path to a file whose contents must be piped into the command's
 standard input stream.</p>

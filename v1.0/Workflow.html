@@ -56,7 +56,7 @@
 project</li>
 <li>Nebojša Tijanić <a href="mailto:nebojsa.tijanic@sbgenomics.com">nebojsa.tijanic@sbgenomics.com</a>, Seven Bridges Genomics</li>
 </ul>
-<p>Contributers:</p>
+<p>Contributors:</p>
 <ul>
 <li>Brad Chapman <a href="mailto:bchapman@hsph.harvard.edu">bchapman@hsph.harvard.edu</a>, Harvard Chan School of Public Health</li>
 <li>John Chilton <a href="mailto:jmchilton@gmail.com">jmchilton@gmail.com</a>, Galaxy Project, Pennsylvania State University</li>
@@ -152,7 +152,7 @@ reproducibility.</p>
 <h2 id="Introduction_to_v1.0">1.1 Introduction to v1.0</h2><p>This specification represents the first full release from the CWL group.
 Since draft-3, this draft introduces the following changes and additions:</p>
 <ul>
-<li>The 'inputs' and 'outputs' fields have been renamed 'in' and 'out'.</li>
+<li>The <code>inputs</code> and <code>outputs</code> fields have been renamed <code>in</code> and <code>out</code>.</li>
 <li>Syntax simplifcations: denoted by the <code>map&lt;&gt;</code> syntax. Example: <code>in</code>
 contains a list of items, each with an id. Now one can specify
 a mapping of that identifier to the corresponding
@@ -173,6 +173,7 @@ can be<pre><code>in:
   doc: Second input parameter
 </code></pre>
 </li>
+<li>The common field 'description<code>has been renamed to</code>doc`.</li>
 </ul>
 <h2 id="Purpose">1.2 Purpose</h2><p>The Common Workflow Language Command Line Tool Description express
 workflows for data-intensive science, such as Bioinformatics, Chemistry,
