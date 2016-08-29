@@ -115,6 +115,7 @@
         }, 
         "enum": "https://w3id.org/cwl/salad#enum", 
         "envDef": {
+            "@id": "https://w3id.org/cwl/cwl#EnvVarRequirement/envDef", 
             "mapPredicate": "envValue", 
             "mapSubject": "envName"
         }, 
@@ -198,6 +199,7 @@
         }, 
         "package": "@id", 
         "packages": {
+            "@id": "https://w3id.org/cwl/cwl#SoftwareRequirement/packages", 
             "mapPredicate": "specs", 
             "mapSubject": "package"
         }, 
@@ -244,6 +246,7 @@
         "stdin": "https://w3id.org/cwl/cwl#CommandLineTool/stdin", 
         "stdout": "https://w3id.org/cwl/cwl#stdout", 
         "steps": {
+            "@id": "https://w3id.org/cwl/cwl#Workflow/steps", 
             "mapSubject": "id"
         }, 
         "streamable": "https://w3id.org/cwl/cwl#Parameter/streamable", 
