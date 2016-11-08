@@ -47,6 +47,7 @@
         "ProcessRequirement": "https://w3id.org/cwl/cwl#ProcessRequirement", 
         "RecordField": "https://w3id.org/cwl/salad#RecordField", 
         "RecordSchema": "https://w3id.org/cwl/salad#RecordSchema", 
+        "RegularInputParameter": "https://w3id.org/cwl/cwl#RegularInputParameter", 
         "ResourceRequirement": "https://w3id.org/cwl/cwl#ResourceRequirement", 
         "ScatterFeatureRequirement": "https://w3id.org/cwl/cwl#ScatterFeatureRequirement", 
         "SchemaBase": "https://w3id.org/cwl/cwl#SchemaBase", 
@@ -241,7 +242,7 @@
         }, 
         "specs": "https://w3id.org/cwl/cwl#SoftwarePackage/specs", 
         "stderr": "https://w3id.org/cwl/cwl#stderr", 
-        "stdin": "https://w3id.org/cwl/cwl#CommandLineTool/stdin", 
+        "stdin": "https://w3id.org/cwl/cwl#stdin", 
         "stdout": "https://w3id.org/cwl/cwl#stdout", 
         "steps": {
             "mapSubject": "id"
@@ -266,6 +267,7 @@
         "types": "https://w3id.org/cwl/cwl#SchemaDefRequirement/types", 
         "v1.0": "https://w3id.org/cwl/cwl#v1.0", 
         "v1.0.dev4": "https://w3id.org/cwl/cwl#v1.0.dev4", 
+        "v1.1.0-dev1": "https://w3id.org/cwl/cwl#v1.1.0-dev1", 
         "valueFrom": "cwl:valueFrom", 
         "version": "https://w3id.org/cwl/cwl#SoftwarePackage/version", 
         "writable": "https://w3id.org/cwl/cwl#Dirent/writable"
