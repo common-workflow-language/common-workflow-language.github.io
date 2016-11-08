@@ -37,7 +37,7 @@
     
     <div class="row">
     
-    <div class="col-md-12" role="main" id="main"><h1 id="Common_Workflow_Language">Common Workflow Language</h1><p><a href="https://github.com/common-workflow-language/common-workflow-language/stargazers"><img src="https://img.shields.io/github/stars/common-workflow-language/common-workflow-language.svg" alt="GitHub stars"></a> <a href="https://gitter.im/common-workflow-language/common-workflow-language?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Gitter"></a></p>
+    <div class="col-md-12" role="main" id="main"><h1 id="Common_Workflow_Language">Common Workflow Language</h1><p><a href="https://github.com/common-workflow-language/common-workflow-language/stargazers"><img src="https://img.shields.io/github/stars/common-workflow-language/common-workflow-language.svg" alt="GitHub stars"></a> <a href="https://gitter.im/common-workflow-language/common-workflow-language"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Gitter"></a></p>
 <p>The Common Workflow Language (CWL) is a specification for describing analysis
 workflows and tools that are portable and scalable across a variety of software
 and hardware environments, from workstations to cluster, cloud, and high
@@ -67,7 +67,7 @@ drafts:
 <th>Description</th>
 <th>CWL support</th>
 <th>Platform support</th>
-<th>Maturity</th>
+<th>Platform Maturity</th>
 </tr>
 </thead>
 <tbody>
@@ -91,6 +91,13 @@ drafts:
 <td><a href="http://ci.commonwl.org/job/toil-conformance/lastBuild/testReport/"><img src="https://ci.commonwl.org/job/toil-conformance/badge/icon" alt="Build Status"></a></td>
 <td>AWS, GCP, Azure, OpenStack, Grid Engine, Mesos</td>
 <td>Production</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rabix/bunny">Rabix Bunny</a></td>
+<td>Reproducible Analyses for Bioinformatics</td>
+<td><a href="https://ci.commonwl.org/job/rabix-conformance/"><img src="https://ci.commonwl.org/buildStatus/icon?job=rabix-conformance" alt="Build Status"></a></td>
+<td>Java</td>
+<td>alpha</td>
 </tr>
 <tr>
 <td><a href="http://taverna.incubator.apache.org/">Apache Taverna</a></td>
@@ -121,11 +128,11 @@ drafts:
 <td>alpha</td>
 </tr>
 <tr>
-<td><a href="https://github.com/rabix/bunny">Rabix Bunny</a></td>
-<td>Reproducible Analyses for Bioinformatics</td>
+<td><a href="https://github.com/NLeSC/xenon-cwl-runner">xenon-cwl-runner</a></td>
+<td>Run CWL workflows using Xenon</td>
 <td>alpha</td>
-<td>Java</td>
-<td>alpha</td>
+<td><a href="http://nlesc.github.io/Xenon/">any Xenon backend</a>: local, ssh, SLURM, Torque, Grid Engine</td>
+<td>Production</td>
 </tr>
 </tbody>
 </table>
@@ -176,6 +183,14 @@ drafts:
 <tr>
 <td><a href="https://github.com/common-workflow-language/cwlavro">cwlavro</a></td>
 <td>Java classes for loading CWL documents</td>
+</tr>
+<tr>
+<td><a href="https://github.com/common-workflow-language/acd2cwl">acd2cwl</a></td>
+<td>CWL generator for ACD (EMBOSS) files</td>
+</tr>
+<tr>
+<td><a href="https://github.com/MarkRobbo/CWLViewer">CWLviewer</a></td>
+<td>A web application to view and share Common Workflow Language workflows</td>
 </tr>
 </tbody>
 </table>
