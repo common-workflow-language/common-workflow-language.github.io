@@ -196,7 +196,7 @@
             "mapPredicate": "type", 
             "mapSubject": "id"
         }, 
-        "package": "@id", 
+        "package": "https://w3id.org/cwl/cwl#SoftwarePackage/package", 
         "packages": {
             "mapPredicate": "specs", 
             "mapSubject": "package"
