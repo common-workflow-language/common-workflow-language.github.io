@@ -763,6 +763,11 @@ arguments:
         return r;
       }
 </code></pre>
+<p>As this tool does not require any <code>inputs</code> we can run it with an (almost) empty job file:</p>
+<p><em>empty.yml</em></p>
+<pre><code>{}
+</code></pre>
+<p>We can then run <code>expression.cwl</code>:</p>
 <pre><code>$ cwl-runner expression.cwl empty.yml
 [job 140000594593168] /home/example$ echo -A 2 -B baz -C 10 9 8 7 6 5 4 3 2 1
 -A 2 -B baz -C 10 9 8 7 6 5 4 3 2 1
@@ -931,7 +936,7 @@ specific workflows steps.</p>
 </code></pre>
 <p>The <code>outputs</code> section describes the outputs of the workflow.  This is a
 list of output parameters where each parameter consists of an identifier
-and a data type.  The <code>source</code> connects the output parameter <code>classfile</code>
+and a data type.  The <code>outputSource</code> connects the output parameter <code>classfile</code>
 of the <code>compile</code> step to the workflow output parameter <code>classout</code>.</p>
 <pre><code>steps:
   untar:
