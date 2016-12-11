@@ -648,51 +648,51 @@ which does not exist or is not accessible.</p>
   }
 }
 </code></pre>
-<h2 id="SaladRecordSchema">4. SaladRecordSchema</h2><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#PrimitiveType">string</a></td><td>Optional</td><td><p>The identifier for this type</p>
-</td></tr><tr><td><code>type</code></td><td>Record_symbol</td><td>Optional</td><td><p>Must be <code>record</code></p>
-</td></tr><tr><td><code>fields</code></td><td>array&lt;<a href="#SaladRecordField">SaladRecordField</a>&gt;</td><td>Required</td><td><p>Defines the fields of the record.</p>
-</td></tr><tr><td><code>doc</code></td><td><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>Required</td><td><p>A documentation string for this type, or an array of strings which should be concatenated.</p>
-</td></tr><tr><td><code>docParent</code></td><td><a href="#PrimitiveType">string</a></td><td>Required</td><td><p>Hint to indicate that during documentation generation, documentation
+<h2 id="SaladRecordSchema">4. SaladRecordSchema</h2><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#PrimitiveType">string</a></td><td>True</td><td><p>The identifier for this type</p>
+</td></tr><tr><td><code>type</code></td><td>Record_symbol</td><td>True</td><td><p>Must be <code>record</code></p>
+</td></tr><tr><td><code>fields</code></td><td>array&lt;<a href="#SaladRecordField">SaladRecordField</a>&gt;</td><td>False</td><td><p>Defines the fields of the record.</p>
+</td></tr><tr><td><code>doc</code></td><td><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>False</td><td><p>A documentation string for this type, or an array of strings which should be concatenated.</p>
+</td></tr><tr><td><code>docParent</code></td><td><a href="#PrimitiveType">string</a></td><td>False</td><td><p>Hint to indicate that during documentation generation, documentation
 for this type should appear in a subsection under <code>docParent</code>.</p>
-</td></tr><tr><td><code>docChild</code></td><td><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>Required</td><td><p>Hint to indicate that during documentation generation, documentation
+</td></tr><tr><td><code>docChild</code></td><td><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>False</td><td><p>Hint to indicate that during documentation generation, documentation
 for <code>docChild</code> should appear in a subsection under this type.</p>
-</td></tr><tr><td><code>docAfter</code></td><td><a href="#PrimitiveType">string</a></td><td>Required</td><td><p>Hint to indicate that during documentation generation, documentation
+</td></tr><tr><td><code>docAfter</code></td><td><a href="#PrimitiveType">string</a></td><td>False</td><td><p>Hint to indicate that during documentation generation, documentation
 for this type should appear after the <code>docAfter</code> section at the same
 level.</p>
-</td></tr><tr><td><code>jsonldPredicate</code></td><td><a href="#PrimitiveType">string</a> | <a href="#JsonldPredicate">JsonldPredicate</a></td><td>Required</td><td><p>Annotate this type with linked data context.</p>
-</td></tr><tr><td><code>documentRoot</code></td><td><a href="#PrimitiveType">boolean</a></td><td>Required</td><td><p>If true, indicates that the type is a valid at the document root.  At
+</td></tr><tr><td><code>jsonldPredicate</code></td><td><a href="#PrimitiveType">string</a> | <a href="#JsonldPredicate">JsonldPredicate</a></td><td>False</td><td><p>Annotate this type with linked data context.</p>
+</td></tr><tr><td><code>documentRoot</code></td><td><a href="#PrimitiveType">boolean</a></td><td>False</td><td><p>If true, indicates that the type is a valid at the document root.  At
 least one type in a schema must be tagged with <code>documentRoot: true</code>.</p>
-</td></tr><tr><td><code>abstract</code></td><td><a href="#PrimitiveType">boolean</a></td><td>Required</td><td><p>If true, this record is abstract and may be used as a base for other
+</td></tr><tr><td><code>abstract</code></td><td><a href="#PrimitiveType">boolean</a></td><td>False</td><td><p>If true, this record is abstract and may be used as a base for other
 records, but is not valid on its own.</p>
-</td></tr><tr><td><code>extends</code></td><td><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>Required</td><td><p>Indicates that this record inherits fields from one or more base records.</p>
-</td></tr><tr><td><code>specialize</code></td><td><a href="#SpecializeDef">SpecializeDef</a> | array&lt;<a href="#SpecializeDef">SpecializeDef</a>&gt;</td><td>Required</td><td><p>Only applies if <code>extends</code> is declared.  Apply type specialization using the
+</td></tr><tr><td><code>extends</code></td><td><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>False</td><td><p>Indicates that this record inherits fields from one or more base records.</p>
+</td></tr><tr><td><code>specialize</code></td><td><a href="#SpecializeDef">SpecializeDef</a> | array&lt;<a href="#SpecializeDef">SpecializeDef</a>&gt;</td><td>False</td><td><p>Only applies if <code>extends</code> is declared.  Apply type specialization using the
 base record as a template.  For each field inherited from the base
 record, replace any instance of the type <code>specializeFrom</code> with
 <code>specializeTo</code>.</p>
 </td></tr></table><h2 id="SaladRecordField">4.1 SaladRecordField</h2><p>A field of a record.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#PrimitiveType">string</a></td><td>Optional</td><td><p>The name of the field</p>
-</td></tr><tr><td><code>type</code></td><td><a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a>&gt;</td><td>Optional</td><td><p>The field type</p>
-</td></tr><tr><td><code>doc</code></td><td><a href="#PrimitiveType">string</a></td><td>Required</td><td><p>A documentation string for this field</p>
-</td></tr><tr><td><code>jsonldPredicate</code></td><td><a href="#PrimitiveType">string</a> | <a href="#JsonldPredicate">JsonldPredicate</a></td><td>Required</td><td><p>Annotate this type with linked data context.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#PrimitiveType">string</a></td><td>True</td><td><p>The name of the field</p>
+</td></tr><tr><td><code>type</code></td><td><a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a>&gt;</td><td>True</td><td><p>The field type</p>
+</td></tr><tr><td><code>doc</code></td><td><a href="#PrimitiveType">string</a></td><td>False</td><td><p>A documentation string for this field</p>
+</td></tr><tr><td><code>jsonldPredicate</code></td><td><a href="#PrimitiveType">string</a> | <a href="#JsonldPredicate">JsonldPredicate</a></td><td>False</td><td><p>Annotate this type with linked data context.</p>
 </td></tr></table><h2 id="PrimitiveType">4.1.1 PrimitiveType</h2><p>Salad data types are based on Avro schema declarations.  Refer to the
 <a href="https://avro.apache.org/docs/current/spec.html#schemas">Avro schema declaration documentation</a> for
 detailed information.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>null</code></td><td> no value</td></tr><tr><td><code>boolean</code></td><td> a binary value</td></tr><tr><td><code>int</code></td><td> 32-bit signed integer</td></tr><tr><td><code>long</code></td><td> 64-bit signed integer</td></tr><tr><td><code>float</code></td><td> single precision (32-bit) IEEE 754 floating-point number</td></tr><tr><td><code>double</code></td><td> double precision (64-bit) IEEE 754 floating-point number</td></tr><tr><td><code>string</code></td><td> Unicode character sequence</td></tr></table><h2 id="RecordSchema">4.1.2 RecordSchema</h2><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Record_symbol</td><td>Optional</td><td><p>Must be <code>record</code></p>
-</td></tr><tr><td><code>fields</code></td><td>array&lt;<a href="#RecordField">RecordField</a>&gt;</td><td>Required</td><td><p>Defines the fields of the record.</p>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>null</code></td><td> no value</td></tr><tr><td><code>boolean</code></td><td> a binary value</td></tr><tr><td><code>int</code></td><td> 32-bit signed integer</td></tr><tr><td><code>long</code></td><td> 64-bit signed integer</td></tr><tr><td><code>float</code></td><td> single precision (32-bit) IEEE 754 floating-point number</td></tr><tr><td><code>double</code></td><td> double precision (64-bit) IEEE 754 floating-point number</td></tr><tr><td><code>string</code></td><td> Unicode character sequence</td></tr></table><h2 id="RecordSchema">4.1.2 RecordSchema</h2><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Record_symbol</td><td>True</td><td><p>Must be <code>record</code></p>
+</td></tr><tr><td><code>fields</code></td><td>array&lt;<a href="#RecordField">RecordField</a>&gt;</td><td>False</td><td><p>Defines the fields of the record.</p>
 </td></tr></table><h2 id="RecordField">4.1.3 RecordField</h2><p>A field of a record.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#PrimitiveType">string</a></td><td>Optional</td><td><p>The name of the field</p>
-</td></tr><tr><td><code>type</code></td><td><a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a>&gt;</td><td>Optional</td><td><p>The field type</p>
-</td></tr><tr><td><code>doc</code></td><td><a href="#PrimitiveType">string</a></td><td>Required</td><td><p>A documentation string for this field</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#PrimitiveType">string</a></td><td>True</td><td><p>The name of the field</p>
+</td></tr><tr><td><code>type</code></td><td><a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a>&gt;</td><td>True</td><td><p>The field type</p>
+</td></tr><tr><td><code>doc</code></td><td><a href="#PrimitiveType">string</a></td><td>False</td><td><p>A documentation string for this field</p>
 </td></tr></table><h2 id="EnumSchema">4.1.3.1 EnumSchema</h2><p>Define an enumerated type.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Enum_symbol</td><td>Optional</td><td><p>Must be <code>enum</code></p>
-</td></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>Optional</td><td><p>Defines the set of valid symbols.</p>
-</td></tr></table><h2 id="ArraySchema">4.1.3.2 ArraySchema</h2><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Array_symbol</td><td>Optional</td><td><p>Must be <code>array</code></p>
-</td></tr><tr><td><code>items</code></td><td><a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a>&gt;</td><td>Optional</td><td><p>Defines the type of the array elements.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Enum_symbol</td><td>True</td><td><p>Must be <code>enum</code></p>
+</td></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>True</td><td><p>Defines the set of valid symbols.</p>
+</td></tr></table><h2 id="ArraySchema">4.1.3.2 ArraySchema</h2><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Array_symbol</td><td>True</td><td><p>Must be <code>array</code></p>
+</td></tr><tr><td><code>items</code></td><td><a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a>&gt;</td><td>True</td><td><p>Defines the type of the array elements.</p>
 </td></tr></table><h2 id="JsonldPredicate">4.1.4 JsonldPredicate</h2><p>Attached to a record field to define how the parent record field is handled for
 URI resolution and JSON-LD context generation.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>_id</code></td><td><a href="#PrimitiveType">string</a></td><td>Required</td><td><p>The predicate URI that this field corresponds to.
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>_id</code></td><td><a href="#PrimitiveType">string</a></td><td>False</td><td><p>The predicate URI that this field corresponds to.
 Corresponds to JSON-LD <code>@id</code> directive.</p>
-</td></tr><tr><td><code>_type</code></td><td><a href="#PrimitiveType">string</a></td><td>Required</td><td><p>The context type hint, corresponds to JSON-LD <code>@type</code> directive.</p>
+</td></tr><tr><td><code>_type</code></td><td><a href="#PrimitiveType">string</a></td><td>False</td><td><p>The context type hint, corresponds to JSON-LD <code>@type</code> directive.</p>
 <ul>
 <li><p>If the value of this field is <code>@id</code> and <code>identity</code> is false or
 unspecified, the parent field must be resolved using the link
@@ -703,42 +703,42 @@ resolved using the identifier expansion rules.</p>
 resolved using the vocabulary resolution rules.</p>
 </li>
 </ul>
-</td></tr><tr><td><code>_container</code></td><td><a href="#PrimitiveType">string</a></td><td>Required</td><td><p>Structure hint, corresponds to JSON-LD <code>@container</code> directive.</p>
-</td></tr><tr><td><code>identity</code></td><td><a href="#PrimitiveType">boolean</a></td><td>Required</td><td><p>If true and <code>_type</code> is <code>@id</code> this indicates that the parent field must
+</td></tr><tr><td><code>_container</code></td><td><a href="#PrimitiveType">string</a></td><td>False</td><td><p>Structure hint, corresponds to JSON-LD <code>@container</code> directive.</p>
+</td></tr><tr><td><code>identity</code></td><td><a href="#PrimitiveType">boolean</a></td><td>False</td><td><p>If true and <code>_type</code> is <code>@id</code> this indicates that the parent field must
 be resolved according to identity resolution rules instead of link
 resolution rules.  In addition, the field value is considered an
 assertion that the linked value exists; absence of an object in the loaded document
 with the URI is not an error.</p>
-</td></tr><tr><td><code>noLinkCheck</code></td><td><a href="#PrimitiveType">boolean</a></td><td>Required</td><td><p>If true, this indicates that link validation traversal must stop at
+</td></tr><tr><td><code>noLinkCheck</code></td><td><a href="#PrimitiveType">boolean</a></td><td>False</td><td><p>If true, this indicates that link validation traversal must stop at
 this field.  This field (it is is a URI) or any fields under it (if it
 is an object or array) are not subject to link checking.</p>
-</td></tr></table><h2 id="SpecializeDef">4.2 SpecializeDef</h2><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>specializeFrom</code></td><td><a href="#PrimitiveType">string</a></td><td>Optional</td><td><p>The data type to be replaced</p>
-</td></tr><tr><td><code>specializeTo</code></td><td><a href="#PrimitiveType">string</a></td><td>Optional</td><td><p>The new data type to replace with</p>
+</td></tr></table><h2 id="SpecializeDef">4.2 SpecializeDef</h2><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>specializeFrom</code></td><td><a href="#PrimitiveType">string</a></td><td>True</td><td><p>The data type to be replaced</p>
+</td></tr><tr><td><code>specializeTo</code></td><td><a href="#PrimitiveType">string</a></td><td>True</td><td><p>The new data type to replace with</p>
 </td></tr></table><h2 id="SaladEnumSchema">5. SaladEnumSchema</h2><p>Define an enumerated type.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Enum_symbol</td><td>Optional</td><td><p>Must be <code>enum</code></p>
-</td></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>Optional</td><td><p>Defines the set of valid symbols.</p>
-</td></tr><tr><td><code>doc</code></td><td><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>Required</td><td><p>A documentation string for this type, or an array of strings which should be concatenated.</p>
-</td></tr><tr><td><code>docParent</code></td><td><a href="#PrimitiveType">string</a></td><td>Required</td><td><p>Hint to indicate that during documentation generation, documentation
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>Enum_symbol</td><td>True</td><td><p>Must be <code>enum</code></p>
+</td></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>True</td><td><p>Defines the set of valid symbols.</p>
+</td></tr><tr><td><code>doc</code></td><td><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>False</td><td><p>A documentation string for this type, or an array of strings which should be concatenated.</p>
+</td></tr><tr><td><code>docParent</code></td><td><a href="#PrimitiveType">string</a></td><td>False</td><td><p>Hint to indicate that during documentation generation, documentation
 for this type should appear in a subsection under <code>docParent</code>.</p>
-</td></tr><tr><td><code>docChild</code></td><td><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>Required</td><td><p>Hint to indicate that during documentation generation, documentation
+</td></tr><tr><td><code>docChild</code></td><td><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>False</td><td><p>Hint to indicate that during documentation generation, documentation
 for <code>docChild</code> should appear in a subsection under this type.</p>
-</td></tr><tr><td><code>docAfter</code></td><td><a href="#PrimitiveType">string</a></td><td>Required</td><td><p>Hint to indicate that during documentation generation, documentation
+</td></tr><tr><td><code>docAfter</code></td><td><a href="#PrimitiveType">string</a></td><td>False</td><td><p>Hint to indicate that during documentation generation, documentation
 for this type should appear after the <code>docAfter</code> section at the same
 level.</p>
-</td></tr><tr><td><code>jsonldPredicate</code></td><td><a href="#PrimitiveType">string</a> | <a href="#JsonldPredicate">JsonldPredicate</a></td><td>Required</td><td><p>Annotate this type with linked data context.</p>
-</td></tr><tr><td><code>documentRoot</code></td><td><a href="#PrimitiveType">boolean</a></td><td>Required</td><td><p>If true, indicates that the type is a valid at the document root.  At
+</td></tr><tr><td><code>jsonldPredicate</code></td><td><a href="#PrimitiveType">string</a> | <a href="#JsonldPredicate">JsonldPredicate</a></td><td>False</td><td><p>Annotate this type with linked data context.</p>
+</td></tr><tr><td><code>documentRoot</code></td><td><a href="#PrimitiveType">boolean</a></td><td>False</td><td><p>If true, indicates that the type is a valid at the document root.  At
 least one type in a schema must be tagged with <code>documentRoot: true</code>.</p>
-</td></tr><tr><td><code>extends</code></td><td><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>Required</td><td><p>Indicates that this enum inherits symbols from a base enum.</p>
+</td></tr><tr><td><code>extends</code></td><td><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>False</td><td><p>Indicates that this enum inherits symbols from a base enum.</p>
 </td></tr></table><h2 id="Documentation">6. Documentation</h2><p>A documentation section.  This type exists to facilitate self-documenting
 schemas but has no role in formal validation.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#PrimitiveType">string</a></td><td>Optional</td><td><p>The identifier for this type</p>
-</td></tr><tr><td><code>type</code></td><td>Documentation_symbol</td><td>Optional</td><td><p>Must be <code>documentation</code></p>
-</td></tr><tr><td><code>doc</code></td><td><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>Required</td><td><p>A documentation string for this type, or an array of strings which should be concatenated.</p>
-</td></tr><tr><td><code>docParent</code></td><td><a href="#PrimitiveType">string</a></td><td>Required</td><td><p>Hint to indicate that during documentation generation, documentation
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#PrimitiveType">string</a></td><td>True</td><td><p>The identifier for this type</p>
+</td></tr><tr><td><code>type</code></td><td>Documentation_symbol</td><td>True</td><td><p>Must be <code>documentation</code></p>
+</td></tr><tr><td><code>doc</code></td><td><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>False</td><td><p>A documentation string for this type, or an array of strings which should be concatenated.</p>
+</td></tr><tr><td><code>docParent</code></td><td><a href="#PrimitiveType">string</a></td><td>False</td><td><p>Hint to indicate that during documentation generation, documentation
 for this type should appear in a subsection under <code>docParent</code>.</p>
-</td></tr><tr><td><code>docChild</code></td><td><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>Required</td><td><p>Hint to indicate that during documentation generation, documentation
+</td></tr><tr><td><code>docChild</code></td><td><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>False</td><td><p>Hint to indicate that during documentation generation, documentation
 for <code>docChild</code> should appear in a subsection under this type.</p>
-</td></tr><tr><td><code>docAfter</code></td><td><a href="#PrimitiveType">string</a></td><td>Required</td><td><p>Hint to indicate that during documentation generation, documentation
+</td></tr><tr><td><code>docAfter</code></td><td><a href="#PrimitiveType">string</a></td><td>False</td><td><p>Hint to indicate that during documentation generation, documentation
 for this type should appear after the <code>docAfter</code> section at the same
 level.</p>
 </td></tr></table></div>
