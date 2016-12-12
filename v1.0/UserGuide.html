@@ -66,6 +66,7 @@ specification, version 1.0.</p>
 </ol><li><a href="#Staging_input_files_in_the_output_directory">2.14 Staging input files in the output directory</a><ol>
 </ol></li></ol><li><a href="#Writing_Workflows">3. Writing Workflows</a><ol>
 <li><a href="#First_workflow">3.1 First workflow</a><ol>
+</ol><li><a href="#Nested_workflows">3.2 Nested workflows</a><ol>
 </ol></li></ol></li></ol></nav>
 
 <h1 id="Introduction">1. Introduction</h1><p>CWL is a way to describe command line tools and connect them together to create
@@ -457,7 +458,7 @@ label: Example trivial wrapper for Java 7 compiler
 baseCommand: javac
 hints:
   DockerRequirement:
-    dockerPull: java:7
+    dockerPull: java:7-jdk
 baseCommand: javac
 arguments: ["-d", $(runtime.outdir)]
 inputs:
@@ -766,6 +767,7 @@ arguments:
 <p>As this tool does not require any <code>inputs</code> we can run it with an (almost) empty job file:</p>
 <p><em>empty.yml</em></p>
 <pre><code>{}
+|
 </code></pre>
 <p>We can then run <code>expression.cwl</code>:</p>
 <pre><code>$ cwl-runner expression.cwl empty.yml
@@ -974,6 +976,150 @@ that are expected from the tool.</p>
 connecting the input parameter <code>src</code> to the output parameter of <code>untar</code>
 using <code>untar/example_out</code>.  The output of this step <code>classfile</code> is
 connected to the <code>outputs</code> section for the Workflow, described above.</p>
+<h2 id="Nested_workflows">3.2 Nested workflows</h2><p>Workflows are ways to combine multiple tools to perform a larger
+operations. We can also think of a workflow as being a tool itself;
+a CWL workflow can be used as a step in another CWL workflow, if the
+workflow engine supports the <code>SubworkflowFeatureRequirement</code>:</p>
+<pre><code>requirements:
+  - class: SubworkflowFeatureRequirement
+</code></pre>
+<p>Here's an example workflow that uses our <code>1st-workflow.cwl</code> as a
+nested workflow:</p>
+<pre><code>cwlVersion: v1.0
+class: Workflow
+
+inputs: []
+
+outputs:
+  classout:
+    type: File
+    outputSource: compile/classout
+
+requirements:
+  - class: SubworkflowFeatureRequirement
+
+steps:
+  compile:
+    run: 1st-workflow.cwl
+    in:
+      inp:
+        source: create-tar/tar
+      ex:
+        default: "Hello.java"
+    out: [classout]
+
+  create-tar:
+    requirements:
+      - class: InitialWorkDirRequirement
+        listing:
+          - entryname: Hello.java
+            entry: |
+              public class Hello {
+                public static void main(String[] argv) {
+                    System.out.println("Hello from Java");
+                }
+              }
+    in: []
+    out: [tar]
+    run:
+      class: CommandLineTool
+      requirements:
+        - class: ShellCommandRequirement
+      arguments:
+        - shellQuote: false
+          valueFrom: |
+            date
+            tar cf hello.tar Hello.java
+            date
+      inputs: []
+      outputs:
+        tar:
+          type: File
+          outputBinding:
+            glob: "hello.tar"
+</code></pre>
+<p>A CWL <code>Workflow</code> can be used as a <code>step</code> just like a
+<code>CommandLineTool</code>, it's CWL file is included with <code>run</code>.
+The workflow inputs (<code>inp</code> and <code>ex</code>)
+and outputs (<code>classout</code>) then can be mapped to become the
+step's input/outputs.</p>
+<pre><code>  compile:
+    run: 1st-workflow.cwl
+    in:
+      inp:
+        source: create-tar/tar
+      ex:
+        default: "Hello.java"
+    out: [classout]
+</code></pre>
+<p>Our <code>1st-workflow.cwl</code> was parameterized with workflow inputs,
+so when running it we had to provide a job file to denote
+the tar file and <code>*.java</code> filename. This is generally best-practice,
+as it means it can be reused in multiple parent workflows,
+or even in multiple steps within the same workflow.</p>
+<p>Here we use <code>default:</code> to hard-code
+<code>"Hello.java"</code> as the <code>ex</code> input,
+however our workflow also requires a tar file at <code>inp</code>,
+which we will prepare in the <code>create-tar</code> step.
+At this point it is probably a good idea to refactor
+<code>1st-workflow.cwl</code> to have more specific input/output names,
+as those also appear in its usage as a tool.</p>
+<p>It is also possible to do a less generic approach and avoid
+external dependencies in the job file. So in this workflow we can
+generate a hard-coded <code>Hello.java</code> file using the
+previously mentioned <code>InitialWorkDirRequirement</code> requirement, before
+adding it to a tar file.</p>
+<pre><code>  create-tar:
+    requirements:
+      - class: InitialWorkDirRequirement
+        listing:
+          - entryname: Hello.java
+            entry: |
+              public class Hello {
+                public static void main(String[] argv) {
+                    System.out.println("Hello from Java");
+                }
+              }
+</code></pre>
+<p>In this case our step can assume <code>Hello.java</code> rather than be
+parameterized, so we can use a simpler <code>arguments</code> form
+as long as the CWL workflow wngine supports the
+<code>ShellCommandRequirement</code>:</p>
+<pre><code>  run:
+    class: CommandLineTool
+    requirements:
+      - class: ShellCommandRequirement
+    arguments:
+      - shellQuote: false
+        valueFrom: &gt;
+          tar cf hello.tar Hello.java
+</code></pre>
+<p>Note the use of <code>shellQuote: false</code> here, otherwise the shell will try
+to execute the quoted binary <code>"tar cf hello.tar Hello.java"</code>.</p>
+<p>Here the <code>&gt;</code> block means that newlines are stripped, so it's possible to write
+the single command on multiple lines. Similarly, the <code>|</code> we used above will
+preserve newlines, combined with <code>ShellCommandRequirement</code> this would
+allow embedding a shell script.
+Shell commands should however be used sparingly in CWL, as it
+means you "jump out" of the workflow and no longer get
+reusable components, provenance or scalability. For reproducibility
+and portability it is recommended to only use shell commands together
+with a <code>DockerRequirement</code> hint, so that
+the commands are executed in a predictable shell environment.</p>
+<p>Did you notice that we didn't split out the <code>tar cf</code> tool to a separate
+file, but rather embedded it within the CWL Workflow file? This is generally
+not best practice, as the tool then can't be reused. The reason for doing it
+in this case is because the command line is hard-coded with filenames that
+only make sense within this workflow.</p>
+<p>In this example we had to prepare a tar file outside, but only because
+our inner workflow was designed to take that as an input. A better
+refactoring of the inner workflow would be to take a list of
+Java files to compile, which would simplify its usage as a tool
+step in other workflows.</p>
+<p>Nested workflows can be a powerful feature to generate higher-level
+functional and reusable workflow units - but just like for creating a
+CWL Tool description, care must be taken to improve its usability 
+in multiple workflows.</p>
 </div>
     </div>
     </div>
