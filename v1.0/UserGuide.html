@@ -241,7 +241,7 @@ command line.</p>
 first copy it to the output directory.</p>
 <p>The value of <code>position</code> is used to determine where parameter should
 appear on the command line.  Positions are relative to one another, not
-abosolute.  As a result, positions do not have to be sequential, three
+absolute.  As a result, positions do not have to be sequential, three
 parameters with positions <code>[1, 3, 5]</code> will result in the same command
 line as <code>[1, 2, 3]</code>.  More than one parameter can have the same position
 (ties are broken using the parameter name), and the position field itself
@@ -517,7 +517,7 @@ provide information about the hardware or software environment when the
 tool is actually executed.  The <code>$(runtime.outdir)</code> parameter is the path
 to the designated output directory.  Other parameters include
 <code>$(runtime.tmpdir)</code>, <code>$(runtime.ram)</code>, <code>$(runtime.cores)</code>,
-<code>$(runtime.ram)</code>, <code>$(runtime.outdirSize)</code>, and <code>$(runtime.tmpdirSize)</code>.  See
+<code>$(runtime.outdirSize)</code>, and <code>$(runtime.tmpdirSize)</code>.  See
 the <a href="CommandLineTool.html#Runtime_environment">Runtime Environment</a>
 section of the CWL specification for details.</p>
 <h2 id="Array_inputs">2.8 Array inputs</h2><p>It is easy to add arrays of input parameters represented to the command
