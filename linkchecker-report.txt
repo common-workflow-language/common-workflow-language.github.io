@@ -1,9 +1,9 @@
 
-Processing	file:///var/lib/cwl/stg5bf6f194-9c85-4d21-90a3-d4ce341b99ec/index.html
+Processing	file:///var/lib/cwl/stg04256364-4523-4904-830b-f6f6a4f04798/index.html
 
 
 List of broken links and other issues:
-file:///var/lib/cwl/stg5bf6f194-9c85-4d21-90a3-d4ce341b99ec/index.html	
+file:///var/lib/cwl/stg04256364-4523-4904-830b-f6f6a4f04798/index.html	
  Lines: 31, 41
   Code: 200 (no message)
  To do: Some of the links to this resource point to broken URI fragments
