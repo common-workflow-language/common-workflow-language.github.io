@@ -87,7 +87,10 @@
             "@id": "https://w3id.org/cwl/cwl#cwlVersion", 
             "@type": "@vocab"
         }, 
-        "default": "cwl:default", 
+        "default": {
+            "@id": "https://w3id.org/cwl/cwl#default", 
+            "noLinkCheck": true
+        }, 
         "dirname": "https://w3id.org/cwl/cwl#File/dirname", 
         "doc": "rdfs:comment", 
         "dockerFile": "https://w3id.org/cwl/cwl#DockerRequirement/dockerFile", 

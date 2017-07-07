@@ -302,10 +302,6 @@ cwl:basename a rdf:Property ;
     rdfs:domain cwl:Directory,
         cwl:File .
 
-cwl:default a rdf:Property ;
-    rdfs:domain cwl:InputParameter,
-        cwl:WorkflowStepInput .
-
 cwl:inputBinding a rdf:Property ;
     rdfs:domain cwl:InputArraySchema,
         cwl:InputEnumSchema,
