@@ -292,9 +292,6 @@ sld:RecordSchema a rdfs:Class .
 <https://w3id.org/cwl/cwl#SoftwarePackage/package> a rdf:Property ;
     rdfs:domain cwl:SoftwarePackage .
 
-<https://w3id.org/cwl/cwl#SoftwarePackage/specs> a rdf:Property ;
-    rdfs:domain cwl:SoftwarePackage .
-
 <https://w3id.org/cwl/cwl#SoftwarePackage/version> a rdf:Property ;
     rdfs:domain cwl:SoftwarePackage .
 

@@ -245,7 +245,11 @@
             "@type": "@id", 
             "refScope": 2
         }, 
-        "specs": "https://w3id.org/cwl/cwl#SoftwarePackage/specs", 
+        "specs": {
+            "@id": "https://w3id.org/cwl/cwl#SoftwarePackage/specs", 
+            "@type": "@id", 
+            "noLinkCheck": true
+        }, 
         "stderr": "https://w3id.org/cwl/cwl#stderr", 
         "stdin": "https://w3id.org/cwl/cwl#stdin", 
         "stdout": "https://w3id.org/cwl/cwl#stdout", 

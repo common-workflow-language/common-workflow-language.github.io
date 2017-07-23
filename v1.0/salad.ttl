@@ -69,6 +69,9 @@ rdfs:comment a rdf:Property ;
 <https://w3id.org/cwl/salad#JsonldPredicate/typeDSL> a rdf:Property ;
     rdfs:domain sld:JsonldPredicate .
 
+<https://w3id.org/cwl/salad#NamedType/inVocab> a rdf:Property ;
+    rdfs:domain sld:NamedType .
+
 <https://w3id.org/cwl/salad#SaladRecordSchema/abstract> a rdf:Property ;
     rdfs:domain sld:SaladRecordSchema .
 
