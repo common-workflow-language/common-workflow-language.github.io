@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <title>Common Workflow Language (CWL) Command Line Tool Description, v1.0.1</title>
+    <title>Common Workflow Language (CWL) Command Line Tool Description, v1.0.2</title>
     <style>
     :target {
       padding-top: 61px;
@@ -42,7 +42,7 @@
     
     <div class="row">
     
-    <div class="col-md-12" role="main" id="main"><h1 id="Common_Workflow_Language_(CWL)_Command_Line_Tool_Description,_v1.0.1">Common Workflow Language (CWL) Command Line Tool Description, v1.0.1</h1><p>This version:</p>
+    <div class="col-md-12" role="main" id="main"><h1 id="Common_Workflow_Language_(CWL)_Command_Line_Tool_Description,_v1.0.2">Common Workflow Language (CWL) Command Line Tool Description, v1.0.2</h1><p>This version:</p>
 <ul>
 <li><a href="https://w3id.org/cwl/v1.0/">https://w3id.org/cwl/v1.0/</a></li>
 </ul>
@@ -87,11 +87,11 @@ latest version of this document is available in the "v1.0" directory at</p>
 <p>The products of the CWL working group (including this document) are made available
 under the terms of the Apache License, version 2.0.</p>
 <h1 id="toc">Table of contents</h1>
-               <nav class="tocnav"><ol><li><a href="#Common_Workflow_Language_(CWL)_Command_Line_Tool_Description,_v1.0.1"> Common Workflow Language (CWL) Command Line Tool Description, v1.0.1</a><ol>
+               <nav class="tocnav"><ol><li><a href="#Common_Workflow_Language_(CWL)_Command_Line_Tool_Description,_v1.0.2"> Common Workflow Language (CWL) Command Line Tool Description, v1.0.2</a><ol>
 </ol><li><a href="#Abstract"> Abstract</a><ol>
 </ol><li><a href="#Status_of_this_document"> Status of this document</a><ol>
 </ol><li><a href="#Introduction">1. Introduction</a><ol>
-<li><a href="#Introduction_to_CWL_Command_Line_Tool_standard_v1.0.1">1.1 Introduction to CWL Command Line Tool standard v1.0.1</a><ol>
+<li><a href="#Introduction_to_CWL_Command_Line_Tool_standard_v1.0.2">1.1 Introduction to CWL Command Line Tool standard v1.0.2</a><ol>
 </ol><li><a href="#Purpose">1.2 Purpose</a><ol>
 </ol><li><a href="#References_to_other_specifications">1.3 References to other specifications</a><ol>
 </ol><li><a href="#Scope">1.4 Scope</a><ol>
@@ -159,12 +159,12 @@ interest in portability of data analysis workflows.  The goal is to create
 specifications like this one that enable data scientists to describe analysis
 tools and workflows that are powerful, easy to use, portable, and support
 reproducibility.</p>
-<h2 id="Introduction_to_CWL_Command_Line_Tool_standard_v1.0.1">1.1 Introduction to CWL Command Line Tool standard v1.0.1</h2><p>This specification represents the second stable release from the CWL
-group.  Since v1.0, v1.0.1 introduces the following updates to the CWL
-Command Line Tool standard.  Documents should continue to use <code>cwlVersion: v1.0</code>
-and existing v1.0 documents remain valid, however CWL documents that
-relied on previously undefined or underspecified behavior may have
-slightly different behavior in v1.0.1.</p>
+<h2 id="Introduction_to_CWL_Command_Line_Tool_standard_v1.0.2">1.1 Introduction to CWL Command Line Tool standard v1.0.2</h2><p>This specification represents the third stable release from the CWL
+group.  Since the initial v1.0 release, v1.0.2 introduces the following
+updates to the CWL Command Line Tool standard.  Documents should continue
+to use <code>cwlVersion: v1.0</code> and existing v1.0 documents remain valid,
+however CWL documents that relied on previously undefined or
+underspecified behavior may have slightly different behavior in v1.0.2.</p>
 <ul>
 <li>13 July 2016: Mark <code>baseCommand</code> as optional and update descriptive text.</li>
 <li>14 November 2016: Clarify <a href="#SoftwareRequirement">SoftwareRequirement</a>
@@ -184,6 +184,10 @@ slightly different behavior in v1.0.1.</p>
 <li>Clarified valid types and meaning of the format field on inputs versus outputs</li>
 <li>Clarify that command line arguments must not interpreted as shell except when shellQuote: false</li>
 <li>Clarify behavior of <code>entryname</code></li>
+</ul>
+</li>
+<li>10 August 2017: (v1.0.2)<ul>
+<li>Clarify behavior resolving expressions in <code>secondaryFile</code></li>
 </ul>
 </li>
 </ul>
@@ -729,13 +733,26 @@ runtime environment and inputs may produce different results.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The unique identifier for this parameter object.</p>
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
 </td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
-<p>Describes files that must be included alongside the primary file(s).
-All listed secondary files must be present.  An implementation may
-fail workflow execution if a secondary file does not exist.</p>
+<p>Provides a pattern or expression specifying files or directories that
+must be included alongside the primary file.  All listed secondary
+files must be present.  An implementation may fail workflow execution
+if an expected secondary file does not exist.</p>
 <p>If the value is an expression, the value of <code>self</code> in the expression
-must be the primary input or output File to which this binding applies.</p>
-<p>If the value is a string, it specifies that the following pattern
-should be applied to the <code>location</code> of the primary file:</p>
+must be the primary input or output File object to which this binding
+applies.  The <code>basename</code>, <code>nameroot</code> and <code>nameext</code> fields must be
+present in <code>self</code>.  For <code>CommandLineTool</code> outputs the <code>path</code> field must
+also be present.  The expression must return a filename string relative
+to the path to the primary File, a File or Directory object with either
+<code>path</code> or <code>location</code> and <code>basename</code> fields set, or an array consisting
+of strings or File or Directory objects.  It is legal to reference an
+unchanged File or Directory object taken from input as a secondaryFile.</p>
+<p>To work on non-filename-preserving storage systems, portable tool
+descriptions should avoid constructing new values from <code>location</code>, but
+should construct relative references using <code>basename</code> or <code>nameroot</code>
+instead.</p>
+<p>If a value in <code>secondaryFiles</code> is a string that is not an expression,
+it specifies that the following pattern should be applied to the path
+of the primary file to yield a filename relative to the primary File:</p>
 <ol>
 <li>If string begins with one or more caret <code>^</code> characters, for each
 caret, remove the last file extension from the path (the last
@@ -941,12 +958,12 @@ of <code>basename</code> prior to evaluating parameter references or expressions
 </td></tr><tr><td><code>checksum</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>Optional hash code for validating file integrity.  Currently must be in the form
 "sha1$ + hexadecimal string" using the SHA-1 algorithm.</p>
 </td></tr><tr><td><code>size</code></td><td><a href="#CWLType">long</a></td><td>False</td><td><p>Optional file size</p>
-</td></tr><tr><td><code>secondaryFiles</code></td><td>array&lt;<a href="#File">File</a>&nbsp;|&nbsp;<a href="#Directory">Directory</a>&gt;</td><td>False</td><td><p>A list of additional files that are associated with the primary file
-and must be transferred alongside the primary file.  Examples include
-indexes of the primary file, or external references which must be
-included when loading primary document.  A file object listed in
-<code>secondaryFiles</code> may itself include <code>secondaryFiles</code> for which the same
-rules apply.</p>
+</td></tr><tr><td><code>secondaryFiles</code></td><td>array&lt;<a href="#File">File</a>&nbsp;|&nbsp;<a href="#Directory">Directory</a>&gt;</td><td>False</td><td><p>A list of additional files or directories that are associated with the
+primary file and must be transferred alongside the primary file.
+Examples include indexes of the primary file, or external references
+which must be included when loading primary document.  A file object
+listed in <code>secondaryFiles</code> may itself include <code>secondaryFiles</code> for
+which the same rules apply.</p>
 </td></tr><tr><td><code>format</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>The format of the file: this must be an IRI of a concept node that
 represents the file format, preferrably defined within an ontology.
 If no ontology is available, file formats may be tested by exact match.</p>
@@ -1061,13 +1078,26 @@ merged.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The unique identifier for this parameter object.</p>
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
 </td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
-<p>Describes files that must be included alongside the primary file(s).
-All listed secondary files must be present.  An implementation may
-fail workflow execution if a secondary file does not exist.</p>
+<p>Provides a pattern or expression specifying files or directories that
+must be included alongside the primary file.  All listed secondary
+files must be present.  An implementation may fail workflow execution
+if an expected secondary file does not exist.</p>
 <p>If the value is an expression, the value of <code>self</code> in the expression
-must be the primary input or output File to which this binding applies.</p>
-<p>If the value is a string, it specifies that the following pattern
-should be applied to the <code>location</code> of the primary file:</p>
+must be the primary input or output File object to which this binding
+applies.  The <code>basename</code>, <code>nameroot</code> and <code>nameext</code> fields must be
+present in <code>self</code>.  For <code>CommandLineTool</code> outputs the <code>path</code> field must
+also be present.  The expression must return a filename string relative
+to the path to the primary File, a File or Directory object with either
+<code>path</code> or <code>location</code> and <code>basename</code> fields set, or an array consisting
+of strings or File or Directory objects.  It is legal to reference an
+unchanged File or Directory object taken from input as a secondaryFile.</p>
+<p>To work on non-filename-preserving storage systems, portable tool
+descriptions should avoid constructing new values from <code>location</code>, but
+should construct relative references using <code>basename</code> or <code>nameroot</code>
+instead.</p>
+<p>If a value in <code>secondaryFiles</code> is a string that is not an expression,
+it specifies that the following pattern should be applied to the path
+of the primary file to yield a filename relative to the primary File:</p>
 <ol>
 <li>If string begins with one or more caret <code>^</code> characters, for each
 caret, remove the last file extension from the path (the last
@@ -1158,12 +1188,13 @@ stderr: random_stderr_filenameABCDEFG
 </code></pre>
 <h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>stderr</code></td><td></td></tr></table><h3 id="CommandOutputBinding">5.2.3 CommandOutputBinding</h3><p>Describes how to generate an output parameter based on the files produced
 by a CommandLineTool.</p>
-<p>The output parameter is generated by applying these operations in
-the following order:</p>
+<p>The output parameter value is generated by applying these operations in the
+following order:</p>
 <ul>
 <li>glob</li>
 <li>loadContents</li>
 <li>outputEval</li>
+<li>secondaryFiles</li>
 </ul>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>glob</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>Find files relative to the output directory, using POSIX glob(3)
 pathname matching.  If an array is provided, find files that match any
