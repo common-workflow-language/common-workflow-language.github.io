@@ -59,9 +59,9 @@ descriptions.</p>
 <h2 id="Specification">Specification</h2><p>For developers and advanced users, the current
 <a href="http://www.commonwl.org/v1.0/">CWL specification (v1.0.2)</a> provides
 authoritative documentation of the execution of CWL documents.</p>
-<h3 id="Citation">Citation</h3><p>Peter Amstutz, Michael R. Crusoe, Nebojša Tijanić (editors), Brad Chapman, John Chilton, Michael Heuer, Andrey Kartashov, Dan Leehr, Hervé Ménager, Maya Nedeljkovich, Matt Scales, Stian Soiland-Reyes, Luka Stojanovic (2016): 
+<h3 id="Citation">Citation</h3><p>Peter Amstutz, Michael R. Crusoe, Nebojša Tijanić (editors), Brad Chapman, John Chilton, Michael Heuer, Andrey Kartashov, Dan Leehr, Hervé Ménager, Maya Nedeljkovich, Matt Scales, Stian Soiland-Reyes, Luka Stojanovic (2016):
 <strong>Common Workflow Language, v1.0</strong>.
-Specification, <em>Common Workflow Language working group</em>. 
+Specification, <em>Common Workflow Language working group</em>.
 <a href="https://w3id.org/cwl/v1.0/">https://w3id.org/cwl/v1.0/</a>
 doi:<a href="https://doi.org/10.6084/m9.figshare.3115156.v2">10.6084/m9.figshare.3115156.v2</a></p>
 <h2 id="Implementations">Implementations</h2><table class="table table-striped">
@@ -77,7 +77,7 @@ doi:<a href="https://doi.org/10.6084/m9.figshare.3115156.v2">10.6084/m9.figshare
 <td><a href="https://github.com/common-workflow-language/cwltool">cwltool</a></td>
 <td>Reference implementation of CWL</td>
 <td><a href="http://ci.commonwl.org/job/cwltool-conformance/lastBuild/testReport/"><img src="https://ci.commonwl.org/job/cwltool-conformance/badge/icon" alt="Build Status"></a></td>
-<td>Linux, OS X, local execution only</td>
+<td>Linux, OS X, Windows, local execution only</td>
 </tr>
 <tr>
 <td><a href="https://arvados.org">Arvados</a></td>
@@ -98,6 +98,12 @@ doi:<a href="https://doi.org/10.6084/m9.figshare.3115156.v2">10.6084/m9.figshare
 <td>Linux, OS X, <a href="https://github.com/ga4gh/task-execution-server">GA4GH TES</a> (experimental)</td>
 </tr>
 <tr>
+<td><a href="https://galaxyproject.org/">Galaxy</a></td>
+<td>Web-based platform for data intensive biomedical research.</td>
+<td><a href="https://github.com/common-workflow-language/galaxy">alpha</a></td>
+<td>-</td>
+</tr>
+<tr>
 <td><a href="https://github.com/common-workflow-language/cwl-tes">cwl-tes</a></td>
 <td>CWL engine backended by the <a href="https://github.com/ga4gh/task-execution-schemas">GA4GH Task Execution API</a></td>
 <td><a href="https://travis-ci.org/common-workflow-language/cwl-tes"><img src="https://travis-ci.org/common-workflow-language/cwl-tes.svg?branch=master" alt="Build Status"></a></td>
@@ -110,34 +116,40 @@ doi:<a href="https://doi.org/10.6084/m9.figshare.3115156.v2">10.6084/m9.figshare
 <td>Linux, OS X</td>
 </tr>
 <tr>
+<td><a href="http://nlesc.github.io/Xenon/">Xenon</a></td>
+<td>Run CWL workflows using Xenon</td>
+<td><a href="https://github.com/NLeSC/xenon-cwl-runner">alpha</a></td>
+<td><a href="http://nlesc.github.io/Xenon/">any Xenon backend</a>: local, ssh, SLURM, Torque, Grid Engine</td>
+</tr>
+<tr>
 <td><a href="https://github.com/Consonance/consonance">Consonance</a></td>
 <td>orchestration tool for running SeqWare workflows and CWL tools</td>
-<td><a href="https://ci.commonwl.org/job/rabix-conformance/">pending</a></td>
+<td>-</td>
 <td>AWS, OpenStack, Azure</td>
 </tr>
 <tr>
 <td><a href="http://taverna.incubator.apache.org/">Apache Taverna</a></td>
 <td>Domain-independent Workflow Management System</td>
 <td><a href="https://issues.apache.org/jira/browse/TAVERNA-900">alpha</a></td>
-<td>Java</td>
-</tr>
-<tr>
-<td><a href="https://galaxyproject.org/">Galaxy</a></td>
-<td>Web-based platform for data intensive biomedical research.</td>
-<td><a href="https://github.com/common-workflow-language/galaxy">alpha</a></td>
-<td>Python</td>
+<td>-</td>
 </tr>
 <tr>
 <td><a href="https://github.com/MG-RAST/AWE">AWE</a></td>
 <td>Workflow and resource management system for bioinformatics data analysis.</td>
 <td><a href="https://github.com/wgerlach/AWE">alpha</a></td>
-<td>Go</td>
+<td>-</td>
 </tr>
 <tr>
-<td><a href="http://nlesc.github.io/Xenon/">Xenon</a></td>
-<td>Run CWL workflows using Xenon</td>
-<td><a href="https://github.com/NLeSC/xenon-cwl-runner">alpha</a></td>
-<td><a href="http://nlesc.github.io/Xenon/">any Xenon backend</a>: local, ssh, SLURM, Torque, Grid Engine</td>
+<td><a href="https://github.com/broadinstitute/cromwell">Cromwell</a></td>
+<td>Cromwell workflow engine</td>
+<td><a href="https://github.com/broadinstitute/cromwell/issues?q=is%3Aopen+is%3Aissue+label%3ACWL">alpha</a></td>
+<td>local, HPC, Google, HtCondor</td>
+</tr>
+<tr>
+<td><a href="https://github.com/otiai10/yacle">yacle</a></td>
+<td>Yet Another CWL Engine</td>
+<td>-</td>
+<td>-</td>
 </tr>
 </tbody>
 </table>
@@ -156,9 +168,53 @@ doi:<a href="https://doi.org/10.6084/m9.figshare.3115156.v2">10.6084/m9.figshare
 <td><a href="http://dockstore.org">Dockstore tool registry</a></td>
 <td>An open platform for sharing Docker-based tools described with the Common Workflow Language used by the GA4GH.</td>
 </tr>
+<tr>
+<td><a href="https://view.commonwl.org/workflows">CWLviewer</a></td>
+<td>A web application to view and share Common Workflow Language workflows</td>
+</tr>
 </tbody>
 </table>
-<h2 id="Software_for_working_with_CWL">Software for working with CWL</h2><table class="table table-striped">
+<p>On github, it is easy way to search for CWL documents in the search box using
+<code>cwlVersion extension:cwl + &lt;your search terms&gt;</code>, for example <code>cwlVersion
+extension:cwl picard</code>.</p>
+<h2 id="Software_for_working_with_CWL">Software for working with CWL</h2><h3 id="Editors_and_viewers">Editors and viewers</h3><table class="table table-striped">
+<thead><tr>
+<th>Software</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/rabix/composer">Rabix Composer</a></td>
+<td>Graphical CWL editor</td>
+</tr>
+<tr>
+<td><a href="https://view.commonwl.org/">CWLviewer</a></td>
+<td>A web application to view and share Common Workflow Language workflows</td>
+</tr>
+<tr>
+<td><a href="https://github.com/manabuishii/language-cwl">atom-cwl</a></td>
+<td>CWL editing mode for Atom</td>
+</tr>
+<tr>
+<td><a href="https://github.com/manabuishii/vim-cwl">vim-cwl</a></td>
+<td>CWL editing mode for Vim</td>
+</tr>
+<tr>
+<td><a href="https://github.com/tom-tan/cwl-mode">cwl-mode</a></td>
+<td>CWL editing mode for Emacs</td>
+</tr>
+<tr>
+<td><a href="https://github.com/manabuishii/vscode-cwl">vscode-cwl</a></td>
+<td>CWL support in Visual Studio Code</td>
+</tr>
+<tr>
+<td><a href="https://github.com/AleksandrSl/cwl-plugin">IntelliJ CWL plugin</a></td>
+<td>CWL plugin for IntelliJ</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Utilities">Utilities</h3><table class="table table-striped">
 <thead><tr>
 <th>Software</th>
 <th>Description</th>
@@ -169,6 +225,27 @@ doi:<a href="https://doi.org/10.6084/m9.figshare.3115156.v2">10.6084/m9.figshare
 <td><a href="https://github.com/common-workflow-language/cwltest">cwltest</a></td>
 <td>CWL testing framework,  automated testing of tools and workflows written with CWL</td>
 </tr>
+<tr>
+<td><a href="https://github.com/kloetzl/cwl2zshcomp">cwl2zshcomp</a></td>
+<td>generates ZSH auto completions from CWL command line tool descriptions</td>
+</tr>
+<tr>
+<td><a href="https://github.com/MD-Studio/cerise">Cerise</a></td>
+<td>A REST service for running CWL workflows on remote clusters</td>
+</tr>
+<tr>
+<td><a href="https://github.com/tom-tan/cwl-inspector">cwl-inspector</a></td>
+<td>Tool to inspect properties of tools or workflows written in CWL</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Converters_and_code_generators">Converters and code generators</h3><table class="table table-striped">
+<thead><tr>
+<th>Software</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td><a href="https://github.com/common-workflow-language/cwl-upgrader">cwl-upgrader</a></td>
 <td>Upgrade CWL documents from draft-3 to v1.0</td>
@@ -186,20 +263,16 @@ doi:<a href="https://doi.org/10.6084/m9.figshare.3115156.v2">10.6084/m9.figshare
 <td>Automatically run argparse2cwl on any package in PyPi</td>
 </tr>
 <tr>
-<td><a href="https://github.com/common-workflow-language/cwlavro">cwlavro</a></td>
-<td>Java classes for loading CWL documents</td>
-</tr>
-<tr>
 <td><a href="https://github.com/common-workflow-language/acd2cwl">acd2cwl</a></td>
-<td>CWL generator for ACD (EMBOSS) files</td>
+<td>ACD (EMBOSS) to CWL generator</td>
 </tr>
 <tr>
-<td><a href="https://view.commonwl.org/">CWLviewer</a></td>
-<td>A web application to view and share Common Workflow Language workflows</td>
+<td><a href="https://github.com/WorkflowConversion/CTDConverter">CTD converter</a></td>
+<td>Common Tool Definition (CTD) to CWL converter</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kloetzl/cwl2zshcomp">cwl2zshcomp</a></td>
-<td>generates ZSH auto completions from CWL command line tool descriptions</td>
+<td><a href="https://github.com/common-workflow-language/wdl2cwl">WDL converter</a></td>
+<td>Workflow Definition Language (WDL) to CWL converter</td>
 </tr>
 <tr>
 <td><a href="https://github.com/NLeSC/scriptcwl">scriptcwl</a></td>
@@ -207,7 +280,60 @@ doi:<a href="https://doi.org/10.6084/m9.figshare.3115156.v2">10.6084/m9.figshare
 </tr>
 <tr>
 <td><a href="https://github.com/common-workflow-language/python-cwlgen">python-cwlgen</a></td>
-<td>Generation of CWL programmatically from Python.</td>
+<td>Generate of CWL programmatically from Python.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/nextflow-io/cwl2nxf">cwl2nxf</a></td>
+<td>Convert CWL to run on Nextflow</td>
+</tr>
+<tr>
+<td><a href="https://github.com/benhg/cwl-to-parsl">cwl-to-parsl</a></td>
+<td>Convert CWL to Parsl</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Parsoa/Beatrice">Beatrice</a></td>
+<td>Pipeline Assembler For CWL</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Code_libraries">Code libraries</h3><table class="table table-striped">
+<thead><tr>
+<th>Software</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/common-workflow-language/cwltool">cwltool</a></td>
+<td>cwltool can be <a href="(https://github.com/common-workflow-language/cwltool#import-as-a-module">imported as a Python module</a>) and <a href="https://github.com/common-workflow-language/cwltool#extension-points">extended to create custom cwl runners</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/common-workflow-language/schema_salad">schema salad</a></td>
+<td>Python module and tools for working with the CWL schema.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/common-workflow-language/cwlavro">cwlavro</a></td>
+<td>Java classes for loading CWL documents</td>
+</tr>
+<tr>
+<td><a href="https://github.com/jefferys/cwl">CWL for R</a></td>
+<td>Parse and work with CWL from R</td>
+</tr>
+<tr>
+<td><a href="https://github.com/BioJulia/CWL.jl">CWL for Julia</a></td>
+<td>Utilities for working with CWL from Julia</td>
+</tr>
+<tr>
+<td><a href="https://github.com/otiai10/cwl.go">CWL for Go</a></td>
+<td>-</td>
+</tr>
+<tr>
+<td><a href="https://github.com/broadinstitute/wdl4s">CWL for Scala</a></td>
+<td>CWL object model for Scala</td>
+</tr>
+<tr>
+<td><a href="https://github.com/broadinstitute/cwl-proto">cwl-proto</a></td>
+<td>Reading and writing Common Workflow Language to Protocol Buffers</td>
 </tr>
 </tbody>
 </table>
