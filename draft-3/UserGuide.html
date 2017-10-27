@@ -30,10 +30,6 @@
           <div class="navbar-header">
             <a class="navbar-brand" href="index.html"><img src='../CWL-Logo-Header.png' style='height: 61px; margin-top: -20px; margin-left: -20px'></img></a>
     
-                <ul class="nav navbar-nav">
-                  <li><a href="#toc">Table of contents</a></li>
-                </ul>
-        
           </div>
         </div>
       </nav>
@@ -43,46 +39,9 @@
     <div class="row">
     
     <div class="col-md-12" role="main" id="main"><h1 id="A_Gentle_Introduction_to_the_Common_Workflow_Language">A Gentle Introduction to the Common Workflow Language</h1><p>Hello!</p>
-<p>This guide will introduce you to writing tool wrappers and workflows using the
-Common Workflow Language (CWL).  This guide describes the current stable
-specification, draft 3.</p>
-<p>Note: This document is a work in progress.  Not all features are covered, yet.</p>
-<h1 id="toc">Table of contents</h1>
-               <nav class="tocnav"><ol><li><a href="#A_Gentle_Introduction_to_the_Common_Workflow_Language"> A Gentle Introduction to the Common Workflow Language</a><ol>
-</ol><li><a href="#Introduction">1. Introduction</a><ol>
-</ol><li><a href="#Wrapping_Command_Line_Tools">2. Wrapping Command Line Tools</a><ol>
-<li><a href="#First_example">2.1 First example</a><ol>
-</ol><li><a href="#Essential_input_parameters">2.2 Essential input parameters</a><ol>
-</ol><li><a href="#Returning_output_files">2.3 Returning output files</a><ol>
-</ol><li><a href="#Capturing_a_tool's_standard_output_stream">2.4 Capturing a tool's standard output stream</a><ol>
-</ol><li><a href="#Parameter_references">2.5 Parameter references</a><ol>
-</ol><li><a href="#Running_tools_inside_Docker">2.6 Running tools inside Docker</a><ol>
-</ol><li><a href="#Additional_command_line_arguments_and_runtime_parameters">2.7 Additional command line arguments and runtime parameters</a><ol>
-</ol><li><a href="#Array_inputs">2.8 Array inputs</a><ol>
-</ol><li><a href="#Array_outputs">2.9 Array outputs</a><ol>
-</ol><li><a href="#Record_inputs,_dependent_and_mutually_exclusive_parameters">2.10 Record inputs, dependent and mutually exclusive parameters</a><ol>
-</ol><li><a href="#Environment_variables">2.11 Environment variables</a><ol>
-</ol><li><a href="#Javascript_expressions">2.12 Javascript expressions</a><ol>
-</ol><li><a href="#Creating_files_at_runtime">2.13 Creating files at runtime</a><ol>
-</ol><li><a href="#Staging_input_files_in_the_output_directory">2.14 Staging input files in the output directory</a><ol>
-</ol></li></ol><li><a href="#Writing_Workflows">3. Writing Workflows</a><ol>
-<li><a href="#First_workflow">3.1 First workflow</a><ol>
-</ol></li></ol></li></ol></nav>
-
-<h1 id="Introduction">1. Introduction</h1><p>CWL is a way to describe command line tools and connect them together to create
-workflows.  Because CWL is a specification and not a specific piece of
-software, tools and workflows described using CWL are portable across a variety
-of platforms that support the CWL standard.</p>
-<p>CWL has roots in "make" and many similar tools that determine order of
-execution based on dependencies between tasks.  However unlike "make", CWL
-tasks are isolated and you must be explicit about your inputs and outputs.  The
-benefit of explicitness and isolation are flexibility, portability, and
-scalability: tools and workflows described with CWL can transparently leverage
-technologies such as Docker, be used with CWL implementations from different
-vendors, and is well suited for describing large-scale workflows in cluster,
-cloud and high performance computing environments where tasks are scheduled in
-parallel across many nodes.</p>
-<h1 id="Wrapping_Command_Line_Tools">2. Wrapping Command Line Tools</h1><h2 id="First_example">2.1 First example</h2><p>The simplest "hello world" program.  This accepts one input parameter,
+<p>The Common Workflow Language user guide has moved to
+<a href="http://www.commonwl.org/user_guide/">http://www.commonwl.org/user_guide/</a></p>
+<h1 id="Wrapping_Command_Line_Tools">Wrapping Command Line Tools</h1><h2 id="First_example">First example</h2><p>The simplest "hello world" program.  This accepts one input parameter,
 writes a message to the terminal or job log, and produces no permanent
 output.  CWL documents are written in <a href="http://json.org">JSON</a> or
 <a href="http://yaml.org">YAML</a>, or a mix of the two.</p>
@@ -133,7 +92,7 @@ indicates where it should appear on the command line.</p>
 <pre><code>outputs: []
 </code></pre>
 <p>This tool has no formal output, so the <code>outputs</code> section is an empty list.</p>
-<h2 id="Essential_input_parameters">2.2 Essential input parameters</h2><p>The <code>inputs</code> of a tool is a list of input parameters that control how to
+<h2 id="Essential_input_parameters">Essential input parameters</h2><p>The <code>inputs</code> of a tool is a list of input parameters that control how to
 run the tool.  Each parameter has an <code>id</code> for the name of parameter, and
 <code>type</code> describing what types of values are valid for that parameter.</p>
 <p>Available primitive types are <em>string</em>, <em>int</em>, <em>long</em>, <em>float</em>, <em>double</em>,
@@ -248,7 +207,7 @@ line as <code>[1, 2, 3]</code>.  More than one parameter can have the same posit
 (ties are broken using the parameter name), and the position field itself
 is optional.  the default position is 0.</p>
 <p>The <code>baseCommand</code> field always comes before parameters.</p>
-<h2 id="Returning_output_files">2.3 Returning output files</h2><p>The <code>outputs</code> of a tool is a list of output parameters that should be
+<h2 id="Returning_output_files">Returning output files</h2><p>The <code>outputs</code> of a tool is a list of output parameters that should be
 returned after running the tool.  Each parameter has an <code>id</code> for the name
 of parameter, and <code>type</code> describing what types of values are valid for
 that parameter.</p>
@@ -303,7 +262,7 @@ output parameter.</p>
 <p>The <code>glob</code> field consists of the name of a file in the output directory.
 If you don't know name of the file in advance, you can use a wildcard
 pattern.</p>
-<h2 id="Capturing_a_tool's_standard_output_stream">2.4 Capturing a tool's standard output stream</h2><p>To capture a tool's standard output stream, add the <code>stdout</code> field with
+<h2 id="Capturing_a_tool's_standard_output_stream">Capturing a tool's standard output stream</h2><p>To capture a tool's standard output stream, add the <code>stdout</code> field with
 the name of the file where the output stream should go.  Then use <code>glob</code>
 on <code>outputBinding</code> to return the file.</p>
 <p><em>stdout.cwl</em></p>
@@ -341,7 +300,7 @@ Final process status is success
 $ cat output.txt
 Hello world!
 </code></pre>
-<h2 id="Parameter_references">2.5 Parameter references</h2><p>In a previous example, we used extracted a file using the "tar" program.
+<h2 id="Parameter_references">Parameter references</h2><p>In a previous example, we used extracted a file using the "tar" program.
 However, that example was very limited becuase it assumed that the file
 we were interested in was called "hello.txt".  In this example, you will
 see how to reference the value of input parameters dynamically from other
@@ -403,7 +362,7 @@ CWL tool was invoked.</p>
 input file you must reference the path field on a file object; to
 reference the path to the tar file in the above example you would write
 <code>$(inputs.tarfile.path)</code>.</p>
-<h2 id="Running_tools_inside_Docker">2.6 Running tools inside Docker</h2><p><a href="http://docker.io">Docker</a> containers simplify software installation by providing a complete
+<h2 id="Running_tools_inside_Docker">Running tools inside Docker</h2><p><a href="http://docker.io">Docker</a> containers simplify software installation by providing a complete
 known-good runtime for software and its dependencies.  However,
 containers are also purposefully isolated from the host system, so in
 order to run a tool inside a Docker container there is additional work to
@@ -447,7 +406,7 @@ container.  In this example, the path to the script <code>hello.js</code> is
 <code>/home/example/hello.js</code> outside the container but
 <code>/var/lib/cwl/job369354770_examples/hello.js</code> inside the container, as
 reflected in the invocation of the <code>node</code> command.</p>
-<h2 id="Additional_command_line_arguments_and_runtime_parameters">2.7 Additional command line arguments and runtime parameters</h2><p>Sometimes tools require additional command line options that don't
+<h2 id="Additional_command_line_arguments_and_runtime_parameters">Additional command line arguments and runtime parameters</h2><p>Sometimes tools require additional command line options that don't
 correspond exactly to input parameters.</p>
 <p>In this example, we will wrap the Java compiler to compile a java source
 file to a class file.  By default, <code>javac</code> will create the class files in
@@ -512,7 +471,7 @@ to the designated output directory.  Other parameters include
 <code>$(runtime.ram)</code>, <code>$(runtime.outdirSize)</code>, and <code>$(runtime.tmpdirSize)</code>.  See
 the <a href="CommandLineTool.html#Runtime_environment">Runtime Environment</a>
 section of the CWL specification for details.</p>
-<h2 id="Array_inputs">2.8 Array inputs</h2><p>It is easy to add arrays of input parameters represented to the command
+<h2 id="Array_inputs">Array inputs</h2><p>It is easy to add arrays of input parameters represented to the command
 line.  To specify an array parameter, the array definition is nested
 under the <code>type</code> field with <code>type: array</code> and <code>items</code> defining the valid
 data types that may appear in the array.</p>
@@ -572,7 +531,7 @@ values should be concatenated into a single argument separated by the
 item separator string.</p>
 <p>You can specify arrays of arrays, arrays of records, and other complex
 types.</p>
-<h2 id="Array_outputs">2.9 Array outputs</h2><p>You can also capture multiple output files into an array of files using <code>glob</code>.</p>
+<h2 id="Array_outputs">Array outputs</h2><p>You can also capture multiple output files into an array of files using <code>glob</code>.</p>
 <p><em>array-outputs.cwl</em></p>
 <pre><code>cwlVersion: cwl:draft-3
 class: CommandLineTool
@@ -620,7 +579,7 @@ Final process status is success
   ]
 }
 </code></pre>
-<h2 id="Record_inputs,_dependent_and_mutually_exclusive_parameters">2.10 Record inputs, dependent and mutually exclusive parameters</h2><p>Sometimes an underlying tool has several arguments that must be provided
+<h2 id="Record_inputs,_dependent_and_mutually_exclusive_parameters">Record inputs, dependent and mutually exclusive parameters</h2><p>Sometimes an underlying tool has several arguments that must be provided
 together (they are dependent) or several arguments that cannot be
 provided together (they are exclusive).  You can use records and type
 unions to group parameters together to describe these two conditions.</p>
@@ -704,7 +663,7 @@ Final process status is success
 </code></pre>
 <p>In the third example, only <code>itemD</code> is provided, so it appears on the
 command line.</p>
-<h2 id="Environment_variables">2.11 Environment variables</h2><p>Tools run in a restricted environment and do not inherit most environment
+<h2 id="Environment_variables">Environment variables</h2><p>Tools run in a restricted environment and do not inherit most environment
 variables from the parent process.  You can set environment variables for
 the tool using <code>EnvVarRequirement</code>.</p>
 <p><em>env.cwl</em></p>
@@ -734,7 +693,7 @@ TMPDIR=/tmp/tmp63Obpk
 Final process status is success
 {}
 </code></pre>
-<h2 id="Javascript_expressions">2.12 Javascript expressions</h2><p>If you need to manipulate input parameters, include the requirement
+<h2 id="Javascript_expressions">Javascript expressions</h2><p>If you need to manipulate input parameters, include the requirement
 <code>InlineJavascriptRequirement</code> and then anywhere a parameter reference is
 legal you can provide a fragment of Javascript that will be evaluated by
 the CWL runner.</p>
@@ -773,7 +732,7 @@ Final process status is success
 <code>fileContent</code>, <code>envValue</code>, <code>valueFrom</code>, <code>glob</code>, <code>outputEval</code>, <code>stdin</code>,
 <code>stdout</code>, <code>coresMin</code>, <code>coresMax</code>, <code>ramMin</code>, <code>ramMax</code>, <code>tmpdirMin</code>,
 <code>tmpdirMax</code>, <code>outdirMin</code>, and <code>outdirMax</code>.</p>
-<h2 id="Creating_files_at_runtime">2.13 Creating files at runtime</h2><p>Sometimes you need to create a file on the fly from input parameters,
+<h2 id="Creating_files_at_runtime">Creating files at runtime</h2><p>Sometimes you need to create a file on the fly from input parameters,
 such as tools which expect to read their input configuration from a file
 rather than the command line parameters.  To do this, use
 <code>CreateFileRequirement</code>.</p>
@@ -805,7 +764,7 @@ CONFIGVAR=Hello world!
 Final process status is success
 {}
 </code></pre>
-<h2 id="Staging_input_files_in_the_output_directory">2.14 Staging input files in the output directory</h2><p>Normally, input files are located in a read-only directory separate from
+<h2 id="Staging_input_files_in_the_output_directory">Staging input files in the output directory</h2><p>Normally, input files are located in a read-only directory separate from
 the output directory.  This causes problems if the underlying tool
 expects to write its output files alongside the input file in the same
 directory.  You use <code>CreateFileRequirement</code> to stage input files into the
@@ -858,7 +817,7 @@ Final process status is success
   }
 }
 </code></pre>
-<h1 id="Writing_Workflows">3. Writing Workflows</h1><h2 id="First_workflow">3.1 First workflow</h2><p>This workflow extracts a java source file from a tar file and then
+<h1 id="Writing_Workflows">Writing Workflows</h1><h2 id="First_workflow">First workflow</h2><p>This workflow extracts a java source file from a tar file and then
 compiles it.</p>
 <p><em>1st-workflow.cwl</em></p>
 <pre><code>cwlVersion: cwl:draft-3
