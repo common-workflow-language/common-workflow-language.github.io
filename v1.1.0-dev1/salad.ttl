@@ -6,13 +6,18 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+sld:Any a rdfs:Class .
+
 sld:ArraySchema a rdfs:Class .
 
-sld:DocType a rdfs:Class .
+sld:DocType a rdfs:Class ;
+    rdfs:subClassOf sld:Documented .
 
 sld:Documentation a rdfs:Class ;
     rdfs:subClassOf sld:DocType,
         sld:NamedType .
+
+sld:Documented a rdfs:Class .
 
 sld:EnumSchema a rdfs:Class .
 
@@ -20,12 +25,16 @@ sld:JsonldPredicate a rdfs:Class .
 
 sld:NamedType a rdfs:Class .
 
-sld:RecordField a rdfs:Class .
+sld:PrimitiveType a rdfs:Class .
+
+sld:RecordField a rdfs:Class ;
+    rdfs:subClassOf sld:Documented .
 
 sld:RecordSchema a rdfs:Class .
 
 sld:SaladEnumSchema a rdfs:Class ;
     rdfs:subClassOf sld:EnumSchema,
+        sld:NamedType,
         sld:SchemaDefinedType .
 
 sld:SaladRecordField a rdfs:Class ;
@@ -42,8 +51,7 @@ sld:SchemaDefinedType a rdfs:Class ;
 sld:SpecializeDef a rdfs:Class .
 
 rdfs:comment a rdf:Property ;
-    rdfs:domain sld:DocType,
-        sld:RecordField .
+    rdfs:domain sld:Documented .
 
 <https://w3id.org/cwl/salad#JsonldPredicate/_container> a rdf:Property ;
     rdfs:domain sld:JsonldPredicate .
@@ -66,8 +74,14 @@ rdfs:comment a rdf:Property ;
 <https://w3id.org/cwl/salad#JsonldPredicate/refScope> a rdf:Property ;
     rdfs:domain sld:JsonldPredicate .
 
+<https://w3id.org/cwl/salad#JsonldPredicate/subscope> a rdf:Property ;
+    rdfs:domain sld:JsonldPredicate .
+
 <https://w3id.org/cwl/salad#JsonldPredicate/typeDSL> a rdf:Property ;
     rdfs:domain sld:JsonldPredicate .
+
+<https://w3id.org/cwl/salad#NamedType/inVocab> a rdf:Property ;
+    rdfs:domain sld:NamedType .
 
 <https://w3id.org/cwl/salad#SaladRecordSchema/abstract> a rdf:Property ;
     rdfs:domain sld:SaladRecordSchema .

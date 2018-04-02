@@ -4,9 +4,11 @@
         "ArraySchema": "https://w3id.org/cwl/salad#ArraySchema", 
         "DocType": "https://w3id.org/cwl/salad#DocType", 
         "Documentation": "https://w3id.org/cwl/salad#Documentation", 
+        "Documented": "https://w3id.org/cwl/salad#Documented", 
         "EnumSchema": "https://w3id.org/cwl/salad#EnumSchema", 
         "JsonldPredicate": "https://w3id.org/cwl/salad#JsonldPredicate", 
         "NamedType": "https://w3id.org/cwl/salad#NamedType", 
+        "PrimitiveType": "https://w3id.org/cwl/salad#PrimitiveType", 
         "RecordField": "https://w3id.org/cwl/salad#RecordField", 
         "RecordSchema": "https://w3id.org/cwl/salad#RecordSchema", 
         "SaladEnumSchema": "https://w3id.org/cwl/salad#SaladEnumSchema", 
@@ -25,6 +27,10 @@
         "array": "https://w3id.org/cwl/salad#array", 
         "boolean": "http://www.w3.org/2001/XMLSchema#boolean", 
         "dct": "http://purl.org/dc/terms/", 
+        "default": {
+            "@id": "https://w3id.org/cwl/salad#default", 
+            "noLinkCheck": true
+        }, 
         "doc": "rdfs:comment", 
         "docAfter": {
             "@id": "https://w3id.org/cwl/salad#docAfter", 
@@ -54,6 +60,7 @@
         }, 
         "float": "http://www.w3.org/2001/XMLSchema#float", 
         "identity": "https://w3id.org/cwl/salad#JsonldPredicate/identity", 
+        "inVocab": "https://w3id.org/cwl/salad#NamedType/inVocab", 
         "int": "http://www.w3.org/2001/XMLSchema#int", 
         "items": {
             "@id": "https://w3id.org/cwl/salad#items", 
@@ -88,6 +95,7 @@
             "refScope": 1
         }, 
         "string": "http://www.w3.org/2001/XMLSchema#string", 
+        "subscope": "https://w3id.org/cwl/salad#JsonldPredicate/subscope", 
         "symbols": {
             "@id": "https://w3id.org/cwl/salad#symbols", 
             "@type": "@id", 

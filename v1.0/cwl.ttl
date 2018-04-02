@@ -6,6 +6,10 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+cwl:CWLType a rdfs:Class .
+
+cwl:CWLVersion a rdfs:Class .
+
 cwl:CommandInputArraySchema a rdfs:Class ;
     rdfs:subClassOf cwl:InputArraySchema .
 
@@ -47,6 +51,8 @@ cwl:CommandOutputRecordSchema a rdfs:Class ;
 
 cwl:Directory a rdfs:Class .
 
+<https://w3id.org/cwl/cwl#Directory/class/Directory_class> a rdfs:Class .
+
 cwl:Dirent a rdfs:Class .
 
 cwl:DockerRequirement a rdfs:Class ;
@@ -57,6 +63,8 @@ cwl:EnvVarRequirement a rdfs:Class ;
 
 cwl:EnvironmentDef a rdfs:Class .
 
+cwl:Expression a rdfs:Class .
+
 cwl:ExpressionTool a rdfs:Class ;
     rdfs:subClassOf cwl:Process .
 
@@ -64,6 +72,8 @@ cwl:ExpressionToolOutputParameter a rdfs:Class ;
     rdfs:subClassOf cwl:OutputParameter .
 
 cwl:File a rdfs:Class .
+
+<https://w3id.org/cwl/cwl#File/class/File_class> a rdfs:Class .
 
 cwl:InitialWorkDirRequirement a rdfs:Class ;
     rdfs:subClassOf cwl:ProcessRequirement .
@@ -93,6 +103,8 @@ cwl:InputRecordSchema a rdfs:Class ;
 
 cwl:InputSchema a rdfs:Class ;
     rdfs:subClassOf cwl:SchemaBase .
+
+cwl:LinkMergeMethod a rdfs:Class .
 
 cwl:MultipleInputFeatureRequirement a rdfs:Class ;
     rdfs:subClassOf cwl:ProcessRequirement .
@@ -133,6 +145,8 @@ cwl:ResourceRequirement a rdfs:Class ;
 cwl:ScatterFeatureRequirement a rdfs:Class ;
     rdfs:subClassOf cwl:ProcessRequirement .
 
+cwl:ScatterMethod a rdfs:Class .
+
 cwl:SchemaBase a rdfs:Class .
 
 cwl:SchemaDefRequirement a rdfs:Class ;
@@ -167,13 +181,31 @@ cwl:WorkflowStepInput a rdfs:Class ;
 
 cwl:WorkflowStepOutput a rdfs:Class .
 
+cwl:stderr a rdf:Property,
+        rdfs:Class ;
+    rdfs:domain cwl:CommandLineTool .
+
+cwl:stdout a rdf:Property,
+        rdfs:Class ;
+    rdfs:domain cwl:CommandLineTool .
+
+sld:Any a rdfs:Class .
+
 sld:ArraySchema a rdfs:Class .
 
+<https://w3id.org/cwl/salad#ArraySchema/type/Array_symbol> a rdfs:Class .
+
 sld:EnumSchema a rdfs:Class .
+
+<https://w3id.org/cwl/salad#EnumSchema/type/Enum_symbol> a rdfs:Class .
+
+sld:PrimitiveType a rdfs:Class .
 
 sld:RecordField a rdfs:Class .
 
 sld:RecordSchema a rdfs:Class .
+
+<https://w3id.org/cwl/salad#RecordSchema/type/Record_symbol> a rdfs:Class .
 
 <https://w3id.org/cwl/cwl#CommandLineBinding/itemSeparator> a rdf:Property ;
     rdfs:domain cwl:CommandLineBinding .
@@ -325,12 +357,6 @@ cwl:outputBinding a rdf:Property ;
 cwl:secondaryFiles a rdf:Property ;
     rdfs:domain cwl:File,
         cwl:Parameter .
-
-cwl:stderr a rdf:Property ;
-    rdfs:domain cwl:CommandLineTool .
-
-cwl:stdout a rdf:Property ;
-    rdfs:domain cwl:CommandLineTool .
 
 cwl:valueFrom a rdf:Property ;
     rdfs:domain cwl:CommandLineBinding,

@@ -6,7 +6,11 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+sld:Any a rdfs:Class .
+
 sld:ArraySchema a rdfs:Class .
+
+<https://w3id.org/cwl/salad#ArraySchema/type/Array_symbol> a rdfs:Class .
 
 sld:DocType a rdfs:Class .
 
@@ -14,15 +18,23 @@ sld:Documentation a rdfs:Class ;
     rdfs:subClassOf sld:DocType,
         sld:NamedType .
 
+<https://w3id.org/cwl/salad#Documentation/type/Documentation_symbol> a rdfs:Class .
+
 sld:EnumSchema a rdfs:Class .
+
+<https://w3id.org/cwl/salad#EnumSchema/type/Enum_symbol> a rdfs:Class .
 
 sld:JsonldPredicate a rdfs:Class .
 
 sld:NamedType a rdfs:Class .
 
+sld:PrimitiveType a rdfs:Class .
+
 sld:RecordField a rdfs:Class .
 
 sld:RecordSchema a rdfs:Class .
+
+<https://w3id.org/cwl/salad#RecordSchema/type/Record_symbol> a rdfs:Class .
 
 sld:SaladEnumSchema a rdfs:Class ;
     rdfs:subClassOf sld:EnumSchema,
