@@ -140,13 +140,16 @@ under the terms of the Apache License, version 2.0.</p>
 </ol><li><a href="#SoftwarePackage">4.3.7 SoftwarePackage</a><ol>
 </ol><li><a href="#InitialWorkDirRequirement">4.3.8 InitialWorkDirRequirement</a><ol>
 <li><a href="#Dirent">4.3.8.1 Dirent</a><ol>
-</ol></li></ol><li><a href="#SubworkflowFeatureRequirement">4.3.9 SubworkflowFeatureRequirement</a><ol>
-</ol><li><a href="#ScatterFeatureRequirement">4.3.10 ScatterFeatureRequirement</a><ol>
-</ol><li><a href="#MultipleInputFeatureRequirement">4.3.11 MultipleInputFeatureRequirement</a><ol>
-</ol><li><a href="#StepInputExpressionRequirement">4.3.12 StepInputExpressionRequirement</a><ol>
-</ol><li><a href="#ExpressionTool">4.3.13 ExpressionTool</a><ol>
-<li><a href="#ExpressionToolOutputParameter">4.3.13.1 ExpressionToolOutputParameter</a><ol>
-</ol><li><a href="#CWLVersion">4.3.13.2 CWLVersion</a><ol>
+</ol></li></ol><li><a href="#TimeLimit">4.3.9 TimeLimit</a><ol>
+</ol><li><a href="#WorkReuse">4.3.10 WorkReuse</a><ol>
+</ol><li><a href="#NetworkAccess">4.3.11 NetworkAccess</a><ol>
+</ol><li><a href="#SubworkflowFeatureRequirement">4.3.12 SubworkflowFeatureRequirement</a><ol>
+</ol><li><a href="#ScatterFeatureRequirement">4.3.13 ScatterFeatureRequirement</a><ol>
+</ol><li><a href="#MultipleInputFeatureRequirement">4.3.14 MultipleInputFeatureRequirement</a><ol>
+</ol><li><a href="#StepInputExpressionRequirement">4.3.15 StepInputExpressionRequirement</a><ol>
+</ol><li><a href="#ExpressionTool">4.3.16 ExpressionTool</a><ol>
+<li><a href="#ExpressionToolOutputParameter">4.3.16.1 ExpressionToolOutputParameter</a><ol>
+</ol><li><a href="#CWLVersion">4.3.16.2 CWLVersion</a><ol>
 </ol></li></ol></li></ol></li></ol></li></ol></nav>
 
 <h1 id="Introduction">1. Introduction</h1><p>The Common Workflow Language (CWL) working group is an informal, multi-vendor
@@ -537,7 +540,7 @@ concurrently, provided that dependencies between steps are met.</p>
 </td></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>The unique identifier for this object.</p>
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
 </td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
-</td></tr><tr><td><code>requirements</code></td><td>array&lt;<a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a> | <a href="#SoftwareRequirement">SoftwareRequirement</a> | <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a> | <a href="CommandLineTool.html#EnvVarRequirement">EnvVarRequirement</a> | <a href="CommandLineTool.html#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="CommandLineTool.html#ResourceRequirement">ResourceRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#StepInputExpressionRequirement">StepInputExpressionRequirement</a>&gt;</td><td>False</td><td><p>Declares requirements that apply to either the runtime environment or the
+</td></tr><tr><td><code>requirements</code></td><td>array&lt;<a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a> | <a href="#SoftwareRequirement">SoftwareRequirement</a> | <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a> | <a href="CommandLineTool.html#EnvVarRequirement">EnvVarRequirement</a> | <a href="CommandLineTool.html#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="CommandLineTool.html#ResourceRequirement">ResourceRequirement</a> | <a href="#TimeLimit">TimeLimit</a> | <a href="#WorkReuse">WorkReuse</a> | <a href="#NetworkAccess">NetworkAccess</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#StepInputExpressionRequirement">StepInputExpressionRequirement</a>&gt;</td><td>False</td><td><p>Declares requirements that apply to either the runtime environment or the
 workflow engine that must be met in order to execute this process.  If
 an implementation cannot satisfy all requirements, or a requirement is
 listed which is not recognized by the implementation, it is a fatal
@@ -1045,7 +1048,7 @@ used to generate and/or validate the output object.</p>
 </td></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>The unique identifier for this object.</p>
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
 </td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
-</td></tr><tr><td><code>requirements</code></td><td>array&lt;<a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a> | <a href="#SoftwareRequirement">SoftwareRequirement</a> | <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a> | <a href="CommandLineTool.html#EnvVarRequirement">EnvVarRequirement</a> | <a href="CommandLineTool.html#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="CommandLineTool.html#ResourceRequirement">ResourceRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#StepInputExpressionRequirement">StepInputExpressionRequirement</a>&gt;</td><td>False</td><td><p>Declares requirements that apply to either the runtime environment or the
+</td></tr><tr><td><code>requirements</code></td><td>array&lt;<a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a> | <a href="#SoftwareRequirement">SoftwareRequirement</a> | <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a> | <a href="CommandLineTool.html#EnvVarRequirement">EnvVarRequirement</a> | <a href="CommandLineTool.html#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="CommandLineTool.html#ResourceRequirement">ResourceRequirement</a> | <a href="#TimeLimit">TimeLimit</a> | <a href="#WorkReuse">WorkReuse</a> | <a href="#NetworkAccess">NetworkAccess</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#StepInputExpressionRequirement">StepInputExpressionRequirement</a>&gt;</td><td>False</td><td><p>Declares requirements that apply to either the runtime environment or the
 workflow engine that must be met in order to execute this workflow step.  If
 an implementation cannot satisfy all requirements, or a requirement is
 listed which is not recognized by the implementation, it is a fatal
@@ -1348,19 +1351,48 @@ the original file or directory.  Default false (files and directories
 read-only by default).</p>
 <p>A directory marked as <code>writable: true</code> implies that all files and
 subdirectories are recursively writable as well.</p>
-</td></tr></table><h3 id="SubworkflowFeatureRequirement">4.3.9 SubworkflowFeatureRequirement</h3><p>Indicates that the workflow platform must support nested workflows in
+</td></tr></table><h3 id="TimeLimit">4.3.9 TimeLimit</h3><p>Set an upper limit on the execution time of a CommandLineTool or
+ExpressionTool.  A tool execution which exceeds the time limit may
+be preemptively terminated and considered failed.  May also be
+used by batch systems to make scheduling decisions.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>Always 'TimeLimit'</p>
+</td></tr><tr><td><code>timelimit</code></td><td><a href="#CWLType">long</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td><p>The time limit, in seconds.  A time limit of zero means no
+time limit.  Negative time limits are an error.</p>
+</td></tr></table><h3 id="WorkReuse">4.3.10 WorkReuse</h3><p>For implementations that support reusing output from past work (on
+the assumption that same code and same input produce same
+results), control whether to enable or disable the reuse behavior
+for a particular tool or step (to accomodate situations where that
+assumption is incorrect).  A reused step is not executed but
+instead returns the same output as the original execution.</p>
+<p>If <code>enableReuse</code> is not specified, correct tools should assume it
+is enabled by default.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>Always 'WorkReuse'</p>
+</td></tr><tr><td><code>enableReuse</code></td><td><a href="#CWLType">boolean</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td></td></tr></table><h3 id="NetworkAccess">4.3.11 NetworkAccess</h3><p>Indicate whether a process requires outgoing IPv4/IPv6 network
+access.  Choice of IPv4 or IPv6 is implementation and site
+specific, correct tools must support both.</p>
+<p>If <code>networkAccess</code> is false or not specified, tools must not
+assume network access, except for localhost (the loopback device).</p>
+<p>If <code>networkAccess</code> is true, the tool must be able to make outgoing
+connections to network resources.  Resources may be on a private
+subnet or the public Internet.  However, implementations and sites
+may apply their own security policies to restrict what is
+accessible by the tool.</p>
+<p>Enabling network access does not imply a publically routable IP
+address or the ability to accept inbound connections.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>Always 'NetworkAccess'</p>
+</td></tr><tr><td><code>networkAccess</code></td><td><a href="#CWLType">boolean</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td></td></tr></table><h3 id="SubworkflowFeatureRequirement">4.3.12 SubworkflowFeatureRequirement</h3><p>Indicates that the workflow platform must support nested workflows in
 the <code>run</code> field of <a href="#WorkflowStep">WorkflowStep</a>.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>Always 'SubworkflowFeatureRequirement'</p>
-</td></tr></table><h3 id="ScatterFeatureRequirement">4.3.10 ScatterFeatureRequirement</h3><p>Indicates that the workflow platform must support the <code>scatter</code> and
+</td></tr></table><h3 id="ScatterFeatureRequirement">4.3.13 ScatterFeatureRequirement</h3><p>Indicates that the workflow platform must support the <code>scatter</code> and
 <code>scatterMethod</code> fields of <a href="#WorkflowStep">WorkflowStep</a>.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>Always 'ScatterFeatureRequirement'</p>
-</td></tr></table><h3 id="MultipleInputFeatureRequirement">4.3.11 MultipleInputFeatureRequirement</h3><p>Indicates that the workflow platform must support multiple inbound data links
+</td></tr></table><h3 id="MultipleInputFeatureRequirement">4.3.14 MultipleInputFeatureRequirement</h3><p>Indicates that the workflow platform must support multiple inbound data links
 listed in the <code>source</code> field of <a href="#WorkflowStepInput">WorkflowStepInput</a>.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>Always 'MultipleInputFeatureRequirement'</p>
-</td></tr></table><h3 id="StepInputExpressionRequirement">4.3.12 StepInputExpressionRequirement</h3><p>Indicate that the workflow platform must support the <code>valueFrom</code> field
+</td></tr></table><h3 id="StepInputExpressionRequirement">4.3.15 StepInputExpressionRequirement</h3><p>Indicate that the workflow platform must support the <code>valueFrom</code> field
 of <a href="#WorkflowStepInput">WorkflowStepInput</a>.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>Always 'StepInputExpressionRequirement'</p>
-</td></tr></table><h3 id="ExpressionTool">4.3.13 ExpressionTool</h3><p>Execute an expression as a Workflow step.</p>
+</td></tr></table><h3 id="ExpressionTool">4.3.16 ExpressionTool</h3><p>Execute an expression as a Workflow step.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>inputs</code></td><td>array&lt;<a href="#WorkflowInputParameter">WorkflowInputParameter</a>&gt; | map&lt;<a href="#WorkflowInputParameter">WorkflowInputParameter</a>.id,&nbsp;<a href="#WorkflowInputParameter">WorkflowInputParameter</a>.type&gt | map&lt;<a href="#WorkflowInputParameter">WorkflowInputParameter</a>.id,&nbsp;<a href="#WorkflowInputParameter">WorkflowInputParameter</a>&gt</td><td>True</td><td><p>Defines the input parameters of the process.  The process is ready to
 run when all required input parameters are associated with concrete
 values.  Input parameters include a schema for each parameter which is
@@ -1378,7 +1410,7 @@ matches the output parameters of the ExpressionTool.</p>
 </td></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>The unique identifier for this object.</p>
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
 </td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
-</td></tr><tr><td><code>requirements</code></td><td>array&lt;<a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a> | <a href="#SoftwareRequirement">SoftwareRequirement</a> | <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a> | <a href="CommandLineTool.html#EnvVarRequirement">EnvVarRequirement</a> | <a href="CommandLineTool.html#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="CommandLineTool.html#ResourceRequirement">ResourceRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#StepInputExpressionRequirement">StepInputExpressionRequirement</a>&gt;</td><td>False</td><td><p>Declares requirements that apply to either the runtime environment or the
+</td></tr><tr><td><code>requirements</code></td><td>array&lt;<a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a> | <a href="#SoftwareRequirement">SoftwareRequirement</a> | <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a> | <a href="CommandLineTool.html#EnvVarRequirement">EnvVarRequirement</a> | <a href="CommandLineTool.html#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="CommandLineTool.html#ResourceRequirement">ResourceRequirement</a> | <a href="#TimeLimit">TimeLimit</a> | <a href="#WorkReuse">WorkReuse</a> | <a href="#NetworkAccess">NetworkAccess</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#StepInputExpressionRequirement">StepInputExpressionRequirement</a>&gt;</td><td>False</td><td><p>Declares requirements that apply to either the runtime environment or the
 workflow engine that must be met in order to execute this process.  If
 an implementation cannot satisfy all requirements, or a requirement is
 listed which is not recognized by the implementation, it is a fatal
@@ -1390,7 +1422,7 @@ not an error if an implementation cannot satisfy all hints, however
 the implementation may report a warning.</p>
 </td></tr><tr><td><code>cwlVersion</code></td><td><a href="#CWLVersion">CWLVersion</a></td><td>False</td><td><p>CWL document version. Always required at the document root. Not
 required for a Process embedded inside another Process.</p>
-</td></tr></table><h4 id="ExpressionToolOutputParameter">4.3.13.1 ExpressionToolOutputParameter</h4><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
+</td></tr></table><h4 id="ExpressionToolOutputParameter">4.3.16.1 ExpressionToolOutputParameter</h4><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
 </td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Provides a pattern or expression specifying files or directories that
 must be included alongside the primary file.  All listed secondary
@@ -1430,7 +1462,7 @@ pipe.  Default: <code>false</code>.</p>
 <p>This is the file format that will be assigned to the output
 File object.</p>
 </td></tr><tr><td><code>type</code></td><td><a href="#CWLType">CWLType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.</p>
-</td></tr></table><h4 id="CWLVersion">4.3.13.2 CWLVersion</h4><p>Version symbols for published CWL document versions.</p>
+</td></tr></table><h4 id="CWLVersion">4.3.16.2 CWLVersion</h4><p>Version symbols for published CWL document versions.</p>
 <h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>draft-2</code></td><td></td></tr><tr><td><code>draft-3.dev1</code></td><td></td></tr><tr><td><code>draft-3.dev2</code></td><td></td></tr><tr><td><code>draft-3.dev3</code></td><td></td></tr><tr><td><code>draft-3.dev4</code></td><td></td></tr><tr><td><code>draft-3.dev5</code></td><td></td></tr><tr><td><code>draft-3</code></td><td></td></tr><tr><td><code>draft-4.dev1</code></td><td></td></tr><tr><td><code>draft-4.dev2</code></td><td></td></tr><tr><td><code>draft-4.dev3</code></td><td></td></tr><tr><td><code>v1.0.dev4</code></td><td></td></tr><tr><td><code>v1.0</code></td><td></td></tr><tr><td><code>v1.1.0-dev1</code></td><td></td></tr></table></div>
     </div>
     </div>

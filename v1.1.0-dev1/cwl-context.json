@@ -49,6 +49,7 @@
         "LinkMergeMethod": "https://w3id.org/cwl/cwl#LinkMergeMethod", 
         "LoadContents": "https://w3id.org/cwl/cwl#LoadContents", 
         "MultipleInputFeatureRequirement": "https://w3id.org/cwl/cwl#MultipleInputFeatureRequirement", 
+        "NetworkAccess": "https://w3id.org/cwl/cwl#NetworkAccess", 
         "OutputArraySchema": "https://w3id.org/cwl/cwl#OutputArraySchema", 
         "OutputEnumSchema": "https://w3id.org/cwl/cwl#OutputEnumSchema", 
         "OutputFormat": "https://w3id.org/cwl/cwl#OutputFormat", 
@@ -72,6 +73,8 @@
         "SoftwareRequirement": "https://w3id.org/cwl/cwl#SoftwareRequirement", 
         "StepInputExpressionRequirement": "https://w3id.org/cwl/cwl#StepInputExpressionRequirement", 
         "SubworkflowFeatureRequirement": "https://w3id.org/cwl/cwl#SubworkflowFeatureRequirement", 
+        "TimeLimit": "https://w3id.org/cwl/cwl#TimeLimit", 
+        "WorkReuse": "https://w3id.org/cwl/cwl#WorkReuse", 
         "Workflow": "https://w3id.org/cwl/cwl#Workflow", 
         "WorkflowInputParameter": "https://w3id.org/cwl/cwl#WorkflowInputParameter", 
         "WorkflowOutputParameter": "https://w3id.org/cwl/cwl#WorkflowOutputParameter", 
@@ -126,6 +129,7 @@
         "draft-4.dev1": "https://w3id.org/cwl/cwl#draft-4.dev1", 
         "draft-4.dev2": "https://w3id.org/cwl/cwl#draft-4.dev2", 
         "draft-4.dev3": "https://w3id.org/cwl/cwl#draft-4.dev3", 
+        "enableReuse": "https://w3id.org/cwl/cwl#WorkReuse/enableReuse", 
         "entry": {
             "@id": "https://w3id.org/cwl/cwl#entry"
         }, 
@@ -196,6 +200,7 @@
         "nameext": "https://w3id.org/cwl/cwl#File/nameext", 
         "nameroot": "https://w3id.org/cwl/cwl#File/nameroot", 
         "nested_crossproduct": "https://w3id.org/cwl/cwl#ScatterMethod/nested_crossproduct", 
+        "networkAccess": "https://w3id.org/cwl/cwl#NetworkAccess/networkAccess", 
         "null": "https://w3id.org/cwl/salad#null", 
         "out": {
             "@id": "https://w3id.org/cwl/cwl#out", 
@@ -282,6 +287,7 @@
             "identity": true
         }, 
         "temporaryFailCodes": "https://w3id.org/cwl/cwl#CommandLineTool/temporaryFailCodes", 
+        "timelimit": "https://w3id.org/cwl/cwl#TimeLimit/timelimit", 
         "tmpdirMax": "https://w3id.org/cwl/cwl#ResourceRequirement/tmpdirMax", 
         "tmpdirMin": "https://w3id.org/cwl/cwl#ResourceRequirement/tmpdirMin", 
         "type": {

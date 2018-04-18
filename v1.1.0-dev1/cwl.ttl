@@ -137,6 +137,9 @@ cwl:LoadContents a rdfs:Class .
 cwl:MultipleInputFeatureRequirement a rdfs:Class ;
     rdfs:subClassOf cwl:ProcessRequirement .
 
+cwl:NetworkAccess a rdfs:Class ;
+    rdfs:subClassOf cwl:ProcessRequirement .
+
 cwl:OutputArraySchema a rdfs:Class ;
     rdfs:subClassOf cwl:OutputSchema,
         sld:ArraySchema .
@@ -200,6 +203,12 @@ cwl:StepInputExpressionRequirement a rdfs:Class ;
     rdfs:subClassOf cwl:ProcessRequirement .
 
 cwl:SubworkflowFeatureRequirement a rdfs:Class ;
+    rdfs:subClassOf cwl:ProcessRequirement .
+
+cwl:TimeLimit a rdfs:Class ;
+    rdfs:subClassOf cwl:ProcessRequirement .
+
+cwl:WorkReuse a rdfs:Class ;
     rdfs:subClassOf cwl:ProcessRequirement .
 
 cwl:Workflow a rdfs:Class ;
@@ -335,6 +344,9 @@ sld:RecordSchema a rdfs:Class .
 <https://w3id.org/cwl/cwl#InlineJavascriptRequirement/expressionLib> a rdf:Property ;
     rdfs:domain cwl:InlineJavascriptRequirement .
 
+<https://w3id.org/cwl/cwl#NetworkAccess/networkAccess> a rdf:Property ;
+    rdfs:domain cwl:NetworkAccess .
+
 <https://w3id.org/cwl/cwl#ResourceRequirement/coresMax> a rdf:Property ;
     rdfs:domain cwl:ResourceRequirement .
 
@@ -367,6 +379,12 @@ sld:RecordSchema a rdfs:Class .
 
 <https://w3id.org/cwl/cwl#SoftwarePackage/version> a rdf:Property ;
     rdfs:domain cwl:SoftwarePackage .
+
+<https://w3id.org/cwl/cwl#TimeLimit/timelimit> a rdf:Property ;
+    rdfs:domain cwl:TimeLimit .
+
+<https://w3id.org/cwl/cwl#WorkReuse/enableReuse> a rdf:Property ;
+    rdfs:domain cwl:WorkReuse .
 
 cwl:basename a rdf:Property ;
     rdfs:domain cwl:Directory,
