@@ -477,7 +477,7 @@ evaluation or some other means.</p>
 <p>Implementations may apply other limits, such as process isolation, timeouts,
 and operating system containers/jails to minimize the security risks associated
 with running untrusted code embedded in a CWL document.</p>
-<p>Exceptions thrown from an exception must result in a <code>permanentFailure</code> of the
+<p>Exceptions thrown from an expression must result in a <code>permanentFailure</code> of the
 process.</p>
 <h2 id="Executing_CWL_documents_as_scripts">3.6 Executing CWL documents as scripts</h2><p>By convention, a CWL document may begin with <code>#!/usr/bin/env cwl-runner</code>
 and be marked as executable (the POSIX "+x" permission bits) to enable it
