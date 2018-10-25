@@ -1264,9 +1264,11 @@ specified by <code>dockerPull</code>, <code>dockerImport</code>, <code>dockerLoa
 <p>The platform must execute the tool in the container using <code>docker run</code> with
 the appropriate Docker image and tool command line.</p>
 <p>The workflow platform may provide input files and the designated output
-directory through the use of volume bind mounts.  The platform may rewrite
+directory through the use of volume bind mounts.  The platform should rewrite
 file paths in the input object to correspond to the Docker bind mounted
-locations.</p>
+locations. That is, the platform should rewrite values in the parameter context
+such as <code>runtime.outdir</code>, <code>runtime.tmpdir</code> and others to be valid paths
+within the container.</p>
 <p>When running a tool contained in Docker, the workflow platform must not
 assume anything about the contents of the Docker container, such as the
 presence or absence of specific software, except to assume that the
