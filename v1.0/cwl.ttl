@@ -1,5 +1,6 @@
 @prefix @base: <https://w3id.org/cwl/cwl#> .
 @prefix cwl: <https://w3id.org/cwl/cwl#> .
+@prefix dct: <http://purl.org/dc/terms/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sld: <https://w3id.org/cwl/salad#> .
@@ -207,6 +208,18 @@ sld:RecordSchema a rdfs:Class .
 
 <https://w3id.org/cwl/salad#RecordSchema/type/Record_symbol> a rdfs:Class .
 
+rdfs:comment a rdf:Property ;
+    rdfs:domain @base:Parameter,
+        @base:Process,
+        @base:WorkflowStep,
+        sld:RecordField .
+
+rdfs:label a rdf:Property ;
+    rdfs:domain @base:InputRecordField,
+        @base:Process,
+        @base:SchemaBase,
+        @base:WorkflowStep .
+
 <https://w3id.org/cwl/cwl#CommandLineBinding/itemSeparator> a rdf:Property ;
     rdfs:domain @base:CommandLineBinding .
 
@@ -361,17 +374,5 @@ sld:RecordSchema a rdfs:Class .
 @base:valueFrom a rdf:Property ;
     rdfs:domain @base:CommandLineBinding,
         @base:WorkflowStepInput .
-
-<rdfs:comment> a rdf:Property ;
-    rdfs:domain @base:Parameter,
-        @base:Process,
-        @base:WorkflowStep,
-        sld:RecordField .
-
-<rdfs:label> a rdf:Property ;
-    rdfs:domain @base:InputRecordField,
-        @base:Process,
-        @base:SchemaBase,
-        @base:WorkflowStep .
 
 

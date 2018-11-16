@@ -108,6 +108,7 @@
             "@id": "https://w3id.org/cwl/cwl#cwlVersion",
             "@type": "@vocab"
         },
+        "dct": "http://purl.org/dc/terms/",
         "default": "cwl:default",
         "description": "rdfs:comment",
         "doc": "sld:doc",
@@ -201,6 +202,8 @@
         "prefix": "https://w3id.org/cwl/cwl#CommandLineBinding/prefix",
         "ramMax": "https://w3id.org/cwl/cwl#ResourceRequirement/ramMax",
         "ramMin": "https://w3id.org/cwl/cwl#ResourceRequirement/ramMin",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
         "record": "https://w3id.org/cwl/salad#record",
         "requirements": "cwl:requirements",
         "run": {
@@ -253,6 +256,7 @@
             "@type": "@vocab"
         },
         "types": "https://w3id.org/cwl/cwl#SchemaDefRequirement/types",
-        "valueFrom": "cwl:valueFrom"
+        "valueFrom": "cwl:valueFrom",
+        "xsd": "http://www.w3.org/2001/XMLSchema#"
     }
 }

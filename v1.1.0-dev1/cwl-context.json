@@ -105,6 +105,7 @@
             "@id": "https://w3id.org/cwl/cwl#cwlVersion",
             "@type": "@vocab"
         },
+        "dct": "http://purl.org/dc/terms/",
         "default": {
             "@id": "https://w3id.org/cwl/salad#default",
             "noLinkCheck": true
@@ -236,6 +237,8 @@
         "prefix": "https://w3id.org/cwl/cwl#CommandLineBinding/prefix",
         "ramMax": "https://w3id.org/cwl/cwl#ResourceRequirement/ramMax",
         "ramMin": "https://w3id.org/cwl/cwl#ResourceRequirement/ramMin",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
         "record": "https://w3id.org/cwl/salad#record",
         "requirements": {
             "@id": "https://w3id.org/cwl/cwl#requirements",
@@ -302,6 +305,7 @@
         "v1.1.0-dev1": "https://w3id.org/cwl/cwl#v1.1.0-dev1",
         "valueFrom": "cwl:valueFrom",
         "version": "https://w3id.org/cwl/cwl#SoftwarePackage/version",
-        "writable": "https://w3id.org/cwl/cwl#Dirent/writable"
+        "writable": "https://w3id.org/cwl/cwl#Dirent/writable",
+        "xsd": "http://www.w3.org/2001/XMLSchema#"
     }
 }
