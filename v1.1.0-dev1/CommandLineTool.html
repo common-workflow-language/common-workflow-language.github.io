@@ -188,6 +188,7 @@ except for files or directories specified using
 <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement.listing</a>.</li>
 <li><a href="#Requirements_and_hints">Addition</a> of <code>cwl:requirements</code> field to
 input object documents</li>
+<li>Clarify behavior of <code>glob</code> for absolute paths and symlinks.</li>
 </ul>
 <p>See also the <a href="Workflow.html#Changelog">CWL Workflow Description, v1.1.0-dev1 changelog</a>.</p>
 <h2 id="Purpose">1.3 Purpose</h2><p>Standalone programs are a flexible and interoperable form of code reuse.
@@ -1310,6 +1311,32 @@ pattern in the array.  If an expression is provided, the expression must
 return a string or an array of strings, which will then be evaluated as
 one or more glob patterns.  Must only match and return files which
 actually exist.</p>
+<p>If the value of glob is a relative path pattern (does not
+begin with a slash '/') then it is resolved relative to the
+output directory.  If the value of the glob is an absolute
+path pattern (it does begin with a slash '/') then it must
+refer to a path within the output directory.  It is an error
+if any glob resolves to a path outside the output directory.
+Specifically this means globs with relative paths containing
+'..' or absolute paths that refer outside the output directory
+are illegal.</p>
+<p>A glob may match a path within the output directory which is
+actually a symlink to another file.  In this case, the
+expected behavior is for the resulting File object to take the
+<code>basename</code> (and corresponding <code>nameroot</code> and <code>nameext</code>) of the
+symlink.  The <code>location</code> of the File is implementation
+dependent, but logically the File should have the same content
+as the symlink target.  Platforms may stage output files to
+cloud storage that lack the concept of a symlink.  In
+this case file content may be duplicated, or (to avoid
+duplication) the File <code>location</code> may refer to the symlink
+target.</p>
+<p>It is an error if a symlink in the output directory (or any
+symlink in a chain of links) refers to any file or directory
+that is not under an input or output directory.</p>
+<p>Implementations may shut down a container before globbing
+output, so globs and expressions must not assume access to the
+container filesystem except for declared input and output.</p>
 </td></tr><tr><td><code>outputEval</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>False</td><td><p>Evaluate an expression to generate the output value.  If <code>glob</code> was
 specified, the value of <code>self</code> must be an array containing file objects
 that were matched.  If no files were matched, <code>self</code> must be a zero
@@ -1417,10 +1444,10 @@ software IRIs should be left out of shared CWL descriptions to avoid
 clutter.</p>
 </td></tr></table><h2 id="InitialWorkDirRequirement">5.8 InitialWorkDirRequirement</h2><p>Define a list of files and subdirectories that must be created by the workflow platform in the designated output directory prior to executing the command line tool.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>InitialWorkDirRequirement</p>
-</td></tr><tr><td><code>listing</code></td><td>array&lt;<a href="#CWLType">null</a> | <a href="#File">File</a> | <a href="#Directory">Directory</a> | <a href="#Dirent">Dirent</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a>&gt; | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td><p>The list of files or subdirectories that must be placed in the
+</td></tr><tr><td><code>listing</code></td><td>array&lt;<a href="#CWLType">null</a> | <a href="#File">File</a> | array&lt;<a href="#File">File</a>&nbsp;|&nbsp;<a href="#Directory">Directory</a>&gt; | <a href="#Directory">Directory</a> | <a href="#Dirent">Dirent</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a>&gt; | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td><p>The list of files or subdirectories that must be placed in the
 designated output directory prior to executing the command line tool.</p>
-<p>May be an expression.  If so, the expression return value must validate
-as <code>{type: array, items: ["null", File, Directory, Dirent]}</code>.</p>
+<p>May be an expression. If so, the expression return value must validate as
+<code>{type: array, items: ["null", File, File[], Directory, Directory[], Dirent]}</code>.</p>
 <p>Files or Directories which are listed in the input parameters and
 appear in the <code>InitialWorkDirRequirement</code> listing must have their
 <code>path</code> set to their staged location in the designated output directory.

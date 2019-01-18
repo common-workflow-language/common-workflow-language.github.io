@@ -1331,10 +1331,10 @@ software IRIs should be left out of shared CWL descriptions to avoid
 clutter.</p>
 </td></tr></table><h3 id="InitialWorkDirRequirement">4.3.8 InitialWorkDirRequirement</h3><p>Define a list of files and subdirectories that must be created by the workflow platform in the designated output directory prior to executing the command line tool.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>InitialWorkDirRequirement</p>
-</td></tr><tr><td><code>listing</code></td><td>array&lt;<a href="#CWLType">null</a> | <a href="#File">File</a> | <a href="#Directory">Directory</a> | <a href="#Dirent">Dirent</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a>&gt; | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td><p>The list of files or subdirectories that must be placed in the
+</td></tr><tr><td><code>listing</code></td><td>array&lt;<a href="#CWLType">null</a> | <a href="#File">File</a> | array&lt;<a href="#File">File</a>&nbsp;|&nbsp;<a href="#Directory">Directory</a>&gt; | <a href="#Directory">Directory</a> | <a href="#Dirent">Dirent</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a>&gt; | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td><p>The list of files or subdirectories that must be placed in the
 designated output directory prior to executing the command line tool.</p>
-<p>May be an expression.  If so, the expression return value must validate
-as <code>{type: array, items: ["null", File, Directory, Dirent]}</code>.</p>
+<p>May be an expression. If so, the expression return value must validate as
+<code>{type: array, items: ["null", File, File[], Directory, Directory[], Dirent]}</code>.</p>
 <p>Files or Directories which are listed in the input parameters and
 appear in the <code>InitialWorkDirRequirement</code> listing must have their
 <code>path</code> set to their staged location in the designated output directory.
