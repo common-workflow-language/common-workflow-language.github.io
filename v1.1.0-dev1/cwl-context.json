@@ -37,6 +37,7 @@
         "Identified": "https://w3id.org/cwl/cwl#Identified",
         "InitialWorkDirRequirement": "https://w3id.org/cwl/cwl#InitialWorkDirRequirement",
         "InlineJavascriptRequirement": "https://w3id.org/cwl/cwl#InlineJavascriptRequirement",
+        "InplaceUpdateRequirement": "https://w3id.org/cwl/cwl#InplaceUpdateRequirement",
         "InputArraySchema": "https://w3id.org/cwl/cwl#InputArraySchema",
         "InputBinding": "https://w3id.org/cwl/cwl#InputBinding",
         "InputEnumSchema": "https://w3id.org/cwl/cwl#InputEnumSchema",
@@ -171,6 +172,7 @@
             "mapPredicate": "source",
             "mapSubject": "id"
         },
+        "inplaceUpdate": "https://w3id.org/cwl/cwl#InplaceUpdateRequirement/inplaceUpdate",
         "inputBinding": "cwl:inputBinding",
         "inputs": {
             "@id": "https://w3id.org/cwl/cwl#inputs",

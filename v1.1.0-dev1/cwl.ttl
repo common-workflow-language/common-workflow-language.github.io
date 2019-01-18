@@ -98,6 +98,9 @@
 @base:InlineJavascriptRequirement a rdfs:Class ;
     rdfs:subClassOf @base:ProcessRequirement .
 
+@base:InplaceUpdateRequirement a rdfs:Class ;
+    rdfs:subClassOf @base:ProcessRequirement .
+
 @base:InputArraySchema a rdfs:Class ;
     rdfs:subClassOf @base:InputSchema,
         sld:ArraySchema .
@@ -351,6 +354,9 @@ rdfs:label a rdf:Property ;
 
 <https://w3id.org/cwl/cwl#InlineJavascriptRequirement/expressionLib> a rdf:Property ;
     rdfs:domain @base:InlineJavascriptRequirement .
+
+<https://w3id.org/cwl/cwl#InplaceUpdateRequirement/inplaceUpdate> a rdf:Property ;
+    rdfs:domain @base:InplaceUpdateRequirement .
 
 <https://w3id.org/cwl/cwl#NetworkAccess/networkAccess> a rdf:Property ;
     rdfs:domain @base:NetworkAccess .

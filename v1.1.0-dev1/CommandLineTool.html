@@ -148,7 +148,8 @@ under the terms of the Apache License, version 2.0.</p>
 </ol><li><a href="#TimeLimit">5.13 TimeLimit</a><ol>
 </ol><li><a href="#WorkReuse">5.14 WorkReuse</a><ol>
 </ol><li><a href="#NetworkAccess">5.15 NetworkAccess</a><ol>
-</ol><li><a href="#CWLVersion">5.16 CWLVersion</a><ol>
+</ol><li><a href="#InplaceUpdateRequirement">5.16 InplaceUpdateRequirement</a><ol>
+</ol><li><a href="#CWLVersion">5.17 CWLVersion</a><ol>
 </ol></li></ol></li></ol></nav>
 
 <h1 id="Introduction">1. Introduction</h1><p>The Common Workflow Language (CWL) working group is an informal, multi-vendor
@@ -660,7 +661,7 @@ used to generate and/or validate the output object.</p>
 </td></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td></td></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>The unique identifier for this object.</p>
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
 </td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
-</td></tr><tr><td><code>requirements</code></td><td>array&lt;<a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#DockerRequirement">DockerRequirement</a> | <a href="#SoftwareRequirement">SoftwareRequirement</a> | <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="#ResourceRequirement">ResourceRequirement</a> | <a href="#TimeLimit">TimeLimit</a> | <a href="#WorkReuse">WorkReuse</a> | <a href="#NetworkAccess">NetworkAccess</a>&gt; | <br>map&lt;<code>class</code>,&nbsp;<a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#DockerRequirement">DockerRequirement</a> | <a href="#SoftwareRequirement">SoftwareRequirement</a> | <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="#ResourceRequirement">ResourceRequirement</a> | <a href="#TimeLimit">TimeLimit</a> | <a href="#WorkReuse">WorkReuse</a> | <a href="#NetworkAccess">NetworkAccess</a>&gt</td><td>False</td><td><p>Declares requirements that apply to either the runtime environment or the
+</td></tr><tr><td><code>requirements</code></td><td>array&lt;<a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#DockerRequirement">DockerRequirement</a> | <a href="#SoftwareRequirement">SoftwareRequirement</a> | <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="#ResourceRequirement">ResourceRequirement</a> | <a href="#TimeLimit">TimeLimit</a> | <a href="#WorkReuse">WorkReuse</a> | <a href="#NetworkAccess">NetworkAccess</a> | <a href="#InplaceUpdateRequirement">InplaceUpdateRequirement</a>&gt; | <br>map&lt;<code>class</code>,&nbsp;<a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#DockerRequirement">DockerRequirement</a> | <a href="#SoftwareRequirement">SoftwareRequirement</a> | <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="#ResourceRequirement">ResourceRequirement</a> | <a href="#TimeLimit">TimeLimit</a> | <a href="#WorkReuse">WorkReuse</a> | <a href="#NetworkAccess">NetworkAccess</a> | <a href="#InplaceUpdateRequirement">InplaceUpdateRequirement</a>&gt</td><td>False</td><td><p>Declares requirements that apply to either the runtime environment or the
 workflow engine that must be met in order to execute this process.  If
 an implementation cannot satisfy all requirements, or a requirement is
 listed which is not recognized by the implementation, it is a fatal
@@ -1548,7 +1549,33 @@ accessible by the tool.</p>
 <p>Enabling network access does not imply a publically routable IP
 address or the ability to accept inbound connections.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>Always 'NetworkAccess'</p>
-</td></tr><tr><td><code>networkAccess</code></td><td><a href="#CWLType">boolean</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td></td></tr></table><h2 id="CWLVersion">5.16 CWLVersion</h2><p>Version symbols for published CWL document versions.</p>
+</td></tr><tr><td><code>networkAccess</code></td><td><a href="#CWLType">boolean</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td></td></tr></table><h2 id="InplaceUpdateRequirement">5.16 InplaceUpdateRequirement</h2><p>If <code>inplaceUpdate</code> is true, then an implementation supporting this
+feature may permit tools to directly update files with <code>writable:
+true</code> in InitialWorkDirRequirement.  That is, as an optimization,
+files may be destructively modified in place as opposed to copied
+and updated.</p>
+<p>An implementation must ensure that only one workflow step may
+access a writable file at a time.  It is an error if a file which
+is writable by one workflow step file is accessed (for reading or
+writing) by any other workflow step running independently.
+However, a file which has been updated in a previous completed
+step may be used as input to multiple steps, provided it is
+read-only in every step.</p>
+<p>Workflow steps which modify a file must produce the modified file
+as output.  Downstream steps which futher process the file must
+use the output of previous steps, and not refer to a common input
+(this is necessary for both ordering and correctness).</p>
+<p>Workflow authors should provide this in the <code>hints</code> section.  The
+intent of this feature is that workflows produce the same results
+whether or not InplaceUpdateRequirement is supported by the
+implementation, and this feature is primarily available as an
+optimization for particular environments.</p>
+<p>Users and implementers should be aware that workflows that
+destructively modify inputs may not be repeatable or reproducible.
+In particular, enabling this feature implies that WorkReuse should
+not be enabled.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>Always 'InplaceUpdateRequirement'</p>
+</td></tr><tr><td><code>inplaceUpdate</code></td><td><a href="#CWLType">boolean</a></td><td>True</td><td></td></tr></table><h2 id="CWLVersion">5.17 CWLVersion</h2><p>Version symbols for published CWL document versions.</p>
 <h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>draft-2</code></td><td></td></tr><tr><td><code>draft-3.dev1</code></td><td></td></tr><tr><td><code>draft-3.dev2</code></td><td></td></tr><tr><td><code>draft-3.dev3</code></td><td></td></tr><tr><td><code>draft-3.dev4</code></td><td></td></tr><tr><td><code>draft-3.dev5</code></td><td></td></tr><tr><td><code>draft-3</code></td><td></td></tr><tr><td><code>draft-4.dev1</code></td><td></td></tr><tr><td><code>draft-4.dev2</code></td><td></td></tr><tr><td><code>draft-4.dev3</code></td><td></td></tr><tr><td><code>v1.0.dev4</code></td><td></td></tr><tr><td><code>v1.0</code></td><td></td></tr><tr><td><code>v1.1.0-dev1</code></td><td></td></tr></table></div>
     </div>
     </div>
