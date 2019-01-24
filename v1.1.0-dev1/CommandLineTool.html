@@ -168,6 +168,7 @@ CWL documents that relied on previously undefined or
 underspecified behavior may have slightly different behavior in
 v1.1.0-dev1.</p>
 <h2 id="Changelog">1.2 Changelog</h2><ul>
+<li>Clarify behavior around <code>ENTRYPOINT</code> and <code>CMD</code> in containers</li>
 <li>Clarify documentation around <code>valueFrom</code> and <code>null</code> inputs.</li>
 <li>Default values for some fields are now expressed in the schema.</li>
 <li>When defining record types with <code>CommandInputRecordSchema</code>, fields of
@@ -1375,8 +1376,9 @@ to earlier schema definitions.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>Always 'SchemaDefRequirement'</p>
 </td></tr><tr><td><code>types</code></td><td>array&lt;<a href="#CommandInputRecordSchema">CommandInputRecordSchema</a>&nbsp;|&nbsp;<a href="#CommandInputEnumSchema">CommandInputEnumSchema</a>&nbsp;|&nbsp;<a href="#CommandInputArraySchema">CommandInputArraySchema</a>&gt;</td><td>True</td><td><p>The list of type definitions.</p>
 </td></tr></table><h2 id="DockerRequirement">5.5 DockerRequirement</h2><p>Indicates that a workflow component should be run in a
-<a href="http://docker.com">Docker</a> container, and specifies how to fetch or build
-the image.</p>
+<a href="http://docker.com">Docker</a> or Docker-compatible (such as
+<a href="https://www.sylabs.io/">Singularity</a> and <a href="https://github.com/indigo-dc/udocker">udocker</a>) container environment and
+specifies how to fetch or build the image.</p>
 <p>If a CommandLineTool lists <code>DockerRequirement</code> under
 <code>hints</code> (or <code>requirements</code>), it may (or must) be run in the specified Docker
 container.</p>
@@ -1395,6 +1397,20 @@ assume anything about the contents of the Docker container, such as the
 presence or absence of specific software, except to assume that the
 generated command line represents a valid command within the runtime
 environment of the container.</p>
+<p>A container image may specify an
+<a href="https://docs.docker.com/engine/reference/builder/#entrypoint">ENTRYPOINT</a>
+and/or
+<a href="https://docs.docker.com/engine/reference/builder/#cmd">CMD</a>.
+Command line arguments will be appended after all elements of
+ENTRYPOINT, and will override all elements specified using CMD (in
+other words, CMD is only used when the CommandLineTool definition
+produces an empty command line).</p>
+<p>Use of implicit ENTRYPOINT or CMD are discouraged due to reproducibility
+concerns of the implicit hidden execution point (For further discussion, see 
+<a href="https://doi.org/10.12688/f1000research.15140.1">https://doi.org/10.12688/f1000research.15140.1</a>). Portable 
+CommandLineTool wrappers in which use of a container is optional must not rely on ENTRYPOINT or CMD.<br>
+CommandLineTools which do rely on ENTRYPOINT or CMD must list <code>DockerRequirement</code> in the
+<code>requirements</code> section.</p>
 <h4 id="Interaction_with_other_requirements">Interaction with other requirements</h4><p>If <a href="#EnvVarRequirement">EnvVarRequirement</a> is specified alongside a
 DockerRequirement, the environment variables must be provided to Docker
 using <code>--env</code> or <code>--env-file</code> and interact with the container's preexisting

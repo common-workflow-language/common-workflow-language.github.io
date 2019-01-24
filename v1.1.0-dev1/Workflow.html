@@ -166,6 +166,7 @@ CWL documents that relied on previously undefined or
 underspecified behavior may have slightly different behavior in
 v1.1.0-dev1.</p>
 <h2 id="Changelog">1.2 Changelog</h2><ul>
+<li>Document explicitly that CWL allows pass-through of workflow inputs to outputs</li>
 <li>Default values for some fields are now expressed in the schema</li>
 <li>When defining record types, fields of type <code>File</code> may now include
 <code>format</code>, <code>secondaryFiles</code>, and <code>streamable</code>.</li>
@@ -906,8 +907,9 @@ CWL v2.0.  Use <code>InputParameter.loadContents</code> instead.</p>
 <p>Read up to the first 64 KiB of text from the file and place it in the
 "contents" field of the file object for use by expressions.</p>
 </td></tr></table><h2 id="WorkflowOutputParameter">4.2 WorkflowOutputParameter</h2><p>Describe an output parameter of a workflow.  The parameter must be
-connected to one or more parameters defined in the workflow that will
-provide the value of the output parameter.</p>
+connected to one or more parameters defined in the workflow that 
+will provide the value of the output parameter. It is legal to
+connect a WorkflowInputParameter to a WorkflowOutputParameter.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
 </td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Provides a pattern or expression specifying files or directories that
