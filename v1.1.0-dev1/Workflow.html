@@ -561,9 +561,11 @@ required for a Process embedded inside another Process.</p>
 </td></tr></table><h2 id="WorkflowInputParameter">4.1 WorkflowInputParameter</h2><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
 </td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Provides a pattern or expression specifying files or directories that
-must be included alongside the primary file.  All listed secondary
-files must be present.  An implementation may fail workflow execution
-if an expected secondary file does not exist.</p>
+must be included alongside the primary file. An implementation must append 
+these files/directories to the <code>secondaryFiles</code> property of the primary file.
+These files/directories must be transferred alongside the primary file.
+An implementation may fail workflow execution if an expected secondary file
+does not exist.</p>
 <p>If the value is an expression, the value of <code>self</code> in the expression
 must be the primary input or output File object to which this binding
 applies.  The <code>basename</code>, <code>nameroot</code> and <code>nameext</code> fields must be
@@ -846,9 +848,11 @@ merged.</p>
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
 </td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Provides a pattern or expression specifying files or directories that
-must be included alongside the primary file.  All listed secondary
-files must be present.  An implementation may fail workflow execution
-if an expected secondary file does not exist.</p>
+must be included alongside the primary file. An implementation must append 
+these files/directories to the <code>secondaryFiles</code> property of the primary file.
+These files/directories must be transferred alongside the primary file.
+An implementation may fail workflow execution if an expected secondary file
+does not exist.</p>
 <p>If the value is an expression, the value of <code>self</code> in the expression
 must be the primary input or output File object to which this binding
 applies.  The <code>basename</code>, <code>nameroot</code> and <code>nameext</code> fields must be
@@ -907,9 +911,11 @@ provide the value of the output parameter.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
 </td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Provides a pattern or expression specifying files or directories that
-must be included alongside the primary file.  All listed secondary
-files must be present.  An implementation may fail workflow execution
-if an expected secondary file does not exist.</p>
+must be included alongside the primary file. An implementation must append 
+these files/directories to the <code>secondaryFiles</code> property of the primary file.
+These files/directories must be transferred alongside the primary file.
+An implementation may fail workflow execution if an expected secondary file
+does not exist.</p>
 <p>If the value is an expression, the value of <code>self</code> in the expression
 must be the primary input or output File object to which this binding
 applies.  The <code>basename</code>, <code>nameroot</code> and <code>nameext</code> fields must be
@@ -958,9 +964,11 @@ If not specified, the default method is "merge_nested".</p>
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
 </td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Provides a pattern or expression specifying files or directories that
-must be included alongside the primary file.  All listed secondary
-files must be present.  An implementation may fail workflow execution
-if an expected secondary file does not exist.</p>
+must be included alongside the primary file. An implementation must append 
+these files/directories to the <code>secondaryFiles</code> property of the primary file.
+These files/directories must be transferred alongside the primary file.
+An implementation may fail workflow execution if an expected secondary file
+does not exist.</p>
 <p>If the value is an expression, the value of <code>self</code> in the expression
 must be the primary input or output File object to which this binding
 applies.  The <code>basename</code>, <code>nameroot</code> and <code>nameext</code> fields must be
@@ -1168,9 +1176,11 @@ to earlier schema definitions.</p>
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
 </td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Provides a pattern or expression specifying files or directories that
-must be included alongside the primary file.  All listed secondary
-files must be present.  An implementation may fail workflow execution
-if an expected secondary file does not exist.</p>
+must be included alongside the primary file. An implementation must append 
+these files/directories to the <code>secondaryFiles</code> property of the primary file.
+These files/directories must be transferred alongside the primary file.
+An implementation may fail workflow execution if an expected secondary file
+does not exist.</p>
 <p>If the value is an expression, the value of <code>self</code> in the expression
 must be the primary input or output File object to which this binding
 applies.  The <code>basename</code>, <code>nameroot</code> and <code>nameext</code> fields must be
@@ -1271,6 +1281,8 @@ parameter, the value of <code>self</code> in the expression will be the value of
 the input parameter.  Input parameter defaults (as specified by the
 <code>InputParameter.default</code> field) must be applied before evaluating the
 expression.</p>
+<p>If the value of the associated input parameter is <code>null</code>, <code>valueFrom</code> is 
+not evaluated and nothing is added to the command line.</p>
 <p>When a binding is part of the <code>CommandLineTool.arguments</code> field,
 the <code>valueFrom</code> field is required.</p>
 </td></tr><tr><td><code>shellQuote</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>If <code>ShellCommandRequirement</code> is in the requirements for the current command,
@@ -1467,9 +1479,11 @@ required for a Process embedded inside another Process.</p>
 </td></tr></table><h4 id="ExpressionToolOutputParameter">4.3.17.1 ExpressionToolOutputParameter</h4><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
 </td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Provides a pattern or expression specifying files or directories that
-must be included alongside the primary file.  All listed secondary
-files must be present.  An implementation may fail workflow execution
-if an expected secondary file does not exist.</p>
+must be included alongside the primary file. An implementation must append 
+these files/directories to the <code>secondaryFiles</code> property of the primary file.
+These files/directories must be transferred alongside the primary file.
+An implementation may fail workflow execution if an expected secondary file
+does not exist.</p>
 <p>If the value is an expression, the value of <code>self</code> in the expression
 must be the primary input or output File object to which this binding
 applies.  The <code>basename</code>, <code>nameroot</code> and <code>nameext</code> fields must be

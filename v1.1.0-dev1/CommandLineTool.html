@@ -168,6 +168,7 @@ CWL documents that relied on previously undefined or
 underspecified behavior may have slightly different behavior in
 v1.1.0-dev1.</p>
 <h2 id="Changelog">1.2 Changelog</h2><ul>
+<li>Clarify documentation around <code>valueFrom</code> and <code>null</code> inputs.</li>
 <li>Default values for some fields are now expressed in the schema.</li>
 <li>When defining record types with <code>CommandInputRecordSchema</code>, fields of
 type <code>File</code> may now include <code>format</code>, <code>loadContents</code>,
@@ -187,9 +188,11 @@ except for files or directories specified using
 <li>Clarify semantics of <code>shellQuote</code></li>
 <li>Expressions are now allowed to evaluate to <code>null</code> or <code>Dirent</code> in
 <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement.listing</a>.</li>
+<li>Clarify behavior of secondaryFiles on output.</li>
 <li><a href="#Requirements_and_hints">Addition</a> of <code>cwl:requirements</code> field to
-input object documents</li>
+input object documents.</li>
 <li>Clarify behavior of <code>glob</code> for absolute paths and symlinks.</li>
+<li>Clarify behavior of <code>glob</code> to include directories.</li>
 </ul>
 <p>See also the <a href="Workflow.html#Changelog">CWL Workflow Description, v1.1.0-dev1 changelog</a>.</p>
 <h2 id="Purpose">1.3 Purpose</h2><p>Standalone programs are a flexible and interoperable form of code reuse.
@@ -712,9 +715,11 @@ runtime environment and inputs may produce different results.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
 </td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Provides a pattern or expression specifying files or directories that
-must be included alongside the primary file.  All listed secondary
-files must be present.  An implementation may fail workflow execution
-if an expected secondary file does not exist.</p>
+must be included alongside the primary file. An implementation must append 
+these files/directories to the <code>secondaryFiles</code> property of the primary file.
+These files/directories must be transferred alongside the primary file.
+An implementation may fail workflow execution if an expected secondary file
+does not exist.</p>
 <p>If the value is an expression, the value of <code>self</code> in the expression
 must be the primary input or output File object to which this binding
 applies.  The <code>basename</code>, <code>nameroot</code> and <code>nameext</code> fields must be
@@ -817,6 +822,8 @@ parameter, the value of <code>self</code> in the expression will be the value of
 the input parameter.  Input parameter defaults (as specified by the
 <code>InputParameter.default</code> field) must be applied before evaluating the
 expression.</p>
+<p>If the value of the associated input parameter is <code>null</code>, <code>valueFrom</code> is 
+not evaluated and nothing is added to the command line.</p>
 <p>When a binding is part of the <code>CommandLineTool.arguments</code> field,
 the <code>valueFrom</code> field is required.</p>
 </td></tr><tr><td><code>shellQuote</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>If <code>ShellCommandRequirement</code> is in the requirements for the current command,
@@ -1078,9 +1085,11 @@ stdin: ${inputs.an_input_name.path}
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
 </td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Provides a pattern or expression specifying files or directories that
-must be included alongside the primary file.  All listed secondary
-files must be present.  An implementation may fail workflow execution
-if an expected secondary file does not exist.</p>
+must be included alongside the primary file. An implementation must append 
+these files/directories to the <code>secondaryFiles</code> property of the primary file.
+These files/directories must be transferred alongside the primary file.
+An implementation may fail workflow execution if an expected secondary file
+does not exist.</p>
 <p>If the value is an expression, the value of <code>self</code> in the expression
 must be the primary input or output File object to which this binding
 applies.  The <code>basename</code>, <code>nameroot</code> and <code>nameext</code> fields must be
@@ -1134,9 +1143,11 @@ available, file formats may be tested by exact match.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
 </td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Provides a pattern or expression specifying files or directories that
-must be included alongside the primary file.  All listed secondary
-files must be present.  An implementation may fail workflow execution
-if an expected secondary file does not exist.</p>
+must be included alongside the primary file. An implementation must append 
+these files/directories to the <code>secondaryFiles</code> property of the primary file.
+These files/directories must be transferred alongside the primary file.
+An implementation may fail workflow execution if an expected secondary file
+does not exist.</p>
 <p>If the value is an expression, the value of <code>self</code> in the expression
 must be the primary input or output File object to which this binding
 applies.  The <code>basename</code>, <code>nameroot</code> and <code>nameext</code> fields must be
@@ -1251,9 +1262,11 @@ stderr: random_stderr_filenameABCDEFG
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
 </td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Provides a pattern or expression specifying files or directories that
-must be included alongside the primary file.  All listed secondary
-files must be present.  An implementation may fail workflow execution
-if an expected secondary file does not exist.</p>
+must be included alongside the primary file. An implementation must append 
+these files/directories to the <code>secondaryFiles</code> property of the primary file.
+These files/directories must be transferred alongside the primary file.
+An implementation may fail workflow execution if an expected secondary file
+does not exist.</p>
 <p>If the value is an expression, the value of <code>self</code> in the expression
 must be the primary input or output File object to which this binding
 applies.  The <code>basename</code>, <code>nameroot</code> and <code>nameext</code> fields must be
@@ -1306,12 +1319,12 @@ following order:</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>loadContents</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Read up to the first 64 KiB of text from the file and place it in the
 "contents" field of the file object for use by expressions.</p>
-</td></tr><tr><td><code>glob</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>Find files relative to the output directory, using POSIX glob(3)
-pathname matching.  If an array is provided, find files that match any
-pattern in the array.  If an expression is provided, the expression must
-return a string or an array of strings, which will then be evaluated as
-one or more glob patterns.  Must only match and return files which
-actually exist.</p>
+</td></tr><tr><td><code>glob</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>Find files or directories relative to the output directory, using POSIX
+glob(3) pathname matching.  If an array is provided, find files or 
+directories that match any pattern in the array.  If an expression is
+provided, the expression must return a string or an array of strings,
+which will then be evaluated as one or more glob patterns.  Must only
+match and return files/directories which actually exist.</p>
 <p>If the value of glob is a relative path pattern (does not
 begin with a slash '/') then it is resolved relative to the
 output directory.  If the value of the glob is an absolute
@@ -1323,14 +1336,14 @@ Specifically this means globs with relative paths containing
 are illegal.</p>
 <p>A glob may match a path within the output directory which is
 actually a symlink to another file.  In this case, the
-expected behavior is for the resulting File object to take the
+expected behavior is for the resulting File/Directory object to take the
 <code>basename</code> (and corresponding <code>nameroot</code> and <code>nameext</code>) of the
-symlink.  The <code>location</code> of the File is implementation
-dependent, but logically the File should have the same content
-as the symlink target.  Platforms may stage output files to
+symlink.  The <code>location</code> of the File/Directory is implementation
+dependent, but logically the File/Directory should have the same content
+as the symlink target.  Platforms may stage output files/directories to
 cloud storage that lack the concept of a symlink.  In
-this case file content may be duplicated, or (to avoid
-duplication) the File <code>location</code> may refer to the symlink
+this case file content and directories may be duplicated, or (to avoid
+duplication) the File/Directory <code>location</code> may refer to the symlink
 target.</p>
 <p>It is an error if a symlink in the output directory (or any
 symlink in a chain of links) refers to any file or directory
