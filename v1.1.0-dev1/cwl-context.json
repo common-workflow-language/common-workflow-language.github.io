@@ -69,6 +69,7 @@
         "ScatterFeatureRequirement": "https://w3id.org/cwl/cwl#ScatterFeatureRequirement",
         "ScatterMethod": "https://w3id.org/cwl/cwl#ScatterMethod",
         "SchemaDefRequirement": "https://w3id.org/cwl/cwl#SchemaDefRequirement",
+        "SecondaryFileSchema": "https://w3id.org/cwl/cwl#SecondaryFileSchema",
         "ShellCommandRequirement": "https://w3id.org/cwl/cwl#ShellCommandRequirement",
         "Sink": "https://w3id.org/cwl/cwl#Sink",
         "SoftwarePackage": "https://w3id.org/cwl/cwl#SoftwarePackage",
@@ -235,6 +236,7 @@
             "@id": "https://w3id.org/cwl/cwl#path",
             "@type": "@id"
         },
+        "pattern": "https://w3id.org/cwl/cwl#SecondaryFileSchema/pattern",
         "permanentFailCodes": "https://w3id.org/cwl/cwl#CommandLineTool/permanentFailCodes",
         "position": "https://w3id.org/cwl/cwl#CommandLineBinding/position",
         "prefix": "https://w3id.org/cwl/cwl#CommandLineBinding/prefix",
@@ -243,6 +245,7 @@
         "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
         "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
         "record": "https://w3id.org/cwl/salad#record",
+        "required": "https://w3id.org/cwl/cwl#SecondaryFileSchema/required",
         "requirements": {
             "@id": "https://w3id.org/cwl/cwl#requirements",
             "mapSubject": "class"
@@ -262,7 +265,10 @@
             "@id": "https://w3id.org/cwl/cwl#scatterMethod",
             "@type": "@vocab"
         },
-        "secondaryFiles": "cwl:secondaryFiles",
+        "secondaryFiles": {
+            "@id": "https://w3id.org/cwl/cwl#secondaryFiles",
+            "secondaryFilesDSL": true
+        },
         "separate": "https://w3id.org/cwl/cwl#CommandLineBinding/separate",
         "shellQuote": "https://w3id.org/cwl/cwl#CommandLineBinding/shellQuote",
         "size": "https://w3id.org/cwl/cwl#File/size",

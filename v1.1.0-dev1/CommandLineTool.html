@@ -117,15 +117,16 @@ under the terms of the Apache License, version 2.0.</p>
 <li><a href="#CommandInputParameter">5.1 CommandInputParameter</a><ol>
 <li><a href="#CommandLineBinding">5.1.1 CommandLineBinding</a><ol>
 </ol><li><a href="#Expression">5.1.2 Expression</a><ol>
-</ol><li><a href="#Any">5.1.3 Any</a><ol>
-</ol><li><a href="#CWLType">5.1.4 CWLType</a><ol>
-</ol><li><a href="#File">5.1.5 File</a><ol>
-<li><a href="#Directory">5.1.5.1 Directory</a><ol>
-</ol></li></ol><li><a href="#stdin">5.1.6 stdin</a><ol>
-</ol><li><a href="#CommandInputRecordSchema">5.1.7 CommandInputRecordSchema</a><ol>
-<li><a href="#CommandInputRecordField">5.1.7.1 CommandInputRecordField</a><ol>
-<li><a href="#CommandInputEnumSchema">5.1.7.1.1 CommandInputEnumSchema</a><ol>
-</ol><li><a href="#CommandInputArraySchema">5.1.7.1.2 CommandInputArraySchema</a><ol>
+</ol><li><a href="#SecondaryFileSchema">5.1.3 SecondaryFileSchema</a><ol>
+</ol><li><a href="#Any">5.1.4 Any</a><ol>
+</ol><li><a href="#CWLType">5.1.5 CWLType</a><ol>
+</ol><li><a href="#File">5.1.6 File</a><ol>
+<li><a href="#Directory">5.1.6.1 Directory</a><ol>
+</ol></li></ol><li><a href="#stdin">5.1.7 stdin</a><ol>
+</ol><li><a href="#CommandInputRecordSchema">5.1.8 CommandInputRecordSchema</a><ol>
+<li><a href="#CommandInputRecordField">5.1.8.1 CommandInputRecordField</a><ol>
+<li><a href="#CommandInputEnumSchema">5.1.8.1.1 CommandInputEnumSchema</a><ol>
+</ol><li><a href="#CommandInputArraySchema">5.1.8.1.2 CommandInputArraySchema</a><ol>
 </ol></li></ol></li></ol></li></ol><li><a href="#CommandOutputParameter">5.2 CommandOutputParameter</a><ol>
 <li><a href="#stdout">5.2.1 stdout</a><ol>
 </ol><li><a href="#stderr">5.2.2 stderr</a><ol>
@@ -195,6 +196,7 @@ except for files or directories specified using
 input object documents.</li>
 <li>Clarify behavior of <code>glob</code> for absolute paths and symlinks.</li>
 <li>Clarify behavior of <code>glob</code> to include directories.</li>
+<li><code>secondaryFiles</code> can now be explicitly marked as <code>required</code> or not.</li>
 </ul>
 <p>See also the <a href="Workflow.html#Changelog">CWL Workflow Description, v1.1.0-dev1 changelog</a>.</p>
 <h2 id="Purpose">1.3 Purpose</h2><p>Standalone programs are a flexible and interoperable form of code reuse.
@@ -719,13 +721,17 @@ runtime environment and inputs may produce different results.</p>
 </td></tr><tr><td><code>permanentFailCodes</code></td><td>array&lt;<a href="#CWLType">int</a>&gt;</td><td>False</td><td><p>Exit codes that indicate the process failed due to a permanent logic error, where executing the process with the same runtime environment and same inputs is expected to always fail.</p>
 </td></tr></table><h2 id="CommandInputParameter">5.1 CommandInputParameter</h2><p>An input parameter for a CommandLineTool.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
-</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
-<p>Provides a pattern or expression specifying files or directories that
-must be included alongside the primary file. An implementation must append 
-these files/directories to the <code>secondaryFiles</code> property of the primary file.
-These files/directories must be transferred alongside the primary file.
-An implementation may fail workflow execution if an expected secondary file
-does not exist.</p>
+</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#SecondaryFileSchema">SecondaryFileSchema</a> | array&lt;<a href="#SecondaryFileSchema">SecondaryFileSchema</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>Provides a pattern or expression specifying files or
+directories that should be included alongside the primary
+file.  Secondary files may be required or optional.  When not
+explicitly specified, secondary files specified for <code>inputs</code>
+are required and <code>outputs</code> are optional.  An implementation
+must include matching Files and Directories in the
+<code>secondaryFiles</code> property of the primary file.  These Files
+and Directories must be transferred and staged alongside the
+primary file.  An implementation may fail workflow execution
+if a required secondary file does not exist.</p>
 <p>If the value is an expression, the value of <code>self</code> in the expression
 must be the primary input or output File object to which this binding
 applies.  The <code>basename</code>, <code>nameroot</code> and <code>nameext</code> fields must be
@@ -734,7 +740,9 @@ also be present.  The expression must return a filename string relative
 to the path to the primary File, a File or Directory object with either
 <code>path</code> or <code>location</code> and <code>basename</code> fields set, or an array consisting
 of strings or File or Directory objects.  It is legal to reference an
-unchanged File or Directory object taken from input as a secondaryFile.</p>
+unchanged File or Directory object taken from input as a secondaryFile.
+The expression may return "null" in which case there is no secondaryFile
+from that expression.</p>
 <p>To work on non-filename-preserving storage systems, portable tool
 descriptions should avoid constructing new values from <code>location</code>, but
 should construct relative references using <code>basename</code> or <code>nameroot</code>
@@ -743,6 +751,8 @@ instead.</p>
 it specifies that the following pattern should be applied to the path
 of the primary file to yield a filename relative to the primary File:</p>
 <ol>
+<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark
+the resulting secondary file as optional.</li>
 <li>If string begins with one or more caret <code>^</code> characters, for each
 caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
@@ -828,7 +838,7 @@ parameter, the value of <code>self</code> in the expression will be the value of
 the input parameter.  Input parameter defaults (as specified by the
 <code>InputParameter.default</code> field) must be applied before evaluating the
 expression.</p>
-<p>If the value of the associated input parameter is <code>null</code>, <code>valueFrom</code> is 
+<p>If the value of the associated input parameter is <code>null</code>, <code>valueFrom</code> is
 not evaluated and nothing is added to the command line.</p>
 <p>When a binding is part of the <code>CommandLineTool.arguments</code> field,
 the <code>valueFrom</code> field is required.</p>
@@ -841,9 +851,42 @@ permit interpretation of any shell metacharacters or directives.</p>
 runtime parameter references.  If <a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a>
 is declared and supported by the platform, the field must also allow
 Javascript expressions.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>ExpressionPlaceholder</code></td><td></td></tr></table><h3 id="Any">5.1.3 Any</h3><p>The <strong>Any</strong> type validates for any non-null value.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>Any</code></td><td></td></tr></table><h3 id="CWLType">5.1.4 CWLType</h3><p>Extends primitive types with the concept of a file and directory as a builtin type.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>null</code></td><td> no value</td></tr><tr><td><code>boolean</code></td><td> a binary value</td></tr><tr><td><code>int</code></td><td> 32-bit signed integer</td></tr><tr><td><code>long</code></td><td> 64-bit signed integer</td></tr><tr><td><code>float</code></td><td> single precision (32-bit) IEEE 754 floating-point number</td></tr><tr><td><code>double</code></td><td> double precision (64-bit) IEEE 754 floating-point number</td></tr><tr><td><code>string</code></td><td> Unicode character sequence</td></tr><tr><td><code>File</code></td><td> A File object</td></tr><tr><td><code>Directory</code></td><td> A Directory object</td></tr></table><h3 id="File">5.1.5 File</h3><p>Represents a file (or group of files when <code>secondaryFiles</code> is provided) that
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>ExpressionPlaceholder</code></td><td></td></tr></table><h3 id="SecondaryFileSchema">5.1.3 SecondaryFileSchema</h3><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>pattern</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td><p>Provides a pattern or expression specifying files or directories that
+should be included alongside the primary file.</p>
+<p>If the value is an expression, the value of <code>self</code> in the expression
+must be the primary input or output File object to which this binding
+applies.  The <code>basename</code>, <code>nameroot</code> and <code>nameext</code> fields must be
+present in <code>self</code>.  For <code>CommandLineTool</code> outputs the <code>path</code> field must
+also be present.  The expression must return a filename string relative
+to the path to the primary File, a File or Directory object with either
+<code>path</code> or <code>location</code> and <code>basename</code> fields set, or an array consisting
+of strings or File or Directory objects.  It is legal to reference an
+unchanged File or Directory object taken from input as a secondaryFile.
+The expression may return "null" in which case there is no secondaryFile
+from that expression.</p>
+<p>To work on non-filename-preserving storage systems, portable tool
+descriptions should avoid constructing new values from <code>location</code>, but
+should construct relative references using <code>basename</code> or <code>nameroot</code>
+instead.</p>
+<p>If a value in <code>secondaryFiles</code> is a string that is not an expression,
+it specifies that the following pattern should be applied to the path
+of the primary file to yield a filename relative to the primary File:</p>
+<ol>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
+period <code>.</code> and all following characters).  If there are no file
+extensions, the path is unchanged.</li>
+<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark
+the resulting secondary file as optional.</li>
+<li>Append the remainder of the string to the end of the file path.</li>
+</ol>
+</td></tr><tr><td><code>required</code></td><td><a href="#CWLType">boolean</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>False</td><td><p>An implementation must not fail workflow execution if <code>required</code> is
+set to <code>false</code> and the expected secondary file does not exist.
+Default value for <code>required</code> field is <code>true</code> for secondary files on
+input and <code>false</code> for secondary files on output.</p>
+</td></tr></table><h3 id="Any">5.1.4 Any</h3><p>The <strong>Any</strong> type validates for any non-null value.</p>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>Any</code></td><td></td></tr></table><h3 id="CWLType">5.1.5 CWLType</h3><p>Extends primitive types with the concept of a file and directory as a builtin type.</p>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>null</code></td><td> no value</td></tr><tr><td><code>boolean</code></td><td> a binary value</td></tr><tr><td><code>int</code></td><td> 32-bit signed integer</td></tr><tr><td><code>long</code></td><td> 64-bit signed integer</td></tr><tr><td><code>float</code></td><td> single precision (32-bit) IEEE 754 floating-point number</td></tr><tr><td><code>double</code></td><td> double precision (64-bit) IEEE 754 floating-point number</td></tr><tr><td><code>string</code></td><td> Unicode character sequence</td></tr><tr><td><code>File</code></td><td> A File object</td></tr><tr><td><code>Directory</code></td><td> A Directory object</td></tr></table><h3 id="File">5.1.6 File</h3><p>Represents a file (or group of files when <code>secondaryFiles</code> is provided) that
 will be accessible by tools using standard POSIX file system call API such as
 open(2) and read(2).</p>
 <p>Files are represented as objects with <code>class</code> of <code>File</code>.  File objects have
@@ -986,7 +1029,7 @@ the value of <code>contents</code> must be written to a file.</p>
 <p>If <code>loadContents</code> of <code>inputBinding</code> or <code>outputBinding</code> is true and
 <code>location</code> is valid, the implementation must read up to the first 64
 KiB of text from the file and place it in the "contents" field.</p>
-</td></tr></table><h4 id="Directory">5.1.5.1 Directory</h4><p>Represents a directory to present to a command line tool.</p>
+</td></tr></table><h4 id="Directory">5.1.6.1 Directory</h4><p>Represents a directory to present to a command line tool.</p>
 <p>Directories are represented as objects with <code>class</code> of <code>Directory</code>.  Directory objects have
 a number of properties that provide metadata about the directory.</p>
 <p>The <code>location</code> property of a Directory is a URI that uniquely identifies
@@ -1063,7 +1106,7 @@ each <code>File</code> or <code>Directory</code> object.  It is an error if a <c
 <code>Directory</code> object share the same <code>basename</code>, this must be treated as
 equivalent to a single subdirectory with the listings recursively
 merged.</p>
-</td></tr></table><h3 id="stdin">5.1.6 stdin</h3><p>Only valid as a <code>type</code> for a <code>CommandLineTool</code> input with no
+</td></tr></table><h3 id="stdin">5.1.7 stdin</h3><p>Only valid as a <code>type</code> for a <code>CommandLineTool</code> input with no
 <code>inputBinding</code> set. <code>stdin</code> must not be specified at the <code>CommandLineTool</code>
 level.</p>
 <p>The following</p>
@@ -1079,23 +1122,27 @@ level.</p>
 
 stdin: ${inputs.an_input_name.path}
 </code></pre>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>stdin</code></td><td></td></tr></table><h3 id="CommandInputRecordSchema">5.1.7 CommandInputRecordSchema</h3><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>enum_d9cba076fca539106791a4f46d198c7fcfbdb779</td><td>True</td><td><p>Must be <code>record</code></p>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>stdin</code></td><td></td></tr></table><h3 id="CommandInputRecordSchema">5.1.8 CommandInputRecordSchema</h3><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>enum_d9cba076fca539106791a4f46d198c7fcfbdb779</td><td>True</td><td><p>Must be <code>record</code></p>
 </td></tr><tr><td><code>fields</code></td><td>array&lt;<a href="#CommandInputRecordField">CommandInputRecordField</a>&gt; | <br>map&lt;<code>name</code>,&nbsp;<code>type</code> | <a href="#CommandInputRecordField">CommandInputRecordField</a>&gt</td><td>False</td><td><p>Defines the fields of the record.</p>
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
 </td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
 </td></tr><tr><td><code>name</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>The identifier for this type</p>
 </td></tr><tr><td><code>inputBinding</code></td><td><a href="#CommandLineBinding">CommandLineBinding</a></td><td>False</td><td><p>Describes how to turn this object into command line arguments.</p>
-</td></tr></table><h4 id="CommandInputRecordField">5.1.7.1 CommandInputRecordField</h4><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The name of the field</p>
+</td></tr></table><h4 id="CommandInputRecordField">5.1.8.1 CommandInputRecordField</h4><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The name of the field</p>
 </td></tr><tr><td><code>type</code></td><td><a href="#CWLType">CWLType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>The field type</p>
 </td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
-</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
-<p>Provides a pattern or expression specifying files or directories that
-must be included alongside the primary file. An implementation must append 
-these files/directories to the <code>secondaryFiles</code> property of the primary file.
-These files/directories must be transferred alongside the primary file.
-An implementation may fail workflow execution if an expected secondary file
-does not exist.</p>
+</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#SecondaryFileSchema">SecondaryFileSchema</a> | array&lt;<a href="#SecondaryFileSchema">SecondaryFileSchema</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>Provides a pattern or expression specifying files or
+directories that should be included alongside the primary
+file.  Secondary files may be required or optional.  When not
+explicitly specified, secondary files specified for <code>inputs</code>
+are required and <code>outputs</code> are optional.  An implementation
+must include matching Files and Directories in the
+<code>secondaryFiles</code> property of the primary file.  These Files
+and Directories must be transferred and staged alongside the
+primary file.  An implementation may fail workflow execution
+if a required secondary file does not exist.</p>
 <p>If the value is an expression, the value of <code>self</code> in the expression
 must be the primary input or output File object to which this binding
 applies.  The <code>basename</code>, <code>nameroot</code> and <code>nameext</code> fields must be
@@ -1104,7 +1151,9 @@ also be present.  The expression must return a filename string relative
 to the path to the primary File, a File or Directory object with either
 <code>path</code> or <code>location</code> and <code>basename</code> fields set, or an array consisting
 of strings or File or Directory objects.  It is legal to reference an
-unchanged File or Directory object taken from input as a secondaryFile.</p>
+unchanged File or Directory object taken from input as a secondaryFile.
+The expression may return "null" in which case there is no secondaryFile
+from that expression.</p>
 <p>To work on non-filename-preserving storage systems, portable tool
 descriptions should avoid constructing new values from <code>location</code>, but
 should construct relative references using <code>basename</code> or <code>nameroot</code>
@@ -1113,6 +1162,8 @@ instead.</p>
 it specifies that the following pattern should be applied to the path
 of the primary file to yield a filename relative to the primary File:</p>
 <ol>
+<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark
+the resulting secondary file as optional.</li>
 <li>If string begins with one or more caret <code>^</code> characters, for each
 caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
@@ -1133,13 +1184,13 @@ available, file formats may be tested by exact match.</p>
 <p>Read up to the first 64 KiB of text from the file and place it in the
 "contents" field of the file object for use by expressions.</p>
 </td></tr><tr><td><code>inputBinding</code></td><td><a href="#CommandLineBinding">CommandLineBinding</a></td><td>False</td><td><p>Describes how to turn this object into command line arguments.</p>
-</td></tr></table><h5 id="CommandInputEnumSchema">5.1.7.1.1 CommandInputEnumSchema</h5><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the set of valid symbols.</p>
+</td></tr></table><h5 id="CommandInputEnumSchema">5.1.8.1.1 CommandInputEnumSchema</h5><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the set of valid symbols.</p>
 </td></tr><tr><td><code>type</code></td><td>enum_d961d79c225752b9fadb617367615ab176b47d77</td><td>True</td><td><p>Must be <code>enum</code></p>
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
 </td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
 </td></tr><tr><td><code>name</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>The identifier for this type</p>
 </td></tr><tr><td><code>inputBinding</code></td><td><a href="#CommandLineBinding">CommandLineBinding</a></td><td>False</td><td><p>Describes how to turn this object into command line arguments.</p>
-</td></tr></table><h5 id="CommandInputArraySchema">5.1.7.1.2 CommandInputArraySchema</h5><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>items</code></td><td><a href="#CWLType">CWLType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the type of the array elements.</p>
+</td></tr></table><h5 id="CommandInputArraySchema">5.1.8.1.2 CommandInputArraySchema</h5><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>items</code></td><td><a href="#CWLType">CWLType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the type of the array elements.</p>
 </td></tr><tr><td><code>type</code></td><td>enum_d062602be0b4b8fd33e69e29a841317b6ab665bc</td><td>True</td><td><p>Must be <code>array</code></p>
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
 </td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
@@ -1147,13 +1198,17 @@ available, file formats may be tested by exact match.</p>
 </td></tr><tr><td><code>inputBinding</code></td><td><a href="#CommandLineBinding">CommandLineBinding</a></td><td>False</td><td><p>Describes how to turn this object into command line arguments.</p>
 </td></tr></table><h2 id="CommandOutputParameter">5.2 CommandOutputParameter</h2><p>An output parameter for a CommandLineTool.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
-</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
-<p>Provides a pattern or expression specifying files or directories that
-must be included alongside the primary file. An implementation must append 
-these files/directories to the <code>secondaryFiles</code> property of the primary file.
-These files/directories must be transferred alongside the primary file.
-An implementation may fail workflow execution if an expected secondary file
-does not exist.</p>
+</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#SecondaryFileSchema">SecondaryFileSchema</a> | array&lt;<a href="#SecondaryFileSchema">SecondaryFileSchema</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>Provides a pattern or expression specifying files or
+directories that should be included alongside the primary
+file.  Secondary files may be required or optional.  When not
+explicitly specified, secondary files specified for <code>inputs</code>
+are required and <code>outputs</code> are optional.  An implementation
+must include matching Files and Directories in the
+<code>secondaryFiles</code> property of the primary file.  These Files
+and Directories must be transferred and staged alongside the
+primary file.  An implementation may fail workflow execution
+if a required secondary file does not exist.</p>
 <p>If the value is an expression, the value of <code>self</code> in the expression
 must be the primary input or output File object to which this binding
 applies.  The <code>basename</code>, <code>nameroot</code> and <code>nameext</code> fields must be
@@ -1162,7 +1217,9 @@ also be present.  The expression must return a filename string relative
 to the path to the primary File, a File or Directory object with either
 <code>path</code> or <code>location</code> and <code>basename</code> fields set, or an array consisting
 of strings or File or Directory objects.  It is legal to reference an
-unchanged File or Directory object taken from input as a secondaryFile.</p>
+unchanged File or Directory object taken from input as a secondaryFile.
+The expression may return "null" in which case there is no secondaryFile
+from that expression.</p>
 <p>To work on non-filename-preserving storage systems, portable tool
 descriptions should avoid constructing new values from <code>location</code>, but
 should construct relative references using <code>basename</code> or <code>nameroot</code>
@@ -1171,6 +1228,8 @@ instead.</p>
 it specifies that the following pattern should be applied to the path
 of the primary file to yield a filename relative to the primary File:</p>
 <ol>
+<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark
+the resulting secondary file as optional.</li>
 <li>If string begins with one or more caret <code>^</code> characters, for each
 caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
@@ -1268,13 +1327,17 @@ stderr: random_stderr_filenameABCDEFG
 </td></tr><tr><td><code>type</code></td><td><a href="#CWLType">CWLType</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>The field type</p>
 </td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
-</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
-<p>Provides a pattern or expression specifying files or directories that
-must be included alongside the primary file. An implementation must append 
-these files/directories to the <code>secondaryFiles</code> property of the primary file.
-These files/directories must be transferred alongside the primary file.
-An implementation may fail workflow execution if an expected secondary file
-does not exist.</p>
+</td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#SecondaryFileSchema">SecondaryFileSchema</a> | array&lt;<a href="#SecondaryFileSchema">SecondaryFileSchema</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>Provides a pattern or expression specifying files or
+directories that should be included alongside the primary
+file.  Secondary files may be required or optional.  When not
+explicitly specified, secondary files specified for <code>inputs</code>
+are required and <code>outputs</code> are optional.  An implementation
+must include matching Files and Directories in the
+<code>secondaryFiles</code> property of the primary file.  These Files
+and Directories must be transferred and staged alongside the
+primary file.  An implementation may fail workflow execution
+if a required secondary file does not exist.</p>
 <p>If the value is an expression, the value of <code>self</code> in the expression
 must be the primary input or output File object to which this binding
 applies.  The <code>basename</code>, <code>nameroot</code> and <code>nameext</code> fields must be
@@ -1283,7 +1346,9 @@ also be present.  The expression must return a filename string relative
 to the path to the primary File, a File or Directory object with either
 <code>path</code> or <code>location</code> and <code>basename</code> fields set, or an array consisting
 of strings or File or Directory objects.  It is legal to reference an
-unchanged File or Directory object taken from input as a secondaryFile.</p>
+unchanged File or Directory object taken from input as a secondaryFile.
+The expression may return "null" in which case there is no secondaryFile
+from that expression.</p>
 <p>To work on non-filename-preserving storage systems, portable tool
 descriptions should avoid constructing new values from <code>location</code>, but
 should construct relative references using <code>basename</code> or <code>nameroot</code>
@@ -1292,6 +1357,8 @@ instead.</p>
 it specifies that the following pattern should be applied to the path
 of the primary file to yield a filename relative to the primary File:</p>
 <ol>
+<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark
+the resulting secondary file as optional.</li>
 <li>If string begins with one or more caret <code>^</code> characters, for each
 caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
@@ -1332,7 +1399,7 @@ following order:</p>
 <p>Read up to the first 64 KiB of text from the file and place it in the
 "contents" field of the file object for use by expressions.</p>
 </td></tr><tr><td><code>glob</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>Find files or directories relative to the output directory, using POSIX
-glob(3) pathname matching.  If an array is provided, find files or 
+glob(3) pathname matching.  If an array is provided, find files or
 directories that match any pattern in the array.  If an expression is
 provided, the expression must return a string or an array of strings,
 which will then be evaluated as one or more glob patterns.  Must only

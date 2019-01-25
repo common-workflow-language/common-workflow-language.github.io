@@ -196,6 +196,8 @@
 @base:SchemaDefRequirement a rdfs:Class ;
     rdfs:subClassOf @base:ProcessRequirement .
 
+@base:SecondaryFileSchema a rdfs:Class .
+
 @base:ShellCommandRequirement a rdfs:Class ;
     rdfs:subClassOf @base:ProcessRequirement .
 
@@ -391,6 +393,12 @@ rdfs:label a rdf:Property ;
 <https://w3id.org/cwl/cwl#SchemaDefRequirement/types> a rdf:Property ;
     rdfs:domain @base:SchemaDefRequirement .
 
+<https://w3id.org/cwl/cwl#SecondaryFileSchema/pattern> a rdf:Property ;
+    rdfs:domain @base:SecondaryFileSchema .
+
+<https://w3id.org/cwl/cwl#SecondaryFileSchema/required> a rdf:Property ;
+    rdfs:domain @base:SecondaryFileSchema .
+
 <https://w3id.org/cwl/cwl#SoftwarePackage/package> a rdf:Property ;
     rdfs:domain @base:SoftwarePackage .
 
@@ -423,10 +431,6 @@ rdfs:label a rdf:Property ;
 @base:outputBinding a rdf:Property ;
     rdfs:domain @base:CommandOutputParameter,
         @base:CommandOutputRecordField .
-
-@base:secondaryFiles a rdf:Property ;
-    rdfs:domain @base:FieldBase,
-        @base:File .
 
 @base:valueFrom a rdf:Property ;
     rdfs:domain @base:CommandLineBinding,

@@ -73,7 +73,7 @@
 <polygon fill="#000000" stroke="#000000" points="1510.468,-518.8379 1517.3062,-510.7453 1506.914,-512.8072 1510.468,-518.8379"/>
 </g>
 <!-- WorkflowStep -->
-<g id="node68" class="node">
+<g id="node69" class="node">
 <title>WorkflowStep</title>
 <polygon fill="none" stroke="#000000" points="1441.5,-530.7401 1312.5,-530.7401 1312.5,-402.7401 1441.5,-402.7401 1441.5,-530.7401"/>
 <text text-anchor="middle" x="1377" y="-515.5401" font-family="Times,serif" font-size="14.00" fill="#000000">WorkflowStep</text>
@@ -274,7 +274,7 @@
 <polygon fill="#000000" stroke="#000000" points="1526.901,-531.5243 1531.2819,-521.8776 1521.8414,-526.6867 1526.901,-531.5243"/>
 </g>
 <!-- WorkflowStepInput -->
-<g id="node66" class="node">
+<g id="node67" class="node">
 <title>WorkflowStepInput</title>
 <polygon fill="none" stroke="#000000" points="2002,-493.2401 1858,-493.2401 1858,-440.2401 2002,-440.2401 2002,-493.2401"/>
 <text text-anchor="middle" x="1930" y="-478.0401" font-family="Times,serif" font-size="14.00" fill="#000000">WorkflowStepInput</text>
@@ -319,7 +319,7 @@
 <polygon fill="#000000" stroke="#000000" points="1902.1796,-502.9867 1906.5368,-493.3293 1897.1082,-498.1616 1902.1796,-502.9867"/>
 </g>
 <!-- WorkflowStepOutput -->
-<g id="node67" class="node">
+<g id="node68" class="node">
 <title>WorkflowStepOutput</title>
 <polygon fill="none" stroke="#000000" points="1840,-484.7401 1688,-484.7401 1688,-448.7401 1840,-448.7401 1840,-484.7401"/>
 <text text-anchor="middle" x="1764" y="-463.0401" font-family="Times,serif" font-size="14.00" fill="#000000">WorkflowStepOutput</text>
@@ -363,7 +363,7 @@
 <polygon fill="#000000" stroke="#000000" points="2226.4726,-167.6343 2222.5161,-157.806 2219.48,-167.9565 2226.4726,-167.6343"/>
 </g>
 <!-- CommandOutputBinding -->
-<g id="node36" class="node">
+<g id="node37" class="node">
 <title>CommandOutputBinding</title>
 <polygon fill="none" stroke="#000000" points="2420.5,-493.2401 2253.5,-493.2401 2253.5,-440.2401 2420.5,-440.2401 2420.5,-493.2401"/>
 <text text-anchor="middle" x="2337" y="-478.0401" font-family="Times,serif" font-size="14.00" fill="#000000">CommandOutputBinding</text>
@@ -464,7 +464,7 @@
 <text text-anchor="start" x="2543" y="-672.0401" font-family="Times,serif" font-size="14.00" fill="#000000">* loadContents</text>
 </g>
 <!-- CommandLineBinding -->
-<g id="node35" class="node">
+<g id="node36" class="node">
 <title>CommandLineBinding</title>
 <polygon fill="none" stroke="#000000" points="2672,-523.2401 2520,-523.2401 2520,-410.2401 2672,-410.2401 2672,-523.2401"/>
 <text text-anchor="middle" x="2596" y="-508.0401" font-family="Times,serif" font-size="14.00" fill="#000000">CommandLineBinding</text>
@@ -542,7 +542,7 @@
 <polygon fill="#000000" stroke="#000000" points="1748.7485,-155.0431 1757.4156,-148.9495 1746.8402,-148.3083 1748.7485,-155.0431"/>
 </g>
 <!-- CommandInputRecordField -->
-<g id="node38" class="node">
+<g id="node39" class="node">
 <title>CommandInputRecordField</title>
 <polygon fill="none" stroke="#000000" points="2115.5,-52 1926.5,-52 1926.5,-16 2115.5,-16 2115.5,-52"/>
 <text text-anchor="middle" x="2021" y="-30.3" font-family="Times,serif" font-size="14.00" fill="#000000">CommandInputRecordField</text>
@@ -554,7 +554,7 @@
 <polygon fill="#000000" stroke="#000000" points="2024.5001,-62.0728 2021,-52.0728 2017.5001,-62.0728 2024.5001,-62.0728"/>
 </g>
 <!-- CommandInputRecordSchema -->
-<g id="node39" class="node">
+<g id="node40" class="node">
 <title>CommandInputRecordSchema</title>
 <polygon fill="none" stroke="#000000" points="1078.5,-52 881.5,-52 881.5,-16 1078.5,-16 1078.5,-52"/>
 <text text-anchor="middle" x="980" y="-30.3" font-family="Times,serif" font-size="14.00" fill="#000000">CommandInputRecordSchema</text>
@@ -566,7 +566,7 @@
 <polygon fill="#000000" stroke="#000000" points="937.511,-59.8305 944.7972,-52.1388 934.3047,-53.608 937.511,-59.8305"/>
 </g>
 <!-- CommandInputEnumSchema -->
-<g id="node40" class="node">
+<g id="node41" class="node">
 <title>CommandInputEnumSchema</title>
 <polygon fill="none" stroke="#000000" points="1279,-52 1097,-52 1097,-16 1279,-16 1279,-52"/>
 <text text-anchor="middle" x="1188" y="-30.3" font-family="Times,serif" font-size="14.00" fill="#000000">CommandInputEnumSchema</text>
@@ -578,7 +578,7 @@
 <polygon fill="#000000" stroke="#000000" points="1183.9196,-62.7043 1183.1315,-52.1388 1177.1588,-60.8897 1183.9196,-62.7043"/>
 </g>
 <!-- CommandInputArraySchema -->
-<g id="node41" class="node">
+<g id="node42" class="node">
 <title>CommandInputArraySchema</title>
 <polygon fill="none" stroke="#000000" points="1486.5,-52 1297.5,-52 1297.5,-16 1486.5,-16 1486.5,-52"/>
 <text text-anchor="middle" x="1392" y="-30.3" font-family="Times,serif" font-size="14.00" fill="#000000">CommandInputArraySchema</text>
@@ -590,7 +590,7 @@
 <polygon fill="#000000" stroke="#000000" points="1419.9229,-56.6796 1410.3504,-52.1388 1415.0019,-61.658 1419.9229,-56.6796"/>
 </g>
 <!-- CommandOutputRecordField -->
-<g id="node42" class="node">
+<g id="node43" class="node">
 <title>CommandOutputRecordField</title>
 <polygon fill="none" stroke="#000000" points="345.5,-149.8701 148.5,-149.8701 148.5,-111.8701 345.5,-111.8701 345.5,-149.8701"/>
 <text text-anchor="middle" x="247" y="-134.6701" font-family="Times,serif" font-size="14.00" fill="#000000">CommandOutputRecordField</text>
@@ -603,7 +603,7 @@
 <polygon fill="#000000" stroke="#000000" points="311.7611,-149.9023 301.1662,-149.8913 309.4417,-156.5069 311.7611,-149.9023"/>
 </g>
 <!-- CommandOutputRecordSchema -->
-<g id="node43" class="node">
+<g id="node44" class="node">
 <title>CommandOutputRecordSchema</title>
 <polygon fill="none" stroke="#000000" points="204,-52 0,-52 0,-16 204,-16 204,-52"/>
 <text text-anchor="middle" x="102" y="-30.3" font-family="Times,serif" font-size="14.00" fill="#000000">CommandOutputRecordSchema</text>
@@ -615,7 +615,7 @@
 <polygon fill="#000000" stroke="#000000" points="169.7592,-51.6529 159.1729,-52.0775 167.7133,-58.3473 169.7592,-51.6529"/>
 </g>
 <!-- CommandOutputEnumSchema -->
-<g id="node44" class="node">
+<g id="node45" class="node">
 <title>CommandOutputEnumSchema</title>
 <polygon fill="none" stroke="#000000" points="1693.5,-52 1504.5,-52 1504.5,-16 1693.5,-16 1693.5,-52"/>
 <text text-anchor="middle" x="1599" y="-30.3" font-family="Times,serif" font-size="14.00" fill="#000000">CommandOutputEnumSchema</text>
@@ -627,7 +627,7 @@
 <polygon fill="#000000" stroke="#000000" points="1615.0647,-59.6707 1607.6135,-52.1388 1608.7414,-62.6734 1615.0647,-59.6707"/>
 </g>
 <!-- CommandOutputArraySchema -->
-<g id="node45" class="node">
+<g id="node46" class="node">
 <title>CommandOutputArraySchema</title>
 <polygon fill="none" stroke="#000000" points="1908.5,-52 1711.5,-52 1711.5,-16 1908.5,-16 1908.5,-52"/>
 <text text-anchor="middle" x="1810" y="-30.3" font-family="Times,serif" font-size="14.00" fill="#000000">CommandOutputArraySchema</text>
@@ -639,7 +639,7 @@
 <polygon fill="#000000" stroke="#000000" points="1813.5001,-62.1388 1810,-52.1388 1806.5001,-62.1389 1813.5001,-62.1388"/>
 </g>
 <!-- CommandInputParameter -->
-<g id="node46" class="node">
+<g id="node47" class="node">
 <title>CommandInputParameter</title>
 <polygon fill="none" stroke="#000000" points="2308,-60.5 2134,-60.5 2134,-7.5 2308,-7.5 2308,-60.5"/>
 <text text-anchor="middle" x="2221" y="-45.3" font-family="Times,serif" font-size="14.00" fill="#000000">CommandInputParameter</text>
@@ -653,7 +653,7 @@
 <polygon fill="#000000" stroke="#000000" points="2224.5001,-70.5042 2221,-60.5042 2217.5001,-70.5042 2224.5001,-70.5042"/>
 </g>
 <!-- WorkflowInputParameter -->
-<g id="node62" class="node">
+<g id="node63" class="node">
 <title>WorkflowInputParameter</title>
 <polygon fill="none" stroke="#000000" points="2508,-60.5 2326,-60.5 2326,-7.5 2508,-7.5 2508,-60.5"/>
 <text text-anchor="middle" x="2417" y="-45.3" font-family="Times,serif" font-size="14.00" fill="#000000">WorkflowInputParameter</text>
@@ -667,7 +667,7 @@
 <polygon fill="#000000" stroke="#000000" points="2355.8377,-68.1327 2363.2518,-60.5642 2352.7361,-61.8573 2355.8377,-68.1327"/>
 </g>
 <!-- CommandOutputParameter -->
-<g id="node47" class="node">
+<g id="node48" class="node">
 <title>CommandOutputParameter</title>
 <polygon fill="none" stroke="#000000" points="404,-60.5 222,-60.5 222,-7.5 404,-7.5 404,-60.5"/>
 <text text-anchor="middle" x="313" y="-45.3" font-family="Times,serif" font-size="14.00" fill="#000000">CommandOutputParameter</text>
@@ -681,7 +681,7 @@
 <polygon fill="#000000" stroke="#000000" points="401.0389,-60.412 390.4455,-60.5887 398.8369,-67.0566 401.0389,-60.412"/>
 </g>
 <!-- ExpressionToolOutputParameter -->
-<g id="node61" class="node">
+<g id="node62" class="node">
 <title>ExpressionToolOutputParameter</title>
 <polygon fill="none" stroke="#000000" points="656,-53 422,-53 422,-15 656,-15 656,-53"/>
 <text text-anchor="middle" x="539" y="-37.8" font-family="Times,serif" font-size="14.00" fill="#000000">ExpressionToolOutputParameter</text>
@@ -694,7 +694,7 @@
 <polygon fill="#000000" stroke="#000000" points="563.785,-58.8535 554.7526,-53.3159 558.3603,-63.2776 563.785,-58.8535"/>
 </g>
 <!-- WorkflowOutputParameter -->
-<g id="node64" class="node">
+<g id="node65" class="node">
 <title>WorkflowOutputParameter</title>
 <polygon fill="none" stroke="#000000" points="863.5,-68 674.5,-68 674.5,0 863.5,0 863.5,-68"/>
 <text text-anchor="middle" x="769" y="-52.8" font-family="Times,serif" font-size="14.00" fill="#000000">WorkflowOutputParameter</text>
@@ -743,7 +743,7 @@
 <polygon fill="#000000" stroke="#000000" points="3043.4361,-498.0729 3033.9358,-493.3829 3038.4378,-502.9737 3043.4361,-498.0729"/>
 </g>
 <!-- DockerRequirement -->
-<g id="node49" class="node">
+<g id="node50" class="node">
 <title>DockerRequirement</title>
 <polygon fill="none" stroke="#000000" points="3301.5,-530.7401 3112.5,-530.7401 3112.5,-402.7401 3301.5,-402.7401 3301.5,-530.7401"/>
 <text text-anchor="middle" x="3207" y="-515.5401" font-family="Times,serif" font-size="14.00" fill="#000000">DockerRequirement</text>
@@ -762,7 +762,7 @@
 <polygon fill="#000000" stroke="#000000" points="3292.3208,-532.9989 3281.9472,-530.8448 3288.7133,-538.9978 3292.3208,-532.9989"/>
 </g>
 <!-- SoftwareRequirement -->
-<g id="node50" class="node">
+<g id="node51" class="node">
 <title>SoftwareRequirement</title>
 <polygon fill="none" stroke="#000000" points="3478.5,-493.2401 3319.5,-493.2401 3319.5,-440.2401 3478.5,-440.2401 3478.5,-493.2401"/>
 <text text-anchor="middle" x="3399" y="-478.0401" font-family="Times,serif" font-size="14.00" fill="#000000">SoftwareRequirement</text>
@@ -776,7 +776,7 @@
 <polygon fill="#000000" stroke="#000000" points="3430.7142,-498.1201 3421.2872,-493.2846 3425.6411,-502.9435 3430.7142,-498.1201"/>
 </g>
 <!-- InitialWorkDirRequirement -->
-<g id="node53" class="node">
+<g id="node54" class="node">
 <title>InitialWorkDirRequirement</title>
 <polygon fill="none" stroke="#000000" points="3700,-493.2401 3496,-493.2401 3496,-440.2401 3700,-440.2401 3700,-493.2401"/>
 <text text-anchor="middle" x="3598" y="-478.0401" font-family="Times,serif" font-size="14.00" fill="#000000">InitialWorkDirRequirement</text>
@@ -790,7 +790,7 @@
 <polygon fill="#000000" stroke="#000000" points="3639.095,-497.051 3629.0823,-493.5874 3634.7497,-502.539 3639.095,-497.051"/>
 </g>
 <!-- EnvVarRequirement -->
-<g id="node54" class="node">
+<g id="node55" class="node">
 <title>EnvVarRequirement</title>
 <polygon fill="none" stroke="#000000" points="3862,-493.2401 3718,-493.2401 3718,-440.2401 3862,-440.2401 3862,-493.2401"/>
 <text text-anchor="middle" x="3790" y="-478.0401" font-family="Times,serif" font-size="14.00" fill="#000000">EnvVarRequirement</text>
@@ -804,7 +804,7 @@
 <polygon fill="#000000" stroke="#000000" points="3821.5116,-498.4854 3812.1682,-493.4902 3816.3572,-503.2217 3821.5116,-498.4854"/>
 </g>
 <!-- ShellCommandRequirement -->
-<g id="node55" class="node">
+<g id="node56" class="node">
 <title>ShellCommandRequirement</title>
 <polygon fill="none" stroke="#000000" points="4069.5,-485.7401 3880.5,-485.7401 3880.5,-447.7401 4069.5,-447.7401 4069.5,-485.7401"/>
 <text text-anchor="middle" x="3975" y="-470.5401" font-family="Times,serif" font-size="14.00" fill="#000000">ShellCommandRequirement</text>
@@ -817,7 +817,7 @@
 <polygon fill="#000000" stroke="#000000" points="4008.4573,-489.5546 3998.4988,-485.9382 4004.0286,-494.9755 4008.4573,-489.5546"/>
 </g>
 <!-- ResourceRequirement -->
-<g id="node56" class="node">
+<g id="node57" class="node">
 <title>ResourceRequirement</title>
 <polygon fill="none" stroke="#000000" points="4246.5,-545.7401 4087.5,-545.7401 4087.5,-387.7401 4246.5,-387.7401 4246.5,-545.7401"/>
 <text text-anchor="middle" x="4167" y="-530.5401" font-family="Times,serif" font-size="14.00" fill="#000000">ResourceRequirement</text>
@@ -838,7 +838,7 @@
 <polygon fill="#000000" stroke="#000000" points="4200.213,-554.2871 4193.7013,-545.9296 4193.5799,-556.5238 4200.213,-554.2871"/>
 </g>
 <!-- TimeLimit -->
-<g id="node57" class="node">
+<g id="node58" class="node">
 <title>TimeLimit</title>
 <polygon fill="none" stroke="#000000" points="4363.5,-493.2401 4264.5,-493.2401 4264.5,-440.2401 4363.5,-440.2401 4363.5,-493.2401"/>
 <text text-anchor="middle" x="4314" y="-478.0401" font-family="Times,serif" font-size="14.00" fill="#000000">TimeLimit</text>
@@ -852,7 +852,7 @@
 <polygon fill="#000000" stroke="#000000" points="4304.9071,-504.1644 4304.8296,-493.5699 4298.2833,-501.9004 4304.9071,-504.1644"/>
 </g>
 <!-- WorkReuse -->
-<g id="node58" class="node">
+<g id="node59" class="node">
 <title>WorkReuse</title>
 <polygon fill="none" stroke="#000000" points="4496,-493.2401 4382,-493.2401 4382,-440.2401 4496,-440.2401 4496,-493.2401"/>
 <text text-anchor="middle" x="4439" y="-478.0401" font-family="Times,serif" font-size="14.00" fill="#000000">WorkReuse</text>
@@ -866,7 +866,7 @@
 <polygon fill="#000000" stroke="#000000" points="4413.8264,-503.4304 4417.4718,-493.4824 4408.4184,-498.9858 4413.8264,-503.4304"/>
 </g>
 <!-- NetworkAccess -->
-<g id="node59" class="node">
+<g id="node60" class="node">
 <title>NetworkAccess</title>
 <polygon fill="none" stroke="#000000" points="4643.5,-493.2401 4514.5,-493.2401 4514.5,-440.2401 4643.5,-440.2401 4643.5,-493.2401"/>
 <text text-anchor="middle" x="4579" y="-478.0401" font-family="Times,serif" font-size="14.00" fill="#000000">NetworkAccess</text>
@@ -880,7 +880,7 @@
 <polygon fill="#000000" stroke="#000000" points="4557.1778,-503.3894 4560.6578,-493.3824 4551.6969,-499.0351 4557.1778,-503.3894"/>
 </g>
 <!-- InplaceUpdateRequirement -->
-<g id="node60" class="node">
+<g id="node61" class="node">
 <title>InplaceUpdateRequirement</title>
 <polygon fill="none" stroke="#000000" points="4858.5,-493.2401 4661.5,-493.2401 4661.5,-440.2401 4858.5,-440.2401 4858.5,-493.2401"/>
 <text text-anchor="middle" x="4760" y="-478.0401" font-family="Times,serif" font-size="14.00" fill="#000000">InplaceUpdateRequirement</text>
@@ -894,7 +894,7 @@
 <polygon fill="#000000" stroke="#000000" points="4727.244,-502.5653 4732.5175,-493.3761 4722.6646,-497.2711 4727.244,-502.5653"/>
 </g>
 <!-- SubworkflowFeatureRequirement -->
-<g id="node70" class="node">
+<g id="node71" class="node">
 <title>SubworkflowFeatureRequirement</title>
 <polygon fill="none" stroke="#000000" points="5111,-485.7401 4877,-485.7401 4877,-447.7401 5111,-447.7401 5111,-485.7401"/>
 <text text-anchor="middle" x="4994" y="-470.5401" font-family="Times,serif" font-size="14.00" fill="#000000">SubworkflowFeatureRequirement</text>
@@ -907,7 +907,7 @@
 <polygon fill="#000000" stroke="#000000" points="4965.393,-494.8812 4971.1541,-485.9896 4961.1056,-489.3478 4965.393,-494.8812"/>
 </g>
 <!-- ScatterFeatureRequirement -->
-<g id="node71" class="node">
+<g id="node72" class="node">
 <title>ScatterFeatureRequirement</title>
 <polygon fill="none" stroke="#000000" points="5333,-485.7401 5129,-485.7401 5129,-447.7401 5333,-447.7401 5333,-485.7401"/>
 <text text-anchor="middle" x="5231" y="-470.5401" font-family="Times,serif" font-size="14.00" fill="#000000">ScatterFeatureRequirement</text>
@@ -920,7 +920,7 @@
 <polygon fill="#000000" stroke="#000000" points="5206.6569,-495.1063 5211.7429,-485.812 5201.971,-489.906 5206.6569,-495.1063"/>
 </g>
 <!-- MultipleInputFeatureRequirement -->
-<g id="node72" class="node">
+<g id="node73" class="node">
 <title>MultipleInputFeatureRequirement</title>
 <polygon fill="none" stroke="#000000" points="5599.5,-485.7401 5350.5,-485.7401 5350.5,-447.7401 5599.5,-447.7401 5599.5,-485.7401"/>
 <text text-anchor="middle" x="5475" y="-470.5401" font-family="Times,serif" font-size="14.00" fill="#000000">MultipleInputFeatureRequirement</text>
@@ -933,7 +933,7 @@
 <polygon fill="#000000" stroke="#000000" points="5445.3103,-494.6753 5451.2555,-485.9057 5441.1392,-489.0537 5445.3103,-494.6753"/>
 </g>
 <!-- StepInputExpressionRequirement -->
-<g id="node73" class="node">
+<g id="node74" class="node">
 <title>StepInputExpressionRequirement</title>
 <polygon fill="none" stroke="#000000" points="5860,-485.7401 5618,-485.7401 5618,-447.7401 5860,-447.7401 5860,-485.7401"/>
 <text text-anchor="middle" x="5739" y="-470.5401" font-family="Times,serif" font-size="14.00" fill="#000000">StepInputExpressionRequirement</text>
@@ -946,7 +946,7 @@
 <polygon fill="#000000" stroke="#000000" points="5710.0591,-494.8173 5715.8854,-485.9683 5705.8124,-489.2526 5710.0591,-494.8173"/>
 </g>
 <!-- CommandLineTool -->
-<g id="node48" class="node">
+<g id="node49" class="node">
 <title>CommandLineTool</title>
 <polygon fill="none" stroke="#000000" points="1812.5,-351.7401 1645.5,-351.7401 1645.5,-193.7401 1812.5,-193.7401 1812.5,-351.7401"/>
 <text text-anchor="middle" x="1729" y="-336.5401" font-family="Times,serif" font-size="14.00" fill="#000000">CommandLineTool</text>
@@ -967,7 +967,7 @@
 <polygon fill="#000000" stroke="#000000" points="1666.7134,-361.9215 1669.8967,-351.8162 1661.1065,-357.7307 1666.7134,-361.9215"/>
 </g>
 <!-- ExpressionTool -->
-<g id="node63" class="node">
+<g id="node64" class="node">
 <title>ExpressionTool</title>
 <polygon fill="none" stroke="#000000" points="1532,-299.2401 1410,-299.2401 1410,-246.2401 1532,-246.2401 1532,-299.2401"/>
 <text text-anchor="middle" x="1471" y="-284.0401" font-family="Times,serif" font-size="14.00" fill="#000000">ExpressionTool</text>
@@ -981,7 +981,7 @@
 <polygon fill="#000000" stroke="#000000" points="1494.5033,-306.1369 1486.4457,-299.2575 1488.4546,-309.6602 1494.5033,-306.1369"/>
 </g>
 <!-- Workflow -->
-<g id="node69" class="node">
+<g id="node70" class="node">
 <title>Workflow</title>
 <polygon fill="none" stroke="#000000" points="1627.5,-299.2401 1550.5,-299.2401 1550.5,-246.2401 1627.5,-246.2401 1627.5,-299.2401"/>
 <text text-anchor="middle" x="1589" y="-284.0401" font-family="Times,serif" font-size="14.00" fill="#000000">Workflow</text>
@@ -1018,16 +1018,24 @@
 <path fill="none" stroke="#000000" d="M1037.1964,-115.9956C1053.5279,-111.8799 1071.4292,-107.5677 1088,-104 1176.2942,-84.9902 1200.4244,-90.085 1288,-68 1302.367,-64.3769 1317.6339,-59.8052 1331.9186,-55.1994"/>
 <polygon fill="#000000" stroke="#000000" points="1333.2158,-58.4575 1341.6279,-52.0165 1331.0352,-51.8058 1333.2158,-58.4575"/>
 </g>
-<!-- EnvironmentDef -->
+<!-- SecondaryFileSchema -->
 <g id="node34" class="node">
+<title>SecondaryFileSchema</title>
+<polygon fill="none" stroke="#000000" points="4515.5,-709.7401 4356.5,-709.7401 4356.5,-656.7401 4515.5,-656.7401 4515.5,-709.7401"/>
+<text text-anchor="middle" x="4436" y="-694.5401" font-family="Times,serif" font-size="14.00" fill="#000000">SecondaryFileSchema</text>
+<text text-anchor="start" x="4364.5" y="-679.5401" font-family="Times,serif" font-size="14.00" fill="#000000">* pattern</text>
+<text text-anchor="start" x="4364.5" y="-664.5401" font-family="Times,serif" font-size="14.00" fill="#000000">* required</text>
+</g>
+<!-- EnvironmentDef -->
+<g id="node35" class="node">
 <title>EnvironmentDef</title>
-<polygon fill="none" stroke="#000000" points="4479,-709.7401 4357,-709.7401 4357,-656.7401 4479,-656.7401 4479,-709.7401"/>
-<text text-anchor="middle" x="4418" y="-694.5401" font-family="Times,serif" font-size="14.00" fill="#000000">EnvironmentDef</text>
-<text text-anchor="start" x="4365" y="-679.5401" font-family="Times,serif" font-size="14.00" fill="#000000">* envName</text>
-<text text-anchor="start" x="4365" y="-664.5401" font-family="Times,serif" font-size="14.00" fill="#000000">* envValue</text>
+<polygon fill="none" stroke="#000000" points="4656,-709.7401 4534,-709.7401 4534,-656.7401 4656,-656.7401 4656,-709.7401"/>
+<text text-anchor="middle" x="4595" y="-694.5401" font-family="Times,serif" font-size="14.00" fill="#000000">EnvironmentDef</text>
+<text text-anchor="start" x="4542" y="-679.5401" font-family="Times,serif" font-size="14.00" fill="#000000">* envName</text>
+<text text-anchor="start" x="4542" y="-664.5401" font-family="Times,serif" font-size="14.00" fill="#000000">* envValue</text>
 </g>
 <!-- CommandLineBindable -->
-<g id="node37" class="node">
+<g id="node38" class="node">
 <title>CommandLineBindable</title>
 <polygon fill="none" stroke="#000000" points="1403.5,-149.8701 1244.5,-149.8701 1244.5,-111.8701 1403.5,-111.8701 1403.5,-149.8701"/>
 <text text-anchor="middle" x="1324" y="-134.6701" font-family="Times,serif" font-size="14.00" fill="#000000">CommandLineBindable</text>
@@ -1058,25 +1066,25 @@
 <polygon fill="#000000" stroke="#000000" points="1376.4024,-62.3114 1379.2833,-52.1157 1370.6731,-58.2896 1376.4024,-62.3114"/>
 </g>
 <!-- SoftwarePackage -->
-<g id="node51" class="node">
+<g id="node52" class="node">
 <title>SoftwarePackage</title>
-<polygon fill="none" stroke="#000000" points="4626.5,-717.2401 4497.5,-717.2401 4497.5,-649.2401 4626.5,-649.2401 4626.5,-717.2401"/>
-<text text-anchor="middle" x="4562" y="-702.0401" font-family="Times,serif" font-size="14.00" fill="#000000">SoftwarePackage</text>
-<text text-anchor="start" x="4505.5" y="-687.0401" font-family="Times,serif" font-size="14.00" fill="#000000">* package</text>
-<text text-anchor="start" x="4505.5" y="-672.0401" font-family="Times,serif" font-size="14.00" fill="#000000">* version</text>
-<text text-anchor="start" x="4505.5" y="-657.0401" font-family="Times,serif" font-size="14.00" fill="#000000">* specs</text>
+<polygon fill="none" stroke="#000000" points="4803.5,-717.2401 4674.5,-717.2401 4674.5,-649.2401 4803.5,-649.2401 4803.5,-717.2401"/>
+<text text-anchor="middle" x="4739" y="-702.0401" font-family="Times,serif" font-size="14.00" fill="#000000">SoftwarePackage</text>
+<text text-anchor="start" x="4682.5" y="-687.0401" font-family="Times,serif" font-size="14.00" fill="#000000">* package</text>
+<text text-anchor="start" x="4682.5" y="-672.0401" font-family="Times,serif" font-size="14.00" fill="#000000">* version</text>
+<text text-anchor="start" x="4682.5" y="-657.0401" font-family="Times,serif" font-size="14.00" fill="#000000">* specs</text>
 </g>
 <!-- Dirent -->
-<g id="node52" class="node">
+<g id="node53" class="node">
 <title>Dirent</title>
-<polygon fill="none" stroke="#000000" points="4743.5,-717.2401 4644.5,-717.2401 4644.5,-649.2401 4743.5,-649.2401 4743.5,-717.2401"/>
-<text text-anchor="middle" x="4694" y="-702.0401" font-family="Times,serif" font-size="14.00" fill="#000000">Dirent</text>
-<text text-anchor="start" x="4652.5" y="-687.0401" font-family="Times,serif" font-size="14.00" fill="#000000">* entryname</text>
-<text text-anchor="start" x="4652.5" y="-672.0401" font-family="Times,serif" font-size="14.00" fill="#000000">* entry</text>
-<text text-anchor="start" x="4652.5" y="-657.0401" font-family="Times,serif" font-size="14.00" fill="#000000">* writable</text>
+<polygon fill="none" stroke="#000000" points="4920.5,-717.2401 4821.5,-717.2401 4821.5,-649.2401 4920.5,-649.2401 4920.5,-717.2401"/>
+<text text-anchor="middle" x="4871" y="-702.0401" font-family="Times,serif" font-size="14.00" fill="#000000">Dirent</text>
+<text text-anchor="start" x="4829.5" y="-687.0401" font-family="Times,serif" font-size="14.00" fill="#000000">* entryname</text>
+<text text-anchor="start" x="4829.5" y="-672.0401" font-family="Times,serif" font-size="14.00" fill="#000000">* entry</text>
+<text text-anchor="start" x="4829.5" y="-657.0401" font-family="Times,serif" font-size="14.00" fill="#000000">* writable</text>
 </g>
 <!-- Sink -->
-<g id="node65" class="node">
+<g id="node66" class="node">
 <title>Sink</title>
 <ellipse fill="none" stroke="#000000" cx="1930" cy="-683.2401" rx="70.0071" ry="37.4533"/>
 <text text-anchor="middle" x="1930" y="-694.5401" font-family="Times,serif" font-size="14.00" fill="#000000">Sink</text>
