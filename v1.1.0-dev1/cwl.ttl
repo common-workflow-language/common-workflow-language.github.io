@@ -90,6 +90,10 @@
 
 <https://w3id.org/cwl/cwl#File/class/File_class> a rdfs:Class .
 
+@base:IOSchema a rdfs:Class ;
+    rdfs:subClassOf @base:Labeled,
+        sld:Documented .
+
 @base:Identified a rdfs:Class .
 
 @base:InitialWorkDirRequirement a rdfs:Class ;
@@ -129,8 +133,7 @@
         sld:RecordSchema .
 
 @base:InputSchema a rdfs:Class ;
-    rdfs:subClassOf @base:Labeled,
-        sld:Documented .
+    rdfs:subClassOf @base:IOSchema .
 
 @base:Labeled a rdfs:Class .
 
@@ -168,7 +171,7 @@
         sld:RecordSchema .
 
 @base:OutputSchema a rdfs:Class ;
-    rdfs:subClassOf @base:Labeled .
+    rdfs:subClassOf @base:IOSchema .
 
 @base:Parameter a rdfs:Class ;
     rdfs:subClassOf @base:FieldBase,

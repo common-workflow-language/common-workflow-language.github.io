@@ -166,7 +166,9 @@ CWL documents that relied on previously undefined or
 underspecified behavior may have slightly different behavior in
 v1.1.0-dev1.</p>
 <h2 id="Changelog">1.2 Changelog</h2><ul>
+<li>Clarify how Requirements are inherited by step processes</li>
 <li>Document explicitly that CWL allows pass-through of workflow inputs to outputs</li>
+<li>Added optional name and doc fields to OutputRecordSchema</li>
 <li>Default values for some fields are now expressed in the schema</li>
 <li>When defining record types, fields of type <code>File</code> may now include
 <code>format</code>, <code>secondaryFiles</code>, and <code>streamable</code>.</li>
@@ -344,9 +346,13 @@ object document as an array of requirements under the field name
 <code>cwl:requirements</code>. If implementations allow this, then such requirements
 should be combined with any requirements present in the corresponding Process
 as if they were specified there.</p>
-<p>Requirements are inherited.  A requirement specified in a Workflow applies
-to all workflow steps; a requirement specified on a workflow step will
-apply to the process implementation of that step and any of its substeps.</p>
+<p>Requirements specified in a parent Workflow are inherited by step processes
+if they are valid for that step. If the substep is a CommandLineTool
+only the <code>InlineJavascriptRequirement</code>, <code>SchemaDefRequirement</code>, <code>DockerRequirement</code>,
+<code>SoftwareRequirement</code>, <code>InitialWorkDirRequirement</code>, <code>EnvVarRequirement</code>, 
+<code>ShellCommandRequirement</code>, <code>ResourceRequirement</code> are valid.</p>
+<p><em>As good practice, it is best to have process requirements be self-contained,
+such that each process can run successfully by itself.</em></p>
 <p>If the same process requirement appears at different levels of the
 workflow, the most specific instance of the requirement is used, that is,
 an entry in <code>requirements</code> on a process implementation such as
@@ -960,6 +966,8 @@ If not specified, the default method is "merge_nested".</p>
 <h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>merge_nested</code></td><td></td></tr><tr><td><code>merge_flattened</code></td><td></td></tr></table><h3 id="OutputRecordSchema">4.2.2 OutputRecordSchema</h3><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>enum_d9cba076fca539106791a4f46d198c7fcfbdb779</td><td>True</td><td><p>Must be <code>record</code></p>
 </td></tr><tr><td><code>fields</code></td><td>array&lt;<a href="#OutputRecordField">OutputRecordField</a>&gt; | <br>map&lt;<code>name</code>,&nbsp;<code>type</code> | <a href="#OutputRecordField">OutputRecordField</a>&gt</td><td>False</td><td><p>Defines the fields of the record.</p>
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
+</td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
+</td></tr><tr><td><code>name</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>The identifier for this type</p>
 </td></tr></table><h3 id="OutputRecordField">4.2.3 OutputRecordField</h3><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The name of the field</p>
 </td></tr><tr><td><code>type</code></td><td><a href="#CWLType">CWLType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>The field type</p>
 </td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
@@ -1005,9 +1013,13 @@ File object.</p>
 </td></tr></table><h4 id="OutputEnumSchema">4.2.3.1 OutputEnumSchema</h4><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the set of valid symbols.</p>
 </td></tr><tr><td><code>type</code></td><td>enum_d961d79c225752b9fadb617367615ab176b47d77</td><td>True</td><td><p>Must be <code>enum</code></p>
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
+</td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
+</td></tr><tr><td><code>name</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>The identifier for this type</p>
 </td></tr></table><h4 id="OutputArraySchema">4.2.3.2 OutputArraySchema</h4><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>items</code></td><td><a href="#CWLType">CWLType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the type of the array elements.</p>
 </td></tr><tr><td><code>type</code></td><td>enum_d062602be0b4b8fd33e69e29a841317b6ab665bc</td><td>True</td><td><p>Must be <code>array</code></p>
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
+</td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
+</td></tr><tr><td><code>name</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>The identifier for this type</p>
 </td></tr></table><h2 id="WorkflowStep">4.3 WorkflowStep</h2><p>A workflow step is an executable element of a workflow.  It specifies the
 underlying process implementation (such as <code>CommandLineTool</code> or another
 <code>Workflow</code>) in the <code>run</code> field and connects the input and output parameters

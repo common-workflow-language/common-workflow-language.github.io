@@ -34,6 +34,7 @@
         "FieldBase": "https://w3id.org/cwl/cwl#FieldBase",
         "File": "https://w3id.org/cwl/cwl#File",
         "File_class": "https://w3id.org/cwl/cwl#File/class/File_class",
+        "IOSchema": "https://w3id.org/cwl/cwl#IOSchema",
         "Identified": "https://w3id.org/cwl/cwl#Identified",
         "InitialWorkDirRequirement": "https://w3id.org/cwl/cwl#InitialWorkDirRequirement",
         "InlineJavascriptRequirement": "https://w3id.org/cwl/cwl#InlineJavascriptRequirement",
