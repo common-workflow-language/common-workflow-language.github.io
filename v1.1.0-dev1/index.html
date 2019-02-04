@@ -54,24 +54,18 @@ command line tools and other workflows.</p>
 specifies the preprocessing steps that must be applied when loading CWL
 documents and the schema language used to write the above specifications.</p>
 <p>Also available are inheritance graphs (as SVG images) for the <a href="salad.svg">Schema Salad object model</a> and the <a href="cwl.svg">CWL object model</a>.</p>
-<h1 id="Running_the_CWL_conformance_tests">Running the CWL conformance tests</h1><ol>
-<li><p>Install a CWL runner of your choice. The reference runner can be installed as
+<h1 id="Running_the_CWL_conformance_tests">Running the CWL conformance tests</h1><p>Install a CWL runner of your choice. The reference runner can be installed as
 the default runner by doing:</p>
 <pre><code>pip install cwlref-runner
 </code></pre>
-</li>
-<li><p>Install the CWL test parser:</p>
-</li>
-</ol>
+<p>Install the CWL test parser:</p>
 <pre><code>pip install cwltest
 </code></pre>
 <p>You may need to activate a virtualenv first, or do a local install by adding <code>--user</code> after <code>install</code> above.</p>
-<ol>
-<li>From within a copy of <a href="https://github.com/common-workflow-language/cwl-v1.1">this repository</a> (e.g. cwl-v1.1) execute the main test script<pre><code>./run_test.sh
+<p>From within a copy of <a href="https://github.com/common-workflow-language/cwl-v1.1">this repository</a> (e.g. cwl-v1.1) execute the main test script</p>
+<pre><code>./run_test.sh
 </code></pre>
-</li>
-</ol>
-<p>If the CWL runner isn't installed as <code>cwl-runner</code> then you can specify the name:</p>
+<p>If the CWL runner isn't installed as <code>cwl-runner</code> then you can specify the name for the runner:</p>
 <pre><code>./run_test.sh RUNNER=cwltool
 </code></pre>
 <p>You can also specify additional options that are specific for the particular CWL runner you are using.
@@ -80,6 +74,15 @@ For example, with CWL reference runner you can turn on parallel execution mode:<
 </code></pre>
 <p>This can be combined with launching more than one CWL conformance test at once with <code>-j</code>:</p>
 <pre><code>./run_test.sh -j4 RUNNER=cwltool EXTRA=--parallel
+</code></pre>
+<p>You can list all the tests</p>
+<pre><code>./run_test.sh -l
+</code></pre>
+<p>You can run a particular test</p>
+<pre><code>./run_test.sh -n23
+</code></pre>
+<p>If you are running tests for an unreleased CWL version use the <code>--enable-dev</code> flag:</p>
+<pre><code>./run_test.sh EXTRA=--enable-dev
 </code></pre>
 <p>For details of options you can pass to the test script, do:</p>
 <pre><code>./run_test.sh --help

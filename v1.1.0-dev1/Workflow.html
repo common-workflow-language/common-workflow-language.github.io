@@ -108,15 +108,16 @@ under the terms of the Apache License, version 2.0.</p>
 <li><a href="#WorkflowInputParameter">4.1 WorkflowInputParameter</a><ol>
 <li><a href="#SecondaryFileSchema">4.1.1 SecondaryFileSchema</a><ol>
 </ol><li><a href="#Expression">4.1.2 Expression</a><ol>
-</ol><li><a href="#Any">4.1.3 Any</a><ol>
-</ol><li><a href="#CWLType">4.1.4 CWLType</a><ol>
-</ol><li><a href="#File">4.1.5 File</a><ol>
-<li><a href="#Directory">4.1.5.1 Directory</a><ol>
-</ol></li></ol><li><a href="#InputRecordSchema">4.1.6 InputRecordSchema</a><ol>
-</ol><li><a href="#InputRecordField">4.1.7 InputRecordField</a><ol>
-<li><a href="#InputEnumSchema">4.1.7.1 InputEnumSchema</a><ol>
-</ol><li><a href="#InputArraySchema">4.1.7.2 InputArraySchema</a><ol>
-</ol></li></ol><li><a href="#InputBinding">4.1.8 InputBinding</a><ol>
+</ol><li><a href="#LoadListingEnum">4.1.3 LoadListingEnum</a><ol>
+</ol><li><a href="#Any">4.1.4 Any</a><ol>
+</ol><li><a href="#CWLType">4.1.5 CWLType</a><ol>
+</ol><li><a href="#File">4.1.6 File</a><ol>
+<li><a href="#Directory">4.1.6.1 Directory</a><ol>
+</ol></li></ol><li><a href="#InputRecordSchema">4.1.7 InputRecordSchema</a><ol>
+</ol><li><a href="#InputRecordField">4.1.8 InputRecordField</a><ol>
+<li><a href="#InputEnumSchema">4.1.8.1 InputEnumSchema</a><ol>
+</ol><li><a href="#InputArraySchema">4.1.8.2 InputArraySchema</a><ol>
+</ol></li></ol><li><a href="#InputBinding">4.1.9 InputBinding</a><ol>
 </ol></li></ol><li><a href="#WorkflowOutputParameter">4.2 WorkflowOutputParameter</a><ol>
 <li><a href="#LinkMergeMethod">4.2.1 LinkMergeMethod</a><ol>
 </ol><li><a href="#OutputRecordSchema">4.2.2 OutputRecordSchema</a><ol>
@@ -134,21 +135,22 @@ under the terms of the Apache License, version 2.0.</p>
 <li><a href="#CommandInputEnumSchema">4.3.5.1.1.1 CommandInputEnumSchema</a><ol>
 </ol><li><a href="#CommandLineBinding">4.3.5.1.1.2 CommandLineBinding</a><ol>
 </ol><li><a href="#CommandInputArraySchema">4.3.5.1.1.3 CommandInputArraySchema</a><ol>
-</ol></li></ol></li></ol></li></ol><li><a href="#SoftwareRequirement">4.3.6 SoftwareRequirement</a><ol>
-</ol><li><a href="#SoftwarePackage">4.3.7 SoftwarePackage</a><ol>
-</ol><li><a href="#InitialWorkDirRequirement">4.3.8 InitialWorkDirRequirement</a><ol>
-<li><a href="#Dirent">4.3.8.1 Dirent</a><ol>
-</ol></li></ol><li><a href="#TimeLimit">4.3.9 TimeLimit</a><ol>
-</ol><li><a href="#WorkReuse">4.3.10 WorkReuse</a><ol>
-</ol><li><a href="#NetworkAccess">4.3.11 NetworkAccess</a><ol>
-</ol><li><a href="#InplaceUpdateRequirement">4.3.12 InplaceUpdateRequirement</a><ol>
-</ol><li><a href="#SubworkflowFeatureRequirement">4.3.13 SubworkflowFeatureRequirement</a><ol>
-</ol><li><a href="#ScatterFeatureRequirement">4.3.14 ScatterFeatureRequirement</a><ol>
-</ol><li><a href="#MultipleInputFeatureRequirement">4.3.15 MultipleInputFeatureRequirement</a><ol>
-</ol><li><a href="#StepInputExpressionRequirement">4.3.16 StepInputExpressionRequirement</a><ol>
-</ol><li><a href="#ExpressionTool">4.3.17 ExpressionTool</a><ol>
-<li><a href="#ExpressionToolOutputParameter">4.3.17.1 ExpressionToolOutputParameter</a><ol>
-</ol><li><a href="#CWLVersion">4.3.17.2 CWLVersion</a><ol>
+</ol></li></ol></li></ol></li></ol><li><a href="#LoadListingRequirement">4.3.6 LoadListingRequirement</a><ol>
+</ol><li><a href="#SoftwareRequirement">4.3.7 SoftwareRequirement</a><ol>
+</ol><li><a href="#SoftwarePackage">4.3.8 SoftwarePackage</a><ol>
+</ol><li><a href="#InitialWorkDirRequirement">4.3.9 InitialWorkDirRequirement</a><ol>
+<li><a href="#Dirent">4.3.9.1 Dirent</a><ol>
+</ol></li></ol><li><a href="#TimeLimit">4.3.10 TimeLimit</a><ol>
+</ol><li><a href="#WorkReuse">4.3.11 WorkReuse</a><ol>
+</ol><li><a href="#NetworkAccess">4.3.12 NetworkAccess</a><ol>
+</ol><li><a href="#InplaceUpdateRequirement">4.3.13 InplaceUpdateRequirement</a><ol>
+</ol><li><a href="#SubworkflowFeatureRequirement">4.3.14 SubworkflowFeatureRequirement</a><ol>
+</ol><li><a href="#ScatterFeatureRequirement">4.3.15 ScatterFeatureRequirement</a><ol>
+</ol><li><a href="#MultipleInputFeatureRequirement">4.3.16 MultipleInputFeatureRequirement</a><ol>
+</ol><li><a href="#StepInputExpressionRequirement">4.3.17 StepInputExpressionRequirement</a><ol>
+</ol><li><a href="#ExpressionTool">4.3.18 ExpressionTool</a><ol>
+<li><a href="#ExpressionToolOutputParameter">4.3.18.1 ExpressionToolOutputParameter</a><ol>
+</ol><li><a href="#CWLVersion">4.3.18.2 CWLVersion</a><ol>
 </ol></li></ol></li></ol></li></ol></li></ol></nav>
 
 <h1 id="Introduction">1. Introduction</h1><p>The Common Workflow Language (CWL) working group is an informal, multi-vendor
@@ -167,15 +169,15 @@ CWL documents that relied on previously undefined or
 underspecified behavior may have slightly different behavior in
 v1.1.0-dev1.</p>
 <h2 id="Changelog">1.2 Changelog</h2><ul>
-<li>Clarify how Requirements are inherited by step processes</li>
+<li>Clarify how Requirements are inherited by step processes.</li>
 <li>Clarify behavior around step inputs not consumed by the target
 run process.</li>
-<li>Document explicitly that CWL allows pass-through of workflow inputs to outputs</li>
-<li>Added optional name and doc fields to OutputRecordSchema</li>
-<li>Default values for some fields are now expressed in the schema</li>
+<li>Document explicitly that CWL allows pass-through of workflow inputs to outputs.</li>
+<li>Added optional name and doc fields to <code>OutputRecordSchema</code>.</li>
+<li>Default values for some fields are now expressed in the schema.</li>
 <li>When defining record types, fields of type <code>File</code> may now include
 <code>format</code>, <code>secondaryFiles</code>, and <code>streamable</code>.</li>
-<li>The Input schemas (Record, Array, Enum),  now permits a <code>doc</code> field</li>
+<li>The <code>Input</code> schemas (<code>Record</code>, <code>Array</code>, <code>Enum</code>),  now permits a <code>doc</code> field.</li>
 <li>Any <code>doc</code> field may be an array of strings in addition to the
 previously allowed single string.</li>
 <li>The <code>run</code> field now introduces a subscope so that embedded
@@ -189,10 +191,24 @@ in a <code>Workflow</code> context will be removed in v2.0. Use the new
 <code>WorkflowInputParameter.loadContents</code> instead.</li>
 <li>The presence of <code>OutputRecordField.outputBinding</code> in v1.0 was due to
 a technical error and as it makes no semantic sense it was removed.</li>
-<li><code>WorkflowStepInput</code> now has a <code>label</code> field</li>
-<li><a href="#Requirements_and_hints">Addition</a> of <code>cwl:requirments</code> field to
-input object documents</li>
+<li><code>WorkflowStepInput</code> now has a <code>label</code> field.</li>
+<li><a href="#Requirements_and_hints">Addition</a> of <code>cwl:requirements</code> field to
+input object documents.</li>
 <li><code>secondaryFiles</code> can now be explicitly marked as <code>required</code> or not.</li>
+<li>Add note that undefined details related to execution are left open to
+the platform.</li>
+<li><a href="#TimeLimit">Added</a> <code>TimeLimit</code> feature, allowing to set an upper limit on the
+execution time of a CommandLineTool or ExpressionTool.</li>
+<li><a href="#WorkReuse">Added</a> <code>WorkReuse</code> feature, allowing to enable or disable the reuse
+behavior for a particular tool or step for implementations that
+support reusing output from past work.</li>
+<li><a href="#NetworkAccess">Added</a> <code>NetworkAccess</code> feature, allowing to indicate whether a
+process requires outgoing network access.</li>
+<li><a href="#InplaceUpdateRequirement">Added</a> <code>InplaceUpdateRequirement</code> feature, allowing tools to directly
+update files with <code>writable: true</code> in <code>InitialWorkDirRequirement</code>.</li>
+<li><a href="#LoadListingRequirement">Added</a> <code>LoadListingRequirement</code>
+and <a href="#LoadContents">loadListing</a> to control whether and how
+<code>Directory</code> listings should be loaded for use in expressions.</li>
 </ul>
 <p>See also the <a href="CommandLineTool.html#Changelog">CWL Command Line Tool Description, v1.1.0-dev1 changelog</a>.</p>
 <h2 id="Purpose">1.3 Purpose</h2><p>The Common Workflow Language Command Line Tool Description express
@@ -200,7 +216,9 @@ workflows for data-intensive science, such as Bioinformatics, Chemistry,
 Physics, and Astronomy.  This specification is intended to define a data
 and execution model for Workflows that can be implemented on top of a
 variety of computing platforms, ranging from an individual workstation to
-cluster, grid, cloud, and high performance computing systems.</p>
+cluster, grid, cloud, and high performance computing systems. Details related
+to execution of these workflow not laid out in this specification are open to
+interpretation by the computing platform implementing this specification.</p>
 <h2 id="References_to_other_specifications">1.4 References to other specifications</h2><p><strong>Javascript Object Notation (JSON)</strong>: <a href="http://json.org">http://json.org</a></p>
 <p><strong>JSON Linked Data (JSON-LD)</strong>: <a href="http://json-ld.org">http://json-ld.org</a></p>
 <p><strong>YAML</strong>: <a href="http://yaml.org">http://yaml.org</a></p>
@@ -557,7 +575,7 @@ concurrently, provided that dependencies between steps are met.</p>
 </td></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>The unique identifier for this object.</p>
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
 </td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
-</td></tr><tr><td><code>requirements</code></td><td>array&lt;<a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a> | <a href="#SoftwareRequirement">SoftwareRequirement</a> | <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a> | <a href="CommandLineTool.html#EnvVarRequirement">EnvVarRequirement</a> | <a href="CommandLineTool.html#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="CommandLineTool.html#ResourceRequirement">ResourceRequirement</a> | <a href="#TimeLimit">TimeLimit</a> | <a href="#WorkReuse">WorkReuse</a> | <a href="#NetworkAccess">NetworkAccess</a> | <a href="#InplaceUpdateRequirement">InplaceUpdateRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#StepInputExpressionRequirement">StepInputExpressionRequirement</a>&gt; | <br>map&lt;<code>class</code>,&nbsp;<a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a> | <a href="#SoftwareRequirement">SoftwareRequirement</a> | <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a> | <a href="CommandLineTool.html#EnvVarRequirement">EnvVarRequirement</a> | <a href="CommandLineTool.html#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="CommandLineTool.html#ResourceRequirement">ResourceRequirement</a> | <a href="#TimeLimit">TimeLimit</a> | <a href="#WorkReuse">WorkReuse</a> | <a href="#NetworkAccess">NetworkAccess</a> | <a href="#InplaceUpdateRequirement">InplaceUpdateRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#StepInputExpressionRequirement">StepInputExpressionRequirement</a>&gt</td><td>False</td><td><p>Declares requirements that apply to either the runtime environment or the
+</td></tr><tr><td><code>requirements</code></td><td>array&lt;<a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#LoadListingRequirement">LoadListingRequirement</a> | <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a> | <a href="#SoftwareRequirement">SoftwareRequirement</a> | <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a> | <a href="CommandLineTool.html#EnvVarRequirement">EnvVarRequirement</a> | <a href="CommandLineTool.html#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="CommandLineTool.html#ResourceRequirement">ResourceRequirement</a> | <a href="#TimeLimit">TimeLimit</a> | <a href="#WorkReuse">WorkReuse</a> | <a href="#NetworkAccess">NetworkAccess</a> | <a href="#InplaceUpdateRequirement">InplaceUpdateRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#StepInputExpressionRequirement">StepInputExpressionRequirement</a>&gt; | <br>map&lt;<code>class</code>,&nbsp;<a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#LoadListingRequirement">LoadListingRequirement</a> | <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a> | <a href="#SoftwareRequirement">SoftwareRequirement</a> | <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a> | <a href="CommandLineTool.html#EnvVarRequirement">EnvVarRequirement</a> | <a href="CommandLineTool.html#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="CommandLineTool.html#ResourceRequirement">ResourceRequirement</a> | <a href="#TimeLimit">TimeLimit</a> | <a href="#WorkReuse">WorkReuse</a> | <a href="#NetworkAccess">NetworkAccess</a> | <a href="#InplaceUpdateRequirement">InplaceUpdateRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#StepInputExpressionRequirement">StepInputExpressionRequirement</a>&gt</td><td>False</td><td><p>Declares requirements that apply to either the runtime environment or the
 workflow engine that must be met in order to execute this process.  If
 an implementation cannot satisfy all requirements, or a requirement is
 listed which is not recognized by the implementation, it is a fatal
@@ -623,6 +641,15 @@ available, file formats may be tested by exact match.</p>
 </td></tr><tr><td><code>loadContents</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Read up to the first 64 KiB of text from the file and place it in the
 "contents" field of the file object for use by expressions.</p>
+</td></tr><tr><td><code>loadListing</code></td><td><a href="#LoadListingEnum">LoadListingEnum</a></td><td>False</td><td><p>Only valid when <code>type: Directory</code> or is an array of <code>items: Directory</code>.</p>
+<p>Specify the desired behavior for loading the <code>listing</code> field of
+a Directory object for use by expressions.</p>
+<p>The order of precedence for loadListing is:</p>
+<ol>
+<li><code>loadListing</code> on an individual parameter</li>
+<li>Inherited from <code>LoadListingRequirement</code></li>
+<li>By default: <code>no_listing</code></li>
+</ol>
 </td></tr><tr><td><code>default</code></td><td><a href="#Any">Any</a></td><td>False</td><td><p>The default value to use for this parameter if the parameter is missing
 from the input object, or if the value of the parameter in the input
 object is <code>null</code>.  Default values are applied before evaluating expressions
@@ -651,12 +678,12 @@ instead.</p>
 it specifies that the following pattern should be applied to the path
 of the primary file to yield a filename relative to the primary File:</p>
 <ol>
+<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark
+the resulting secondary file as optional.</li>
 <li>If string begins with one or more caret <code>^</code> characters, for each
 caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
-<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark
-the resulting secondary file as optional.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
 </ol>
 </td></tr><tr><td><code>required</code></td><td><a href="#CWLType">boolean</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>False</td><td><p>An implementation must not fail workflow execution if <code>required</code> is
@@ -667,9 +694,11 @@ input and <code>false</code> for secondary files on output.</p>
 runtime parameter references.  If <a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a>
 is declared and supported by the platform, the field must also allow
 Javascript expressions.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>ExpressionPlaceholder</code></td><td></td></tr></table><h3 id="Any">4.1.3 Any</h3><p>The <strong>Any</strong> type validates for any non-null value.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>Any</code></td><td></td></tr></table><h3 id="CWLType">4.1.4 CWLType</h3><p>Extends primitive types with the concept of a file and directory as a builtin type.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>null</code></td><td> no value</td></tr><tr><td><code>boolean</code></td><td> a binary value</td></tr><tr><td><code>int</code></td><td> 32-bit signed integer</td></tr><tr><td><code>long</code></td><td> 64-bit signed integer</td></tr><tr><td><code>float</code></td><td> single precision (32-bit) IEEE 754 floating-point number</td></tr><tr><td><code>double</code></td><td> double precision (64-bit) IEEE 754 floating-point number</td></tr><tr><td><code>string</code></td><td> Unicode character sequence</td></tr><tr><td><code>File</code></td><td> A File object</td></tr><tr><td><code>Directory</code></td><td> A Directory object</td></tr></table><h3 id="File">4.1.5 File</h3><p>Represents a file (or group of files when <code>secondaryFiles</code> is provided) that
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>ExpressionPlaceholder</code></td><td></td></tr></table><h3 id="LoadListingEnum">4.1.3 LoadListingEnum</h3><p>Specify the desired behavior for loading the <code>listing</code> field of
+a Directory object for use by expressions.</p>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>no_listing</code></td><td> Do not load the directory listing.</td></tr><tr><td><code>shallow_listing</code></td><td> Only load the top level listing, do not recurse into subdirectories.</td></tr><tr><td><code>deep_listing</code></td><td> Load the directory listing and recursively load all subdirectories as well.</td></tr></table><h3 id="Any">4.1.4 Any</h3><p>The <strong>Any</strong> type validates for any non-null value.</p>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>Any</code></td><td></td></tr></table><h3 id="CWLType">4.1.5 CWLType</h3><p>Extends primitive types with the concept of a file and directory as a builtin type.</p>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>null</code></td><td> no value</td></tr><tr><td><code>boolean</code></td><td> a binary value</td></tr><tr><td><code>int</code></td><td> 32-bit signed integer</td></tr><tr><td><code>long</code></td><td> 64-bit signed integer</td></tr><tr><td><code>float</code></td><td> single precision (32-bit) IEEE 754 floating-point number</td></tr><tr><td><code>double</code></td><td> double precision (64-bit) IEEE 754 floating-point number</td></tr><tr><td><code>string</code></td><td> Unicode character sequence</td></tr><tr><td><code>File</code></td><td> A File object</td></tr><tr><td><code>Directory</code></td><td> A Directory object</td></tr></table><h3 id="File">4.1.6 File</h3><p>Represents a file (or group of files when <code>secondaryFiles</code> is provided) that
 will be accessible by tools using standard POSIX file system call API such as
 open(2) and read(2).</p>
 <p>Files are represented as objects with <code>class</code> of <code>File</code>.  File objects have
@@ -812,7 +841,7 @@ the value of <code>contents</code> must be written to a file.</p>
 <p>If <code>loadContents</code> of <code>inputBinding</code> or <code>outputBinding</code> is true and
 <code>location</code> is valid, the implementation must read up to the first 64
 KiB of text from the file and place it in the "contents" field.</p>
-</td></tr></table><h4 id="Directory">4.1.5.1 Directory</h4><p>Represents a directory to present to a command line tool.</p>
+</td></tr></table><h4 id="Directory">4.1.6.1 Directory</h4><p>Represents a directory to present to a command line tool.</p>
 <p>Directories are represented as objects with <code>class</code> of <code>Directory</code>.  Directory objects have
 a number of properties that provide metadata about the directory.</p>
 <p>The <code>location</code> property of a Directory is a URI that uniquely identifies
@@ -889,12 +918,12 @@ each <code>File</code> or <code>Directory</code> object.  It is an error if a <c
 <code>Directory</code> object share the same <code>basename</code>, this must be treated as
 equivalent to a single subdirectory with the listings recursively
 merged.</p>
-</td></tr></table><h3 id="InputRecordSchema">4.1.6 InputRecordSchema</h3><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>enum_d9cba076fca539106791a4f46d198c7fcfbdb779</td><td>True</td><td><p>Must be <code>record</code></p>
+</td></tr></table><h3 id="InputRecordSchema">4.1.7 InputRecordSchema</h3><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>enum_d9cba076fca539106791a4f46d198c7fcfbdb779</td><td>True</td><td><p>Must be <code>record</code></p>
 </td></tr><tr><td><code>fields</code></td><td>array&lt;<a href="#InputRecordField">InputRecordField</a>&gt; | <br>map&lt;<code>name</code>,&nbsp;<code>type</code> | <a href="#InputRecordField">InputRecordField</a>&gt</td><td>False</td><td><p>Defines the fields of the record.</p>
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
 </td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
 </td></tr><tr><td><code>name</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>The identifier for this type</p>
-</td></tr></table><h3 id="InputRecordField">4.1.7 InputRecordField</h3><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The name of the field</p>
+</td></tr></table><h3 id="InputRecordField">4.1.8 InputRecordField</h3><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The name of the field</p>
 </td></tr><tr><td><code>type</code></td><td><a href="#CWLType">CWLType</a> | <a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>The field type</p>
 </td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
@@ -949,24 +978,33 @@ available, file formats may be tested by exact match.</p>
 </td></tr><tr><td><code>loadContents</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Read up to the first 64 KiB of text from the file and place it in the
 "contents" field of the file object for use by expressions.</p>
-</td></tr></table><h4 id="InputEnumSchema">4.1.7.1 InputEnumSchema</h4><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the set of valid symbols.</p>
+</td></tr><tr><td><code>loadListing</code></td><td><a href="#LoadListingEnum">LoadListingEnum</a></td><td>False</td><td><p>Only valid when <code>type: Directory</code> or is an array of <code>items: Directory</code>.</p>
+<p>Specify the desired behavior for loading the <code>listing</code> field of
+a Directory object for use by expressions.</p>
+<p>The order of precedence for loadListing is:</p>
+<ol>
+<li><code>loadListing</code> on an individual parameter</li>
+<li>Inherited from <code>LoadListingRequirement</code></li>
+<li>By default: <code>no_listing</code></li>
+</ol>
+</td></tr></table><h4 id="InputEnumSchema">4.1.8.1 InputEnumSchema</h4><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the set of valid symbols.</p>
 </td></tr><tr><td><code>type</code></td><td>enum_d961d79c225752b9fadb617367615ab176b47d77</td><td>True</td><td><p>Must be <code>enum</code></p>
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
 </td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
 </td></tr><tr><td><code>name</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>The identifier for this type</p>
-</td></tr></table><h4 id="InputArraySchema">4.1.7.2 InputArraySchema</h4><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>items</code></td><td><a href="#CWLType">CWLType</a> | <a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the type of the array elements.</p>
+</td></tr></table><h4 id="InputArraySchema">4.1.8.2 InputArraySchema</h4><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>items</code></td><td><a href="#CWLType">CWLType</a> | <a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the type of the array elements.</p>
 </td></tr><tr><td><code>type</code></td><td>enum_d062602be0b4b8fd33e69e29a841317b6ab665bc</td><td>True</td><td><p>Must be <code>array</code></p>
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
 </td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
 </td></tr><tr><td><code>name</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>The identifier for this type</p>
-</td></tr></table><h3 id="InputBinding">4.1.8 InputBinding</h3><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>loadContents</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Use of <code>loadContents</code> in <code>InputBinding</code> is deprecated.
+</td></tr></table><h3 id="InputBinding">4.1.9 InputBinding</h3><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>loadContents</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Use of <code>loadContents</code> in <code>InputBinding</code> is deprecated.
 Preserved for v1.0 backwards compatability.  Will be removed in
 CWL v2.0.  Use <code>InputParameter.loadContents</code> instead.</p>
 <p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Read up to the first 64 KiB of text from the file and place it in the
 "contents" field of the file object for use by expressions.</p>
 </td></tr></table><h2 id="WorkflowOutputParameter">4.2 WorkflowOutputParameter</h2><p>Describe an output parameter of a workflow.  The parameter must be
-connected to one or more parameters defined in the workflow that 
+connected to one or more parameters defined in the workflow that
 will provide the value of the output parameter. It is legal to
 connect a WorkflowInputParameter to a WorkflowOutputParameter.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
@@ -1145,7 +1183,7 @@ used to generate and/or validate the output object.</p>
 </td></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>The unique identifier for this object.</p>
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
 </td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
-</td></tr><tr><td><code>requirements</code></td><td>array&lt;<a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a> | <a href="#SoftwareRequirement">SoftwareRequirement</a> | <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a> | <a href="CommandLineTool.html#EnvVarRequirement">EnvVarRequirement</a> | <a href="CommandLineTool.html#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="CommandLineTool.html#ResourceRequirement">ResourceRequirement</a> | <a href="#TimeLimit">TimeLimit</a> | <a href="#WorkReuse">WorkReuse</a> | <a href="#NetworkAccess">NetworkAccess</a> | <a href="#InplaceUpdateRequirement">InplaceUpdateRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#StepInputExpressionRequirement">StepInputExpressionRequirement</a>&gt; | <br>map&lt;<code>class</code>,&nbsp;<a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a> | <a href="#SoftwareRequirement">SoftwareRequirement</a> | <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a> | <a href="CommandLineTool.html#EnvVarRequirement">EnvVarRequirement</a> | <a href="CommandLineTool.html#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="CommandLineTool.html#ResourceRequirement">ResourceRequirement</a> | <a href="#TimeLimit">TimeLimit</a> | <a href="#WorkReuse">WorkReuse</a> | <a href="#NetworkAccess">NetworkAccess</a> | <a href="#InplaceUpdateRequirement">InplaceUpdateRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#StepInputExpressionRequirement">StepInputExpressionRequirement</a>&gt</td><td>False</td><td><p>Declares requirements that apply to either the runtime environment or the
+</td></tr><tr><td><code>requirements</code></td><td>array&lt;<a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#LoadListingRequirement">LoadListingRequirement</a> | <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a> | <a href="#SoftwareRequirement">SoftwareRequirement</a> | <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a> | <a href="CommandLineTool.html#EnvVarRequirement">EnvVarRequirement</a> | <a href="CommandLineTool.html#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="CommandLineTool.html#ResourceRequirement">ResourceRequirement</a> | <a href="#TimeLimit">TimeLimit</a> | <a href="#WorkReuse">WorkReuse</a> | <a href="#NetworkAccess">NetworkAccess</a> | <a href="#InplaceUpdateRequirement">InplaceUpdateRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#StepInputExpressionRequirement">StepInputExpressionRequirement</a>&gt; | <br>map&lt;<code>class</code>,&nbsp;<a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#LoadListingRequirement">LoadListingRequirement</a> | <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a> | <a href="#SoftwareRequirement">SoftwareRequirement</a> | <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a> | <a href="CommandLineTool.html#EnvVarRequirement">EnvVarRequirement</a> | <a href="CommandLineTool.html#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="CommandLineTool.html#ResourceRequirement">ResourceRequirement</a> | <a href="#TimeLimit">TimeLimit</a> | <a href="#WorkReuse">WorkReuse</a> | <a href="#NetworkAccess">NetworkAccess</a> | <a href="#InplaceUpdateRequirement">InplaceUpdateRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#StepInputExpressionRequirement">StepInputExpressionRequirement</a>&gt</td><td>False</td><td><p>Declares requirements that apply to either the runtime environment or the
 workflow engine that must be met in order to execute this workflow step.  If
 an implementation cannot satisfy all requirements, or a requirement is
 listed which is not recognized by the implementation, it is a fatal
@@ -1202,6 +1240,15 @@ If not specified, the default method is "merge_nested".</p>
 </td></tr><tr><td><code>loadContents</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Read up to the first 64 KiB of text from the file and place it in the
 "contents" field of the file object for use by expressions.</p>
+</td></tr><tr><td><code>loadListing</code></td><td><a href="#LoadListingEnum">LoadListingEnum</a></td><td>False</td><td><p>Only valid when <code>type: Directory</code> or is an array of <code>items: Directory</code>.</p>
+<p>Specify the desired behavior for loading the <code>listing</code> field of
+a Directory object for use by expressions.</p>
+<p>The order of precedence for loadListing is:</p>
+<ol>
+<li><code>loadListing</code> on an individual parameter</li>
+<li>Inherited from <code>LoadListingRequirement</code></li>
+<li>By default: <code>no_listing</code></li>
+</ol>
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
 </td></tr><tr><td><code>default</code></td><td><a href="#Any">Any</a></td><td>False</td><td><p>The default value for this parameter to use if either there is no
 <code>source</code> field, or the value produced by the <code>source</code> is <code>null</code>.  The
@@ -1312,6 +1359,15 @@ available, file formats may be tested by exact match.</p>
 </td></tr><tr><td><code>loadContents</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Read up to the first 64 KiB of text from the file and place it in the
 "contents" field of the file object for use by expressions.</p>
+</td></tr><tr><td><code>loadListing</code></td><td><a href="#LoadListingEnum">LoadListingEnum</a></td><td>False</td><td><p>Only valid when <code>type: Directory</code> or is an array of <code>items: Directory</code>.</p>
+<p>Specify the desired behavior for loading the <code>listing</code> field of
+a Directory object for use by expressions.</p>
+<p>The order of precedence for loadListing is:</p>
+<ol>
+<li><code>loadListing</code> on an individual parameter</li>
+<li>Inherited from <code>LoadListingRequirement</code></li>
+<li>By default: <code>no_listing</code></li>
+</ol>
 </td></tr><tr><td><code>inputBinding</code></td><td><a href="#CommandLineBinding">CommandLineBinding</a></td><td>False</td><td><p>Describes how to turn this object into command line arguments.</p>
 </td></tr></table><h6 id="CommandInputEnumSchema">4.3.5.1.1.1 CommandInputEnumSchema</h6><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Defines the set of valid symbols.</p>
 </td></tr><tr><td><code>type</code></td><td>enum_d961d79c225752b9fadb617367615ab176b47d77</td><td>True</td><td><p>Must be <code>enum</code></p>
@@ -1391,11 +1447,14 @@ permit interpretation of any shell metacharacters or directives.</p>
 </td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
 </td></tr><tr><td><code>name</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>The identifier for this type</p>
 </td></tr><tr><td><code>inputBinding</code></td><td><a href="#CommandLineBinding">CommandLineBinding</a></td><td>False</td><td><p>Describes how to turn this object into command line arguments.</p>
-</td></tr></table><h3 id="SoftwareRequirement">4.3.6 SoftwareRequirement</h3><p>A list of software packages that should be configured in the environment of
+</td></tr></table><h3 id="LoadListingRequirement">4.3.6 LoadListingRequirement</h3><p>Specify the desired behavior for loading the <code>listing</code> field of
+a Directory object for use by expressions.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>Always 'LoadListingRequirement'</p>
+</td></tr><tr><td><code>loadListing</code></td><td><a href="#LoadListingEnum">LoadListingEnum</a></td><td>False</td><td></td></tr></table><h3 id="SoftwareRequirement">4.3.7 SoftwareRequirement</h3><p>A list of software packages that should be configured in the environment of
 the defined process.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>Always 'SoftwareRequirement'</p>
 </td></tr><tr><td><code>packages</code></td><td>array&lt;<a href="#SoftwarePackage">SoftwarePackage</a>&gt; | <br>map&lt;<code>package</code>,&nbsp;<code>specs</code> | <a href="#SoftwarePackage">SoftwarePackage</a>&gt</td><td>True</td><td><p>The list of software to be configured.</p>
-</td></tr></table><h3 id="SoftwarePackage">4.3.7 SoftwarePackage</h3><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>package</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The name of the software to be made available. If the name is
+</td></tr></table><h3 id="SoftwarePackage">4.3.8 SoftwarePackage</h3><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>package</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>The name of the software to be made available. If the name is
 common, inconsistent, or otherwise ambiguous it should be combined with
 one or more identifiers in the <code>specs</code> field.</p>
 </td></tr><tr><td><code>version</code></td><td>array&lt;<a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>The (optional) versions of the software that are known to be
@@ -1437,7 +1496,7 @@ mechanisms based off of the <code>package</code> field or more generic IRIs are
 unavailable or unsuitable. While harmless to other sites, site specific
 software IRIs should be left out of shared CWL descriptions to avoid
 clutter.</p>
-</td></tr></table><h3 id="InitialWorkDirRequirement">4.3.8 InitialWorkDirRequirement</h3><p>Define a list of files and subdirectories that must be created by the workflow platform in the designated output directory prior to executing the command line tool.</p>
+</td></tr></table><h3 id="InitialWorkDirRequirement">4.3.9 InitialWorkDirRequirement</h3><p>Define a list of files and subdirectories that must be created by the workflow platform in the designated output directory prior to executing the command line tool.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>InitialWorkDirRequirement</p>
 </td></tr><tr><td><code>listing</code></td><td>array&lt;<a href="#CWLType">null</a> | <a href="#File">File</a> | array&lt;<a href="#File">File</a>&nbsp;|&nbsp;<a href="#Directory">Directory</a>&gt; | <a href="#Directory">Directory</a> | <a href="#Dirent">Dirent</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a>&gt; | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td><p>The list of files or subdirectories that must be placed in the
 designated output directory prior to executing the command line tool.</p>
@@ -1449,7 +1508,7 @@ appear in the <code>InitialWorkDirRequirement</code> listing must have their
 If the same File or Directory appears more than once in the
 <code>InitialWorkDirRequirement</code> listing, the implementation must choose
 exactly one value for <code>path</code>; how this value is chosen is undefined.</p>
-</td></tr></table><h4 id="Dirent">4.3.8.1 Dirent</h4><p>Define a file or subdirectory that must be placed in the designated output
+</td></tr></table><h4 id="Dirent">4.3.9.1 Dirent</h4><p>Define a file or subdirectory that must be placed in the designated output
 directory prior to executing the command line tool.  May be the result of
 executing an expression, such as building a configuration file from a
 template.</p>
@@ -1474,14 +1533,14 @@ the original file or directory.  Default false (files and directories
 read-only by default).</p>
 <p>A directory marked as <code>writable: true</code> implies that all files and
 subdirectories are recursively writable as well.</p>
-</td></tr></table><h3 id="TimeLimit">4.3.9 TimeLimit</h3><p>Set an upper limit on the execution time of a CommandLineTool or
+</td></tr></table><h3 id="TimeLimit">4.3.10 TimeLimit</h3><p>Set an upper limit on the execution time of a CommandLineTool or
 ExpressionTool.  A tool execution which exceeds the time limit may
 be preemptively terminated and considered failed.  May also be
 used by batch systems to make scheduling decisions.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>Always 'TimeLimit'</p>
 </td></tr><tr><td><code>timelimit</code></td><td><a href="#CWLType">long</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td><p>The time limit, in seconds.  A time limit of zero means no
 time limit.  Negative time limits are an error.</p>
-</td></tr></table><h3 id="WorkReuse">4.3.10 WorkReuse</h3><p>For implementations that support reusing output from past work (on
+</td></tr></table><h3 id="WorkReuse">4.3.11 WorkReuse</h3><p>For implementations that support reusing output from past work (on
 the assumption that same code and same input produce same
 results), control whether to enable or disable the reuse behavior
 for a particular tool or step (to accomodate situations where that
@@ -1490,7 +1549,7 @@ instead returns the same output as the original execution.</p>
 <p>If <code>enableReuse</code> is not specified, correct tools should assume it
 is enabled by default.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>Always 'WorkReuse'</p>
-</td></tr><tr><td><code>enableReuse</code></td><td><a href="#CWLType">boolean</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td></td></tr></table><h3 id="NetworkAccess">4.3.11 NetworkAccess</h3><p>Indicate whether a process requires outgoing IPv4/IPv6 network
+</td></tr><tr><td><code>enableReuse</code></td><td><a href="#CWLType">boolean</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td></td></tr></table><h3 id="NetworkAccess">4.3.12 NetworkAccess</h3><p>Indicate whether a process requires outgoing IPv4/IPv6 network
 access.  Choice of IPv4 or IPv6 is implementation and site
 specific, correct tools must support both.</p>
 <p>If <code>networkAccess</code> is false or not specified, tools must not
@@ -1503,7 +1562,7 @@ accessible by the tool.</p>
 <p>Enabling network access does not imply a publically routable IP
 address or the ability to accept inbound connections.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>Always 'NetworkAccess'</p>
-</td></tr><tr><td><code>networkAccess</code></td><td><a href="#CWLType">boolean</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td></td></tr></table><h3 id="InplaceUpdateRequirement">4.3.12 InplaceUpdateRequirement</h3><p>If <code>inplaceUpdate</code> is true, then an implementation supporting this
+</td></tr><tr><td><code>networkAccess</code></td><td><a href="#CWLType">boolean</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td></td></tr></table><h3 id="InplaceUpdateRequirement">4.3.13 InplaceUpdateRequirement</h3><p>If <code>inplaceUpdate</code> is true, then an implementation supporting this
 feature may permit tools to directly update files with <code>writable:
 true</code> in InitialWorkDirRequirement.  That is, as an optimization,
 files may be destructively modified in place as opposed to copied
@@ -1529,19 +1588,19 @@ destructively modify inputs may not be repeatable or reproducible.
 In particular, enabling this feature implies that WorkReuse should
 not be enabled.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>Always 'InplaceUpdateRequirement'</p>
-</td></tr><tr><td><code>inplaceUpdate</code></td><td><a href="#CWLType">boolean</a></td><td>True</td><td></td></tr></table><h3 id="SubworkflowFeatureRequirement">4.3.13 SubworkflowFeatureRequirement</h3><p>Indicates that the workflow platform must support nested workflows in
+</td></tr><tr><td><code>inplaceUpdate</code></td><td><a href="#CWLType">boolean</a></td><td>True</td><td></td></tr></table><h3 id="SubworkflowFeatureRequirement">4.3.14 SubworkflowFeatureRequirement</h3><p>Indicates that the workflow platform must support nested workflows in
 the <code>run</code> field of <a href="#WorkflowStep">WorkflowStep</a>.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>Always 'SubworkflowFeatureRequirement'</p>
-</td></tr></table><h3 id="ScatterFeatureRequirement">4.3.14 ScatterFeatureRequirement</h3><p>Indicates that the workflow platform must support the <code>scatter</code> and
+</td></tr></table><h3 id="ScatterFeatureRequirement">4.3.15 ScatterFeatureRequirement</h3><p>Indicates that the workflow platform must support the <code>scatter</code> and
 <code>scatterMethod</code> fields of <a href="#WorkflowStep">WorkflowStep</a>.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>Always 'ScatterFeatureRequirement'</p>
-</td></tr></table><h3 id="MultipleInputFeatureRequirement">4.3.15 MultipleInputFeatureRequirement</h3><p>Indicates that the workflow platform must support multiple inbound data links
+</td></tr></table><h3 id="MultipleInputFeatureRequirement">4.3.16 MultipleInputFeatureRequirement</h3><p>Indicates that the workflow platform must support multiple inbound data links
 listed in the <code>source</code> field of <a href="#WorkflowStepInput">WorkflowStepInput</a>.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>Always 'MultipleInputFeatureRequirement'</p>
-</td></tr></table><h3 id="StepInputExpressionRequirement">4.3.16 StepInputExpressionRequirement</h3><p>Indicate that the workflow platform must support the <code>valueFrom</code> field
+</td></tr></table><h3 id="StepInputExpressionRequirement">4.3.17 StepInputExpressionRequirement</h3><p>Indicate that the workflow platform must support the <code>valueFrom</code> field
 of <a href="#WorkflowStepInput">WorkflowStepInput</a>.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>Always 'StepInputExpressionRequirement'</p>
-</td></tr></table><h3 id="ExpressionTool">4.3.17 ExpressionTool</h3><p>Execute an expression as a Workflow step.</p>
+</td></tr></table><h3 id="ExpressionTool">4.3.18 ExpressionTool</h3><p>Execute an expression as a Workflow step.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>inputs</code></td><td>array&lt;<a href="#WorkflowInputParameter">WorkflowInputParameter</a>&gt; | <br>map&lt;<code>id</code>,&nbsp;<code>type</code> | <a href="#WorkflowInputParameter">WorkflowInputParameter</a>&gt</td><td>True</td><td><p>Defines the input parameters of the process.  The process is ready to
 run when all required input parameters are associated with concrete
 values.  Input parameters include a schema for each parameter which is
@@ -1559,7 +1618,7 @@ matches the output parameters of the ExpressionTool.</p>
 </td></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>The unique identifier for this object.</p>
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
 </td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
-</td></tr><tr><td><code>requirements</code></td><td>array&lt;<a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a> | <a href="#SoftwareRequirement">SoftwareRequirement</a> | <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a> | <a href="CommandLineTool.html#EnvVarRequirement">EnvVarRequirement</a> | <a href="CommandLineTool.html#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="CommandLineTool.html#ResourceRequirement">ResourceRequirement</a> | <a href="#TimeLimit">TimeLimit</a> | <a href="#WorkReuse">WorkReuse</a> | <a href="#NetworkAccess">NetworkAccess</a> | <a href="#InplaceUpdateRequirement">InplaceUpdateRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#StepInputExpressionRequirement">StepInputExpressionRequirement</a>&gt; | <br>map&lt;<code>class</code>,&nbsp;<a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a> | <a href="#SoftwareRequirement">SoftwareRequirement</a> | <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a> | <a href="CommandLineTool.html#EnvVarRequirement">EnvVarRequirement</a> | <a href="CommandLineTool.html#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="CommandLineTool.html#ResourceRequirement">ResourceRequirement</a> | <a href="#TimeLimit">TimeLimit</a> | <a href="#WorkReuse">WorkReuse</a> | <a href="#NetworkAccess">NetworkAccess</a> | <a href="#InplaceUpdateRequirement">InplaceUpdateRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#StepInputExpressionRequirement">StepInputExpressionRequirement</a>&gt</td><td>False</td><td><p>Declares requirements that apply to either the runtime environment or the
+</td></tr><tr><td><code>requirements</code></td><td>array&lt;<a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#LoadListingRequirement">LoadListingRequirement</a> | <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a> | <a href="#SoftwareRequirement">SoftwareRequirement</a> | <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a> | <a href="CommandLineTool.html#EnvVarRequirement">EnvVarRequirement</a> | <a href="CommandLineTool.html#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="CommandLineTool.html#ResourceRequirement">ResourceRequirement</a> | <a href="#TimeLimit">TimeLimit</a> | <a href="#WorkReuse">WorkReuse</a> | <a href="#NetworkAccess">NetworkAccess</a> | <a href="#InplaceUpdateRequirement">InplaceUpdateRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#StepInputExpressionRequirement">StepInputExpressionRequirement</a>&gt; | <br>map&lt;<code>class</code>,&nbsp;<a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#LoadListingRequirement">LoadListingRequirement</a> | <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a> | <a href="#SoftwareRequirement">SoftwareRequirement</a> | <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a> | <a href="CommandLineTool.html#EnvVarRequirement">EnvVarRequirement</a> | <a href="CommandLineTool.html#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="CommandLineTool.html#ResourceRequirement">ResourceRequirement</a> | <a href="#TimeLimit">TimeLimit</a> | <a href="#WorkReuse">WorkReuse</a> | <a href="#NetworkAccess">NetworkAccess</a> | <a href="#InplaceUpdateRequirement">InplaceUpdateRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#StepInputExpressionRequirement">StepInputExpressionRequirement</a>&gt</td><td>False</td><td><p>Declares requirements that apply to either the runtime environment or the
 workflow engine that must be met in order to execute this process.  If
 an implementation cannot satisfy all requirements, or a requirement is
 listed which is not recognized by the implementation, it is a fatal
@@ -1571,7 +1630,7 @@ not an error if an implementation cannot satisfy all hints, however
 the implementation may report a warning.</p>
 </td></tr><tr><td><code>cwlVersion</code></td><td><a href="#CWLVersion">CWLVersion</a></td><td>False</td><td><p>CWL document version. Always required at the document root. Not
 required for a Process embedded inside another Process.</p>
-</td></tr></table><h4 id="ExpressionToolOutputParameter">4.3.17.1 ExpressionToolOutputParameter</h4><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
+</td></tr></table><h4 id="ExpressionToolOutputParameter">4.3.18.1 ExpressionToolOutputParameter</h4><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
 </td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#SecondaryFileSchema">SecondaryFileSchema</a> | array&lt;<a href="#SecondaryFileSchema">SecondaryFileSchema</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Provides a pattern or expression specifying files or
 directories that should be included alongside the primary
@@ -1621,7 +1680,7 @@ pipe.  Default: <code>false</code>.</p>
 <p>This is the file format that will be assigned to the output
 File object.</p>
 </td></tr><tr><td><code>type</code></td><td><a href="#CWLType">CWLType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.</p>
-</td></tr></table><h4 id="CWLVersion">4.3.17.2 CWLVersion</h4><p>Version symbols for published CWL document versions.</p>
+</td></tr></table><h4 id="CWLVersion">4.3.18.2 CWLVersion</h4><p>Version symbols for published CWL document versions.</p>
 <h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>draft-2</code></td><td></td></tr><tr><td><code>draft-3.dev1</code></td><td></td></tr><tr><td><code>draft-3.dev2</code></td><td></td></tr><tr><td><code>draft-3.dev3</code></td><td></td></tr><tr><td><code>draft-3.dev4</code></td><td></td></tr><tr><td><code>draft-3.dev5</code></td><td></td></tr><tr><td><code>draft-3</code></td><td></td></tr><tr><td><code>draft-4.dev1</code></td><td></td></tr><tr><td><code>draft-4.dev2</code></td><td></td></tr><tr><td><code>draft-4.dev3</code></td><td></td></tr><tr><td><code>v1.0.dev4</code></td><td></td></tr><tr><td><code>v1.0</code></td><td></td></tr><tr><td><code>v1.1.0-dev1</code></td><td></td></tr></table></div>
     </div>
     </div>

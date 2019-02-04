@@ -141,6 +141,11 @@
 
 @base:LoadContents a rdfs:Class .
 
+@base:LoadListingEnum a rdfs:Class .
+
+@base:LoadListingRequirement a rdfs:Class ;
+    rdfs:subClassOf @base:ProcessRequirement .
+
 @base:MultipleInputFeatureRequirement a rdfs:Class ;
     rdfs:subClassOf @base:ProcessRequirement .
 
@@ -427,6 +432,10 @@ rdfs:label a rdf:Property ;
 @base:loadContents a rdf:Property ;
     rdfs:domain @base:InputBinding,
         @base:LoadContents .
+
+@base:loadListing a rdf:Property ;
+    rdfs:domain @base:LoadContents,
+        @base:LoadListingRequirement .
 
 @base:outputBinding a rdf:Property ;
     rdfs:domain @base:CommandOutputParameter,

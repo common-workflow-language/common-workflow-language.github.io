@@ -50,6 +50,8 @@
         "Labeled": "https://w3id.org/cwl/cwl#Labeled",
         "LinkMergeMethod": "https://w3id.org/cwl/cwl#LinkMergeMethod",
         "LoadContents": "https://w3id.org/cwl/cwl#LoadContents",
+        "LoadListingEnum": "https://w3id.org/cwl/cwl#LoadListingEnum",
+        "LoadListingRequirement": "https://w3id.org/cwl/cwl#LoadListingRequirement",
         "MultipleInputFeatureRequirement": "https://w3id.org/cwl/cwl#MultipleInputFeatureRequirement",
         "NetworkAccess": "https://w3id.org/cwl/cwl#NetworkAccess",
         "OutputArraySchema": "https://w3id.org/cwl/cwl#OutputArraySchema",
@@ -109,6 +111,7 @@
             "@type": "@vocab"
         },
         "dct": "http://purl.org/dc/terms/",
+        "deep_listing": "https://w3id.org/cwl/cwl#LoadListingEnum/deep_listing",
         "default": {
             "@id": "https://w3id.org/cwl/salad#default",
             "noLinkCheck": true
@@ -194,6 +197,7 @@
             "@id": "https://w3id.org/cwl/cwl#listing"
         },
         "loadContents": "cwl:loadContents",
+        "loadListing": "cwl:loadListing",
         "location": {
             "@id": "@id",
             "@type": "@id"
@@ -206,6 +210,7 @@
         "nameroot": "https://w3id.org/cwl/cwl#File/nameroot",
         "nested_crossproduct": "https://w3id.org/cwl/cwl#ScatterMethod/nested_crossproduct",
         "networkAccess": "https://w3id.org/cwl/cwl#NetworkAccess/networkAccess",
+        "no_listing": "https://w3id.org/cwl/cwl#LoadListingEnum/no_listing",
         "null": "https://w3id.org/cwl/salad#null",
         "out": {
             "@id": "https://w3id.org/cwl/cwl#out",
@@ -270,6 +275,7 @@
             "secondaryFilesDSL": true
         },
         "separate": "https://w3id.org/cwl/cwl#CommandLineBinding/separate",
+        "shallow_listing": "https://w3id.org/cwl/cwl#LoadListingEnum/shallow_listing",
         "shellQuote": "https://w3id.org/cwl/cwl#CommandLineBinding/shellQuote",
         "size": "https://w3id.org/cwl/cwl#File/size",
         "sld": "https://w3id.org/cwl/salad#",
