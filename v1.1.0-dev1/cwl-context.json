@@ -78,7 +78,7 @@
         "SoftwareRequirement": "https://w3id.org/cwl/cwl#SoftwareRequirement",
         "StepInputExpressionRequirement": "https://w3id.org/cwl/cwl#StepInputExpressionRequirement",
         "SubworkflowFeatureRequirement": "https://w3id.org/cwl/cwl#SubworkflowFeatureRequirement",
-        "TimeLimit": "https://w3id.org/cwl/cwl#TimeLimit",
+        "ToolTimeLimit": "https://w3id.org/cwl/cwl#ToolTimeLimit",
         "WorkReuse": "https://w3id.org/cwl/cwl#WorkReuse",
         "Workflow": "https://w3id.org/cwl/cwl#Workflow",
         "WorkflowInputParameter": "https://w3id.org/cwl/cwl#WorkflowInputParameter",
@@ -305,7 +305,7 @@
             "identity": true
         },
         "temporaryFailCodes": "https://w3id.org/cwl/cwl#CommandLineTool/temporaryFailCodes",
-        "timelimit": "https://w3id.org/cwl/cwl#TimeLimit/timelimit",
+        "timelimit": "https://w3id.org/cwl/cwl#ToolTimeLimit/timelimit",
         "tmpdirMax": "https://w3id.org/cwl/cwl#ResourceRequirement/tmpdirMax",
         "tmpdirMin": "https://w3id.org/cwl/cwl#ResourceRequirement/tmpdirMin",
         "type": {

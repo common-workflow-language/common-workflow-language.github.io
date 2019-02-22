@@ -219,7 +219,7 @@
 @base:SubworkflowFeatureRequirement a rdfs:Class ;
     rdfs:subClassOf @base:ProcessRequirement .
 
-@base:TimeLimit a rdfs:Class ;
+@base:ToolTimeLimit a rdfs:Class ;
     rdfs:subClassOf @base:ProcessRequirement .
 
 @base:WorkReuse a rdfs:Class ;
@@ -410,8 +410,8 @@ rdfs:label a rdf:Property ;
 <https://w3id.org/cwl/cwl#SoftwarePackage/version> a rdf:Property ;
     rdfs:domain @base:SoftwarePackage .
 
-<https://w3id.org/cwl/cwl#TimeLimit/timelimit> a rdf:Property ;
-    rdfs:domain @base:TimeLimit .
+<https://w3id.org/cwl/cwl#ToolTimeLimit/timelimit> a rdf:Property ;
+    rdfs:domain @base:ToolTimeLimit .
 
 <https://w3id.org/cwl/cwl#WorkReuse/enableReuse> a rdf:Property ;
     rdfs:domain @base:WorkReuse .

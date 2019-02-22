@@ -148,10 +148,10 @@ under the terms of the Apache License, version 2.0.</p>
 </ol><li><a href="#EnvironmentDef">5.11 EnvironmentDef</a><ol>
 </ol><li><a href="#ShellCommandRequirement">5.12 ShellCommandRequirement</a><ol>
 </ol><li><a href="#ResourceRequirement">5.13 ResourceRequirement</a><ol>
-</ol><li><a href="#TimeLimit">5.14 TimeLimit</a><ol>
-</ol><li><a href="#WorkReuse">5.15 WorkReuse</a><ol>
-</ol><li><a href="#NetworkAccess">5.16 NetworkAccess</a><ol>
-</ol><li><a href="#InplaceUpdateRequirement">5.17 InplaceUpdateRequirement</a><ol>
+</ol><li><a href="#WorkReuse">5.14 WorkReuse</a><ol>
+</ol><li><a href="#NetworkAccess">5.15 NetworkAccess</a><ol>
+</ol><li><a href="#InplaceUpdateRequirement">5.16 InplaceUpdateRequirement</a><ol>
+</ol><li><a href="#ToolTimeLimit">5.17 ToolTimeLimit</a><ol>
 </ol><li><a href="#CWLVersion">5.18 CWLVersion</a><ol>
 </ol></li></ol></li></ol></nav>
 
@@ -171,15 +171,14 @@ CWL documents that relied on previously undefined or
 underspecified behavior may have slightly different behavior in
 v1.1.0-dev1.</p>
 <h2 id="Changelog">1.2 Changelog</h2><ul>
-<li>Added optional <code>name</code> and <code>doc</code> fields to <code>CommandOutputRecordSchema</code>.</li>
 <li>Clarify behavior around <code>ENTRYPOINT</code> and <code>CMD</code> in containers.</li>
 <li>Clarify documentation around <code>valueFrom</code> and <code>null</code> inputs.</li>
 <li>Default values for some fields are now expressed in the schema.</li>
 <li>When defining record types with <code>CommandInputRecordSchema</code>, fields of
 type <code>File</code> may now include <code>format</code>, <code>loadContents</code>,
 <code>secondaryFiles</code> and <code>streamable</code>.</li>
-<li><code>CommandInputRecordSchema</code>, <code>CommandInputEnumSchema</code>, and
-<code>CommandInputArraySchema</code> now have an optional <code>doc</code> field.</li>
+<li><code>CommandInputRecordSchema</code>, <code>CommandOutputRecordSchema</code>, 
+<code>CommandInputEnumSchema and</code>CommandInputArraySchema<code>now have an optional</code>doc` field.</li>
 <li><code>inputBinding</code> has been added as an optional field for
 <code>CommandInputRecordSchema</code> (was previously in CWL <code>draft-3</code> but
 disappeared in <code>v1.0</code>).</li>
@@ -193,6 +192,8 @@ except for files or directories specified using
 <li>Clarify semantics of <code>shellQuote</code>.</li>
 <li>Expressions are now allowed to evaluate to <code>null</code> or <code>Dirent</code> in
 <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement.listing</a>.</li>
+<li>Items in <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement.listing</a>
+are now allowed to be <code>null</code> and <code>array&lt;File | Directory&gt;</code>.</li>
 <li>Clarify behavior of secondaryFiles on output.</li>
 <li><a href="#Requirements_and_hints">Addition</a> of <code>cwl:requirements</code> field to
 input object documents.</li>
@@ -207,8 +208,8 @@ the platform.</li>
 <li>Added <code>InputParameter.loadContents</code> field. Use of <code>loadContents</code> in
 <code>InputBinding</code> is deprecated; it is preserved for v1.0 backwards
  compatability and will be removed in CWL v2.0.</li>
-<li><a href="#TimeLimit">Added</a> <code>TimeLimit</code> feature, allowing to set an upper limit on the
-execution time of a CommandLineTool or ExpressionTool.</li>
+<li><a href="#ToolTimeLimit">Added</a> <code>ToolTimeLimit</code> feature, allows setting
+an upper limit on the execution time of a CommandLineTool.</li>
 <li><a href="#WorkReuse">Added</a> <code>WorkReuse</code> feature, allowing to enable or disable the reuse
 behavior for a particular tool or step for implementations that
 support reusing output from past work.</li>
@@ -696,7 +697,7 @@ used to generate and/or validate the output object.</p>
 </td></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td></td></tr><tr><td><code>id</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>The unique identifier for this object.</p>
 </td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
 </td></tr><tr><td><code>doc</code></td><td><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
-</td></tr><tr><td><code>requirements</code></td><td>array&lt;<a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#LoadListingRequirement">LoadListingRequirement</a> | <a href="#DockerRequirement">DockerRequirement</a> | <a href="#SoftwareRequirement">SoftwareRequirement</a> | <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="#ResourceRequirement">ResourceRequirement</a> | <a href="#TimeLimit">TimeLimit</a> | <a href="#WorkReuse">WorkReuse</a> | <a href="#NetworkAccess">NetworkAccess</a> | <a href="#InplaceUpdateRequirement">InplaceUpdateRequirement</a>&gt; | <br>map&lt;<code>class</code>,&nbsp;<a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#LoadListingRequirement">LoadListingRequirement</a> | <a href="#DockerRequirement">DockerRequirement</a> | <a href="#SoftwareRequirement">SoftwareRequirement</a> | <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="#ResourceRequirement">ResourceRequirement</a> | <a href="#TimeLimit">TimeLimit</a> | <a href="#WorkReuse">WorkReuse</a> | <a href="#NetworkAccess">NetworkAccess</a> | <a href="#InplaceUpdateRequirement">InplaceUpdateRequirement</a>&gt</td><td>False</td><td><p>Declares requirements that apply to either the runtime environment or the
+</td></tr><tr><td><code>requirements</code></td><td>array&lt;<a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#LoadListingRequirement">LoadListingRequirement</a> | <a href="#DockerRequirement">DockerRequirement</a> | <a href="#SoftwareRequirement">SoftwareRequirement</a> | <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="#ResourceRequirement">ResourceRequirement</a> | <a href="#WorkReuse">WorkReuse</a> | <a href="#NetworkAccess">NetworkAccess</a> | <a href="#InplaceUpdateRequirement">InplaceUpdateRequirement</a> | <a href="#ToolTimeLimit">ToolTimeLimit</a>&gt; | <br>map&lt;<code>class</code>,&nbsp;<a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="#LoadListingRequirement">LoadListingRequirement</a> | <a href="#DockerRequirement">DockerRequirement</a> | <a href="#SoftwareRequirement">SoftwareRequirement</a> | <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a> | <a href="#EnvVarRequirement">EnvVarRequirement</a> | <a href="#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="#ResourceRequirement">ResourceRequirement</a> | <a href="#WorkReuse">WorkReuse</a> | <a href="#NetworkAccess">NetworkAccess</a> | <a href="#InplaceUpdateRequirement">InplaceUpdateRequirement</a> | <a href="#ToolTimeLimit">ToolTimeLimit</a>&gt</td><td>False</td><td><p>Declares requirements that apply to either the runtime environment or the
 workflow engine that must be met in order to execute this process.  If
 an implementation cannot satisfy all requirements, or a requirement is
 listed which is not recognized by the implementation, it is a fatal
@@ -1687,14 +1688,7 @@ If "max" is specified by "min" is not, then "min" == "max".</p>
 </td></tr><tr><td><code>tmpdirMax</code></td><td><a href="#CWLType">long</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>False</td><td><p>Maximum reserved filesystem based storage for the designated temporary directory, in mebibytes (2**20)</p>
 </td></tr><tr><td><code>outdirMin</code></td><td><a href="#CWLType">long</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>False</td><td><p>Minimum reserved filesystem based storage for the designated output directory, in mebibytes (2**20)</p>
 </td></tr><tr><td><code>outdirMax</code></td><td><a href="#CWLType">long</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>False</td><td><p>Maximum reserved filesystem based storage for the designated output directory, in mebibytes (2**20)</p>
-</td></tr></table><h2 id="TimeLimit">5.14 TimeLimit</h2><p>Set an upper limit on the execution time of a CommandLineTool or
-ExpressionTool.  A tool execution which exceeds the time limit may
-be preemptively terminated and considered failed.  May also be
-used by batch systems to make scheduling decisions.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>Always 'TimeLimit'</p>
-</td></tr><tr><td><code>timelimit</code></td><td><a href="#CWLType">long</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td><p>The time limit, in seconds.  A time limit of zero means no
-time limit.  Negative time limits are an error.</p>
-</td></tr></table><h2 id="WorkReuse">5.15 WorkReuse</h2><p>For implementations that support reusing output from past work (on
+</td></tr></table><h2 id="WorkReuse">5.14 WorkReuse</h2><p>For implementations that support reusing output from past work (on
 the assumption that same code and same input produce same
 results), control whether to enable or disable the reuse behavior
 for a particular tool or step (to accomodate situations where that
@@ -1703,7 +1697,7 @@ instead returns the same output as the original execution.</p>
 <p>If <code>enableReuse</code> is not specified, correct tools should assume it
 is enabled by default.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>Always 'WorkReuse'</p>
-</td></tr><tr><td><code>enableReuse</code></td><td><a href="#CWLType">boolean</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td></td></tr></table><h2 id="NetworkAccess">5.16 NetworkAccess</h2><p>Indicate whether a process requires outgoing IPv4/IPv6 network
+</td></tr><tr><td><code>enableReuse</code></td><td><a href="#CWLType">boolean</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td></td></tr></table><h2 id="NetworkAccess">5.15 NetworkAccess</h2><p>Indicate whether a process requires outgoing IPv4/IPv6 network
 access.  Choice of IPv4 or IPv6 is implementation and site
 specific, correct tools must support both.</p>
 <p>If <code>networkAccess</code> is false or not specified, tools must not
@@ -1716,7 +1710,7 @@ accessible by the tool.</p>
 <p>Enabling network access does not imply a publically routable IP
 address or the ability to accept inbound connections.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>Always 'NetworkAccess'</p>
-</td></tr><tr><td><code>networkAccess</code></td><td><a href="#CWLType">boolean</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td></td></tr></table><h2 id="InplaceUpdateRequirement">5.17 InplaceUpdateRequirement</h2><p>If <code>inplaceUpdate</code> is true, then an implementation supporting this
+</td></tr><tr><td><code>networkAccess</code></td><td><a href="#CWLType">boolean</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td></td></tr></table><h2 id="InplaceUpdateRequirement">5.16 InplaceUpdateRequirement</h2><p>If <code>inplaceUpdate</code> is true, then an implementation supporting this
 feature may permit tools to directly update files with <code>writable:
 true</code> in InitialWorkDirRequirement.  That is, as an optimization,
 files may be destructively modified in place as opposed to copied
@@ -1742,7 +1736,17 @@ destructively modify inputs may not be repeatable or reproducible.
 In particular, enabling this feature implies that WorkReuse should
 not be enabled.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>Always 'InplaceUpdateRequirement'</p>
-</td></tr><tr><td><code>inplaceUpdate</code></td><td><a href="#CWLType">boolean</a></td><td>True</td><td></td></tr></table><h2 id="CWLVersion">5.18 CWLVersion</h2><p>Version symbols for published CWL document versions.</p>
+</td></tr><tr><td><code>inplaceUpdate</code></td><td><a href="#CWLType">boolean</a></td><td>True</td><td></td></tr></table><h2 id="ToolTimeLimit">5.17 ToolTimeLimit</h2><p>Set an upper limit on the execution time of a CommandLineTool.
+A CommandLineTool whose execution duration exceeds the time
+limit may be preemptively terminated and considered failed.
+May also be used by batch systems to make scheduling decisions.
+The execution duration excludes external operations, such as
+staging of files, pulling a docker image etc, and only counts
+wall-time for the execution of the command line itself.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>class</code></td><td><a href="#CWLType">string</a></td><td>True</td><td><p>Always 'ToolTimeLimit'</p>
+</td></tr><tr><td><code>timelimit</code></td><td><a href="#CWLType">long</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>True</td><td><p>The time limit, in seconds.  A time limit of zero means no
+time limit.  Negative time limits are an error.</p>
+</td></tr></table><h2 id="CWLVersion">5.18 CWLVersion</h2><p>Version symbols for published CWL document versions.</p>
 <h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>draft-2</code></td><td></td></tr><tr><td><code>draft-3.dev1</code></td><td></td></tr><tr><td><code>draft-3.dev2</code></td><td></td></tr><tr><td><code>draft-3.dev3</code></td><td></td></tr><tr><td><code>draft-3.dev4</code></td><td></td></tr><tr><td><code>draft-3.dev5</code></td><td></td></tr><tr><td><code>draft-3</code></td><td></td></tr><tr><td><code>draft-4.dev1</code></td><td></td></tr><tr><td><code>draft-4.dev2</code></td><td></td></tr><tr><td><code>draft-4.dev3</code></td><td></td></tr><tr><td><code>v1.0.dev4</code></td><td></td></tr><tr><td><code>v1.0</code></td><td></td></tr><tr><td><code>v1.1.0-dev1</code></td><td></td></tr></table></div>
     </div>
     </div>
