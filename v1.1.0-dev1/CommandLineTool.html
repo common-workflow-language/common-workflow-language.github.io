@@ -97,7 +97,8 @@ under the terms of the Apache License, version 2.0.</p>
 </ol></li></ol><li><a href="#Data_model">2. Data model</a><ol>
 <li><a href="#Data_concepts">2.1 Data concepts</a><ol>
 </ol><li><a href="#Syntax">2.2 Syntax</a><ol>
-</ol><li><a href="#Identifiers">2.3 Identifiers</a><ol>
+<li><a href="#map">2.2.1 map</a><ol>
+</ol></li></ol><li><a href="#Identifiers">2.3 Identifiers</a><ol>
 </ol><li><a href="#Document_preprocessing">2.4 Document preprocessing</a><ol>
 </ol><li><a href="#Extensions_and_metadata">2.5 Extensions and metadata</a><ol>
 </ol></li></ol><li><a href="#Execution_model">3. Execution model</a><ol>
@@ -220,6 +221,15 @@ update files with <code>writable: true</code> in <code>InitialWorkDirRequirement
 <li><a href="#LoadListingRequirement">Added</a> <code>LoadListingRequirement</code>
 and <a href="#LoadContents">loadListing</a> to control whether and how
 <code>Directory</code> listings should be loaded for use in expressions.</li>
+<li>The position field of the <a href="#CommandLineBinding">CommandLineBinding</a> can
+now be calculated from a CWL Expression.</li>
+<li>The exit code of a CommandLineTool invocation is now
+available to expressions in <code>outputEval</code> as <code>runtime.exitCode</code></li>
+<li><a href="#map">Better explain</a> the <code>map&lt;…&gt;</code> notation that has existed since v1.0.</li>
+<li>Fixed schema error where the <code>type</code> field inside the <code>inputs</code> and
+<code>outputs</code> field was incorrectly listed as optional.</li>
+<li>For multi-Process CWL documents, if no particular process is named then
+the process with the <code>id</code> of <code>#main</code> is chosen.</li>
 </ul>
 <p>See also the <a href="Workflow.html#Changelog">CWL Workflow Description, v1.1.0-dev1 changelog</a>.</p>
 <h2 id="Purpose">1.3 Purpose</h2><p>Standalone programs are a flexible and interoperable form of code reuse.
@@ -306,6 +316,147 @@ preprocessing steps described in the
 An implementation may formally validate the structure of a CWL document using
 SALAD schemas located at
 <a href="https://github.com/common-workflow-language/common-workflow-language/tree/master/v1.1.0-dev1">https://github.com/common-workflow-language/common-workflow-language/tree/master/v1.1.0-dev1</a></p>
+<h3 id="map">2.2.1 map</h3><p>Note: This section is non-normative.</p>
+<blockquote><p>type: array&lt;ComplexType&gt; |<br>
+map&lt;<code>key_field</code>, ComplexType&gt;</p>
+</blockquote>
+<p>The above syntax in the CWL specifications means there are two or more ways to write the given value.</p>
+<p>Option one is a array and is the most verbose option.</p>
+<p>Option one generic example:</p>
+<pre><code>some_cwl_field:
+  - key_field: a_complex_type1
+    field2: foo
+    field3: bar
+  - key_field: a_complex_type2
+    field2: foo2
+    field3: bar2
+  - key_field: a_complex_type3
+</code></pre>
+<p>Option one specific example using <a href="Workflow.html#Workflow">Workflow</a>.<a href="Workflow.html#WorkflowInputParameter">inputs</a>:</p>
+<blockquote><p>array&lt;InputParameter&gt; |<br>
+map&lt;<code>id</code>, <code>type</code> | InputParameter&gt;</p>
+</blockquote>
+<pre><code>inputs:
+  - id: workflow_input01
+    type: string
+  - id: workflow_input02
+    type: File
+    format: http://edamontology.org/format_2572
+</code></pre>
+<p>Option two is enabled by the <code>map&lt;…&gt;</code> syntax. Instead of an array of entries we
+use a mapping, where one field of the <code>ComplexType</code> (here named <code>key_field</code>)
+becomes the key in the map, and its value is the rest of the <code>ComplexType</code>
+without the key field. If all of the other fields of the <code>ComplexType</code> are
+optional and unneeded, then we can indicate this with an empty mapping as the
+value: <code>a_complex_type3: {}</code></p>
+<p>Option two generic example:</p>
+<pre><code>some_cwl_field:
+  a_complex_type1:  # this was the "key_field" from above
+    field2: foo
+    field3: bar
+  a_complex_type2:
+    field2: foo2
+    field3: bar2
+  a_complex_type3: {}  # we accept the defualt values for "field2" and "field3"
+</code></pre>
+<p>Option two specific example using <a href="Workflow.html#Workflow">Workflow</a>.<a href="Workflow.html#WorkflowInputParameter">inputs</a>:</p>
+<blockquote><p>array&lt;InputParameter&gt; |<br>
+map&lt;<code>id</code>, <code>type</code> | InputParameter&gt;</p>
+</blockquote>
+<pre><code>inputs:
+  workflow_input01:
+    type: string
+  workflow_input02:
+    type: File
+    format: http://edamontology.org/format_2572
+</code></pre>
+<p>Option two specific example using <a href="#SoftwareRequirement">SoftwareRequirement</a>.<a href="#SoftwarePackage">packages</a>:</p>
+<blockquote><p>array&lt;SoftwarePackage&gt; |<br>
+map&lt;<code>package</code>, <code>specs</code> | SoftwarePackage&gt;</p>
+</blockquote>
+<pre><code>hints:
+  SoftwareRequirement:
+    packages:
+      sourmash:
+        specs: [ https://doi.org/10.21105/joss.00027 ]
+      screed:
+        version: [ "1.0" ]
+      python: {}
+</code></pre>
+<p>`
+Sometimes we have a third and even more compact option denoted like this:</p>
+<blockquote><p>type: array&lt;ComplexType&gt; |<br>
+map&lt;<code>key_field</code>, <code>field2</code> | ComplexType&gt;</p>
+</blockquote>
+<p>For this example, if we only need the <code>key_field</code> and <code>field2</code> when specifying
+our <code>ComplexType</code>s (because the other fields are optional and we are fine with
+their default values) then we can abbreviate.</p>
+<p>Option three generic example:</p>
+<pre><code>some_cwl_field:
+  a_complex_type1: foo   # we accept the default value for field3
+  a_complex_type2: foo2  # we accept the default value for field3
+  a_complex_type3: {}    # we accept the default values for "field2" and "field3"
+</code></pre>
+<p>Option three specific example using <a href="Workflow.html#Workflow">Workflow</a>.<a href="Workflow.html#WorkflowInputParameter">inputs</a>:</p>
+<blockquote><p>array&lt;InputParameter&gt; |
+map&lt;<code>id</code>, <code>type</code> | InputParameter&gt;</p>
+</blockquote>
+<pre><code>inputs:
+  workflow_input01: string
+  workflow_input02: File  # we accept the default of no File format
+</code></pre>
+<p>Option three specific example using <a href="#SoftwareRequirement">SoftwareRequirement</a>.<a href="#SoftwarePackage">packages</a>:</p>
+<blockquote><p>array&lt;SoftwarePackage&gt; |<br>
+map&lt;<code>package</code>, <code>specs</code> | SoftwarePackage&gt;</p>
+</blockquote>
+<pre><code>hints:
+  SoftwareRequirement:
+    packages:
+      sourmash: [ https://doi.org/10.21105/joss.00027 ]
+      python: {}
+</code></pre>
+<p>What if some entries we want to mix the option 2 and 3? You can!</p>
+<p>Mixed option 2 and 3 generic example:</p>
+<pre><code>some_cwl_field:
+  my_complex_type1: foo   # we accept the default value for field3
+  my_complex_type2:
+    field2: foo2
+    field3: bar2          # we did not accept the default value for field3
+                          # so we had to use the slightly expanded syntax
+  my_complex_type3: {}    # as before, we accept the default values for both
+                          # "field2" and "field3"
+</code></pre>
+<p>Mixed option 2 and 3 specific example using <a href="Workflow.html#Workflow">Workflow</a>.<a href="Workflow.html#WorkflowInputParameter">inputs</a>:</p>
+<blockquote><p>array&lt;InputParameter&gt; |
+map&lt;<code>id</code>, <code>type</code> | InputParameter&gt;</p>
+</blockquote>
+<pre><code>inputs:
+  workflow_input01: string
+  workflow_input02:     # we use the longer way
+    type: File          # because we want to specify the "format" too
+    format: http://edamontology.org/format_2572
+  workflow_input03: {}  # back to the short form as this entry
+                        # uses the default of no "type" just like the prior
+                        # examples
+</code></pre>
+<p>Mixed option 2 and 3 specific example using <a href="#SoftwareRequirement">SoftwareRequirement</a>.<a href="#SoftwarePackage">packages</a>:</p>
+<blockquote><p>array&lt;SoftwarePackage&gt; |<br>
+map&lt;<code>package</code>, <code>specs</code> | SoftwarePackage&gt;</p>
+</blockquote>
+<pre><code>hints:
+  SoftwareRequirement:
+    packages:
+      sourmash: [ https://doi.org/10.21105/joss.00027 ]
+      screed:
+        specs: [ https://github.com/dib-lab/screed ]
+        version: [ "1.0" ]
+      python: {}
+</code></pre>
+<p>Note: The <code>map&lt;…&gt;</code> (compact) versions are optional, the verbose option #1 is
+always allowed, but for presentation reasons option 3 and 2 may be preferred
+by human readers.</p>
+<p>The normative explanation for these variations, aimed at implementors, is in the
+<a href="SchemaSalad.html#Identifier_maps">Schema Salad specification</a>.</p>
 <h2 id="Identifiers">2.3 Identifiers</h2><p>If an object contains an <code>id</code> field, that is used to uniquely identify the
 object in that document.  The value of the <code>id</code> field must be unique over the
 entire document.  Identifiers may be resolved relative to either the document
@@ -376,8 +527,12 @@ of <a href="#Requirements_and_hints">process requirements</a>.</p>
 <h2 id="Generic_execution_process">3.2 Generic execution process</h2><p>The generic execution sequence of a CWL process (including workflows and
 command line line tools) is as follows.</p>
 <ol>
-<li>Load, process and validate a CWL document, yielding a process object.</li>
 <li>Load input object.</li>
+<li>Load, process and validate a CWL document, yielding one or more process objects.</li>
+<li>If there are multiple process objects (due to <a href="SchemaSalad.html#Document_graph"><code>$graph</code></a>)
+and which process object to start with is not specified in the input object (via
+a <a href="#Executing_CWL_documents_as_scripts"><code>cwl:tool</code></a> entry) or by any other means
+(like a URL fragment) then choose the process with the <code>id</code> of "#main" or "main".</li>
 <li>Validate the input object against the <code>inputs</code> schema for the process.</li>
 <li>Validate process requirements are met.</li>
 <li>Perform any further setup required by the specific process type.</li>
@@ -675,6 +830,8 @@ and non-zero exit codes are treated as failure.  This may be customized by
 providing the fields <code>successCodes</code>, <code>temporaryFailCodes</code>, and
 <code>permanentFailCodes</code>.  An implementation may choose to default unspecified
 non-zero exit codes to either <code>temporaryFailure</code> or <code>permanentFailure</code>.</p>
+<p>The exit code of the process is available to expressions in
+<code>outputEval</code> as <code>runtime.exitCode</code>.</p>
 <h2 id="Output_binding">4.4 Output binding</h2><p>If the output directory contains a file named "cwl.output.json", that file
 must be loaded and used as the output object.  Otherwise, the output object
 must be generated by walking the parameters listed in <code>outputs</code> and
@@ -748,7 +905,8 @@ temporary condition, where executing the process with the same
 runtime environment and inputs may produce different results.</p>
 </td></tr><tr><td><code>permanentFailCodes</code></td><td>array&lt;<a href="#CWLType">int</a>&gt;</td><td>False</td><td><p>Exit codes that indicate the process failed due to a permanent logic error, where executing the process with the same runtime environment and same inputs is expected to always fail.</p>
 </td></tr></table><h2 id="CommandInputParameter">5.1 CommandInputParameter</h2><p>An input parameter for a CommandLineTool.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#CWLType">CWLType</a> | <a href="#stdin">stdin</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Specify valid types of data that may be assigned to this parameter.</p>
+</td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
 </td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#SecondaryFileSchema">SecondaryFileSchema</a> | array&lt;<a href="#SecondaryFileSchema">SecondaryFileSchema</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Provides a pattern or expression specifying files or
 directories that should be included alongside the primary
@@ -815,7 +973,6 @@ a Directory object for use by expressions.</p>
 from the input object, or if the value of the parameter in the input
 object is <code>null</code>.  Default values are applied before evaluating expressions
 (e.g. dependent <code>valueFrom</code> fields).</p>
-</td></tr><tr><td><code>type</code></td><td><a href="#CWLType">CWLType</a> | <a href="#stdin">stdin</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.</p>
 </td></tr><tr><td><code>inputBinding</code></td><td><a href="#CommandLineBinding">CommandLineBinding</a></td><td>False</td><td><p>Describes how to turns the input parameters of a process into
 command line arguments.</p>
 </td></tr></table><h3 id="CommandLineBinding">5.1.1 CommandLineBinding</h3><p>When listed under <code>inputBinding</code> in the input schema, the term
@@ -853,13 +1010,18 @@ effective value.</p>
 <li><p><strong>null</strong>: Add nothing.</p>
 </li>
 </ul>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>loadContents</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Use of <code>loadContents</code> in <code>InputBinding</code> is deprecated.
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>position</code></td><td><a href="#CWLType">int</a> | <a href="#Expression">Expression</a> | <a href="#CWLType">string</a> | <a href="#CWLType">null</a></td><td>True</td><td><p>The sorting key.  Default position is 0. If the inputBinding is
+associated with an input parameter, then the value of <code>self</code> in the
+expression will be the value of the input parameter.  Input parameter
+defaults (as specified by the <code>InputParameter.default</code> field) must be
+applied before evaluating the expression. Expressions must return a
+single value of type int or a null.</p>
+</td></tr><tr><td><code>loadContents</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>Use of <code>loadContents</code> in <code>InputBinding</code> is deprecated.
 Preserved for v1.0 backwards compatability.  Will be removed in
 CWL v2.0.  Use <code>InputParameter.loadContents</code> instead.</p>
 <p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Read up to the first 64 KiB of text from the file and place it in the
 "contents" field of the file object for use by expressions.</p>
-</td></tr><tr><td><code>position</code></td><td><a href="#CWLType">int</a></td><td>False</td><td><p>The sorting key.  Default position is 0.</p>
 </td></tr><tr><td><code>prefix</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>Command line prefix to add before the value.</p>
 </td></tr><tr><td><code>separate</code></td><td><a href="#CWLType">boolean</a></td><td>False</td><td><p>If true (default), then the prefix and value must be added as separate
 command line arguments; if false, prefix and value must be concatenated
@@ -1245,7 +1407,8 @@ a Directory object for use by expressions.</p>
 </td></tr><tr><td><code>name</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>The identifier for this type</p>
 </td></tr><tr><td><code>inputBinding</code></td><td><a href="#CommandLineBinding">CommandLineBinding</a></td><td>False</td><td><p>Describes how to turn this object into command line arguments.</p>
 </td></tr></table><h2 id="CommandOutputParameter">5.2 CommandOutputParameter</h2><p>An output parameter for a CommandLineTool.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
+<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td><a href="#CWLType">CWLType</a> | <a href="#stdout">stdout</a> | <a href="#stderr">stderr</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>True</td><td><p>Specify valid types of data that may be assigned to this parameter.</p>
+</td></tr><tr><td><code>label</code></td><td><a href="#CWLType">string</a></td><td>False</td><td><p>A short, human-readable label of this object.</p>
 </td></tr><tr><td><code>secondaryFiles</code></td><td><a href="#SecondaryFileSchema">SecondaryFileSchema</a> | array&lt;<a href="#SecondaryFileSchema">SecondaryFileSchema</a>&gt;</td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Provides a pattern or expression specifying files or
 directories that should be included alongside the primary
@@ -1294,7 +1457,6 @@ pipe.  Default: <code>false</code>.</p>
 </td></tr><tr><td><code>format</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>False</td><td><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>This is the file format that will be assigned to the output
 File object.</p>
-</td></tr><tr><td><code>type</code></td><td><a href="#CWLType">CWLType</a> | <a href="#stdout">stdout</a> | <a href="#stderr">stderr</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</td><td>False</td><td><p>Specify valid types of data that may be assigned to this parameter.</p>
 </td></tr><tr><td><code>outputBinding</code></td><td><a href="#CommandOutputBinding">CommandOutputBinding</a></td><td>False</td><td><p>Describes how to generate this output object based on the files produced by a CommandLineTool</p>
 </td></tr></table><h3 id="stdout">5.2.1 stdout</h3><p>Only valid as a <code>type</code> for a <code>CommandLineTool</code> output with no
 <code>outputBinding</code> set.</p>
@@ -1487,13 +1649,15 @@ that is not under an input or output directory.</p>
 <p>Implementations may shut down a container before globbing
 output, so globs and expressions must not assume access to the
 container filesystem except for declared input and output.</p>
-</td></tr><tr><td><code>outputEval</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>False</td><td><p>Evaluate an expression to generate the output value.  If <code>glob</code> was
-specified, the value of <code>self</code> must be an array containing file objects
-that were matched.  If no files were matched, <code>self</code> must be a zero
-length array; if a single file was matched, the value of <code>self</code> is an
-array of a single element.  Additionally, if <code>loadContents</code> is <code>true</code>,
-the File objects must include up to the first 64 KiB of file contents
-in the <code>contents</code> field.</p>
+</td></tr><tr><td><code>outputEval</code></td><td><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></td><td>False</td><td><p>Evaluate an expression to generate the output value.  If
+<code>glob</code> was specified, the value of <code>self</code> must be an array
+containing file objects that were matched.  If no files were
+matched, <code>self</code> must be a zero length array; if a single file
+was matched, the value of <code>self</code> is an array of a single
+element.  Additionally, if <code>loadContents</code> is <code>true</code>, the File
+objects must include up to the first 64 KiB of file contents
+in the <code>contents</code> field.  The exit code of the process is
+available in the expression as <code>runtime.exitCode</code>.</p>
 </td></tr></table><h2 id="InlineJavascriptRequirement">5.3 InlineJavascriptRequirement</h2><p>Indicates that the workflow platform must support inline Javascript expressions.
 If this requirement is not present, the workflow platform must not perform expression
 interpolatation.</p>
