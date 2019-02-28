@@ -839,11 +839,11 @@ following micro-DSL for schema salad types:</p>
 ]
 </code></pre>
 <h1 id="SaladRecordSchema">4. SaladRecordSchema</h1><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#PrimitiveType">string</a></td><td>True</td><td><p>The identifier for this type</p>
-</td></tr><tr><td><code>type</code></td><td>enum_d9cba076fca539106791a4f46d198c7fcfbdb779</td><td>True</td><td><p>Must be <code>record</code></p>
+</td></tr><tr><td><code>type</code></td><td>constant value <code>record</code></td><td>True</td><td><p>Must be <code>record</code></p>
 </td></tr><tr><td><code>inVocab</code></td><td><a href="#PrimitiveType">boolean</a></td><td>False</td><td><p>By default or if "true", include the short name of this type in the
 vocabulary (the keys of the JSON-LD context).  If false, do not include
 the short name in the vocabulary.</p>
-</td></tr><tr><td><code>fields</code></td><td>array&lt;<a href="#SaladRecordField">SaladRecordField</a>&gt; | <br>map&lt;<code>name</code>,&nbsp;<code>type</code> | <a href="#SaladRecordField">SaladRecordField</a>&gt</td><td>False</td><td><p>Defines the fields of the record.</p>
+</td></tr><tr><td><code>fields</code></td><td>array&lt;<a href="#SaladRecordField">SaladRecordField</a>&gt; | <br><a href='#map'>map</a>&lt;<code>name</code>,&nbsp;<code>type</code> | <a href="#SaladRecordField">SaladRecordField</a>&gt</td><td>False</td><td><p>Defines the fields of the record.</p>
 </td></tr><tr><td><code>doc</code></td><td><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>False</td><td><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
 </td></tr><tr><td><code>docParent</code></td><td><a href="#PrimitiveType">string</a></td><td>False</td><td><p>Hint to indicate that during documentation generation, documentation
 for this type should appear in a subsection under <code>docParent</code>.</p>
@@ -858,7 +858,7 @@ least one type in a schema must be tagged with <code>documentRoot: true</code>.<
 </td></tr><tr><td><code>abstract</code></td><td><a href="#PrimitiveType">boolean</a></td><td>False</td><td><p>If true, this record is abstract and may be used as a base for other
 records, but is not valid on its own.</p>
 </td></tr><tr><td><code>extends</code></td><td><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>False</td><td><p>Indicates that this record inherits fields from one or more base records.</p>
-</td></tr><tr><td><code>specialize</code></td><td>array&lt;<a href="#SpecializeDef">SpecializeDef</a>&gt; | <br>map&lt;<code>specializeFrom</code>,&nbsp;<code>specializeTo</code> | <a href="#SpecializeDef">SpecializeDef</a>&gt</td><td>False</td><td><p>Only applies if <code>extends</code> is declared.  Apply type specialization using the
+</td></tr><tr><td><code>specialize</code></td><td>array&lt;<a href="#SpecializeDef">SpecializeDef</a>&gt; | <br><a href='#map'>map</a>&lt;<code>specializeFrom</code>,&nbsp;<code>specializeTo</code> | <a href="#SpecializeDef">SpecializeDef</a>&gt</td><td>False</td><td><p>Only applies if <code>extends</code> is declared.  Apply type specialization using the
 base record as a template.  For each field inherited from the base
 record, replace any instance of the type <code>specializeFrom</code> with
 <code>specializeTo</code>.</p>
@@ -872,17 +872,17 @@ record, replace any instance of the type <code>specializeFrom</code> with
 <a href="https://avro.apache.org/docs/current/spec.html#schemas">Avro schema declaration documentation</a> for
 detailed information.</p>
 <h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>null</code></td><td> no value</td></tr><tr><td><code>boolean</code></td><td> a binary value</td></tr><tr><td><code>int</code></td><td> 32-bit signed integer</td></tr><tr><td><code>long</code></td><td> 64-bit signed integer</td></tr><tr><td><code>float</code></td><td> single precision (32-bit) IEEE 754 floating-point number</td></tr><tr><td><code>double</code></td><td> double precision (64-bit) IEEE 754 floating-point number</td></tr><tr><td><code>string</code></td><td> Unicode character sequence</td></tr></table><h3 id="Any">4.1.2 Any</h3><p>The <strong>Any</strong> type validates for any non-null value.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>Any</code></td><td></td></tr></table><h3 id="RecordSchema">4.1.3 RecordSchema</h3><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>enum_d9cba076fca539106791a4f46d198c7fcfbdb779</td><td>True</td><td><p>Must be <code>record</code></p>
-</td></tr><tr><td><code>fields</code></td><td>array&lt;<a href="#RecordField">RecordField</a>&gt; | <br>map&lt;<code>name</code>,&nbsp;<code>type</code> | <a href="#RecordField">RecordField</a>&gt</td><td>False</td><td><p>Defines the fields of the record.</p>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>Any</code></td><td></td></tr></table><h3 id="RecordSchema">4.1.3 RecordSchema</h3><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>constant value <code>record</code></td><td>True</td><td><p>Must be <code>record</code></p>
+</td></tr><tr><td><code>fields</code></td><td>array&lt;<a href="#RecordField">RecordField</a>&gt; | <br><a href='#map'>map</a>&lt;<code>name</code>,&nbsp;<code>type</code> | <a href="#RecordField">RecordField</a>&gt</td><td>False</td><td><p>Defines the fields of the record.</p>
 </td></tr></table><h3 id="RecordField">4.1.4 RecordField</h3><p>A field of a record.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#PrimitiveType">string</a></td><td>True</td><td><p>The name of the field</p>
 </td></tr><tr><td><code>type</code></td><td><a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a>&gt;</td><td>True</td><td><p>The field type</p>
 </td></tr><tr><td><code>doc</code></td><td><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>False</td><td><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
 </td></tr></table><h4 id="EnumSchema">4.1.4.1 EnumSchema</h4><p>Define an enumerated type.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>True</td><td><p>Defines the set of valid symbols.</p>
-</td></tr><tr><td><code>type</code></td><td>enum_d961d79c225752b9fadb617367615ab176b47d77</td><td>True</td><td><p>Must be <code>enum</code></p>
+</td></tr><tr><td><code>type</code></td><td>constant value <code>enum</code></td><td>True</td><td><p>Must be <code>enum</code></p>
 </td></tr></table><h4 id="ArraySchema">4.1.4.2 ArraySchema</h4><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>items</code></td><td><a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a>&gt;</td><td>True</td><td><p>Defines the type of the array elements.</p>
-</td></tr><tr><td><code>type</code></td><td>enum_d062602be0b4b8fd33e69e29a841317b6ab665bc</td><td>True</td><td><p>Must be <code>array</code></p>
+</td></tr><tr><td><code>type</code></td><td>constant value <code>array</code></td><td>True</td><td><p>Must be <code>array</code></p>
 </td></tr></table><h3 id="JsonldPredicate">4.1.5 JsonldPredicate</h3><p>Attached to a record field to define how the parent record field is handled for
 URI resolution and JSON-LD context generation.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>_id</code></td><td><a href="#PrimitiveType">string</a></td><td>False</td><td><p>The predicate URI that this field corresponds to.
@@ -937,7 +937,7 @@ identifier resolution to objects under this field.</p>
 </td></tr></table><h1 id="SaladEnumSchema">5. SaladEnumSchema</h1><p>Define an enumerated type.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#PrimitiveType">string</a></td><td>True</td><td><p>The identifier for this type</p>
 </td></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>True</td><td><p>Defines the set of valid symbols.</p>
-</td></tr><tr><td><code>type</code></td><td>enum_d961d79c225752b9fadb617367615ab176b47d77</td><td>True</td><td><p>Must be <code>enum</code></p>
+</td></tr><tr><td><code>type</code></td><td>constant value <code>enum</code></td><td>True</td><td><p>Must be <code>enum</code></p>
 </td></tr><tr><td><code>inVocab</code></td><td><a href="#PrimitiveType">boolean</a></td><td>False</td><td><p>By default or if "true", include the short name of this type in the
 vocabulary (the keys of the JSON-LD context).  If false, do not include
 the short name in the vocabulary.</p>
@@ -956,7 +956,7 @@ least one type in a schema must be tagged with <code>documentRoot: true</code>.<
 </td></tr></table><h1 id="Documentation">6. Documentation</h1><p>A documentation section.  This type exists to facilitate self-documenting
 schemas but has no role in formal validation.</p>
 <h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#PrimitiveType">string</a></td><td>True</td><td><p>The identifier for this type</p>
-</td></tr><tr><td><code>type</code></td><td>enum_056429f0e9355680bd9b2411dc96a69c7ff2e76b</td><td>True</td><td><p>Must be <code>documentation</code></p>
+</td></tr><tr><td><code>type</code></td><td>constant value <code>documentation</code></td><td>True</td><td><p>Must be <code>documentation</code></p>
 </td></tr><tr><td><code>inVocab</code></td><td><a href="#PrimitiveType">boolean</a></td><td>False</td><td><p>By default or if "true", include the short name of this type in the
 vocabulary (the keys of the JSON-LD context).  If false, do not include
 the short name in the vocabulary.</p>
