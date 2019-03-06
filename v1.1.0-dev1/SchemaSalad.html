@@ -21,6 +21,45 @@
       margin-left: 2em;
       margin-right: 2em;
     }
+    .responsive-table-header {
+      text-align: left;
+      padding: 8px;
+      vertical-align: top;
+      font-weight: bold;
+      border-top-color: rgb(221, 221, 221);
+      border-top-style: solid;
+      border-top-width: 1px;
+      background-color: #f9f9f9
+    }
+    .responsive-table > .responsive-table-row {
+      text-align: left;
+      padding: 8px;
+      vertical-align: top;
+      border-top-color: rgb(221, 221, 221);
+      border-top-style: solid;
+      border-top-width: 1px;
+    }
+    @media (min-width: 0px), print {
+      .description-header {
+        display: none;
+      }
+      .description-col {
+        margin-top: 1em;
+        margin-left: 1.5em;
+      }
+    }
+    @media (min-width: 1170px) {
+      .description-header {
+        display: inline;
+      }
+      .description-col {
+        margin-top: 0px;
+        margin-left: 0px;
+      }
+    }
+    .responsive-table-row:nth-of-type(odd) {
+       background-color: #f9f9f9
+    }
     </style>
     </head>
     <body>
@@ -838,56 +877,278 @@ following micro-DSL for schema salad types:</p>
     }
 ]
 </code></pre>
-<h1 id="SaladRecordSchema">4. SaladRecordSchema</h1><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#PrimitiveType">string</a></td><td>True</td><td><p>The identifier for this type</p>
-</td></tr><tr><td><code>type</code></td><td>constant value <code>record</code></td><td>True</td><td><p>Must be <code>record</code></p>
-</td></tr><tr><td><code>inVocab</code></td><td><a href="#PrimitiveType">boolean</a></td><td>False</td><td><p>By default or if "true", include the short name of this type in the
+<h1 id="SaladRecordSchema">4. SaladRecordSchema</h1><h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>name</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The identifier for this type</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>type</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">constant value <code>record</code></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Must be <code>record</code></p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>inVocab</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">boolean</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>By default or if "true", include the short name of this type in the
 vocabulary (the keys of the JSON-LD context).  If false, do not include
 the short name in the vocabulary.</p>
-</td></tr><tr><td><code>fields</code></td><td>array&lt;<a href="#SaladRecordField">SaladRecordField</a>&gt; | <br><a href='#map'>map</a>&lt;<code>name</code>,&nbsp;<code>type</code> | <a href="#SaladRecordField">SaladRecordField</a>&gt</td><td>False</td><td><p>Defines the fields of the record.</p>
-</td></tr><tr><td><code>doc</code></td><td><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>False</td><td><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
-</td></tr><tr><td><code>docParent</code></td><td><a href="#PrimitiveType">string</a></td><td>False</td><td><p>Hint to indicate that during documentation generation, documentation
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>fields</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#SaladRecordField">SaladRecordField</a>&gt; | <br><a href='#map'>map</a>&lt;<code>name</code>,&nbsp;<code>type</code> | <a href="#SaladRecordField">SaladRecordField</a>&gt</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Defines the fields of the record.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>doc</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>docParent</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Hint to indicate that during documentation generation, documentation
 for this type should appear in a subsection under <code>docParent</code>.</p>
-</td></tr><tr><td><code>docChild</code></td><td><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>False</td><td><p>Hint to indicate that during documentation generation, documentation
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>docChild</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Hint to indicate that during documentation generation, documentation
 for <code>docChild</code> should appear in a subsection under this type.</p>
-</td></tr><tr><td><code>docAfter</code></td><td><a href="#PrimitiveType">string</a></td><td>False</td><td><p>Hint to indicate that during documentation generation, documentation
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>docAfter</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Hint to indicate that during documentation generation, documentation
 for this type should appear after the <code>docAfter</code> section at the same
 level.</p>
-</td></tr><tr><td><code>jsonldPredicate</code></td><td><a href="#PrimitiveType">string</a> | <a href="#JsonldPredicate">JsonldPredicate</a></td><td>False</td><td><p>Annotate this type with linked data context.</p>
-</td></tr><tr><td><code>documentRoot</code></td><td><a href="#PrimitiveType">boolean</a></td><td>False</td><td><p>If true, indicates that the type is a valid at the document root.  At
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>jsonldPredicate</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a> | <a href="#JsonldPredicate">JsonldPredicate</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Annotate this type with linked data context.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>documentRoot</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">boolean</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>If true, indicates that the type is a valid at the document root.  At
 least one type in a schema must be tagged with <code>documentRoot: true</code>.</p>
-</td></tr><tr><td><code>abstract</code></td><td><a href="#PrimitiveType">boolean</a></td><td>False</td><td><p>If true, this record is abstract and may be used as a base for other
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>abstract</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">boolean</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>If true, this record is abstract and may be used as a base for other
 records, but is not valid on its own.</p>
-</td></tr><tr><td><code>extends</code></td><td><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>False</td><td><p>Indicates that this record inherits fields from one or more base records.</p>
-</td></tr><tr><td><code>specialize</code></td><td>array&lt;<a href="#SpecializeDef">SpecializeDef</a>&gt; | <br><a href='#map'>map</a>&lt;<code>specializeFrom</code>,&nbsp;<code>specializeTo</code> | <a href="#SpecializeDef">SpecializeDef</a>&gt</td><td>False</td><td><p>Only applies if <code>extends</code> is declared.  Apply type specialization using the
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>extends</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Indicates that this record inherits fields from one or more base records.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>specialize</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#SpecializeDef">SpecializeDef</a>&gt; | <br><a href='#map'>map</a>&lt;<code>specializeFrom</code>,&nbsp;<code>specializeTo</code> | <a href="#SpecializeDef">SpecializeDef</a>&gt</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Only applies if <code>extends</code> is declared.  Apply type specialization using the
 base record as a template.  For each field inherited from the base
 record, replace any instance of the type <code>specializeFrom</code> with
 <code>specializeTo</code>.</p>
-</td></tr></table><h2 id="SaladRecordField">4.1 SaladRecordField</h2><p>A field of a record.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#PrimitiveType">string</a></td><td>True</td><td><p>The name of the field</p>
-</td></tr><tr><td><code>type</code></td><td><a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a>&gt;</td><td>True</td><td><p>The field type</p>
-</td></tr><tr><td><code>doc</code></td><td><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>False</td><td><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
-</td></tr><tr><td><code>jsonldPredicate</code></td><td><a href="#PrimitiveType">string</a> | <a href="#JsonldPredicate">JsonldPredicate</a></td><td>False</td><td><p>Annotate this type with linked data context.</p>
-</td></tr><tr><td><code>default</code></td><td><a href="#Any">Any</a></td><td>False</td><td><p>The default value to use for this field if the field is missing or "null".</p>
-</td></tr></table><h3 id="PrimitiveType">4.1.1 PrimitiveType</h3><p>Salad data types are based on Avro schema declarations.  Refer to the
+</div>
+</div></div><h2 id="SaladRecordField">4.1 SaladRecordField</h2><p>A field of a record.</p>
+<h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>name</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The name of the field</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>type</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The field type</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>doc</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>jsonldPredicate</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a> | <a href="#JsonldPredicate">JsonldPredicate</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Annotate this type with linked data context.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>default</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#Any">Any</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The default value to use for this field if the field is missing or "null".</p>
+</div>
+</div></div><h3 id="PrimitiveType">4.1.1 PrimitiveType</h3><p>Salad data types are based on Avro schema declarations.  Refer to the
 <a href="https://avro.apache.org/docs/current/spec.html#schemas">Avro schema declaration documentation</a> for
 detailed information.</p>
 <h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>null</code></td><td> no value</td></tr><tr><td><code>boolean</code></td><td> a binary value</td></tr><tr><td><code>int</code></td><td> 32-bit signed integer</td></tr><tr><td><code>long</code></td><td> 64-bit signed integer</td></tr><tr><td><code>float</code></td><td> single precision (32-bit) IEEE 754 floating-point number</td></tr><tr><td><code>double</code></td><td> double precision (64-bit) IEEE 754 floating-point number</td></tr><tr><td><code>string</code></td><td> Unicode character sequence</td></tr></table><h3 id="Any">4.1.2 Any</h3><p>The <strong>Any</strong> type validates for any non-null value.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>Any</code></td><td></td></tr></table><h3 id="RecordSchema">4.1.3 RecordSchema</h3><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>type</code></td><td>constant value <code>record</code></td><td>True</td><td><p>Must be <code>record</code></p>
-</td></tr><tr><td><code>fields</code></td><td>array&lt;<a href="#RecordField">RecordField</a>&gt; | <br><a href='#map'>map</a>&lt;<code>name</code>,&nbsp;<code>type</code> | <a href="#RecordField">RecordField</a>&gt</td><td>False</td><td><p>Defines the fields of the record.</p>
-</td></tr></table><h3 id="RecordField">4.1.4 RecordField</h3><p>A field of a record.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#PrimitiveType">string</a></td><td>True</td><td><p>The name of the field</p>
-</td></tr><tr><td><code>type</code></td><td><a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a>&gt;</td><td>True</td><td><p>The field type</p>
-</td></tr><tr><td><code>doc</code></td><td><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>False</td><td><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
-</td></tr></table><h4 id="EnumSchema">4.1.4.1 EnumSchema</h4><p>Define an enumerated type.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>True</td><td><p>Defines the set of valid symbols.</p>
-</td></tr><tr><td><code>type</code></td><td>constant value <code>enum</code></td><td>True</td><td><p>Must be <code>enum</code></p>
-</td></tr></table><h4 id="ArraySchema">4.1.4.2 ArraySchema</h4><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>items</code></td><td><a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a>&gt;</td><td>True</td><td><p>Defines the type of the array elements.</p>
-</td></tr><tr><td><code>type</code></td><td>constant value <code>array</code></td><td>True</td><td><p>Must be <code>array</code></p>
-</td></tr></table><h3 id="JsonldPredicate">4.1.5 JsonldPredicate</h3><p>Attached to a record field to define how the parent record field is handled for
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>Any</code></td><td></td></tr></table><h3 id="RecordSchema">4.1.3 RecordSchema</h3><h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>type</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">constant value <code>record</code></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Must be <code>record</code></p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>fields</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#RecordField">RecordField</a>&gt; | <br><a href='#map'>map</a>&lt;<code>name</code>,&nbsp;<code>type</code> | <a href="#RecordField">RecordField</a>&gt</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Defines the fields of the record.</p>
+</div>
+</div></div><h3 id="RecordField">4.1.4 RecordField</h3><p>A field of a record.</p>
+<h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>name</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The name of the field</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>type</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The field type</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>doc</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
+</div>
+</div></div><h4 id="EnumSchema">4.1.4.1 EnumSchema</h4><p>Define an enumerated type.</p>
+<h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>symbols</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#PrimitiveType">string</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Defines the set of valid symbols.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>type</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">constant value <code>enum</code></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Must be <code>enum</code></p>
+</div>
+</div></div><h4 id="ArraySchema">4.1.4.2 ArraySchema</h4><h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>items</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Defines the type of the array elements.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>type</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">constant value <code>array</code></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Must be <code>array</code></p>
+</div>
+</div></div><h3 id="JsonldPredicate">4.1.5 JsonldPredicate</h3><p>Attached to a record field to define how the parent record field is handled for
 URI resolution and JSON-LD context generation.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>_id</code></td><td><a href="#PrimitiveType">string</a></td><td>False</td><td><p>The predicate URI that this field corresponds to.
+<h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>_id</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The predicate URI that this field corresponds to.
 Corresponds to JSON-LD <code>@id</code> directive.</p>
-</td></tr><tr><td><code>_type</code></td><td><a href="#PrimitiveType">string</a></td><td>False</td><td><p>The context type hint, corresponds to JSON-LD <code>@type</code> directive.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>_type</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The context type hint, corresponds to JSON-LD <code>@type</code> directive.</p>
 <ul>
 <li><p>If the value of this field is <code>@id</code> and <code>identity</code> is false or
 unspecified, the parent field must be resolved using the link
@@ -898,26 +1159,62 @@ resolved using the identifier expansion rules.</p>
 resolved using the vocabulary resolution rules.</p>
 </li>
 </ul>
-</td></tr><tr><td><code>_container</code></td><td><a href="#PrimitiveType">string</a></td><td>False</td><td><p>Structure hint, corresponds to JSON-LD <code>@container</code> directive.</p>
-</td></tr><tr><td><code>identity</code></td><td><a href="#PrimitiveType">boolean</a></td><td>False</td><td><p>If true and <code>_type</code> is <code>@id</code> this indicates that the parent field must
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>_container</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Structure hint, corresponds to JSON-LD <code>@container</code> directive.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>identity</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">boolean</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>If true and <code>_type</code> is <code>@id</code> this indicates that the parent field must
 be resolved according to identity resolution rules instead of link
 resolution rules.  In addition, the field value is considered an
 assertion that the linked value exists; absence of an object in the loaded document
 with the URI is not an error.</p>
-</td></tr><tr><td><code>noLinkCheck</code></td><td><a href="#PrimitiveType">boolean</a></td><td>False</td><td><p>If true, this indicates that link validation traversal must stop at
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>noLinkCheck</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">boolean</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>If true, this indicates that link validation traversal must stop at
 this field.  This field (it is is a URI) or any fields under it (if it
 is an object or array) are not subject to link checking.</p>
-</td></tr><tr><td><code>mapSubject</code></td><td><a href="#PrimitiveType">string</a></td><td>False</td><td><p>If the value of the field is a JSON object, it must be transformed
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>mapSubject</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>If the value of the field is a JSON object, it must be transformed
 into an array of JSON objects, where each key-value pair from the
 source JSON object is a list item, the list items must be JSON objects,
 and the key is assigned to the field specified by <code>mapSubject</code>.</p>
-</td></tr><tr><td><code>mapPredicate</code></td><td><a href="#PrimitiveType">string</a></td><td>False</td><td><p>Only applies if <code>mapSubject</code> is also provided.  If the value of the
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>mapPredicate</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Only applies if <code>mapSubject</code> is also provided.  If the value of the
 field is a JSON object, it is transformed as described in <code>mapSubject</code>,
 with the addition that when the value of a map item is not an object,
 the item is transformed to a JSON object with the key assigned to the
 field specified by <code>mapSubject</code> and the value assigned to the field
 specified by <code>mapPredicate</code>.</p>
-</td></tr><tr><td><code>refScope</code></td><td><a href="#PrimitiveType">int</a></td><td>False</td><td><p>If the field contains a relative reference, it must be resolved by
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>refScope</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">int</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>If the field contains a relative reference, it must be resolved by
 searching for valid document references in each successive parent scope
 in the document fragment.  For example, a reference of <code>foo</code> in the
 context <code>#foo/bar/baz</code> will first check for the existence of
@@ -929,46 +1226,200 @@ identifer scope before starting the search, so if <code>refScope: 2</code> then
 "baz" and "bar" must be stripped to get the base <code>#foo</code> and search
 <code>#foo/foo</code> and the <code>#foo</code>.  The last scope searched must be the top
 level scope before determining if the identifier cannot be resolved.</p>
-</td></tr><tr><td><code>typeDSL</code></td><td><a href="#PrimitiveType">boolean</a></td><td>False</td><td><p>Field must be expanded based on the the Schema Salad type DSL.</p>
-</td></tr><tr><td><code>subscope</code></td><td><a href="#PrimitiveType">string</a></td><td>False</td><td><p>Append the subscope to the current scope when performing
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>typeDSL</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">boolean</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Field must be expanded based on the the Schema Salad type DSL.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>subscope</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Append the subscope to the current scope when performing
 identifier resolution to objects under this field.</p>
-</td></tr></table><h2 id="SpecializeDef">4.2 SpecializeDef</h2><h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>specializeFrom</code></td><td><a href="#PrimitiveType">string</a></td><td>True</td><td><p>The data type to be replaced</p>
-</td></tr><tr><td><code>specializeTo</code></td><td><a href="#PrimitiveType">string</a></td><td>True</td><td><p>The new data type to replace with</p>
-</td></tr></table><h1 id="SaladEnumSchema">5. SaladEnumSchema</h1><p>Define an enumerated type.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#PrimitiveType">string</a></td><td>True</td><td><p>The identifier for this type</p>
-</td></tr><tr><td><code>symbols</code></td><td>array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>True</td><td><p>Defines the set of valid symbols.</p>
-</td></tr><tr><td><code>type</code></td><td>constant value <code>enum</code></td><td>True</td><td><p>Must be <code>enum</code></p>
-</td></tr><tr><td><code>inVocab</code></td><td><a href="#PrimitiveType">boolean</a></td><td>False</td><td><p>By default or if "true", include the short name of this type in the
+</div>
+</div></div><h2 id="SpecializeDef">4.2 SpecializeDef</h2><h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>specializeFrom</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The data type to be replaced</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>specializeTo</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The new data type to replace with</p>
+</div>
+</div></div><h1 id="SaladEnumSchema">5. SaladEnumSchema</h1><p>Define an enumerated type.</p>
+<h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>name</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The identifier for this type</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>symbols</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#PrimitiveType">string</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Defines the set of valid symbols.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>type</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">constant value <code>enum</code></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Must be <code>enum</code></p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>inVocab</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">boolean</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>By default or if "true", include the short name of this type in the
 vocabulary (the keys of the JSON-LD context).  If false, do not include
 the short name in the vocabulary.</p>
-</td></tr><tr><td><code>doc</code></td><td><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>False</td><td><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
-</td></tr><tr><td><code>docParent</code></td><td><a href="#PrimitiveType">string</a></td><td>False</td><td><p>Hint to indicate that during documentation generation, documentation
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>doc</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>docParent</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Hint to indicate that during documentation generation, documentation
 for this type should appear in a subsection under <code>docParent</code>.</p>
-</td></tr><tr><td><code>docChild</code></td><td><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>False</td><td><p>Hint to indicate that during documentation generation, documentation
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>docChild</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Hint to indicate that during documentation generation, documentation
 for <code>docChild</code> should appear in a subsection under this type.</p>
-</td></tr><tr><td><code>docAfter</code></td><td><a href="#PrimitiveType">string</a></td><td>False</td><td><p>Hint to indicate that during documentation generation, documentation
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>docAfter</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Hint to indicate that during documentation generation, documentation
 for this type should appear after the <code>docAfter</code> section at the same
 level.</p>
-</td></tr><tr><td><code>jsonldPredicate</code></td><td><a href="#PrimitiveType">string</a> | <a href="#JsonldPredicate">JsonldPredicate</a></td><td>False</td><td><p>Annotate this type with linked data context.</p>
-</td></tr><tr><td><code>documentRoot</code></td><td><a href="#PrimitiveType">boolean</a></td><td>False</td><td><p>If true, indicates that the type is a valid at the document root.  At
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>jsonldPredicate</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a> | <a href="#JsonldPredicate">JsonldPredicate</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Annotate this type with linked data context.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>documentRoot</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">boolean</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>If true, indicates that the type is a valid at the document root.  At
 least one type in a schema must be tagged with <code>documentRoot: true</code>.</p>
-</td></tr><tr><td><code>extends</code></td><td><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>False</td><td><p>Indicates that this enum inherits symbols from a base enum.</p>
-</td></tr></table><h1 id="Documentation">6. Documentation</h1><p>A documentation section.  This type exists to facilitate self-documenting
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>extends</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Indicates that this enum inherits symbols from a base enum.</p>
+</div>
+</div></div><h1 id="Documentation">6. Documentation</h1><p>A documentation section.  This type exists to facilitate self-documenting
 schemas but has no role in formal validation.</p>
-<h3>Fields</h3><table class="table table-striped"><tr><th>field</th><th>type</th><th>required</th><th>description</th></tr><tr><td><code>name</code></td><td><a href="#PrimitiveType">string</a></td><td>True</td><td><p>The identifier for this type</p>
-</td></tr><tr><td><code>type</code></td><td>constant value <code>documentation</code></td><td>True</td><td><p>Must be <code>documentation</code></p>
-</td></tr><tr><td><code>inVocab</code></td><td><a href="#PrimitiveType">boolean</a></td><td>False</td><td><p>By default or if "true", include the short name of this type in the
+<h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>name</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The identifier for this type</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>type</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">constant value <code>documentation</code></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Must be <code>documentation</code></p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>inVocab</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">boolean</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>By default or if "true", include the short name of this type in the
 vocabulary (the keys of the JSON-LD context).  If false, do not include
 the short name in the vocabulary.</p>
-</td></tr><tr><td><code>doc</code></td><td><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>False</td><td><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
-</td></tr><tr><td><code>docParent</code></td><td><a href="#PrimitiveType">string</a></td><td>False</td><td><p>Hint to indicate that during documentation generation, documentation
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>doc</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>docParent</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Hint to indicate that during documentation generation, documentation
 for this type should appear in a subsection under <code>docParent</code>.</p>
-</td></tr><tr><td><code>docChild</code></td><td><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</td><td>False</td><td><p>Hint to indicate that during documentation generation, documentation
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>docChild</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Hint to indicate that during documentation generation, documentation
 for <code>docChild</code> should appear in a subsection under this type.</p>
-</td></tr><tr><td><code>docAfter</code></td><td><a href="#PrimitiveType">string</a></td><td>False</td><td><p>Hint to indicate that during documentation generation, documentation
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>docAfter</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Hint to indicate that during documentation generation, documentation
 for this type should appear after the <code>docAfter</code> section at the same
 level.</p>
-</td></tr></table></div>
+</div>
+</div></div></div>
     </div>
     </div>
     </body>

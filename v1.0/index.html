@@ -21,6 +21,45 @@
       margin-left: 2em;
       margin-right: 2em;
     }
+    .responsive-table-header {
+      text-align: left;
+      padding: 8px;
+      vertical-align: top;
+      font-weight: bold;
+      border-top-color: rgb(221, 221, 221);
+      border-top-style: solid;
+      border-top-width: 1px;
+      background-color: #f9f9f9
+    }
+    .responsive-table > .responsive-table-row {
+      text-align: left;
+      padding: 8px;
+      vertical-align: top;
+      border-top-color: rgb(221, 221, 221);
+      border-top-style: solid;
+      border-top-width: 1px;
+    }
+    @media (min-width: 0px), print {
+      .description-header {
+        display: none;
+      }
+      .description-col {
+        margin-top: 1em;
+        margin-left: 1.5em;
+      }
+    }
+    @media (min-width: 1170px) {
+      .description-header {
+        display: inline;
+      }
+      .description-col {
+        margin-top: 0px;
+        margin-left: 0px;
+      }
+    }
+    .responsive-table-row:nth-of-type(odd) {
+       background-color: #f9f9f9
+    }
     </style>
     </head>
     <body>
