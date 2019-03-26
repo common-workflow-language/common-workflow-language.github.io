@@ -123,11 +123,11 @@ Specification, <em>Common Workflow Language working group</em>.
 <a href="https://w3id.org/cwl/v1.0/">https://w3id.org/cwl/v1.0/</a>
 doi:<a href="https://doi.org/10.6084/m9.figshare.3115156.v2">10.6084/m9.figshare.3115156.v2</a></p>
 <p>A collection of existing references to CWL can be found at <a href="https://www.zotero.org/groups/2294829/cwl/items">https://zotero.org/groups/cwl</a></p>
-<h2 id="Implementations">Implementations</h2><table class="table table-striped">
+<h2 id="Implementations">Implementations</h2><p>In Production:</p>
+<table class="table table-striped">
 <thead><tr>
 <th>Software</th>
 <th>Description</th>
-<th>CWL support</th>
 <th>Platform support</th>
 </tr>
 </thead>
@@ -135,91 +135,82 @@ doi:<a href="https://doi.org/10.6084/m9.figshare.3115156.v2">10.6084/m9.figshare
 <tr>
 <td><a href="https://github.com/common-workflow-language/cwltool">cwltool</a></td>
 <td>Reference implementation of CWL</td>
-<td><a href="https://ci.commonwl.org/job/cwltool-conformance/lastBuild/testReport/"><img src="https://ci.commonwl.org/job/cwltool-conformance/badge/icon" alt="Build Status"></a></td>
 <td>Linux, OS X, Windows, local execution only</td>
 </tr>
 <tr>
 <td><a href="https://arvados.org">Arvados</a></td>
 <td>Distributed computing platform for data analysis on massive data sets. <a href="https://doc.arvados.org/user/cwl/cwl-runner.html">Using CWL on Arvados</a></td>
-<td><a href="https://ci.commonwl.org/job/arvados-conformance/lastBuild/testReport/"><img src="https://ci.commonwl.org/job/arvados-conformance/badge/icon" alt="Build Status"></a></td>
 <td>AWS, GCP, Azure, Slurm</td>
 </tr>
 <tr>
 <td><a href="https://github.com/BD2KGenomics/toil">Toil</a></td>
 <td>Toil is a workflow engine entirely written in Python.</td>
-<td><a href="https://ci.commonwl.org/job/toil-conformance/lastBuild/testReport/"><img src="https://ci.commonwl.org/job/toil-conformance/badge/icon" alt="Build Status"></a></td>
 <td>AWS, Azure, GCP, Grid Engine, HTCondor, LSF, Mesos, OpenStack, Slurm, PBS/Torque</td>
-</tr>
-<tr>
-<td><a href="https://github.com/rabix/bunny">Rabix Bunny</a></td>
-<td>An open-source, Java-based implementation of Common Workflow Language with support for multiple drafts/versions. See <a href="http://rabix.io">Rabix.io</a> for details.</td>
-<td><a href="https://ci.commonwl.org/job/rabix-conformance/"><img src="https://ci.commonwl.org/buildStatus/icon?job=rabix-conformance" alt="Build Status"></a></td>
-<td>Linux, OS X, <a href="https://github.com/ga4gh/task-execution-server">GA4GH TES</a> (experimental)</td>
-</tr>
-<tr>
-<td><a href="https://galaxyproject.org/">Galaxy</a></td>
-<td>Web-based platform for data intensive biomedical research.</td>
-<td><a href="https://github.com/common-workflow-language/galaxy">alpha</a></td>
-<td>-</td>
-</tr>
-<tr>
-<td><a href="https://github.com/common-workflow-language/cwl-tes">cwl-tes</a></td>
-<td>CWL engine backended by the <a href="https://github.com/ga4gh/task-execution-schemas">GA4GH Task Execution API</a></td>
-<td><a href="https://travis-ci.org/common-workflow-language/cwl-tes"><img src="https://travis-ci.org/common-workflow-language/cwl-tes.svg?branch=master" alt="Build Status"></a></td>
-<td>Alicloud, AWS, Google, HPC, Local, Spark, TES</td>
 </tr>
 <tr>
 <td><a href="https://github.com/Barski-lab/cwl-airflow">CWL-Airflow</a></td>
 <td>Package to run CWL workflows in Apache-Airflow (supported by BioWardrobe Team, CCHMC)</td>
-<td><a href="https://ci.commonwl.org/job/airflow-conformance"><img src="https://ci.commonwl.org/buildStatus/icon?job=airflow-conformance" alt="Build Status"></a></td>
 <td>Linux, OS X</td>
 </tr>
 <tr>
 <td><a href="https://reana.readthedocs.io/en/latest/index.html">REANA</a></td>
 <td>RE usable ANAlyses</td>
-<td><a href="https://reana-workflow-engine-cwl.readthedocs.io/en/latest/developerguide.html#running-cwl-conformance-tests">Yes</a></td>
 <td>Kubernetes, <a href="https://clouddocs.web.cern.ch/clouddocs/containers/">CERN OpenStack</a> (<a href="https://wiki.openstack.org/wiki/Magnum">OpenStack Magnum</a>)</td>
 </tr>
 <tr>
 <td><a href="https://github.com/broadinstitute/cromwell">Cromwell</a></td>
 <td>Cromwell workflow engine</td>
-<td><a href="https://ci.commonwl.org/job/cromwell"><img src="https://ci.commonwl.org/buildStatus/icon?job=cromwell" alt="Build Status"></a> <a href="https://github.com/broadinstitute/cromwell/issues?q=is%3Aopen+is%3Aissue+label%3ACWL">beta</a></td>
 <td>Google, HTCondor, Local, LSF, PBS/Torque, SGE, Slurm, TES</td>
 </tr>
 <tr>
 <td><a href="https://github.com/IBMSpectrumComputing/cwlexec">CWLEXEC</a></td>
 <td>Apache 2.0 licensed CWL executor for IBM Spectrum LSF, supported by IBM for customers with valid contracts.</td>
-<td><a href="https://ci.commonwl.org/job/cwlexec"><img src="https://ci.commonwl.org/buildStatus/icon?job=cwlexec" alt="Build Status"></a></td>
 <td><a href="https://developer.ibm.com/storage/products/ibm-spectrum-lsf/#">IBM Spectrum LSF</a> 10.1.0.3+</td>
+</tr>
+</tbody>
+</table>
+<p>In Development:</p>
+<table class="table table-striped">
+<thead><tr>
+<th>Software</th>
+<th>Description</th>
+<th>Platform support</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://galaxyproject.org/">Galaxy</a></td>
+<td>Web-based platform for data intensive biomedical research.</td>
+<td>-</td>
+</tr>
+<tr>
+<td><a href="https://github.com/common-workflow-language/cwl-tes">cwl-tes</a></td>
+<td>CWL engine backended by the <a href="https://github.com/ga4gh/task-execution-schemas">GA4GH Task Execution API</a></td>
+<td>Alicloud, AWS, Google, HPC, Local, Spark, TES</td>
 </tr>
 <tr>
 <td><a href="https://nlesc.github.io/Xenon/">Xenon</a></td>
 <td>Run CWL workflows using Xenon</td>
-<td><a href="https://github.com/NLeSC/xenon-cwl-runner">alpha</a></td>
 <td><a href="https://nlesc.github.io/Xenon/">any Xenon backend</a>: local, ssh, SLURM, Torque, Grid Engine</td>
 </tr>
 <tr>
 <td><a href="https://github.com/Consonance/consonance">Consonance</a></td>
 <td>orchestration tool for running SeqWare workflows and CWL tools</td>
-<td>-</td>
 <td>AWS, OpenStack, Azure</td>
 </tr>
 <tr>
 <td><a href="https://taverna.incubator.apache.org/">Apache Taverna</a></td>
 <td>Domain-independent Workflow Management System</td>
-<td><a href="https://issues.apache.org/jira/browse/TAVERNA-900">alpha</a></td>
 <td>-</td>
 </tr>
 <tr>
 <td><a href="https://github.com/MG-RAST/AWE">AWE</a></td>
 <td>Workflow and resource management system for bioinformatics data analysis.</td>
-<td><a href="https://ci.commonwl.org/job/AWE/"><img src="http://ci.commonwl.org/buildStatus/icon?job=AWE" alt="Build Status"></a> <a href="https://github.com/MG-RAST/AWE/tree/develop">beta</a></td>
 <td>-</td>
 </tr>
 <tr>
 <td><a href="https://github.com/otiai10/yacle">yacle</a></td>
 <td>Yet Another CWL Engine</td>
-<td><a href="https://travis-ci.org/otiai10/yacle"><img src="https://travis-ci.org/otiai10/yacle.svg?branch=master" alt="Build Status"></a> <a href="https://github.com/common-workflow-language/common-workflow-language"><img src="https://img.shields.io/badge/dynamic/json.svg?label=CWL%20Conformance&amp;url=https%3A%2F%2Fraw.githubusercontent.com%2Fotiai10%2Fyacle%2Fmaster%2F.conformance.json&amp;query=pass&amp;colorB=95c31e&amp;suffix=%20cases" alt=""></a></td>
 <td>local</td>
 </tr>
 </tbody>
