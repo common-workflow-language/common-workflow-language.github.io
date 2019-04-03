@@ -217,7 +217,7 @@ v1.1.0-dev1.</p>
 <li>When defining record types with <code>CommandInputRecordSchema</code>, fields of
 type <code>File</code> may now include <code>format</code>, <code>loadContents</code>,
 <code>secondaryFiles</code> and <code>streamable</code>.</li>
-<li><code>CommandInputRecordSchema</code>, <code>CommandOutputRecordSchema</code>, 
+<li><code>CommandInputRecordSchema</code>, <code>CommandOutputRecordSchema</code>,
 <code>CommandInputEnumSchema and</code>CommandInputArraySchema<code>now have an optional</code>doc` field.</li>
 <li><code>inputBinding</code> has been added as an optional field for
 <code>CommandInputRecordSchema</code> (was previously in CWL <code>draft-3</code> but
@@ -273,6 +273,12 @@ the process with the <code>id</code> of <code>#main</code> is chosen.</li>
 <li><a href="#Generic_execution_process">Made explicit</a> that the <code>$namespaces</code> of
 the top level CWL document are also available to the input object as
 well.</li>
+<li>Fields with type "Expression" no longer include "string" in
+the type union unless a string is semantically valid.  Where
+a bare string is not semantically valid, these fields must
+contain either a non-string value accepted by the field
+type, or a valid expression which returns a value having one
+of the the other types defined for that field.</li>
 </ul>
 <p>See also the <a href="Workflow.html#Changelog">CWL Workflow Description, v1.1.0-dev1 changelog</a>.</p>
 <h2 id="Purpose">1.3 Purpose</h2><p>Standalone programs are a flexible and interoperable form of code reuse.
@@ -1246,18 +1252,6 @@ effective value.</p>
 <div class="col-xs-12 col-lg-6 description-header">description</div>
 </div>
 <div class="row responsive-table-row">
-<div class="col-xs-3 col-lg-2"><code>position</code></div>
-<div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">int</a> | <a href="#Expression">Expression</a> | <a href="#CWLType">string</a> | <a href="#CWLType">null</a></div>
-<div class="col-xs-12 col-lg-6 description-col"><p>The sorting key.  Default position is 0. If the inputBinding is
-associated with an input parameter, then the value of <code>self</code> in the
-expression will be the value of the input parameter.  Input parameter
-defaults (as specified by the <code>InputParameter.default</code> field) must be
-applied before evaluating the expression. Expressions must return a
-single value of type int or a null.</p>
-</div>
-</div>
-<div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>loadContents</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">boolean</a></div>
@@ -1267,6 +1261,18 @@ CWL v2.0.  Use <code>InputParameter.loadContents</code> instead.</p>
 <p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Read up to the first 64 KiB of text from the file and place it in the
 "contents" field of the file object for use by expressions.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>position</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">int</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The sorting key.  Default position is 0. If the inputBinding is
+associated with an input parameter, then the value of <code>self</code> in the
+expression will be the value of the input parameter.  Input parameter
+defaults (as specified by the <code>InputParameter.default</code> field) must be
+applied before evaluating the expression. Expressions must return a
+single value of type int or a null.</p>
 </div>
 </div>
 <div class="row responsive-table-row">
@@ -1372,7 +1378,7 @@ extensions, the path is unchanged.</li>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>required</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">boolean</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">boolean</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>An implementation must not fail workflow execution if <code>required</code> is
 set to <code>false</code> and the expected secondary file does not exist.
 Default value for <code>required</code> field is <code>true</code> for secondary files on
@@ -2506,7 +2512,7 @@ container filesystem except for declared input and output.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>outputEval</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Evaluate an expression to generate the output value.  If
 <code>glob</code> was specified, the value of <code>self</code> must be an array
 containing file objects that were matched.  If no files were
@@ -2803,7 +2809,7 @@ clutter.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>listing</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">array&lt;<a href="#CWLType">null</a> | <a href="#File">File</a> | array&lt;<a href="#File">File</a>&nbsp;|&nbsp;<a href="#Directory">Directory</a>&gt; | <a href="#Directory">Directory</a> | <a href="#Dirent">Dirent</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a>&gt; | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#CWLType">null</a> | <a href="#File">File</a> | array&lt;<a href="#File">File</a>&nbsp;|&nbsp;<a href="#Directory">Directory</a>&gt; | <a href="#Directory">Directory</a> | <a href="#Dirent">Dirent</a> | <a href="#Expression">Expression</a>&gt; | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The list of files or subdirectories that must be placed in the
 designated output directory prior to executing the command line tool.</p>
 <p>May be an expression. If so, the expression return value must validate as
@@ -2965,56 +2971,56 @@ If "max" is specified by "min" is not, then "min" == "max".</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>coresMin</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Minimum reserved number of CPU cores (default is 1)</p>
 </div>
 </div>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>coresMax</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">int</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">int</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Maximum reserved number of CPU cores</p>
 </div>
 </div>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>ramMin</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Minimum reserved RAM in mebibytes (2**20) (default is 256)</p>
 </div>
 </div>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>ramMax</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Maximum reserved RAM in mebibytes (2**20)</p>
 </div>
 </div>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>tmpdirMin</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Minimum reserved filesystem based storage for the designated temporary directory, in mebibytes (2**20) (default is 1024)</p>
 </div>
 </div>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>tmpdirMax</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Maximum reserved filesystem based storage for the designated temporary directory, in mebibytes (2**20)</p>
 </div>
 </div>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>outdirMin</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Minimum reserved filesystem based storage for the designated output directory, in mebibytes (2**20) (default is 1024)</p>
 </div>
 </div>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>outdirMax</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Maximum reserved filesystem based storage for the designated output directory, in mebibytes (2**20)</p>
 </div>
 </div></div><h2 id="WorkReuse">5.14 WorkReuse</h2><p>For implementations that support reusing output from past work (on
@@ -3043,7 +3049,7 @@ is enabled by default.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>enableReuse</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">boolean</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">boolean</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"></div>
 </div></div><h2 id="NetworkAccess">5.15 NetworkAccess</h2><p>Indicate whether a process requires outgoing IPv4/IPv6 network
 access.  Choice of IPv4 or IPv6 is implementation and site
@@ -3075,7 +3081,7 @@ address or the ability to accept inbound connections.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>networkAccess</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">boolean</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">boolean</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"></div>
 </div></div><h2 id="InplaceUpdateRequirement">5.16 InplaceUpdateRequirement</h2><p>If <code>inplaceUpdate</code> is true, then an implementation supporting this
 feature may permit tools to directly update files with <code>writable:
@@ -3147,7 +3153,7 @@ wall-time for the execution of the command line itself.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>timelimit</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The time limit, in seconds.  A time limit of zero means no
 time limit.  Negative time limits are an error.</p>
 </div>
