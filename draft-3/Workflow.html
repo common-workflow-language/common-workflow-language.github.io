@@ -4,7 +4,12 @@
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" integrity="sha384-604wwakM23pEysLJAhja8Lm42IIwYrJ0dEAqzFsj9pJ/P5buiujjywArgPCi8eoz" crossorigin="anonymous">
+    <script>
+    // Picture element HTML5 shiv
+    document.createElement( "picture" );
+    </script>
+    <script src="https://cdn.rawgit.com/scottjehl/picturefill/3.0.2/dist/picturefill.min.js" integrity="sha384-ZJsVW8YHHxQHJ+SJDncpN90d0EfAhPP+yA94n+EhSRzhcxfo84yMnNk+v37RGlWR" crossorigin="anonymous" async></script>
     <title>Common Workflow Language (CWL) Workflow Description, draft 3</title>
     <style>
     :target {
@@ -20,6 +25,13 @@
     pre {
       margin-left: 2em;
       margin-right: 2em;
+    }
+    .section a {
+      visibility: hidden;
+    }
+    .section:hover a {
+      visibility: visible;
+      color: rgb(201, 201, 201);
     }
     .responsive-table-header {
       text-align: left;
@@ -81,7 +93,7 @@
     
     <div class="row">
     
-    <div class="col-md-12" role="main" id="main"><h1 id="Common_Workflow_Language_(CWL)_Workflow_Description,_draft_3">Common Workflow Language (CWL) Workflow Description, draft 3</h1><p>This version:</p>
+    <div class="col-md-12" role="main" id="main"><h1 id="Common_Workflow_Language_(CWL)_Workflow_Description,_draft_3" class="section">Common Workflow Language (CWL) Workflow Description, draft 3 <a href="#Common_Workflow_Language_(CWL)_Workflow_Description,_draft_3">&sect;</a></h1><p>This version:</p>
 <ul>
 <li><a href="https://w3id.org/cwl/draft-3/">https://w3id.org/cwl/draft-3/</a></li>
 </ul>
@@ -105,12 +117,12 @@
 <li>Stian Soiland-Reyes <a href="mailto:soiland-reyes@cs.manchester.ac.uk">soiland-reyes@cs.manchester.ac.uk</a>, University of Manchester</li>
 <li>Luka Stojanovic <a href="mailto:luka.stojanovic@sbgenomics.com">luka.stojanovic@sbgenomics.com</a>, Seven Bridges Genomics</li>
 </ul>
-<h1 id="Abstract">Abstract</h1><p>A Workflow is an analysis task represented by a directed graph describing
+<h1 id="Abstract" class="section">Abstract <a href="#Abstract">&sect;</a></h1><p>A Workflow is an analysis task represented by a directed graph describing
 a sequence of operations that transform an input data set to output.
 This specification defines the Common Workflow Language (CWL) Workflow
 description, a vendor-neutral standard for representing workflows
 intended to be portable across a variety of computing platforms.</p>
-<h1 id="Status_of_This_Document">Status of This Document</h1><p>This document is the product of the <a href="https://groups.google.com/forum/#!forum/common-workflow-language">Common Workflow Language working
+<h1 id="Status_of_This_Document" class="section">Status of This Document <a href="#Status_of_This_Document">&sect;</a></h1><p>This document is the product of the <a href="https://groups.google.com/forum/#!forum/common-workflow-language">Common Workflow Language working
 group</a>.  The
 latest version of this document is available in the "draft-3" directory at</p>
 <p><a href="https://github.com/common-workflow-language/common-workflow-language">https://github.com/common-workflow-language/common-workflow-language</a></p>
@@ -174,13 +186,13 @@ under the terms of the Apache License, version 2.0.</p>
 </ol><li><a href="#CWLVersions">4.2.10.3 CWLVersions</a><ol>
 </ol></li></ol></li></ol></li></ol></li></ol></nav>
 
-<h1 id="Introduction">1. Introduction</h1><p>The Common Workflow Language (CWL) working group is an informal, multi-vendor
+<h1 id="Introduction" class="section">1. Introduction <a href="#Introduction">&sect;</a></h1><p>The Common Workflow Language (CWL) working group is an informal, multi-vendor
 working group consisting of various organizations and individuals that have an
 interest in portability of data analysis workflows.  The goal is to create
 specifications like this one that enable data scientists to describe analysis
 tools and workflows that are powerful, easy to use, portable, and support
 reproducibility.</p>
-<h2 id="Introduction_to_draft_3">1.1 Introduction to draft 3</h2><p>This specification represents the third milestone of the CWL group.  Since
+<h2 id="Introduction_to_draft_3" class="section">1.1 Introduction to draft 3 <a href="#Introduction_to_draft_3">&sect;</a></h2><p>This specification represents the third milestone of the CWL group.  Since
 draft-2, this draft introduces the following changes and additions:</p>
 <ul>
 <li>Greatly simplified naming within a document with scoped identifiers, as
@@ -195,23 +207,23 @@ the file type.</li>
 <li>The separation of Workflow and CommandLineTool components into
 separate specifications.</li>
 </ul>
-<h2 id="Purpose">1.2 Purpose</h2><p>The Common Workflow Language Command Line Tool Description express
+<h2 id="Purpose" class="section">1.2 Purpose <a href="#Purpose">&sect;</a></h2><p>The Common Workflow Language Command Line Tool Description express
 workflows for data-intensive science, such as Bioinformatics, Chemistry,
 Physics, and Astronomy.  This specification is intended to define a data
 and execution model for Workflows that can be implemented on top of a
 variety of computing platforms, ranging from an individual workstation to
 cluster, grid, cloud, and high performance computing systems.</p>
-<h2 id="References_to_Other_Specifications">1.3 References to Other Specifications</h2><p><strong>Javascript Object Notation (JSON)</strong>: <a href="http://json.org">http://json.org</a></p>
+<h2 id="References_to_Other_Specifications" class="section">1.3 References to Other Specifications <a href="#References_to_Other_Specifications">&sect;</a></h2><p><strong>Javascript Object Notation (JSON)</strong>: <a href="http://json.org">http://json.org</a></p>
 <p><strong>JSON Linked Data (JSON-LD)</strong>: <a href="http://json-ld.org">http://json-ld.org</a></p>
 <p><strong>YAML</strong>: <a href="http://yaml.org">http://yaml.org</a></p>
 <p><strong>Avro</strong>: <a href="https://avro.apache.org/docs/current/spec.html">https://avro.apache.org/docs/current/spec.html</a></p>
 <p><strong>Uniform Resource Identifier (URI) Generic Syntax</strong>: <a href="https://tools.ietf.org/html/rfc3986">https://tools.ietf.org/html/rfc3986</a>)</p>
 <p><strong>Portable Operating System Interface (POSIX.1-2008)</strong>: <a href="http://pubs.opengroup.org/onlinepubs/9699919799/">http://pubs.opengroup.org/onlinepubs/9699919799/</a></p>
 <p><strong>Resource Description Framework (RDF)</strong>: <a href="http://www.w3.org/RDF/">http://www.w3.org/RDF/</a></p>
-<h2 id="Scope">1.4 Scope</h2><p>This document describes CWL syntax, execution, and object model.  It
+<h2 id="Scope" class="section">1.4 Scope <a href="#Scope">&sect;</a></h2><p>This document describes CWL syntax, execution, and object model.  It
 is not intended to document a CWL specific implementation, however it may
 serve as a reference for the behavior of conforming implementations.</p>
-<h2 id="Terminology">1.5 Terminology</h2><p>The terminology used to describe CWL documents is defined in the
+<h2 id="Terminology" class="section">1.5 Terminology <a href="#Terminology">&sect;</a></h2><p>The terminology used to describe CWL documents is defined in the
 Concepts section of the specification. The terms defined in the
 following list are used in building those definitions and in describing the
 actions of an CWL implementation:</p>
@@ -232,7 +244,7 @@ enable or disable the behavior described.</p>
 compatibility.  Portable CWL documents should not rely on deprecated behavior.
 Behavior marked as deprecated may be removed entirely from future revisions of
 the CWL specification.</p>
-<h1 id="Data_model">2. Data model</h1><h2 id="Data_concepts">2.1 Data concepts</h2><p>An <strong>object</strong> is a data structure equivalent to the "object" type in JSON,
+<h1 id="Data_model" class="section">2. Data model <a href="#Data_model">&sect;</a></h1><h2 id="Data_concepts" class="section">2.1 Data concepts <a href="#Data_concepts">&sect;</a></h2><p>An <strong>object</strong> is a data structure equivalent to the "object" type in JSON,
 consisting of a unordered set of name/value pairs (referred to here as
 <strong>fields</strong>) and where the name is a string and the value is a string, number,
 boolean, array, or object.</p>
@@ -246,24 +258,24 @@ for an input object.</p>
 <p>An <strong>output schema</strong> describes the valid format for a output object.</p>
 <p><strong>Metadata</strong> is information about workflows, tools, or input items that is
 not used directly in the computation.</p>
-<h2 id="Syntax">2.2 Syntax</h2><p>CWL documents must consist of an object or array of objects represented using
+<h2 id="Syntax" class="section">2.2 Syntax <a href="#Syntax">&sect;</a></h2><p>CWL documents must consist of an object or array of objects represented using
 JSON or YAML syntax.  Upon loading, a CWL implementation must apply the
 preprocessing steps described in the
 <a href="SchemaSalad.html">Semantic Annotations for Linked Avro Data (SALAD) Specification</a>.
 A implementation may formally validate the structure of a CWL document using
 SALAD schemas located at
 <a href="https://github.com/common-workflow-language/common-workflow-language/tree/master/draft-3">https://github.com/common-workflow-language/common-workflow-language/tree/master/draft-3</a></p>
-<h2 id="Identifiers">2.3 Identifiers</h2><p>If an object contains an <code>id</code> field, that is used to uniquely identify the
+<h2 id="Identifiers" class="section">2.3 Identifiers <a href="#Identifiers">&sect;</a></h2><p>If an object contains an <code>id</code> field, that is used to uniquely identify the
 object in that document.  The value of the <code>id</code> field must be unique over the
 entire document.  Identifiers may be resolved relative to other the document
 base and/or other identifiers following the rules are described in the
 <a href="SchemaSalad.html#Identifier_resolution">Schema Salad specification</a>.</p>
 <p>An implementation may choose to only honor references to object types for
 which the <code>id</code> field is explicitly listed in this specification.</p>
-<h2 id="Document_preprocessing">2.4 Document preprocessing</h2><p>An implementation must resolve <a href="SchemaSalad.html#Import">$import</a> and
+<h2 id="Document_preprocessing" class="section">2.4 Document preprocessing <a href="#Document_preprocessing">&sect;</a></h2><p>An implementation must resolve <a href="SchemaSalad.html#Import">$import</a> and
 <a href="SchemaSalad.html#Import">$include</a> directives as described in the
 <a href="SchemaSalad.html">Schema Salad specification</a>.</p>
-<h2 id="Extensions_and_Metadata">2.5 Extensions and Metadata</h2><p>Input metadata (for example, a lab sample identifier) may be represented within
+<h2 id="Extensions_and_Metadata" class="section">2.5 Extensions and Metadata <a href="#Extensions_and_Metadata">&sect;</a></h2><p>Input metadata (for example, a lab sample identifier) may be represented within
 a tool or workflow using input parameters which are explicitly propagated to
 output.  Future versions of this specification may define additional facilities
 for working with input/output metadata.</p>
@@ -275,7 +287,7 @@ prefix listed in the <code>$namespaces</code> section of the document as describ
 <a href="SchemaSalad.html#Explicit_context">Schema Salad specification</a>.</p>
 <p>Implementation extensions which modify execution semantics must be <a href="#Requirements_and_hints">listed in
 the <code>requirements</code> field</a>.</p>
-<h1 id="Execution_model">3. Execution model</h1><h2 id="Execution_concepts">3.1 Execution concepts</h2><p>A <strong>parameter</strong> is a named symbolic input or output of process, with an
+<h1 id="Execution_model" class="section">3. Execution model <a href="#Execution_model">&sect;</a></h1><h2 id="Execution_concepts" class="section">3.1 Execution concepts <a href="#Execution_concepts">&sect;</a></h2><p>A <strong>parameter</strong> is a named symbolic input or output of process, with an
 associated datatype or schema.  During execution, values are assigned to
 parameters to make the input object or output object used for concrete
 process invocation.</p>
@@ -316,7 +328,7 @@ reusing previous results.</li>
 <p>Conforming CWL processes must not assume anything about the runtime
 environment or workflow platform unless explicitly declared though the use
 of <a href="#Requirements_and_hints">process requirements</a>.</p>
-<h2 id="Generic_execution_process">3.2 Generic execution process</h2><p>The generic execution sequence of a CWL process (including workflows and
+<h2 id="Generic_execution_process" class="section">3.2 Generic execution process <a href="#Generic_execution_process">&sect;</a></h2><p>The generic execution sequence of a CWL process (including workflows and
 command line line tools) is as follows.</p>
 <ol>
 <li>Load, process and validate a CWL document, yielding a process object.</li>
@@ -329,7 +341,7 @@ command line line tools) is as follows.</p>
 <li>Validate the output object against the <code>outputs</code> schema for the process.</li>
 <li>Report the output object to the process caller.</li>
 </ol>
-<h2 id="Requirements_and_hints">3.3 Requirements and hints</h2><p>A <strong>process requirement</strong> modifies the semantics or runtime
+<h2 id="Requirements_and_hints" class="section">3.3 Requirements and hints <a href="#Requirements_and_hints">&sect;</a></h2><p>A <strong>process requirement</strong> modifies the semantics or runtime
 environment of a process.  If an implementation cannot satisfy all
 requirements, or a requirement is listed which is not recognized by the
 implementation, it is a fatal error and the implementation must not attempt
@@ -351,7 +363,7 @@ the same way.</p>
 process requirement in <code>hints</code> which is also provided in <code>requirements</code> by
 an enclosing workflow or workflow step, the enclosing <code>requirements</code> takes
 precedence.</p>
-<h2 id="Parameter_references">3.4 Parameter references</h2><p>Parameter references are denoted by the syntax <code>$(...)</code> and may be used in any
+<h2 id="Parameter_references" class="section">3.4 Parameter references <a href="#Parameter_references">&sect;</a></h2><p>Parameter references are denoted by the syntax <code>$(...)</code> and may be used in any
 field permitting the pseudo-type <code>Expression</code>, as specified by this document.
 Conforming implementations must support parameter references.  Parameter
 references use the following subset of
@@ -418,7 +430,7 @@ textual JSON representation with the following rules:</p>
 must be treated as a string interpolation.  After interpolating the first
 parameter reference, interpolation must be recursively applied to the
 trailing characters to yield the final string value.</p>
-<h2 id="Expressions">3.5 Expressions</h2><p>An expression is a fragment of <a href="http://www.ecma-international.org/ecma-262/5.1/">Javascript/ECMAScript
+<h2 id="Expressions" class="section">3.5 Expressions <a href="#Expressions">&sect;</a></h2><p>An expression is a fragment of <a href="http://www.ecma-international.org/ecma-262/5.1/">Javascript/ECMAScript
 5.1</a> code which is
 evaluated by the workflow platform to affect the inputs, outputs, or
 behavior of a process.  In the generic execution sequence, expressions may
@@ -460,7 +472,7 @@ evaluation or some other means.</p>
 <p>Implementations may apply other limits, such as process isolation, timeouts,
 and operating system containers/jails to minimize the security risks associated
 with running untrusted code embedded in a CWL document.</p>
-<h2 id="Success_and_failure">3.6 Success and failure</h2><p>A completed process must result in one of <code>success</code>, <code>temporaryFailure</code> or
+<h2 id="Success_and_failure" class="section">3.6 Success and failure <a href="#Success_and_failure">&sect;</a></h2><p>A completed process must result in one of <code>success</code>, <code>temporaryFailure</code> or
 <code>permanentFailure</code> states.  An implementation may choose to retry a process
 execution which resulted in <code>temporaryFailure</code>.  An implementation may
 choose to either continue running other steps of a workflow, or terminate
@@ -477,7 +489,7 @@ complete <code>success</code> or are not executed, then the workflow status is
 status is <code>success</code>.</p>
 </li>
 </ul>
-<h2 id="Executing_CWL_documents_as_scripts">3.7 Executing CWL documents as scripts</h2><p>By convention, a CWL document may begin with <code>#!/usr/bin/env cwl-runner</code>
+<h2 id="Executing_CWL_documents_as_scripts" class="section">3.7 Executing CWL documents as scripts <a href="#Executing_CWL_documents_as_scripts">&sect;</a></h2><p>By convention, a CWL document may begin with <code>#!/usr/bin/env cwl-runner</code>
 and be marked as executable (the POSIX "+x" permission bits) to enable it
 to be executed directly.  A workflow platform may support this mode of
 operation; if so, it must provide <code>cwl-runner</code> as an alias for the
@@ -487,7 +499,7 @@ cwl-runner</code> and be marked as executable.  In this case, the input object
 must include the field <code>cwl:tool</code> supplying a URI to the default CWL
 document that should be executed using the fields of the input object as
 input parameters.</p>
-<h1 id="Workflow">4. Workflow</h1><p>A workflow describes a set of <strong>steps</strong> and the <strong>dependencies</strong> between
+<h1 id="Workflow" class="section">4. Workflow <a href="#Workflow">&sect;</a></h1><p>A workflow describes a set of <strong>steps</strong> and the <strong>dependencies</strong> between
 those processes.  When a process produces output that will be consumed by a
 second process, the first process is a dependency of the second process.</p>
 <p>When there is a dependency, the workflow engine must execute the preceeding
@@ -504,7 +516,7 @@ such that when a value is associated with the parameter specified by
 <code>source</code>, that value is propagated to the destination parameter.  When all
 data links inbound to a given step are fufilled, the step is ready to
 execute.</p>
-<h3 id="Workflow_success_and_failure">Workflow success and failure</h3><p>A completed process must result in one of <code>success</code>, <code>temporaryFailure</code> or
+<h3 id="Workflow_success_and_failure" class="section">Workflow success and failure <a href="#Workflow_success_and_failure">&sect;</a></h3><p>A completed process must result in one of <code>success</code>, <code>temporaryFailure</code> or
 <code>permanentFailure</code> states.  An implementation may choose to retry a process
 execution which resulted in <code>temporaryFailure</code>.  An implementation may
 choose to either continue running other steps of a workflow, or terminate
@@ -521,7 +533,7 @@ complete <code>success</code> or are not executed, then the workflow status is
 status is <code>success</code>.</p>
 </li>
 </ul>
-<h2 id="Extensions">Extensions</h2><p><a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> and
+<h2 id="Extensions" class="section">Extensions <a href="#Extensions">&sect;</a></h2><p><a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> and
 <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> are
 available as standard extensions to core workflow semantics.</p>
 <h3>Fields</h3>
@@ -616,7 +628,7 @@ the implementation may report a warning.</p>
 <div class="col-xs-7 col-lg-3"><a href="#CWLVersions">CWLVersions</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>CWL document version</p>
 </div>
-</div></div><h2 id="WorkflowOutputParameter">4.1 WorkflowOutputParameter</h2><p>Describe an output parameter of a workflow.  The parameter must be
+</div></div><h2 id="WorkflowOutputParameter" class="section">4.1 WorkflowOutputParameter <a href="#WorkflowOutputParameter">&sect;</a></h2><p>Describe an output parameter of a workflow.  The parameter must be
 connected to one or more parameters defined in the workflow that will
 provide the value of the output parameter.</p>
 <h3>Fields</h3>
@@ -720,12 +732,12 @@ the underlying process parameter.</p>
 <div class="col-xs-12 col-lg-6 description-col"><p>The method to use to merge multiple inbound links into a single array.
 If not specified, the default method is "merge_nested".</p>
 </div>
-</div></div><h3 id="Expression">4.1.1 Expression</h3><p>Not a real type.  Indicates that a field must allow runtime parameter
+</div></div><h3 id="Expression" class="section">4.1.1 Expression <a href="#Expression">&sect;</a></h3><p>Not a real type.  Indicates that a field must allow runtime parameter
 references.  If <a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a>
 is declared and supported by the platform, the field must also allow
 Javascript expressions.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>ExpressionPlaceholder</code></td><td></td></tr></table><h3 id="CWLType">4.1.2 CWLType</h3><p>Extends primitive types with the concept of a file as a first class type.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>null</code></td><td> no value</td></tr><tr><td><code>boolean</code></td><td> a binary value</td></tr><tr><td><code>int</code></td><td> 32-bit signed integer</td></tr><tr><td><code>long</code></td><td> 64-bit signed integer</td></tr><tr><td><code>float</code></td><td> single precision (32-bit) IEEE 754 floating-point number</td></tr><tr><td><code>double</code></td><td> double precision (64-bit) IEEE 754 floating-point number</td></tr><tr><td><code>string</code></td><td> Unicode character sequence</td></tr><tr><td><code>File</code></td><td> A File object</td></tr></table><h3 id="File">4.1.3 File</h3><p>Represents a file (or group of files if <code>secondaryFiles</code> is specified) that
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>ExpressionPlaceholder</code></td><td></td></tr></table><h3 id="CWLType" class="section">4.1.2 CWLType <a href="#CWLType">&sect;</a></h3><p>Extends primitive types with the concept of a file as a first class type.</p>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>null</code></td><td> no value</td></tr><tr><td><code>boolean</code></td><td> a binary value</td></tr><tr><td><code>int</code></td><td> 32-bit signed integer</td></tr><tr><td><code>long</code></td><td> 64-bit signed integer</td></tr><tr><td><code>float</code></td><td> single precision (32-bit) IEEE 754 floating-point number</td></tr><tr><td><code>double</code></td><td> double precision (64-bit) IEEE 754 floating-point number</td></tr><tr><td><code>string</code></td><td> Unicode character sequence</td></tr><tr><td><code>File</code></td><td> A File object</td></tr></table><h3 id="File" class="section">4.1.3 File <a href="#File">&sect;</a></h3><p>Represents a file (or group of files if <code>secondaryFiles</code> is specified) that
 must be accessible by tools using standard POSIX file system call API such as
 open(2) and read(2).</p>
 <h3>Fields</h3>
@@ -794,7 +806,7 @@ input file format is the same, <code>owl:equivalentClass</code> or
 root of the document.  If no ontologies are specified in <code>$schema</code>, the
 runtime may perform exact file format matches.</p>
 </div>
-</div></div><h3 id="OutputRecordSchema">4.1.4 OutputRecordSchema</h3><h3>Fields</h3>
+</div></div><h3 id="OutputRecordSchema" class="section">4.1.4 OutputRecordSchema <a href="#OutputRecordSchema">&sect;</a></h3><h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
 <div class="col-xs-3 col-lg-2">field</div>
@@ -858,7 +870,7 @@ sequentially without seeking.  An implementation may use this flag to
 indicate whether it is valid to stream file contents using a named
 pipe.  Default: <code>false</code>.</p>
 </div>
-</div></div><h4 id="OutputRecordField">4.1.4.1 OutputRecordField</h4><h3>Fields</h3>
+</div></div><h4 id="OutputRecordField" class="section">4.1.4.1 OutputRecordField <a href="#OutputRecordField">&sect;</a></h4><h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
 <div class="col-xs-3 col-lg-2">field</div>
@@ -892,10 +904,10 @@ pipe.  Default: <code>false</code>.</p>
 <div class="col-xs-2 col-lg-1">optional</div>
 <div class="col-xs-7 col-lg-3"><a href="#CommandOutputBinding">CommandOutputBinding</a></div>
 <div class="col-xs-12 col-lg-6 description-col"></div>
-</div></div><h5 id="PrimitiveType">4.1.4.1.1 PrimitiveType</h5><p>Salad data types are based on Avro schema declarations.  Refer to the
+</div></div><h5 id="PrimitiveType" class="section">4.1.4.1.1 PrimitiveType <a href="#PrimitiveType">&sect;</a></h5><p>Salad data types are based on Avro schema declarations.  Refer to the
 <a href="https://avro.apache.org/docs/current/spec.html#schemas">Avro schema declaration documentation</a> for
 detailed information.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>null</code></td><td></td></tr><tr><td><code>boolean</code></td><td></td></tr><tr><td><code>int</code></td><td></td></tr><tr><td><code>long</code></td><td></td></tr><tr><td><code>float</code></td><td></td></tr><tr><td><code>double</code></td><td></td></tr><tr><td><code>string</code></td><td></td></tr></table><h5 id="OutputEnumSchema">4.1.4.1.2 OutputEnumSchema</h5><h3>Fields</h3>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>null</code></td><td></td></tr><tr><td><code>boolean</code></td><td></td></tr><tr><td><code>int</code></td><td></td></tr><tr><td><code>long</code></td><td></td></tr><tr><td><code>float</code></td><td></td></tr><tr><td><code>double</code></td><td></td></tr><tr><td><code>string</code></td><td></td></tr></table><h5 id="OutputEnumSchema" class="section">4.1.4.1.2 OutputEnumSchema <a href="#OutputEnumSchema">&sect;</a></h5><h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
 <div class="col-xs-3 col-lg-2">field</div>
@@ -965,7 +977,7 @@ pipe.  Default: <code>false</code>.</p>
 <div class="col-xs-2 col-lg-1">optional</div>
 <div class="col-xs-7 col-lg-3"><a href="#CommandOutputBinding">CommandOutputBinding</a></div>
 <div class="col-xs-12 col-lg-6 description-col"></div>
-</div></div><h6 id="CommandOutputBinding">4.1.4.1.2.1 CommandOutputBinding</h6><p>Describes how to generate an output parameter based on the files produced
+</div></div><h6 id="CommandOutputBinding" class="section">4.1.4.1.2.1 CommandOutputBinding <a href="#CommandOutputBinding">&sect;</a></h6><p>Describes how to generate an output parameter based on the files produced
 by a CommandLineTool.</p>
 <p>The output parameter is generated by applying these operations in
 the following order:</p>
@@ -1015,7 +1027,7 @@ array of a single element.  Additionally, if</code>loadContents<code>is</code>tr
 the File objects must include up to the first 64 KiB of file contents
 in the</code>contents` field.</p>
 </div>
-</div></div><h5 id="OutputArraySchema">4.1.4.1.3 OutputArraySchema</h5><h3>Fields</h3>
+</div></div><h5 id="OutputArraySchema" class="section">4.1.4.1.3 OutputArraySchema <a href="#OutputArraySchema">&sect;</a></h5><h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
 <div class="col-xs-3 col-lg-2">field</div>
@@ -1085,12 +1097,12 @@ pipe.  Default: <code>false</code>.</p>
 <div class="col-xs-2 col-lg-1">optional</div>
 <div class="col-xs-7 col-lg-3"><a href="#CommandOutputBinding">CommandOutputBinding</a></div>
 <div class="col-xs-12 col-lg-6 description-col"></div>
-</div></div><h3 id="LinkMergeMethod">4.1.5 LinkMergeMethod</h3><p>The input link merge method, described in <a href="#WorkflowStepInput">WorkflowStepInput</a>.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>merge_nested</code></td><td></td></tr><tr><td><code>merge_flattened</code></td><td></td></tr></table><h2 id="WorkflowStep">4.2 WorkflowStep</h2><p>A workflow step is an executable element of a workflow.  It specifies the
+</div></div><h3 id="LinkMergeMethod" class="section">4.1.5 LinkMergeMethod <a href="#LinkMergeMethod">&sect;</a></h3><p>The input link merge method, described in <a href="#WorkflowStepInput">WorkflowStepInput</a>.</p>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>merge_nested</code></td><td></td></tr><tr><td><code>merge_flattened</code></td><td></td></tr></table><h2 id="WorkflowStep" class="section">4.2 WorkflowStep <a href="#WorkflowStep">&sect;</a></h2><p>A workflow step is an executable element of a workflow.  It specifies the
 underlying process implementation (such as <code>CommandLineTool</code>) in the <code>run</code>
 field and connects the input and output parameters of the underlying
 process to workflow parameters.</p>
-<h3 id="Scatter/gather">Scatter/gather</h3><p>To use scatter/gather,
+<h3 id="Scatter/gather" class="section">Scatter/gather <a href="#Scatter/gather">&sect;</a></h3><p>To use scatter/gather,
 <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> must be specified
 in the workflow or workflow step requirements.</p>
 <p>A "scatter" operation specifies that the associated workflow step or
@@ -1122,7 +1134,7 @@ describes how to decompose the input into a discrete set of jobs.</p>
   order that the input arrays are listed in the <code>scatter</code> field.</p>
 </li>
 </ul>
-<h3 id="Subworkflows">Subworkflows</h3><p>To specify a nested workflow as part of a workflow step,
+<h3 id="Subworkflows" class="section">Subworkflows <a href="#Subworkflows">&sect;</a></h3><p>To specify a nested workflow as part of a workflow step,
 <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> must be
 specified in the workflow or workflow step requirements.</p>
 <h3>Fields</h3>
@@ -1214,15 +1226,15 @@ the implementation may report a warning.</p>
 <div class="col-xs-7 col-lg-3"><a href="#ScatterMethod">ScatterMethod</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Required if <code>scatter</code> is an array of more than one element.</p>
 </div>
-</div></div><h3 id="WorkflowStepInput">4.2.1 WorkflowStepInput</h3><p>The input of a workflow step connects an upstream parameter (from the
+</div></div><h3 id="WorkflowStepInput" class="section">4.2.1 WorkflowStepInput <a href="#WorkflowStepInput">&sect;</a></h3><p>The input of a workflow step connects an upstream parameter (from the
 workflow inputs, or the outputs of other workflows steps) with the input
 parameters of the underlying process.</p>
-<h5 id="Input_object">Input object</h5><p>A WorkflowStepInput object must contain an <code>id</code> field in the form
+<h5 id="Input_object" class="section">Input object <a href="#Input_object">&sect;</a></h5><p>A WorkflowStepInput object must contain an <code>id</code> field in the form
 <code>#fieldname</code> or <code>#stepname.fieldname</code>.  When the <code>id</code> field contains a
 period <code>.</code> the field name consists of the characters following the final
 period.  This defines a field of the workflow step input object with the
 value of the <code>source</code> parameter(s).</p>
-<h5 id="Merging">Merging</h5><p>To merge multiple inbound data links,
+<h5 id="Merging" class="section">Merging <a href="#Merging">&sect;</a></h5><p>To merge multiple inbound data links,
 <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> must be specified
 in the workflow or workflow step requirements.</p>
 <p>If the sink parameter is an array, or named in a <a href="#WorkflowStep">workflow
@@ -1304,8 +1316,8 @@ input object to the workflow step after assigning the <code>source</code> values
 but before evaluating any step with <code>valueFrom</code>.  The order of
 evaluating <code>valueFrom</code> among step input parameters is undefined.</p>
 </div>
-</div></div><h4 id="Any">4.2.1.1 Any</h4><p>The <strong>Any</strong> type validates for any non-null value.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>Any</code></td><td></td></tr></table><h3 id="WorkflowStepOutput">4.2.2 WorkflowStepOutput</h3><p>Associate an output parameter of the underlying process with a workflow
+</div></div><h4 id="Any" class="section">4.2.1.1 Any <a href="#Any">&sect;</a></h4><p>The <strong>Any</strong> type validates for any non-null value.</p>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>Any</code></td><td></td></tr></table><h3 id="WorkflowStepOutput" class="section">4.2.2 WorkflowStepOutput <a href="#WorkflowStepOutput">&sect;</a></h3><p>Associate an output parameter of the underlying process with a workflow
 parameter.  The workflow parameter (given in the <code>id</code> field) be may be used
 as a <code>source</code> to connect with input parameters of other workflow steps, or
 with an output parameter of the process.</p>
@@ -1325,8 +1337,8 @@ with an output parameter of the process.</p>
 identifier to use in the <code>source</code> field of <code>WorkflowStepInput</code> to
 connect the output value to downstream parameters.</p>
 </div>
-</div></div><h3 id="ScatterMethod">4.2.3 ScatterMethod</h3><p>The scatter method, as described in <a href="#WorkflowStep">workflow step scatter</a>.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>dotproduct</code></td><td></td></tr><tr><td><code>nested_crossproduct</code></td><td></td></tr><tr><td><code>flat_crossproduct</code></td><td></td></tr></table><h3 id="InlineJavascriptRequirement">4.2.4 InlineJavascriptRequirement</h3><p>Indicates that the workflow platform must support inline Javascript expressions.
+</div></div><h3 id="ScatterMethod" class="section">4.2.3 ScatterMethod <a href="#ScatterMethod">&sect;</a></h3><p>The scatter method, as described in <a href="#WorkflowStep">workflow step scatter</a>.</p>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>dotproduct</code></td><td></td></tr><tr><td><code>nested_crossproduct</code></td><td></td></tr><tr><td><code>flat_crossproduct</code></td><td></td></tr></table><h3 id="InlineJavascriptRequirement" class="section">4.2.4 InlineJavascriptRequirement <a href="#InlineJavascriptRequirement">&sect;</a></h3><p>Indicates that the workflow platform must support inline Javascript expressions.
 If this requirement is not present, the workflow platform must not perform expression
 interpolatation.</p>
 <h3>Fields</h3>
@@ -1352,7 +1364,7 @@ interpolatation.</p>
 before executing the expression code.  Allows for function definitions that may
 be called from CWL expressions.</p>
 </div>
-</div></div><h3 id="SchemaDefRequirement">4.2.5 SchemaDefRequirement</h3><p>This field consists of an array of type definitions which must be used when
+</div></div><h3 id="SchemaDefRequirement" class="section">4.2.5 SchemaDefRequirement <a href="#SchemaDefRequirement">&sect;</a></h3><p>This field consists of an array of type definitions which must be used when
 interpreting the <code>inputs</code> and <code>outputs</code> fields.  When a <code>type</code> field
 contain a URI, the implementation must check if the type is defined in
 <code>schemaDefs</code> and use that definition.  If the type is not found in
@@ -1380,7 +1392,7 @@ to earlier schema definitions.</p>
 <div class="col-xs-7 col-lg-3">array&lt;<a href="#InputRecordSchema">InputRecordSchema</a>&nbsp;|&nbsp;<a href="#InputEnumSchema">InputEnumSchema</a>&nbsp;|&nbsp;<a href="#InputArraySchema">InputArraySchema</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The list of type definitions.</p>
 </div>
-</div></div><h4 id="InputRecordSchema">4.2.5.1 InputRecordSchema</h4><h3>Fields</h3>
+</div></div><h4 id="InputRecordSchema" class="section">4.2.5.1 InputRecordSchema <a href="#InputRecordSchema">&sect;</a></h4><h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
 <div class="col-xs-3 col-lg-2">field</div>
@@ -1444,7 +1456,7 @@ sequentially without seeking.  An implementation may use this flag to
 indicate whether it is valid to stream file contents using a named
 pipe.  Default: <code>false</code>.</p>
 </div>
-</div></div><h5 id="InputRecordField">4.2.5.1.1 InputRecordField</h5><h3>Fields</h3>
+</div></div><h5 id="InputRecordField" class="section">4.2.5.1.1 InputRecordField <a href="#InputRecordField">&sect;</a></h5><h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
 <div class="col-xs-3 col-lg-2">field</div>
@@ -1478,7 +1490,7 @@ pipe.  Default: <code>false</code>.</p>
 <div class="col-xs-2 col-lg-1">optional</div>
 <div class="col-xs-7 col-lg-3"><a href="#CommandLineBinding">CommandLineBinding</a></div>
 <div class="col-xs-12 col-lg-6 description-col"></div>
-</div></div><h6 id="InputEnumSchema">4.2.5.1.1.1 InputEnumSchema</h6><h3>Fields</h3>
+</div></div><h6 id="InputEnumSchema" class="section">4.2.5.1.1.1 InputEnumSchema <a href="#InputEnumSchema">&sect;</a></h6><h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
 <div class="col-xs-3 col-lg-2">field</div>
@@ -1548,7 +1560,7 @@ pipe.  Default: <code>false</code>.</p>
 <div class="col-xs-2 col-lg-1">optional</div>
 <div class="col-xs-7 col-lg-3"><a href="#CommandLineBinding">CommandLineBinding</a></div>
 <div class="col-xs-12 col-lg-6 description-col"></div>
-</div></div><h6 id="#_4.2.5.1.1.1.1_CommandLineBinding"># 4.2.5.1.1.1.1 CommandLineBinding</h6><p>When listed under <code>inputBinding</code> in the input schema, the term
+</div></div><h6 id="#_4.2.5.1.1.1.1_CommandLineBinding" class="section"># 4.2.5.1.1.1.1 CommandLineBinding <a href="##_4.2.5.1.1.1.1_CommandLineBinding">&sect;</a></h6><p>When listed under <code>inputBinding</code> in the input schema, the term
 "value" refers to the the corresponding value in the input object.  For
 binding objects listed in <code>CommandLineTool.arguments</code>, the term "value"
 refers to the effective value after evaluating <code>valueFrom</code>.</p>
@@ -1650,7 +1662,7 @@ the <code>valueFrom</code> field is required.</p>
 this controls whether the value is quoted on the command line (default is true).
 Use <code>shellQuote: false</code> to inject metacharacters for operations such as pipes.</p>
 </div>
-</div></div><h6 id="InputArraySchema">4.2.5.1.1.2 InputArraySchema</h6><h3>Fields</h3>
+</div></div><h6 id="InputArraySchema" class="section">4.2.5.1.1.2 InputArraySchema <a href="#InputArraySchema">&sect;</a></h6><h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
 <div class="col-xs-3 col-lg-2">field</div>
@@ -1720,7 +1732,7 @@ pipe.  Default: <code>false</code>.</p>
 <div class="col-xs-2 col-lg-1">optional</div>
 <div class="col-xs-7 col-lg-3"><a href="#CommandLineBinding">CommandLineBinding</a></div>
 <div class="col-xs-12 col-lg-6 description-col"></div>
-</div></div><h3 id="SubworkflowFeatureRequirement">4.2.6 SubworkflowFeatureRequirement</h3><p>Indicates that the workflow platform must support nested workflows in
+</div></div><h3 id="SubworkflowFeatureRequirement" class="section">4.2.6 SubworkflowFeatureRequirement <a href="#SubworkflowFeatureRequirement">&sect;</a></h3><p>Indicates that the workflow platform must support nested workflows in
 the <code>run</code> field of (WorkflowStep)(#WorkflowStep).</p>
 <h3>Fields</h3>
 <div class="responsive-table">
@@ -1736,7 +1748,7 @@ the <code>run</code> field of (WorkflowStep)(#WorkflowStep).</p>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The specific requirement type.</p>
 </div>
-</div></div><h3 id="ScatterFeatureRequirement">4.2.7 ScatterFeatureRequirement</h3><p>Indicates that the workflow platform must support the <code>scatter</code> and
+</div></div><h3 id="ScatterFeatureRequirement" class="section">4.2.7 ScatterFeatureRequirement <a href="#ScatterFeatureRequirement">&sect;</a></h3><p>Indicates that the workflow platform must support the <code>scatter</code> and
 <code>scatterMethod</code> fields of <a href="#WorkflowStep">WorkflowStep</a>.</p>
 <h3>Fields</h3>
 <div class="responsive-table">
@@ -1752,7 +1764,7 @@ the <code>run</code> field of (WorkflowStep)(#WorkflowStep).</p>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The specific requirement type.</p>
 </div>
-</div></div><h3 id="MultipleInputFeatureRequirement">4.2.8 MultipleInputFeatureRequirement</h3><p>Indicates that the workflow platform must support multiple inbound data links
+</div></div><h3 id="MultipleInputFeatureRequirement" class="section">4.2.8 MultipleInputFeatureRequirement <a href="#MultipleInputFeatureRequirement">&sect;</a></h3><p>Indicates that the workflow platform must support multiple inbound data links
 listed in the <code>source</code> field of <a href="#WorkflowStepInput">WorkflowStepInput</a>.</p>
 <h3>Fields</h3>
 <div class="responsive-table">
@@ -1768,7 +1780,7 @@ listed in the <code>source</code> field of <a href="#WorkflowStepInput">Workflow
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The specific requirement type.</p>
 </div>
-</div></div><h3 id="StepInputExpressionRequirement">4.2.9 StepInputExpressionRequirement</h3><p>Indicate that the workflow platform must support the <code>valueFrom</code> field
+</div></div><h3 id="StepInputExpressionRequirement" class="section">4.2.9 StepInputExpressionRequirement <a href="#StepInputExpressionRequirement">&sect;</a></h3><p>Indicate that the workflow platform must support the <code>valueFrom</code> field
 of <a href="#WorkflowStepInput">WorkflowStepInput</a>.</p>
 <h3>Fields</h3>
 <div class="responsive-table">
@@ -1784,7 +1796,7 @@ of <a href="#WorkflowStepInput">WorkflowStepInput</a>.</p>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The specific requirement type.</p>
 </div>
-</div></div><h3 id="ExpressionTool">4.2.10 ExpressionTool</h3><p>Execute an expression as a process step.</p>
+</div></div><h3 id="ExpressionTool" class="section">4.2.10 ExpressionTool <a href="#ExpressionTool">&sect;</a></h3><p>Execute an expression as a process step.</p>
 <h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
@@ -1875,7 +1887,7 @@ the implementation may report a warning.</p>
 <div class="col-xs-7 col-lg-3"><a href="#CWLVersions">CWLVersions</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>CWL document version</p>
 </div>
-</div></div><h4 id="InputParameter">4.2.10.1 InputParameter</h4><h3>Fields</h3>
+</div></div><h4 id="InputParameter" class="section">4.2.10.1 InputParameter <a href="#InputParameter">&sect;</a></h4><h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
 <div class="col-xs-3 col-lg-2">field</div>
@@ -1969,7 +1981,7 @@ into a concrete form for execution, such as command line parameters.</p>
 <div class="col-xs-12 col-lg-6 description-col"><p>The default value for this parameter if not provided in the input
 object.</p>
 </div>
-</div></div><h4 id="OutputParameter">4.2.10.2 OutputParameter</h4><h3>Fields</h3>
+</div></div><h4 id="OutputParameter" class="section">4.2.10.2 OutputParameter <a href="#OutputParameter">&sect;</a></h4><h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
 <div class="col-xs-3 col-lg-2">field</div>
@@ -2054,7 +2066,7 @@ pipe.  Default: <code>false</code>.</p>
 <div class="col-xs-7 col-lg-3"><a href="#CommandOutputBinding">CommandOutputBinding</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Describes how to handle the outputs of a process.</p>
 </div>
-</div></div><h4 id="CWLVersions">4.2.10.3 CWLVersions</h4><p>Version symbols for published CWL document versions.</p>
+</div></div><h4 id="CWLVersions" class="section">4.2.10.3 CWLVersions <a href="#CWLVersions">&sect;</a></h4><p>Version symbols for published CWL document versions.</p>
 <h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>draft-2</code></td><td></td></tr><tr><td><code>draft-3.dev1</code></td><td></td></tr><tr><td><code>draft-3.dev2</code></td><td></td></tr><tr><td><code>draft-3.dev3</code></td><td></td></tr><tr><td><code>draft-3.dev4</code></td><td></td></tr><tr><td><code>draft-3.dev5</code></td><td></td></tr><tr><td><code>draft-3</code></td><td></td></tr></table></div>
     </div>
     </div>

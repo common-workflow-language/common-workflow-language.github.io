@@ -4,7 +4,12 @@
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" integrity="sha384-604wwakM23pEysLJAhja8Lm42IIwYrJ0dEAqzFsj9pJ/P5buiujjywArgPCi8eoz" crossorigin="anonymous">
+    <script>
+    // Picture element HTML5 shiv
+    document.createElement( "picture" );
+    </script>
+    <script src="https://cdn.rawgit.com/scottjehl/picturefill/3.0.2/dist/picturefill.min.js" integrity="sha384-ZJsVW8YHHxQHJ+SJDncpN90d0EfAhPP+yA94n+EhSRzhcxfo84yMnNk+v37RGlWR" crossorigin="anonymous" async></script>
     <title>Common Workflow Language Specifications, v1.1.0-dev1</title>
     <style>
     :target {
@@ -20,6 +25,13 @@
     pre {
       margin-left: 2em;
       margin-right: 2em;
+    }
+    .section a {
+      visibility: hidden;
+    }
+    .section:hover a {
+      visibility: visible;
+      color: rgb(201, 201, 201);
     }
     .responsive-table-header {
       text-align: left;
@@ -77,7 +89,7 @@
     
     <div class="row">
     
-    <div class="col-md-12" role="main" id="main"><h1 id="Common_Workflow_Language_Specifications,_v1.1.0-dev1">Common Workflow Language Specifications, v1.1.0-dev1</h1><p><!-- remove this before v1.1 is final! -->
+    <div class="col-md-12" role="main" id="main"><h1 id="Common_Workflow_Language_Specifications,_v1.1.0-dev1" class="section">Common Workflow Language Specifications, v1.1.0-dev1 <a href="#Common_Workflow_Language_Specifications,_v1.1.0-dev1">&sect;</a></h1><p><!-- remove this before v1.1 is final! -->
 WARNING, this is a draft and in progress! Development of CWL v1.1 is coordinated at <a href="https://github.com/common-workflow-language/common-workflow-language/milestone/6">https://github.com/common-workflow-language/common-workflow-language/milestone/6</a></p>
 <p>The CWL specifications are divided up into several documents.</p>
 <p>The <a href="http://www.commonwl.org/user_guide/">User Guide</a> provides a gentle
@@ -93,7 +105,7 @@ command line tools and other workflows.</p>
 specifies the preprocessing steps that must be applied when loading CWL
 documents and the schema language used to write the above specifications.</p>
 <p>Also available are inheritance graphs (as SVG images) for the <a href="salad.svg">Schema Salad object model</a> and the <a href="cwl.svg">CWL object model</a>.</p>
-<h1 id="Running_the_CWL_conformance_tests">Running the CWL conformance tests</h1><p>Install a CWL runner of your choice. The reference runner can be installed as
+<h1 id="Running_the_CWL_conformance_tests" class="section">Running the CWL conformance tests <a href="#Running_the_CWL_conformance_tests">&sect;</a></h1><p>Install a CWL runner of your choice. The reference runner can be installed as
 the default runner by doing:</p>
 <pre><code>pip install cwlref-runner
 </code></pre>

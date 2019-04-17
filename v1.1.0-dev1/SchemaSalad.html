@@ -4,7 +4,12 @@
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" integrity="sha384-604wwakM23pEysLJAhja8Lm42IIwYrJ0dEAqzFsj9pJ/P5buiujjywArgPCi8eoz" crossorigin="anonymous">
+    <script>
+    // Picture element HTML5 shiv
+    document.createElement( "picture" );
+    </script>
+    <script src="https://cdn.rawgit.com/scottjehl/picturefill/3.0.2/dist/picturefill.min.js" integrity="sha384-ZJsVW8YHHxQHJ+SJDncpN90d0EfAhPP+yA94n+EhSRzhcxfo84yMnNk+v37RGlWR" crossorigin="anonymous" async></script>
     <title>Semantic Annotations for Linked Avro Data (SALAD)</title>
     <style>
     :target {
@@ -20,6 +25,13 @@
     pre {
       margin-left: 2em;
       margin-right: 2em;
+    }
+    .section a {
+      visibility: hidden;
+    }
+    .section:hover a {
+      visibility: visible;
+      color: rgb(201, 201, 201);
     }
     .responsive-table-header {
       text-align: left;
@@ -81,7 +93,7 @@
     
     <div class="row">
     
-    <div class="col-md-12" role="main" id="main"><h1 id="Semantic_Annotations_for_Linked_Avro_Data_(SALAD)">Semantic Annotations for Linked Avro Data (SALAD)</h1><p>Author:</p>
+    <div class="col-md-12" role="main" id="main"><h1 id="Semantic_Annotations_for_Linked_Avro_Data_(SALAD)" class="section">Semantic Annotations for Linked Avro Data (SALAD) <a href="#Semantic_Annotations_for_Linked_Avro_Data_(SALAD)">&sect;</a></h1><p>Author:</p>
 <ul>
 <li>Peter Amstutz <a href="mailto:peter.amstutz@curoverse.com">peter.amstutz@curoverse.com</a>, Curoverse</li>
 </ul>
@@ -91,7 +103,7 @@
 <li>The developers of JSON-LD</li>
 <li>Nebojša Tijanić <a href="mailto:nebojsa.tijanic@sbgenomics.com">nebojsa.tijanic@sbgenomics.com</a>, Seven Bridges Genomics</li>
 </ul>
-<h1 id="Abstract">Abstract</h1><p>Salad is a schema language for describing structured linked data documents
+<h1 id="Abstract" class="section">Abstract <a href="#Abstract">&sect;</a></h1><p>Salad is a schema language for describing structured linked data documents
 in JSON or YAML documents.  A Salad schema provides rules for
 preprocessing, structural validation, and link checking for documents
 described by a Salad schema.  Salad builds on JSON-LD and the Apache Avro
@@ -100,7 +112,7 @@ modeling such as inheritance, template specialization, object identifiers,
 and object references.  Salad was developed to provide a bridge between the
 record oriented data modeling supported by Apache Avro and the Semantic
 Web.</p>
-<h1 id="Status_of_This_Document">Status of This Document</h1><p>This document is the product of the <a href="https://groups.google.com/forum/#!forum/common-workflow-language">Common Workflow Language working
+<h1 id="Status_of_This_Document" class="section">Status of This Document <a href="#Status_of_This_Document">&sect;</a></h1><p>This document is the product of the <a href="https://groups.google.com/forum/#!forum/common-workflow-language">Common Workflow Language working
 group</a>.  The
 latest version of this document is available in the "schema_salad" repository at</p>
 <p><a href="https://github.com/common-workflow-language/schema_salad">https://github.com/common-workflow-language/schema_salad</a></p>
@@ -159,7 +171,7 @@ under the terms of the Apache License, version 2.0.</p>
 </ol><li><a href="#Documentation">6. Documentation</a><ol>
 </ol></li></ol></nav>
 
-<h1 id="Introduction">1. Introduction</h1><p>The JSON data model is an extremely popular way to represent structured
+<h1 id="Introduction" class="section">1. Introduction <a href="#Introduction">&sect;</a></h1><p>The JSON data model is an extremely popular way to represent structured
 data.  It is attractive because of its relative simplicity and is a
 natural fit with the standard types of many programming languages.
 However, this simplicity means that basic JSON lacks expressive features
@@ -188,7 +200,7 @@ data interpretation of the content, enables generation of JSON-LD context
 and RDF schema, and production of RDF triples by applying the JSON-LD
 context.  The schema language also provides for robust support of inline
 documentation.</p>
-<h2 id="Introduction_to_v1.0">1.1 Introduction to v1.0</h2><p>This is the second version of of the Schema Salad specification.  It is
+<h2 id="Introduction_to_v1.0" class="section">1.1 Introduction to v1.0 <a href="#Introduction_to_v1.0">&sect;</a></h2><p>This is the second version of of the Schema Salad specification.  It is
 developed concurrently with v1.0 of the Common Workflow Language for use in
 specifying the Common Workflow Language, however Schema Salad is intended to be
 useful to a broader audience.  Compared to the draft-1 schema salad
@@ -198,18 +210,18 @@ specification, the following changes have been made:</p>
 <li>Resolution of the <a href="#Domain_Specific_Language_for_types">domain Specific Language for types</a></li>
 <li>Consolidation of the formal <a href="#Schema">schema into section 5</a>.</li>
 </ul>
-<h2 id="References_to_Other_Specifications">1.2 References to Other Specifications</h2><p><strong>Javascript Object Notation (JSON)</strong>: <a href="http://json.org">http://json.org</a></p>
+<h2 id="References_to_Other_Specifications" class="section">1.2 References to Other Specifications <a href="#References_to_Other_Specifications">&sect;</a></h2><p><strong>Javascript Object Notation (JSON)</strong>: <a href="http://json.org">http://json.org</a></p>
 <p><strong>JSON Linked Data (JSON-LD)</strong>: <a href="http://json-ld.org">http://json-ld.org</a></p>
 <p><strong>YAML</strong>: <a href="http://yaml.org">http://yaml.org</a></p>
 <p><strong>Avro</strong>: <a href="https://avro.apache.org/docs/current/spec.html">https://avro.apache.org/docs/current/spec.html</a></p>
 <p><strong>Uniform Resource Identifier (URI) Generic Syntax</strong>: <a href="https://tools.ietf.org/html/rfc3986">https://tools.ietf.org/html/rfc3986</a>)</p>
 <p><strong>Resource Description Framework (RDF)</strong>: <a href="http://www.w3.org/RDF/">http://www.w3.org/RDF/</a></p>
 <p><strong>UTF-8</strong>: <a href="https://www.ietf.org/rfc/rfc2279.txt">https://www.ietf.org/rfc/rfc2279.txt</a>)</p>
-<h2 id="Scope">1.3 Scope</h2><p>This document describes the syntax, data model, algorithms, and schema
+<h2 id="Scope" class="section">1.3 Scope <a href="#Scope">&sect;</a></h2><p>This document describes the syntax, data model, algorithms, and schema
 language for working with Salad documents.  It is not intended to document
 a specific implementation of Salad, however it may serve as a reference for
 the behavior of conforming implementations.</p>
-<h2 id="Terminology">1.4 Terminology</h2><p>The terminology used to describe Salad documents is defined in the Concepts
+<h2 id="Terminology" class="section">1.4 Terminology <a href="#Terminology">&sect;</a></h2><p>The terminology used to describe Salad documents is defined in the Concepts
 section of the specification. The terms defined in the following list are
 used in building those definitions and in describing the actions of an
 Salad implementation:</p>
@@ -226,7 +238,7 @@ document and may report an error.</p>
 <p><strong>at user option</strong>: Conforming software may or must (depending on the modal verb in
 the sentence) behave as described; if it does, it must provide users a means to
 enable or disable the behavior described.</p>
-<h1 id="Document_model">2. Document model</h1><h2 id="Data_concepts">2.1 Data concepts</h2><p>An <strong>object</strong> is a data structure equivalent to the "object" type in JSON,
+<h1 id="Document_model" class="section">2. Document model <a href="#Document_model">&sect;</a></h1><h2 id="Data_concepts" class="section">2.1 Data concepts <a href="#Data_concepts">&sect;</a></h2><p>An <strong>object</strong> is a data structure equivalent to the "object" type in JSON,
 consisting of a unordered set of name/value pairs (referred to here as
 <strong>fields</strong>) and where the name is a string and the value is a string, number,
 boolean, array, or object.</p>
@@ -240,17 +252,17 @@ semantics.</p>
 object within a document.</p>
 <p>A <strong>vocabulary</strong> is the set of symbolic field names and enumerated symbols defined
 by a document schema, where each term maps to absolute URI.</p>
-<h2 id="Syntax">2.2 Syntax</h2><p>Conforming Salad documents are serialized and loaded using YAML syntax and
+<h2 id="Syntax" class="section">2.2 Syntax <a href="#Syntax">&sect;</a></h2><p>Conforming Salad documents are serialized and loaded using YAML syntax and
 UTF-8 text encoding.  Salad documents are written using the JSON-compatible
 subset of YAML.  Features of YAML such as headers and type tags that are
 not found in the standard JSON data model must not be used in conforming
 Salad documents.  It is a fatal error if the document is not valid YAML.</p>
 <p>A Salad document must consist only of either a single root object or an
 array of objects.</p>
-<h2 id="Document_context">2.3 Document context</h2><h3 id="Implied_context">2.3.1 Implied context</h3><p>The implicit context consists of the vocabulary defined by the schema and
+<h2 id="Document_context" class="section">2.3 Document context <a href="#Document_context">&sect;</a></h2><h3 id="Implied_context" class="section">2.3.1 Implied context <a href="#Implied_context">&sect;</a></h3><p>The implicit context consists of the vocabulary defined by the schema and
 the base URI.  By default, the base URI must be the URI that was used to
 load the document.  It may be overridden by an explicit context.</p>
-<h3 id="Explicit_context">2.3.2 Explicit context</h3><p>If a document consists of a root object, this object may contain the
+<h3 id="Explicit_context" class="section">2.3.2 Explicit context <a href="#Explicit_context">&sect;</a></h3><p>If a document consists of a root object, this object may contain the
 fields <code>$base</code>, <code>$namespaces</code>, <code>$schemas</code>, and <code>$graph</code>:</p>
 <ul>
 <li><p><code>$base</code>: Must be a string.  Set the base URI for the document used to
@@ -268,13 +280,13 @@ used for validation of prefixed extension fields found in the document.</p>
 </li>
 </ul>
 <p>Other directives beginning with <code>$</code> must be ignored.</p>
-<h2 id="Document_graph">2.4 Document graph</h2><p>If a document consists of a single root object, this object may contain the
+<h2 id="Document_graph" class="section">2.4 Document graph <a href="#Document_graph">&sect;</a></h2><p>If a document consists of a single root object, this object may contain the
 field <code>$graph</code>.  This field must be an array of objects.  If present, this
 field holds the primary content of the document.  A document that consists
 of array of objects at the root is an implicit graph.</p>
-<h2 id="Document_metadata">2.5 Document metadata</h2><p>If a document consists of a single root object, metadata about the
+<h2 id="Document_metadata" class="section">2.5 Document metadata <a href="#Document_metadata">&sect;</a></h2><p>If a document consists of a single root object, metadata about the
 document, such as authorship, may be declared in the root object.</p>
-<h2 id="Document_schema">2.6 Document schema</h2><p>Document preprocessing, link validation and schema validation require a
+<h2 id="Document_schema" class="section">2.6 Document schema <a href="#Document_schema">&sect;</a></h2><p>Document preprocessing, link validation and schema validation require a
 document schema.  A schema may consist of:</p>
 <ul>
 <li><p>At least one record definition object which defines valid fields that
@@ -291,7 +303,7 @@ valid value of the type.</p>
 </ul>
 <p>The schema for defining a salad schema (the metaschema) is described in
 detail in "Schema validation".</p>
-<h3 id="Record_field_annotations">2.6.1 Record field annotations</h3><p>In a document schema, record field definitions may include the field
+<h3 id="Record_field_annotations" class="section">2.6.1 Record field annotations <a href="#Record_field_annotations">&sect;</a></h3><p>In a document schema, record field definitions may include the field
 <code>jsonldPredicate</code>, which may be either a string or object.  Implementations
 must use the following document preprocessing of fields by the following
 rules:</p>
@@ -308,18 +320,18 @@ object contains the field <code>_type</code> with the value <code>@vocab</code>,
 vocabulary field, which is a subtype of link field.</p>
 </li>
 </ul>
-<h2 id="Document_traversal">2.7 Document traversal</h2><p>To perform document document preprocessing, link validation and schema
+<h2 id="Document_traversal" class="section">2.7 Document traversal <a href="#Document_traversal">&sect;</a></h2><p>To perform document document preprocessing, link validation and schema
 validation, the document must be traversed starting from the fields or
 array items of the root object or array and recursively visiting each child
 item which contains an object or arrays.</p>
-<h1 id="Document_preprocessing">3. Document preprocessing</h1><p>After processing the explicit context (if any), document preprocessing
+<h1 id="Document_preprocessing" class="section">3. Document preprocessing <a href="#Document_preprocessing">&sect;</a></h1><p>After processing the explicit context (if any), document preprocessing
 begins.  Starting from the document root, object fields values or array
 items which contain objects or arrays are recursively traversed
 depth-first.  For each visited object, field names, identifier fields, link
 fields, vocabulary fields, and <code>$import</code> and <code>$include</code> directives must be
 processed as described in this section.  The order of traversal of child
 nodes within a parent node is undefined.</p>
-<h2 id="Field_name_resolution">3.1 Field name resolution</h2><p>The document schema declares the vocabulary of known field names.  During
+<h2 id="Field_name_resolution" class="section">3.1 Field name resolution <a href="#Field_name_resolution">&sect;</a></h2><p>The document schema declares the vocabulary of known field names.  During
 preprocessing traversal, field name in the document which are not part of
 the schema vocabulary must be resolved to absolute URIs.  Under "strict"
 validation, it is an error for a document to include fields which are not
@@ -340,7 +352,7 @@ and is not part of the vocabulary, no processing occurs.</p>
 </ul>
 <p>Field name resolution is not relative.  It must not be affected by the
 base URI.</p>
-<h3 id="Field_name_resolution_example">3.1.1 Field name resolution example</h3><p>Given the following schema:</p>
+<h3 id="Field_name_resolution_example" class="section">3.1.1 Field name resolution example <a href="#Field_name_resolution_example">&sect;</a></h3><p>Given the following schema:</p>
 <pre><code>{
   "$namespaces": {
     "acid": "http://example.com/acid#"
@@ -376,7 +388,7 @@ base URI.</p>
       "http://example.com/acid#four": "four"
     }
 </code></pre>
-<h2 id="Identifier_resolution">3.2 Identifier resolution</h2><p>The schema may designate one or more fields as identifier fields to identify
+<h2 id="Identifier_resolution" class="section">3.2 Identifier resolution <a href="#Identifier_resolution">&sect;</a></h2><p>The schema may designate one or more fields as identifier fields to identify
 specific objects.  Processing must resolve relative identifiers to absolute
 identifiers using the following rules:</p>
 <ul>
@@ -403,7 +415,7 @@ no processing occurs.</p>
 must be used as the base URI to process child nodes.</p>
 <p>It is an error for more than one object in a document to have the same
 absolute URI.</p>
-<h3 id="Identifier_resolution_example">3.2.1 Identifier resolution example</h3><p>Given the following schema:</p>
+<h3 id="Identifier_resolution_example" class="section">3.2.1 Identifier resolution example <a href="#Identifier_resolution_example">&sect;</a></h3><p>Given the following schema:</p>
 <pre><code>{
   "$namespaces": {
     "acid": "http://example.com/acid#"
@@ -463,7 +475,7 @@ absolute URI.</p>
   }
 }
 </code></pre>
-<h2 id="Link_resolution">3.3 Link resolution</h2><p>The schema may designate one or more fields as link fields reference other
+<h2 id="Link_resolution" class="section">3.3 Link resolution <a href="#Link_resolution">&sect;</a></h2><p>The schema may designate one or more fields as link fields reference other
 objects.  Processing must resolve links to either absolute URIs using the
 following rules:</p>
 <ul>
@@ -493,7 +505,7 @@ no processing occurs.</p>
 </ul>
 <p>Link resolution must not affect the base URI used to resolve identifiers
 and other links.</p>
-<h3 id="Link_resolution_example">3.3.1 Link resolution example</h3><p>Given the following schema:</p>
+<h3 id="Link_resolution_example" class="section">3.3.1 Link resolution example <a href="#Link_resolution_example">&sect;</a></h3><p>Given the following schema:</p>
 <pre><code>{
   "$namespaces": {
     "acid": "http://example.com/acid#"
@@ -557,7 +569,7 @@ and other links.</p>
   }
 }
 </code></pre>
-<h2 id="Vocabulary_resolution">3.4 Vocabulary resolution</h2><p>The schema may designate one or more vocabulary fields which use terms
+<h2 id="Vocabulary_resolution" class="section">3.4 Vocabulary resolution <a href="#Vocabulary_resolution">&sect;</a></h2><p>The schema may designate one or more vocabulary fields which use terms
   defined in the vocabulary.  Processing must resolve vocabulary fields to
   either vocabulary terms or absolute URIs by first applying the link
   resolution rules defined above, then applying the following additional
@@ -566,7 +578,7 @@ and other links.</p>
 term which maps to the resolved URI, the reference must be replace with
 the vocabulary term.
 </code></pre>
-<h3 id="Vocabulary_resolution_example">3.4.1 Vocabulary resolution example</h3><p>Given the following schema:</p>
+<h3 id="Vocabulary_resolution_example" class="section">3.4.1 Vocabulary resolution example <a href="#Vocabulary_resolution_example">&sect;</a></h3><p>Given the following schema:</p>
 <pre><code>{
   "$namespaces": {
     "acid": "http://example.com/acid#"
@@ -623,7 +635,7 @@ the vocabulary term.
       }
     }
 </code></pre>
-<h2 id="Import">3.5 Import</h2><p>During preprocessing traversal, an implementation must resolve <code>$import</code>
+<h2 id="Import" class="section">3.5 Import <a href="#Import">&sect;</a></h2><p>During preprocessing traversal, an implementation must resolve <code>$import</code>
 directives.  An <code>$import</code> directive is an object consisting of exactly one
 field <code>$import</code> specifying resource by URI string.  It is an error if there
 are additional fields in the <code>$import</code> object, such additional fields must
@@ -644,7 +656,7 @@ the target document.  This indicates that the <code>$import</code> node must be
 replaced by only the object with the appropriate fragment identifier.</p>
 <p>It is a fatal error if an import directive refers to an external resource
 or resource fragment which does not exist or is not accessible.</p>
-<h3 id="Import_example">3.5.1 Import example</h3><p>import.yml:</p>
+<h3 id="Import_example" class="section">3.5.1 Import example <a href="#Import_example">&sect;</a></h3><p>import.yml:</p>
 <pre><code>{
   "hello": "world"
 }
@@ -667,7 +679,7 @@ or resource fragment which does not exist or is not accessible.</p>
   }
 }
 </code></pre>
-<h2 id="Include">3.6 Include</h2><p>During preprocessing traversal, an implementation must resolve <code>$include</code>
+<h2 id="Include" class="section">3.6 Include <a href="#Include">&sect;</a></h2><p>During preprocessing traversal, an implementation must resolve <code>$include</code>
 directives.  An <code>$include</code> directive is an object consisting of exactly one
 field <code>$include</code> specifying a URI string.  It is an error if there are
 additional fields in the <code>$include</code> object, such additional fields must be
@@ -682,7 +694,7 @@ but must not interpret or parse the text document in any other way.</p>
 string containing the text data loaded from the resource.</p>
 <p>It is a fatal error if an import directive refers to an external resource
 which does not exist or is not accessible.</p>
-<h3 id="Include_example">3.6.1 Include example</h3><p>parent.yml:</p>
+<h3 id="Include_example" class="section">3.6.1 Include example <a href="#Include_example">&sect;</a></h3><p>parent.yml:</p>
 <pre><code>{
   "form": {
     "bar": {
@@ -701,7 +713,7 @@ which does not exist or is not accessible.</p>
   }
 }
 </code></pre>
-<h2 id="Mixin">3.7 Mixin</h2><p>During preprocessing traversal, an implementation must resolve <code>$mixin</code>
+<h2 id="Mixin" class="section">3.7 Mixin <a href="#Mixin">&sect;</a></h2><p>During preprocessing traversal, an implementation must resolve <code>$mixin</code>
 directives.  An <code>$mixin</code> directive is an object consisting of the field
 <code>$mixin</code> specifying resource by URI string.  If there are additional fields in
 the <code>$mixin</code> object, these fields override fields in the object which is loaded
@@ -720,7 +732,7 @@ the target document.  This indicates that the <code>$mixin</code> node must be
 replaced by only the object with the appropriate fragment identifier.</p>
 <p>It is a fatal error if an import directive refers to an external resource
 or resource fragment which does not exist or is not accessible.</p>
-<h3 id="Mixin_example">3.7.1 Mixin example</h3><p>mixin.yml:</p>
+<h3 id="Mixin_example" class="section">3.7.1 Mixin example <a href="#Mixin_example">&sect;</a></h3><p>mixin.yml:</p>
 <pre><code>{
   "hello": "world",
   "carrot": "orange"
@@ -746,7 +758,7 @@ or resource fragment which does not exist or is not accessible.</p>
   }
 }
 </code></pre>
-<h2 id="Identifier_maps">3.8 Identifier maps</h2><p>The schema may designate certain fields as having a <code>mapSubject</code>.  If the
+<h2 id="Identifier_maps" class="section">3.8 Identifier maps <a href="#Identifier_maps">&sect;</a></h2><p>The schema may designate certain fields as having a <code>mapSubject</code>.  If the
 value of the field is a JSON object, it must be transformed into an array of
 JSON objects.  Each key-value pair from the source JSON object is a list
 item, each list item must be a JSON objects, and the value of the key is
@@ -755,7 +767,7 @@ assigned to the field specified by <code>mapSubject</code>.</p>
 If the value of a map item is not a JSON object, the item is transformed to a
 JSON object with the key assigned to the field specified by <code>mapSubject</code> and
 the value assigned to the field specified by <code>mapPredicate</code>.</p>
-<h3 id="Identifier_map_example">3.8.1 Identifier map example</h3><p>Given the following schema:</p>
+<h3 id="Identifier_map_example" class="section">3.8.1 Identifier map example <a href="#Identifier_map_example">&sect;</a></h3><p>Given the following schema:</p>
 <pre><code>{
   "$graph": [{
     "name": "MappedType",
@@ -811,7 +823,7 @@ the value assigned to the field specified by <code>mapPredicate</code>.</p>
     ]
 }
 </code></pre>
-<h2 id="Domain_Specific_Language_for_types">3.9 Domain Specific Language for types</h2><p>Fields may be tagged <code>typeDSL: true</code>.  If so, the field is expanded using the
+<h2 id="Domain_Specific_Language_for_types" class="section">3.9 Domain Specific Language for types <a href="#Domain_Specific_Language_for_types">&sect;</a></h2><p>Fields may be tagged <code>typeDSL: true</code>.  If so, the field is expanded using the
 following micro-DSL for schema salad types:</p>
 <ul>
 <li>If the type ends with a question mark <code>?</code> it is expanded to a union with <code>null</code></li>
@@ -819,7 +831,7 @@ following micro-DSL for schema salad types:</p>
 <li>The type may end with both <code>[]?</code> to indicate it is an optional array.</li>
 <li>Identifier resolution is applied after type DSL expansion.</li>
 </ul>
-<h3 id="Type_DSL_example">3.9.1 Type DSL example</h3><p>Given the following schema:</p>
+<h3 id="Type_DSL_example" class="section">3.9.1 Type DSL example <a href="#Type_DSL_example">&sect;</a></h3><p>Given the following schema:</p>
 <pre><code>{
   "$graph": [
   {"$import": "metaschema_base.yml"},
@@ -877,7 +889,7 @@ following micro-DSL for schema salad types:</p>
     }
 ]
 </code></pre>
-<h1 id="SaladRecordSchema">4. SaladRecordSchema</h1><h3>Fields</h3>
+<h1 id="SaladRecordSchema" class="section">4. SaladRecordSchema <a href="#SaladRecordSchema">&sect;</a></h1><h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
 <div class="col-xs-3 col-lg-2">field</div>
@@ -986,7 +998,7 @@ base record as a template.  For each field inherited from the base
 record, replace any instance of the type <code>specializeFrom</code> with
 <code>specializeTo</code>.</p>
 </div>
-</div></div><h2 id="SaladRecordField">4.1 SaladRecordField</h2><p>A field of a record.</p>
+</div></div><h2 id="SaladRecordField" class="section">4.1 SaladRecordField <a href="#SaladRecordField">&sect;</a></h2><p>A field of a record.</p>
 <h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
@@ -1029,11 +1041,11 @@ record, replace any instance of the type <code>specializeFrom</code> with
 <div class="col-xs-7 col-lg-3"><a href="#Any">Any</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The default value to use for this field if the field is missing or "null".</p>
 </div>
-</div></div><h3 id="PrimitiveType">4.1.1 PrimitiveType</h3><p>Salad data types are based on Avro schema declarations.  Refer to the
+</div></div><h3 id="PrimitiveType" class="section">4.1.1 PrimitiveType <a href="#PrimitiveType">&sect;</a></h3><p>Salad data types are based on Avro schema declarations.  Refer to the
 <a href="https://avro.apache.org/docs/current/spec.html#schemas">Avro schema declaration documentation</a> for
 detailed information.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>null</code></td><td> no value</td></tr><tr><td><code>boolean</code></td><td> a binary value</td></tr><tr><td><code>int</code></td><td> 32-bit signed integer</td></tr><tr><td><code>long</code></td><td> 64-bit signed integer</td></tr><tr><td><code>float</code></td><td> single precision (32-bit) IEEE 754 floating-point number</td></tr><tr><td><code>double</code></td><td> double precision (64-bit) IEEE 754 floating-point number</td></tr><tr><td><code>string</code></td><td> Unicode character sequence</td></tr></table><h3 id="Any">4.1.2 Any</h3><p>The <strong>Any</strong> type validates for any non-null value.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>Any</code></td><td></td></tr></table><h3 id="RecordSchema">4.1.3 RecordSchema</h3><h3>Fields</h3>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>null</code></td><td> no value</td></tr><tr><td><code>boolean</code></td><td> a binary value</td></tr><tr><td><code>int</code></td><td> 32-bit signed integer</td></tr><tr><td><code>long</code></td><td> 64-bit signed integer</td></tr><tr><td><code>float</code></td><td> single precision (32-bit) IEEE 754 floating-point number</td></tr><tr><td><code>double</code></td><td> double precision (64-bit) IEEE 754 floating-point number</td></tr><tr><td><code>string</code></td><td> Unicode character sequence</td></tr></table><h3 id="Any" class="section">4.1.2 Any <a href="#Any">&sect;</a></h3><p>The <strong>Any</strong> type validates for any non-null value.</p>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>Any</code></td><td></td></tr></table><h3 id="RecordSchema" class="section">4.1.3 RecordSchema <a href="#RecordSchema">&sect;</a></h3><h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
 <div class="col-xs-3 col-lg-2">field</div>
@@ -1054,7 +1066,7 @@ detailed information.</p>
 <div class="col-xs-7 col-lg-3">array&lt;<a href="#RecordField">RecordField</a>&gt; | <br><a href='#map'>map</a>&lt;<code>name</code>,&nbsp;<code>type</code> | <a href="#RecordField">RecordField</a>&gt</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Defines the fields of the record.</p>
 </div>
-</div></div><h3 id="RecordField">4.1.4 RecordField</h3><p>A field of a record.</p>
+</div></div><h3 id="RecordField" class="section">4.1.4 RecordField <a href="#RecordField">&sect;</a></h3><p>A field of a record.</p>
 <h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
@@ -1083,7 +1095,7 @@ detailed information.</p>
 <div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
 </div>
-</div></div><h4 id="EnumSchema">4.1.4.1 EnumSchema</h4><p>Define an enumerated type.</p>
+</div></div><h4 id="EnumSchema" class="section">4.1.4.1 EnumSchema <a href="#EnumSchema">&sect;</a></h4><p>Define an enumerated type.</p>
 <h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
@@ -1105,7 +1117,7 @@ detailed information.</p>
 <div class="col-xs-7 col-lg-3">constant value <code>enum</code></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Must be <code>enum</code></p>
 </div>
-</div></div><h4 id="ArraySchema">4.1.4.2 ArraySchema</h4><h3>Fields</h3>
+</div></div><h4 id="ArraySchema" class="section">4.1.4.2 ArraySchema <a href="#ArraySchema">&sect;</a></h4><h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
 <div class="col-xs-3 col-lg-2">field</div>
@@ -1126,7 +1138,7 @@ detailed information.</p>
 <div class="col-xs-7 col-lg-3">constant value <code>array</code></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Must be <code>array</code></p>
 </div>
-</div></div><h3 id="JsonldPredicate">4.1.5 JsonldPredicate</h3><p>Attached to a record field to define how the parent record field is handled for
+</div></div><h3 id="JsonldPredicate" class="section">4.1.5 JsonldPredicate <a href="#JsonldPredicate">&sect;</a></h3><p>Attached to a record field to define how the parent record field is handled for
 URI resolution and JSON-LD context generation.</p>
 <h3>Fields</h3>
 <div class="responsive-table">
@@ -1242,7 +1254,7 @@ level scope before determining if the identifier cannot be resolved.</p>
 <div class="col-xs-12 col-lg-6 description-col"><p>Append the subscope to the current scope when performing
 identifier resolution to objects under this field.</p>
 </div>
-</div></div><h2 id="SpecializeDef">4.2 SpecializeDef</h2><h3>Fields</h3>
+</div></div><h2 id="SpecializeDef" class="section">4.2 SpecializeDef <a href="#SpecializeDef">&sect;</a></h2><h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
 <div class="col-xs-3 col-lg-2">field</div>
@@ -1263,7 +1275,7 @@ identifier resolution to objects under this field.</p>
 <div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The new data type to replace with</p>
 </div>
-</div></div><h1 id="SaladEnumSchema">5. SaladEnumSchema</h1><p>Define an enumerated type.</p>
+</div></div><h1 id="SaladEnumSchema" class="section">5. SaladEnumSchema <a href="#SaladEnumSchema">&sect;</a></h1><p>Define an enumerated type.</p>
 <h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
@@ -1355,7 +1367,7 @@ least one type in a schema must be tagged with <code>documentRoot: true</code>.<
 <div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Indicates that this enum inherits symbols from a base enum.</p>
 </div>
-</div></div><h1 id="Documentation">6. Documentation</h1><p>A documentation section.  This type exists to facilitate self-documenting
+</div></div><h1 id="Documentation" class="section">6. Documentation <a href="#Documentation">&sect;</a></h1><p>A documentation section.  This type exists to facilitate self-documenting
 schemas but has no role in formal validation.</p>
 <h3>Fields</h3>
 <div class="responsive-table">

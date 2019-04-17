@@ -4,7 +4,12 @@
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" integrity="sha384-604wwakM23pEysLJAhja8Lm42IIwYrJ0dEAqzFsj9pJ/P5buiujjywArgPCi8eoz" crossorigin="anonymous">
+    <script>
+    // Picture element HTML5 shiv
+    document.createElement( "picture" );
+    </script>
+    <script src="https://cdn.rawgit.com/scottjehl/picturefill/3.0.2/dist/picturefill.min.js" integrity="sha384-ZJsVW8YHHxQHJ+SJDncpN90d0EfAhPP+yA94n+EhSRzhcxfo84yMnNk+v37RGlWR" crossorigin="anonymous" async></script>
     <title>Common Workflow Language (CWL) Command Line Tool Description, v1.1.0-dev1</title>
     <style>
     :target {
@@ -20,6 +25,13 @@
     pre {
       margin-left: 2em;
       margin-right: 2em;
+    }
+    .section a {
+      visibility: hidden;
+    }
+    .section:hover a {
+      visibility: visible;
+      color: rgb(201, 201, 201);
     }
     .responsive-table-header {
       text-align: left;
@@ -81,7 +93,7 @@
     
     <div class="row">
     
-    <div class="col-md-12" role="main" id="main"><h1 id="Common_Workflow_Language_(CWL)_Command_Line_Tool_Description,_v1.1.0-dev1">Common Workflow Language (CWL) Command Line Tool Description, v1.1.0-dev1</h1><p>This version:</p>
+    <div class="col-md-12" role="main" id="main"><h1 id="Common_Workflow_Language_(CWL)_Command_Line_Tool_Description,_v1.1.0-dev1" class="section">Common Workflow Language (CWL) Command Line Tool Description, v1.1.0-dev1 <a href="#Common_Workflow_Language_(CWL)_Command_Line_Tool_Description,_v1.1.0-dev1">&sect;</a></h1><p>This version:</p>
 <ul>
 <li><a href="https://w3id.org/cwl/v1.1.0-dev1/">https://w3id.org/cwl/v1.1.0-dev1/</a></li>
 </ul>
@@ -106,7 +118,7 @@ project</li>
 <li>Stian Soiland-Reyes <a href="mailto:soiland-reyes@cs.manchester.ac.uk">soiland-reyes@cs.manchester.ac.uk</a>, University of Manchester</li>
 <li>Luka Stojanovic <a href="mailto:luka.stojanovic@sbgenomics.com">luka.stojanovic@sbgenomics.com</a>, Seven Bridges Genomics</li>
 </ul>
-<h1 id="Abstract">Abstract</h1><p>A Command Line Tool is a non-interactive executable program that reads
+<h1 id="Abstract" class="section">Abstract <a href="#Abstract">&sect;</a></h1><p>A Command Line Tool is a non-interactive executable program that reads
 some input, performs a computation, and terminates after producing some
 output.  Command line programs are a flexible unit of code sharing and
 reuse, unfortunately the syntax and input/output semantics among command
@@ -116,7 +128,7 @@ complexity by providing a consistent way to connect programs together.
 This specification defines the Common Workflow Language (CWL) Command
 Line Tool Description, a vendor-neutral standard for describing the
 syntax and input/output semantics of command line programs.</p>
-<h1 id="Status_of_this_document">Status of this document</h1><p>This document is the product of the <a href="https://groups.google.com/forum/#!forum/common-workflow-language">Common Workflow Language working
+<h1 id="Status_of_this_document" class="section">Status of this document <a href="#Status_of_this_document">&sect;</a></h1><p>This document is the product of the <a href="https://groups.google.com/forum/#!forum/common-workflow-language">Common Workflow Language working
 group</a>.  The
 latest stable version of this document is available in the "v1.0" directory at</p>
 <p><a href="https://github.com/common-workflow-language/common-workflow-language">https://github.com/common-workflow-language/common-workflow-language</a></p>
@@ -195,13 +207,13 @@ under the terms of the Apache License, version 2.0.</p>
 </ol><li><a href="#CWLVersion">5.18 CWLVersion</a><ol>
 </ol></li></ol></li></ol></nav>
 
-<h1 id="Introduction">1. Introduction</h1><p>The Common Workflow Language (CWL) working group is an informal, multi-vendor
+<h1 id="Introduction" class="section">1. Introduction <a href="#Introduction">&sect;</a></h1><p>The Common Workflow Language (CWL) working group is an informal, multi-vendor
 working group consisting of various organizations and individuals that have an
 interest in portability of data analysis workflows.  The goal is to create
 specifications like this one that enable data scientists to describe analysis
 tools and workflows that are powerful, easy to use, portable, and support
 reproducibility.</p>
-<h2 id="Introduction_to_the_CWL_Command_Line_Tool_standard_v1.1.0-dev1">1.1 Introduction to the CWL Command Line Tool standard v1.1.0-dev1</h2><p>This specification represents the latest development release from the
+<h2 id="Introduction_to_the_CWL_Command_Line_Tool_standard_v1.1.0-dev1" class="section">1.1 Introduction to the CWL Command Line Tool standard v1.1.0-dev1 <a href="#Introduction_to_the_CWL_Command_Line_Tool_standard_v1.1.0-dev1">&sect;</a></h2><p>This specification represents the latest development release from the
 CWL group.  Since the v1.0 release, v1.1 introduces the
 following updates to the CWL Command Line Tool standard.
 Documents should use <code>cwlVersion: v1.1.0-dev1</code> to make use of new
@@ -210,7 +222,7 @@ should be trivially updatable by changing <code>cwlVersion</code>, however
 CWL documents that relied on previously undefined or
 underspecified behavior may have slightly different behavior in
 v1.1.0-dev1.</p>
-<h2 id="Changelog">1.2 Changelog</h2><ul>
+<h2 id="Changelog" class="section">1.2 Changelog <a href="#Changelog">&sect;</a></h2><ul>
 <li>Clarify behavior around <code>ENTRYPOINT</code> and <code>CMD</code> in containers.</li>
 <li>Clarify documentation around <code>valueFrom</code> and <code>null</code> inputs.</li>
 <li>Default values for some fields are now expressed in the schema.</li>
@@ -281,7 +293,7 @@ type, or a valid expression which returns a value having one
 of the the other types defined for that field.</li>
 </ul>
 <p>See also the <a href="Workflow.html#Changelog">CWL Workflow Description, v1.1.0-dev1 changelog</a>.</p>
-<h2 id="Purpose">1.3 Purpose</h2><p>Standalone programs are a flexible and interoperable form of code reuse.
+<h2 id="Purpose" class="section">1.3 Purpose <a href="#Purpose">&sect;</a></h2><p>Standalone programs are a flexible and interoperable form of code reuse.
 Unlike monolithic applications, applications and analysis workflows which
 are composed of multiple separate programs can be written in multiple
 languages and execute concurrently on multiple hosts.  However, POSIX
@@ -309,7 +321,7 @@ single workstation to cluster, grid, cloud, and high performance
 computing platforms. Details related to execution of these programs not
 laid out in this specification are open to interpretation by the computing
 platform implementing this specification.</p>
-<h2 id="References_to_other_specifications">1.4 References to other specifications</h2><p><strong>Javascript Object Notation (JSON)</strong>: <a href="http://json.org">http://json.org</a></p>
+<h2 id="References_to_other_specifications" class="section">1.4 References to other specifications <a href="#References_to_other_specifications">&sect;</a></h2><p><strong>Javascript Object Notation (JSON)</strong>: <a href="http://json.org">http://json.org</a></p>
 <p><strong>JSON Linked Data (JSON-LD)</strong>: <a href="http://json-ld.org">http://json-ld.org</a></p>
 <p><strong>YAML</strong>: <a href="http://yaml.org">http://yaml.org</a></p>
 <p><strong>Avro</strong>: <a href="https://avro.apache.org/docs/1.8.1/spec.html">https://avro.apache.org/docs/1.8.1/spec.html</a></p>
@@ -318,10 +330,10 @@ platform implementing this specification.</p>
 <a href="https://tools.ietf.org/html/rfc3987">https://tools.ietf.org/html/rfc3987</a></p>
 <p><strong>Portable Operating System Interface (POSIX.1-2008)</strong>: <a href="http://pubs.opengroup.org/onlinepubs/9699919799/">http://pubs.opengroup.org/onlinepubs/9699919799/</a></p>
 <p><strong>Resource Description Framework (RDF)</strong>: <a href="http://www.w3.org/RDF/">http://www.w3.org/RDF/</a></p>
-<h2 id="Scope">1.5 Scope</h2><p>This document describes CWL syntax, execution, and object model.  It
+<h2 id="Scope" class="section">1.5 Scope <a href="#Scope">&sect;</a></h2><p>This document describes CWL syntax, execution, and object model.  It
 is not intended to document a CWL specific implementation, however it may
 serve as a reference for the behavior of conforming implementations.</p>
-<h2 id="Terminology">1.6 Terminology</h2><p>The terminology used to describe CWL documents is defined in the
+<h2 id="Terminology" class="section">1.6 Terminology <a href="#Terminology">&sect;</a></h2><p>The terminology used to describe CWL documents is defined in the
 Concepts section of the specification. The terms defined in the
 following list are used in building those definitions and in describing the
 actions of a CWL implementation:</p>
@@ -342,7 +354,7 @@ enable or disable the behavior described.</p>
 compatibility.  Portable CWL documents should not rely on deprecated behavior.
 Behavior marked as deprecated may be removed entirely from future revisions of
 the CWL specification.</p>
-<h1 id="Data_model">2. Data model</h1><h2 id="Data_concepts">2.1 Data concepts</h2><p>An <strong>object</strong> is a data structure equivalent to the "object" type in JSON,
+<h1 id="Data_model" class="section">2. Data model <a href="#Data_model">&sect;</a></h1><h2 id="Data_concepts" class="section">2.1 Data concepts <a href="#Data_concepts">&sect;</a></h2><p>An <strong>object</strong> is a data structure equivalent to the "object" type in JSON,
 consisting of a unordered set of name/value pairs (referred to here as
 <strong>fields</strong>) and where the name is a string and the value is a string, number,
 boolean, array, or object.</p>
@@ -358,14 +370,14 @@ invocation of a process.</p>
 for an input object.</p>
 <p>An <strong>output schema</strong> describes the valid format for an output object.</p>
 <p><strong>Metadata</strong> is information about workflows, tools, or input items.</p>
-<h2 id="Syntax">2.2 Syntax</h2><p>CWL documents must consist of an object or array of objects represented using
+<h2 id="Syntax" class="section">2.2 Syntax <a href="#Syntax">&sect;</a></h2><p>CWL documents must consist of an object or array of objects represented using
 JSON or YAML syntax.  Upon loading, a CWL implementation must apply the
 preprocessing steps described in the
 <a href="SchemaSalad.html">Semantic Annotations for Linked Avro Data (SALAD) Specification</a>.
 An implementation may formally validate the structure of a CWL document using
 SALAD schemas located at
 <a href="https://github.com/common-workflow-language/common-workflow-language/tree/master/v1.1.0-dev1">https://github.com/common-workflow-language/common-workflow-language/tree/master/v1.1.0-dev1</a></p>
-<h3 id="map">2.2.1 map</h3><p>Note: This section is non-normative.</p>
+<h3 id="map" class="section">2.2.1 map <a href="#map">&sect;</a></h3><p>Note: This section is non-normative.</p>
 <blockquote><p>type: array&lt;ComplexType&gt; |<br>
 map&lt;<code>key_field</code>, ComplexType&gt;</p>
 </blockquote>
@@ -506,20 +518,20 @@ always allowed, but for presentation reasons option 3 and 2 may be preferred
 by human readers.</p>
 <p>The normative explanation for these variations, aimed at implementors, is in the
 <a href="SchemaSalad.html#Identifier_maps">Schema Salad specification</a>.</p>
-<h2 id="Identifiers">2.3 Identifiers</h2><p>If an object contains an <code>id</code> field, that is used to uniquely identify the
+<h2 id="Identifiers" class="section">2.3 Identifiers <a href="#Identifiers">&sect;</a></h2><p>If an object contains an <code>id</code> field, that is used to uniquely identify the
 object in that document.  The value of the <code>id</code> field must be unique over the
 entire document.  Identifiers may be resolved relative to either the document
 base and/or other identifiers following the rules are described in the
 <a href="SchemaSalad.html#Identifier_resolution">Schema Salad specification</a>.</p>
 <p>An implementation may choose to only honor references to object types for
 which the <code>id</code> field is explicitly listed in this specification.</p>
-<h2 id="Document_preprocessing">2.4 Document preprocessing</h2><p>An implementation must resolve <a href="SchemaSalad.html#Import">$import</a> and
+<h2 id="Document_preprocessing" class="section">2.4 Document preprocessing <a href="#Document_preprocessing">&sect;</a></h2><p>An implementation must resolve <a href="SchemaSalad.html#Import">$import</a> and
 <a href="SchemaSalad.html#Import">$include</a> directives as described in the
 <a href="SchemaSalad.html">Schema Salad specification</a>.</p>
 <p>Another transformation defined in Schema salad is simplification of data type definitions.
 Type <code>&lt;T&gt;</code> ending with <code>?</code> should be transformed to <code>[&lt;T&gt;, "null"]</code>.
 Type <code>&lt;T&gt;</code> ending with <code>[]</code> should be transformed to <code>{"type": "array", "items": &lt;T&gt;}</code></p>
-<h2 id="Extensions_and_metadata">2.5 Extensions and metadata</h2><p>Input metadata (for example, a lab sample identifier) may be represented within
+<h2 id="Extensions_and_metadata" class="section">2.5 Extensions and metadata <a href="#Extensions_and_metadata">&sect;</a></h2><p>Input metadata (for example, a lab sample identifier) may be represented within
 a tool or workflow using input parameters which are explicitly propagated to
 output.  Future versions of this specification may define additional facilities
 for working with input/output metadata.</p>
@@ -531,7 +543,7 @@ prefix listed in the <code>$namespaces</code> section of the document as describ
 <a href="SchemaSalad.html#Explicit_context">Schema Salad specification</a>.</p>
 <p>Implementation extensions which modify execution semantics must be <a href="#Requirements_and_hints">listed in
 the <code>requirements</code> field</a>.</p>
-<h1 id="Execution_model">3. Execution model</h1><h2 id="Execution_concepts">3.1 Execution concepts</h2><p>A <strong>parameter</strong> is a named symbolic input or output of process, with an
+<h1 id="Execution_model" class="section">3. Execution model <a href="#Execution_model">&sect;</a></h1><h2 id="Execution_concepts" class="section">3.1 Execution concepts <a href="#Execution_concepts">&sect;</a></h2><p>A <strong>parameter</strong> is a named symbolic input or output of process, with an
 associated datatype or schema.  During execution, values are assigned to
 parameters to make the input object or output object used for concrete
 process invocation.</p>
@@ -573,7 +585,7 @@ and reusing previous results.</li>
 <p>Conforming CWL processes must not assume anything about the runtime
 environment or workflow platform unless explicitly declared though the use
 of <a href="#Requirements_and_hints">process requirements</a>.</p>
-<h2 id="Generic_execution_process">3.2 Generic execution process</h2><p>The generic execution sequence of a CWL process (including workflows and
+<h2 id="Generic_execution_process" class="section">3.2 Generic execution process <a href="#Generic_execution_process">&sect;</a></h2><p>The generic execution sequence of a CWL process (including workflows and
 command line line tools) is as follows.</p>
 <ol>
 <li>Load input object.</li>
@@ -592,7 +604,7 @@ a <a href="#Executing_CWL_documents_as_scripts"><code>cwl:tool</code></a> entry)
 <li>Validate the output object against the <code>outputs</code> schema for the process.</li>
 <li>Report the output object to the process caller.</li>
 </ol>
-<h2 id="Requirements_and_hints">3.3 Requirements and hints</h2><p>A <strong>process requirement</strong> modifies the semantics or runtime
+<h2 id="Requirements_and_hints" class="section">3.3 Requirements and hints <a href="#Requirements_and_hints">&sect;</a></h2><p>A <strong>process requirement</strong> modifies the semantics or runtime
 environment of a process.  If an implementation cannot satisfy all
 requirements, or a requirement is listed which is not recognized by the
 implementation, it is a fatal error and the implementation must not attempt
@@ -623,7 +635,7 @@ the same way.</p>
 process requirement in <code>hints</code> which is also provided in <code>requirements</code> by
 an enclosing workflow or workflow step, the enclosing <code>requirements</code> takes
 precedence.</p>
-<h2 id="Parameter_references">3.4 Parameter references</h2><p>Parameter references are denoted by the syntax <code>$(...)</code> and may be used in any
+<h2 id="Parameter_references" class="section">3.4 Parameter references <a href="#Parameter_references">&sect;</a></h2><p>Parameter references are denoted by the syntax <code>$(...)</code> and may be used in any
 field permitting the pseudo-type <code>Expression</code>, as specified by this document.
 Conforming implementations must support parameter references.  Parameter
 references use the following subset of
@@ -692,7 +704,7 @@ textual JSON representation with the following rules:</p>
 must be treated as a string interpolation.  After interpolating the first
 parameter reference, interpolation must be recursively applied to the
 trailing characters to yield the final string value.</p>
-<h2 id="Expressions">3.5 Expressions</h2><p>An expression is a fragment of <a href="http://www.ecma-international.org/ecma-262/5.1/">Javascript/ECMAScript
+<h2 id="Expressions" class="section">3.5 Expressions <a href="#Expressions">&sect;</a></h2><p>An expression is a fragment of <a href="http://www.ecma-international.org/ecma-262/5.1/">Javascript/ECMAScript
 5.1</a> code evaluated by the
 workflow platform to affect the inputs, outputs, or
 behavior of a process.  In the generic execution sequence, expressions may
@@ -737,7 +749,7 @@ and operating system containers/jails to minimize the security risks associated
 with running untrusted code embedded in a CWL document.</p>
 <p>Exceptions thrown from an exception must result in a <code>permanentFailure</code> of the
 process.</p>
-<h2 id="Executing_CWL_documents_as_scripts">3.6 Executing CWL documents as scripts</h2><p>By convention, a CWL document may begin with <code>#!/usr/bin/env cwl-runner</code>
+<h2 id="Executing_CWL_documents_as_scripts" class="section">3.6 Executing CWL documents as scripts <a href="#Executing_CWL_documents_as_scripts">&sect;</a></h2><p>By convention, a CWL document may begin with <code>#!/usr/bin/env cwl-runner</code>
 and be marked as executable (the POSIX "+x" permission bits) to enable it
 to be executed directly.  A workflow platform may support this mode of
 operation; if so, it must provide <code>cwl-runner</code> as an alias for the
@@ -749,18 +761,18 @@ document that should be executed using the fields of the input object as
 input parameters.</p>
 <p>The <code>cwl-runner</code> interface is required for conformance testing and is
 documented in <a href="cwl-runner.cwl">cwl-runner.cwl</a>.</p>
-<h2 id="Discovering_CWL_documents_on_a_local_filesystem">3.7 Discovering CWL documents on a local filesystem</h2><p>To discover CWL documents look in the following locations:</p>
+<h2 id="Discovering_CWL_documents_on_a_local_filesystem" class="section">3.7 Discovering CWL documents on a local filesystem <a href="#Discovering_CWL_documents_on_a_local_filesystem">&sect;</a></h2><p>To discover CWL documents look in the following locations:</p>
 <p><code>/usr/share/commonwl/</code></p>
 <p><code>/usr/local/share/commonwl/</code></p>
 <p><code>$XDG_DATA_HOME/commonwl/</code> (usually <code>$HOME/.local/share/commonwl</code>)</p>
 <p><code>$XDG_DATA_HOME</code> is from the <a href="http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html">XDG Base Directory
 Specification</a></p>
-<h1 id="Running_a_Command">4. Running a Command</h1><p>To accommodate the enormous variety in syntax and semantics for input, runtime
+<h1 id="Running_a_Command" class="section">4. Running a Command <a href="#Running_a_Command">&sect;</a></h1><p>To accommodate the enormous variety in syntax and semantics for input, runtime
 environment, invocation, and output of arbitrary programs, a CommandLineTool
 defines an "input binding" that describes how to translate abstract input
 parameters to an concrete program invocation, and an "output binding" that
 describes how to generate output parameters from program output.</p>
-<h2 id="Input_binding">4.1 Input binding</h2><p>The tool command line is built by applying command line bindings to the
+<h2 id="Input_binding" class="section">4.1 Input binding <a href="#Input_binding">&sect;</a></h2><p>The tool command line is built by applying command line bindings to the
 input object.  Bindings are listed either as part of an <a href="#CommandInputParameter">input
 parameter</a> using the <code>inputBinding</code> field, or
 separately using the <code>arguments</code> field of the CommandLineTool.</p>
@@ -798,7 +810,7 @@ command line elements.</p>
 line.</p>
 </li>
 </ol>
-<h2 id="Runtime_environment">4.2 Runtime environment</h2><p>All files listed in the input object must be made available in the runtime
+<h2 id="Runtime_environment" class="section">4.2 Runtime environment <a href="#Runtime_environment">&sect;</a></h2><p>All files listed in the input object must be made available in the runtime
 environment.  The implementation may use a shared or distributed file
 system or transfer files via explicit download to the host.  Implementations
 may choose not to provide access to files not explicitly specified in the input
@@ -865,7 +877,7 @@ it should report back the minimal requested amount.</p>
 describe the hardware resources required by a tool.</p>
 <p>The standard input stream and standard output stream may be redirected as
 described in the <code>stdin</code> and <code>stdout</code> fields.</p>
-<h2 id="Execution">4.3 Execution</h2><p>Once the command line is built and the runtime environment is created, the
+<h2 id="Execution" class="section">4.3 Execution <a href="#Execution">&sect;</a></h2><p>Once the command line is built and the runtime environment is created, the
 actual tool is executed.</p>
 <p>The standard error stream and standard output stream (unless redirected by
 setting <code>stdout</code> or <code>stderr</code>) may be captured by platform logging facilities
@@ -883,13 +895,13 @@ providing the fields <code>successCodes</code>, <code>temporaryFailCodes</code>,
 non-zero exit codes to either <code>temporaryFailure</code> or <code>permanentFailure</code>.</p>
 <p>The exit code of the process is available to expressions in
 <code>outputEval</code> as <code>runtime.exitCode</code>.</p>
-<h2 id="Output_binding">4.4 Output binding</h2><p>If the output directory contains a file named "cwl.output.json", that file
+<h2 id="Output_binding" class="section">4.4 Output binding <a href="#Output_binding">&sect;</a></h2><p>If the output directory contains a file named "cwl.output.json", that file
 must be loaded and used as the output object.  Otherwise, the output object
 must be generated by walking the parameters listed in <code>outputs</code> and
 applying output bindings to the tool output.  Output bindings are
 associated with output parameters using the <code>outputBinding</code> field.  See
 <a href="#CommandOutputBinding"><code>CommandOutputBinding</code></a> for details.</p>
-<h1 id="CommandLineTool">5. CommandLineTool</h1><p>This defines the schema of the CWL Command Line Tool Description document.</p>
+<h1 id="CommandLineTool" class="section">5. CommandLineTool <a href="#CommandLineTool">&sect;</a></h1><p>This defines the schema of the CWL Command Line Tool Description document.</p>
 <h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
@@ -1064,7 +1076,7 @@ runtime environment and inputs may produce different results.</p>
 <div class="col-xs-7 col-lg-3">array&lt;<a href="#CWLType">int</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Exit codes that indicate the process failed due to a permanent logic error, where executing the process with the same runtime environment and same inputs is expected to always fail.</p>
 </div>
-</div></div><h2 id="CommandInputParameter">5.1 CommandInputParameter</h2><p>An input parameter for a CommandLineTool.</p>
+</div></div><h2 id="CommandInputParameter" class="section">5.1 CommandInputParameter <a href="#CommandInputParameter">&sect;</a></h2><p>An input parameter for a CommandLineTool.</p>
 <h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
@@ -1208,7 +1220,7 @@ object is <code>null</code>.  Default values are applied before evaluating expre
 <div class="col-xs-12 col-lg-6 description-col"><p>Describes how to turns the input parameters of a process into
 command line arguments.</p>
 </div>
-</div></div><h3 id="CommandLineBinding">5.1.1 CommandLineBinding</h3><p>When listed under <code>inputBinding</code> in the input schema, the term
+</div></div><h3 id="CommandLineBinding" class="section">5.1.1 CommandLineBinding <a href="#CommandLineBinding">&sect;</a></h3><p>When listed under <code>inputBinding</code> in the input schema, the term
 "value" refers to the the corresponding value in the input object.  For
 binding objects listed in <code>CommandLineTool.arguments</code>, the term "value"
 refers to the effective value after evaluating <code>valueFrom</code>.</p>
@@ -1328,11 +1340,11 @@ Use <code>shellQuote: false</code> to inject metacharacters for operations such 
 <p>If <code>shellQuote</code> is true or not provided, the implementation must not
 permit interpretation of any shell metacharacters or directives.</p>
 </div>
-</div></div><h3 id="Expression">5.1.2 Expression</h3><p>'Expression' is not a real type.  It indicates that a field must allow
+</div></div><h3 id="Expression" class="section">5.1.2 Expression <a href="#Expression">&sect;</a></h3><p>'Expression' is not a real type.  It indicates that a field must allow
 runtime parameter references.  If <a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a>
 is declared and supported by the platform, the field must also allow
 Javascript expressions.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>ExpressionPlaceholder</code></td><td></td></tr></table><h3 id="SecondaryFileSchema">5.1.3 SecondaryFileSchema</h3><h3>Fields</h3>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>ExpressionPlaceholder</code></td><td></td></tr></table><h3 id="SecondaryFileSchema" class="section">5.1.3 SecondaryFileSchema <a href="#SecondaryFileSchema">&sect;</a></h3><h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
 <div class="col-xs-3 col-lg-2">field</div>
@@ -1384,11 +1396,11 @@ set to <code>false</code> and the expected secondary file does not exist.
 Default value for <code>required</code> field is <code>true</code> for secondary files on
 input and <code>false</code> for secondary files on output.</p>
 </div>
-</div></div><h3 id="LoadListingEnum">5.1.4 LoadListingEnum</h3><p>Specify the desired behavior for loading the <code>listing</code> field of
+</div></div><h3 id="LoadListingEnum" class="section">5.1.4 LoadListingEnum <a href="#LoadListingEnum">&sect;</a></h3><p>Specify the desired behavior for loading the <code>listing</code> field of
 a Directory object for use by expressions.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>no_listing</code></td><td> Do not load the directory listing.</td></tr><tr><td><code>shallow_listing</code></td><td> Only load the top level listing, do not recurse into subdirectories.</td></tr><tr><td><code>deep_listing</code></td><td> Load the directory listing and recursively load all subdirectories as well.</td></tr></table><h3 id="Any">5.1.5 Any</h3><p>The <strong>Any</strong> type validates for any non-null value.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>Any</code></td><td></td></tr></table><h3 id="CWLType">5.1.6 CWLType</h3><p>Extends primitive types with the concept of a file and directory as a builtin type.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>null</code></td><td> no value</td></tr><tr><td><code>boolean</code></td><td> a binary value</td></tr><tr><td><code>int</code></td><td> 32-bit signed integer</td></tr><tr><td><code>long</code></td><td> 64-bit signed integer</td></tr><tr><td><code>float</code></td><td> single precision (32-bit) IEEE 754 floating-point number</td></tr><tr><td><code>double</code></td><td> double precision (64-bit) IEEE 754 floating-point number</td></tr><tr><td><code>string</code></td><td> Unicode character sequence</td></tr><tr><td><code>File</code></td><td> A File object</td></tr><tr><td><code>Directory</code></td><td> A Directory object</td></tr></table><h3 id="File">5.1.7 File</h3><p>Represents a file (or group of files when <code>secondaryFiles</code> is provided) that
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>no_listing</code></td><td> Do not load the directory listing.</td></tr><tr><td><code>shallow_listing</code></td><td> Only load the top level listing, do not recurse into subdirectories.</td></tr><tr><td><code>deep_listing</code></td><td> Load the directory listing and recursively load all subdirectories as well.</td></tr></table><h3 id="Any" class="section">5.1.5 Any <a href="#Any">&sect;</a></h3><p>The <strong>Any</strong> type validates for any non-null value.</p>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>Any</code></td><td></td></tr></table><h3 id="CWLType" class="section">5.1.6 CWLType <a href="#CWLType">&sect;</a></h3><p>Extends primitive types with the concept of a file and directory as a builtin type.</p>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>null</code></td><td> no value</td></tr><tr><td><code>boolean</code></td><td> a binary value</td></tr><tr><td><code>int</code></td><td> 32-bit signed integer</td></tr><tr><td><code>long</code></td><td> 64-bit signed integer</td></tr><tr><td><code>float</code></td><td> single precision (32-bit) IEEE 754 floating-point number</td></tr><tr><td><code>double</code></td><td> double precision (64-bit) IEEE 754 floating-point number</td></tr><tr><td><code>string</code></td><td> Unicode character sequence</td></tr><tr><td><code>File</code></td><td> A File object</td></tr><tr><td><code>Directory</code></td><td> A Directory object</td></tr></table><h3 id="File" class="section">5.1.7 File <a href="#File">&sect;</a></h3><p>Represents a file (or group of files when <code>secondaryFiles</code> is provided) that
 will be accessible by tools using standard POSIX file system call API such as
 open(2) and read(2).</p>
 <p>Files are represented as objects with <code>class</code> of <code>File</code>.  File objects have
@@ -1610,7 +1622,7 @@ the value of <code>contents</code> must be written to a file.</p>
 <code>location</code> is valid, the implementation must read up to the first 64
 KiB of text from the file and place it in the "contents" field.</p>
 </div>
-</div></div><h4 id="Directory">5.1.7.1 Directory</h4><p>Represents a directory to present to a command line tool.</p>
+</div></div><h4 id="Directory" class="section">5.1.7.1 Directory <a href="#Directory">&sect;</a></h4><p>Represents a directory to present to a command line tool.</p>
 <p>Directories are represented as objects with <code>class</code> of <code>Directory</code>.  Directory objects have
 a number of properties that provide metadata about the directory.</p>
 <p>The <code>location</code> property of a Directory is a URI that uniquely identifies
@@ -1724,7 +1736,7 @@ each <code>File</code> or <code>Directory</code> object.  It is an error if a <c
 equivalent to a single subdirectory with the listings recursively
 merged.</p>
 </div>
-</div></div><h3 id="stdin">5.1.8 stdin</h3><p>Only valid as a <code>type</code> for a <code>CommandLineTool</code> input with no
+</div></div><h3 id="stdin" class="section">5.1.8 stdin <a href="#stdin">&sect;</a></h3><p>Only valid as a <code>type</code> for a <code>CommandLineTool</code> input with no
 <code>inputBinding</code> set. <code>stdin</code> must not be specified at the <code>CommandLineTool</code>
 level.</p>
 <p>The following</p>
@@ -1740,7 +1752,7 @@ level.</p>
 
 stdin: ${inputs.an_input_name.path}
 </code></pre>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>stdin</code></td><td></td></tr></table><h3 id="CommandInputRecordSchema">5.1.9 CommandInputRecordSchema</h3><h3>Fields</h3>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>stdin</code></td><td></td></tr></table><h3 id="CommandInputRecordSchema" class="section">5.1.9 CommandInputRecordSchema <a href="#CommandInputRecordSchema">&sect;</a></h3><h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
 <div class="col-xs-3 col-lg-2">field</div>
@@ -1789,7 +1801,7 @@ stdin: ${inputs.an_input_name.path}
 <div class="col-xs-7 col-lg-3"><a href="#CommandLineBinding">CommandLineBinding</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Describes how to turn this object into command line arguments.</p>
 </div>
-</div></div><h4 id="CommandInputRecordField">5.1.9.1 CommandInputRecordField</h4><h3>Fields</h3>
+</div></div><h4 id="CommandInputRecordField" class="section">5.1.9.1 CommandInputRecordField <a href="#CommandInputRecordField">&sect;</a></h4><h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
 <div class="col-xs-3 col-lg-2">field</div>
@@ -1921,7 +1933,7 @@ a Directory object for use by expressions.</p>
 <div class="col-xs-7 col-lg-3"><a href="#CommandLineBinding">CommandLineBinding</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Describes how to turn this object into command line arguments.</p>
 </div>
-</div></div><h5 id="CommandInputEnumSchema">5.1.9.1.1 CommandInputEnumSchema</h5><h3>Fields</h3>
+</div></div><h5 id="CommandInputEnumSchema" class="section">5.1.9.1.1 CommandInputEnumSchema <a href="#CommandInputEnumSchema">&sect;</a></h5><h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
 <div class="col-xs-3 col-lg-2">field</div>
@@ -1970,7 +1982,7 @@ a Directory object for use by expressions.</p>
 <div class="col-xs-7 col-lg-3"><a href="#CommandLineBinding">CommandLineBinding</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Describes how to turn this object into command line arguments.</p>
 </div>
-</div></div><h5 id="CommandInputArraySchema">5.1.9.1.2 CommandInputArraySchema</h5><h3>Fields</h3>
+</div></div><h5 id="CommandInputArraySchema" class="section">5.1.9.1.2 CommandInputArraySchema <a href="#CommandInputArraySchema">&sect;</a></h5><h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
 <div class="col-xs-3 col-lg-2">field</div>
@@ -2019,7 +2031,7 @@ a Directory object for use by expressions.</p>
 <div class="col-xs-7 col-lg-3"><a href="#CommandLineBinding">CommandLineBinding</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Describes how to turn this object into command line arguments.</p>
 </div>
-</div></div><h2 id="CommandOutputParameter">5.2 CommandOutputParameter</h2><p>An output parameter for a CommandLineTool.</p>
+</div></div><h2 id="CommandOutputParameter" class="section">5.2 CommandOutputParameter <a href="#CommandOutputParameter">&sect;</a></h2><p>An output parameter for a CommandLineTool.</p>
 <h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
@@ -2126,7 +2138,7 @@ File object.</p>
 <div class="col-xs-7 col-lg-3"><a href="#CommandOutputBinding">CommandOutputBinding</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Describes how to generate this output object based on the files produced by a CommandLineTool</p>
 </div>
-</div></div><h3 id="stdout">5.2.1 stdout</h3><p>Only valid as a <code>type</code> for a <code>CommandLineTool</code> output with no
+</div></div><h3 id="stdout" class="section">5.2.1 stdout <a href="#stdout">&sect;</a></h3><p>Only valid as a <code>type</code> for a <code>CommandLineTool</code> output with no
 <code>outputBinding</code> set.</p>
 <p>The following</p>
 <pre><code>outputs:
@@ -2161,7 +2173,7 @@ For example, the following</p>
 
 stdout: random_stdout_filenameABCDEFG
 </code></pre>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>stdout</code></td><td></td></tr></table><h3 id="stderr">5.2.2 stderr</h3><p>Only valid as a <code>type</code> for a <code>CommandLineTool</code> output with no
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>stdout</code></td><td></td></tr></table><h3 id="stderr" class="section">5.2.2 stderr <a href="#stderr">&sect;</a></h3><p>Only valid as a <code>type</code> for a <code>CommandLineTool</code> output with no
 <code>outputBinding</code> set.</p>
 <p>The following</p>
 <pre><code>outputs:
@@ -2196,7 +2208,7 @@ For example, the following</p>
 
 stderr: random_stderr_filenameABCDEFG
 </code></pre>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>stderr</code></td><td></td></tr></table><h3 id="CommandOutputRecordSchema">5.2.3 CommandOutputRecordSchema</h3><h3>Fields</h3>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>stderr</code></td><td></td></tr></table><h3 id="CommandOutputRecordSchema" class="section">5.2.3 CommandOutputRecordSchema <a href="#CommandOutputRecordSchema">&sect;</a></h3><h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
 <div class="col-xs-3 col-lg-2">field</div>
@@ -2238,7 +2250,7 @@ stderr: random_stderr_filenameABCDEFG
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The identifier for this type</p>
 </div>
-</div></div><h3 id="CommandOutputRecordField">5.2.4 CommandOutputRecordField</h3><h3>Fields</h3>
+</div></div><h3 id="CommandOutputRecordField" class="section">5.2.4 CommandOutputRecordField <a href="#CommandOutputRecordField">&sect;</a></h3><h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
 <div class="col-xs-3 col-lg-2">field</div>
@@ -2345,7 +2357,7 @@ File object.</p>
 <div class="col-xs-12 col-lg-6 description-col"><p>Describes how to generate this output object based on the files
 produced by a CommandLineTool</p>
 </div>
-</div></div><h4 id="CommandOutputEnumSchema">5.2.4.1 CommandOutputEnumSchema</h4><h3>Fields</h3>
+</div></div><h4 id="CommandOutputEnumSchema" class="section">5.2.4.1 CommandOutputEnumSchema <a href="#CommandOutputEnumSchema">&sect;</a></h4><h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
 <div class="col-xs-3 col-lg-2">field</div>
@@ -2387,7 +2399,7 @@ produced by a CommandLineTool</p>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The identifier for this type</p>
 </div>
-</div></div><h4 id="CommandOutputArraySchema">5.2.4.2 CommandOutputArraySchema</h4><h3>Fields</h3>
+</div></div><h4 id="CommandOutputArraySchema" class="section">5.2.4.2 CommandOutputArraySchema <a href="#CommandOutputArraySchema">&sect;</a></h4><h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
 <div class="col-xs-3 col-lg-2">field</div>
@@ -2429,7 +2441,7 @@ produced by a CommandLineTool</p>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The identifier for this type</p>
 </div>
-</div></div><h4 id="CommandOutputBinding">5.2.4.3 CommandOutputBinding</h4><p>Describes how to generate an output parameter based on the files produced
+</div></div><h4 id="CommandOutputBinding" class="section">5.2.4.3 CommandOutputBinding <a href="#CommandOutputBinding">&sect;</a></h4><p>Describes how to generate an output parameter based on the files produced
 by a CommandLineTool.</p>
 <p>The output parameter value is generated by applying these operations in the
 following order:</p>
@@ -2523,7 +2535,7 @@ objects must include up to the first 64 KiB of file contents
 in the <code>contents</code> field.  The exit code of the process is
 available in the expression as <code>runtime.exitCode</code>.</p>
 </div>
-</div></div><h2 id="InlineJavascriptRequirement">5.3 InlineJavascriptRequirement</h2><p>Indicates that the workflow platform must support inline Javascript expressions.
+</div></div><h2 id="InlineJavascriptRequirement" class="section">5.3 InlineJavascriptRequirement <a href="#InlineJavascriptRequirement">&sect;</a></h2><p>Indicates that the workflow platform must support inline Javascript expressions.
 If this requirement is not present, the workflow platform must not perform expression
 interpolatation.</p>
 <h3>Fields</h3>
@@ -2549,7 +2561,7 @@ interpolatation.</p>
 before executing the expression code.  Allows for function definitions that may
 be called from CWL expressions.</p>
 </div>
-</div></div><h2 id="SchemaDefRequirement">5.4 SchemaDefRequirement</h2><p>This field consists of an array of type definitions which must be used when
+</div></div><h2 id="SchemaDefRequirement" class="section">5.4 SchemaDefRequirement <a href="#SchemaDefRequirement">&sect;</a></h2><p>This field consists of an array of type definitions which must be used when
 interpreting the <code>inputs</code> and <code>outputs</code> fields.  When a <code>type</code> field
 contain a IRI, the implementation must check if the type is defined in
 <code>schemaDefs</code> and use that definition.  If the type is not found in
@@ -2577,7 +2589,7 @@ to earlier schema definitions.</p>
 <div class="col-xs-7 col-lg-3">array&lt;<a href="#CommandInputRecordSchema">CommandInputRecordSchema</a>&nbsp;|&nbsp;<a href="#CommandInputEnumSchema">CommandInputEnumSchema</a>&nbsp;|&nbsp;<a href="#CommandInputArraySchema">CommandInputArraySchema</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The list of type definitions.</p>
 </div>
-</div></div><h2 id="LoadListingRequirement">5.5 LoadListingRequirement</h2><p>Specify the desired behavior for loading the <code>listing</code> field of
+</div></div><h2 id="LoadListingRequirement" class="section">5.5 LoadListingRequirement <a href="#LoadListingRequirement">&sect;</a></h2><p>Specify the desired behavior for loading the <code>listing</code> field of
 a Directory object for use by expressions.</p>
 <h3>Fields</h3>
 <div class="responsive-table">
@@ -2599,7 +2611,7 @@ a Directory object for use by expressions.</p>
 <div class="col-xs-2 col-lg-1">optional</div>
 <div class="col-xs-7 col-lg-3"><a href="#LoadListingEnum">LoadListingEnum</a></div>
 <div class="col-xs-12 col-lg-6 description-col"></div>
-</div></div><h2 id="DockerRequirement">5.6 DockerRequirement</h2><p>Indicates that a workflow component should be run in a
+</div></div><h2 id="DockerRequirement" class="section">5.6 DockerRequirement <a href="#DockerRequirement">&sect;</a></h2><p>Indicates that a workflow component should be run in a
 <a href="http://docker.com">Docker</a> or Docker-compatible (such as
 <a href="https://www.sylabs.io/">Singularity</a> and <a href="https://github.com/indigo-dc/udocker">udocker</a>) container environment and
 specifies how to fetch or build the image.</p>
@@ -2636,7 +2648,7 @@ concerns of the implicit hidden execution point (For further discussion, see
 CommandLineTool wrappers in which use of a container is optional must not rely on ENTRYPOINT or CMD.
 CommandLineTools which do rely on ENTRYPOINT or CMD must list <code>DockerRequirement</code> in the
 <code>requirements</code> section.</p>
-<h4 id="Interaction_with_other_requirements">Interaction with other requirements</h4><p>If <a href="#EnvVarRequirement">EnvVarRequirement</a> is specified alongside a
+<h4 id="Interaction_with_other_requirements" class="section">Interaction with other requirements <a href="#Interaction_with_other_requirements">&sect;</a></h4><p>If <a href="#EnvVarRequirement">EnvVarRequirement</a> is specified alongside a
 DockerRequirement, the environment variables must be provided to Docker
 using <code>--env</code> or <code>--env-file</code> and interact with the container's preexisting
 environment as defined by Docker.</p>
@@ -2700,7 +2712,7 @@ must be used.</p>
 <div class="col-xs-12 col-lg-6 description-col"><p>Set the designated output directory to a specific location inside the
 Docker container.</p>
 </div>
-</div></div><h2 id="SoftwareRequirement">5.7 SoftwareRequirement</h2><p>A list of software packages that should be configured in the environment of
+</div></div><h2 id="SoftwareRequirement" class="section">5.7 SoftwareRequirement <a href="#SoftwareRequirement">&sect;</a></h2><p>A list of software packages that should be configured in the environment of
 the defined process.</p>
 <h3>Fields</h3>
 <div class="responsive-table">
@@ -2723,7 +2735,7 @@ the defined process.</p>
 <div class="col-xs-7 col-lg-3">array&lt;<a href="#SoftwarePackage">SoftwarePackage</a>&gt; | <br><a href='#map'>map</a>&lt;<code>package</code>,&nbsp;<code>specs</code> | <a href="#SoftwarePackage">SoftwarePackage</a>&gt</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The list of software to be configured.</p>
 </div>
-</div></div><h2 id="SoftwarePackage">5.8 SoftwarePackage</h2><h3>Fields</h3>
+</div></div><h2 id="SoftwarePackage" class="section">5.8 SoftwarePackage <a href="#SoftwarePackage">&sect;</a></h2><h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
 <div class="col-xs-3 col-lg-2">field</div>
@@ -2790,7 +2802,7 @@ unavailable or unsuitable. While harmless to other sites, site specific
 software IRIs should be left out of shared CWL descriptions to avoid
 clutter.</p>
 </div>
-</div></div><h2 id="InitialWorkDirRequirement">5.9 InitialWorkDirRequirement</h2><p>Define a list of files and subdirectories that must be created by the workflow platform in the designated output directory prior to executing the command line tool.</p>
+</div></div><h2 id="InitialWorkDirRequirement" class="section">5.9 InitialWorkDirRequirement <a href="#InitialWorkDirRequirement">&sect;</a></h2><p>Define a list of files and subdirectories that must be created by the workflow platform in the designated output directory prior to executing the command line tool.</p>
 <h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
@@ -2821,7 +2833,7 @@ If the same File or Directory appears more than once in the
 <code>InitialWorkDirRequirement</code> listing, the implementation must choose
 exactly one value for <code>path</code>; how this value is chosen is undefined.</p>
 </div>
-</div></div><h3 id="Dirent">5.9.1 Dirent</h3><p>Define a file or subdirectory that must be placed in the designated output
+</div></div><h3 id="Dirent" class="section">5.9.1 Dirent <a href="#Dirent">&sect;</a></h3><p>Define a file or subdirectory that must be placed in the designated output
 directory prior to executing the command line tool.  May be the result of
 executing an expression, such as building a configuration file from a
 template.</p>
@@ -2871,7 +2883,7 @@ read-only by default).</p>
 <p>A directory marked as <code>writable: true</code> implies that all files and
 subdirectories are recursively writable as well.</p>
 </div>
-</div></div><h2 id="EnvVarRequirement">5.10 EnvVarRequirement</h2><p>Define a list of environment variables which will be set in the
+</div></div><h2 id="EnvVarRequirement" class="section">5.10 EnvVarRequirement <a href="#EnvVarRequirement">&sect;</a></h2><p>Define a list of environment variables which will be set in the
 execution environment of the tool.  See <code>EnvironmentDef</code> for details.</p>
 <h3>Fields</h3>
 <div class="responsive-table">
@@ -2894,7 +2906,7 @@ execution environment of the tool.  See <code>EnvironmentDef</code> for details.
 <div class="col-xs-7 col-lg-3">array&lt;<a href="#EnvironmentDef">EnvironmentDef</a>&gt; | <br><a href='#map'>map</a>&lt;<code>envName</code>,&nbsp;<code>envValue</code> | <a href="#EnvironmentDef">EnvironmentDef</a>&gt</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The list of environment variables.</p>
 </div>
-</div></div><h2 id="EnvironmentDef">5.11 EnvironmentDef</h2><p>Define an environment variable that will be set in the runtime environment
+</div></div><h2 id="EnvironmentDef" class="section">5.11 EnvironmentDef <a href="#EnvironmentDef">&sect;</a></h2><p>Define an environment variable that will be set in the runtime environment
 by the workflow platform when executing the command line tool.  May be the
 result of executing an expression, such as getting a parameter from input.</p>
 <h3>Fields</h3>
@@ -2918,7 +2930,7 @@ result of executing an expression, such as getting a parameter from input.</p>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The environment variable value</p>
 </div>
-</div></div><h2 id="ShellCommandRequirement">5.12 ShellCommandRequirement</h2><p>Modify the behavior of CommandLineTool to generate a single string
+</div></div><h2 id="ShellCommandRequirement" class="section">5.12 ShellCommandRequirement <a href="#ShellCommandRequirement">&sect;</a></h2><p>Modify the behavior of CommandLineTool to generate a single string
 containing a shell command line.  Each item in the argument list must be
 joined into a string separated by single spaces and quoted to prevent
 intepretation by the shell, unless <code>CommandLineBinding</code> for that argument
@@ -2939,7 +2951,7 @@ the use of shell metacharacters such as <code>|</code> for pipes.</p>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Always 'ShellCommandRequirement'</p>
 </div>
-</div></div><h2 id="ResourceRequirement">5.13 ResourceRequirement</h2><p>Specify basic hardware resource requirements.</p>
+</div></div><h2 id="ResourceRequirement" class="section">5.13 ResourceRequirement <a href="#ResourceRequirement">&sect;</a></h2><p>Specify basic hardware resource requirements.</p>
 <p>"min" is the minimum amount of a resource that must be reserved to schedule
 a job. If "min" cannot be satisfied, the job should not be run.</p>
 <p>"max" is the maximum amount of a resource that the job shall be permitted
@@ -3023,7 +3035,7 @@ If "max" is specified by "min" is not, then "min" == "max".</p>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Maximum reserved filesystem based storage for the designated output directory, in mebibytes (2**20)</p>
 </div>
-</div></div><h2 id="WorkReuse">5.14 WorkReuse</h2><p>For implementations that support reusing output from past work (on
+</div></div><h2 id="WorkReuse" class="section">5.14 WorkReuse <a href="#WorkReuse">&sect;</a></h2><p>For implementations that support reusing output from past work (on
 the assumption that same code and same input produce same
 results), control whether to enable or disable the reuse behavior
 for a particular tool or step (to accomodate situations where that
@@ -3051,7 +3063,7 @@ is enabled by default.</p>
 <div class="col-xs-2 col-lg-1">required</div>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">boolean</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"></div>
-</div></div><h2 id="NetworkAccess">5.15 NetworkAccess</h2><p>Indicate whether a process requires outgoing IPv4/IPv6 network
+</div></div><h2 id="NetworkAccess" class="section">5.15 NetworkAccess <a href="#NetworkAccess">&sect;</a></h2><p>Indicate whether a process requires outgoing IPv4/IPv6 network
 access.  Choice of IPv4 or IPv6 is implementation and site
 specific, correct tools must support both.</p>
 <p>If <code>networkAccess</code> is false or not specified, tools must not
@@ -3083,7 +3095,7 @@ address or the ability to accept inbound connections.</p>
 <div class="col-xs-2 col-lg-1">required</div>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">boolean</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"></div>
-</div></div><h2 id="InplaceUpdateRequirement">5.16 InplaceUpdateRequirement</h2><p>If <code>inplaceUpdate</code> is true, then an implementation supporting this
+</div></div><h2 id="InplaceUpdateRequirement" class="section">5.16 InplaceUpdateRequirement <a href="#InplaceUpdateRequirement">&sect;</a></h2><p>If <code>inplaceUpdate</code> is true, then an implementation supporting this
 feature may permit tools to directly update files with <code>writable:
 true</code> in InitialWorkDirRequirement.  That is, as an optimization,
 files may be destructively modified in place as opposed to copied
@@ -3128,7 +3140,7 @@ not be enabled.</p>
 <div class="col-xs-2 col-lg-1">required</div>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">boolean</a></div>
 <div class="col-xs-12 col-lg-6 description-col"></div>
-</div></div><h2 id="ToolTimeLimit">5.17 ToolTimeLimit</h2><p>Set an upper limit on the execution time of a CommandLineTool.
+</div></div><h2 id="ToolTimeLimit" class="section">5.17 ToolTimeLimit <a href="#ToolTimeLimit">&sect;</a></h2><p>Set an upper limit on the execution time of a CommandLineTool.
 A CommandLineTool whose execution duration exceeds the time
 limit may be preemptively terminated and considered failed.
 May also be used by batch systems to make scheduling decisions.
@@ -3157,7 +3169,7 @@ wall-time for the execution of the command line itself.</p>
 <div class="col-xs-12 col-lg-6 description-col"><p>The time limit, in seconds.  A time limit of zero means no
 time limit.  Negative time limits are an error.</p>
 </div>
-</div></div><h2 id="CWLVersion">5.18 CWLVersion</h2><p>Version symbols for published CWL document versions.</p>
+</div></div><h2 id="CWLVersion" class="section">5.18 CWLVersion <a href="#CWLVersion">&sect;</a></h2><p>Version symbols for published CWL document versions.</p>
 <h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>draft-2</code></td><td></td></tr><tr><td><code>draft-3.dev1</code></td><td></td></tr><tr><td><code>draft-3.dev2</code></td><td></td></tr><tr><td><code>draft-3.dev3</code></td><td></td></tr><tr><td><code>draft-3.dev4</code></td><td></td></tr><tr><td><code>draft-3.dev5</code></td><td></td></tr><tr><td><code>draft-3</code></td><td></td></tr><tr><td><code>draft-4.dev1</code></td><td></td></tr><tr><td><code>draft-4.dev2</code></td><td></td></tr><tr><td><code>draft-4.dev3</code></td><td></td></tr><tr><td><code>v1.0.dev4</code></td><td></td></tr><tr><td><code>v1.0</code></td><td></td></tr><tr><td><code>v1.1.0-dev1</code></td><td></td></tr></table></div>
     </div>
     </div>
