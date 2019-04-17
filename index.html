@@ -4,7 +4,12 @@
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" integrity="sha384-604wwakM23pEysLJAhja8Lm42IIwYrJ0dEAqzFsj9pJ/P5buiujjywArgPCi8eoz" crossorigin="anonymous">
+    <script>
+    // Picture element HTML5 shiv
+    document.createElement( "picture" );
+    </script>
+    <script src="https://cdn.rawgit.com/scottjehl/picturefill/3.0.2/dist/picturefill.min.js" integrity="sha384-ZJsVW8YHHxQHJ+SJDncpN90d0EfAhPP+yA94n+EhSRzhcxfo84yMnNk+v37RGlWR" crossorigin="anonymous" async></script>
     <title>Common Workflow Language</title>
     <style>
     :target {
@@ -20,6 +25,13 @@
     pre {
       margin-left: 2em;
       margin-right: 2em;
+    }
+    .section a {
+      visibility: hidden;
+    }
+    .section:hover a {
+      visibility: visible;
+      color: rgb(201, 201, 201);
     }
     .responsive-table-header {
       text-align: left;
@@ -77,7 +89,7 @@
     
     <div class="row">
     
-    <div class="col-md-12" role="main" id="main"><h1 id="Common_Workflow_Language">Common Workflow Language</h1><p><a href="#Support"><strong>Support</strong></a> <a href="https://gitter.im/common-workflow-language/common-workflow-language?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Gitter"></a>
+    <div class="col-md-12" role="main" id="main"><h1 id="Common_Workflow_Language" class="section">Common Workflow Language <a href="#Common_Workflow_Language">&sect;</a></h1><p><a href="#Support"><strong>Support</strong></a> <a href="https://gitter.im/common-workflow-language/common-workflow-language?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Gitter"></a>
 <a href="https://github.com/common-workflow-language/common-workflow-language/stargazers"><img src="https://img.shields.io/github/stars/common-workflow-language/common-workflow-language.svg" alt="GitHub stars"></a></p>
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 <input type="hidden" name="cmd" value="_s-xclick">
@@ -105,17 +117,17 @@ the elected <a href="#Leadership_Team">CWL leadership team</a>, however every-da
 <p>CWL builds on technologies such as <a href="https://json-ld.org">JSON-LD</a>
 for data modeling and <a href="https://www.docker.com/">Docker</a> for portable runtime
 environments.</p>
-<h2 id="User_Guide">User Guide</h2><p>The <a href="https://www.commonwl.org/user_guide/">CWL user guide</a> provides a
+<h2 id="User_Guide" class="section">User Guide <a href="#User_Guide">&sect;</a></h2><p>The <a href="https://www.commonwl.org/user_guide/">CWL user guide</a> provides a
 gentle introduction to learning how to write CWL command line tool and workflow
 descriptions.</p>
 <p><a href="http://www.commonwl.org/user_guide/rec-practices/"><strong>CWL Recommended Practices</strong></a></p>
 <p><a href="https://github.com/pitagora-galaxy/cwl/wiki/CWL-Start-Guide-JP">CWLの日本語での解説ドキュメント</a> is a 15 minute introduction to the
 CWL project in Japanese.</p>
 <p>A series of <a href="https://stepik.org/lesson/35918/step/1?unit=15070">video lessons about CWL</a> is available in Russian as part of the <a href="https://stepik.org/course/1612/syllabus">Управление вычислениями</a>(Computation Management) free online course.</p>
-<h2 id="Specification">Specification</h2><p>For developers and advanced users, the current
+<h2 id="Specification" class="section">Specification <a href="#Specification">&sect;</a></h2><p>For developers and advanced users, the current
 <a href="https://www.commonwl.org/v1.0/">CWL specification (v1.0.2)</a> provides
 authoritative documentation of the execution of CWL documents.</p>
-<h3 id="Citation">Citation</h3><p>To reference the CWL standards in a scholary work, please use the following citation inclusive of the DOI:</p>
+<h3 id="Citation" class="section">Citation <a href="#Citation">&sect;</a></h3><p>To reference the CWL standards in a scholary work, please use the following citation inclusive of the DOI:</p>
 <p>Peter Amstutz, Michael R. Crusoe, Nebojša Tijanić (editors), Brad Chapman, John Chilton, Michael Heuer, Andrey Kartashov,
 Dan Leehr, Hervé Ménager, Maya Nedeljkovich, Matt Scales, Stian Soiland-Reyes, Luka Stojanovic (2016):
 <strong>Common Workflow Language, v1.0</strong>.
@@ -123,7 +135,7 @@ Specification, <em>Common Workflow Language working group</em>.
 <a href="https://w3id.org/cwl/v1.0/">https://w3id.org/cwl/v1.0/</a>
 doi:<a href="https://doi.org/10.6084/m9.figshare.3115156.v2">10.6084/m9.figshare.3115156.v2</a></p>
 <p>A collection of existing references to CWL can be found at <a href="https://www.zotero.org/groups/2294829/cwl/items">https://zotero.org/groups/cwl</a></p>
-<h2 id="Implementations">Implementations</h2><p>In Production:</p>
+<h2 id="Implementations" class="section">Implementations <a href="#Implementations">&sect;</a></h2><p>In Production:</p>
 <table class="table table-striped">
 <thead><tr>
 <th>Software</th>
@@ -215,7 +227,7 @@ doi:<a href="https://doi.org/10.6084/m9.figshare.3115156.v2">10.6084/m9.figshare
 </tr>
 </tbody>
 </table>
-<h2 id="Repositories_of_CWL_Tools_and_Workflows">Repositories of CWL Tools and Workflows</h2><table class="table table-striped">
+<h2 id="Repositories_of_CWL_Tools_and_Workflows" class="section">Repositories of CWL Tools and Workflows <a href="#Repositories_of_CWL_Tools_and_Workflows">&sect;</a></h2><table class="table table-striped">
 <thead><tr>
 <th>Repository</th>
 <th>Description</th>
@@ -244,7 +256,7 @@ doi:<a href="https://doi.org/10.6084/m9.figshare.3115156.v2">10.6084/m9.figshare
 </tr>
 </tbody>
 </table>
-<h2 id="Software_for_working_with_CWL">Software for working with CWL</h2><h3 id="Editors_and_viewers">Editors and viewers</h3><table class="table table-striped">
+<h2 id="Software_for_working_with_CWL" class="section">Software for working with CWL <a href="#Software_for_working_with_CWL">&sect;</a></h2><h3 id="Editors_and_viewers" class="section">Editors and viewers <a href="#Editors_and_viewers">&sect;</a></h3><table class="table table-striped">
 <thead><tr>
 <th>Software</th>
 <th>Description</th>
@@ -289,7 +301,7 @@ doi:<a href="https://doi.org/10.6084/m9.figshare.3115156.v2">10.6084/m9.figshare
 </tr>
 </tbody>
 </table>
-<h3 id="Utilities">Utilities</h3><table class="table table-striped">
+<h3 id="Utilities" class="section">Utilities <a href="#Utilities">&sect;</a></h3><table class="table table-striped">
 <thead><tr>
 <th>Software</th>
 <th>Description</th>
@@ -322,7 +334,7 @@ doi:<a href="https://doi.org/10.6084/m9.figshare.3115156.v2">10.6084/m9.figshare
 </tr>
 </tbody>
 </table>
-<h3 id="Converters_and_code_generators">Converters and code generators</h3><table class="table table-striped">
+<h3 id="Converters_and_code_generators" class="section">Converters and code generators <a href="#Converters_and_code_generators">&sect;</a></h3><table class="table table-striped">
 <thead><tr>
 <th>Software</th>
 <th>Description</th>
@@ -375,7 +387,7 @@ doi:<a href="https://doi.org/10.6084/m9.figshare.3115156.v2">10.6084/m9.figshare
 </tr>
 </tbody>
 </table>
-<h3 id="Code_libraries">Code libraries</h3><table class="table table-striped">
+<h3 id="Code_libraries" class="section">Code libraries <a href="#Code_libraries">&sect;</a></h3><table class="table table-striped">
 <thead><tr>
 <th>Software</th>
 <th>Description</th>
@@ -424,7 +436,7 @@ doi:<a href="https://doi.org/10.6084/m9.figshare.3115156.v2">10.6084/m9.figshare
 </tr>
 </tbody>
 </table>
-<h2 id="Projects_the_CWL_community_is_participating_in">Projects the CWL community is participating in</h2><table class="table table-striped">
+<h2 id="Projects_the_CWL_community_is_participating_in" class="section">Projects the CWL community is participating in <a href="#Projects_the_CWL_community_is_participating_in">&sect;</a></h2><table class="table table-striped">
 <thead><tr>
 <th>Name</th>
 <th>Details</th>
@@ -454,7 +466,7 @@ doi:<a href="https://doi.org/10.6084/m9.figshare.3115156.v2">10.6084/m9.figshare
 </tbody>
 </table>
 <p><a name="Support"></a></p>
-<h2 id="Support,_Community_and_Contributing">Support, Community and Contributing</h2><p>The recommended place to ask a question about all things CWL is on Biostars. After you have <a href="https://www.biostars.org/t/cwl/">read previous questions and answers</a> you can <a href="https://www.biostars.org/p/new/post/?tag_val=cwl">post your question using the 'cwl' tag</a></p>
+<h2 id="Support,_Community_and_Contributing" class="section">Support, Community and Contributing <a href="#Support,_Community_and_Contributing">&sect;</a></h2><p>The recommended place to ask a question about all things CWL is on Biostars. After you have <a href="https://www.biostars.org/t/cwl/">read previous questions and answers</a> you can <a href="https://www.biostars.org/p/new/post/?tag_val=cwl">post your question using the 'cwl' tag</a></p>
 <p><a href="https://www.biostars.org/t/cwl/"><img src="https://www.biostars.org/static/biostar2.logo.png" alt="Biostars CWL"></a></p>
 <p>If you are interested in learning more or contributing ideas or code,
 <a href="https://gitter.im/common-workflow-language/common-workflow-language">come chat with us on Gitter</a>,
@@ -464,7 +476,7 @@ join the <a href="https://groups.google.com/forum/#!forum/common-workflow-langua
 and send a pull request!</p>
 <p>Besides the web interface for the mailing list, one can also join by sending a blank email to
 common-workflow-language+subscribe@googlegroups.com and replying to the automated message.</p>
-<h3 id="Code_of_Conduct">Code of Conduct</h3><p>The CWL Project is dedicated to providing a harassment-free experience for
+<h3 id="Code_of_Conduct" class="section">Code of Conduct <a href="#Code_of_Conduct">&sect;</a></h3><p>The CWL Project is dedicated to providing a harassment-free experience for
 everyone, regardless of gender, gender identity and expression, sexual
 orientation, disability, physical appearance, body size, age, race, or
 religion. We do not tolerate harassment of participants in any form.
@@ -474,7 +486,7 @@ Anyone who violates this code of conduct may be sanctioned or expelled from
 these spaces at the discretion of the leadership team.</p>
 <p>For more details, see our <a href="https://github.com/common-workflow-language/common-workflow-language/blob/master/CODE_OF_CONDUCT.md">Code of
 Conduct</a>.</p>
-<h2 id="Participating_Organizations">Participating Organizations</h2><ul>
+<h2 id="Participating_Organizations" class="section">Participating Organizations <a href="#Participating_Organizations">&sect;</a></h2><ul>
 <li><a href="https://curoverse.com">Curoverse</a></li>
 <li><a href="https://www.sevenbridges.com/">Seven Bridges Genomics</a></li>
 <li><a href="https://galaxyproject.org/">Galaxy Project</a></li>
@@ -498,7 +510,7 @@ Conduct</a>.</p>
 <li><a href="https://www.dnanexus.com/">DNAnexus</a></li>
 <li><a href="https://home.cern/">CERN</a></li>
 </ul>
-<h2 id="Individual_Contributors">Individual Contributors</h2><p>(Alphabetical)</p>
+<h2 id="Individual_Contributors" class="section">Individual Contributors <a href="#Individual_Contributors">&sect;</a></h2><p>(Alphabetical)</p>
 <ul>
 <li>Peter Amstutz, Curoverse Inc. / Arvados; <a href="https://orcid.org/0000-0003-3566-7705">https://orcid.org/0000-0003-3566-7705</a></li>
 <li>Robin Andeer; <a href="https://orcid.org/0000-0003-1132-5305">https://orcid.org/0000-0003-1132-5305</a></li>
@@ -529,7 +541,7 @@ Conduct</a>.</p>
 <li>Nebojša Tijanić <a href="mailto:nebojsa.tijanic@sbgenomics.com">nebojsa.tijanic@sbgenomics.com</a></li>
 <li>Hiromu Ochiai; <a href="https://github.com/otiai10">@otiai10</a> <a href="https://orcid.org/0000-0001-6636-856X">https://orcid.org/0000-0001-6636-856X</a></li>
 </ul>
-<h2 id="CWL_Advisors">CWL Advisors</h2><p>(Alphabetical)</p>
+<h2 id="CWL_Advisors" class="section">CWL Advisors <a href="#CWL_Advisors">&sect;</a></h2><p>(Alphabetical)</p>
 <ul>
 <li>Peter Amstutz, Curoverse Inc. / Arvados; <a href="https://orcid.org/0000-0003-3566-7705">https://orcid.org/0000-0003-3566-7705</a></li>
 <li>Artem Barski, Cincinnati Children's Hospital Medical Center / University of Cincinnati College of Medicine; <a href="https://orcid.org/0000-0002-1861-5316">https://orcid.org/0000-0002-1861-5316</a></li>
@@ -560,7 +572,7 @@ Conduct</a>.</p>
 <li>Alexander Wait Zaranek, Curoverse Inc. / Arvados; <a href="https://orcid.org/0000-0002-0415-9655">https://orcid.org/0000-0002-0415-9655</a></li>
 </ul>
 <p><a name="Leadership_Team"></a></p>
-<h2 id="CWL_Leadership_Team">CWL Leadership Team</h2><p>(Alphabetical)</p>
+<h2 id="CWL_Leadership_Team" class="section">CWL Leadership Team <a href="#CWL_Leadership_Team">&sect;</a></h2><p>(Alphabetical)</p>
 <ul>
 <li>Peter Amstutz, Curoverse Inc. / Arvados; <a href="https://orcid.org/0000-0003-3566-7705">https://orcid.org/0000-0003-3566-7705</a></li>
 <li>John Chilton, Pennsylvania State University / Galaxy Project; <a href="https://orcid.org/0000-0002-6794-0756">https://orcid.org/0000-0002-6794-0756</a></li>
