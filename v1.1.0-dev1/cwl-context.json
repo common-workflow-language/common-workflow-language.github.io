@@ -317,6 +317,7 @@
         "types": "https://w3id.org/cwl/cwl#SchemaDefRequirement/types",
         "v1.0": "https://w3id.org/cwl/cwl#v1.0",
         "v1.0.dev4": "https://w3id.org/cwl/cwl#v1.0.dev4",
+        "v1.1": "https://w3id.org/cwl/cwl#v1.1",
         "v1.1.0-dev1": "https://w3id.org/cwl/cwl#v1.1.0-dev1",
         "valueFrom": "cwl:valueFrom",
         "version": "https://w3id.org/cwl/cwl#SoftwarePackage/version",

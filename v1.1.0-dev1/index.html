@@ -10,7 +10,7 @@
     document.createElement( "picture" );
     </script>
     <script src="https://cdn.rawgit.com/scottjehl/picturefill/3.0.2/dist/picturefill.min.js" integrity="sha384-ZJsVW8YHHxQHJ+SJDncpN90d0EfAhPP+yA94n+EhSRzhcxfo84yMnNk+v37RGlWR" crossorigin="anonymous" async></script>
-    <title>Common Workflow Language Specifications, v1.1.0-dev1</title>
+    <title>Common Workflow Language Specifications, v1.1 "release candidate 1"</title>
     <style>
     :target {
       padding-top: 61px;
@@ -89,11 +89,9 @@
     
     <div class="row">
     
-    <div class="col-md-12" role="main" id="main"><h1 id="Common_Workflow_Language_Specifications,_v1.1.0-dev1" class="section">Common Workflow Language Specifications, v1.1.0-dev1 <a href="#Common_Workflow_Language_Specifications,_v1.1.0-dev1">&sect;</a></h1><p><!-- remove this before v1.1 is final! -->
-WARNING, this is a draft and in progress! Development of CWL v1.1 is coordinated at <a href="https://github.com/common-workflow-language/common-workflow-language/milestone/6">https://github.com/common-workflow-language/common-workflow-language/milestone/6</a></p>
-<p>The CWL specifications are divided up into several documents.</p>
+    <div class="col-md-12" role="main" id="main"><h1 id="Common_Workflow_Language_Specifications,_v1.1_"release_candidate_1"" class="section">Common Workflow Language Specifications, v1.1 "release candidate 1" <a href="#Common_Workflow_Language_Specifications,_v1.1_"release_candidate_1"">&sect;</a></h1><p>The CWL specifications are divided up into several documents.</p>
 <p>The <a href="http://www.commonwl.org/user_guide/">User Guide</a> provides a gentle
-introduction to writing CWL command line tools and workflows.</p>
+introduction to writing CWL command line tools and workflows. Currently it is for CWL v1.0 only.</p>
 <p>The <a href="CommandLineTool.html">Command Line Tool Description Specification</a>
 specifies the document schema and execution semantics for wrapping and
 executing command line tools.</p>
@@ -132,13 +130,12 @@ For example, with CWL reference runner you can turn on parallel execution mode:<
 <p>You can run a particular test</p>
 <pre><code>./run_test.sh -n23
 </code></pre>
-<p>If you are running tests for an unreleased CWL version use the <code>--enable-dev</code> flag:</p>
-<pre><code>./run_test.sh EXTRA=--enable-dev
+<p>If you are running tests using the CWL reference runner "cwltool" for an unreleased version of the CWL standards use the <code>--enable-dev</code> flag:</p>
+<pre><code>./run_test.sh RUNNER=cwltool EXTRA=--enable-dev
 </code></pre>
 <p>For details of options you can pass to the test script, do:</p>
 <pre><code>./run_test.sh --help
 </code></pre>
-<p>The full test suite takes about 10 minutes to run</p>
 </div>
     </div>
     </div>
