@@ -74,6 +74,9 @@ rdfs:comment a rdf:Property ;
 <https://w3id.org/cwl/salad#JsonldPredicate/refScope> a rdf:Property ;
     rdfs:domain @base:JsonldPredicate .
 
+<https://w3id.org/cwl/salad#JsonldPredicate/secondaryFilesDSL> a rdf:Property ;
+    rdfs:domain @base:JsonldPredicate .
+
 <https://w3id.org/cwl/salad#JsonldPredicate/subscope> a rdf:Property ;
     rdfs:domain @base:JsonldPredicate .
 

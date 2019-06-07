@@ -78,6 +78,7 @@
         "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
         "record": "https://w3id.org/cwl/salad#record",
         "refScope": "https://w3id.org/cwl/salad#JsonldPredicate/refScope",
+        "secondaryFilesDSL": "https://w3id.org/cwl/salad#JsonldPredicate/secondaryFilesDSL",
         "sld": "https://w3id.org/cwl/salad#",
         "specialize": {
             "@id": "https://w3id.org/cwl/salad#specialize",
