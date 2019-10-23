@@ -4,12 +4,17 @@
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" integrity="sha384-604wwakM23pEysLJAhja8Lm42IIwYrJ0dEAqzFsj9pJ/P5buiujjywArgPCi8eoz" crossorigin="anonymous">
+    <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"
+        integrity="sha384-604wwakM23pEysLJAhja8Lm42IIwYrJ0dEAqzFsj9pJ/P5buiujjywArgPCi8eoz"
+        crossorigin="anonymous">
     <script>
     // Picture element HTML5 shiv
     document.createElement( "picture" );
     </script>
-    <script src="https://cdn.rawgit.com/scottjehl/picturefill/3.0.2/dist/picturefill.min.js" integrity="sha384-ZJsVW8YHHxQHJ+SJDncpN90d0EfAhPP+yA94n+EhSRzhcxfo84yMnNk+v37RGlWR" crossorigin="anonymous" async></script>
+    <script src="https://cdn.rawgit.com/scottjehl/picturefill/3.0.2/dist/picturefill.min.js"
+        integrity="sha384-ZJsVW8YHHxQHJ+SJDncpN90d0EfAhPP+yA94n+EhSRzhcxfo84yMnNk+v37RGlWR"
+        crossorigin="anonymous" async></script>
     <title>Common Workflow Language (CWL) Workflow Description, draft 3</title>
     <style>
     :target {
@@ -547,7 +552,7 @@ available as standard extensions to core workflow semantics.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>inputs</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">array&lt;<a href="#InputParameter">InputParameter</a>&gt;</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="InputParameter">InputParameter</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Defines the input parameters of the process.  The process is ready to
 run when all required input parameters are associated with concrete
 values.  Input parameters include a schema for each parameter which is
@@ -558,7 +563,7 @@ interface for constructing the input object.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>outputs</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">array&lt;<a href="#WorkflowOutputParameter">WorkflowOutputParameter</a>&gt;</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="WorkflowOutputParameter">WorkflowOutputParameter</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Defines the parameters representing the output of the process.  May be
 used to generate and/or validate the output object.</p>
 </div>
@@ -572,7 +577,7 @@ used to generate and/or validate the output object.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>steps</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">array&lt;<a href="#WorkflowStep">WorkflowStep</a>&gt;</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="WorkflowStep">WorkflowStep</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The individual steps that make up the workflow.  Each step is executed when all of its
 input data links are fufilled.  An implementation may choose to execute
 the steps in a different order than listed and/or execute steps
@@ -601,7 +606,7 @@ unless overridden at user option.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>hints</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3">array&lt;<a href="#Any">Any</a>&gt;</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="Any">Any</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Declares hints applying to either the runtime environment or the
 workflow engine that may be helpful in executing this process.  It is
 not an error if an implementation cannot satisfy all hints, however
@@ -625,7 +630,7 @@ the implementation may report a warning.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>cwlVersion</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLVersions">CWLVersions</a></div>
+<div class="col-xs-7 col-lg-3"><a href="CWLVersions">CWLVersions</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>CWL document version</p>
 </div>
 </div></div><h2 id="WorkflowOutputParameter" class="section">4.1 WorkflowOutputParameter <a href="#WorkflowOutputParameter">&sect;</a></h2><p>Describe an output parameter of a workflow.  The parameter must be
@@ -649,7 +654,7 @@ provide the value of the output parameter.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>secondaryFiles</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="Expression">Expression</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Describes files that must be included alongside the primary file(s).</p>
 <p>If the value is an expression, the value of <code>self</code> in the expression
@@ -668,7 +673,7 @@ extensions, the path is unchanged.</li>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>format</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>For input parameters, this must be one or more URIs of a concept nodes
 that represents file formats which are allowed as input to this
@@ -692,7 +697,7 @@ pipe.  Default: <code>false</code>.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>type</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">CWLType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
+<div class="col-xs-7 col-lg-3"><a href="CWLType">CWLType</a> | <a href="OutputRecordSchema">OutputRecordSchema</a> | <a href="OutputEnumSchema">OutputEnumSchema</a> | <a href="OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="CWLType">CWLType</a> | <a href="OutputRecordSchema">OutputRecordSchema</a> | <a href="OutputEnumSchema">OutputEnumSchema</a> | <a href="OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Specify valid types of data that may be assigned to this parameter.</p>
 </div>
 </div>
@@ -728,7 +733,7 @@ the underlying process parameter.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>linkMerge</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#LinkMergeMethod">LinkMergeMethod</a></div>
+<div class="col-xs-7 col-lg-3"><a href="LinkMergeMethod">LinkMergeMethod</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The method to use to merge multiple inbound links into a single array.
 If not specified, the default method is "merge_nested".</p>
 </div>
@@ -780,7 +785,7 @@ open(2) and read(2).</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>secondaryFiles</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3">array&lt;<a href="#File">File</a>&gt;</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="File">File</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>A list of additional files that are associated with the primary file
 and must be transferred alongside the primary file.  Examples include
 indexes of the primary file, or external references which must be
@@ -824,14 +829,14 @@ runtime may perform exact file format matches.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>fields</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3">array&lt;<a href="#OutputRecordField">OutputRecordField</a>&gt;</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="OutputRecordField">OutputRecordField</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Defines the fields of the record.</p>
 </div>
 </div>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>secondaryFiles</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="Expression">Expression</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Describes files that must be included alongside the primary file(s).</p>
 <p>If the value is an expression, the value of <code>self</code> in the expression
@@ -850,7 +855,7 @@ extensions, the path is unchanged.</li>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>format</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>For input parameters, this must be one or more URIs of a concept nodes
 that represents file formats which are allowed as input to this
@@ -888,7 +893,7 @@ pipe.  Default: <code>false</code>.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>type</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">PrimitiveType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
+<div class="col-xs-7 col-lg-3"><a href="PrimitiveType">PrimitiveType</a> | <a href="OutputRecordSchema">OutputRecordSchema</a> | <a href="OutputEnumSchema">OutputEnumSchema</a> | <a href="OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="PrimitiveType">PrimitiveType</a> | <a href="OutputRecordSchema">OutputRecordSchema</a> | <a href="OutputEnumSchema">OutputEnumSchema</a> | <a href="OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The field type</p>
 </div>
 </div>
@@ -932,7 +937,7 @@ detailed information.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>secondaryFiles</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="Expression">Expression</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Describes files that must be included alongside the primary file(s).</p>
 <p>If the value is an expression, the value of <code>self</code> in the expression
@@ -951,7 +956,7 @@ extensions, the path is unchanged.</li>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>format</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>For input parameters, this must be one or more URIs of a concept nodes
 that represents file formats which are allowed as input to this
@@ -997,7 +1002,7 @@ the following order:</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>glob</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&gt;</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Find files relative to the output directory, using POSIX glob(3)
 pathname matching.  If provided an array, find files that match any
 pattern in the array.  If provided an expression, the expression must
@@ -1018,7 +1023,7 @@ field of the file object for manipulation by <code>outputEval</code>.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>outputEval</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Evaluate an expression to generate the output value.  If <code>glob</code> was
 specified, the value of <code>self</code> must be an array containing file objects
 that were matched.  If no files were matched, <code>self' must be a zero
@@ -1045,14 +1050,14 @@ in the</code>contents` field.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>items</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">PrimitiveType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
+<div class="col-xs-7 col-lg-3"><a href="PrimitiveType">PrimitiveType</a> | <a href="OutputRecordSchema">OutputRecordSchema</a> | <a href="OutputEnumSchema">OutputEnumSchema</a> | <a href="OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="PrimitiveType">PrimitiveType</a> | <a href="OutputRecordSchema">OutputRecordSchema</a> | <a href="OutputEnumSchema">OutputEnumSchema</a> | <a href="OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Defines the type of the array elements.</p>
 </div>
 </div>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>secondaryFiles</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="Expression">Expression</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Describes files that must be included alongside the primary file(s).</p>
 <p>If the value is an expression, the value of <code>self</code> in the expression
@@ -1071,7 +1076,7 @@ extensions, the path is unchanged.</li>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>format</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>For input parameters, this must be one or more URIs of a concept nodes
 that represents file formats which are allowed as input to this
@@ -1155,7 +1160,7 @@ specified in the workflow or workflow step requirements.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>inputs</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">array&lt;<a href="#WorkflowStepInput">WorkflowStepInput</a>&gt;</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="WorkflowStepInput">WorkflowStepInput</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Defines the input parameters of the workflow step.  The process is ready to
 run when all required input parameters are associated with concrete
 values.  Input parameters include a schema for each parameter which is
@@ -1166,7 +1171,7 @@ interface for constructing the input object.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>outputs</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">array&lt;<a href="#WorkflowStepOutput">WorkflowStepOutput</a>&gt;</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="WorkflowStepOutput">WorkflowStepOutput</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Defines the parameters representing the output of the process.  May be
 used to generate and/or validate the output object.</p>
 </div>
@@ -1193,7 +1198,7 @@ unless overridden at user option.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>hints</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3">array&lt;<a href="#Any">Any</a>&gt;</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="Any">Any</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Declares hints applying to either the runtime environment or the
 workflow engine that may be helpful in executing this workflow step.  It is
 not an error if an implementation cannot satisfy all hints, however
@@ -1223,7 +1228,7 @@ the implementation may report a warning.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>scatterMethod</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#ScatterMethod">ScatterMethod</a></div>
+<div class="col-xs-7 col-lg-3"><a href="ScatterMethod">ScatterMethod</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Required if <code>scatter</code> is an array of more than one element.</p>
 </div>
 </div></div><h3 id="WorkflowStepInput" class="section">4.2.1 WorkflowStepInput <a href="#WorkflowStepInput">&sect;</a></h3><p>The input of a workflow step connects an upstream parameter (from the
@@ -1285,7 +1290,7 @@ the underlying process parameter.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>linkMerge</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#LinkMergeMethod">LinkMergeMethod</a></div>
+<div class="col-xs-7 col-lg-3"><a href="LinkMergeMethod">LinkMergeMethod</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The method to use to merge multiple inbound links into a single array.
 If not specified, the default method is "merge_nested".</p>
 </div>
@@ -1293,7 +1298,7 @@ If not specified, the default method is "merge_nested".</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>default</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#Any">Any</a></div>
+<div class="col-xs-7 col-lg-3"><a href="Any">Any</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The default value for this parameter if there is no <code>source</code>
 field.</p>
 </div>
@@ -1301,7 +1306,7 @@ field.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>valueFrom</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>To use valueFrom, <a href="#StepInputExpressionRequirement">StepInputExpressionRequirement</a> must
 be specified in the workflow or workflow step requirements.</p>
 <p>If <code>valueFrom</code> is a constant string value, use this as the value for
@@ -1410,14 +1415,14 @@ to earlier schema definitions.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>fields</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3">array&lt;<a href="#InputRecordField">InputRecordField</a>&gt;</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="InputRecordField">InputRecordField</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Defines the fields of the record.</p>
 </div>
 </div>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>secondaryFiles</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="Expression">Expression</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Describes files that must be included alongside the primary file(s).</p>
 <p>If the value is an expression, the value of <code>self</code> in the expression
@@ -1436,7 +1441,7 @@ extensions, the path is unchanged.</li>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>format</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>For input parameters, this must be one or more URIs of a concept nodes
 that represents file formats which are allowed as input to this
@@ -1474,7 +1479,7 @@ pipe.  Default: <code>false</code>.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>type</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">PrimitiveType</a> | <a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
+<div class="col-xs-7 col-lg-3"><a href="PrimitiveType">PrimitiveType</a> | <a href="InputRecordSchema">InputRecordSchema</a> | <a href="InputEnumSchema">InputEnumSchema</a> | <a href="InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="PrimitiveType">PrimitiveType</a> | <a href="InputRecordSchema">InputRecordSchema</a> | <a href="InputEnumSchema">InputEnumSchema</a> | <a href="InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The field type</p>
 </div>
 </div>
@@ -1515,7 +1520,7 @@ pipe.  Default: <code>false</code>.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>secondaryFiles</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="Expression">Expression</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Describes files that must be included alongside the primary file(s).</p>
 <p>If the value is an expression, the value of <code>self</code> in the expression
@@ -1534,7 +1539,7 @@ extensions, the path is unchanged.</li>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>format</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>For input parameters, this must be one or more URIs of a concept nodes
 that represents file formats which are allowed as input to this
@@ -1642,7 +1647,7 @@ separated by by <code>itemSeparator</code>.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>valueFrom</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>If <code>valueFrom</code> is a constant string value, use this as the value and
 apply the binding rules above.</p>
 <p>If <code>valueFrom</code> is an expression, evaluate the expression to yield the
@@ -1680,14 +1685,14 @@ Use <code>shellQuote: false</code> to inject metacharacters for operations such 
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>items</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">PrimitiveType</a> | <a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
+<div class="col-xs-7 col-lg-3"><a href="PrimitiveType">PrimitiveType</a> | <a href="InputRecordSchema">InputRecordSchema</a> | <a href="InputEnumSchema">InputEnumSchema</a> | <a href="InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="PrimitiveType">PrimitiveType</a> | <a href="InputRecordSchema">InputRecordSchema</a> | <a href="InputEnumSchema">InputEnumSchema</a> | <a href="InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Defines the type of the array elements.</p>
 </div>
 </div>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>secondaryFiles</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="Expression">Expression</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Describes files that must be included alongside the primary file(s).</p>
 <p>If the value is an expression, the value of <code>self</code> in the expression
@@ -1706,7 +1711,7 @@ extensions, the path is unchanged.</li>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>format</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>For input parameters, this must be one or more URIs of a concept nodes
 that represents file formats which are allowed as input to this
@@ -1808,7 +1813,7 @@ of <a href="#WorkflowStepInput">WorkflowStepInput</a>.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>inputs</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">array&lt;<a href="#InputParameter">InputParameter</a>&gt;</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="InputParameter">InputParameter</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Defines the input parameters of the process.  The process is ready to
 run when all required input parameters are associated with concrete
 values.  Input parameters include a schema for each parameter which is
@@ -1819,7 +1824,7 @@ interface for constructing the input object.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>outputs</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">array&lt;<a href="#OutputParameter">OutputParameter</a>&gt;</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="OutputParameter">OutputParameter</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Defines the parameters representing the output of the process.  May be
 used to generate and/or validate the output object.</p>
 </div>
@@ -1833,7 +1838,7 @@ used to generate and/or validate the output object.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>expression</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The expression to execute.  The expression must return a JSON object which
 matches the output parameters of the ExpressionTool.</p>
 </div>
@@ -1860,7 +1865,7 @@ unless overridden at user option.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>hints</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3">array&lt;<a href="#Any">Any</a>&gt;</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="Any">Any</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Declares hints applying to either the runtime environment or the
 workflow engine that may be helpful in executing this process.  It is
 not an error if an implementation cannot satisfy all hints, however
@@ -1884,7 +1889,7 @@ the implementation may report a warning.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>cwlVersion</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLVersions">CWLVersions</a></div>
+<div class="col-xs-7 col-lg-3"><a href="CWLVersions">CWLVersions</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>CWL document version</p>
 </div>
 </div></div><h4 id="InputParameter" class="section">4.2.10.1 InputParameter <a href="#InputParameter">&sect;</a></h4><h3>Fields</h3>
@@ -1905,7 +1910,7 @@ the implementation may report a warning.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>secondaryFiles</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="Expression">Expression</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Describes files that must be included alongside the primary file(s).</p>
 <p>If the value is an expression, the value of <code>self</code> in the expression
@@ -1924,7 +1929,7 @@ extensions, the path is unchanged.</li>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>format</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>For input parameters, this must be one or more URIs of a concept nodes
 that represents file formats which are allowed as input to this
@@ -1948,7 +1953,7 @@ pipe.  Default: <code>false</code>.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>type</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">CWLType</a> | <a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
+<div class="col-xs-7 col-lg-3"><a href="CWLType">CWLType</a> | <a href="InputRecordSchema">InputRecordSchema</a> | <a href="InputEnumSchema">InputEnumSchema</a> | <a href="InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="CWLType">CWLType</a> | <a href="InputRecordSchema">InputRecordSchema</a> | <a href="InputEnumSchema">InputEnumSchema</a> | <a href="InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Specify valid types of data that may be assigned to this parameter.</p>
 </div>
 </div>
@@ -1977,7 +1982,7 @@ into a concrete form for execution, such as command line parameters.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>default</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#Any">Any</a></div>
+<div class="col-xs-7 col-lg-3"><a href="Any">Any</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The default value for this parameter if not provided in the input
 object.</p>
 </div>
@@ -1999,7 +2004,7 @@ object.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>secondaryFiles</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="Expression">Expression</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Describes files that must be included alongside the primary file(s).</p>
 <p>If the value is an expression, the value of <code>self</code> in the expression
@@ -2018,7 +2023,7 @@ extensions, the path is unchanged.</li>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>format</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>For input parameters, this must be one or more URIs of a concept nodes
 that represents file formats which are allowed as input to this
@@ -2042,7 +2047,7 @@ pipe.  Default: <code>false</code>.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>type</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">CWLType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
+<div class="col-xs-7 col-lg-3"><a href="CWLType">CWLType</a> | <a href="OutputRecordSchema">OutputRecordSchema</a> | <a href="OutputEnumSchema">OutputEnumSchema</a> | <a href="OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="CWLType">CWLType</a> | <a href="OutputRecordSchema">OutputRecordSchema</a> | <a href="OutputEnumSchema">OutputEnumSchema</a> | <a href="OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Specify valid types of data that may be assigned to this parameter.</p>
 </div>
 </div>

@@ -4,12 +4,17 @@
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" integrity="sha384-604wwakM23pEysLJAhja8Lm42IIwYrJ0dEAqzFsj9pJ/P5buiujjywArgPCi8eoz" crossorigin="anonymous">
+    <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"
+        integrity="sha384-604wwakM23pEysLJAhja8Lm42IIwYrJ0dEAqzFsj9pJ/P5buiujjywArgPCi8eoz"
+        crossorigin="anonymous">
     <script>
     // Picture element HTML5 shiv
     document.createElement( "picture" );
     </script>
-    <script src="https://cdn.rawgit.com/scottjehl/picturefill/3.0.2/dist/picturefill.min.js" integrity="sha384-ZJsVW8YHHxQHJ+SJDncpN90d0EfAhPP+yA94n+EhSRzhcxfo84yMnNk+v37RGlWR" crossorigin="anonymous" async></script>
+    <script src="https://cdn.rawgit.com/scottjehl/picturefill/3.0.2/dist/picturefill.min.js"
+        integrity="sha384-ZJsVW8YHHxQHJ+SJDncpN90d0EfAhPP+yA94n+EhSRzhcxfo84yMnNk+v37RGlWR"
+        crossorigin="anonymous" async></script>
     <title>Semantic Annotations for Linked Avro Data (SALAD)</title>
     <style>
     :target {
@@ -923,7 +928,7 @@ the short name in the vocabulary.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>fields</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3">array&lt;<a href="#SaladRecordField">SaladRecordField</a>&gt; | <br><a href='#map'>map</a>&lt;<code>name</code>,&nbsp;<code>type</code> | <a href="#SaladRecordField">SaladRecordField</a>&gt</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="SaladRecordField">SaladRecordField</a>&gt; | <br><a href='#map'>map</a>&lt;<code>name</code>,&nbsp;<code>type</code> | <a href="SaladRecordField">SaladRecordField</a>&gt</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Defines the fields of the record.</p>
 </div>
 </div>
@@ -962,7 +967,7 @@ level.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>jsonldPredicate</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a> | <a href="#JsonldPredicate">JsonldPredicate</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a> | <a href="JsonldPredicate">JsonldPredicate</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Annotate this type with linked data context.</p>
 </div>
 </div>
@@ -992,7 +997,7 @@ records, but is not valid on its own.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>specialize</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3">array&lt;<a href="#SpecializeDef">SpecializeDef</a>&gt; | <br><a href='#map'>map</a>&lt;<code>specializeFrom</code>,&nbsp;<code>specializeTo</code> | <a href="#SpecializeDef">SpecializeDef</a>&gt</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="SpecializeDef">SpecializeDef</a>&gt; | <br><a href='#map'>map</a>&lt;<code>specializeFrom</code>,&nbsp;<code>specializeTo</code> | <a href="SpecializeDef">SpecializeDef</a>&gt</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only applies if <code>extends</code> is declared.  Apply type specialization using the
 base record as a template.  For each field inherited from the base
 record, replace any instance of the type <code>specializeFrom</code> with
@@ -1017,7 +1022,7 @@ record, replace any instance of the type <code>specializeFrom</code> with
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>type</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a>&gt;</div>
+<div class="col-xs-7 col-lg-3"><a href="PrimitiveType">PrimitiveType</a> | <a href="RecordSchema">RecordSchema</a> | <a href="EnumSchema">EnumSchema</a> | <a href="ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a> | array&lt;<a href="PrimitiveType">PrimitiveType</a> | <a href="RecordSchema">RecordSchema</a> | <a href="EnumSchema">EnumSchema</a> | <a href="ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The field type</p>
 </div>
 </div>
@@ -1031,7 +1036,7 @@ record, replace any instance of the type <code>specializeFrom</code> with
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>jsonldPredicate</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a> | <a href="#JsonldPredicate">JsonldPredicate</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a> | <a href="JsonldPredicate">JsonldPredicate</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Annotate this type with linked data context.</p>
 </div>
 </div></div><h3 id="PrimitiveType" class="section">4.1.1 PrimitiveType <a href="#PrimitiveType">&sect;</a></h3><p>Salad data types are based on Avro schema declarations.  Refer to the
@@ -1056,7 +1061,7 @@ detailed information.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>fields</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3">array&lt;<a href="#RecordField">RecordField</a>&gt; | <br><a href='#map'>map</a>&lt;<code>name</code>,&nbsp;<code>type</code> | <a href="#RecordField">RecordField</a>&gt</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="RecordField">RecordField</a>&gt; | <br><a href='#map'>map</a>&lt;<code>name</code>,&nbsp;<code>type</code> | <a href="RecordField">RecordField</a>&gt</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Defines the fields of the record.</p>
 </div>
 </div></div><h3 id="RecordField" class="section">4.1.4 RecordField <a href="#RecordField">&sect;</a></h3><p>A field of a record.</p>
@@ -1078,7 +1083,7 @@ detailed information.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>type</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a>&gt;</div>
+<div class="col-xs-7 col-lg-3"><a href="PrimitiveType">PrimitiveType</a> | <a href="RecordSchema">RecordSchema</a> | <a href="EnumSchema">EnumSchema</a> | <a href="ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a> | array&lt;<a href="PrimitiveType">PrimitiveType</a> | <a href="RecordSchema">RecordSchema</a> | <a href="EnumSchema">EnumSchema</a> | <a href="ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The field type</p>
 </div>
 </div>
@@ -1121,7 +1126,7 @@ detailed information.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>items</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#RecordSchema">RecordSchema</a> | <a href="#EnumSchema">EnumSchema</a> | <a href="#ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a>&gt;</div>
+<div class="col-xs-7 col-lg-3"><a href="PrimitiveType">PrimitiveType</a> | <a href="RecordSchema">RecordSchema</a> | <a href="EnumSchema">EnumSchema</a> | <a href="ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a> | array&lt;<a href="PrimitiveType">PrimitiveType</a> | <a href="RecordSchema">RecordSchema</a> | <a href="EnumSchema">EnumSchema</a> | <a href="ArraySchema">ArraySchema</a> | <a href="#PrimitiveType">string</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Defines the type of the array elements.</p>
 </div>
 </div>
@@ -1318,7 +1323,7 @@ level.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>jsonldPredicate</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a> | <a href="#JsonldPredicate">JsonldPredicate</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a> | <a href="JsonldPredicate">JsonldPredicate</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Annotate this type with linked data context.</p>
 </div>
 </div>
