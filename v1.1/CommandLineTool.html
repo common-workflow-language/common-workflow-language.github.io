@@ -4,17 +4,12 @@
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"
-        integrity="sha384-604wwakM23pEysLJAhja8Lm42IIwYrJ0dEAqzFsj9pJ/P5buiujjywArgPCi8eoz"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" integrity="sha384-604wwakM23pEysLJAhja8Lm42IIwYrJ0dEAqzFsj9pJ/P5buiujjywArgPCi8eoz" crossorigin="anonymous">
     <script>
     // Picture element HTML5 shiv
     document.createElement( "picture" );
     </script>
-    <script src="https://cdn.rawgit.com/scottjehl/picturefill/3.0.2/dist/picturefill.min.js"
-        integrity="sha384-ZJsVW8YHHxQHJ+SJDncpN90d0EfAhPP+yA94n+EhSRzhcxfo84yMnNk+v37RGlWR"
-        crossorigin="anonymous" async></script>
+    <script src="https://cdn.rawgit.com/scottjehl/picturefill/3.0.2/dist/picturefill.min.js" integrity="sha384-ZJsVW8YHHxQHJ+SJDncpN90d0EfAhPP+yA94n+EhSRzhcxfo84yMnNk+v37RGlWR" crossorigin="anonymous" async></script>
     <title>Common Workflow Language (CWL) Command Line Tool Description, v1.1</title>
     <style>
     :target {
@@ -939,7 +934,7 @@ associated with output parameters using the <code>outputBinding</code> field.  S
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>inputs</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">array&lt;<a href="CommandInputParameter">CommandInputParameter</a>&gt; | <br><a href='#map'>map</a>&lt;<code>id</code>,&nbsp;<code>type</code> | <a href="CommandInputParameter">CommandInputParameter</a>&gt</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#CommandInputParameter">CommandInputParameter</a>&gt; | <br><a href='#map'>map</a>&lt;<code>id</code>,&nbsp;<code>type</code> | <a href="#CommandInputParameter">CommandInputParameter</a>&gt</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Defines the input parameters of the process.  The process is ready to
 run when all required input parameters are associated with concrete
 values.  Input parameters include a schema for each parameter which is
@@ -955,7 +950,7 @@ of expressions.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>outputs</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">array&lt;<a href="CommandOutputParameter">CommandOutputParameter</a>&gt; | <br><a href='#map'>map</a>&lt;<code>id</code>,&nbsp;<code>type</code> | <a href="CommandOutputParameter">CommandOutputParameter</a>&gt</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#CommandOutputParameter">CommandOutputParameter</a>&gt; | <br><a href='#map'>map</a>&lt;<code>id</code>,&nbsp;<code>type</code> | <a href="#CommandOutputParameter">CommandOutputParameter</a>&gt</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Defines the parameters representing the output of the process.  May be
 used to generate and/or validate the output object.</p>
 </div>
@@ -1002,7 +997,7 @@ unless overridden at user option.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>hints</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3">array&lt;<a href="Any">Any</a>&gt; | <a href='#map'>map</a>&lt;<code>class</code>,&nbsp;<a href="Any">Any</a>&gt</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#Any">Any</a>&gt; | <a href='#map'>map</a>&lt;<code>class</code>,&nbsp;<a href="#Any">Any</a>&gt</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Declares hints applying to either the runtime environment or the
 workflow engine that may be helpful in executing this process.  It is
 not an error if an implementation cannot satisfy all hints, however
@@ -1012,7 +1007,7 @@ the implementation may report a warning.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>cwlVersion</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="CWLVersion">CWLVersion</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLVersion">CWLVersion</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>CWL document version. Always required at the document root. Not
 required for a Process embedded inside another Process.</p>
 </div>
@@ -1039,7 +1034,7 @@ executable.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>arguments</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3">array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="Expression">Expression</a>&nbsp;|&nbsp;<a href="CommandLineBinding">CommandLineBinding</a>&gt;</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&nbsp;|&nbsp;<a href="#CommandLineBinding">CommandLineBinding</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Command line bindings which are not directly associated with input
 parameters. If the value is a string, it is used as a string literal
 argument. If it is an Expression, the result of the evaluation is used
@@ -1049,7 +1044,7 @@ as an argument.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>stdin</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>A path to a file whose contents must be piped into the command's
 standard input stream.</p>
 </div>
@@ -1057,7 +1052,7 @@ standard input stream.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>stderr</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Capture the command's standard error stream to a file written to
 the designated output directory.</p>
 <p>If <code>stderr</code> is a string, it specifies the file name to use.</p>
@@ -1070,7 +1065,7 @@ characters (such as the path separator <code>/</code>) it is an error.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>stdout</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Capture the command's standard output stream to a file written to
 the designated output directory.</p>
 <p>If <code>stdout</code> is a string, it specifies the file name to use.</p>
@@ -1114,7 +1109,7 @@ runtime environment and inputs may produce different results.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>type</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3"><a href="CWLType">CWLType</a> | <a href="stdin">stdin</a> | <a href="CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="CWLType">CWLType</a> | <a href="CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">CWLType</a> | <a href="#stdin">stdin</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Specify valid types of data that may be assigned to this parameter.</p>
 </div>
 </div>
@@ -1128,7 +1123,7 @@ runtime environment and inputs may produce different results.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>secondaryFiles</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="SecondaryFileSchema">SecondaryFileSchema</a> | array&lt;<a href="SecondaryFileSchema">SecondaryFileSchema</a>&gt;</div>
+<div class="col-xs-7 col-lg-3"><a href="#SecondaryFileSchema">SecondaryFileSchema</a> | array&lt;<a href="#SecondaryFileSchema">SecondaryFileSchema</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Provides a pattern or expression specifying files or
 directories that should be included alongside the primary
@@ -1197,7 +1192,7 @@ pipe.  Default: <code>false</code>.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>format</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>This must be one or more IRIs of concept nodes
 that represents file formats which are allowed as input to this
@@ -1217,7 +1212,7 @@ available, file formats may be tested by exact match.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>loadListing</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="LoadListingEnum">LoadListingEnum</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#LoadListingEnum">LoadListingEnum</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: Directory</code> or is an array of <code>items: Directory</code>.</p>
 <p>Specify the desired behavior for loading the <code>listing</code> field of
 a Directory object for use by expressions.</p>
@@ -1232,7 +1227,7 @@ a Directory object for use by expressions.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>default</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="Any">Any</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#Any">Any</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The default value to use for this parameter if the parameter is missing
 from the input object, or if the value of the parameter in the input
 object is <code>null</code>.  Default values are applied before evaluating expressions
@@ -1242,7 +1237,7 @@ object is <code>null</code>.  Default values are applied before evaluating expre
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>inputBinding</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="CommandLineBinding">CommandLineBinding</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CommandLineBinding">CommandLineBinding</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Describes how to turns the input parameters of a process into
 command line arguments.</p>
 </div>
@@ -1304,7 +1299,7 @@ CWL v2.0.  Use <code>InputParameter.loadContents</code> instead.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>position</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">int</a> | <a href="Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">int</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The sorting key.  Default position is 0. If the inputBinding is
 associated with an input parameter, then the value of <code>self</code> in the
 expression will be the value of the input parameter.  Input parameter
@@ -1340,7 +1335,7 @@ separated by by <code>itemSeparator</code>.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>valueFrom</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>If <code>valueFrom</code> is a constant string value, use this as the value and
 apply the binding rules above.</p>
 <p>If <code>valueFrom</code> is an expression, evaluate the expression to yield the
@@ -1381,7 +1376,7 @@ Javascript expressions.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>pattern</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Provides a pattern or expression specifying files or directories that
 should be included alongside the primary file.</p>
 <p>If the value is an expression, the value of <code>self</code> in the expression
@@ -1416,7 +1411,7 @@ extensions, the path is unchanged.</li>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>required</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">boolean</a> | <a href="Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">boolean</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>An implementation must not fail workflow execution if <code>required</code> is
 set to <code>false</code> and the expected secondary file does not exist.
 Default value for <code>required</code> field is <code>true</code> for secondary files on
@@ -1608,7 +1603,7 @@ of <code>basename</code> prior to evaluating parameter references or expressions
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>secondaryFiles</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3">array&lt;<a href="File">File</a>&nbsp;|&nbsp;<a href="Directory">Directory</a>&gt;</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#File">File</a>&nbsp;|&nbsp;<a href="#Directory">Directory</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>A list of additional files or directories that are associated with the
 primary file and must be transferred alongside the primary file.
 Examples include indexes of the primary file, or external references
@@ -1753,7 +1748,7 @@ with <code>basename</code>, i.e. the final component of the <code>path</code> fi
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>listing</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3">array&lt;<a href="File">File</a>&nbsp;|&nbsp;<a href="Directory">Directory</a>&gt;</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#File">File</a>&nbsp;|&nbsp;<a href="#Directory">Directory</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>List of files or subdirectories contained in this directory.  The name
 of each file or subdirectory is determined by the <code>basename</code> field of
 each <code>File</code> or <code>Directory</code> object.  It is an error if a <code>File</code> shares a
@@ -1796,7 +1791,7 @@ stdin: ${inputs.an_input_name.path}
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>fields</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3">array&lt;<a href="CommandInputRecordField">CommandInputRecordField</a>&gt; | <br><a href='#map'>map</a>&lt;<code>name</code>,&nbsp;<code>type</code> | <a href="CommandInputRecordField">CommandInputRecordField</a>&gt</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#CommandInputRecordField">CommandInputRecordField</a>&gt; | <br><a href='#map'>map</a>&lt;<code>name</code>,&nbsp;<code>type</code> | <a href="#CommandInputRecordField">CommandInputRecordField</a>&gt</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Defines the fields of the record.</p>
 </div>
 </div>
@@ -1824,7 +1819,7 @@ stdin: ${inputs.an_input_name.path}
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>inputBinding</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="CommandLineBinding">CommandLineBinding</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CommandLineBinding">CommandLineBinding</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Describes how to turn this object into command line arguments.</p>
 </div>
 </div></div><h4 id="CommandInputRecordField" class="section">5.1.9.1 CommandInputRecordField <a href="#CommandInputRecordField">&sect;</a></h4><h3>Fields</h3>
@@ -1845,7 +1840,7 @@ stdin: ${inputs.an_input_name.path}
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>type</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3"><a href="CWLType">CWLType</a> | <a href="CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="CWLType">CWLType</a> | <a href="CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">CWLType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The field type</p>
 </div>
 </div>
@@ -1866,7 +1861,7 @@ stdin: ${inputs.an_input_name.path}
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>secondaryFiles</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="SecondaryFileSchema">SecondaryFileSchema</a> | array&lt;<a href="SecondaryFileSchema">SecondaryFileSchema</a>&gt;</div>
+<div class="col-xs-7 col-lg-3"><a href="#SecondaryFileSchema">SecondaryFileSchema</a> | array&lt;<a href="#SecondaryFileSchema">SecondaryFileSchema</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Provides a pattern or expression specifying files or
 directories that should be included alongside the primary
@@ -1921,7 +1916,7 @@ pipe.  Default: <code>false</code>.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>format</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>This must be one or more IRIs of concept nodes
 that represents file formats which are allowed as input to this
@@ -1941,7 +1936,7 @@ available, file formats may be tested by exact match.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>loadListing</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="LoadListingEnum">LoadListingEnum</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#LoadListingEnum">LoadListingEnum</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: Directory</code> or is an array of <code>items: Directory</code>.</p>
 <p>Specify the desired behavior for loading the <code>listing</code> field of
 a Directory object for use by expressions.</p>
@@ -1956,7 +1951,7 @@ a Directory object for use by expressions.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>inputBinding</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="CommandLineBinding">CommandLineBinding</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CommandLineBinding">CommandLineBinding</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Describes how to turn this object into command line arguments.</p>
 </div>
 </div></div><h5 id="CommandInputEnumSchema" class="section">5.1.9.1.1 CommandInputEnumSchema <a href="#CommandInputEnumSchema">&sect;</a></h5><h3>Fields</h3>
@@ -2005,7 +2000,7 @@ a Directory object for use by expressions.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>inputBinding</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="CommandLineBinding">CommandLineBinding</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CommandLineBinding">CommandLineBinding</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Describes how to turn this object into command line arguments.</p>
 </div>
 </div></div><h5 id="CommandInputArraySchema" class="section">5.1.9.1.2 CommandInputArraySchema <a href="#CommandInputArraySchema">&sect;</a></h5><h3>Fields</h3>
@@ -2019,7 +2014,7 @@ a Directory object for use by expressions.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>items</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3"><a href="CWLType">CWLType</a> | <a href="CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="CWLType">CWLType</a> | <a href="CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">CWLType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Defines the type of the array elements.</p>
 </div>
 </div>
@@ -2054,7 +2049,7 @@ a Directory object for use by expressions.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>inputBinding</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="CommandLineBinding">CommandLineBinding</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CommandLineBinding">CommandLineBinding</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Describes how to turn this object into command line arguments.</p>
 </div>
 </div></div><h2 id="CommandOutputParameter" class="section">5.2 CommandOutputParameter <a href="#CommandOutputParameter">&sect;</a></h2><p>An output parameter for a CommandLineTool.</p>
@@ -2069,7 +2064,7 @@ a Directory object for use by expressions.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>type</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3"><a href="CWLType">CWLType</a> | <a href="stdout">stdout</a> | <a href="stderr">stderr</a> | <a href="CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="CWLType">CWLType</a> | <a href="CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">CWLType</a> | <a href="#stdout">stdout</a> | <a href="#stderr">stderr</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Specify valid types of data that may be assigned to this parameter.</p>
 </div>
 </div>
@@ -2083,7 +2078,7 @@ a Directory object for use by expressions.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>secondaryFiles</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="SecondaryFileSchema">SecondaryFileSchema</a> | array&lt;<a href="SecondaryFileSchema">SecondaryFileSchema</a>&gt;</div>
+<div class="col-xs-7 col-lg-3"><a href="#SecondaryFileSchema">SecondaryFileSchema</a> | array&lt;<a href="#SecondaryFileSchema">SecondaryFileSchema</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Provides a pattern or expression specifying files or
 directories that should be included alongside the primary
@@ -2152,7 +2147,7 @@ pipe.  Default: <code>false</code>.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>format</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>This is the file format that will be assigned to the output
 File object.</p>
@@ -2161,7 +2156,7 @@ File object.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>outputBinding</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="CommandOutputBinding">CommandOutputBinding</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CommandOutputBinding">CommandOutputBinding</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Describes how to generate this output object based on the files produced by a CommandLineTool</p>
 </div>
 </div></div><h3 id="stdout" class="section">5.2.1 stdout <a href="#stdout">&sect;</a></h3><p>Only valid as a <code>type</code> for a <code>CommandLineTool</code> output with no
@@ -2252,7 +2247,7 @@ stderr: random_stderr_filenameABCDEFG
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>fields</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3">array&lt;<a href="CommandOutputRecordField">CommandOutputRecordField</a>&gt; | <br><a href='#map'>map</a>&lt;<code>name</code>,&nbsp;<code>type</code> | <a href="CommandOutputRecordField">CommandOutputRecordField</a>&gt</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#CommandOutputRecordField">CommandOutputRecordField</a>&gt; | <br><a href='#map'>map</a>&lt;<code>name</code>,&nbsp;<code>type</code> | <a href="#CommandOutputRecordField">CommandOutputRecordField</a>&gt</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Defines the fields of the record.</p>
 </div>
 </div>
@@ -2294,7 +2289,7 @@ stderr: random_stderr_filenameABCDEFG
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>type</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3"><a href="CWLType">CWLType</a> | <a href="CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="CWLType">CWLType</a> | <a href="CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">CWLType</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The field type</p>
 </div>
 </div>
@@ -2315,7 +2310,7 @@ stderr: random_stderr_filenameABCDEFG
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>secondaryFiles</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="SecondaryFileSchema">SecondaryFileSchema</a> | array&lt;<a href="SecondaryFileSchema">SecondaryFileSchema</a>&gt;</div>
+<div class="col-xs-7 col-lg-3"><a href="#SecondaryFileSchema">SecondaryFileSchema</a> | array&lt;<a href="#SecondaryFileSchema">SecondaryFileSchema</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>Provides a pattern or expression specifying files or
 directories that should be included alongside the primary
@@ -2370,7 +2365,7 @@ pipe.  Default: <code>false</code>.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>format</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>This is the file format that will be assigned to the output
 File object.</p>
@@ -2379,7 +2374,7 @@ File object.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>outputBinding</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="CommandOutputBinding">CommandOutputBinding</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CommandOutputBinding">CommandOutputBinding</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Describes how to generate this output object based on the files
 produced by a CommandLineTool</p>
 </div>
@@ -2436,7 +2431,7 @@ produced by a CommandLineTool</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>items</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3"><a href="CWLType">CWLType</a> | <a href="CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="CWLType">CWLType</a> | <a href="CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">CWLType</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Defines the type of the array elements.</p>
 </div>
 </div>
@@ -2497,7 +2492,7 @@ following order:</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>loadListing</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="LoadListingEnum">LoadListingEnum</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#LoadListingEnum">LoadListingEnum</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: Directory</code> or is an array of <code>items: Directory</code>.</p>
 <p>Specify the desired behavior for loading the <code>listing</code> field of
 a Directory object for use by expressions.</p>
@@ -2512,7 +2507,7 @@ a Directory object for use by expressions.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>glob</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&gt;</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Find files or directories relative to the output directory, using POSIX
 glob(3) pathname matching.  If an array is provided, find files or
 directories that match any pattern in the array.  If an expression is
@@ -2549,7 +2544,7 @@ container filesystem except for declared input and output.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>outputEval</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Evaluate an expression to generate the output value.  If
 <code>glob</code> was specified, the value of <code>self</code> must be an array
 containing file objects that were matched.  If no files were
@@ -2634,7 +2629,7 @@ a Directory object for use by expressions.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>loadListing</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="LoadListingEnum">LoadListingEnum</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#LoadListingEnum">LoadListingEnum</a></div>
 <div class="col-xs-12 col-lg-6 description-col"></div>
 </div></div><h2 id="DockerRequirement" class="section">5.6 DockerRequirement <a href="#DockerRequirement">&sect;</a></h2><p>Indicates that a workflow component should be run in a
 <a href="http://docker.com">Docker</a> or Docker-compatible (such as
@@ -2759,7 +2754,7 @@ the defined process.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>packages</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">array&lt;<a href="SoftwarePackage">SoftwarePackage</a>&gt; | <br><a href='#map'>map</a>&lt;<code>package</code>,&nbsp;<code>specs</code> | <a href="SoftwarePackage">SoftwarePackage</a>&gt</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#SoftwarePackage">SoftwarePackage</a>&gt; | <br><a href='#map'>map</a>&lt;<code>package</code>,&nbsp;<code>specs</code> | <a href="#SoftwarePackage">SoftwarePackage</a>&gt</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The list of software to be configured.</p>
 </div>
 </div></div><h2 id="SoftwarePackage" class="section">5.8 SoftwarePackage <a href="#SoftwarePackage">&sect;</a></h2><h3>Fields</h3>
@@ -2848,7 +2843,7 @@ clutter.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>listing</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">array&lt;<a href="#CWLType">null</a> | <a href="File">File</a> | array&lt;<a href="File">File</a>&nbsp;|&nbsp;<a href="Directory">Directory</a>&gt; | <a href="Directory">Directory</a> | <a href="Dirent">Dirent</a> | <a href="Expression">Expression</a>&gt; | <a href="Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#CWLType">null</a> | <a href="#File">File</a> | array&lt;<a href="#File">File</a>&nbsp;|&nbsp;<a href="#Directory">Directory</a>&gt; | <a href="#Directory">Directory</a> | <a href="#Dirent">Dirent</a> | <a href="#Expression">Expression</a>&gt; | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The list of files or subdirectories that must be placed in the
 designated output directory prior to executing the command line tool.</p>
 <p>May be an expression. If so, the expression return value must validate as
@@ -2875,7 +2870,7 @@ template.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>entry</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>If the value is a string literal or an expression which evaluates to a
 string, a new file must be created with the string as the file contents.</p>
 <p>If the value is an expression that evaluates to a <code>File</code> object, this
@@ -2892,7 +2887,7 @@ file.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>entryname</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The name of the file or subdirectory to create in the output directory.
 If <code>entry</code> is a File or Directory, the <code>entryname</code> field overrides the value
 of <code>basename</code> of the File or Directory object.  Optional.</p>
@@ -2930,7 +2925,7 @@ execution environment of the tool.  See <code>EnvironmentDef</code> for details.
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>envDef</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">array&lt;<a href="EnvironmentDef">EnvironmentDef</a>&gt; | <br><a href='#map'>map</a>&lt;<code>envName</code>,&nbsp;<code>envValue</code> | <a href="EnvironmentDef">EnvironmentDef</a>&gt</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#EnvironmentDef">EnvironmentDef</a>&gt; | <br><a href='#map'>map</a>&lt;<code>envName</code>,&nbsp;<code>envValue</code> | <a href="#EnvironmentDef">EnvironmentDef</a>&gt</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The list of environment variables.</p>
 </div>
 </div></div><h2 id="EnvironmentDef" class="section">5.11 EnvironmentDef <a href="#EnvironmentDef">&sect;</a></h2><p>Define an environment variable that will be set in the runtime environment
@@ -2954,7 +2949,7 @@ result of executing an expression, such as getting a parameter from input.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>envValue</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The environment variable value</p>
 </div>
 </div></div><h2 id="ShellCommandRequirement" class="section">5.12 ShellCommandRequirement <a href="#ShellCommandRequirement">&sect;</a></h2><p>Modify the behavior of CommandLineTool to generate a single string
@@ -3010,56 +3005,56 @@ If "max" is specified by "min" is not, then "min" == "max".</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>coresMin</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Minimum reserved number of CPU cores (default is 1)</p>
 </div>
 </div>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>coresMax</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">int</a> | <a href="Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">int</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Maximum reserved number of CPU cores</p>
 </div>
 </div>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>ramMin</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Minimum reserved RAM in mebibytes (2**20) (default is 256)</p>
 </div>
 </div>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>ramMax</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Maximum reserved RAM in mebibytes (2**20)</p>
 </div>
 </div>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>tmpdirMin</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Minimum reserved filesystem based storage for the designated temporary directory, in mebibytes (2**20) (default is 1024)</p>
 </div>
 </div>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>tmpdirMax</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Maximum reserved filesystem based storage for the designated temporary directory, in mebibytes (2**20)</p>
 </div>
 </div>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>outdirMin</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Minimum reserved filesystem based storage for the designated output directory, in mebibytes (2**20) (default is 1024)</p>
 </div>
 </div>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>outdirMax</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Maximum reserved filesystem based storage for the designated output directory, in mebibytes (2**20)</p>
 </div>
 </div></div><h2 id="WorkReuse" class="section">5.14 WorkReuse <a href="#WorkReuse">&sect;</a></h2><p>For implementations that support reusing output from past work (on
@@ -3088,7 +3083,7 @@ is enabled by default.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>enableReuse</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">boolean</a> | <a href="Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">boolean</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"></div>
 </div></div><h2 id="NetworkAccess" class="section">5.15 NetworkAccess <a href="#NetworkAccess">&sect;</a></h2><p>Indicate whether a process requires outgoing IPv4/IPv6 network
 access.  Choice of IPv4 or IPv6 is implementation and site
@@ -3120,7 +3115,7 @@ address or the ability to accept inbound connections.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>networkAccess</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">boolean</a> | <a href="Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">boolean</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"></div>
 </div></div><h2 id="InplaceUpdateRequirement" class="section">5.16 InplaceUpdateRequirement <a href="#InplaceUpdateRequirement">&sect;</a></h2><p>If <code>inplaceUpdate</code> is true, then an implementation supporting this
 feature may permit tools to directly update files with <code>writable:
@@ -3192,7 +3187,7 @@ wall-time for the execution of the command line itself.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>timelimit</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The time limit, in seconds.  A time limit of zero means no
 time limit.  Negative time limits are an error.</p>
 </div>
