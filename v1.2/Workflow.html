@@ -187,10 +187,11 @@ under the terms of the Apache License, version 2.0.</p>
 </ol></li></ol><li><a href="#InputBinding">4.1.9 InputBinding</a><ol>
 </ol></li></ol><li><a href="#WorkflowOutputParameter">4.2 WorkflowOutputParameter</a><ol>
 <li><a href="#LinkMergeMethod">4.2.1 LinkMergeMethod</a><ol>
-</ol><li><a href="#OutputRecordSchema">4.2.2 OutputRecordSchema</a><ol>
-</ol><li><a href="#OutputRecordField">4.2.3 OutputRecordField</a><ol>
-<li><a href="#OutputEnumSchema">4.2.3.1 OutputEnumSchema</a><ol>
-</ol><li><a href="#OutputArraySchema">4.2.3.2 OutputArraySchema</a><ol>
+</ol><li><a href="#PickValueMethod">4.2.2 PickValueMethod</a><ol>
+</ol><li><a href="#OutputRecordSchema">4.2.3 OutputRecordSchema</a><ol>
+</ol><li><a href="#OutputRecordField">4.2.4 OutputRecordField</a><ol>
+<li><a href="#OutputEnumSchema">4.2.4.1 OutputEnumSchema</a><ol>
+</ol><li><a href="#OutputArraySchema">4.2.4.2 OutputArraySchema</a><ol>
 </ol></li></ol></li></ol><li><a href="#WorkflowStep">4.3 WorkflowStep</a><ol>
 <li><a href="#WorkflowStepInput">4.3.1 WorkflowStepInput</a><ol>
 </ol><li><a href="#WorkflowStepOutput">4.3.2 WorkflowStepOutput</a><ol>
@@ -235,7 +236,14 @@ should be trivially updatable by changing <code>cwlVersion</code>, however
 CWL documents that relied on previously undefined or
 underspecified behavior may have slightly different behavior in
 v1.2.0-dev1.</p>
-<h2 id="Changelog" class="section">1.2 Changelog <a href="#Changelog">&sect;</a></h2><p>See also the <a href="CommandLineTool.html#Changelog">CWL Command Line Tool Description, v1.2.0-dev1 changelog</a>.</p>
+<h2 id="Changelog" class="section">1.2 Changelog <a href="#Changelog">&sect;</a></h2><ul>
+<li>Adds <code>when</code> field to <a href="#WorkflowStep">WorkflowStep</a> for conditional
+execution</li>
+<li>Adds <code>pickValue</code> field to <a href="#WorkflowStepInput">WorkflowStepInput</a> and
+<a href="#WorkflowOutputParameter">WorkflowOutputParameter</a> for selecting among null and
+non-null source values</li>
+</ul>
+<p>See also the <a href="CommandLineTool.html#Changelog">CWL Command Line Tool Description, v1.2.0-dev1 changelog</a>.</p>
 <h2 id="Purpose" class="section">1.3 Purpose <a href="#Purpose">&sect;</a></h2><p>The Common Workflow Language Command Line Tool Description express
 workflows for data-intensive science, such as Bioinformatics, Chemistry,
 Physics, and Astronomy.  This specification is intended to define a data
@@ -1646,6 +1654,8 @@ CWL v2.0.  Use <code>InputParameter.loadContents</code> instead.</p>
 connected to one or more parameters defined in the workflow that
 will provide the value of the output parameter. It is legal to
 connect a WorkflowInputParameter to a WorkflowOutputParameter.</p>
+<p>See <a href="#WorkflowStepInput">WorkflowStepInput</a> for discussion of
+<code>linkMerge</code> and <code>pickValue</code>.</p>
 <h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
@@ -1761,8 +1771,16 @@ the output parameter.</p>
 <div class="col-xs-12 col-lg-6 description-col"><p>The method to use to merge multiple sources into a single array.
 If not specified, the default method is "merge_nested".</p>
 </div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>pickValue</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PickValueMethod">PickValueMethod</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The method to use to choose non-null elements among multiple sources.</p>
+</div>
 </div></div><h3 id="LinkMergeMethod" class="section">4.2.1 LinkMergeMethod <a href="#LinkMergeMethod">&sect;</a></h3><p>The input link merge method, described in <a href="#WorkflowStepInput">WorkflowStepInput</a>.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>merge_nested</code></td><td></td></tr><tr><td><code>merge_flattened</code></td><td></td></tr></table><h3 id="OutputRecordSchema" class="section">4.2.2 OutputRecordSchema <a href="#OutputRecordSchema">&sect;</a></h3><h3>Fields</h3>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>merge_nested</code></td><td></td></tr><tr><td><code>merge_flattened</code></td><td></td></tr></table><h3 id="PickValueMethod" class="section">4.2.2 PickValueMethod <a href="#PickValueMethod">&sect;</a></h3><p>Picking non-null values among inbound data links, described in <a href="#WorkflowStepInput">WorkflowStepInput</a>.</p>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>first_non_null</code></td><td></td></tr><tr><td><code>only_non_null</code></td><td></td></tr><tr><td><code>all_non_null</code></td><td></td></tr></table><h3 id="OutputRecordSchema" class="section">4.2.3 OutputRecordSchema <a href="#OutputRecordSchema">&sect;</a></h3><h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
 <div class="col-xs-3 col-lg-2">field</div>
@@ -1804,7 +1822,7 @@ If not specified, the default method is "merge_nested".</p>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The identifier for this type</p>
 </div>
-</div></div><h3 id="OutputRecordField" class="section">4.2.3 OutputRecordField <a href="#OutputRecordField">&sect;</a></h3><h3>Fields</h3>
+</div></div><h3 id="OutputRecordField" class="section">4.2.4 OutputRecordField <a href="#OutputRecordField">&sect;</a></h3><h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
 <div class="col-xs-3 col-lg-2">field</div>
@@ -1903,7 +1921,7 @@ pipe.  Default: <code>false</code>.</p>
 <p>This is the file format that will be assigned to the output
 File object.</p>
 </div>
-</div></div><h4 id="OutputEnumSchema" class="section">4.2.3.1 OutputEnumSchema <a href="#OutputEnumSchema">&sect;</a></h4><h3>Fields</h3>
+</div></div><h4 id="OutputEnumSchema" class="section">4.2.4.1 OutputEnumSchema <a href="#OutputEnumSchema">&sect;</a></h4><h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
 <div class="col-xs-3 col-lg-2">field</div>
@@ -1945,7 +1963,7 @@ File object.</p>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The identifier for this type</p>
 </div>
-</div></div><h4 id="OutputArraySchema" class="section">4.2.3.2 OutputArraySchema <a href="#OutputArraySchema">&sect;</a></h4><h3>Fields</h3>
+</div></div><h4 id="OutputArraySchema" class="section">4.2.4.2 OutputArraySchema <a href="#OutputArraySchema">&sect;</a></h4><h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
 <div class="col-xs-3 col-lg-2">field</div>
@@ -2027,6 +2045,19 @@ describes how to decompose the input into a discrete set of jobs.</p>
   order that the input arrays are listed in the <code>scatter</code> field.</p>
 </li>
 </ul>
+<h3 id="Conditional_execution" class="section">Conditional execution <a href="#Conditional_execution">&sect;</a></h3><p>Conditional execution makes execution of a step conditional on an
+expression.  A step that is not executed is "skipped".  A skipped
+step produces <code>null</code> for all output parameters.</p>
+<p>The condition is evaluated after <code>scatter</code>, using the input object
+of each individual scatter job.  This means over a set of scatter
+jobs, some may be executed and some may be skipped.  When the
+results are gathered, skipped steps must be <code>null</code> in the output
+arrays.</p>
+<p>The <code>when</code> field controls conditional execution.  This is an
+expression that must be evaluated with <code>inputs</code> bound to the step
+input object (or individual scatter job), and returns a boolean
+value.  It is an error if this expression returns a value other
+than <code>true</code> or <code>false</code>.</p>
 <h3 id="Subworkflows" class="section">Subworkflows <a href="#Subworkflows">&sect;</a></h3><p>To specify a nested workflow as part of a workflow step,
 <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> must be
 specified in the workflow or workflow step requirements.</p>
@@ -2110,6 +2141,15 @@ the implementation may report a warning.</p>
 </div>
 </div>
 <div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>when</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#Expression">Expression</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>If defined, only run the step when the expression evaluates to
+<code>true</code>.  If <code>false</code> the step is skipped.  A skipped step
+produces a <code>null</code> on each output.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>scatter</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</div>
@@ -2128,13 +2168,13 @@ declared by the target process will be passed through at runtime to the process
 though additonal parameters may be specified (for use within <code>valueFrom</code>
 expressions for instance) - unconnected or unused parameters do not represent an
 error condition.</p>
-<h5 id="Input_object" class="section">Input object <a href="#Input_object">&sect;</a></h5><p>A WorkflowStepInput object must contain an <code>id</code> field in the form
+<h4 id="Input_object" class="section">Input object <a href="#Input_object">&sect;</a></h4><p>A WorkflowStepInput object must contain an <code>id</code> field in the form
 <code>#fieldname</code> or <code>#prefix/fieldname</code>.  When the <code>id</code> field contains a slash
 <code>/</code> the field name consists of the characters following the final slash
 (the prefix portion may contain one or more slashes to indicate scope).
 This defines a field of the workflow step input object with the value of
 the <code>source</code> parameter(s).</p>
-<h5 id="Merging" class="section">Merging <a href="#Merging">&sect;</a></h5><p>To merge multiple inbound data links,
+<h4 id="Merging_multiple_inbound_data_links" class="section">Merging multiple inbound data links <a href="#Merging_multiple_inbound_data_links">&sect;</a></h4><p>To merge multiple inbound data links,
 <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> must be specified
 in the workflow or workflow step requirements.</p>
 <p>If the sink parameter is an array, or named in a <a href="#WorkflowStep">workflow
@@ -2157,6 +2197,60 @@ the destination array parameter.</li>
 Source parameters which are single element types are appended as
 single elements.</li>
 </ol>
+</li>
+</ul>
+<h4 id="Picking_non-null_values_among_inbound_data_links" class="section">Picking non-null values among inbound data links <a href="#Picking_non-null_values_among_inbound_data_links">&sect;</a></h4><p>If present, <code>pickValue</code> specifies how to picking non-null values among inbound data links.</p>
+<p><code>pickValue</code> is evaluated</p>
+<ol>
+<li>Once all source values from upstream step or parameters are available.</li>
+<li>After <code>linkMerge</code>.</li>
+<li>Before <code>scatter</code> or <code>valueFrom</code>.</li>
+</ol>
+<p>This is specifically intended to be useful in combination with
+<a href="#WorkflowStep">conditional execution</a>, where several upstream
+steps may be connected to a single input (<code>source</code> is a list), and
+skipped steps produce null values.</p>
+<p>Static type checkers should check for type consistency after infering what the type
+will be after <code>pickValue</code> is applied, just as they do currently for <code>linkMerge</code>.</p>
+<ul>
+<li><p><strong>first_non_null</strong></p>
+<p>For the first level of a list input, pick the first non-null element.  The result is a scalar.
+It is an error if there is no non-null element.  Examples:</p>
+<ul>
+<li><code>[null, x, null, y] -&gt; x</code></li>
+<li><code>[null, [null], null, y] -&gt; [null]</code></li>
+<li><code>[null, null, null] -&gt; Runtime Error</code></li>
+</ul>
+<p><em>Intended use case</em>: If-else pattern where the
+value comes either from a conditional step or from a default or
+fallback value. The conditional step(s) should be placed first in
+the list.</p>
+</li>
+<li><p><strong>only_non_null</strong></p>
+<p>For the first level of a list input, pick the single non-null element.  The result is a scalar.
+It is an error if there is more than one non-null element.  Examples:</p>
+<ul>
+<li><code>[null, x, null] -&gt; x</code></li>
+<li><code>[null, x, null, y] -&gt; Runtime Error</code></li>
+<li><code>[null, [null], null] -&gt; [null]</code></li>
+<li><code>[null, null, null] -&gt; Runtime Error</code></li>
+</ul>
+<p><em>Intended use case</em>: Switch type patterns where developer considers
+more than one active code path as a workflow error
+(possibly indicating an error in writing <code>when</code> condition expressions).</p>
+</li>
+<li><p><strong>all_non_null</strong></p>
+<p>For the first level of a list input, pick all non-null values.
+The result is a list, which may be empty.  Examples:</p>
+<ul>
+<li><code>[null, x, null] -&gt; [x]</code></li>
+<li><code>[x, null, y] -&gt; [x, y]</code></li>
+<li><code>[null, [x], [null]] -&gt; [[x], [null]]</code></li>
+<li><code>[null, null, null] -&gt; []</code></li>
+</ul>
+<p><em>Intended use case</em>: It is valid to have more than one source, but
+ sources are conditional, so null sources (from skipped steps)
+ should be filtered out.</p>
 </li>
 </ul>
 <h3>Fields</h3>
@@ -2188,6 +2282,13 @@ the underlying step parameter.</p>
 <div class="col-xs-7 col-lg-3"><a href="#LinkMergeMethod">LinkMergeMethod</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The method to use to merge multiple inbound links into a single array.
 If not specified, the default method is "merge_nested".</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>pickValue</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PickValueMethod">PickValueMethod</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The method to use to choose non-null elements among multiple sources.</p>
 </div>
 </div>
 <div class="row responsive-table-row">

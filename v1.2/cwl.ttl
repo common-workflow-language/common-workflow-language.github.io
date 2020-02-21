@@ -183,6 +183,8 @@
         @base:Identified,
         sld:Documented .
 
+@base:PickValueMethod a rdfs:Class .
+
 @base:Process a rdfs:Class ;
     rdfs:subClassOf @base:Identified,
         @base:Labeled,
@@ -441,8 +443,15 @@ rdfs:label a rdf:Property ;
     rdfs:domain @base:CommandOutputParameter,
         @base:CommandOutputRecordField .
 
+@base:pickValue a rdf:Property ;
+    rdfs:domain @base:Sink,
+        @base:WorkflowOutputParameter .
+
 @base:valueFrom a rdf:Property ;
     rdfs:domain @base:CommandLineBinding,
         @base:WorkflowStepInput .
+
+@base:when a rdf:Property ;
+    rdfs:domain @base:WorkflowStep .
 
 
