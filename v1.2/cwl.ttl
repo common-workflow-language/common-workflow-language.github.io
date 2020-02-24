@@ -152,6 +152,15 @@
 @base:NetworkAccess a rdfs:Class ;
     rdfs:subClassOf @base:ProcessRequirement .
 
+@base:Operation a rdfs:Class ;
+    rdfs:subClassOf @base:Process .
+
+@base:OperationInputParameter a rdfs:Class ;
+    rdfs:subClassOf @base:InputParameter .
+
+@base:OperationOutputParameter a rdfs:Class ;
+    rdfs:subClassOf @base:OutputParameter .
+
 @base:OutputArraySchema a rdfs:Class ;
     rdfs:subClassOf @base:OutputSchema,
         sld:ArraySchema .
