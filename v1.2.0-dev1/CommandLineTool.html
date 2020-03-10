@@ -1297,7 +1297,20 @@ permit interpretation of any shell metacharacters or directives.</p>
 runtime parameter references.  If <a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a>
 is declared and supported by the platform, the field must also allow
 Javascript expressions.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>ExpressionPlaceholder</code></td><td></td></tr></table><h3 id="SecondaryFileSchema" class="section">5.1.3 SecondaryFileSchema <a href="#SecondaryFileSchema">&sect;</a></h3><h3>Fields</h3>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>ExpressionPlaceholder</code></td><td></td></tr></table><h3 id="SecondaryFileSchema" class="section">5.1.3 SecondaryFileSchema <a href="#SecondaryFileSchema">&sect;</a></h3><p>Secondary files are specified using the following micro-DSL for secondary files:</p>
+<ul>
+<li>If the value is a string, it is transformed to an object with two fields 
+<code>pattern</code> and <code>required</code></li>
+<li>By default, the value of <code>required</code> is <code>null</code> 
+(this indicates default behavior, which may be based on the context)</li>
+<li>If the value ends with a question mark <code>?</code> the question mark is
+stripped off and the value of the field <code>required</code> is set to <code>False</code></li>
+<li>The remaining value is assigned to the field <code>pattern</code> </li>
+</ul>
+<p>For implementation details and examples, please see 
+<a href="SchemaSalad.html#Domain_Specific_Language_for_secondary_files">this section</a> 
+in the Schema Salad specification.</p>
+<h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
 <div class="col-xs-3 col-lg-2">field</div>
