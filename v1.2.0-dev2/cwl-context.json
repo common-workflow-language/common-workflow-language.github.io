@@ -191,6 +191,11 @@
             "mapSubject": "id"
         },
         "int": "http://www.w3.org/2001/XMLSchema#int",
+        "intent": {
+            "@id": "https://w3id.org/cwl/cwl#Process/intent",
+            "@type": "@id",
+            "identity": true
+        },
         "itemSeparator": "https://w3id.org/cwl/cwl#CommandLineBinding/itemSeparator",
         "items": {
             "@id": "https://w3id.org/cwl/salad#items",
@@ -328,6 +333,7 @@
         "v1.1": "https://w3id.org/cwl/cwl#v1.1",
         "v1.1.0-dev1": "https://w3id.org/cwl/cwl#v1.1.0-dev1",
         "v1.2.0-dev1": "https://w3id.org/cwl/cwl#v1.2.0-dev1",
+        "v1.2.0-dev2": "https://w3id.org/cwl/cwl#v1.2.0-dev2",
         "valueFrom": "cwl:valueFrom",
         "version": "https://w3id.org/cwl/cwl#SoftwarePackage/version",
         "when": "cwl:when",

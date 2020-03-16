@@ -12,7 +12,7 @@
     <script src="https://cdn.rawgit.com/scottjehl/picturefill/3.0.2/dist/picturefill.min.js"
         integrity="sha384-ZJsVW8YHHxQHJ+SJDncpN90d0EfAhPP+yA94n+EhSRzhcxfo84yMnNk+v37RGlWR"
         crossorigin="anonymous" async></script>
-    <title>Common Workflow Language (CWL) Command Line Tool Description, v1.2.0-dev1</title>
+    <title>Common Workflow Language (CWL) Command Line Tool Description, v1.2.0-dev2</title>
     <style>
     :target {
       padding-top: 61px;
@@ -95,9 +95,9 @@
     
     <div class="row">
     
-    <div class="col-md-12" role="main" id="main"><h1 id="Common_Workflow_Language_(CWL)_Command_Line_Tool_Description,_v1.2.0-dev1" class="section">Common Workflow Language (CWL) Command Line Tool Description, v1.2.0-dev1 <a href="#Common_Workflow_Language_(CWL)_Command_Line_Tool_Description,_v1.2.0-dev1">&sect;</a></h1><p>This version:</p>
+    <div class="col-md-12" role="main" id="main"><h1 id="Common_Workflow_Language_(CWL)_Command_Line_Tool_Description,_v1.2.0-dev2" class="section">Common Workflow Language (CWL) Command Line Tool Description, v1.2.0-dev2 <a href="#Common_Workflow_Language_(CWL)_Command_Line_Tool_Description,_v1.2.0-dev2">&sect;</a></h1><p>This version:</p>
 <ul>
-<li><a href="https://w3id.org/cwl/v1.2.0-dev1/">https://w3id.org/cwl/v1.2.0-dev1/</a></li>
+<li><a href="https://w3id.org/cwl/v1.2.0-dev2/">https://w3id.org/cwl/v1.2.0-dev2/</a></li>
 </ul>
 <p>Current version:</p>
 <ul>
@@ -105,7 +105,7 @@
 </ul>
 <p>Authors:</p>
 <ul>
-<li>Peter Amstutz <a href="mailto:pamstutz@veritasgenetics.com">pamstutz@veritasgenetics.com</a>, Arvados Project, Veritas Genetics</li>
+<li>Peter Amstutz <a href="mailto:peter.amstutz@curii.com">peter.amstutz@curii.com</a>, Arvados Project, Curii Corporation</li>
 <li>Michael R. Crusoe <a href="mailto:mrc@commonwl.org">mrc@commonwl.org</a>, Common Workflow Language
 project</li>
 </ul>
@@ -150,11 +150,11 @@ source for the latest stable version of this document is available in the "v1.0"
 <p>The products of the CWL working group (including this document) are made available
 under the terms of the Apache License, version 2.0.</p>
 <h1 id="toc">Table of contents</h1>
-               <nav class="tocnav"><ol><li><a href="#Common_Workflow_Language_(CWL)_Command_Line_Tool_Description,_v1.2.0-dev1"> Common Workflow Language (CWL) Command Line Tool Description, v1.2.0-dev1</a><ol>
+               <nav class="tocnav"><ol><li><a href="#Common_Workflow_Language_(CWL)_Command_Line_Tool_Description,_v1.2.0-dev2"> Common Workflow Language (CWL) Command Line Tool Description, v1.2.0-dev2</a><ol>
 </ol><li><a href="#Abstract"> Abstract</a><ol>
 </ol><li><a href="#Status_of_this_document"> Status of this document</a><ol>
 </ol><li><a href="#Introduction">1. Introduction</a><ol>
-<li><a href="#Introduction_to_the_CWL_Command_Line_Tool_standard_v1.2.0-dev1">1.1 Introduction to the CWL Command Line Tool standard v1.2.0-dev1</a><ol>
+<li><a href="#Introduction_to_the_CWL_Command_Line_Tool_standard_v1.2.0-dev2">1.1 Introduction to the CWL Command Line Tool standard v1.2.0-dev2</a><ol>
 </ol><li><a href="#Changelog">1.2 Changelog</a><ol>
 </ol><li><a href="#Purpose">1.3 Purpose</a><ol>
 </ol><li><a href="#References_to_other_specifications">1.4 References to other specifications</a><ol>
@@ -228,16 +228,22 @@ interest in portability of data analysis workflows.  The goal is to create
 specifications like this one that enable data scientists to describe analysis
 tools and workflows that are powerful, easy to use, portable, and support
 reproducibility.</p>
-<h2 id="Introduction_to_the_CWL_Command_Line_Tool_standard_v1.2.0-dev1" class="section">1.1 Introduction to the CWL Command Line Tool standard v1.2.0-dev1 <a href="#Introduction_to_the_CWL_Command_Line_Tool_standard_v1.2.0-dev1">&sect;</a></h2><p>This specification represents the latest development release from the
-CWL group.  Since the v1.1 release, v1.2.0-dev1 introduces the
+<h2 id="Introduction_to_the_CWL_Command_Line_Tool_standard_v1.2.0-dev2" class="section">1.1 Introduction to the CWL Command Line Tool standard v1.2.0-dev2 <a href="#Introduction_to_the_CWL_Command_Line_Tool_standard_v1.2.0-dev2">&sect;</a></h2><p>This specification represents the latest development release from the
+CWL group.  Since the v1.1 release, v1.2.0-dev2 introduces the
 following updates to the CWL Command Line Tool standard.
-Documents should use <code>cwlVersion: v1.2.0-dev1</code> to make use of new
-syntax and features introduced in v1.2.0-dev1.  Existing v1.1 documents
+Documents should use <code>cwlVersion: v1.2.0-dev2</code> to make use of new
+syntax and features introduced in v1.2.0-dev2.  Existing v1.1 documents
 should be trivially updatable by changing <code>cwlVersion</code>, however
 CWL documents that relied on previously undefined or
 underspecified behavior may have slightly different behavior in
-v1.2.0-dev1.</p>
-<h2 id="Changelog" class="section">1.2 Changelog <a href="#Changelog">&sect;</a></h2><p>See also the <a href="Workflow.html#Changelog">CWL Workflow Description, v1.2.0-dev1 changelog</a>.</p>
+v1.2.0-dev2.</p>
+<h2 id="Changelog" class="section">1.2 Changelog <a href="#Changelog">&sect;</a></h2><ul>
+<li><code>coresMin</code> and <code>coresMax</code> of
+  <a href="#ResourceRequirement">ResourceRequirement</a> may now request fractional CPUs.</li>
+<li>(CommandLineTool)[#CommandLineTool] can now express <code>intent</code>
+with an identifier for the type of computational operation.</li>
+</ul>
+<p>See also the <a href="Workflow.html#Changelog">CWL Workflow Description, v1.2.0-dev2 changelog</a>.</p>
 <h2 id="Purpose" class="section">1.3 Purpose <a href="#Purpose">&sect;</a></h2><p>Standalone programs are a flexible and interoperable form of code reuse.
 Unlike monolithic applications, applications and analysis workflows which
 are composed of multiple separate programs can be written in multiple
@@ -945,6 +951,23 @@ required for a Process embedded inside another Process.</p>
 </div>
 </div>
 <div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>intent</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#CWLType">string</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>An identifier for the type of computational operation, of this Process.
+Especially useful for "class: Operation", but can also be used for
+CommandLineTool, Workflow, or ExpressionTool.</p>
+<p>If provided, then this must be an IRI of a concept node that
+represents the type of operation, preferrably defined within an ontology.</p>
+<p>For example, in the domain of bioinformatics, one can use an IRI from
+the EDAM Ontology's <a href="http://edamontology.org/operation_0004">Operation concept nodes</a>,
+like <a href="http://edamontology.org/operation_2928">Alignment</a>,
+or <a href="http://edamontology.org/operation_3432">Clustering</a>; or a more
+specific Operation concept like
+<a href="http://edamontology.org/operation_3199">Split read mapping</a>.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>baseCommand</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</div>
@@ -1299,16 +1322,16 @@ is declared and supported by the platform, the field must also allow
 Javascript expressions.</p>
 <h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>ExpressionPlaceholder</code></td><td></td></tr></table><h3 id="SecondaryFileSchema" class="section">5.1.3 SecondaryFileSchema <a href="#SecondaryFileSchema">&sect;</a></h3><p>Secondary files are specified using the following micro-DSL for secondary files:</p>
 <ul>
-<li>If the value is a string, it is transformed to an object with two fields 
+<li>If the value is a string, it is transformed to an object with two fields
 <code>pattern</code> and <code>required</code></li>
-<li>By default, the value of <code>required</code> is <code>null</code> 
+<li>By default, the value of <code>required</code> is <code>null</code>
 (this indicates default behavior, which may be based on the context)</li>
 <li>If the value ends with a question mark <code>?</code> the question mark is
 stripped off and the value of the field <code>required</code> is set to <code>False</code></li>
-<li>The remaining value is assigned to the field <code>pattern</code> </li>
+<li>The remaining value is assigned to the field <code>pattern</code></li>
 </ul>
-<p>For implementation details and examples, please see 
-<a href="SchemaSalad.html#Domain_Specific_Language_for_secondary_files">this section</a> 
+<p>For implementation details and examples, please see
+<a href="SchemaSalad.html#Domain_Specific_Language_for_secondary_files">this section</a>
 in the Schema Salad specification.</p>
 <h3>Fields</h3>
 <div class="responsive-table">
@@ -2792,7 +2815,7 @@ clutter.</p>
 <div class="col-xs-12 col-lg-6 description-col"><p>The list of files or subdirectories that must be placed in the
 designated output directory prior to executing the command line tool.</p>
 <p>May be an expression. If so, the expression return value must validate as
-<code>{type: array, items: ["null", File, File[], Directory, Directory[], Dirent]}</code>.</p>
+<code>{type: array, items: ["null", File, Directory, Dirent, {type: array, items: [File, Directory]}]}</code>.</p>
 <p>Files or Directories which are listed in the input parameters and
 appear in the <code>InitialWorkDirRequirement</code> listing must have their
 <code>path</code> set to their staged location in the designated output directory.
@@ -2818,12 +2841,18 @@ template.</p>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>If the value is a string literal or an expression which evaluates to a
 string, a new file must be created with the string as the file contents.</p>
-<p>If the value is an expression that evaluates to a <code>File</code> object, this
-indicates the referenced file should be added to the designated output
-directory prior to executing the tool.</p>
+<p>If the value is an expression that evaluates to a <code>File</code> or <code>Directory</code>
+object, this indicates the referenced file or directory should be added
+to the designated output directory prior to executing the tool.</p>
+<p>If the value is an expression that evaluates to an array of <code>File</code> or
+<code>Directory</code> objects, this indicates the referenced files or directories
+should be added to the designated output directory prior to executing
+the tool, with ignoring the value in <code>entryname</code>.</p>
 <p>If the value is an expression that evaluates to a <code>Dirent</code> object, this
 indicates that the File or Directory in <code>entry</code> should be added to the
 designated output directory with the name in <code>entryname</code>.</p>
+<p>If the value is an expression that evaluates to <code>null</code>, nothing is added
+to the designated output directory from this entry.</p>
 <p>If <code>writable</code> is false, the file may be made available using a bind
 mount or file system link to avoid unnecessary copying of the input
 file.</p>
@@ -2950,15 +2979,35 @@ If "max" is specified by "min" is not, then "min" == "max".</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>coresMin</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#Expression">Expression</a></div>
-<div class="col-xs-12 col-lg-6 description-col"><p>Minimum reserved number of CPU cores (default is 1)</p>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#CWLType">float</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Minimum reserved number of CPU cores (default is 1).</p>
+<p>May be a fractional value to indicate to a scheduling
+algorithm that one core can be allocated to multiple
+jobs. For example, a value of 0.25 indicates that up to 4
+jobs may run in parallel on 1 core.  A value of 1.25 means
+that up to 3 jobs can run on a 4 core system (4/1.25 ≈ 3).</p>
+<p>Processes can only share a core allocation if the sum of each
+of their <code>ramMax</code>, <code>tmpdirMax</code>, and <code>outdirMax</code> requests also
+do not exceed the capacity of the node.</p>
+<p>Processes sharing a core must have the same level of isolation
+(typically a container or VM) that they would normally.</p>
+<p>The reported number of CPU cores reserved for the process,
+which is available to expressions on the CommandLineTool as
+<code>runtime.cores</code>, must be a non-zero integer, and may be
+calculated by rounding up the cores request to the next whole
+number.</p>
+<p>Scheduling systems may allocate fractional CPU resources by
+setting quotas or scheduling weights.  Scheduling systems that
+do not support fractional CPUs may round up the request to the
+next whole number.</p>
 </div>
 </div>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>coresMax</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">int</a> | <a href="#Expression">Expression</a></div>
-<div class="col-xs-12 col-lg-6 description-col"><p>Maximum reserved number of CPU cores</p>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#CWLType">float</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Maximum reserved number of CPU cores.</p>
+<p>See <code>coresMin</code> for discussion about fractional CPU requests.</p>
 </div>
 </div>
 <div class="row responsive-table-row">
@@ -3137,7 +3186,7 @@ wall-time for the execution of the command line itself.</p>
 time limit.  Negative time limits are an error.</p>
 </div>
 </div></div><h2 id="CWLVersion" class="section">5.18 CWLVersion <a href="#CWLVersion">&sect;</a></h2><p>Version symbols for published CWL document versions.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>draft-2</code></td><td></td></tr><tr><td><code>draft-3.dev1</code></td><td></td></tr><tr><td><code>draft-3.dev2</code></td><td></td></tr><tr><td><code>draft-3.dev3</code></td><td></td></tr><tr><td><code>draft-3.dev4</code></td><td></td></tr><tr><td><code>draft-3.dev5</code></td><td></td></tr><tr><td><code>draft-3</code></td><td></td></tr><tr><td><code>draft-4.dev1</code></td><td></td></tr><tr><td><code>draft-4.dev2</code></td><td></td></tr><tr><td><code>draft-4.dev3</code></td><td></td></tr><tr><td><code>v1.0.dev4</code></td><td></td></tr><tr><td><code>v1.0</code></td><td></td></tr><tr><td><code>v1.1.0-dev1</code></td><td></td></tr><tr><td><code>v1.1</code></td><td></td></tr><tr><td><code>v1.2.0-dev1</code></td><td></td></tr></table></div>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>draft-2</code></td><td></td></tr><tr><td><code>draft-3.dev1</code></td><td></td></tr><tr><td><code>draft-3.dev2</code></td><td></td></tr><tr><td><code>draft-3.dev3</code></td><td></td></tr><tr><td><code>draft-3.dev4</code></td><td></td></tr><tr><td><code>draft-3.dev5</code></td><td></td></tr><tr><td><code>draft-3</code></td><td></td></tr><tr><td><code>draft-4.dev1</code></td><td></td></tr><tr><td><code>draft-4.dev2</code></td><td></td></tr><tr><td><code>draft-4.dev3</code></td><td></td></tr><tr><td><code>v1.0.dev4</code></td><td></td></tr><tr><td><code>v1.0</code></td><td></td></tr><tr><td><code>v1.1.0-dev1</code></td><td></td></tr><tr><td><code>v1.1</code></td><td></td></tr><tr><td><code>v1.2.0-dev1</code></td><td></td></tr><tr><td><code>v1.2.0-dev2</code></td><td></td></tr></table></div>
     </div>
     </div>
     </body>
