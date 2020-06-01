@@ -223,7 +223,6 @@
         "networkAccess": "https://w3id.org/cwl/cwl#NetworkAccess/networkAccess",
         "no_listing": "https://w3id.org/cwl/cwl#LoadListingEnum/no_listing",
         "null": "https://w3id.org/cwl/salad#null",
-        "only_non_null": "https://w3id.org/cwl/cwl#PickValueMethod/only_non_null",
         "out": {
             "@id": "https://w3id.org/cwl/cwl#out",
             "@type": "@id",
@@ -318,6 +317,7 @@
             "identity": true
         },
         "temporaryFailCodes": "https://w3id.org/cwl/cwl#CommandLineTool/temporaryFailCodes",
+        "the_only_non_null": "https://w3id.org/cwl/cwl#PickValueMethod/the_only_non_null",
         "timelimit": "https://w3id.org/cwl/cwl#ToolTimeLimit/timelimit",
         "tmpdirMax": "https://w3id.org/cwl/cwl#ResourceRequirement/tmpdirMax",
         "tmpdirMin": "https://w3id.org/cwl/cwl#ResourceRequirement/tmpdirMin",
@@ -334,6 +334,7 @@
         "v1.1.0-dev1": "https://w3id.org/cwl/cwl#v1.1.0-dev1",
         "v1.2.0-dev1": "https://w3id.org/cwl/cwl#v1.2.0-dev1",
         "v1.2.0-dev2": "https://w3id.org/cwl/cwl#v1.2.0-dev2",
+        "v1.2.0-dev3": "https://w3id.org/cwl/cwl#v1.2.0-dev3",
         "valueFrom": "cwl:valueFrom",
         "version": "https://w3id.org/cwl/cwl#SoftwarePackage/version",
         "when": "cwl:when",
