@@ -335,6 +335,7 @@
         "v1.2.0-dev1": "https://w3id.org/cwl/cwl#v1.2.0-dev1",
         "v1.2.0-dev2": "https://w3id.org/cwl/cwl#v1.2.0-dev2",
         "v1.2.0-dev3": "https://w3id.org/cwl/cwl#v1.2.0-dev3",
+        "v1.2.0-dev4": "https://w3id.org/cwl/cwl#v1.2.0-dev4",
         "valueFrom": "cwl:valueFrom",
         "version": "https://w3id.org/cwl/cwl#SoftwarePackage/version",
         "when": "cwl:when",
