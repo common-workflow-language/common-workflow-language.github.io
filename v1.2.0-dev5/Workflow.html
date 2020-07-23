@@ -12,7 +12,7 @@
     <script src="https://cdn.rawgit.com/scottjehl/picturefill/3.0.2/dist/picturefill.min.js"
         integrity="sha384-ZJsVW8YHHxQHJ+SJDncpN90d0EfAhPP+yA94n+EhSRzhcxfo84yMnNk+v37RGlWR"
         crossorigin="anonymous" async></script>
-    <title>Common Workflow Language (CWL) Workflow Description, v1.2.0-dev4</title>
+    <title>Common Workflow Language (CWL) Workflow Description, v1.2.0-dev5</title>
     <style>
     :target {
       padding-top: 61px;
@@ -95,9 +95,9 @@
     
     <div class="row">
     
-    <div class="col-md-12" role="main" id="main"><h1 id="Common_Workflow_Language_(CWL)_Workflow_Description,_v1.2.0-dev4" class="section">Common Workflow Language (CWL) Workflow Description, v1.2.0-dev4 <a href="#Common_Workflow_Language_(CWL)_Workflow_Description,_v1.2.0-dev4">&sect;</a></h1><p>This version:</p>
+    <div class="col-md-12" role="main" id="main"><h1 id="Common_Workflow_Language_(CWL)_Workflow_Description,_v1.2.0-dev5" class="section">Common Workflow Language (CWL) Workflow Description, v1.2.0-dev5 <a href="#Common_Workflow_Language_(CWL)_Workflow_Description,_v1.2.0-dev5">&sect;</a></h1><p>This version:</p>
 <ul>
-<li><a href="https://w3id.org/cwl/v1.2.0-dev4/">https://w3id.org/cwl/v1.2.0-dev4/</a></li>
+<li><a href="https://w3id.org/cwl/v1.2.0-dev5/">https://w3id.org/cwl/v1.2.0-dev5/</a></li>
 </ul>
 <p>Current version:</p>
 <ul>
@@ -108,9 +108,15 @@
 <li>Peter Amstutz, Curii Inc. / Arvados; <a href="https://orcid.org/0000-0003-3566-7705">https://orcid.org/0000-0003-3566-7705</a></li>
 <li>Michael R. Crusoe, CWL Project Lead; <a href="https://orcid.org/0000-0002-2961-9670">https://orcid.org/0000-0002-2961-9670</a></li>
 <li>Kaushik Ghose, Seven Bridges Genomics, Inc; <a href="https://orcid.org/0000-0003-2933-1260">https://orcid.org/0000-0003-2933-1260</a></li>
+</ul>
+<p>Contributors to v1.2:</p>
+<ul>
+<li>John Chilton <a href="mailto:jmchilton@gmail.com">jmchilton@gmail.com</a>, Galaxy Project, Pennsylvania State University; <a href="https://orcid.org/0000-0002-6794-0756">https://orcid.org/0000-0002-6794-0756</a></li>
+<li>Michael Franklin <a href="mailto:michael.franklin@petermac.org">michael.franklin@petermac.org</a>, Peter MacCallum Cancer Centre and University of Melbourne</li>
+<li>Bogdan Gavrilovic <a href="mailto:bogdan.gavrilovic@sbgenomics.com">bogdan.gavrilovic@sbgenomics.com</a>, Seven Bridges Genomics</li>
 <li>Stian Soiland-Reyes, University of Manchester; <a href="https://orcid.org/0000-0001-9842-9718">https://orcid.org/0000-0001-9842-9718</a></li>
 </ul>
-<p>Contributors: TBD</p>
+<p>Incorporates the work of past authors and contributors to <a href="https://www.commonwl.org/v1.0/Workflow.html">CWL v1.0</a> and <a href="https://www.commonwl.org/v1.1/Workflow.html">CWL v1.1</a>.</p>
 <p>This specification is a draft, and has not yet been approved as an official CWL standard.</p>
 <!-- v1.2.0-devN is not yet approvied
 This specification was [approved on 6 June 2019](https://github.com/common-workflow-language/common-workflow-language/issues/861) by the CWL leadership team consisting of:
@@ -134,17 +140,16 @@ output.  CWL is portable across a variety of computing
 platforms.</p>
 <h1 id="Status_of_this_document" class="section">Status of this document <a href="#Status_of_this_document">&sect;</a></h1><p>This document is the product of the <a href="https://www.commonwl.org/">Common Workflow Language working
 group</a>.  The
-source for the latest stable version of this document is available in the "v1.0" directory at</p>
-<p><a href="https://github.com/common-workflow-language/common-workflow-language">https://github.com/common-workflow-language/common-workflow-language</a></p>
-<p>The current development version is at <a href="https://github.com/common-workflow-language/cwl-v1.2/">https://github.com/common-workflow-language/cwl-v1.2/</a></p>
+source for the latest version of this document is available at</p>
+<p><a href="https://github.com/common-workflow-language/cwl-v1.2/">https://github.com/common-workflow-language/cwl-v1.2/</a></p>
 <p>The products of the CWL working group (including this document) are made available
 under the terms of the Apache License, version 2.0.</p>
 <h1 id="toc">Table of contents</h1>
-               <nav class="tocnav"><ol><li><a href="#Common_Workflow_Language_(CWL)_Workflow_Description,_v1.2.0-dev4"> Common Workflow Language (CWL) Workflow Description, v1.2.0-dev4</a><ol>
+               <nav class="tocnav"><ol><li><a href="#Common_Workflow_Language_(CWL)_Workflow_Description,_v1.2.0-dev5"> Common Workflow Language (CWL) Workflow Description, v1.2.0-dev5</a><ol>
 </ol><li><a href="#Abstract"> Abstract</a><ol>
 </ol><li><a href="#Status_of_this_document"> Status of this document</a><ol>
 </ol><li><a href="#Introduction">1. Introduction</a><ol>
-<li><a href="#Introduction_to_CWL_Workflow_standard_v1.2.0-dev4">1.1 Introduction to CWL Workflow standard v1.2.0-dev4</a><ol>
+<li><a href="#Introduction_to_CWL_Workflow_standard_v1.2.0-dev5">1.1 Introduction to CWL Workflow standard v1.2.0-dev5</a><ol>
 </ol><li><a href="#Changelog">1.2 Changelog</a><ol>
 </ol><li><a href="#Purpose">1.3 Purpose</a><ol>
 </ol><li><a href="#References_to_other_specifications">1.4 References to other specifications</a><ol>
@@ -226,15 +231,15 @@ interest in portability of data analysis workflows.  The goal is to create
 specifications like this one that enable data scientists to describe analysis
 tools and workflows that are powerful, easy to use, portable, and support
 reproducibility.</p>
-<h2 id="Introduction_to_CWL_Workflow_standard_v1.2.0-dev4" class="section">1.1 Introduction to CWL Workflow standard v1.2.0-dev4 <a href="#Introduction_to_CWL_Workflow_standard_v1.2.0-dev4">&sect;</a></h2><p>This specification represents the latest stable release from the
-CWL group.  Since the v1.1 release, v1.2.0-dev4 introduces the
+<h2 id="Introduction_to_CWL_Workflow_standard_v1.2.0-dev5" class="section">1.1 Introduction to CWL Workflow standard v1.2.0-dev5 <a href="#Introduction_to_CWL_Workflow_standard_v1.2.0-dev5">&sect;</a></h2><p>This specification represents the latest stable release from the
+CWL group.  Since the v1.1 release, v1.2.0-dev5 introduces the
 following updates to the CWL Workflow standard.
-Documents should to use <code>cwlVersion: v1.2.0-dev4</code> to make use of new
-syntax and features introduced in v1.2.0-dev4.  Existing v1.1 documents
+Documents should to use <code>cwlVersion: v1.2.0-dev5</code> to make use of new
+syntax and features introduced in v1.2.0-dev5.  Existing v1.1 documents
 should be trivially updatable by changing <code>cwlVersion</code>, however
 CWL documents that relied on previously undefined or
 underspecified behavior may have slightly different behavior in
-v1.2.0-dev4.</p>
+v1.2.0-dev5.</p>
 <h2 id="Changelog" class="section">1.2 Changelog <a href="#Changelog">&sect;</a></h2><ul>
 <li>Adds <code>when</code> field to <a href="#WorkflowStep">WorkflowStep</a> for conditional
 execution</li>
@@ -251,14 +256,17 @@ identifier for the type of computational operation.</li>
 load a file greater than 64 KiB instead of silently truncating
 the data.</li>
 <li>Note that only enum and record types can be typedef-ed</li>
-<li>Escaping in [string interpolation[(#String_Interpolation) has
+<li>Escaping in <a href="#String_Interpolation">string interpolation</a> has
 been added to the specification along with conformance tests.</li>
 <li>Added discussion of <a href="#Packed_documents">packed documents</a>.</li>
 <li>Specify behavior when <code>source</code> is a single-item list and no
 linkMerge is set.</li>
 <li>Added discussion about handling different document versions.</li>
+<li>Added definition of <strong>data link</strong></li>
 </ul>
-<p>See also the <a href="CommandLineTool.html#Changelog">CWL Command Line Tool Description, v1.2.0-dev4 changelog</a>.</p>
+<p>See also the <a href="CommandLineTool.html#Changelog">CWL Command Line Tool Description, v1.2.0-dev5 changelog</a>.
+For other changes since CWL v1.0, see the
+<a href="https://www.commonwl.org/v1.1/Workflow.html#Changelog">CWL Workflow Description, v1.1 changelog</a></p>
 <h2 id="Purpose" class="section">1.3 Purpose <a href="#Purpose">&sect;</a></h2><p>The Common Workflow Language Command Line Tool Description
 express workflows for data-intensive science, such as
 bioinformatics, physics, astronomy, geoscience, and machine
@@ -312,10 +320,12 @@ boolean, array, or object.</p>
 <p>A <strong>process</strong> is a basic unit of computation which accepts input data,
 performs some computation, and produces output data. Examples include
 CommandLineTools, Workflows, and ExpressionTools.</p>
-<p>An <strong>input object</strong> is an object describing the inputs to an invocation of
-a process.</p>
-<p>An <strong>output object</strong> is an object describing the output resulting from an
-invocation of a process.</p>
+<p>An <strong>input object</strong> is an object describing the inputs to an
+invocation of a process.  The fields of the input object are referred
+to as "input parameters".</p>
+<p>An <strong>output object</strong> is an object describing the output resulting from
+an invocation of a process.  The fields of the output object are
+referred to as "output parameters".</p>
 <p>An <strong>input schema</strong> describes the valid format (required fields, data types)
 for an input object.</p>
 <p>An <strong>output schema</strong> describes the valid format for an output object.</p>
@@ -551,6 +561,11 @@ capable of interpreting CWL documents and executing the processes specified by
 the document.  The responsibilities of the workflow platform may include
 scheduling process invocation, setting up the necessary runtime environment,
 making input data available, invoking the tool process, and collecting output.</p>
+<p>A <strong>data link</strong> is a connection from a "Source" parameter to a "Sink"
+parameter.  A data link expresses that when a value becomes available
+for the source parameter, that value should be copied to the "sink"
+parameter.  Reflecting the direction of data flow, a data link is
+described as "outgoing" from the source and "inbound" to the sink.</p>
 <p>A workflow platform may choose to only implement the Command Line Tool
 Description part of the CWL specification.</p>
 <p>It is intended that the workflow platform has broad leeway outside of this
@@ -570,8 +585,10 @@ platform include:</p>
 <p>Conforming CWL processes must not assume anything about the runtime
 environment or workflow platform unless explicitly declared though the use
 of <a href="#Requirements_and_hints">process requirements</a>.</p>
-<h2 id="Generic_execution_process" class="section">3.2 Generic execution process <a href="#Generic_execution_process">&sect;</a></h2><p>The generic execution sequence of a CWL process (including workflows and
-command line line tools) is as follows.</p>
+<h2 id="Generic_execution_process" class="section">3.2 Generic execution process <a href="#Generic_execution_process">&sect;</a></h2><p>The generic execution sequence of a CWL process (including workflows
+and command line line tools) is as follows.  Processes are
+modeled as functions that consume an input object and produce an
+output object.</p>
 <ol>
 <li>Load input object.</li>
 <li>Load, process and validate a CWL document, yielding one or more process objects.
@@ -790,14 +807,19 @@ dependent step.  If two steps are defined in the workflow graph that
 are not directly or indirectly dependent, these steps are <strong>independent</strong>,
 and may execute in any order or execute concurrently.  A workflow is
 complete when all steps have been executed.</p>
-<p>Dependencies between parameters are expressed using the <code>source</code> field on
-<a href="#WorkflowStepInput">workflow step input parameters</a> and <a href="#WorkflowOutputParameter">workflow output
+<p>Dependencies between parameters are expressed using the <code>source</code>
+field on <a href="#WorkflowStepInput">workflow step input parameters</a> and
+<code>outputSource</code> field on <a href="#WorkflowOutputParameter">workflow output
 parameters</a>.</p>
-<p>The <code>source</code> field expresses the dependency of one parameter on another
-such that when a value is associated with the parameter specified by
-<code>source</code>, that value is propagated to the destination parameter.  When all
-data links inbound to a given step are fufilled, the step is ready to
-execute.</p>
+<p>The <code>source</code> field on each workflow step input parameter expresses
+the data links that contribute to the value of the step input
+parameter (the "sink").  A workflow step can only begin execution
+when every data link connected to a step has been fulfilled.</p>
+<p>The <code>outputSource</code> field on each workflow step input parameter
+expresses the data links that contribute to the value of the
+workflow output parameter (the "sink").  Workflow execution cannot
+complete successfully until every data link connected to an output
+parameter has been fulfilled.</p>
 <h3 id="Workflow_success_and_failure" class="section">Workflow success and failure <a href="#Workflow_success_and_failure">&sect;</a></h3><p>A completed step must result in one of <code>success</code>, <code>temporaryFailure</code> or
 <code>permanentFailure</code> states.  An implementation may choose to retry a step
 execution which resulted in <code>temporaryFailure</code>.  An implementation may
@@ -3100,7 +3122,8 @@ unavailable or unsuitable. While harmless to other sites, site specific
 software IRIs should be left out of shared CWL descriptions to avoid
 clutter.</p>
 </div>
-</div></div><h3 id="InitialWorkDirRequirement" class="section">4.3.9 InitialWorkDirRequirement <a href="#InitialWorkDirRequirement">&sect;</a></h3><p>Define a list of files and subdirectories that must be created by the workflow platform in the designated output directory prior to executing the command line tool.</p>
+</div></div><h3 id="InitialWorkDirRequirement" class="section">4.3.9 InitialWorkDirRequirement <a href="#InitialWorkDirRequirement">&sect;</a></h3><p>Define a list of files and subdirectories that must be staged by the workflow platform prior to executing the command line tool.
+Normally files are staged within the designated output directory. However, when running inside containers, files may be staged at arbitrary locations, see discussion for <code>Dirent.entryname</code>. Together with <code>DockerRequirement.dockerOutputDirectory</code> this it possible to control the locations of both input and output files when running in containers.</p>
 <h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
@@ -3120,8 +3143,8 @@ clutter.</p>
 <div class="col-xs-3 col-lg-2"><code>listing</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
 <div class="col-xs-7 col-lg-3"><a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">null</a> | <a href="#Dirent">Dirent</a> | <a href="#Expression">Expression</a> | <a href="#File">File</a> | <a href="#Directory">Directory</a> | array&lt;<a href="#File">File</a>&nbsp;|&nbsp;<a href="#Directory">Directory</a>&gt;&gt;</div>
-<div class="col-xs-12 col-lg-6 description-col"><p>The list of files or subdirectories that must be placed in the
-designated output directory prior to executing the command line tool.</p>
+<div class="col-xs-12 col-lg-6 description-col"><p>The list of files or subdirectories that must be staged prior
+to executing the command line tool.</p>
 <p>Return type of each expression must validate as <code>["null",
 File, Directory, Dirent, {type: array, items: [File,
 Directory]}]</code>.</p>
@@ -3132,17 +3155,21 @@ executing the tool.</p>
 expression specifies a file to be created or staged in the
 designated output directory prior to executing the tool.</p>
 <p>Expressions may return null, in which case they have no effect.</p>
-<p>Files or Directories which are listed in the input parameters and
-appear in the <code>InitialWorkDirRequirement</code> listing must have their
-<code>path</code> set to their staged location in the designated output directory.
-If the same File or Directory appears more than once in the
-<code>InitialWorkDirRequirement</code> listing, the implementation must choose
-exactly one value for <code>path</code>; how this value is chosen is undefined.</p>
+<p>Files or Directories which are listed in the input parameters
+and appear in the <code>InitialWorkDirRequirement</code> listing must
+have their <code>path</code> set to their staged location.  If the same
+File or Directory appears more than once in the
+<code>InitialWorkDirRequirement</code> listing, the implementation must
+choose exactly one value for <code>path</code>; how this value is chosen
+is undefined.</p>
 </div>
-</div></div><h4 id="Dirent" class="section">4.3.9.1 Dirent <a href="#Dirent">&sect;</a></h4><p>Define a file or subdirectory that must be placed in the designated output
-directory prior to executing the command line tool.  May be the result of
-executing an expression, such as building a configuration file from a
-template.</p>
+</div></div><h4 id="Dirent" class="section">4.3.9.1 Dirent <a href="#Dirent">&sect;</a></h4><p>Define a file or subdirectory that must be staged to a particular
+place prior to executing the command line tool.  May be the result
+of executing an expression, such as building a configuration file
+from a template.</p>
+<p>Usually files are staged within the <a href="#Runtime_environment">designated output directory</a>.
+However, under certain circumstances, files may be staged at
+arbitrary locations, see discussion for <code>entryname</code>.</p>
 <h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
@@ -3178,15 +3205,29 @@ references</a>.</p>
 <div class="col-xs-3 col-lg-2"><code>entryname</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
-<div class="col-xs-12 col-lg-6 description-col"><p>The name of the file or subdirectory to create in the output
-directory.  If <code>entry</code> is a File or Directory, the <code>entryname</code>
-field overrides the value of <code>basename</code> of the File or
-Directory object.</p>
+<div class="col-xs-12 col-lg-6 description-col"><p>The "target" name of the file or subdirectory.  If <code>entry</code> is
+a File or Directory, the <code>entryname</code> field overrides the value
+of <code>basename</code> of the File or Directory object.</p>
 <ul>
 <li>Required when <code>entry</code> evaluates to file contents only</li>
 <li>Optional when <code>entry</code> evaluates to a File or Directory object with a <code>basename</code></li>
 <li>Invalid when <code>entry</code> evaluates to an array of File or Directory objects.</li>
 </ul>
+<p>If <code>entryname</code> is a relative path, it specifies a name within
+the designated output directory.  A relative path starting
+with <code>../</code> or that resolves to location above the designated output directory is an error.</p>
+<p>If <code>entryname</code> is an absolute path (starts with a slash <code>/</code>)
+it is an error unless the following conditions are met:</p>
+<ul>
+<li><code>DockerRequirement</code> is present in <code>requirements</code></li>
+<li>The program is will run inside a software container
+where, from the perspective of the program, the root
+filesystem is not shared with any other user or
+running program.</li>
+</ul>
+<p>In this case, and the above conditions are met, then
+<code>entryname</code> may specify the absolute path within the container
+where the file or directory must be placed.</p>
 </div>
 </div>
 <div class="row responsive-table-row">
@@ -3627,7 +3668,7 @@ pipe.  Default: <code>false</code>.</p>
 File object.</p>
 </div>
 </div></div><h4 id="CWLVersion" class="section">4.3.18.2 CWLVersion <a href="#CWLVersion">&sect;</a></h4><p>Version symbols for published CWL document versions.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>draft-2</code></td><td></td></tr><tr><td><code>draft-3.dev1</code></td><td></td></tr><tr><td><code>draft-3.dev2</code></td><td></td></tr><tr><td><code>draft-3.dev3</code></td><td></td></tr><tr><td><code>draft-3.dev4</code></td><td></td></tr><tr><td><code>draft-3.dev5</code></td><td></td></tr><tr><td><code>draft-3</code></td><td></td></tr><tr><td><code>draft-4.dev1</code></td><td></td></tr><tr><td><code>draft-4.dev2</code></td><td></td></tr><tr><td><code>draft-4.dev3</code></td><td></td></tr><tr><td><code>v1.0.dev4</code></td><td></td></tr><tr><td><code>v1.0</code></td><td></td></tr><tr><td><code>v1.1.0-dev1</code></td><td></td></tr><tr><td><code>v1.1</code></td><td></td></tr><tr><td><code>v1.2.0-dev1</code></td><td></td></tr><tr><td><code>v1.2.0-dev2</code></td><td></td></tr><tr><td><code>v1.2.0-dev3</code></td><td></td></tr><tr><td><code>v1.2.0-dev4</code></td><td></td></tr></table><h3 id="Operation" class="section">4.3.19 Operation <a href="#Operation">&sect;</a></h3><p>This record describes an abstract operation.  It is a potential
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>draft-2</code></td><td></td></tr><tr><td><code>draft-3.dev1</code></td><td></td></tr><tr><td><code>draft-3.dev2</code></td><td></td></tr><tr><td><code>draft-3.dev3</code></td><td></td></tr><tr><td><code>draft-3.dev4</code></td><td></td></tr><tr><td><code>draft-3.dev5</code></td><td></td></tr><tr><td><code>draft-3</code></td><td></td></tr><tr><td><code>draft-4.dev1</code></td><td></td></tr><tr><td><code>draft-4.dev2</code></td><td></td></tr><tr><td><code>draft-4.dev3</code></td><td></td></tr><tr><td><code>v1.0.dev4</code></td><td></td></tr><tr><td><code>v1.0</code></td><td></td></tr><tr><td><code>v1.1.0-dev1</code></td><td></td></tr><tr><td><code>v1.1</code></td><td></td></tr><tr><td><code>v1.2.0-dev1</code></td><td></td></tr><tr><td><code>v1.2.0-dev2</code></td><td></td></tr><tr><td><code>v1.2.0-dev3</code></td><td></td></tr><tr><td><code>v1.2.0-dev4</code></td><td></td></tr><tr><td><code>v1.2.0-dev5</code></td><td></td></tr></table><h3 id="Operation" class="section">4.3.19 Operation <a href="#Operation">&sect;</a></h3><p>This record describes an abstract operation.  It is a potential
 step of a workflow that has not yet been bound to a concrete
 implementation.  It specifies an input and output signature, but
 does not provide enough information to be executed.  An
