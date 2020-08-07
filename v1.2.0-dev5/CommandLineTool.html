@@ -15,7 +15,7 @@ href="https://www.commonwl.org/user_guide/assets/favicons/cwl/favicon-96x96.png"
     <script src="https://cdn.rawgit.com/scottjehl/picturefill/3.0.2/dist/picturefill.min.js"
         integrity="sha384-ZJsVW8YHHxQHJ+SJDncpN90d0EfAhPP+yA94n+EhSRzhcxfo84yMnNk+v37RGlWR"
         crossorigin="anonymous" async></script>
-    <title>Common Workflow Language (CWL) Command Line Tool Description, v1.2.0-dev5</title>
+    <title>Common Workflow Language (CWL) Command Line Tool Description, v1.2</title>
     <style>
     :target {
       padding-top: 61px;
@@ -98,9 +98,9 @@ href="https://www.commonwl.org/user_guide/assets/favicons/cwl/favicon-96x96.png"
     
     <div class="row">
     
-    <div class="col-md-12" role="main" id="main"><h1 id="Common_Workflow_Language_(CWL)_Command_Line_Tool_Description,_v1.2.0-dev5" class="section">Common Workflow Language (CWL) Command Line Tool Description, v1.2.0-dev5 <a href="#Common_Workflow_Language_(CWL)_Command_Line_Tool_Description,_v1.2.0-dev5">&sect;</a></h1><p>This version:</p>
+    <div class="col-md-12" role="main" id="main"><h1 id="Common_Workflow_Language_(CWL)_Command_Line_Tool_Description,_v1.2" class="section">Common Workflow Language (CWL) Command Line Tool Description, v1.2 <a href="#Common_Workflow_Language_(CWL)_Command_Line_Tool_Description,_v1.2">&sect;</a></h1><p>This version:</p>
 <ul>
-<li><a href="https://w3id.org/cwl/v1.2.0-dev5/">https://w3id.org/cwl/v1.2.0-dev5/</a></li>
+<li><a href="https://w3id.org/cwl/v1.2/">https://w3id.org/cwl/v1.2/</a></li>
 </ul>
 <p>Latest stable version:</p>
 <ul>
@@ -120,21 +120,16 @@ href="https://www.commonwl.org/user_guide/assets/favicons/cwl/favicon-96x96.png"
 <li>Stian Soiland-Reyes, University of Manchester; <a href="https://orcid.org/0000-0001-9842-9718">https://orcid.org/0000-0001-9842-9718</a></li>
 </ul>
 <p>Incorporates the work of past authors and contributors to <a href="https://www.commonwl.org/v1.0/Workflow.html">CWL v1.0</a> and <a href="https://www.commonwl.org/v1.1/Workflow.html">CWL v1.1</a>.</p>
-<p>This specification is a draft, and has not yet been approved as an official CWL standard.</p>
-<!-- v1.2.0-devN is not yet approvied
-This specification was [approved on 6 June 2019](https://github.com/common-workflow-language/common-workflow-language/issues/861) by the CWL leadership team consisting of:
-
-* Peter Amstutz, Curii Inc. / Arvados; https://orcid.org/0000-0003-3566-7705
-* John Chilton, Pennsylvania State University / Galaxy Project; https://orcid.org/0000-0002-6794-0756
-* Michael R. Crusoe, CWL Project Lead; https://orcid.org/0000-0002-2961-9670
-* Brandi Davis Dusenbery, Seven Bridges Genomics, Inc.; https://orcid.org/0000-0001-7811-8613
-* Jeff Gentry, Broad Institute; https://orcid.org/0000-0001-5351-8442
-* Hervé Ménager, Institut Pasteur; https://orcid.org/0000-0002-7552-1009
-* Stian Soiland-Reyes, University of Manchester; https://orcid.org/0000-0001-9842-9718
-
--->
-
-
+<p>This specification was <a href="https://github.com/common-workflow-language/cwl-v1.2/pull/47">approved on 2020-08-07</a> by the CWL leadership team consisting of:</p>
+<ul>
+<li>Peter Amstutz, Curii Inc. / Arvados; <a href="https://orcid.org/0000-0003-3566-7705">https://orcid.org/0000-0003-3566-7705</a></li>
+<li>John Chilton, Pennsylvania State University / Galaxy Project; <a href="https://orcid.org/0000-0002-6794-0756">https://orcid.org/0000-0002-6794-0756</a></li>
+<li>Michael R. Crusoe, CWL Project Lead; <a href="https://orcid.org/0000-0002-2961-9670">https://orcid.org/0000-0002-2961-9670</a></li>
+<li>Brandi Davis Dusenbery, Seven Bridges Genomics, Inc.; <a href="https://orcid.org/0000-0001-7811-8613">https://orcid.org/0000-0001-7811-8613</a></li>
+<li>Jeff Gentry, Foundation Medicine; <a href="https://orcid.org/0000-0001-5351-8442">https://orcid.org/0000-0001-5351-8442</a></li>
+<li>Hervé Ménager, Institut Pasteur; <a href="https://orcid.org/0000-0002-7552-1009">https://orcid.org/0000-0002-7552-1009</a></li>
+<li>Stian Soiland-Reyes, University of Manchester; <a href="https://orcid.org/0000-0001-9842-9718">https://orcid.org/0000-0001-9842-9718</a></li>
+</ul>
 <h1 id="Abstract" class="section">Abstract <a href="#Abstract">&sect;</a></h1><p>A Command Line Tool is a non-interactive executable program that reads
 some input, performs a computation, and terminates after producing some
 output.  Command line programs are a flexible unit of code sharing and
@@ -152,11 +147,11 @@ source for the latest version of this document is available at</p>
 <p>The products of the CWL working group (including this document) are made available
 under the terms of the Apache License, version 2.0.</p>
 <h1 id="toc">Table of contents</h1>
-               <nav class="tocnav"><ol><li><a href="#Common_Workflow_Language_(CWL)_Command_Line_Tool_Description,_v1.2.0-dev5"> Common Workflow Language (CWL) Command Line Tool Description, v1.2.0-dev5</a><ol>
+               <nav class="tocnav"><ol><li><a href="#Common_Workflow_Language_(CWL)_Command_Line_Tool_Description,_v1.2"> Common Workflow Language (CWL) Command Line Tool Description, v1.2</a><ol>
 </ol><li><a href="#Abstract"> Abstract</a><ol>
 </ol><li><a href="#Status_of_this_document"> Status of this document</a><ol>
 </ol><li><a href="#Introduction">1. Introduction</a><ol>
-<li><a href="#Introduction_to_the_CWL_Command_Line_Tool_standard_v1.2.0-dev5">1.1 Introduction to the CWL Command Line Tool standard v1.2.0-dev5</a><ol>
+<li><a href="#Introduction_to_the_CWL_Command_Line_Tool_standard_v1.2">1.1 Introduction to the CWL Command Line Tool standard v1.2</a><ol>
 </ol><li><a href="#Changelog">1.2 Changelog</a><ol>
 </ol><li><a href="#Purpose">1.3 Purpose</a><ol>
 </ol><li><a href="#References_to_other_specifications">1.4 References to other specifications</a><ol>
@@ -232,15 +227,15 @@ interest in portability of data analysis workflows.  The goal is to create
 specifications like this one that enable data scientists to describe analysis
 tools and workflows that are powerful, easy to use, portable, and support
 reproducibility.</p>
-<h2 id="Introduction_to_the_CWL_Command_Line_Tool_standard_v1.2.0-dev5" class="section">1.1 Introduction to the CWL Command Line Tool standard v1.2.0-dev5 <a href="#Introduction_to_the_CWL_Command_Line_Tool_standard_v1.2.0-dev5">&sect;</a></h2><p>This specification represents the latest development release from the
-CWL group.  Since the v1.1 release, v1.2.0-dev5 introduces the
+<h2 id="Introduction_to_the_CWL_Command_Line_Tool_standard_v1.2" class="section">1.1 Introduction to the CWL Command Line Tool standard v1.2 <a href="#Introduction_to_the_CWL_Command_Line_Tool_standard_v1.2">&sect;</a></h2><p>This specification represents the latest development release from the
+CWL group.  Since the v1.1 release, v1.2 introduces the
 following updates to the CWL Command Line Tool standard.
-Documents should use <code>cwlVersion: v1.2.0-dev5</code> to make use of new
-syntax and features introduced in v1.2.0-dev5.  Existing v1.1 documents
+Documents should use <code>cwlVersion: v1.2</code> to make use of new
+syntax and features introduced in v1.2.  Existing v1.1 documents
 should be trivially updatable by changing <code>cwlVersion</code>, however
 CWL documents that relied on previously undefined or
 underspecified behavior may have slightly different behavior in
-v1.2.0-dev5.</p>
+v1.2.</p>
 <h2 id="Changelog" class="section">1.2 Changelog <a href="#Changelog">&sect;</a></h2><ul>
 <li><code>coresMin</code> and <code>coresMax</code> of
   <a href="#ResourceRequirement">ResourceRequirement</a> may now request fractional CPUs.</li>
@@ -272,7 +267,7 @@ control the locations of both input and output files when
 running in containers.</li>
 <li>Specify default success/fail interpretation of exit codes when not given.</li>
 </ul>
-<p>See also the <a href="Workflow.html#Changelog">CWL Workflow Description, v1.2.0-dev5 changelog</a>.
+<p>See also the <a href="Workflow.html#Changelog">CWL Workflow Description, v1.2 changelog</a>.
 For other changes since CWL v1.0, see the
 <a href="https://www.commonwl.org/v1.1/CommandLineTool.html#Changelog">CWL Command Line Tool Description, v1.1 changelog</a></p>
 <h2 id="Purpose" class="section">1.3 Purpose <a href="#Purpose">&sect;</a></h2><p>Standalone programs are a flexible and interoperable form of code reuse.
@@ -3396,7 +3391,7 @@ wall-time for the execution of the command line itself.</p>
 time limit.  Negative time limits are an error.</p>
 </div>
 </div></div><h2 id="CWLVersion" class="section">5.18 CWLVersion <a href="#CWLVersion">&sect;</a></h2><p>Version symbols for published CWL document versions.</p>
-<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>draft-2</code></td><td></td></tr><tr><td><code>draft-3.dev1</code></td><td></td></tr><tr><td><code>draft-3.dev2</code></td><td></td></tr><tr><td><code>draft-3.dev3</code></td><td></td></tr><tr><td><code>draft-3.dev4</code></td><td></td></tr><tr><td><code>draft-3.dev5</code></td><td></td></tr><tr><td><code>draft-3</code></td><td></td></tr><tr><td><code>draft-4.dev1</code></td><td></td></tr><tr><td><code>draft-4.dev2</code></td><td></td></tr><tr><td><code>draft-4.dev3</code></td><td></td></tr><tr><td><code>v1.0.dev4</code></td><td></td></tr><tr><td><code>v1.0</code></td><td></td></tr><tr><td><code>v1.1.0-dev1</code></td><td></td></tr><tr><td><code>v1.1</code></td><td></td></tr><tr><td><code>v1.2.0-dev1</code></td><td></td></tr><tr><td><code>v1.2.0-dev2</code></td><td></td></tr><tr><td><code>v1.2.0-dev3</code></td><td></td></tr><tr><td><code>v1.2.0-dev4</code></td><td></td></tr><tr><td><code>v1.2.0-dev5</code></td><td></td></tr></table></div>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>draft-2</code></td><td></td></tr><tr><td><code>draft-3.dev1</code></td><td></td></tr><tr><td><code>draft-3.dev2</code></td><td></td></tr><tr><td><code>draft-3.dev3</code></td><td></td></tr><tr><td><code>draft-3.dev4</code></td><td></td></tr><tr><td><code>draft-3.dev5</code></td><td></td></tr><tr><td><code>draft-3</code></td><td></td></tr><tr><td><code>draft-4.dev1</code></td><td></td></tr><tr><td><code>draft-4.dev2</code></td><td></td></tr><tr><td><code>draft-4.dev3</code></td><td></td></tr><tr><td><code>v1.0.dev4</code></td><td></td></tr><tr><td><code>v1.0</code></td><td></td></tr><tr><td><code>v1.1.0-dev1</code></td><td></td></tr><tr><td><code>v1.1</code></td><td></td></tr><tr><td><code>v1.2.0-dev1</code></td><td></td></tr><tr><td><code>v1.2.0-dev2</code></td><td></td></tr><tr><td><code>v1.2.0-dev3</code></td><td></td></tr><tr><td><code>v1.2.0-dev4</code></td><td></td></tr><tr><td><code>v1.2.0-dev5</code></td><td></td></tr><tr><td><code>v1.2</code></td><td></td></tr></table></div>
     </div>
     </div>
     </body>
