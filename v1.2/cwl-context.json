@@ -1,0 +1,347 @@
+{
+    "@context": {
+        "Any": "https://w3id.org/cwl/salad#Any",
+        "ArraySchema": "https://w3id.org/cwl/salad#ArraySchema",
+        "CWLType": "https://w3id.org/cwl/cwl#CWLType",
+        "CWLVersion": "https://w3id.org/cwl/cwl#CWLVersion",
+        "CommandInputArraySchema": "https://w3id.org/cwl/cwl#CommandInputArraySchema",
+        "CommandInputEnumSchema": "https://w3id.org/cwl/cwl#CommandInputEnumSchema",
+        "CommandInputParameter": "https://w3id.org/cwl/cwl#CommandInputParameter",
+        "CommandInputRecordField": "https://w3id.org/cwl/cwl#CommandInputRecordField",
+        "CommandInputRecordSchema": "https://w3id.org/cwl/cwl#CommandInputRecordSchema",
+        "CommandInputSchema": "https://w3id.org/cwl/cwl#CommandInputSchema",
+        "CommandLineBindable": "https://w3id.org/cwl/cwl#CommandLineBindable",
+        "CommandLineBinding": "https://w3id.org/cwl/cwl#CommandLineBinding",
+        "CommandLineTool": "https://w3id.org/cwl/cwl#CommandLineTool",
+        "CommandOutputArraySchema": "https://w3id.org/cwl/cwl#CommandOutputArraySchema",
+        "CommandOutputBinding": "https://w3id.org/cwl/cwl#CommandOutputBinding",
+        "CommandOutputEnumSchema": "https://w3id.org/cwl/cwl#CommandOutputEnumSchema",
+        "CommandOutputParameter": "https://w3id.org/cwl/cwl#CommandOutputParameter",
+        "CommandOutputRecordField": "https://w3id.org/cwl/cwl#CommandOutputRecordField",
+        "CommandOutputRecordSchema": "https://w3id.org/cwl/cwl#CommandOutputRecordSchema",
+        "Directory": "https://w3id.org/cwl/cwl#Directory",
+        "Directory_class": "https://w3id.org/cwl/cwl#Directory/class/Directory_class",
+        "Dirent": "https://w3id.org/cwl/cwl#Dirent",
+        "DockerRequirement": "https://w3id.org/cwl/cwl#DockerRequirement",
+        "Documented": "https://w3id.org/cwl/salad#Documented",
+        "EnumSchema": "https://w3id.org/cwl/salad#EnumSchema",
+        "EnvVarRequirement": "https://w3id.org/cwl/cwl#EnvVarRequirement",
+        "EnvironmentDef": "https://w3id.org/cwl/cwl#EnvironmentDef",
+        "Expression": "https://w3id.org/cwl/cwl#Expression",
+        "ExpressionPlaceholder": "https://w3id.org/cwl/cwl#ExpressionPlaceholder",
+        "ExpressionTool": "https://w3id.org/cwl/cwl#ExpressionTool",
+        "ExpressionToolOutputParameter": "https://w3id.org/cwl/cwl#ExpressionToolOutputParameter",
+        "FieldBase": "https://w3id.org/cwl/cwl#FieldBase",
+        "File": "https://w3id.org/cwl/cwl#File",
+        "File_class": "https://w3id.org/cwl/cwl#File/class/File_class",
+        "IOSchema": "https://w3id.org/cwl/cwl#IOSchema",
+        "Identified": "https://w3id.org/cwl/cwl#Identified",
+        "InitialWorkDirRequirement": "https://w3id.org/cwl/cwl#InitialWorkDirRequirement",
+        "InlineJavascriptRequirement": "https://w3id.org/cwl/cwl#InlineJavascriptRequirement",
+        "InplaceUpdateRequirement": "https://w3id.org/cwl/cwl#InplaceUpdateRequirement",
+        "InputArraySchema": "https://w3id.org/cwl/cwl#InputArraySchema",
+        "InputBinding": "https://w3id.org/cwl/cwl#InputBinding",
+        "InputEnumSchema": "https://w3id.org/cwl/cwl#InputEnumSchema",
+        "InputFormat": "https://w3id.org/cwl/cwl#InputFormat",
+        "InputParameter": "https://w3id.org/cwl/cwl#InputParameter",
+        "InputRecordField": "https://w3id.org/cwl/cwl#InputRecordField",
+        "InputRecordSchema": "https://w3id.org/cwl/cwl#InputRecordSchema",
+        "InputSchema": "https://w3id.org/cwl/cwl#InputSchema",
+        "Labeled": "https://w3id.org/cwl/cwl#Labeled",
+        "LinkMergeMethod": "https://w3id.org/cwl/cwl#LinkMergeMethod",
+        "LoadContents": "https://w3id.org/cwl/cwl#LoadContents",
+        "LoadListingEnum": "https://w3id.org/cwl/cwl#LoadListingEnum",
+        "LoadListingRequirement": "https://w3id.org/cwl/cwl#LoadListingRequirement",
+        "MultipleInputFeatureRequirement": "https://w3id.org/cwl/cwl#MultipleInputFeatureRequirement",
+        "NetworkAccess": "https://w3id.org/cwl/cwl#NetworkAccess",
+        "Operation": "https://w3id.org/cwl/cwl#Operation",
+        "OperationInputParameter": "https://w3id.org/cwl/cwl#OperationInputParameter",
+        "OperationOutputParameter": "https://w3id.org/cwl/cwl#OperationOutputParameter",
+        "OutputArraySchema": "https://w3id.org/cwl/cwl#OutputArraySchema",
+        "OutputEnumSchema": "https://w3id.org/cwl/cwl#OutputEnumSchema",
+        "OutputFormat": "https://w3id.org/cwl/cwl#OutputFormat",
+        "OutputParameter": "https://w3id.org/cwl/cwl#OutputParameter",
+        "OutputRecordField": "https://w3id.org/cwl/cwl#OutputRecordField",
+        "OutputRecordSchema": "https://w3id.org/cwl/cwl#OutputRecordSchema",
+        "OutputSchema": "https://w3id.org/cwl/cwl#OutputSchema",
+        "Parameter": "https://w3id.org/cwl/cwl#Parameter",
+        "PickValueMethod": "https://w3id.org/cwl/cwl#PickValueMethod",
+        "PrimitiveType": "https://w3id.org/cwl/salad#PrimitiveType",
+        "Process": "https://w3id.org/cwl/cwl#Process",
+        "ProcessRequirement": "https://w3id.org/cwl/cwl#ProcessRequirement",
+        "RecordField": "https://w3id.org/cwl/salad#RecordField",
+        "RecordSchema": "https://w3id.org/cwl/salad#RecordSchema",
+        "ResourceRequirement": "https://w3id.org/cwl/cwl#ResourceRequirement",
+        "ScatterFeatureRequirement": "https://w3id.org/cwl/cwl#ScatterFeatureRequirement",
+        "ScatterMethod": "https://w3id.org/cwl/cwl#ScatterMethod",
+        "SchemaDefRequirement": "https://w3id.org/cwl/cwl#SchemaDefRequirement",
+        "SecondaryFileSchema": "https://w3id.org/cwl/cwl#SecondaryFileSchema",
+        "ShellCommandRequirement": "https://w3id.org/cwl/cwl#ShellCommandRequirement",
+        "Sink": "https://w3id.org/cwl/cwl#Sink",
+        "SoftwarePackage": "https://w3id.org/cwl/cwl#SoftwarePackage",
+        "SoftwareRequirement": "https://w3id.org/cwl/cwl#SoftwareRequirement",
+        "StepInputExpressionRequirement": "https://w3id.org/cwl/cwl#StepInputExpressionRequirement",
+        "SubworkflowFeatureRequirement": "https://w3id.org/cwl/cwl#SubworkflowFeatureRequirement",
+        "ToolTimeLimit": "https://w3id.org/cwl/cwl#ToolTimeLimit",
+        "WorkReuse": "https://w3id.org/cwl/cwl#WorkReuse",
+        "Workflow": "https://w3id.org/cwl/cwl#Workflow",
+        "WorkflowInputParameter": "https://w3id.org/cwl/cwl#WorkflowInputParameter",
+        "WorkflowOutputParameter": "https://w3id.org/cwl/cwl#WorkflowOutputParameter",
+        "WorkflowStep": "https://w3id.org/cwl/cwl#WorkflowStep",
+        "WorkflowStepInput": "https://w3id.org/cwl/cwl#WorkflowStepInput",
+        "WorkflowStepOutput": "https://w3id.org/cwl/cwl#WorkflowStepOutput",
+        "all_non_null": "https://w3id.org/cwl/cwl#PickValueMethod/all_non_null",
+        "arguments": {
+            "@container": "@list",
+            "@id": "https://w3id.org/cwl/cwl#arguments"
+        },
+        "array": "https://w3id.org/cwl/salad#array",
+        "baseCommand": {
+            "@container": "@list",
+            "@id": "https://w3id.org/cwl/cwl#baseCommand"
+        },
+        "basename": "cwl:basename",
+        "boolean": "http://www.w3.org/2001/XMLSchema#boolean",
+        "checksum": "https://w3id.org/cwl/cwl#File/checksum",
+        "class": {
+            "@id": "@type",
+            "@type": "@vocab"
+        },
+        "contents": "https://w3id.org/cwl/cwl#File/contents",
+        "coresMax": "https://w3id.org/cwl/cwl#ResourceRequirement/coresMax",
+        "coresMin": "https://w3id.org/cwl/cwl#ResourceRequirement/coresMin",
+        "cwl": "https://w3id.org/cwl/cwl#",
+        "cwlVersion": {
+            "@id": "https://w3id.org/cwl/cwl#cwlVersion",
+            "@type": "@vocab"
+        },
+        "dct": "http://purl.org/dc/terms/",
+        "deep_listing": "https://w3id.org/cwl/cwl#LoadListingEnum/deep_listing",
+        "default": {
+            "@id": "https://w3id.org/cwl/salad#default",
+            "noLinkCheck": true
+        },
+        "dirname": "https://w3id.org/cwl/cwl#File/dirname",
+        "doc": "rdfs:comment",
+        "dockerFile": "https://w3id.org/cwl/cwl#DockerRequirement/dockerFile",
+        "dockerImageId": "https://w3id.org/cwl/cwl#DockerRequirement/dockerImageId",
+        "dockerImport": "https://w3id.org/cwl/cwl#DockerRequirement/dockerImport",
+        "dockerLoad": "https://w3id.org/cwl/cwl#DockerRequirement/dockerLoad",
+        "dockerOutputDirectory": "https://w3id.org/cwl/cwl#DockerRequirement/dockerOutputDirectory",
+        "dockerPull": "https://w3id.org/cwl/cwl#DockerRequirement/dockerPull",
+        "dotproduct": "https://w3id.org/cwl/cwl#ScatterMethod/dotproduct",
+        "double": "http://www.w3.org/2001/XMLSchema#double",
+        "draft-2": "https://w3id.org/cwl/cwl#draft-2",
+        "draft-3": "https://w3id.org/cwl/cwl#draft-3",
+        "draft-3.dev1": "https://w3id.org/cwl/cwl#draft-3.dev1",
+        "draft-3.dev2": "https://w3id.org/cwl/cwl#draft-3.dev2",
+        "draft-3.dev3": "https://w3id.org/cwl/cwl#draft-3.dev3",
+        "draft-3.dev4": "https://w3id.org/cwl/cwl#draft-3.dev4",
+        "draft-3.dev5": "https://w3id.org/cwl/cwl#draft-3.dev5",
+        "draft-4.dev1": "https://w3id.org/cwl/cwl#draft-4.dev1",
+        "draft-4.dev2": "https://w3id.org/cwl/cwl#draft-4.dev2",
+        "draft-4.dev3": "https://w3id.org/cwl/cwl#draft-4.dev3",
+        "enableReuse": "https://w3id.org/cwl/cwl#WorkReuse/enableReuse",
+        "entry": {
+            "@id": "https://w3id.org/cwl/cwl#entry"
+        },
+        "entryname": {
+            "@id": "https://w3id.org/cwl/cwl#entryname"
+        },
+        "enum": "https://w3id.org/cwl/salad#enum",
+        "envDef": {
+            "@id": "https://w3id.org/cwl/cwl#EnvVarRequirement/envDef",
+            "mapPredicate": "envValue",
+            "mapSubject": "envName"
+        },
+        "envName": "https://w3id.org/cwl/cwl#EnvironmentDef/envName",
+        "envValue": "https://w3id.org/cwl/cwl#EnvironmentDef/envValue",
+        "expression": "https://w3id.org/cwl/cwl#ExpressionTool/expression",
+        "expressionLib": "https://w3id.org/cwl/cwl#InlineJavascriptRequirement/expressionLib",
+        "fields": {
+            "@id": "https://w3id.org/cwl/salad#fields",
+            "mapPredicate": "type",
+            "mapSubject": "name"
+        },
+        "first_non_null": "https://w3id.org/cwl/cwl#PickValueMethod/first_non_null",
+        "flat_crossproduct": "https://w3id.org/cwl/cwl#ScatterMethod/flat_crossproduct",
+        "float": "http://www.w3.org/2001/XMLSchema#float",
+        "format": {
+            "@id": "https://w3id.org/cwl/cwl#format",
+            "@type": "@id",
+            "identity": true
+        },
+        "glob": "https://w3id.org/cwl/cwl#CommandOutputBinding/glob",
+        "hints": {
+            "@id": "https://w3id.org/cwl/cwl#hints",
+            "mapSubject": "class",
+            "noLinkCheck": true
+        },
+        "id": "@id",
+        "in": {
+            "@id": "https://w3id.org/cwl/cwl#in",
+            "mapPredicate": "source",
+            "mapSubject": "id"
+        },
+        "inplaceUpdate": "https://w3id.org/cwl/cwl#InplaceUpdateRequirement/inplaceUpdate",
+        "inputBinding": "cwl:inputBinding",
+        "inputs": {
+            "@id": "https://w3id.org/cwl/cwl#inputs",
+            "mapPredicate": "type",
+            "mapSubject": "id"
+        },
+        "int": "http://www.w3.org/2001/XMLSchema#int",
+        "intent": {
+            "@id": "https://w3id.org/cwl/cwl#Process/intent",
+            "@type": "@id",
+            "identity": true
+        },
+        "itemSeparator": "https://w3id.org/cwl/cwl#CommandLineBinding/itemSeparator",
+        "items": {
+            "@id": "https://w3id.org/cwl/salad#items",
+            "@type": "@vocab",
+            "refScope": 2
+        },
+        "label": "rdfs:label",
+        "linkMerge": "cwl:linkMerge",
+        "listing": {
+            "@id": "https://w3id.org/cwl/cwl#listing"
+        },
+        "loadContents": "cwl:loadContents",
+        "loadListing": "cwl:loadListing",
+        "location": {
+            "@id": "@id",
+            "@type": "@id"
+        },
+        "long": "http://www.w3.org/2001/XMLSchema#long",
+        "merge_flattened": "https://w3id.org/cwl/cwl#LinkMergeMethod/merge_flattened",
+        "merge_nested": "https://w3id.org/cwl/cwl#LinkMergeMethod/merge_nested",
+        "name": "@id",
+        "nameext": "https://w3id.org/cwl/cwl#File/nameext",
+        "nameroot": "https://w3id.org/cwl/cwl#File/nameroot",
+        "nested_crossproduct": "https://w3id.org/cwl/cwl#ScatterMethod/nested_crossproduct",
+        "networkAccess": "https://w3id.org/cwl/cwl#NetworkAccess/networkAccess",
+        "no_listing": "https://w3id.org/cwl/cwl#LoadListingEnum/no_listing",
+        "null": "https://w3id.org/cwl/salad#null",
+        "out": {
+            "@id": "https://w3id.org/cwl/cwl#out",
+            "@type": "@id",
+            "identity": true
+        },
+        "outdirMax": "https://w3id.org/cwl/cwl#ResourceRequirement/outdirMax",
+        "outdirMin": "https://w3id.org/cwl/cwl#ResourceRequirement/outdirMin",
+        "outputBinding": "cwl:outputBinding",
+        "outputEval": "https://w3id.org/cwl/cwl#CommandOutputBinding/outputEval",
+        "outputSource": {
+            "@id": "https://w3id.org/cwl/cwl#outputSource",
+            "@type": "@id",
+            "refScope": 0
+        },
+        "outputs": {
+            "@id": "https://w3id.org/cwl/cwl#outputs",
+            "mapPredicate": "type",
+            "mapSubject": "id"
+        },
+        "package": "https://w3id.org/cwl/cwl#SoftwarePackage/package",
+        "packages": {
+            "@id": "https://w3id.org/cwl/cwl#SoftwareRequirement/packages",
+            "mapPredicate": "specs",
+            "mapSubject": "package"
+        },
+        "path": {
+            "@id": "https://w3id.org/cwl/cwl#path",
+            "@type": "@id"
+        },
+        "pattern": "https://w3id.org/cwl/cwl#SecondaryFileSchema/pattern",
+        "permanentFailCodes": "https://w3id.org/cwl/cwl#CommandLineTool/permanentFailCodes",
+        "pickValue": "cwl:pickValue",
+        "position": "https://w3id.org/cwl/cwl#CommandLineBinding/position",
+        "prefix": "https://w3id.org/cwl/cwl#CommandLineBinding/prefix",
+        "ramMax": "https://w3id.org/cwl/cwl#ResourceRequirement/ramMax",
+        "ramMin": "https://w3id.org/cwl/cwl#ResourceRequirement/ramMin",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "record": "https://w3id.org/cwl/salad#record",
+        "required": "https://w3id.org/cwl/cwl#SecondaryFileSchema/required",
+        "requirements": {
+            "@id": "https://w3id.org/cwl/cwl#requirements",
+            "mapSubject": "class"
+        },
+        "run": {
+            "@id": "https://w3id.org/cwl/cwl#run",
+            "@type": "@id",
+            "subscope": "run"
+        },
+        "scatter": {
+            "@container": "@list",
+            "@id": "https://w3id.org/cwl/cwl#scatter",
+            "@type": "@id",
+            "refScope": 0
+        },
+        "scatterMethod": {
+            "@id": "https://w3id.org/cwl/cwl#scatterMethod",
+            "@type": "@vocab"
+        },
+        "secondaryFiles": {
+            "@id": "https://w3id.org/cwl/cwl#secondaryFiles",
+            "secondaryFilesDSL": true
+        },
+        "separate": "https://w3id.org/cwl/cwl#CommandLineBinding/separate",
+        "shallow_listing": "https://w3id.org/cwl/cwl#LoadListingEnum/shallow_listing",
+        "shellQuote": "https://w3id.org/cwl/cwl#CommandLineBinding/shellQuote",
+        "size": "https://w3id.org/cwl/cwl#File/size",
+        "sld": "https://w3id.org/cwl/salad#",
+        "source": {
+            "@id": "https://w3id.org/cwl/cwl#source",
+            "@type": "@id",
+            "refScope": 2
+        },
+        "specs": {
+            "@id": "https://w3id.org/cwl/cwl#SoftwarePackage/specs",
+            "@type": "@id",
+            "noLinkCheck": true
+        },
+        "stderr": "https://w3id.org/cwl/cwl#stderr",
+        "stdin": "https://w3id.org/cwl/cwl#stdin",
+        "stdout": "https://w3id.org/cwl/cwl#stdout",
+        "steps": {
+            "@id": "https://w3id.org/cwl/cwl#Workflow/steps",
+            "mapSubject": "id"
+        },
+        "streamable": "https://w3id.org/cwl/cwl#FieldBase/streamable",
+        "string": "http://www.w3.org/2001/XMLSchema#string",
+        "successCodes": "https://w3id.org/cwl/cwl#CommandLineTool/successCodes",
+        "symbols": {
+            "@id": "https://w3id.org/cwl/salad#symbols",
+            "@type": "@id",
+            "identity": true
+        },
+        "temporaryFailCodes": "https://w3id.org/cwl/cwl#CommandLineTool/temporaryFailCodes",
+        "the_only_non_null": "https://w3id.org/cwl/cwl#PickValueMethod/the_only_non_null",
+        "timelimit": "https://w3id.org/cwl/cwl#ToolTimeLimit/timelimit",
+        "tmpdirMax": "https://w3id.org/cwl/cwl#ResourceRequirement/tmpdirMax",
+        "tmpdirMin": "https://w3id.org/cwl/cwl#ResourceRequirement/tmpdirMin",
+        "type": {
+            "@id": "https://w3id.org/cwl/salad#type",
+            "@type": "@vocab",
+            "refScope": 2,
+            "typeDSL": true
+        },
+        "types": "https://w3id.org/cwl/cwl#SchemaDefRequirement/types",
+        "v1.0": "https://w3id.org/cwl/cwl#v1.0",
+        "v1.0.dev4": "https://w3id.org/cwl/cwl#v1.0.dev4",
+        "v1.1": "https://w3id.org/cwl/cwl#v1.1",
+        "v1.1.0-dev1": "https://w3id.org/cwl/cwl#v1.1.0-dev1",
+        "v1.2": "https://w3id.org/cwl/cwl#v1.2",
+        "v1.2.0-dev1": "https://w3id.org/cwl/cwl#v1.2.0-dev1",
+        "v1.2.0-dev2": "https://w3id.org/cwl/cwl#v1.2.0-dev2",
+        "v1.2.0-dev3": "https://w3id.org/cwl/cwl#v1.2.0-dev3",
+        "v1.2.0-dev4": "https://w3id.org/cwl/cwl#v1.2.0-dev4",
+        "v1.2.0-dev5": "https://w3id.org/cwl/cwl#v1.2.0-dev5",
+        "valueFrom": "cwl:valueFrom",
+        "version": "https://w3id.org/cwl/cwl#SoftwarePackage/version",
+        "when": "cwl:when",
+        "writable": "https://w3id.org/cwl/cwl#Dirent/writable",
+        "xsd": "http://www.w3.org/2001/XMLSchema#"
+    }
+}
