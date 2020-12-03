@@ -1,0 +1,2079 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css integrity=sha384-604wwakM23pEysLJAhja8Lm42IIwYrJ0dEAqzFsj9pJ/P5buiujjywArgPCi8eoz crossorigin="anonymous">
+<link rel="shortcut icon"
+href="https://www.commonwl.org/user_guide/assets/favicons/cwl/favicon-96x96.png">
+
+    <script>
+    // Picture element HTML5 shiv
+    document.createElement( "picture" );
+    </script>
+    <script src="https://cdn.rawgit.com/scottjehl/picturefill/3.0.2/dist/picturefill.min.js"
+        integrity="sha384-ZJsVW8YHHxQHJ+SJDncpN90d0EfAhPP+yA94n+EhSRzhcxfo84yMnNk+v37RGlWR"
+        crossorigin="anonymous" async></script>
+    <title>Common Workflow Language (CWL) Workflow Description, draft 3</title>
+    <style>
+    :target {
+      padding-top: 61px;
+      margin-top: -61px;
+    }
+    body {
+      padding-top: 61px;
+    }
+    .tocnav ol {
+      list-style: none
+    }
+    pre {
+      margin-left: 2em;
+      margin-right: 2em;
+    }
+    .section a {
+      visibility: hidden;
+    }
+    .section:hover a {
+      visibility: visible;
+      color: rgb(201, 201, 201);
+    }
+    .responsive-table-header {
+      text-align: left;
+      padding: 8px;
+      vertical-align: top;
+      font-weight: bold;
+      border-top-color: rgb(221, 221, 221);
+      border-top-style: solid;
+      border-top-width: 1px;
+      background-color: #f9f9f9
+    }
+    .responsive-table > .responsive-table-row {
+      text-align: left;
+      padding: 8px;
+      vertical-align: top;
+      border-top-color: rgb(221, 221, 221);
+      border-top-style: solid;
+      border-top-width: 1px;
+    }
+    @media (min-width: 0px), print {
+      .description-header {
+        display: none;
+      }
+      .description-col {
+        margin-top: 1em;
+        margin-left: 1.5em;
+      }
+    }
+    @media (min-width: 1170px) {
+      .description-header {
+        display: inline;
+      }
+      .description-col {
+        margin-top: 0px;
+        margin-left: 0px;
+      }
+    }
+    .responsive-table-row:nth-of-type(odd) {
+       background-color: #f9f9f9
+    }
+    </style>
+    </head>
+    <body>
+    
+      <nav class="navbar navbar-default navbar-fixed-top ">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="index.html"><img src='../CWL-Logo-Header.png' style='height: 61px; margin-top: -20px; margin-left: -20px'></img></a>
+    
+                <ul class="nav navbar-nav">
+                  <li><a href="#toc">Table of contents</a></li>
+                </ul>
+        
+          </div>
+        </div>
+      </nav>
+    
+    <div class="container">
+    
+    <div class="row">
+    
+    <div class="col-md-12" role="main" id="main"><h1 id="Common_Workflow_Language_(CWL)_Workflow_Description,_draft_3" class="section">Common Workflow Language (CWL) Workflow Description, draft 3 <a href="#Common_Workflow_Language_(CWL)_Workflow_Description,_draft_3">&sect;</a></h1><p>This version:</p>
+<ul>
+<li><a href="https://w3id.org/cwl/draft-3/">https://w3id.org/cwl/draft-3/</a></li>
+</ul>
+<p>Current version:</p>
+<ul>
+<li><a href="https://w3id.org/cwl/">https://w3id.org/cwl/</a></li>
+</ul>
+<p>Authors:</p>
+<ul>
+<li>Peter Amstutz <a href="mailto:peter.amstutz@curoverse.com">peter.amstutz@curoverse.com</a>, Arvados Project, Curoverse</li>
+<li>Nebojša Tijanić <a href="mailto:nebojsa.tijanic@sbgenomics.com">nebojsa.tijanic@sbgenomics.com</a>, Seven Bridges Genomics</li>
+</ul>
+<p>Contributers:</p>
+<ul>
+<li>Brad Chapman <a href="mailto:bchapman@hsph.harvard.edu">bchapman@hsph.harvard.edu</a>, Harvard Chan School of Public Health</li>
+<li>John Chilton <a href="mailto:jmchilton@gmail.com">jmchilton@gmail.com</a>, Galaxy Project, Pennsylvania State University</li>
+<li>Michael R. Crusoe <a href="mailto:crusoe@ucdavis.edu">crusoe@ucdavis.edu</a>, University of California, Davis</li>
+<li>Andrey Kartashov <a href="mailto:Andrey.Kartashov@cchmc.org">Andrey.Kartashov@cchmc.org</a>, Cincinnati Children's Hospital</li>
+<li>Dan Leehr <a href="mailto:dan.leehr@duke.edu">dan.leehr@duke.edu</a>, Duke University</li>
+<li>Hervé Ménager <a href="mailto:herve.menager@gmail.com">herve.menager@gmail.com</a>, Institut Pasteur</li>
+<li>Stian Soiland-Reyes <a href="mailto:soiland-reyes@cs.manchester.ac.uk">soiland-reyes@cs.manchester.ac.uk</a>, University of Manchester</li>
+<li>Luka Stojanovic <a href="mailto:luka.stojanovic@sbgenomics.com">luka.stojanovic@sbgenomics.com</a>, Seven Bridges Genomics</li>
+</ul>
+<h1 id="Abstract" class="section">Abstract <a href="#Abstract">&sect;</a></h1><p>A Workflow is an analysis task represented by a directed graph describing
+a sequence of operations that transform an input data set to output.
+This specification defines the Common Workflow Language (CWL) Workflow
+description, a vendor-neutral standard for representing workflows
+intended to be portable across a variety of computing platforms.</p>
+<h1 id="Status_of_This_Document" class="section">Status of This Document <a href="#Status_of_This_Document">&sect;</a></h1><p>This document is the product of the <a href="https://groups.google.com/forum/#!forum/common-workflow-language">Common Workflow Language working
+group</a>.  The
+latest version of this document is available in the "draft-3" directory at</p>
+<p><a href="https://github.com/common-workflow-language/common-workflow-language">https://github.com/common-workflow-language/common-workflow-language</a></p>
+<p>The products of the CWL working group (including this document) are made available
+under the terms of the Apache License, version 2.0.</p>
+<h1 id="toc">Table of contents</h1>
+               <nav class="tocnav"><ol><li><a href="#Common_Workflow_Language_(CWL)_Workflow_Description,_draft_3"> Common Workflow Language (CWL) Workflow Description, draft 3</a><ol>
+</ol><li><a href="#Abstract"> Abstract</a><ol>
+</ol><li><a href="#Status_of_This_Document"> Status of This Document</a><ol>
+</ol><li><a href="#Introduction">1. Introduction</a><ol>
+<li><a href="#Introduction_to_draft_3">1.1 Introduction to draft 3</a><ol>
+</ol><li><a href="#Purpose">1.2 Purpose</a><ol>
+</ol><li><a href="#References_to_Other_Specifications">1.3 References to Other Specifications</a><ol>
+</ol><li><a href="#Scope">1.4 Scope</a><ol>
+</ol><li><a href="#Terminology">1.5 Terminology</a><ol>
+</ol></li></ol><li><a href="#Data_model">2. Data model</a><ol>
+<li><a href="#Data_concepts">2.1 Data concepts</a><ol>
+</ol><li><a href="#Syntax">2.2 Syntax</a><ol>
+</ol><li><a href="#Identifiers">2.3 Identifiers</a><ol>
+</ol><li><a href="#Document_preprocessing">2.4 Document preprocessing</a><ol>
+</ol><li><a href="#Extensions_and_Metadata">2.5 Extensions and Metadata</a><ol>
+</ol></li></ol><li><a href="#Execution_model">3. Execution model</a><ol>
+<li><a href="#Execution_concepts">3.1 Execution concepts</a><ol>
+</ol><li><a href="#Generic_execution_process">3.2 Generic execution process</a><ol>
+</ol><li><a href="#Requirements_and_hints">3.3 Requirements and hints</a><ol>
+</ol><li><a href="#Parameter_references">3.4 Parameter references</a><ol>
+</ol><li><a href="#Expressions">3.5 Expressions</a><ol>
+</ol><li><a href="#Success_and_failure">3.6 Success and failure</a><ol>
+</ol><li><a href="#Executing_CWL_documents_as_scripts">3.7 Executing CWL documents as scripts</a><ol>
+</ol></li></ol><li><a href="#Workflow">4. Workflow</a><ol>
+<li><a href="#WorkflowOutputParameter">4.1 WorkflowOutputParameter</a><ol>
+<li><a href="#Expression">4.1.1 Expression</a><ol>
+</ol><li><a href="#CWLType">4.1.2 CWLType</a><ol>
+</ol><li><a href="#File">4.1.3 File</a><ol>
+</ol><li><a href="#OutputRecordSchema">4.1.4 OutputRecordSchema</a><ol>
+<li><a href="#OutputRecordField">4.1.4.1 OutputRecordField</a><ol>
+<li><a href="#PrimitiveType">4.1.4.1.1 PrimitiveType</a><ol>
+</ol><li><a href="#OutputEnumSchema">4.1.4.1.2 OutputEnumSchema</a><ol>
+<li><a href="#CommandOutputBinding">4.1.4.1.2.1 CommandOutputBinding</a><ol>
+</ol></li></ol><li><a href="#OutputArraySchema">4.1.4.1.3 OutputArraySchema</a><ol>
+</ol></li></ol></li></ol><li><a href="#LinkMergeMethod">4.1.5 LinkMergeMethod</a><ol>
+</ol></li></ol><li><a href="#WorkflowStep">4.2 WorkflowStep</a><ol>
+<li><a href="#WorkflowStepInput">4.2.1 WorkflowStepInput</a><ol>
+<li><a href="#Any">4.2.1.1 Any</a><ol>
+</ol></li></ol><li><a href="#WorkflowStepOutput">4.2.2 WorkflowStepOutput</a><ol>
+</ol><li><a href="#ScatterMethod">4.2.3 ScatterMethod</a><ol>
+</ol><li><a href="#InlineJavascriptRequirement">4.2.4 InlineJavascriptRequirement</a><ol>
+</ol><li><a href="#SchemaDefRequirement">4.2.5 SchemaDefRequirement</a><ol>
+<li><a href="#InputRecordSchema">4.2.5.1 InputRecordSchema</a><ol>
+<li><a href="#InputRecordField">4.2.5.1.1 InputRecordField</a><ol>
+<li><a href="#InputEnumSchema">4.2.5.1.1.1 InputEnumSchema</a><ol>
+<li><a href="#CommandLineBinding">4.2.5.1.1.1.1 CommandLineBinding</a><ol>
+</ol></li></ol><li><a href="#InputArraySchema">4.2.5.1.1.2 InputArraySchema</a><ol>
+</ol></li></ol></li></ol></li></ol><li><a href="#SubworkflowFeatureRequirement">4.2.6 SubworkflowFeatureRequirement</a><ol>
+</ol><li><a href="#ScatterFeatureRequirement">4.2.7 ScatterFeatureRequirement</a><ol>
+</ol><li><a href="#MultipleInputFeatureRequirement">4.2.8 MultipleInputFeatureRequirement</a><ol>
+</ol><li><a href="#StepInputExpressionRequirement">4.2.9 StepInputExpressionRequirement</a><ol>
+</ol><li><a href="#ExpressionTool">4.2.10 ExpressionTool</a><ol>
+<li><a href="#InputParameter">4.2.10.1 InputParameter</a><ol>
+</ol><li><a href="#OutputParameter">4.2.10.2 OutputParameter</a><ol>
+</ol><li><a href="#CWLVersions">4.2.10.3 CWLVersions</a><ol>
+</ol></li></ol></li></ol></li></ol></li></ol></nav>
+
+<h1 id="Introduction" class="section">1. Introduction <a href="#Introduction">&sect;</a></h1><p>The Common Workflow Language (CWL) working group is an informal, multi-vendor
+working group consisting of various organizations and individuals that have an
+interest in portability of data analysis workflows.  The goal is to create
+specifications like this one that enable data scientists to describe analysis
+tools and workflows that are powerful, easy to use, portable, and support
+reproducibility.</p>
+<h2 id="Introduction_to_draft_3" class="section">1.1 Introduction to draft 3 <a href="#Introduction_to_draft_3">&sect;</a></h2><p>This specification represents the third milestone of the CWL group.  Since
+draft-2, this draft introduces the following changes and additions:</p>
+<ul>
+<li>Greatly simplified naming within a document with scoped identifiers, as
+described in the <a href="SchemaSalad.html">Schema Salad specification</a>.</li>
+<li>The draft-2 concept of pluggable expression engines has been replaced
+by a [streamlined expression syntax)[#Parameter_references]
+and standardization on <a href="#Expressions">Javascript</a>.</li>
+<li><a href="#File">File</a> objects can now include a <code>format</code> field to indicate
+the file type.</li>
+<li>The addition of <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a>.</li>
+<li>The addition of <a href="#StepInputExpressionRequirement">StepInputExpressionRequirement</a>.</li>
+<li>The separation of Workflow and CommandLineTool components into
+separate specifications.</li>
+</ul>
+<h2 id="Purpose" class="section">1.2 Purpose <a href="#Purpose">&sect;</a></h2><p>The Common Workflow Language Command Line Tool Description express
+workflows for data-intensive science, such as Bioinformatics, Chemistry,
+Physics, and Astronomy.  This specification is intended to define a data
+and execution model for Workflows that can be implemented on top of a
+variety of computing platforms, ranging from an individual workstation to
+cluster, grid, cloud, and high performance computing systems.</p>
+<h2 id="References_to_Other_Specifications" class="section">1.3 References to Other Specifications <a href="#References_to_Other_Specifications">&sect;</a></h2><p><strong>Javascript Object Notation (JSON)</strong>: <a href="http://json.org">http://json.org</a></p>
+<p><strong>JSON Linked Data (JSON-LD)</strong>: <a href="http://json-ld.org">http://json-ld.org</a></p>
+<p><strong>YAML</strong>: <a href="http://yaml.org">http://yaml.org</a></p>
+<p><strong>Avro</strong>: <a href="https://avro.apache.org/docs/current/spec.html">https://avro.apache.org/docs/current/spec.html</a></p>
+<p><strong>Uniform Resource Identifier (URI) Generic Syntax</strong>: <a href="https://tools.ietf.org/html/rfc3986">https://tools.ietf.org/html/rfc3986</a>)</p>
+<p><strong>Portable Operating System Interface (POSIX.1-2008)</strong>: <a href="http://pubs.opengroup.org/onlinepubs/9699919799/">http://pubs.opengroup.org/onlinepubs/9699919799/</a></p>
+<p><strong>Resource Description Framework (RDF)</strong>: <a href="http://www.w3.org/RDF/">http://www.w3.org/RDF/</a></p>
+<h2 id="Scope" class="section">1.4 Scope <a href="#Scope">&sect;</a></h2><p>This document describes CWL syntax, execution, and object model.  It
+is not intended to document a CWL specific implementation, however it may
+serve as a reference for the behavior of conforming implementations.</p>
+<h2 id="Terminology" class="section">1.5 Terminology <a href="#Terminology">&sect;</a></h2><p>The terminology used to describe CWL documents is defined in the
+Concepts section of the specification. The terms defined in the
+following list are used in building those definitions and in describing the
+actions of an CWL implementation:</p>
+<p><strong>may</strong>: Conforming CWL documents and CWL implementations are permitted but
+not required to behave as described.</p>
+<p><strong>must</strong>: Conforming CWL documents and CWL implementations are required to behave
+as described; otherwise they are in error.</p>
+<p><strong>error</strong>: A violation of the rules of this specification; results are
+undefined. Conforming implementations may detect and report an error and may
+recover from it.</p>
+<p><strong>fatal error</strong>: A violation of the rules of this specification; results are
+undefined. Conforming implementations must not continue to execute the current
+process and may report an error.</p>
+<p><strong>at user option</strong>: Conforming software may or must (depending on the modal verb in
+the sentence) behave as described; if it does, it must provide users a means to
+enable or disable the behavior described.</p>
+<p><strong>deprecated</strong>: Conforming software may implement a behavior for backwards
+compatibility.  Portable CWL documents should not rely on deprecated behavior.
+Behavior marked as deprecated may be removed entirely from future revisions of
+the CWL specification.</p>
+<h1 id="Data_model" class="section">2. Data model <a href="#Data_model">&sect;</a></h1><h2 id="Data_concepts" class="section">2.1 Data concepts <a href="#Data_concepts">&sect;</a></h2><p>An <strong>object</strong> is a data structure equivalent to the "object" type in JSON,
+consisting of a unordered set of name/value pairs (referred to here as
+<strong>fields</strong>) and where the name is a string and the value is a string, number,
+boolean, array, or object.</p>
+<p>A <strong>document</strong> is a file containing a serialized object, or an array of objects.</p>
+<p>A <strong>process</strong> is a basic unit of computation which accepts input data,
+performs some computation, and produces output data.</p>
+<p>An <strong>input object</strong> is an object describing the inputs to a invocation of process.</p>
+<p>An <strong>output object</strong> is an object describing the output of an invocation of a process.</p>
+<p>An <strong>input schema</strong> describes the valid format (required fields, data types)
+for an input object.</p>
+<p>An <strong>output schema</strong> describes the valid format for a output object.</p>
+<p><strong>Metadata</strong> is information about workflows, tools, or input items that is
+not used directly in the computation.</p>
+<h2 id="Syntax" class="section">2.2 Syntax <a href="#Syntax">&sect;</a></h2><p>CWL documents must consist of an object or array of objects represented using
+JSON or YAML syntax.  Upon loading, a CWL implementation must apply the
+preprocessing steps described in the
+<a href="SchemaSalad.html">Semantic Annotations for Linked Avro Data (SALAD) Specification</a>.
+A implementation may formally validate the structure of a CWL document using
+SALAD schemas located at
+<a href="https://github.com/common-workflow-language/common-workflow-language/tree/master/draft-3">https://github.com/common-workflow-language/common-workflow-language/tree/master/draft-3</a></p>
+<h2 id="Identifiers" class="section">2.3 Identifiers <a href="#Identifiers">&sect;</a></h2><p>If an object contains an <code>id</code> field, that is used to uniquely identify the
+object in that document.  The value of the <code>id</code> field must be unique over the
+entire document.  Identifiers may be resolved relative to other the document
+base and/or other identifiers following the rules are described in the
+<a href="SchemaSalad.html#Identifier_resolution">Schema Salad specification</a>.</p>
+<p>An implementation may choose to only honor references to object types for
+which the <code>id</code> field is explicitly listed in this specification.</p>
+<h2 id="Document_preprocessing" class="section">2.4 Document preprocessing <a href="#Document_preprocessing">&sect;</a></h2><p>An implementation must resolve <a href="SchemaSalad.html#Import">$import</a> and
+<a href="SchemaSalad.html#Import">$include</a> directives as described in the
+<a href="SchemaSalad.html">Schema Salad specification</a>.</p>
+<h2 id="Extensions_and_Metadata" class="section">2.5 Extensions and Metadata <a href="#Extensions_and_Metadata">&sect;</a></h2><p>Input metadata (for example, a lab sample identifier) may be represented within
+a tool or workflow using input parameters which are explicitly propagated to
+output.  Future versions of this specification may define additional facilities
+for working with input/output metadata.</p>
+<p>Implementation extensions not required for correct execution (for example,
+fields related to GUI presentation) and metadata about the tool or workflow
+itself (for example, authorship for use in citations) may be provided as
+additional fields on any object.  Such extensions fields must use a namespace
+prefix listed in the <code>$namespaces</code> section of the document as described in the
+<a href="SchemaSalad.html#Explicit_context">Schema Salad specification</a>.</p>
+<p>Implementation extensions which modify execution semantics must be <a href="#Requirements_and_hints">listed in
+the <code>requirements</code> field</a>.</p>
+<h1 id="Execution_model" class="section">3. Execution model <a href="#Execution_model">&sect;</a></h1><h2 id="Execution_concepts" class="section">3.1 Execution concepts <a href="#Execution_concepts">&sect;</a></h2><p>A <strong>parameter</strong> is a named symbolic input or output of process, with an
+associated datatype or schema.  During execution, values are assigned to
+parameters to make the input object or output object used for concrete
+process invocation.</p>
+<p>A <strong>command line tool</strong> is a process characterized by the execution of a
+standalone, non-interactive program which is invoked on some input,
+produces output, and then terminates.</p>
+<p>A <strong>workflow</strong> is a process characterized by multiple subprocess steps,
+where step outputs are connected to the inputs of other downstream steps to
+form a directed graph, and independent steps may run concurrently.</p>
+<p>A <strong>runtime environment</strong> is the actual hardware and software environment when
+executing a command line tool.  It includes, but is not limited to, the
+hardware architecture, hardware resources, operating system, software runtime
+(if applicable, such as the Python interpreter or the JVM), libraries, modules,
+packages, utilities, and data files required to run the tool.</p>
+<p>A <strong>workflow platform</strong> is a specific hardware and software implementation
+capable of interpreting CWL documents and executing the processes specified by
+the document.  The responsibilities of the workflow platform may include
+scheduling process invocation, setting up the necessary runtime environment,
+making input data available, invoking the tool process, and collecting output.</p>
+<p>A workflow platform may choose to only implement the Command Line Tool
+Description part of the CWL specification.</p>
+<p>It is intended that the workflow platform has broad leeway outside of this
+specification to optimize use of computing resources and enforce policies
+not covered by this specification.  Some areas that are currently out of
+scope for CWL specification but may be handled by a specific workflow
+platform include:</p>
+<ul>
+<li>Data security and permissions.</li>
+<li>Scheduling tool invocations on remote cluster or cloud compute nodes.</li>
+<li>Using virtual machines or operating system containers to manage the runtime
+(except as described in <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a>).</li>
+<li>Using remote or distributed file systems to manage input and output files.</li>
+<li>Transforming file paths.</li>
+<li>Determining if a process has previously been executed, skipping it and
+reusing previous results.</li>
+<li>Pausing, resuming or checkpointing processes or workflows.</li>
+</ul>
+<p>Conforming CWL processes must not assume anything about the runtime
+environment or workflow platform unless explicitly declared though the use
+of <a href="#Requirements_and_hints">process requirements</a>.</p>
+<h2 id="Generic_execution_process" class="section">3.2 Generic execution process <a href="#Generic_execution_process">&sect;</a></h2><p>The generic execution sequence of a CWL process (including workflows and
+command line line tools) is as follows.</p>
+<ol>
+<li>Load, process and validate a CWL document, yielding a process object.</li>
+<li>Load input object.</li>
+<li>Validate the input object against the <code>inputs</code> schema for the process.</li>
+<li>Validate that process requirements are met.</li>
+<li>Perform any further setup required by the specific process type.</li>
+<li>Execute the process.</li>
+<li>Capture results of process execution into the output object.</li>
+<li>Validate the output object against the <code>outputs</code> schema for the process.</li>
+<li>Report the output object to the process caller.</li>
+</ol>
+<h2 id="Requirements_and_hints" class="section">3.3 Requirements and hints <a href="#Requirements_and_hints">&sect;</a></h2><p>A <strong>process requirement</strong> modifies the semantics or runtime
+environment of a process.  If an implementation cannot satisfy all
+requirements, or a requirement is listed which is not recognized by the
+implementation, it is a fatal error and the implementation must not attempt
+to run the process, unless overridden at user option.</p>
+<p>A <strong>hint</strong> is similar to a requirement, however it is not an error if an
+implementation cannot satisfy all hints.  The implementation may report a
+warning if a hint cannot be satisfied.</p>
+<p>Requirements are inherited.  A requirement specified in a Workflow applies
+to all workflow steps; a requirement specified on a workflow step will
+apply to the process implementation.</p>
+<p>If the same process requirement appears at different levels of the
+workflow, the most specific instance of the requirement is used, that is,
+an entry in <code>requirements</code> on a process implementation such as
+CommandLineTool will take precedence over an entry in <code>requirements</code>
+specified in a workflow step, and an entry in <code>requirements</code> on a workflow
+step takes precedence over the workflow.  Entries in <code>hints</code> are resolved
+the same way.</p>
+<p>Requirements override hints.  If a process implementation provides a
+process requirement in <code>hints</code> which is also provided in <code>requirements</code> by
+an enclosing workflow or workflow step, the enclosing <code>requirements</code> takes
+precedence.</p>
+<h2 id="Parameter_references" class="section">3.4 Parameter references <a href="#Parameter_references">&sect;</a></h2><p>Parameter references are denoted by the syntax <code>$(...)</code> and may be used in any
+field permitting the pseudo-type <code>Expression</code>, as specified by this document.
+Conforming implementations must support parameter references.  Parameter
+references use the following subset of
+<a href="http://www.ecma-international.org/ecma-262/5.1/">Javascript/ECMAScript 5.1</a>
+syntax.</p>
+<p>In the following BNF grammar, character classes and grammar rules are denoted
+in '{}', '-' denotes exclusion from a character class, '(())' denotes grouping,
+'|' denotes alternates, trailing '*' denotes zero or more repeats, '+' denote
+one or more repeats, all other characters are literal values.</p>
+<p>
+<table class="table">
+<tr><td>symbol::   </td><td>{Unicode alphanumeric}+</td></tr>
+<tr><td>singleq::  </td><td>[' (( {character - '} | \' ))* ']</td></tr>
+<tr><td>doubleq::  </td><td>[" (( {character - "} | \" ))* "]</td></tr>
+<tr><td>index::    </td><td>[ {decimal digit}+ ]</td></tr>
+<tr><td>segment::  </td><td>. {symbol} | {singleq} | {doubleq} | {index}</td></tr>
+<tr><td>parameter::</td><td>$( {symbol} {segment}*)</td></tr>
+</table>
+</p><p>Use the following algorithm to resolve a parameter reference:</p>
+<ol>
+<li>Match the leading symbol as key</li>
+<li>Look up the key in the parameter context (described below) to get the current value.
+It is an error if the key is not found in the parameter context.</li>
+<li>If there are no subsequent segments, terminate and return current value</li>
+<li>Else, match the next segment</li>
+<li>Extract the symbol, string, or index from the segment as key</li>
+<li>Look up the key in current value and assign as new current value.  If
+the key is a symbol or string, the current value must be an object.
+If the key is an index, the current value must be an array or string.
+It is an error if the key does not match the required type, or the key is not found or out
+of range.</li>
+<li>Repeat steps 3-6</li>
+</ol>
+<p>The root namespace is the parameter context.  The following parameters must
+be provided:</p>
+<ul>
+<li><code>inputs</code>: The input object to the current Process.</li>
+<li><code>self</code>: A context-specific value.  The contextual values for 'self' are
+documented for specific fields elsewhere in this specification.  If
+a contextual value of 'self' is not documented for a field, it
+must be 'null'.</li>
+<li><code>runtime</code>: An object containing configuration details.  Specific to the
+process type.  An implementation may provide may provide
+opaque strings for any or all fields of <code>runtime</code>.  These must be
+filled in by the platform after processing the Tool but before actual
+execution.  Parameter references and expressions may only use the
+literal string value of the field and must not perform computation on
+the contents.</li>
+</ul>
+<p>If the value of a field has no leading or trailing non-whitespace
+characters around a parameter reference, the effective value of the field
+becomes the value of the referenced parameter, preserving the return type.</p>
+<p>If the value of a field has non-whitespace leading or trailing characters
+around an parameter reference, it is subject to string interpolation.  The
+effective value of the field is a string containing the leading characters;
+followed by the string value of the parameter reference; followed by the
+trailing characters.  The string value of the parameter reference is its
+textual JSON representation with the following rules:</p>
+<ul>
+<li>Leading and trailing quotes are stripped from strings</li>
+<li>Objects entries are sorted by key</li>
+</ul>
+<p>Multiple parameter references may appear in a single field.  This case is
+must be treated as a string interpolation.  After interpolating the first
+parameter reference, interpolation must be recursively applied to the
+trailing characters to yield the final string value.</p>
+<h2 id="Expressions" class="section">3.5 Expressions <a href="#Expressions">&sect;</a></h2><p>An expression is a fragment of <a href="http://www.ecma-international.org/ecma-262/5.1/">Javascript/ECMAScript
+5.1</a> code which is
+evaluated by the workflow platform to affect the inputs, outputs, or
+behavior of a process.  In the generic execution sequence, expressions may
+be evaluated during step 5 (process setup), step 6 (execute process),
+and/or step 7 (capture output).  Expressions are distinct from regular
+processes in that they are intended to modify the behavior of the workflow
+itself rather than perform the primary work of the workflow.</p>
+<p>To declare the use of expressions, the document must include the process
+requirement <code>InlineJavascriptRequirement</code>.  Expressions may be used in any
+field permitting the pseudo-type <code>Expression</code>, as specified by this
+document.</p>
+<p>Expressions are denoted by the syntax <code>$(...)</code> or <code>${...}</code>.  A code
+fragment wrapped in the <code>$(...)</code> syntax must be evaluated as a
+<a href="http://www.ecma-international.org/ecma-262/5.1/#sec-11">ECMAScript expression</a>.  A
+code fragment wrapped in the <code>${...}</code> syntax must be evaluated as a
+<a href="http://www.ecma-international.org/ecma-262/5.1/#sec-13">EMACScript function body</a>
+for an anonymous, zero-argument function.  Expressions must return a valid JSON
+data type: one of null, string, number, boolean, array, object.
+Implementations must permit any syntactically valid Javascript and account
+for nesting of parenthesis or braces and that strings that may contain
+parenthesis or braces when scanning for expressions.</p>
+<p>The runtime must include any code defined in the <a href="#InlineJavascriptRequirement">"expressionLib" field of
+InlineJavascriptRequirement</a> prior to
+executing the actual expression.</p>
+<p>Before executing the expression, the runtime must initialize as global
+variables the fields of the parameter context described above.</p>
+<p>The effective value of the field after expression evaluation follows the
+same rules as parameter references discussed above.  Multiple expressions
+may appear in a single field.</p>
+<p>Expressions must be evaluated in an isolated context (a "sandbox") which
+permits no side effects to leak outside the context.  Expressions also must
+be evaluated in <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-4.2.2">Javascript strict mode</a>.</p>
+<p>The order in which expressions are evaluated is undefined except where
+otherwise noted in this document.</p>
+<p>An implementation may choose to implement parameter references by
+evaluating as a Javascript expression.  The results of evaluating
+parameter references must be identical whether implemented by Javascript
+evaluation or some other means.</p>
+<p>Implementations may apply other limits, such as process isolation, timeouts,
+and operating system containers/jails to minimize the security risks associated
+with running untrusted code embedded in a CWL document.</p>
+<h2 id="Success_and_failure" class="section">3.6 Success and failure <a href="#Success_and_failure">&sect;</a></h2><p>A completed process must result in one of <code>success</code>, <code>temporaryFailure</code> or
+<code>permanentFailure</code> states.  An implementation may choose to retry a process
+execution which resulted in <code>temporaryFailure</code>.  An implementation may
+choose to either continue running other steps of a workflow, or terminate
+immediately upon <code>permanentFailure</code>.</p>
+<ul>
+<li><p>If any step of a workflow execution results in <code>permanentFailure</code>, then the
+workflow status is <code>permanentFailure</code>.</p>
+</li>
+<li><p>If one or more steps result in <code>temporaryFailure</code> and all other steps
+complete <code>success</code> or are not executed, then the workflow status is
+<code>temporaryFailure</code>.</p>
+</li>
+<li><p>If all workflow steps are executed and complete with <code>success</code>, then the workflow
+status is <code>success</code>.</p>
+</li>
+</ul>
+<h2 id="Executing_CWL_documents_as_scripts" class="section">3.7 Executing CWL documents as scripts <a href="#Executing_CWL_documents_as_scripts">&sect;</a></h2><p>By convention, a CWL document may begin with <code>#!/usr/bin/env cwl-runner</code>
+and be marked as executable (the POSIX "+x" permission bits) to enable it
+to be executed directly.  A workflow platform may support this mode of
+operation; if so, it must provide <code>cwl-runner</code> as an alias for the
+platform's CWL implementation.</p>
+<p>A CWL input object document may similarly begin with <code>#!/usr/bin/env
+cwl-runner</code> and be marked as executable.  In this case, the input object
+must include the field <code>cwl:tool</code> supplying a URI to the default CWL
+document that should be executed using the fields of the input object as
+input parameters.</p>
+<h1 id="Workflow" class="section">4. Workflow <a href="#Workflow">&sect;</a></h1><p>A workflow describes a set of <strong>steps</strong> and the <strong>dependencies</strong> between
+those processes.  When a process produces output that will be consumed by a
+second process, the first process is a dependency of the second process.</p>
+<p>When there is a dependency, the workflow engine must execute the preceeding
+process and wait for it to successfully produce output before executing the
+dependent process.  If two processes are defined in the workflow graph that
+are not directly or indirectly dependent, these processes are
+<strong>independent</strong>, and may execute in any order or execute concurrently.  A
+workflow is complete when all steps have been executed.</p>
+<p>Dependencies between parameters are expressed using the <code>source</code> field on
+<a href="#WorkflowStepInput">workflow step input parameters</a> and <a href="#WorkflowOutputParameter">workflow output
+parameters</a>.</p>
+<p>The <code>source</code> field expresses the dependency of one parameter on another
+such that when a value is associated with the parameter specified by
+<code>source</code>, that value is propagated to the destination parameter.  When all
+data links inbound to a given step are fufilled, the step is ready to
+execute.</p>
+<h3 id="Workflow_success_and_failure" class="section">Workflow success and failure <a href="#Workflow_success_and_failure">&sect;</a></h3><p>A completed process must result in one of <code>success</code>, <code>temporaryFailure</code> or
+<code>permanentFailure</code> states.  An implementation may choose to retry a process
+execution which resulted in <code>temporaryFailure</code>.  An implementation may
+choose to either continue running other steps of a workflow, or terminate
+immediately upon <code>permanentFailure</code>.</p>
+<ul>
+<li><p>If any step of a workflow execution results in <code>permanentFailure</code>, then the
+workflow status is <code>permanentFailure</code>.</p>
+</li>
+<li><p>If one or more steps result in <code>temporaryFailure</code> and all other steps
+complete <code>success</code> or are not executed, then the workflow status is
+<code>temporaryFailure</code>.</p>
+</li>
+<li><p>If all workflow steps are executed and complete with <code>success</code>, then the workflow
+status is <code>success</code>.</p>
+</li>
+</ul>
+<h2 id="Extensions" class="section">Extensions <a href="#Extensions">&sect;</a></h2><p><a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> and
+<a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> are
+available as standard extensions to core workflow semantics.</p>
+<h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>inputs</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#InputParameter">InputParameter</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Defines the input parameters of the process.  The process is ready to
+run when all required input parameters are associated with concrete
+values.  Input parameters include a schema for each parameter which is
+used to validate the input object.  It may also be used to build a user
+interface for constructing the input object.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>outputs</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#WorkflowOutputParameter">WorkflowOutputParameter</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Defines the parameters representing the output of the process.  May be
+used to generate and/or validate the output object.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>class</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"></div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>steps</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#WorkflowStep">WorkflowStep</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The individual steps that make up the workflow.  Each step is executed when all of its
+input data links are fufilled.  An implementation may choose to execute
+the steps in a different order than listed and/or execute steps
+concurrently, provided that dependencies between steps are met.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>id</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The unique identifier for this process object.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>requirements</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a> | <a href="CommandLineTool.html#CreateFileRequirement">CreateFileRequirement</a> | <a href="CommandLineTool.html#EnvVarRequirement">EnvVarRequirement</a> | <a href="CommandLineTool.html#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="CommandLineTool.html#ResourceRequirement">ResourceRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#StepInputExpressionRequirement">StepInputExpressionRequirement</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Declares requirements that apply to either the runtime environment or the
+workflow engine that must be met in order to execute this process.  If
+an implementation cannot satisfy all requirements, or a requirement is
+listed which is not recognized by the implementation, it is a fatal
+error and the implementation must not attempt to run the process,
+unless overridden at user option.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>hints</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#Any">Any</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Declares hints applying to either the runtime environment or the
+workflow engine that may be helpful in executing this process.  It is
+not an error if an implementation cannot satisfy all hints, however
+the implementation may report a warning.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>label</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>A short, human-readable label of this process object.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>description</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>A long, human-readable description of this process object.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>cwlVersion</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLVersions">CWLVersions</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>CWL document version</p>
+</div>
+</div></div><h2 id="WorkflowOutputParameter" class="section">4.1 WorkflowOutputParameter <a href="#WorkflowOutputParameter">&sect;</a></h2><p>Describe an output parameter of a workflow.  The parameter must be
+connected to one or more parameters defined in the workflow that will
+provide the value of the output parameter.</p>
+<h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>id</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The unique identifier for this parameter object.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>secondaryFiles</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>Describes files that must be included alongside the primary file(s).</p>
+<p>If the value is an expression, the value of <code>self</code> in the expression
+must be the primary input or output File to which this binding applies.</p>
+<p>If the value is a string, it specifies that the following pattern
+should be applied to the primary file:</p>
+<ol>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
+period <code>.</code> and all following characters).  If there are no file
+extensions, the path is unchanged.</li>
+<li>Append the remainder of the string to the end of the file path.</li>
+</ol>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>format</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>For input parameters, this must be one or more URIs of a concept nodes
+that represents file formats which are allowed as input to this
+parameter, preferrably defined within an ontology.  If no ontology is
+available, file formats may be tested by exact match.</p>
+<p>For output parameters, this is the file format that will be assigned to
+the output parameter.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>streamable</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">boolean</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>A value of <code>true</code> indicates that the file is read or written
+sequentially without seeking.  An implementation may use this flag to
+indicate whether it is valid to stream file contents using a named
+pipe.  Default: <code>false</code>.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>type</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">CWLType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Specify valid types of data that may be assigned to this parameter.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>label</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>A short, human-readable label of this parameter object.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>description</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>A long, human-readable description of this parameter object.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>outputBinding</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CommandOutputBinding">CommandOutputBinding</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Describes how to handle the outputs of a process.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>source</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Specifies one or more workflow parameters that will provide input to
+the underlying process parameter.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>linkMerge</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#LinkMergeMethod">LinkMergeMethod</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The method to use to merge multiple inbound links into a single array.
+If not specified, the default method is "merge_nested".</p>
+</div>
+</div></div><h3 id="Expression" class="section">4.1.1 Expression <a href="#Expression">&sect;</a></h3><p>Not a real type.  Indicates that a field must allow runtime parameter
+references.  If <a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a>
+is declared and supported by the platform, the field must also allow
+Javascript expressions.</p>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>ExpressionPlaceholder</code></td><td></td></tr></table><h3 id="CWLType" class="section">4.1.2 CWLType <a href="#CWLType">&sect;</a></h3><p>Extends primitive types with the concept of a file as a first class type.</p>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>null</code></td><td> no value</td></tr><tr><td><code>boolean</code></td><td> a binary value</td></tr><tr><td><code>int</code></td><td> 32-bit signed integer</td></tr><tr><td><code>long</code></td><td> 64-bit signed integer</td></tr><tr><td><code>float</code></td><td> single precision (32-bit) IEEE 754 floating-point number</td></tr><tr><td><code>double</code></td><td> double precision (64-bit) IEEE 754 floating-point number</td></tr><tr><td><code>string</code></td><td> Unicode character sequence</td></tr><tr><td><code>File</code></td><td> A File object</td></tr></table><h3 id="File" class="section">4.1.3 File <a href="#File">&sect;</a></h3><p>Represents a file (or group of files if <code>secondaryFiles</code> is specified) that
+must be accessible by tools using standard POSIX file system call API such as
+open(2) and read(2).</p>
+<h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>class</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">constant value <code>File</code></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Must be <code>File</code> to indicate this object describes a file.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>path</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The path to the file.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>checksum</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Optional hash code for validating file integrity.  Currently must be in the form
+"sha1$ + hexidecimal string" using the SHA-1 algorithm.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>size</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Optional file size.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>secondaryFiles</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#File">File</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>A list of additional files that are associated with the primary file
+and must be transferred alongside the primary file.  Examples include
+indexes of the primary file, or external references which must be
+included when loading primary document.  A file object listed in
+<code>secondaryFiles</code> may itself include <code>secondaryFiles</code> for which the same
+rules apply.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>format</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The format of the file.  This must be a URI of a concept node that
+represents the file format, preferrably defined within an ontology.
+If no ontology is available, file formats may be tested by exact match.</p>
+<p>Reasoning about format compatability must be done by checking that an
+input file format is the same, <code>owl:equivalentClass</code> or
+<code>rdfs:subClassOf</code> the format required by the input parameter.
+<code>owl:equivalentClass</code> is transitive with <code>rdfs:subClassOf</code>, e.g. if
+<code>&lt;B&gt; owl:equivalentClass &lt;C&gt;</code> and <code>&lt;B&gt; owl:subclassOf &lt;A&gt;</code> then infer
+<code>&lt;C&gt; owl:subclassOf &lt;A&gt;</code>.</p>
+<p>File format ontologies may be provided in the "$schema" metadata at the
+root of the document.  If no ontologies are specified in <code>$schema</code>, the
+runtime may perform exact file format matches.</p>
+</div>
+</div></div><h3 id="OutputRecordSchema" class="section">4.1.4 OutputRecordSchema <a href="#OutputRecordSchema">&sect;</a></h3><h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>type</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">constant value <code>record</code></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Must be <code>record</code></p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>fields</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#OutputRecordField">OutputRecordField</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Defines the fields of the record.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>secondaryFiles</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>Describes files that must be included alongside the primary file(s).</p>
+<p>If the value is an expression, the value of <code>self</code> in the expression
+must be the primary input or output File to which this binding applies.</p>
+<p>If the value is a string, it specifies that the following pattern
+should be applied to the primary file:</p>
+<ol>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
+period <code>.</code> and all following characters).  If there are no file
+extensions, the path is unchanged.</li>
+<li>Append the remainder of the string to the end of the file path.</li>
+</ol>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>format</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>For input parameters, this must be one or more URIs of a concept nodes
+that represents file formats which are allowed as input to this
+parameter, preferrably defined within an ontology.  If no ontology is
+available, file formats may be tested by exact match.</p>
+<p>For output parameters, this is the file format that will be assigned to
+the output parameter.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>streamable</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">boolean</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>A value of <code>true</code> indicates that the file is read or written
+sequentially without seeking.  An implementation may use this flag to
+indicate whether it is valid to stream file contents using a named
+pipe.  Default: <code>false</code>.</p>
+</div>
+</div></div><h4 id="OutputRecordField" class="section">4.1.4.1 OutputRecordField <a href="#OutputRecordField">&sect;</a></h4><h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>name</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The name of the field</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>type</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">PrimitiveType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The field type</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>doc</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>A documentation string for this field</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>outputBinding</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CommandOutputBinding">CommandOutputBinding</a></div>
+<div class="col-xs-12 col-lg-6 description-col"></div>
+</div></div><h5 id="PrimitiveType" class="section">4.1.4.1.1 PrimitiveType <a href="#PrimitiveType">&sect;</a></h5><p>Salad data types are based on Avro schema declarations.  Refer to the
+<a href="https://avro.apache.org/docs/current/spec.html#schemas">Avro schema declaration documentation</a> for
+detailed information.</p>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>null</code></td><td></td></tr><tr><td><code>boolean</code></td><td></td></tr><tr><td><code>int</code></td><td></td></tr><tr><td><code>long</code></td><td></td></tr><tr><td><code>float</code></td><td></td></tr><tr><td><code>double</code></td><td></td></tr><tr><td><code>string</code></td><td></td></tr></table><h5 id="OutputEnumSchema" class="section">4.1.4.1.2 OutputEnumSchema <a href="#OutputEnumSchema">&sect;</a></h5><h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>type</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">constant value <code>enum</code></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Must be <code>enum</code></p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>symbols</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#CWLType">string</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Defines the set of valid symbols.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>secondaryFiles</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>Describes files that must be included alongside the primary file(s).</p>
+<p>If the value is an expression, the value of <code>self</code> in the expression
+must be the primary input or output File to which this binding applies.</p>
+<p>If the value is a string, it specifies that the following pattern
+should be applied to the primary file:</p>
+<ol>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
+period <code>.</code> and all following characters).  If there are no file
+extensions, the path is unchanged.</li>
+<li>Append the remainder of the string to the end of the file path.</li>
+</ol>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>format</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>For input parameters, this must be one or more URIs of a concept nodes
+that represents file formats which are allowed as input to this
+parameter, preferrably defined within an ontology.  If no ontology is
+available, file formats may be tested by exact match.</p>
+<p>For output parameters, this is the file format that will be assigned to
+the output parameter.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>streamable</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">boolean</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>A value of <code>true</code> indicates that the file is read or written
+sequentially without seeking.  An implementation may use this flag to
+indicate whether it is valid to stream file contents using a named
+pipe.  Default: <code>false</code>.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>outputBinding</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CommandOutputBinding">CommandOutputBinding</a></div>
+<div class="col-xs-12 col-lg-6 description-col"></div>
+</div></div><h6 id="CommandOutputBinding" class="section">4.1.4.1.2.1 CommandOutputBinding <a href="#CommandOutputBinding">&sect;</a></h6><p>Describes how to generate an output parameter based on the files produced
+by a CommandLineTool.</p>
+<p>The output parameter is generated by applying these operations in
+the following order:</p>
+<ul>
+<li>glob</li>
+<li>loadContents</li>
+<li>outputEval</li>
+</ul>
+<h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>glob</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Find files relative to the output directory, using POSIX glob(3)
+pathname matching.  If provided an array, find files that match any
+pattern in the array.  If provided an expression, the expression must
+return a string or an array of strings, which will then be evaluated as
+one or more glob patterns.  Must only match and return files which
+actually exist.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>loadContents</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">boolean</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>For each file matched in <code>glob</code>, read up to
+the first 64 KiB of text from the file and place it in the <code>contents</code>
+field of the file object for manipulation by <code>outputEval</code>.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>outputEval</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Evaluate an expression to generate the output value.  If <code>glob</code> was
+specified, the value of <code>self</code> must be an array containing file objects
+that were matched.  If no files were matched, <code>self' must be a zero
+length array; if a single file was matched, the value of</code>self<code>is an
+array of a single element.  Additionally, if</code>loadContents<code>is</code>true<code>,
+the File objects must include up to the first 64 KiB of file contents
+in the</code>contents` field.</p>
+</div>
+</div></div><h5 id="OutputArraySchema" class="section">4.1.4.1.3 OutputArraySchema <a href="#OutputArraySchema">&sect;</a></h5><h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>type</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">constant value <code>array</code></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Must be <code>array</code></p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>items</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">PrimitiveType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Defines the type of the array elements.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>secondaryFiles</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>Describes files that must be included alongside the primary file(s).</p>
+<p>If the value is an expression, the value of <code>self</code> in the expression
+must be the primary input or output File to which this binding applies.</p>
+<p>If the value is a string, it specifies that the following pattern
+should be applied to the primary file:</p>
+<ol>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
+period <code>.</code> and all following characters).  If there are no file
+extensions, the path is unchanged.</li>
+<li>Append the remainder of the string to the end of the file path.</li>
+</ol>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>format</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>For input parameters, this must be one or more URIs of a concept nodes
+that represents file formats which are allowed as input to this
+parameter, preferrably defined within an ontology.  If no ontology is
+available, file formats may be tested by exact match.</p>
+<p>For output parameters, this is the file format that will be assigned to
+the output parameter.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>streamable</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">boolean</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>A value of <code>true</code> indicates that the file is read or written
+sequentially without seeking.  An implementation may use this flag to
+indicate whether it is valid to stream file contents using a named
+pipe.  Default: <code>false</code>.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>outputBinding</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CommandOutputBinding">CommandOutputBinding</a></div>
+<div class="col-xs-12 col-lg-6 description-col"></div>
+</div></div><h3 id="LinkMergeMethod" class="section">4.1.5 LinkMergeMethod <a href="#LinkMergeMethod">&sect;</a></h3><p>The input link merge method, described in <a href="#WorkflowStepInput">WorkflowStepInput</a>.</p>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>merge_nested</code></td><td></td></tr><tr><td><code>merge_flattened</code></td><td></td></tr></table><h2 id="WorkflowStep" class="section">4.2 WorkflowStep <a href="#WorkflowStep">&sect;</a></h2><p>A workflow step is an executable element of a workflow.  It specifies the
+underlying process implementation (such as <code>CommandLineTool</code>) in the <code>run</code>
+field and connects the input and output parameters of the underlying
+process to workflow parameters.</p>
+<h3 id="Scatter/gather" class="section">Scatter/gather <a href="#Scatter/gather">&sect;</a></h3><p>To use scatter/gather,
+<a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> must be specified
+in the workflow or workflow step requirements.</p>
+<p>A "scatter" operation specifies that the associated workflow step or
+subworkflow should execute separately over a list of input elements.  Each
+job making up a scatter operation is independent and may be executed
+concurrently.</p>
+<p>The <code>scatter</code> field specifies one or more input parameters which will be
+scattered.  An input parameter may be listed more than once.  The declared
+type of each input parameter is implicitly wrapped in an array for each
+time it appears in the <code>scatter</code> field.  As a result, upstream parameters
+which are connected to scattered parameters may be arrays.</p>
+<p>All output parameter types are also implicitly wrapped in arrays.  Each job
+in the scatter results in an entry in the output array.</p>
+<p>If <code>scatter</code> declares more than one input parameter, <code>scatterMethod</code>
+describes how to decompose the input into a discrete set of jobs.</p>
+<ul>
+<li><p><strong>dotproduct</strong> specifies that each of the input arrays are aligned and one
+  element taken from each array to construct each job.  It is an error
+  if all input arrays are not the same length.</p>
+</li>
+<li><p><strong>nested_crossproduct</strong> specifies the Cartesian product of the inputs,
+  producing a job for every combination of the scattered inputs.  The
+  output must be nested arrays for each level of scattering, in the
+  order that the input arrays are listed in the <code>scatter</code> field.</p>
+</li>
+<li><p><strong>flat_crossproduct</strong> specifies the Cartesian product of the inputs,
+  producing a job for every combination of the scattered inputs.  The
+  output arrays must be flattened to a single level, but otherwise listed in the
+  order that the input arrays are listed in the <code>scatter</code> field.</p>
+</li>
+</ul>
+<h3 id="Subworkflows" class="section">Subworkflows <a href="#Subworkflows">&sect;</a></h3><p>To specify a nested workflow as part of a workflow step,
+<a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> must be
+specified in the workflow or workflow step requirements.</p>
+<h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>id</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The unique identifier for this workflow step.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>inputs</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#WorkflowStepInput">WorkflowStepInput</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Defines the input parameters of the workflow step.  The process is ready to
+run when all required input parameters are associated with concrete
+values.  Input parameters include a schema for each parameter which is
+used to validate the input object.  It may also be used build a user
+interface for constructing the input object.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>outputs</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#WorkflowStepOutput">WorkflowStepOutput</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Defines the parameters representing the output of the process.  May be
+used to generate and/or validate the output object.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>run</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="CommandLineTool.html#CommandLineTool">CommandLineTool</a> | <a href="#ExpressionTool">ExpressionTool</a> | <a href="#Workflow">Workflow</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Specifies the process to run.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>requirements</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a> | <a href="CommandLineTool.html#CreateFileRequirement">CreateFileRequirement</a> | <a href="CommandLineTool.html#EnvVarRequirement">EnvVarRequirement</a> | <a href="CommandLineTool.html#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="CommandLineTool.html#ResourceRequirement">ResourceRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#StepInputExpressionRequirement">StepInputExpressionRequirement</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Declares requirements that apply to either the runtime environment or the
+workflow engine that must be met in order to execute this workflow step.  If
+an implementation cannot satisfy all requirements, or a requirement is
+listed which is not recognized by the implementation, it is a fatal
+error and the implementation must not attempt to run the process,
+unless overridden at user option.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>hints</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#Any">Any</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Declares hints applying to either the runtime environment or the
+workflow engine that may be helpful in executing this workflow step.  It is
+not an error if an implementation cannot satisfy all hints, however
+the implementation may report a warning.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>label</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>A short, human-readable label of this process object.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>description</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>A long, human-readable description of this process object.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>scatter</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"></div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>scatterMethod</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#ScatterMethod">ScatterMethod</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Required if <code>scatter</code> is an array of more than one element.</p>
+</div>
+</div></div><h3 id="WorkflowStepInput" class="section">4.2.1 WorkflowStepInput <a href="#WorkflowStepInput">&sect;</a></h3><p>The input of a workflow step connects an upstream parameter (from the
+workflow inputs, or the outputs of other workflows steps) with the input
+parameters of the underlying process.</p>
+<h5 id="Input_object" class="section">Input object <a href="#Input_object">&sect;</a></h5><p>A WorkflowStepInput object must contain an <code>id</code> field in the form
+<code>#fieldname</code> or <code>#stepname.fieldname</code>.  When the <code>id</code> field contains a
+period <code>.</code> the field name consists of the characters following the final
+period.  This defines a field of the workflow step input object with the
+value of the <code>source</code> parameter(s).</p>
+<h5 id="Merging" class="section">Merging <a href="#Merging">&sect;</a></h5><p>To merge multiple inbound data links,
+<a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> must be specified
+in the workflow or workflow step requirements.</p>
+<p>If the sink parameter is an array, or named in a <a href="#WorkflowStep">workflow
+scatter</a> operation, there may be multiple inbound data links
+listed in the <code>source</code> field.  The values from the input links are merged
+depending on the method specified in the <code>linkMerge</code> field.  If not
+specified, the default method is "merge_nested".</p>
+<ul>
+<li><p><strong>merge_nested</strong></p>
+<p>The input must be an array consisting of exactly one entry for each
+input link.  If "merge_nested" is specified with a single link, the value
+from the link must be wrapped in a single-item list.</p>
+</li>
+<li><p><strong>merge_flattened</strong></p>
+<ol>
+<li>The source and sink parameters must be compatible types, or the source
+type must be compatible with single element from the "items" type of
+the destination array parameter.</li>
+<li>Source parameters which are arrays are concatenated.
+Source parameters which are single element types are appended as
+single elements.</li>
+</ol>
+</li>
+</ul>
+<h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>id</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>A unique identifier for this workflow input parameter.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>source</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Specifies one or more workflow parameters that will provide input to
+the underlying process parameter.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>linkMerge</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#LinkMergeMethod">LinkMergeMethod</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The method to use to merge multiple inbound links into a single array.
+If not specified, the default method is "merge_nested".</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>default</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#Any">Any</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The default value for this parameter if there is no <code>source</code>
+field.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>valueFrom</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>To use valueFrom, <a href="#StepInputExpressionRequirement">StepInputExpressionRequirement</a> must
+be specified in the workflow or workflow step requirements.</p>
+<p>If <code>valueFrom</code> is a constant string value, use this as the value for
+this input parameter.</p>
+<p>If <code>valueFrom</code> is a parameter reference or expression, it must be
+evaluated to yield the actual value to be assiged to the input field.</p>
+<p>The <code>self</code> value of in the parameter reference or expression must be
+the value of the parameter(s) specified in the <code>source</code> field, or
+null if there is no <code>source</code> field.</p>
+<p>The value of <code>inputs</code> in the parameter reference or expression is the
+input object to the workflow step after assigning the <code>source</code> values,
+but before evaluating any step with <code>valueFrom</code>.  The order of
+evaluating <code>valueFrom</code> among step input parameters is undefined.</p>
+</div>
+</div></div><h4 id="Any" class="section">4.2.1.1 Any <a href="#Any">&sect;</a></h4><p>The <strong>Any</strong> type validates for any non-null value.</p>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>Any</code></td><td></td></tr></table><h3 id="WorkflowStepOutput" class="section">4.2.2 WorkflowStepOutput <a href="#WorkflowStepOutput">&sect;</a></h3><p>Associate an output parameter of the underlying process with a workflow
+parameter.  The workflow parameter (given in the <code>id</code> field) be may be used
+as a <code>source</code> to connect with input parameters of other workflow steps, or
+with an output parameter of the process.</p>
+<h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>id</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>A unique identifier for this workflow output parameter.  This is the
+identifier to use in the <code>source</code> field of <code>WorkflowStepInput</code> to
+connect the output value to downstream parameters.</p>
+</div>
+</div></div><h3 id="ScatterMethod" class="section">4.2.3 ScatterMethod <a href="#ScatterMethod">&sect;</a></h3><p>The scatter method, as described in <a href="#WorkflowStep">workflow step scatter</a>.</p>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>dotproduct</code></td><td></td></tr><tr><td><code>nested_crossproduct</code></td><td></td></tr><tr><td><code>flat_crossproduct</code></td><td></td></tr></table><h3 id="InlineJavascriptRequirement" class="section">4.2.4 InlineJavascriptRequirement <a href="#InlineJavascriptRequirement">&sect;</a></h3><p>Indicates that the workflow platform must support inline Javascript expressions.
+If this requirement is not present, the workflow platform must not perform expression
+interpolatation.</p>
+<h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>class</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The specific requirement type.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>expressionLib</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#CWLType">string</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Additional code fragments that will also be inserted
+before executing the expression code.  Allows for function definitions that may
+be called from CWL expressions.</p>
+</div>
+</div></div><h3 id="SchemaDefRequirement" class="section">4.2.5 SchemaDefRequirement <a href="#SchemaDefRequirement">&sect;</a></h3><p>This field consists of an array of type definitions which must be used when
+interpreting the <code>inputs</code> and <code>outputs</code> fields.  When a <code>type</code> field
+contain a URI, the implementation must check if the type is defined in
+<code>schemaDefs</code> and use that definition.  If the type is not found in
+<code>schemaDefs</code>, it is an error.  The entries in <code>schemaDefs</code> must be
+processed in the order listed such that later schema definitions may refer
+to earlier schema definitions.</p>
+<h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>class</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The specific requirement type.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>types</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#InputRecordSchema">InputRecordSchema</a>&nbsp;|&nbsp;<a href="#InputEnumSchema">InputEnumSchema</a>&nbsp;|&nbsp;<a href="#InputArraySchema">InputArraySchema</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The list of type definitions.</p>
+</div>
+</div></div><h4 id="InputRecordSchema" class="section">4.2.5.1 InputRecordSchema <a href="#InputRecordSchema">&sect;</a></h4><h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>type</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">constant value <code>record</code></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Must be <code>record</code></p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>fields</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#InputRecordField">InputRecordField</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Defines the fields of the record.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>secondaryFiles</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>Describes files that must be included alongside the primary file(s).</p>
+<p>If the value is an expression, the value of <code>self</code> in the expression
+must be the primary input or output File to which this binding applies.</p>
+<p>If the value is a string, it specifies that the following pattern
+should be applied to the primary file:</p>
+<ol>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
+period <code>.</code> and all following characters).  If there are no file
+extensions, the path is unchanged.</li>
+<li>Append the remainder of the string to the end of the file path.</li>
+</ol>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>format</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>For input parameters, this must be one or more URIs of a concept nodes
+that represents file formats which are allowed as input to this
+parameter, preferrably defined within an ontology.  If no ontology is
+available, file formats may be tested by exact match.</p>
+<p>For output parameters, this is the file format that will be assigned to
+the output parameter.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>streamable</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">boolean</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>A value of <code>true</code> indicates that the file is read or written
+sequentially without seeking.  An implementation may use this flag to
+indicate whether it is valid to stream file contents using a named
+pipe.  Default: <code>false</code>.</p>
+</div>
+</div></div><h5 id="InputRecordField" class="section">4.2.5.1.1 InputRecordField <a href="#InputRecordField">&sect;</a></h5><h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>name</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The name of the field</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>type</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">PrimitiveType</a> | <a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The field type</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>doc</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>A documentation string for this field</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>inputBinding</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CommandLineBinding">CommandLineBinding</a></div>
+<div class="col-xs-12 col-lg-6 description-col"></div>
+</div></div><h6 id="InputEnumSchema" class="section">4.2.5.1.1.1 InputEnumSchema <a href="#InputEnumSchema">&sect;</a></h6><h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>type</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">constant value <code>enum</code></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Must be <code>enum</code></p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>symbols</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#CWLType">string</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Defines the set of valid symbols.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>secondaryFiles</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>Describes files that must be included alongside the primary file(s).</p>
+<p>If the value is an expression, the value of <code>self</code> in the expression
+must be the primary input or output File to which this binding applies.</p>
+<p>If the value is a string, it specifies that the following pattern
+should be applied to the primary file:</p>
+<ol>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
+period <code>.</code> and all following characters).  If there are no file
+extensions, the path is unchanged.</li>
+<li>Append the remainder of the string to the end of the file path.</li>
+</ol>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>format</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>For input parameters, this must be one or more URIs of a concept nodes
+that represents file formats which are allowed as input to this
+parameter, preferrably defined within an ontology.  If no ontology is
+available, file formats may be tested by exact match.</p>
+<p>For output parameters, this is the file format that will be assigned to
+the output parameter.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>streamable</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">boolean</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>A value of <code>true</code> indicates that the file is read or written
+sequentially without seeking.  An implementation may use this flag to
+indicate whether it is valid to stream file contents using a named
+pipe.  Default: <code>false</code>.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>inputBinding</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CommandLineBinding">CommandLineBinding</a></div>
+<div class="col-xs-12 col-lg-6 description-col"></div>
+</div></div><h6 id="#_4.2.5.1.1.1.1_CommandLineBinding" class="section"># 4.2.5.1.1.1.1 CommandLineBinding <a href="##_4.2.5.1.1.1.1_CommandLineBinding">&sect;</a></h6><p>When listed under <code>inputBinding</code> in the input schema, the term
+"value" refers to the the corresponding value in the input object.  For
+binding objects listed in <code>CommandLineTool.arguments</code>, the term "value"
+refers to the effective value after evaluating <code>valueFrom</code>.</p>
+<p>The binding behavior when building the command line depends on the data
+type of the value.  If there is a mismatch between the type described by
+the input schema and the effective value, such as resulting from an
+expression evaluation, an implementation must use the data type of the
+effective value.</p>
+<ul>
+<li><p><strong>string</strong>: Add <code>prefix</code> and the string to the command line.</p>
+</li>
+<li><p><strong>number</strong>: Add <code>prefix</code> and decimal representation to command line.</p>
+</li>
+<li><p><strong>boolean</strong>: If true, add <code>prefix</code> to the command line.  If false, add
+  nothing.</p>
+</li>
+<li><p><strong>File</strong>: Add <code>prefix</code> and the value of
+<a href="#File"><code>File.path</code></a> to the command line.</p>
+</li>
+<li><p><strong>array</strong>: If <code>itemSeparator</code> is specified, add <code>prefix</code> and the join
+  the array into a single string with <code>itemSeparator</code> separating the
+  items.  Otherwise first add <code>prefix</code>, then recursively process
+  individual elements.</p>
+</li>
+<li><p><strong>object</strong>: Add <code>prefix</code> only, and recursively add object fields for
+  which <code>inputBinding</code> is specified.</p>
+</li>
+<li><p><strong>null</strong>: Add nothing.</p>
+</li>
+</ul>
+<h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>loadContents</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">boolean</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>Read up to the first 64 KiB of text from the file and place it in the
+"contents" field of the file object for use by expressions.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>position</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">int</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The sorting key.  Default position is 0.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>prefix</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Command line prefix to add before the value.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>separate</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">boolean</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>If true (default), then the prefix and value must be added as separate
+command line arguments; if false, prefix and value must be concatenated
+into a single command line argument.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>itemSeparator</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Join the array elements into a single string with the elements
+separated by by <code>itemSeparator</code>.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>valueFrom</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>If <code>valueFrom</code> is a constant string value, use this as the value and
+apply the binding rules above.</p>
+<p>If <code>valueFrom</code> is an expression, evaluate the expression to yield the
+actual value to use to build the command line and apply the binding
+rules above.  If the inputBinding is associated with an input
+parameter, the value of <code>self</code> in the expression will be the value of the
+input parameter.</p>
+<p>When a binding is part of the <code>CommandLineTool.arguments</code> field,
+the <code>valueFrom</code> field is required.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>shellQuote</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">boolean</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>If <code>ShellCommandRequirement</code> is in the requirements for the current command,
+this controls whether the value is quoted on the command line (default is true).
+Use <code>shellQuote: false</code> to inject metacharacters for operations such as pipes.</p>
+</div>
+</div></div><h6 id="InputArraySchema" class="section">4.2.5.1.1.2 InputArraySchema <a href="#InputArraySchema">&sect;</a></h6><h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>type</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">constant value <code>array</code></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Must be <code>array</code></p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>items</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">PrimitiveType</a> | <a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#PrimitiveType">PrimitiveType</a> | <a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Defines the type of the array elements.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>secondaryFiles</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>Describes files that must be included alongside the primary file(s).</p>
+<p>If the value is an expression, the value of <code>self</code> in the expression
+must be the primary input or output File to which this binding applies.</p>
+<p>If the value is a string, it specifies that the following pattern
+should be applied to the primary file:</p>
+<ol>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
+period <code>.</code> and all following characters).  If there are no file
+extensions, the path is unchanged.</li>
+<li>Append the remainder of the string to the end of the file path.</li>
+</ol>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>format</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>For input parameters, this must be one or more URIs of a concept nodes
+that represents file formats which are allowed as input to this
+parameter, preferrably defined within an ontology.  If no ontology is
+available, file formats may be tested by exact match.</p>
+<p>For output parameters, this is the file format that will be assigned to
+the output parameter.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>streamable</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">boolean</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>A value of <code>true</code> indicates that the file is read or written
+sequentially without seeking.  An implementation may use this flag to
+indicate whether it is valid to stream file contents using a named
+pipe.  Default: <code>false</code>.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>inputBinding</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CommandLineBinding">CommandLineBinding</a></div>
+<div class="col-xs-12 col-lg-6 description-col"></div>
+</div></div><h3 id="SubworkflowFeatureRequirement" class="section">4.2.6 SubworkflowFeatureRequirement <a href="#SubworkflowFeatureRequirement">&sect;</a></h3><p>Indicates that the workflow platform must support nested workflows in
+the <code>run</code> field of (WorkflowStep)(#WorkflowStep).</p>
+<h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>class</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The specific requirement type.</p>
+</div>
+</div></div><h3 id="ScatterFeatureRequirement" class="section">4.2.7 ScatterFeatureRequirement <a href="#ScatterFeatureRequirement">&sect;</a></h3><p>Indicates that the workflow platform must support the <code>scatter</code> and
+<code>scatterMethod</code> fields of <a href="#WorkflowStep">WorkflowStep</a>.</p>
+<h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>class</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The specific requirement type.</p>
+</div>
+</div></div><h3 id="MultipleInputFeatureRequirement" class="section">4.2.8 MultipleInputFeatureRequirement <a href="#MultipleInputFeatureRequirement">&sect;</a></h3><p>Indicates that the workflow platform must support multiple inbound data links
+listed in the <code>source</code> field of <a href="#WorkflowStepInput">WorkflowStepInput</a>.</p>
+<h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>class</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The specific requirement type.</p>
+</div>
+</div></div><h3 id="StepInputExpressionRequirement" class="section">4.2.9 StepInputExpressionRequirement <a href="#StepInputExpressionRequirement">&sect;</a></h3><p>Indicate that the workflow platform must support the <code>valueFrom</code> field
+of <a href="#WorkflowStepInput">WorkflowStepInput</a>.</p>
+<h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>class</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The specific requirement type.</p>
+</div>
+</div></div><h3 id="ExpressionTool" class="section">4.2.10 ExpressionTool <a href="#ExpressionTool">&sect;</a></h3><p>Execute an expression as a process step.</p>
+<h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>inputs</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#InputParameter">InputParameter</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Defines the input parameters of the process.  The process is ready to
+run when all required input parameters are associated with concrete
+values.  Input parameters include a schema for each parameter which is
+used to validate the input object.  It may also be used to build a user
+interface for constructing the input object.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>outputs</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#OutputParameter">OutputParameter</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Defines the parameters representing the output of the process.  May be
+used to generate and/or validate the output object.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>class</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"></div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>expression</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The expression to execute.  The expression must return a JSON object which
+matches the output parameters of the ExpressionTool.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>id</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The unique identifier for this process object.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>requirements</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#InlineJavascriptRequirement">InlineJavascriptRequirement</a> | <a href="#SchemaDefRequirement">SchemaDefRequirement</a> | <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a> | <a href="CommandLineTool.html#CreateFileRequirement">CreateFileRequirement</a> | <a href="CommandLineTool.html#EnvVarRequirement">EnvVarRequirement</a> | <a href="CommandLineTool.html#ShellCommandRequirement">ShellCommandRequirement</a> | <a href="CommandLineTool.html#ResourceRequirement">ResourceRequirement</a> | <a href="#SubworkflowFeatureRequirement">SubworkflowFeatureRequirement</a> | <a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> | <a href="#MultipleInputFeatureRequirement">MultipleInputFeatureRequirement</a> | <a href="#StepInputExpressionRequirement">StepInputExpressionRequirement</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Declares requirements that apply to either the runtime environment or the
+workflow engine that must be met in order to execute this process.  If
+an implementation cannot satisfy all requirements, or a requirement is
+listed which is not recognized by the implementation, it is a fatal
+error and the implementation must not attempt to run the process,
+unless overridden at user option.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>hints</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3">array&lt;<a href="#Any">Any</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Declares hints applying to either the runtime environment or the
+workflow engine that may be helpful in executing this process.  It is
+not an error if an implementation cannot satisfy all hints, however
+the implementation may report a warning.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>label</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>A short, human-readable label of this process object.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>description</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>A long, human-readable description of this process object.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>cwlVersion</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLVersions">CWLVersions</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>CWL document version</p>
+</div>
+</div></div><h4 id="InputParameter" class="section">4.2.10.1 InputParameter <a href="#InputParameter">&sect;</a></h4><h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>id</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The unique identifier for this parameter object.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>secondaryFiles</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>Describes files that must be included alongside the primary file(s).</p>
+<p>If the value is an expression, the value of <code>self</code> in the expression
+must be the primary input or output File to which this binding applies.</p>
+<p>If the value is a string, it specifies that the following pattern
+should be applied to the primary file:</p>
+<ol>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
+period <code>.</code> and all following characters).  If there are no file
+extensions, the path is unchanged.</li>
+<li>Append the remainder of the string to the end of the file path.</li>
+</ol>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>format</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>For input parameters, this must be one or more URIs of a concept nodes
+that represents file formats which are allowed as input to this
+parameter, preferrably defined within an ontology.  If no ontology is
+available, file formats may be tested by exact match.</p>
+<p>For output parameters, this is the file format that will be assigned to
+the output parameter.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>streamable</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">boolean</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>A value of <code>true</code> indicates that the file is read or written
+sequentially without seeking.  An implementation may use this flag to
+indicate whether it is valid to stream file contents using a named
+pipe.  Default: <code>false</code>.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>type</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">CWLType</a> | <a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#InputRecordSchema">InputRecordSchema</a> | <a href="#InputEnumSchema">InputEnumSchema</a> | <a href="#InputArraySchema">InputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Specify valid types of data that may be assigned to this parameter.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>label</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>A short, human-readable label of this parameter object.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>description</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>A long, human-readable description of this parameter object.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>inputBinding</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CommandLineBinding">CommandLineBinding</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Describes how to handle the inputs of a process and convert them
+into a concrete form for execution, such as command line parameters.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>default</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#Any">Any</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The default value for this parameter if not provided in the input
+object.</p>
+</div>
+</div></div><h4 id="OutputParameter" class="section">4.2.10.2 OutputParameter <a href="#OutputParameter">&sect;</a></h4><h3>Fields</h3>
+<div class="responsive-table">
+<div class="row responsive-table-header">
+<div class="col-xs-3 col-lg-2">field</div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3">type</div>
+<div class="col-xs-12 col-lg-6 description-header">description</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>id</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The unique identifier for this parameter object.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>secondaryFiles</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">string</a>&nbsp;|&nbsp;<a href="#Expression">Expression</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>Describes files that must be included alongside the primary file(s).</p>
+<p>If the value is an expression, the value of <code>self</code> in the expression
+must be the primary input or output File to which this binding applies.</p>
+<p>If the value is a string, it specifies that the following pattern
+should be applied to the primary file:</p>
+<ol>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
+period <code>.</code> and all following characters).  If there are no file
+extensions, the path is unchanged.</li>
+<li>Append the remainder of the string to the end of the file path.</li>
+</ol>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>format</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt; | <a href="#Expression">Expression</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>For input parameters, this must be one or more URIs of a concept nodes
+that represents file formats which are allowed as input to this
+parameter, preferrably defined within an ontology.  If no ontology is
+available, file formats may be tested by exact match.</p>
+<p>For output parameters, this is the file format that will be assigned to
+the output parameter.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>streamable</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">boolean</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
+<p>A value of <code>true</code> indicates that the file is read or written
+sequentially without seeking.  An implementation may use this flag to
+indicate whether it is valid to stream file contents using a named
+pipe.  Default: <code>false</code>.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>type</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">CWLType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#OutputRecordSchema">OutputRecordSchema</a> | <a href="#OutputEnumSchema">OutputEnumSchema</a> | <a href="#OutputArraySchema">OutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Specify valid types of data that may be assigned to this parameter.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>label</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>A short, human-readable label of this parameter object.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>description</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>A long, human-readable description of this parameter object.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>outputBinding</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#CommandOutputBinding">CommandOutputBinding</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Describes how to handle the outputs of a process.</p>
+</div>
+</div></div><h4 id="CWLVersions" class="section">4.2.10.3 CWLVersions <a href="#CWLVersions">&sect;</a></h4><p>Version symbols for published CWL document versions.</p>
+<h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>draft-2</code></td><td></td></tr><tr><td><code>draft-3.dev1</code></td><td></td></tr><tr><td><code>draft-3.dev2</code></td><td></td></tr><tr><td><code>draft-3.dev3</code></td><td></td></tr><tr><td><code>draft-3.dev4</code></td><td></td></tr><tr><td><code>draft-3.dev5</code></td><td></td></tr><tr><td><code>draft-3</code></td><td></td></tr></table></div>
+    </div>
+    </div>
+    </body>
+    </html>
