@@ -330,7 +330,7 @@ rules:</p>
 <li><p>If the value of <code>jsonldPredicate</code> is <code>@id</code>, the field is an identifier
 field.</p>
 </li>
-<li><p>If the value of <code>jsonldPredicate</code> is an object, and contains that
+<li><p>If the value of <code>jsonldPredicate</code> is an object, and that
 object contains the field <code>_type</code> with the value <code>@id</code>, the field is a
 link field subject to <a href="#Link_validation">link validation</a>.</p>
 </li>
@@ -385,7 +385,7 @@ part of the vocabulary and not resolvable to absolute URIs.  Fields names
 which are not part of the vocabulary are resolved using the following
 rules:</p>
 <ul>
-<li><p>If an field name URI begins with a namespace prefix declared in the
+<li><p>If a field name URI begins with a namespace prefix declared in the
 document context (<code>@context</code>) followed by a colon <code>:</code>, the prefix and
 colon must be replaced by the namespace declared in <code>@context</code>.</p>
 </li>
@@ -442,7 +442,7 @@ identifiers using the following rules:</p>
 fragment identifier.  It is resolved relative to the base URI by
 setting or replacing the fragment portion of the base URI.</p>
 </li>
-<li><p>If an identifier URI contains <code>#</code> in some other position is a
+<li><p>If an identifier URI contains <code>#</code> in some other position it is a
 relative URI with fragment identifier.  It is resolved relative
 to the base URI by stripping the last path segment from the base
 URI and adding the identifier followed by the fragment.</p>
@@ -557,7 +557,7 @@ absolute URI.</p>
   }
 }
 </code></pre>
-<h2 id="Link_resolution" class="section">3.3 Link resolution <a href="#Link_resolution">&sect;</a></h2><p>The schema may designate one or more fields as link fields reference other
+<h2 id="Link_resolution" class="section">3.3 Link resolution <a href="#Link_resolution">&sect;</a></h2><p>The schema may designate one or more fields as link fields that reference other
 objects.  Processing must resolve links to either absolute URIs using the
 following rules:</p>
 <ul>
@@ -739,16 +739,16 @@ the target document.  This indicates that the <code>$import</code> node must be
 replaced by only the object with the appropriate fragment identifier.</p>
 <p>It is a fatal error if an import directive refers to an external resource
 or resource fragment which does not exist or is not accessible.</p>
-<h3 id="Import_example" class="section">3.5.1 Import example <a href="#Import_example">&sect;</a></h3><p>import.yml:</p>
+<h3 id="Import_example" class="section">3.5.1 Import example <a href="#Import_example">&sect;</a></h3><p>import.json:</p>
 <pre><code>{
   "hello": "world"
 }
 </code></pre>
-<p>parent.yml:</p>
+<p>parent.json:</p>
 <pre><code>{
   "form": {
     "bar": {
-      "$import": "import.yml"
+      "$import": "import.json"
       }
   }
 }
@@ -777,7 +777,7 @@ but must not interpret or parse the text document in any other way.</p>
 string containing the text data loaded from the resource.</p>
 <p>It is a fatal error if an import directive refers to an external resource
 which does not exist or is not accessible.</p>
-<h3 id="Include_example" class="section">3.6.1 Include example <a href="#Include_example">&sect;</a></h3><p>parent.yml:</p>
+<h3 id="Include_example" class="section">3.6.1 Include example <a href="#Include_example">&sect;</a></h3><p>parent.json:</p>
 <pre><code>{
   "form": {
     "bar": {
@@ -799,7 +799,7 @@ which does not exist or is not accessible.</p>
 <h2 id="Identifier_maps" class="section">3.7 Identifier maps <a href="#Identifier_maps">&sect;</a></h2><p>The schema may designate certain fields as having a <code>mapSubject</code>.  If the
 value of the field is a JSON object, it must be transformed into an array of
 JSON objects.  Each key-value pair from the source JSON object is a list
-item, each list item must be a JSON objects, and the value of the key is
+item, each list item must be a JSON object, and the value of the key is
 assigned to the field specified by <code>mapSubject</code>.</p>
 <p>Fields which have <code>mapSubject</code> specified may also supply a <code>mapPredicate</code>.
 If the value of a map item is not a JSON object, the item is transformed to a
