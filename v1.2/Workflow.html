@@ -3239,6 +3239,8 @@ Directories) declared in <code>entry</code> must be writable by the tool.</p>
 visible by any other CommandLineTool process.  This may be
 implemented by making a copy of the original file or
 directory.</p>
+<p>Disruptive changes to the referenced file or directory must not
+be allowed unless <code>InplaceUpdateRequirement.inplaceUpdate</code> is true.</p>
 <p>Default false (files and directories read-only by default).</p>
 <p>A directory marked as <code>writable: true</code> implies that all files and
 subdirectories are recursively writable as well.</p>
