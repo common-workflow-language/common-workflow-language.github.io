@@ -217,8 +217,18 @@
 
 <h2 id="support" class="section">Support, Community and Contributing <a id="Support" href="#Support,_Community_and_Contributing">§</a></h2>
 
-<div class="twitter-feed"><a class="twitter-timeline" data-width="280" data-height="600" data-dnt="true" data-theme="light" href="https://twitter.com/commonwl?ref_src=twsrc%5Etfw">Tweets by commonwl</a></div>
+<div class="twitter-feed" id="twitter-feed"><a class="twitter-timeline" data-width="280" data-height="600" data-dnt="true" data-theme="light" href="https://twitter.com/commonwl?ref_src=twsrc%5Etfw">Tweets by @commonwl</a></div>
 <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<script>
+var twitterText = '<p>See Tweets by <a href="https://twitter.com/commonwl">@commonwl <img class="twitter-icon" src="/assets/img/twitter-icon.svg" width="20" alt="Twitter Icon"></a></p>';
+
+window.addEventListener("load", function() {
+  if (! document.querySelector('[id^="twitter-widget"]')) {
+    document.getElementById("twitter-feed").innerHTML = twitterText;
+  }
+});
+</script>
 
 <p>The recommended place to ask a question about all things CWL is on <a href="https://cwl.discourse.group/">the CWL Discourse Group</a>. Previously we used <a href="https://www.biostars.org/t/cwl/">biostars.org</a> where you can still read older responses.</p>
 
