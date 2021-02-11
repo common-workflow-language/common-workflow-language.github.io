@@ -19,7 +19,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="last-modified" content="2021-02-01 22:10:11 +0000">
+    <meta http-equiv="last-modified" content="2021-02-11 20:32:32 +0000">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- meta "search-domain" used for google site search function google_search() -->
     <meta name="search-domain" value="">
@@ -28,6 +28,8 @@
     <link rel="stylesheet" type="text/css" href="../assets/css/lesson.css" />
     <link rel="stylesheet" type="text/css" href="../assets/css/syntax.css" />
     <link rel="license" href="#license-info" />
+    <script type="text/javascript" src="../assets/js/tabs.js"></script>
+    <link rel="stylesheet" href="../assets/css/tabs.css">
 
     
 
@@ -65,7 +67,7 @@
 
   <title>
   Getting started with CWL
-  </title>  
+  </title>
 
   </head>
   <body>
@@ -665,7 +667,7 @@ For example:</p>
 </code></pre></div></div>
 
 <blockquote class="challenge">
-  <h2 id="exercise"><code class="language-plaintext highlighter-rouge">Exercise</code></h2>
+  <h2 id="exercise">Exercise</h2>
 
   <p>Look at <code class="language-plaintext highlighter-rouge">STAR-Align.cwl</code> and identify the other input parameters that
 correspond to the command line arguments used in the source script.
@@ -673,7 +675,7 @@ Also identify the output parameter.  Use these to write the STAR
 step.</p>
 
   <blockquote class="solution">
-    <h2 id="solution"><code class="language-plaintext highlighter-rouge">Solution</code></h2>
+    <h2 id="solution">Solution</h2>
 
     <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="na">STAR</span><span class="pi">:</span>
    <span class="na">run</span><span class="pi">:</span> <span class="s">bio-cwl-tools/STAR/STAR-Align.cwl</span>
@@ -682,6 +684,7 @@ step.</p>
      <span class="na">GenomeDir</span><span class="pi">:</span> <span class="s">genome</span>
      <span class="na">ForwardReads</span><span class="pi">:</span> <span class="s">fq</span>
      <span class="na">OutSAMtype</span><span class="pi">:</span> <span class="pi">{</span><span class="nv">default</span><span class="pi">:</span> <span class="nv">BAM</span><span class="pi">}</span>
+     <span class="na">SortedByCoordinate</span><span class="pi">:</span> <span class="pi">{</span><span class="nv">default</span><span class="pi">:</span> <span class="nv">true</span><span class="pi">}</span>
      <span class="na">OutSAMunmapped</span><span class="pi">:</span> <span class="pi">{</span><span class="nv">default</span><span class="pi">:</span> <span class="nv">Within</span><span class="pi">}</span>
    <span class="na">out</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">alignment</span><span class="pi">]</span>
 </code></pre></div>    </div>
@@ -747,6 +750,13 @@ aligned, sorted and indexed BAM file.</p>
     <span class="na">type</span><span class="pi">:</span> <span class="s">File</span>
     <span class="na">outputSource</span><span class="pi">:</span> <span class="s">samtools/bam_sorted_indexed</span>
 </code></pre></div></div>
+
+<blockquote class="solution">
+  <h2 id="episode-solution">Episode solution</h2>
+  <ul>
+    <li><a href="/assets/answers/ep2/main.cwl">main.cwl</a></li>
+  </ul>
+</blockquote>
 
 <blockquote class="keypoints">
   <h2>Key Points</h2>
@@ -825,8 +835,22 @@ plain strings that may or may not be file paths.</p>
 
 <p>Note: if you don’t have example sequence data or the STAR index files, see <a href="/setup.html">setup</a>.</p>
 
+<div>
+<ul class="tab" data-tab="7064080c-1e79-4a52-8b78-a469ef920170">
+    
+        <li class="active">
+            <a href="">generic </a>
+        </li>
+    
+        <li>
+            <a href="">arvados </a>
+        </li>
+    
+    </ul>
+    <ul class="tab-content" id="7064080c-1e79-4a52-8b78-a469ef920170">
+    
+        <li class="active">
 <p>main-input.yaml</p>
-
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">fq</span><span class="pi">:</span>
   <span class="na">class</span><span class="pi">:</span> <span class="s">File</span>
   <span class="na">location</span><span class="pi">:</span> <span class="s">rnaseq/raw_fastq/Mov10_oe_1.subset.fq</span>
@@ -844,14 +868,42 @@ plain strings that may or may not be file paths.</p>
 
   <p>Type this into the terminal:</p>
 
-  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cwl-runner main.cwl main-input.yaml
+  <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cwl-runner main.cwl main-input.yaml
 </code></pre></div>  </div>
 
   <p>This may take a few minutes to run, and will print some amount of
 logging.  The logging you see, how access other logs, and how to
 track workflow progress will depend on your CWL runner platform.</p>
+</blockquote>
+
+</li>
+    
+        <li>
+<p>main-input.yaml</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">fq</span><span class="pi">:</span>
+  <span class="na">class</span><span class="pi">:</span> <span class="s">File</span>
+  <span class="na">location</span><span class="pi">:</span> <span class="s">keep:9178fe1b80a08a422dbe02adfd439764+925/raw_fastq/Mov10_oe_1.subset.fq</span>
+  <span class="na">format</span><span class="pi">:</span> <span class="s">http://edamontology.org/format_1930</span>
+<span class="na">genome</span><span class="pi">:</span>
+  <span class="na">class</span><span class="pi">:</span> <span class="s">Directory</span>
+  <span class="na">location</span><span class="pi">:</span> <span class="s">keep:02a12ce9e2707610991bd29d38796b57+2912</span>
+<span class="na">gtf</span><span class="pi">:</span>
+  <span class="na">class</span><span class="pi">:</span> <span class="s">File</span>
+  <span class="na">location</span><span class="pi">:</span> <span class="s">9178fe1b80a08a422dbe02adfd439764+925/reference_data/chr1-hg19_genes.gtf</span>
+</code></pre></div></div>
+
+<blockquote class="challenge">
+  <h2 id="running-the-workflow">Running the workflow</h2>
+
+  <p>If you are using VSCode with Arvados tasks, select <code class="language-plaintext highlighter-rouge">main.cwl</code> and
+then use the <code class="language-plaintext highlighter-rouge">Run CWL Workflow on Arvados</code> task.</p>
 
 </blockquote>
+</li>
+    
+</ul>
+
+</div>
 
 <h1 id="debugging-the-workflow">Debugging the workflow</h1>
 
@@ -913,16 +965,38 @@ request more RAM, add a “requirements” section with
 </ul>
 
 <blockquote class="challenge">
-  <h2 id="running-the-workflow-1">Running the workflow</h2>
+  <h2 id="running-the-workflow">Running the workflow</h2>
 
   <p>Now that you’ve fixed the workflow, run it again.</p>
 
+</blockquote>
+
+<blockquote class="solution">
+  <h2 id="episode-solution">Episode solution</h2>
+  <ul>
+    <li><a href="/assets/answers/ep3/main.cwl">main.cwl</a></li>
+  </ul>
 </blockquote>
 
 <h1 id="workflow-results">Workflow results</h1>
 
 <p>The CWL runner will print a results JSON object to standard output.  It will look something like this (it may include additional fields).</p>
 
+<div>
+<ul class="tab" data-tab="1f0e04f7-53dc-43f2-8a4f-f7c120161c86">
+    
+        <li class="active">
+            <a href="">generic </a>
+        </li>
+    
+        <li>
+            <a href="">arvados </a>
+        </li>
+    
+    </ul>
+    <ul class="tab-content" id="1f0e04f7-53dc-43f2-8a4f-f7c120161c86">
+    
+        <li class="active">
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">{</span>
     <span class="s2">"</span><span class="s">bam_sorted_indexed"</span><span class="pi">:</span> <span class="pi">{</span>
         <span class="s2">"</span><span class="s">location"</span><span class="pi">:</span> <span class="s2">"</span><span class="s">file:///home/username/rnaseq-cwl-training-exercises/Aligned.sortedByCoord.out.bam"</span><span class="pi">,</span>
@@ -946,6 +1020,36 @@ request more RAM, add a “requirements” section with
     <span class="pi">}</span>
 <span class="pi">}</span>
 </code></pre></div></div>
+</li>
+    
+        <li>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">{</span>
+    <span class="s2">"</span><span class="s">bam_sorted_indexed"</span><span class="pi">:</span> <span class="pi">{</span>
+        <span class="s2">"</span><span class="s">basename"</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Aligned.sortedByCoord.out.bam"</span><span class="pi">,</span>
+        <span class="s2">"</span><span class="s">class"</span><span class="pi">:</span> <span class="s2">"</span><span class="s">File"</span><span class="pi">,</span>
+        <span class="s2">"</span><span class="s">location"</span><span class="pi">:</span> <span class="s2">"</span><span class="s">keep:2dbaaef5aefd558e37f14280e47091a9+327/Aligned.sortedByCoord.out.bam"</span><span class="pi">,</span>
+        <span class="s2">"</span><span class="s">secondaryFiles"</span><span class="pi">:</span> <span class="pi">[</span>
+            <span class="pi">{</span>
+                <span class="s2">"</span><span class="s">basename"</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Aligned.sortedByCoord.out.bam.bai"</span><span class="pi">,</span>
+                <span class="s2">"</span><span class="s">class"</span><span class="pi">:</span> <span class="s2">"</span><span class="s">File"</span><span class="pi">,</span>
+                <span class="s2">"</span><span class="s">location"</span><span class="pi">:</span> <span class="s2">"</span><span class="s">keep:2dbaaef5aefd558e37f14280e47091a9+327/Aligned.sortedByCoord.out.bam.bai"</span>
+            <span class="pi">}</span>
+        <span class="pi">],</span>
+        <span class="s2">"</span><span class="s">size"</span><span class="pi">:</span> <span class="nv">25370695</span>
+    <span class="pi">},</span>
+    <span class="s2">"</span><span class="s">qc_html"</span><span class="pi">:</span> <span class="pi">{</span>
+        <span class="s2">"</span><span class="s">basename"</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Mov10_oe_1.subset_fastqc.html"</span><span class="pi">,</span>
+        <span class="s2">"</span><span class="s">class"</span><span class="pi">:</span> <span class="s2">"</span><span class="s">File"</span><span class="pi">,</span>
+        <span class="s2">"</span><span class="s">location"</span><span class="pi">:</span> <span class="s2">"</span><span class="s">keep:2dbaaef5aefd558e37f14280e47091a9+327/Mov10_oe_1.subset_fastqc.html"</span><span class="pi">,</span>
+        <span class="s2">"</span><span class="s">size"</span><span class="pi">:</span> <span class="nv">383589</span>
+    <span class="pi">}</span>
+<span class="pi">}</span>
+</code></pre></div></div>
+</li>
+    
+</ul>
+
+</div>
 
 <p>This has a similar structure as <code class="language-plaintext highlighter-rouge">main-input.yaml</code>.  The each output
 parameter is listed, with the <code class="language-plaintext highlighter-rouge">location</code> field of each <code class="language-plaintext highlighter-rouge">File</code> object
@@ -1258,6 +1362,14 @@ output parameter.</li>
   </blockquote>
 </blockquote>
 
+<blockquote class="solution">
+  <h2 id="episode-solution">Episode solution</h2>
+  <ul>
+    <li><a href="/assets/answers/ep4/main.cwl">main.cwl</a></li>
+    <li><a href="/assets/answers/ep4/featureCounts.cwl">featureCounts.cwl</a></li>
+  </ul>
+</blockquote>
+
 <blockquote class="keypoints">
   <h2>Key Points</h2>
   <ul>
@@ -1377,6 +1489,15 @@ an outer workflow.</p>
 
 </blockquote>
 
+<blockquote class="solution">
+  <h2 id="part-1-solution">Part 1 solution</h2>
+  <ul>
+    <li><a href="/assets/answers/ep5/part1/main.cwl">main.cwl</a></li>
+    <li><a href="/assets/answers/ep5/part1/alignment.cwl">alignment.cwl</a></li>
+    <li><a href="/assets/answers/ep5/part1/featureCounts.cwl">featureCounts.cwl</a></li>
+  </ul>
+</blockquote>
+
 <h1 id="scattering">Scattering</h1>
 
 <p>The “wrapper” step lets us do something useful.  We can modify the
@@ -1429,6 +1550,15 @@ runner that we are using scatter:</p>
   <span class="na">SubworkflowFeatureRequirement</span><span class="pi">:</span> <span class="pi">{}</span>
   <span class="na">ScatterFeatureRequirement</span><span class="pi">:</span> <span class="pi">{}</span>
 </code></pre></div></div>
+
+<blockquote class="solution">
+  <h2 id="part-2-solution">Part 2 solution</h2>
+  <ul>
+    <li><a href="/assets/answers/ep5/part2/main.cwl">main.cwl</a></li>
+    <li><a href="/assets/answers/ep5/part2/alignment.cwl">alignment.cwl</a></li>
+    <li><a href="/assets/answers/ep5/part2/featureCounts.cwl">featureCounts.cwl</a></li>
+  </ul>
+</blockquote>
 
 <h1 id="input-parameter-lists">Input parameter lists</h1>
 
@@ -1534,6 +1664,15 @@ file produced by the new <code class="language-plaintext highlighter-rouge">feat
 and and STAR, but now you will only have a single
 <code class="language-plaintext highlighter-rouge">featurecounts.tsv</code> file with a column for each bam file.</p>
 
+</blockquote>
+
+<blockquote class="solution">
+  <h2 id="episode-solution">Episode solution</h2>
+  <ul>
+    <li><a href="/assets/answers/ep5/part4/main.cwl">main.cwl</a></li>
+    <li><a href="/assets/answers/ep5/part4/alignment.cwl">alignment.cwl</a></li>
+    <li><a href="/assets/answers/ep5/part4/featureCounts.cwl">featureCounts.cwl</a></li>
+  </ul>
 </blockquote>
 
 <blockquote class="keypoints">
@@ -1741,6 +1880,16 @@ contents, which consists of other File and Directory objects.</p>
 should now be organized into directories, with better naming of the
 bam files.</p>
 
+</blockquote>
+
+<blockquote class="solution">
+  <h2 id="episode-solution">Episode solution</h2>
+  <ul>
+    <li><a href="/assets/answers/ep6/main.cwl">main.cwl</a></li>
+    <li><a href="/assets/answers/ep6/alignment.cwl">alignment.cwl</a></li>
+    <li><a href="/assets/answers/ep6/featureCounts.cwl">featureCounts.cwl</a></li>
+    <li><a href="/assets/answers/ep6/subdirs.cwl">subdirs.cwl</a></li>
+  </ul>
 </blockquote>
 
 <blockquote class="keypoints">

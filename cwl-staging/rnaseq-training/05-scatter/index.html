@@ -19,7 +19,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="last-modified" content="2021-02-01 22:10:11 +0000">
+    <meta http-equiv="last-modified" content="2021-02-11 20:32:32 +0000">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- meta "search-domain" used for google site search function google_search() -->
     <meta name="search-domain" value="">
@@ -28,6 +28,8 @@
     <link rel="stylesheet" type="text/css" href="../assets/css/lesson.css" />
     <link rel="stylesheet" type="text/css" href="../assets/css/syntax.css" />
     <link rel="license" href="#license-info" />
+    <script type="text/javascript" src="../assets/js/tabs.js"></script>
+    <link rel="stylesheet" href="../assets/css/tabs.css">
 
     
 
@@ -65,7 +67,7 @@
 
   <title>
   Analyzing Multiple Samples &ndash; Getting started with CWL
-  </title>  
+  </title>
 
   </head>
   <body>
@@ -393,6 +395,15 @@ an outer workflow.</p>
 
 </blockquote>
 
+<blockquote class="solution">
+  <h2 id="part-1-solution">Part 1 solution</h2>
+  <ul>
+    <li><a href="/assets/answers/ep5/part1/main.cwl">main.cwl</a></li>
+    <li><a href="/assets/answers/ep5/part1/alignment.cwl">alignment.cwl</a></li>
+    <li><a href="/assets/answers/ep5/part1/featureCounts.cwl">featureCounts.cwl</a></li>
+  </ul>
+</blockquote>
+
 <h1 id="scattering">Scattering</h1>
 
 <p>The “wrapper” step lets us do something useful.  We can modify the
@@ -445,6 +456,15 @@ runner that we are using scatter:</p>
   <span class="na">SubworkflowFeatureRequirement</span><span class="pi">:</span> <span class="pi">{}</span>
   <span class="na">ScatterFeatureRequirement</span><span class="pi">:</span> <span class="pi">{}</span>
 </code></pre></div></div>
+
+<blockquote class="solution">
+  <h2 id="part-2-solution">Part 2 solution</h2>
+  <ul>
+    <li><a href="/assets/answers/ep5/part2/main.cwl">main.cwl</a></li>
+    <li><a href="/assets/answers/ep5/part2/alignment.cwl">alignment.cwl</a></li>
+    <li><a href="/assets/answers/ep5/part2/featureCounts.cwl">featureCounts.cwl</a></li>
+  </ul>
+</blockquote>
 
 <h1 id="input-parameter-lists">Input parameter lists</h1>
 
@@ -550,6 +570,15 @@ file produced by the new <code class="language-plaintext highlighter-rouge">feat
 and and STAR, but now you will only have a single
 <code class="language-plaintext highlighter-rouge">featurecounts.tsv</code> file with a column for each bam file.</p>
 
+</blockquote>
+
+<blockquote class="solution">
+  <h2 id="episode-solution">Episode solution</h2>
+  <ul>
+    <li><a href="/assets/answers/ep5/part4/main.cwl">main.cwl</a></li>
+    <li><a href="/assets/answers/ep5/part4/alignment.cwl">alignment.cwl</a></li>
+    <li><a href="/assets/answers/ep5/part4/featureCounts.cwl">featureCounts.cwl</a></li>
+  </ul>
 </blockquote>
 
 

@@ -19,7 +19,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="last-modified" content="2021-02-01 22:10:11 +0000">
+    <meta http-equiv="last-modified" content="2021-02-11 20:32:32 +0000">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- meta "search-domain" used for google site search function google_search() -->
     <meta name="search-domain" value="">
@@ -28,6 +28,8 @@
     <link rel="stylesheet" type="text/css" href="./assets/css/lesson.css" />
     <link rel="stylesheet" type="text/css" href="./assets/css/syntax.css" />
     <link rel="license" href="#license-info" />
+    <script type="text/javascript" src="./assets/js/tabs.js"></script>
+    <link rel="stylesheet" href="./assets/css/tabs.css">
 
     
 
@@ -65,7 +67,7 @@
 
   <title>
   Setup &ndash; Getting started with CWL
-  </title>  
+  </title>
 
   </head>
   <body>
@@ -236,33 +238,43 @@
 
 
 <article>
+<div>
+<ul class="tab" data-tab="d1827343-c61c-4aeb-98c9-98c574966ba7">
+    
+        <li class="active">
+            <a href="">generic </a>
+        </li>
+    
+        <li>
+            <a href="">arvados </a>
+        </li>
+    
+    </ul>
+    <ul class="tab-content" id="d1827343-c61c-4aeb-98c9-98c574966ba7">
+    
+        <li class="active">
 <h1 id="setting-up-a-practice-repository">Setting up a practice repository</h1>
 
 <p>We will create a new git repository and import a library of existing
 tool definitions that will help us build our workflow.</p>
 
-<p>Create a new git repository to hold our workflow with this command:</p>
+<p>Create a new empty git repository to hold our workflow with this command:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git init rnaseq-cwl-training-exercises
-</code></pre></div></div>
-
-<p>On Arvados use this:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/arvados/arvados-vscode-cwl-template.git rnaseq-cwl-training-exercises
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git init rnaseq-cwl-training-exercises
 </code></pre></div></div>
 
 <p>Next, import bio-cwl-tools with this command:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git submodule add https://github.com/common-workflow-library/bio-cwl-tools.git
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git submodule add https://github.com/common-workflow-library/bio-cwl-tools.git
 </code></pre></div></div>
 
 <h1 id="downloading-sample-and-reference-data">Downloading sample and reference data</h1>
 
 <p>Start from your rnaseq-cwl-exercises directory.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir rnaseq
-cd rnaseq
-wget --mirror --no-parent --no-host --cut-dirs=1 https://download.pirca.arvadosapi.com/c=9178fe1b80a08a422dbe02adfd439764+925/
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>rnaseq
+<span class="nb">cd </span>rnaseq
+wget <span class="nt">--mirror</span> <span class="nt">--no-parent</span> <span class="nt">--no-host</span> <span class="nt">--cut-dirs</span><span class="o">=</span>1 https://download.jutro.arvadosapi.com/c<span class="o">=</span>9178fe1b80a08a422dbe02adfd439764+925/
 </code></pre></div></div>
 
 <h1 id="downloading-or-generating-star-index">Downloading or generating STAR index</h1>
@@ -273,30 +285,108 @@ wget --mirror --no-parent --no-host --cut-dirs=1 https://download.pirca.arvadosa
 
 <h2 id="downloading">Downloading</h2>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir hg19-chr1-STAR-index
-cd hg19-chr1-STAR-index
-wget --mirror --no-parent --no-host --cut-dirs=1 https://download.pirca.arvadosapi.com/c=02a12ce9e2707610991bd29d38796b57+2912/
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>hg19-chr1-STAR-index
+<span class="nb">cd </span>hg19-chr1-STAR-index
+wget <span class="nt">--mirror</span> <span class="nt">--no-parent</span> <span class="nt">--no-host</span> <span class="nt">--cut-dirs</span><span class="o">=</span>1 https://download.jutro.arvadosapi.com/c<span class="o">=</span>02a12ce9e2707610991bd29d38796b57+2912/
 </code></pre></div></div>
 
 <h2 id="generating">Generating</h2>
 
 <p>Create <code class="language-plaintext highlighter-rouge">chr1-star-index.yaml</code>:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>InputFiles:
-  - class: File
-    location: rnaseq/reference_data/chr1.fa
-    format: http://edamontology.org/format_1930
-IndexName: 'hg19-chr1-STAR-index'
-Gtf:
-  class: File
-  location: rnaseq/reference_data/chr1-hg19_genes.gtf
-Overhang: 99
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">InputFiles</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">class</span><span class="pi">:</span> <span class="s">File</span>
+    <span class="na">location</span><span class="pi">:</span> <span class="s">rnaseq/reference_data/chr1.fa</span>
+    <span class="na">format</span><span class="pi">:</span> <span class="s">http://edamontology.org/format_1930</span>
+<span class="na">IndexName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">hg19-chr1-STAR-index'</span>
+<span class="na">Gtf</span><span class="pi">:</span>
+  <span class="na">class</span><span class="pi">:</span> <span class="s">File</span>
+  <span class="na">location</span><span class="pi">:</span> <span class="s">rnaseq/reference_data/chr1-hg19_genes.gtf</span>
+<span class="na">Overhang</span><span class="pi">:</span> <span class="m">99</span>
 </code></pre></div></div>
 
 <p>Generate the index with your local cwl-runner.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cwl-runner bio-cwl-tools/STAR/STAR-Index.cwl chr1-star-index.yaml
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cwl-runner bio-cwl-tools/STAR/STAR-Index.cwl chr1-star-index.yaml
 </code></pre></div></div>
+
+</li>
+    
+        <li>
+<h1 id="setting-up-a-practice-repository">Setting up a practice repository</h1>
+
+<p>We will create a new git repository and import a library of existing
+tool definitions that will help us build our workflow.</p>
+
+<p>When using the recommended VSCode environment to develop on Arvados, start by forking this repository:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/arvados/arvados-vscode-cwl-template.git rnaseq-cwl-training-exercises
+</code></pre></div></div>
+
+<p>Next, import bio-cwl-tools with this command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git submodule add https://github.com/common-workflow-library/bio-cwl-tools.git
+</code></pre></div></div>
+
+<h1 id="downloading-sample-and-reference-data">Downloading sample and reference data</h1>
+
+<blockquote class="callout">
+  <h2 id="note">Note</h2>
+
+  <p>You may already have access to this collection.</p>
+
+  <p>You can check by going to Workbench and pasting
+<code class="language-plaintext highlighter-rouge">9178fe1b80a08a422dbe02adfd439764+925</code> into the search box.  If you
+arrived at a collection page instead of a “not found” error, then
+you do not need to perform this download step.</p>
+</blockquote>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>arv-copy <span class="nt">--src</span> jutro 9178fe1b80a08a422dbe02adfd439764+925
+</code></pre></div></div>
+
+<h1 id="downloading-or-generating-star-index">Downloading or generating STAR index</h1>
+
+<p>Running STAR requires index files generated from the reference.</p>
+
+<p>This is a rather large download (4 GB).  Depending on your bandwidth, it may be faster to generate it yourself.</p>
+
+<h2 id="downloading">Downloading</h2>
+
+<blockquote class="callout">
+  <h2 id="note-1">Note</h2>
+
+  <p>As above, you can check by going to Workbench and pasting
+<code class="language-plaintext highlighter-rouge">02a12ce9e2707610991bd29d38796b57+2912</code> into the search box to see
+if you already have access to this collection.</p>
+</blockquote>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>arv-copy <span class="nt">--src</span> jutro 02a12ce9e2707610991bd29d38796b57+2912
+</code></pre></div></div>
+
+<h2 id="generating">Generating</h2>
+
+<p>Create <code class="language-plaintext highlighter-rouge">chr1-star-index.yaml</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">InputFiles</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">class</span><span class="pi">:</span> <span class="s">File</span>
+    <span class="na">location</span><span class="pi">:</span> <span class="s">keep:9178fe1b80a08a422dbe02adfd439764+925/reference_data/chr1.fa</span>
+    <span class="na">format</span><span class="pi">:</span> <span class="s">http://edamontology.org/format_1930</span>
+<span class="na">IndexName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">hg19-chr1-STAR-index'</span>
+<span class="na">Gtf</span><span class="pi">:</span>
+  <span class="na">class</span><span class="pi">:</span> <span class="s">File</span>
+  <span class="na">location</span><span class="pi">:</span> <span class="s">keep:9178fe1b80a08a422dbe02adfd439764+925/reference_data/chr1-hg19_genes.gtf</span>
+<span class="na">Overhang</span><span class="pi">:</span> <span class="m">99</span>
+</code></pre></div></div>
+
+<p>Generate the index with arvados-cwl-runner.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>arvados-cwl-runner bio-cwl-tools/STAR/STAR-Index.cwl chr1-star-index.yaml
+</code></pre></div></div>
+
+</li>
+    
+</ul>
+
+</div>
 
 
 </article>

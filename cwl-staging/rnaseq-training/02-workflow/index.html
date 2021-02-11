@@ -19,7 +19,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="last-modified" content="2021-02-01 22:10:11 +0000">
+    <meta http-equiv="last-modified" content="2021-02-11 20:32:32 +0000">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- meta "search-domain" used for google site search function google_search() -->
     <meta name="search-domain" value="">
@@ -28,6 +28,8 @@
     <link rel="stylesheet" type="text/css" href="../assets/css/lesson.css" />
     <link rel="stylesheet" type="text/css" href="../assets/css/syntax.css" />
     <link rel="license" href="#license-info" />
+    <script type="text/javascript" src="../assets/js/tabs.js"></script>
+    <link rel="stylesheet" href="../assets/css/tabs.css">
 
     
 
@@ -65,7 +67,7 @@
 
   <title>
   Create a Workflow by Composing Tools &ndash; Getting started with CWL
-  </title>  
+  </title>
 
   </head>
   <body>
@@ -626,7 +628,7 @@ For example:</p>
 </code></pre></div></div>
 
 <blockquote class="challenge">
-  <h2 id="exercise"><code class="language-plaintext highlighter-rouge">Exercise</code></h2>
+  <h2 id="exercise">Exercise</h2>
 
   <p>Look at <code class="language-plaintext highlighter-rouge">STAR-Align.cwl</code> and identify the other input parameters that
 correspond to the command line arguments used in the source script.
@@ -634,7 +636,7 @@ Also identify the output parameter.  Use these to write the STAR
 step.</p>
 
   <blockquote class="solution">
-    <h2 id="solution"><code class="language-plaintext highlighter-rouge">Solution</code></h2>
+    <h2 id="solution">Solution</h2>
 
     <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="na">STAR</span><span class="pi">:</span>
    <span class="na">run</span><span class="pi">:</span> <span class="s">bio-cwl-tools/STAR/STAR-Align.cwl</span>
@@ -643,6 +645,7 @@ step.</p>
      <span class="na">GenomeDir</span><span class="pi">:</span> <span class="s">genome</span>
      <span class="na">ForwardReads</span><span class="pi">:</span> <span class="s">fq</span>
      <span class="na">OutSAMtype</span><span class="pi">:</span> <span class="pi">{</span><span class="nv">default</span><span class="pi">:</span> <span class="nv">BAM</span><span class="pi">}</span>
+     <span class="na">SortedByCoordinate</span><span class="pi">:</span> <span class="pi">{</span><span class="nv">default</span><span class="pi">:</span> <span class="nv">true</span><span class="pi">}</span>
      <span class="na">OutSAMunmapped</span><span class="pi">:</span> <span class="pi">{</span><span class="nv">default</span><span class="pi">:</span> <span class="nv">Within</span><span class="pi">}</span>
    <span class="na">out</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">alignment</span><span class="pi">]</span>
 </code></pre></div>    </div>
@@ -708,6 +711,13 @@ aligned, sorted and indexed BAM file.</p>
     <span class="na">type</span><span class="pi">:</span> <span class="s">File</span>
     <span class="na">outputSource</span><span class="pi">:</span> <span class="s">samtools/bam_sorted_indexed</span>
 </code></pre></div></div>
+
+<blockquote class="solution">
+  <h2 id="episode-solution">Episode solution</h2>
+  <ul>
+    <li><a href="/assets/answers/ep2/main.cwl">main.cwl</a></li>
+  </ul>
+</blockquote>
 
 
 
