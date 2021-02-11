@@ -92,7 +92,7 @@
             <ul class="dropdown-menu">
               <!-- For each subpage --><!-- If the  subpage has http -->
                 <li class="dropdown-item nav-item"><a class="nav-link" href="/cwl-staging/#projects">Projects</a></li><!-- If the  subpage has http -->
-                <li class="dropdown-item nav-item"><a class="nav-link" href="/cwl-staging/#contributers-and-governance">Contributers & Governance</a></li><!-- Close ul 2 -->
+                <li class="dropdown-item nav-item"><a class="nav-link" href="/cwl-staging/#contributors-and-governance">Contributors & Governance</a></li><!-- Close ul 2 -->
             </ul>
         </li>
           <!-- done checking if dropdown has subpages  --><!-- CLose ul 1 -->
@@ -143,7 +143,7 @@
   	
 	  	<li><a href="/cwl-staging/#Projects_the_CWL_community_is_participating_in">Projects the CWL community is participating in</a></li>
   	
-	  	<li><a href="/cwl-staging/#Contributers_and_Governance">Contributers and Governance</a></li>
+	  	<li><a href="/cwl-staging/#Contributers_and_Governance">Contributors and Governance</a></li>
   	
   </ul>
 </nav>
@@ -303,6 +303,10 @@ window.addEventListener("load", function() {
       <th>Software</th>
       <th>Description</th>
       <th>Platform support</th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
     </tr>
   </thead>
   <tbody>
@@ -310,51 +314,118 @@ window.addEventListener("load", function() {
       <td><a href="https://galaxyproject.org/">Galaxy</a></td>
       <td>Web-based platform for data intensive biomedical research.</td>
       <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td><a href="https://github.com/ohsu-comp-bio/cwl-tes">cwl-tes</a></td>
       <td>CWL engine backended by the <a href="https://github.com/ga4gh/task-execution-schemas">GA4GH Task Execution API</a></td>
       <td>Alicloud, AWS, Google, HPC, Local, Spark, TES</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td><a href="https://nlesc.github.io/Xenon/">Xenon</a></td>
       <td>Run CWL workflows using Xenon</td>
       <td><a href="https://nlesc.github.io/Xenon/">any Xenon backend</a>: local, ssh, SLURM, Torque, Grid Engine</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td><a href="https://github.com/Consonance/consonance">Consonance</a></td>
       <td>orchestration tool for running SeqWare workflows and CWL tools</td>
       <td>AWS, OpenStack, Azure</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td><a href="https://github.com/MG-RAST/AWE">AWE</a></td>
       <td>Workflow and resource management system for bioinformatics data analysis.</td>
       <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td><a href="https://github.com/otiai10/yacle">yacle</a></td>
       <td>Yet Another CWL Engine</td>
       <td>local</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td><a href="https://github.com/Duke-GCB/calrissian">Calrissian</a></td>
       <td>CWL Engine built for Kubernetes</td>
       <td><a href="https://kubernetes.io/">Kubernetes</a></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td><a href="https://github.com/broadinstitute/cromwell">Cromwell</a></td>
       <td>Cromwell workflow engine</td>
       <td>Google, HTCondor, Local, LSF, PBS/Torque, SGE, Slurm, TES</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td><a href="https://github.com/IBMSpectrumComputing/cwlexec">CWLEXEC</a></td>
       <td>Apache 2.0 licensed CWL executor for IBM Spectrum LSF, supported by IBM for customers with valid contracts.</td>
       <td><a href="https://developer.ibm.com/storage/products/ibm-spectrum-lsf/#">IBM Spectrum LSF</a> 10.1.0.3+</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/uc-cdis/mariner">Mariner</a></td>
+      <td>“The Gen3 Workflow Execution Service”, Apache 2.0 licensed, written in Go, also implements the <a href="https://ga4gh.github.io/workflow-execution-service-schemas">GA4GH WES API</a></td>
+      <td><a href="https://kubernetes.io">Kubernetes</a></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/tom-tan/ep3">ep3</a></td>
+      <td>Extremely Pluggable Pipeline Processor</td>
+      <td>local</td>
+      <td> </td>
+      <td><a href="https://github.com/tom-tan/ep3">ep3</a></td>
+      <td>Extremely Pluggable Pipeline Processor</td>
+      <td>local</td>
+    </tr>
+    <tr>
+      <td><a href="https://pegasus.isi.edu/documentation/reference-guide/cwl-support.html">Pegasus</a></td>
+      <td>Pegasus Workflow Management System</td>
+      <td>Partial support for importing CWL workflows is <a href="https://pegasus.isi.edu/documentation/manpages/pegasus-cwl-converter.html">under development</a></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td><a href="https://streamflow.di.unito.it/">StreamFlow</a></td>
       <td>Workflow Management System for hybrid HPC-Cloud infrastructures</td>
       <td>Full support for CWL 1.2 is currently under development</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
   </tbody>
 </table>
@@ -505,6 +576,10 @@ window.addEventListener("load", function() {
       <td><a href="https://github.com/common-workflow-language/cwl-utils">cwl-utils</a></td>
       <td>Example scripts using the new Python 3.6+ CWL parsing library</td>
     </tr>
+    <tr>
+      <td><a href="http://looper.databio.org/">looper</a></td>
+      <td>job submitting engine with support for <a href="http://looper.databio.org/en/latest/pre-submission-hooks/#included-plugin-looperwrite_sample_yaml_cwl">CWL whole workflow/tool scattering</a></td>
+    </tr>
   </tbody>
 </table>
 
@@ -566,6 +641,14 @@ window.addEventListener("load", function() {
       <td><a href="https://github.com/common-workflow-language/cwl-utils">cwl-utils</a></td>
       <td>New Python 3.6+ CWL parsing library</td>
     </tr>
+    <tr>
+      <td><a href="https://github.com/giannisdoukas/ipython2cwl">ipython2cwl</a></td>
+      <td>a tool for converting IPython Jupyter Notebooks to CWL CommandLineTools via typing annotations</td>
+    </tr>
+    <tr>
+      <td><a href="https://pegasus.isi.edu/documentation/manpages/pegasus-cwl-converter.html">pegasus-cwl-converter</a></td>
+      <td>Work in progress tool to convert a CWL workflow into a Pegasus workflow.</td>
+    </tr>
   </tbody>
 </table>
 
@@ -588,8 +671,8 @@ window.addEventListener("load", function() {
       <td>Python module and tools for working with the CWL schema.</td>
     </tr>
     <tr>
-      <td><a href="https://github.com/common-workflow-language/cwlavro">cwlavro</a></td>
-      <td>Java classes for loading CWL documents</td>
+      <td><a href="https://github.com/common-workflow-lab/cwljava">cwljava</a></td>
+      <td>Java classes for loading, modifying, and creating CWL v1.2 documents</td>
     </tr>
     <tr>
       <td><a href="https://github.com/jefferys/cwl">CWL for R</a></td>
