@@ -163,7 +163,7 @@
 
 <p>The CWL 2021 Mini-Conference will be on February 8-10th. The form <a href="">to sign up to participate</a> is still open!</p>
 
-<h2 id="getting-started" class="section">Getting Started <a href="#Getting_Started" class="anchorfix"><span>§</span></a></h2>
+<h2 id="getting-started" class="section">Getting Started <a id="Getting_Started" href="Getting_Started" class="anchorfix"><span>§</span></a></h2>
 
 <div class="youtube-container" width="560" height="315">
   <video id="player" class="cwl-intro-video" controls="" poster="/cwl-staging/assets/img/intro_video_poster.png">
@@ -215,7 +215,7 @@
 
 <p>A series of <a href="https://stepik.org/lesson/35918/step/1?unit=15070">video lessons about CWL</a> is available in Russian as part of the <a href="https://stepik.org/course/1612/syllabus">Управление вычислениями</a> (Computation Management) free online course.</p>
 
-<h2 id="support" class="section">Support, Community and Contributing <a id="Support" href="#Support_Community_and_Contributing" class="anchorfix longfix"><span>§</span></a></h2>
+<h2 id="support" class="section">Support, Community and Contributing <a name="Support" id="Support,_Community_and_Contributing" class="anchorfix longfix"><span>§</span></a></h2>
 
 <div class="twitter-feed" id="twitter-feed"><a class="twitter-timeline" data-width="280" data-height="600" data-dnt="true" data-theme="light" href="https://twitter.com/commonwl?ref_src=twsrc%5Etfw">Tweets by @commonwl</a></div>
 <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -303,10 +303,6 @@ window.addEventListener("load", function() {
       <th>Software</th>
       <th>Description</th>
       <th>Platform support</th>
-      <th> </th>
-      <th> </th>
-      <th> </th>
-      <th> </th>
     </tr>
   </thead>
   <tbody>
@@ -314,97 +310,53 @@ window.addEventListener("load", function() {
       <td><a href="https://galaxyproject.org/">Galaxy</a></td>
       <td>Web-based platform for data intensive biomedical research.</td>
       <td>–</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td><a href="https://github.com/ohsu-comp-bio/cwl-tes">cwl-tes</a></td>
       <td>CWL engine backended by the <a href="https://github.com/ga4gh/task-execution-schemas">GA4GH Task Execution API</a></td>
       <td>Alicloud, AWS, Google, HPC, Local, Spark, TES</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td><a href="https://nlesc.github.io/Xenon/">Xenon</a></td>
       <td>Run CWL workflows using Xenon</td>
       <td><a href="https://nlesc.github.io/Xenon/">any Xenon backend</a>: local, ssh, SLURM, Torque, Grid Engine</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td><a href="https://github.com/Consonance/consonance">Consonance</a></td>
       <td>orchestration tool for running SeqWare workflows and CWL tools</td>
       <td>AWS, OpenStack, Azure</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td><a href="https://github.com/MG-RAST/AWE">AWE</a></td>
       <td>Workflow and resource management system for bioinformatics data analysis.</td>
       <td>–</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td><a href="https://github.com/otiai10/yacle">yacle</a></td>
       <td>Yet Another CWL Engine</td>
       <td>local</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td><a href="https://github.com/Duke-GCB/calrissian">Calrissian</a></td>
       <td>CWL Engine built for Kubernetes</td>
       <td><a href="https://kubernetes.io/">Kubernetes</a></td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td><a href="https://github.com/broadinstitute/cromwell">Cromwell</a></td>
       <td>Cromwell workflow engine</td>
       <td>Google, HTCondor, Local, LSF, PBS/Torque, SGE, Slurm, TES</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td><a href="https://github.com/IBMSpectrumComputing/cwlexec">CWLEXEC</a></td>
       <td>Apache 2.0 licensed CWL executor for IBM Spectrum LSF, supported by IBM for customers with valid contracts.</td>
       <td><a href="https://developer.ibm.com/storage/products/ibm-spectrum-lsf/#">IBM Spectrum LSF</a> 10.1.0.3+</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td><a href="https://github.com/uc-cdis/mariner">Mariner</a></td>
       <td>“The Gen3 Workflow Execution Service”, Apache 2.0 licensed, written in Go, also implements the <a href="https://ga4gh.github.io/workflow-execution-service-schemas">GA4GH WES API</a></td>
       <td><a href="https://kubernetes.io">Kubernetes</a></td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
-      <td><a href="https://github.com/tom-tan/ep3">ep3</a></td>
-      <td>Extremely Pluggable Pipeline Processor</td>
-      <td>local</td>
-      <td> </td>
       <td><a href="https://github.com/tom-tan/ep3">ep3</a></td>
       <td>Extremely Pluggable Pipeline Processor</td>
       <td>local</td>
@@ -413,19 +365,11 @@ window.addEventListener("load", function() {
       <td><a href="https://pegasus.isi.edu/documentation/reference-guide/cwl-support.html">Pegasus</a></td>
       <td>Pegasus Workflow Management System</td>
       <td>Partial support for importing CWL workflows is <a href="https://pegasus.isi.edu/documentation/manpages/pegasus-cwl-converter.html">under development</a></td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td><a href="https://streamflow.di.unito.it/">StreamFlow</a></td>
       <td>Workflow Management System for hybrid HPC-Cloud infrastructures</td>
       <td>Full support for CWL 1.2 is currently under development</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
   </tbody>
 </table>
