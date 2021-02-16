@@ -19,7 +19,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="last-modified" content="2021-02-16 20:22:35 +0000">
+    <meta http-equiv="last-modified" content="2021-02-16 23:42:19 +0000">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- meta "search-domain" used for google site search function google_search() -->
     <meta name="search-domain" value="">
@@ -76,11 +76,10 @@
 
 
 <div class="panel panel-default life-cycle">
-  <div id="life-cycle" class="panel-body alpha">
-    This lesson is in the early stages of development (Alpha version)
+  <div id="life-cycle" class="panel-body beta">
+    This lesson is being piloted (Beta version)
   </div>
 </div>
-
 
 
 
@@ -392,7 +391,7 @@ following shell script.</p>
 fastqc <span class="nv">$fq</span>
 
 <span class="c"># Run STAR</span>
-STAR <span class="nt">--runThreadN</span> <span class="nv">$cores</span> <span class="nt">--genomeDir</span> <span class="nv">$genome</span> <span class="nt">--readFilesIn</span> <span class="nv">$fq</span> <span class="nt">--outFileNamePrefix</span> <span class="nv">$align_out</span> <span class="nt">--outSAMtype</span> BAM SortedByCoordinate <span class="nt">--outSAMunmapped</span> Within <span class="nt">--outSAMattributes</span> Standard
+STAR <span class="nt">--runThreadN</span> <span class="nv">$cores</span> <span class="nt">--genomeDir</span> <span class="nv">$genome</span> <span class="nt">--readFilesIn</span> <span class="nv">$fq</span> <span class="nt">--outSAMtype</span> BAM SortedByCoordinate <span class="nt">--outSAMunmapped</span> Within
 
 <span class="c"># Create BAM index</span>
 samtools index <span class="nv">$counts_input_bam</span>
@@ -600,54 +599,79 @@ and <code class="language-plaintext highlighter-rouge">out</code> subsections, a
 <p>The next step is to run the STAR aligner.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Run STAR</span>
-STAR <span class="nt">--runThreadN</span> <span class="nv">$cores</span> <span class="nt">--genomeDir</span> <span class="nv">$genome</span> <span class="nt">--readFilesIn</span> <span class="nv">$fq</span> <span class="nt">--outFileNamePrefix</span> <span class="nv">$align_out</span> <span class="nt">--outSAMtype</span> BAM SortedByCoordinate <span class="nt">--outSAMunmapped</span> Within <span class="nt">--outSAMattributes</span> Standard
+STAR <span class="nt">--runThreadN</span> <span class="nv">$cores</span> <span class="nt">--genomeDir</span> <span class="nv">$genome</span> <span class="nt">--readFilesIn</span> <span class="nv">$fq</span> <span class="nt">--outSAMtype</span> BAM SortedByCoordinate <span class="nt">--outSAMunmapped</span> Within
 </code></pre></div></div>
 
 <p>We will go through the same process as the first section.  We find
 there is <code class="language-plaintext highlighter-rouge">bio-cwl-tools/STAR/STAR-Align.cwl</code>.  We will open the file
 and look at the <code class="language-plaintext highlighter-rouge">inputs</code> section to determine what input parameters
-correspond to the command line parmeters from our source script.
-Command line flags generally appear appear in either the <code class="language-plaintext highlighter-rouge">arguments</code>
-field, or the <code class="language-plaintext highlighter-rouge">prefix</code> field of the <code class="language-plaintext highlighter-rouge">inputBinding</code> section of an input
-parameter declaration.  For example, this tells us that the
-<code class="language-plaintext highlighter-rouge">GenomeDir</code> input parameter corresponds to the <code class="language-plaintext highlighter-rouge">--genomeDir</code> command
-line parameter.</p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="na">GenomeDir</span><span class="pi">:</span>
-    <span class="na">type</span><span class="pi">:</span> <span class="s">Directory</span>
-    <span class="na">inputBinding</span><span class="pi">:</span>
-      <span class="na">prefix</span><span class="pi">:</span> <span class="s2">"</span><span class="s">--genomeDir"</span>
-</code></pre></div></div>
-
-<p>Sometimes we want to provide input values to a step without making
-them as workflow-level inputs.  We can do this with <code class="language-plaintext highlighter-rouge">{default: N}</code>.
-For example:</p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="na">in</span><span class="pi">:</span>
-     <span class="na">RunThreadN</span><span class="pi">:</span> <span class="pi">{</span><span class="nv">default</span><span class="pi">:</span> <span class="nv">4</span><span class="pi">}</span>
-</code></pre></div></div>
+correspond to the command line parmeters from our source script.</p>
 
 <blockquote class="challenge">
   <h2 id="exercise">Exercise</h2>
 
-  <p>Look at <code class="language-plaintext highlighter-rouge">STAR-Align.cwl</code> and identify the other input parameters that
-correspond to the command line arguments used in the source script.
-Also identify the output parameter.  Use these to write the STAR
-step.</p>
+  <p>Look at <code class="language-plaintext highlighter-rouge">STAR-Align.cwl</code> and identify the input parameters that
+correspond to the command line arguments used in the source script:
+<code class="language-plaintext highlighter-rouge">--runThreadN</code>, <code class="language-plaintext highlighter-rouge">--genomeDir</code>, <code class="language-plaintext highlighter-rouge">--outSAMtype</code>, and
+<code class="language-plaintext highlighter-rouge">--outSAMunmapped</code>.  Also identify the name of the output parameter.
+Use these to write the STAR step.</p>
 
   <blockquote class="solution">
     <h2 id="solution">Solution</h2>
 
-    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="na">STAR</span><span class="pi">:</span>
-   <span class="na">run</span><span class="pi">:</span> <span class="s">bio-cwl-tools/STAR/STAR-Align.cwl</span>
-   <span class="na">in</span><span class="pi">:</span>
+    <p>input parameter name: RunThreadN, GenomeDir, ForwardReads, OutSAMtype, SortedByCoordinate, OutSAMunmapped</p>
+
+    <p>output parameter name: alignment</p>
+  </blockquote>
+</blockquote>
+
+<blockquote class="callout">
+  <h2 id="command-line-flags">Command line flags</h2>
+
+  <p>Command line flags generally appear appear in either the <code class="language-plaintext highlighter-rouge">arguments</code>
+field, or the <code class="language-plaintext highlighter-rouge">prefix</code> field of the <code class="language-plaintext highlighter-rouge">inputBinding</code> section of an
+input parameter declaration.  For example, this section of
+<code class="language-plaintext highlighter-rouge">STAR-Align.cwl</code> tells us that the <code class="language-plaintext highlighter-rouge">GenomeDir</code> input parameter
+corresponds to the <code class="language-plaintext highlighter-rouge">--genomeDir</code> command line parameter.</p>
+
+  <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="na">GenomeDir</span><span class="pi">:</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">Directory</span>
+    <span class="na">inputBinding</span><span class="pi">:</span>
+      <span class="na">prefix</span><span class="pi">:</span> <span class="s2">"</span><span class="s">--genomeDir"</span>
+</code></pre></div>  </div>
+</blockquote>
+
+<blockquote class="callout">
+  <h2 id="default-values">Default values</h2>
+
+  <p>Sometimes we want to provide input values to a step without making
+them as workflow-level inputs.  We can do this with <code class="language-plaintext highlighter-rouge">{default: N}</code>.
+For example:</p>
+
+  <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="na">in</span><span class="pi">:</span>
      <span class="na">RunThreadN</span><span class="pi">:</span> <span class="pi">{</span><span class="nv">default</span><span class="pi">:</span> <span class="nv">4</span><span class="pi">}</span>
-     <span class="na">GenomeDir</span><span class="pi">:</span> <span class="s">genome</span>
-     <span class="na">ForwardReads</span><span class="pi">:</span> <span class="s">fq</span>
-     <span class="na">OutSAMtype</span><span class="pi">:</span> <span class="pi">{</span><span class="nv">default</span><span class="pi">:</span> <span class="nv">BAM</span><span class="pi">}</span>
-     <span class="na">SortedByCoordinate</span><span class="pi">:</span> <span class="pi">{</span><span class="nv">default</span><span class="pi">:</span> <span class="nv">true</span><span class="pi">}</span>
-     <span class="na">OutSAMunmapped</span><span class="pi">:</span> <span class="pi">{</span><span class="nv">default</span><span class="pi">:</span> <span class="nv">Within</span><span class="pi">}</span>
-   <span class="na">out</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">alignment</span><span class="pi">]</span>
+</code></pre></div>  </div>
+</blockquote>
+
+<blockquote class="challenge">
+  <h2 id="exercise-1">Exercise</h2>
+
+  <p>Using the input and output parameters identified in the last
+exercise, write the <code class="language-plaintext highlighter-rouge">run</code>, <code class="language-plaintext highlighter-rouge">in</code> and <code class="language-plaintext highlighter-rouge">out</code> sections of the STAR step.</p>
+
+  <blockquote class="solution">
+    <h2 id="solution-1">Solution</h2>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="na">STAR</span><span class="pi">:</span>
+    <span class="na">run</span><span class="pi">:</span> <span class="s">bio-cwl-tools/STAR/STAR-Align.cwl</span>
+    <span class="na">in</span><span class="pi">:</span>
+      <span class="na">RunThreadN</span><span class="pi">:</span> <span class="pi">{</span><span class="nv">default</span><span class="pi">:</span> <span class="nv">4</span><span class="pi">}</span>
+      <span class="na">GenomeDir</span><span class="pi">:</span> <span class="s">genome</span>
+      <span class="na">ForwardReads</span><span class="pi">:</span> <span class="s">fq</span>
+      <span class="na">OutSAMtype</span><span class="pi">:</span> <span class="pi">{</span><span class="nv">default</span><span class="pi">:</span> <span class="nv">BAM</span><span class="pi">}</span>
+      <span class="na">SortedByCoordinate</span><span class="pi">:</span> <span class="pi">{</span><span class="nv">default</span><span class="pi">:</span> <span class="nv">true</span><span class="pi">}</span>
+      <span class="na">OutSAMunmapped</span><span class="pi">:</span> <span class="pi">{</span><span class="nv">default</span><span class="pi">:</span> <span class="nv">Within</span><span class="pi">}</span>
+    <span class="na">out</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">alignment</span><span class="pi">]</span>
 </code></pre></div>    </div>
   </blockquote>
 </blockquote>
