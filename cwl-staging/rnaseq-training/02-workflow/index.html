@@ -19,7 +19,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="last-modified" content="2021-02-17 00:18:21 +0000">
+    <meta http-equiv="last-modified" content="2021-02-17 00:30:56 +0000">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- meta "search-domain" used for google site search function google_search() -->
     <meta name="search-domain" value="">
@@ -613,15 +613,18 @@ correspond to the command line parmeters from our source script.</p>
   <p>Look at <code class="language-plaintext highlighter-rouge">STAR-Align.cwl</code> and identify the input parameters that
 correspond to the command line arguments used in the source script:
 <code class="language-plaintext highlighter-rouge">--runThreadN</code>, <code class="language-plaintext highlighter-rouge">--genomeDir</code>, <code class="language-plaintext highlighter-rouge">--outSAMtype</code>, and
-<code class="language-plaintext highlighter-rouge">--outSAMunmapped</code>.  Also identify the name of the output parameter.
-Use these to write the STAR step.</p>
+<code class="language-plaintext highlighter-rouge">--outSAMunmapped</code>.  Also identify the name of the output parameter.</p>
 
   <blockquote class="solution">
     <h2 id="solution">Solution</h2>
 
-    <p>input parameter name: RunThreadN, GenomeDir, ForwardReads, OutSAMtype, SortedByCoordinate, OutSAMunmapped</p>
+    <p><code class="language-plaintext highlighter-rouge">--runThreadN</code> → <code class="language-plaintext highlighter-rouge">RunThreadN</code>
+<code class="language-plaintext highlighter-rouge">--genomeDir</code> → <code class="language-plaintext highlighter-rouge">GenomeDir</code>
+<code class="language-plaintext highlighter-rouge">--readFilesIn</code> → <code class="language-plaintext highlighter-rouge">ForwardReads</code>
+<code class="language-plaintext highlighter-rouge">--outSAMtype</code> → <code class="language-plaintext highlighter-rouge">OutSAMtype</code>, <code class="language-plaintext highlighter-rouge">SortedByCoordinate</code>
+<code class="language-plaintext highlighter-rouge">--outSAMunmapped</code> → <code class="language-plaintext highlighter-rouge">OutSAMunmapped</code></p>
 
-    <p>output parameter name: alignment</p>
+    <p>output parameter name: <code class="language-plaintext highlighter-rouge">alignment</code></p>
   </blockquote>
 </blockquote>
 
@@ -656,7 +659,7 @@ For example:</p>
 <blockquote class="challenge">
   <h2 id="exercise-1">Exercise</h2>
 
-  <p>Using the input and output parameters identified in the last
+  <p>Using the input and output parameters identified in the previous
 exercise, write the <code class="language-plaintext highlighter-rouge">run</code>, <code class="language-plaintext highlighter-rouge">in</code> and <code class="language-plaintext highlighter-rouge">out</code> sections of the STAR step.</p>
 
   <blockquote class="solution">
