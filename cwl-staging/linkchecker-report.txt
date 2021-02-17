@@ -1,11 +1,63 @@
 
-Processing	file:///var/lib/cwl/stg35395c27-4d11-4f8e-aa42-23edc3242862/index.html
+Processing	file:///var/lib/cwl/stg822d7837-68fd-4f5c-a38c-cf8d96e33baa/index.html
 
 
 List of broken links and other issues:
-file:///cwl-staging/sitemap.xml	
-  Line: 15
-  Code: 404 File `/cwl-staging/sitemap.xml' does not exist
+file:///cwl-staging/assets/video/subtitles/russian.vtt	
+  Line: 178
+  Code: 404 File `/cwl-staging/assets/video/subtitles/russian.vtt' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+
+file:///user_guide/	
+  Line: 208
+  Code: 404 File `/user_guide/' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+
+file:///cwl-staging/	
+ Lines: 23, 68, 69, 70, 81, 82, 83, 94, 95, 132, 134, 136, 138, 140, 142, 144, 146
+  Code: 404 File `/cwl-staging/' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+Fragments:
+	software                      	Line: 83
+	specification                 	Line: 70
+	getting-started               	Line: 68
+	Specification                 	Line: 136
+	Implementations               	Line: 138
+	support                       	Line: 69
+	projects                      	Line: 94
+	contributors-and-governance   	Line: 95
+	Repositories_of_CWL_Tools_and_Workflows	Line: 140
+	implementations               	Line: 81
+	repos                         	Line: 82
+	Software_for_working_with_CWL 	Line: 142
+	Getting_Started               	Line: 132
+	Contributers_and_Governance   	Line: 146
+	Support                       	Line: 134
+	Projects_the_CWL_community_is_participating_in	Line: 144
+
+file:///cwl-staging/assets/css/style.css	
+  Line: 33
+  Code: 404 File `/cwl-staging/assets/css/style.css' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+
+file:///var/lib/cwl/stg822d7837-68fd-4f5c-a38c-cf8d96e33baa/Getting_Started	
+  Line: 166
+  Code: 404 File `/var/lib/cwl/stg822d7837-68fd-4f5c-a38c-cf8d96e33baa/Getting_Started' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+
+file:///cwl-staging/assets/video/subtitles/ukranian.vtt	
+  Line: 179
+  Code: 404 File `/cwl-staging/assets/video/subtitles/ukranian.vtt' does not exist
  To do: The link is broken. Double-check that you have not made any typo,
 	or mistake in copy-pasting. If the link points to a resource that
 	no longer exists, you may want to remove or fix the link.
@@ -24,16 +76,16 @@ file:///cwl-staging/assets/video/subtitles/romanian.vtt
 	or mistake in copy-pasting. If the link points to a resource that
 	no longer exists, you may want to remove or fix the link.
 
-file:///cwl-staging	
- Lines: 53, 810
-  Code: 404 File `/cwl-staging' does not exist
+file:///cwl-staging/favicon/site.webmanifest	
+  Line: 38
+  Code: 404 File `/cwl-staging/favicon/site.webmanifest' does not exist
  To do: The link is broken. Double-check that you have not made any typo,
 	or mistake in copy-pasting. If the link points to a resource that
 	no longer exists, you may want to remove or fix the link.
 
-file:///cwl-staging/assets/video/cwl-intro-video.mp4	
-  Line: 170
-  Code: 404 File `/cwl-staging/assets/video/cwl-intro-video.mp4' does not exist
+file:///cwl-staging/sitemap.xml	
+  Line: 15
+  Code: 404 File `/cwl-staging/sitemap.xml' does not exist
  To do: The link is broken. Double-check that you have not made any typo,
 	or mistake in copy-pasting. If the link points to a resource that
 	no longer exists, you may want to remove or fix the link.
@@ -45,100 +97,9 @@ file:///cwl-staging/assets/video/subtitles/urdu.vtt
 	or mistake in copy-pasting. If the link points to a resource that
 	no longer exists, you may want to remove or fix the link.
 
-file:///var/lib/cwl/stg35395c27-4d11-4f8e-aa42-23edc3242862/Common%20Workflow%20Language_files/openstand-128x128-blue.png	
-  Line: 151
-  Code: 404 File `/var/lib/cwl/stg35395c27-4d11-4f8e-aa42-23edc3242862/Common Workflow Language_files/openstand-128x128-blue.png' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
-file:///cwl-staging/assets/video/subtitles/french.vtt	
-  Line: 174
-  Code: 404 File `/cwl-staging/assets/video/subtitles/french.vtt' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
-file:///cwl-staging/assets/js/bootstrap.min.js	
-  Line: 817
-  Code: 404 File `/cwl-staging/assets/js/bootstrap.min.js' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
-file:///cwl-staging/favicon/safari-pinned-tab.svg	
-  Line: 39
-  Code: 404 File `/cwl-staging/favicon/safari-pinned-tab.svg' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
-file:///cwl-staging/assets/img/intro_video_poster.png	
-  Line: 169
-  Code: 404 File `/cwl-staging/assets/img/intro_video_poster.png' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
-file:///cwl-staging/favicon/apple-touch-icon.png	
-  Line: 35
-  Code: 404 File `/cwl-staging/favicon/apple-touch-icon.png' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
-file:///cwl-staging/assets/video/subtitles/russian.vtt	
-  Line: 178
-  Code: 404 File `/cwl-staging/assets/video/subtitles/russian.vtt' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
-file:///cwl-staging/assets/video/subtitles/lithuanian.vtt	
-  Line: 176
-  Code: 404 File `/cwl-staging/assets/video/subtitles/lithuanian.vtt' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
-file:///cwl-staging/assets/video/subtitles/english.vtt	
-  Line: 173
-  Code: 404 File `/cwl-staging/assets/video/subtitles/english.vtt' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
-file:///cwl-staging/favicon/site.webmanifest	
-  Line: 38
-  Code: 404 File `/cwl-staging/favicon/site.webmanifest' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
-file:///cwl-staging/assets/video/subtitles/ukranian.vtt	
-  Line: 179
-  Code: 404 File `/cwl-staging/assets/video/subtitles/ukranian.vtt' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
-file:///cwl-staging/assets/css/style.css	
-  Line: 33
-  Code: 404 File `/cwl-staging/assets/css/style.css' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
-file:///var/lib/cwl/stg35395c27-4d11-4f8e-aa42-23edc3242862/Getting_Started	
-  Line: 166
-  Code: 404 File `/var/lib/cwl/stg35395c27-4d11-4f8e-aa42-23edc3242862/Getting_Started' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
-file:///cwl-staging/assets/js/jquery-3.5.1.min.js	
-  Line: 816
-  Code: 404 File `/cwl-staging/assets/js/jquery-3.5.1.min.js' does not exist
+file:///cwl-staging/favicon/favicon-16x16.png	
+  Line: 37
+  Code: 404 File `/cwl-staging/favicon/favicon-16x16.png' does not exist
  To do: The link is broken. Double-check that you have not made any typo,
 	or mistake in copy-pasting. If the link points to a resource that
 	no longer exists, you may want to remove or fix the link.
@@ -150,61 +111,9 @@ file:///cwl-staging/favicon/favicon.ico
 	or mistake in copy-pasting. If the link points to a resource that
 	no longer exists, you may want to remove or fix the link.
 
-file:///cwl-staging/assets/img/donate-button2.png	
-  Line: 126
-  Code: 404 File `/cwl-staging/assets/img/donate-button2.png' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
-file:///cwl-staging/assets/video/subtitles/chinese_simplified.vtt	
-  Line: 172
-  Code: 404 File `/cwl-staging/assets/video/subtitles/chinese_simplified.vtt' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
-file:///cwl-staging/	
- Lines: 23, 68, 69, 70, 81, 82, 83, 94, 95, 132, 134, 136, 138, 140, 142, 144, 146
-  Code: 404 File `/cwl-staging/' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-Fragments:
-	Implementations               	Line: 138
-	software                      	Line: 83
-	Support                       	Line: 134
-	projects                      	Line: 94
-	Getting_Started               	Line: 132
-	specification                 	Line: 70
-	getting-started               	Line: 68
-	Projects_the_CWL_community_is_participating_in	Line: 144
-	Contributers_and_Governance   	Line: 146
-	Software_for_working_with_CWL 	Line: 142
-	Repositories_of_CWL_Tools_and_Workflows	Line: 140
-	implementations               	Line: 81
-	Specification                 	Line: 136
-	contributors-and-governance   	Line: 95
-	repos                         	Line: 82
-	support                       	Line: 69
-
-file:///cwl-staging/favicon/favicon-16x16.png	
-  Line: 37
-  Code: 404 File `/cwl-staging/favicon/favicon-16x16.png' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
-file:///cwl-staging/favicon/favicon-32x32.png	
-  Line: 36
-  Code: 404 File `/cwl-staging/favicon/favicon-32x32.png' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
-file:///user_guide/	
-  Line: 208
-  Code: 404 File `/user_guide/' does not exist
+file:///cwl-staging/assets/js/bootstrap.min.js	
+  Line: 817
+  Code: 404 File `/cwl-staging/assets/js/bootstrap.min.js' does not exist
  To do: The link is broken. Double-check that you have not made any typo,
 	or mistake in copy-pasting. If the link points to a resource that
 	no longer exists, you may want to remove or fix the link.
@@ -216,7 +125,98 @@ file:///cwl-staging/assets/video/subtitles/japanese.vtt
 	or mistake in copy-pasting. If the link points to a resource that
 	no longer exists, you may want to remove or fix the link.
 
-file:///var/lib/cwl/stg35395c27-4d11-4f8e-aa42-23edc3242862/index.html	
+file:///var/lib/cwl/stg822d7837-68fd-4f5c-a38c-cf8d96e33baa/Common%20Workflow%20Language_files/openstand-128x128-blue.png	
+  Line: 151
+  Code: 404 File `/var/lib/cwl/stg822d7837-68fd-4f5c-a38c-cf8d96e33baa/Common Workflow Language_files/openstand-128x128-blue.png' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+
+file:///cwl-staging/assets/video/subtitles/english.vtt	
+  Line: 173
+  Code: 404 File `/cwl-staging/assets/video/subtitles/english.vtt' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+
+file:///cwl-staging/assets/img/intro_video_poster.png	
+  Line: 169
+  Code: 404 File `/cwl-staging/assets/img/intro_video_poster.png' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+
+file:///cwl-staging/favicon/safari-pinned-tab.svg	
+  Line: 39
+  Code: 404 File `/cwl-staging/favicon/safari-pinned-tab.svg' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+
+file:///cwl-staging/assets/js/jquery-3.5.1.min.js	
+  Line: 816
+  Code: 404 File `/cwl-staging/assets/js/jquery-3.5.1.min.js' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+
+file:///cwl-staging	
+ Lines: 53, 810
+  Code: 404 File `/cwl-staging' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+
+file:///cwl-staging/assets/video/subtitles/lithuanian.vtt	
+  Line: 176
+  Code: 404 File `/cwl-staging/assets/video/subtitles/lithuanian.vtt' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+
+file:///cwl-staging/assets/video/cwl-intro-video.mp4	
+  Line: 170
+  Code: 404 File `/cwl-staging/assets/video/cwl-intro-video.mp4' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+
+file:///cwl-staging/assets/img/donate-button2.png	
+  Line: 126
+  Code: 404 File `/cwl-staging/assets/img/donate-button2.png' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+
+file:///cwl-staging/favicon/apple-touch-icon.png	
+  Line: 35
+  Code: 404 File `/cwl-staging/favicon/apple-touch-icon.png' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+
+file:///cwl-staging/assets/video/subtitles/french.vtt	
+  Line: 174
+  Code: 404 File `/cwl-staging/assets/video/subtitles/french.vtt' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+
+file:///cwl-staging/assets/video/subtitles/chinese_simplified.vtt	
+  Line: 172
+  Code: 404 File `/cwl-staging/assets/video/subtitles/chinese_simplified.vtt' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+
+file:///cwl-staging/favicon/favicon-32x32.png	
+  Line: 36
+  Code: 404 File `/cwl-staging/favicon/favicon-32x32.png' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+
+file:///var/lib/cwl/stg822d7837-68fd-4f5c-a38c-cf8d96e33baa/index.html	
  Lines: 64, 77, 90, 162, 164
   Code: 200 (no message)
  To do: Some of the links to this resource point to broken URI fragments
@@ -230,12 +230,12 @@ file:///
  To do: Some of the links to this resource point to broken URI fragments
 	(such as index.html#fragment).
 The following fragments need to be fixed:
+	Support                       	Lines: 121, 158
 	Leadership_Team               	Line: 158
 	Implementations               	Line: 210
-	Support                       	Lines: 121, 158
 List of duplicate and empty anchors
-	Utilities	Line: 481
 	Participating_Organizations	Line: 690
-	Editors_and_viewers	Line: 420
 	Code_libraries	Line: 599
+	Utilities	Line: 481
+	Editors_and_viewers	Line: 420
 	Converters_and_code_generators	Line: 530
