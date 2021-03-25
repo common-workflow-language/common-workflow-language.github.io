@@ -1,1 +1,1 @@
-Sitemap: https://www.commonwl.org/sitemap.xml
+Sitemap: https://www.commonwl.org/cwl-staging/sitemap.xml
