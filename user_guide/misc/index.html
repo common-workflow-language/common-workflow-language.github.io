@@ -19,7 +19,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="last-modified" content="2021-05-10 09:41:52 +0000">
+    <meta http-equiv="last-modified" content="2021-05-18 15:33:50 +0000">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- meta "search-domain" used for google site search function google_search() -->
     <meta name="search-domain" value="">
@@ -753,6 +753,130 @@ and add <code class="language-plaintext highlighter-rouge">linkMerge: merge_nest
     <span class="na">type</span><span class="pi">:</span> <span class="s">File</span>
     <span class="na">outputSource</span><span class="pi">:</span> <span class="s">first/txt</span>
 </code></pre></div></div>
+<h3 id="optional-inputs-">Optional Inputs 💯</h3>
+
+<p>To make an input parameter optional, add a question mark to the type declaration.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">inputs</span><span class="pi">:</span>
+  <span class="na">InputRead1</span><span class="pi">:</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">File</span>
+    <span class="na">inputBinding</span><span class="pi">:</span>
+      <span class="na">position</span><span class="pi">:</span> <span class="m">100</span>
+
+  <span class="c1">#Optional Inputs</span>
+  <span class="na">isCasava</span><span class="pi">:</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">boolean?</span>
+    <span class="na">inputBinding</span><span class="pi">:</span>
+      <span class="na">position</span><span class="pi">:</span> <span class="m">1</span>
+      <span class="na">prefix</span><span class="pi">:</span> <span class="s2">"</span><span class="s">--casava"</span>
+</code></pre></div></div>
+<p><a name="enuminputs"></a></p>
+<h3 id="enum-inputs-️">Enum Inputs ⚜️</h3>
+
+<p>For commandline flags that require a specific input as the argument an enum type can be declared in CWL. <strong>Specifying null here is known as long form style. It does the same thing as the question mark on the other inputs.</strong></p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">Format</span><span class="pi">:</span>
+  <span class="na">type</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">null"</span>
+    <span class="pi">-</span> <span class="na">type</span><span class="pi">:</span> <span class="s">enum</span>
+      <span class="na">symbols</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">bam</span>
+        <span class="pi">-</span> <span class="s">sam</span>
+        <span class="pi">-</span> <span class="s">bam_mapped</span>
+        <span class="pi">-</span> <span class="s">sam_mapped</span>
+        <span class="pi">-</span> <span class="s">fastq</span>
+  <span class="na">inputBinding</span><span class="pi">:</span>
+    <span class="na">position</span><span class="pi">:</span> <span class="m">2</span>
+    <span class="na">prefix</span><span class="pi">:</span> <span class="s2">"</span><span class="s">--format"</span>
+</code></pre></div></div>
+<p><a name="recordinputs"></a></p>
+<h3 id="record-inputs-">Record Inputs 📀</h3>
+
+<p>For commandline flags that are either <strong>mutually exclusive</strong> or <strong>dependent</strong> a special record type can be defined. You can also specify null here to create optional inputs.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Using record inputs to create mutually exclusive inputs</span>
+
+  <span class="na">Strand</span><span class="pi">:</span>
+    <span class="na">type</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">null"</span>
+      <span class="pi">-</span> <span class="na">type</span><span class="pi">:</span> <span class="s">record</span>
+        <span class="na">name</span><span class="pi">:</span> <span class="s">forward</span>
+        <span class="na">fields</span><span class="pi">:</span>
+          <span class="na">forward</span><span class="pi">:</span>
+              <span class="na">type</span><span class="pi">:</span> <span class="s">boolean</span>
+              <span class="na">inputBinding</span><span class="pi">:</span>
+                <span class="na">prefix</span><span class="pi">:</span> <span class="s2">"</span><span class="s">--fr-stranded"</span>
+
+      <span class="pi">-</span> <span class="na">type</span><span class="pi">:</span> <span class="s">record</span>
+        <span class="na">name</span><span class="pi">:</span> <span class="s">reverse</span>
+        <span class="na">fields</span><span class="pi">:</span>
+          <span class="na">reverse</span><span class="pi">:</span>
+            <span class="na">type</span><span class="pi">:</span> <span class="s">boolean</span>
+            <span class="na">inputBinding</span><span class="pi">:</span>
+              <span class="na">prefix</span><span class="pi">:</span> <span class="s2">"</span><span class="s">--rf-stranded"</span>
+
+  <span class="na">PseudoBam</span><span class="pi">:</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">boolean?</span>
+    <span class="na">inputBinding</span><span class="pi">:</span>
+      <span class="na">prefix</span><span class="pi">:</span> <span class="s2">"</span><span class="s">--pseudobam"</span>
+
+<span class="c1">#Using record inputs to create dependent inputs</span>
+  
+  <span class="na">GenomeBam</span><span class="pi">:</span>
+    <span class="na">type</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">null"</span>
+      <span class="pi">-</span> <span class="na">type</span><span class="pi">:</span> <span class="s">record</span>
+        <span class="na">name</span><span class="pi">:</span> <span class="s">genome_bam</span>
+        <span class="na">fields</span><span class="pi">:</span>
+          <span class="na">genomebam</span><span class="pi">:</span>
+            <span class="na">type</span><span class="pi">:</span> <span class="s">boolean</span>
+            <span class="na">inputBinding</span><span class="pi">:</span>
+              <span class="na">prefix</span><span class="pi">:</span> <span class="s2">"</span><span class="s">--genomebam"</span>
+
+          <span class="na">gtf</span><span class="pi">:</span>
+            <span class="na">type</span><span class="pi">:</span> <span class="s">File</span>
+            <span class="na">inputBinding</span><span class="pi">:</span>
+              <span class="na">prefix</span><span class="pi">:</span> <span class="s2">"</span><span class="s">--gtf"</span>
+
+          <span class="na">chromosomes</span><span class="pi">:</span>
+            <span class="na">type</span><span class="pi">:</span> <span class="s">File</span>
+            <span class="na">inputBinding</span><span class="pi">:</span>
+              <span class="na">prefix</span><span class="pi">:</span> <span class="s2">"</span><span class="s">--chromosomes"</span>
+</code></pre></div></div>
+<h3 id="setting-mutually-exclusive-parameters">Setting Mutually Exclusive Parameters</h3>
+
+<p>In order to properly set fields in a record input type, you need to pass a dictionary to the input to properly set the parameters. This is done by using inline javascript and returning the dictionary with the key of the field you want to set. The source field is set to indicate the input from the workflow to be used as the value.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">steps</span><span class="pi">:</span>
+
+  <span class="na">build_hisat2_index</span><span class="pi">:</span>
+    <span class="na">run</span><span class="pi">:</span> <span class="s">../Tools/Hisat2-Index.cwl</span>
+    <span class="na">in</span><span class="pi">:</span>
+      <span class="na">InputFiles</span><span class="pi">:</span>
+        <span class="na">source</span><span class="pi">:</span> <span class="s">FastaFiles</span>
+        <span class="na">valueFrom </span><span class="pi">:</span> <span class="pi">|</span> 
+          <span class="s">${return {"fasta": self};}</span>
+
+      <span class="na">IndexName</span><span class="pi">:</span> <span class="s">IndexName</span>
+    
+    <span class="na">out</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">indexes</span><span class="pi">]</span>
+</code></pre></div></div>
+
+<h3 id="setting-booleans">Setting Booleans</h3>
+
+<p>These can be set by using the default field</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">input</span><span class="pi">:</span>
+  <span class="s">default:true</span>
+</code></pre></div></div>
+<h3 id="concating-strings-in-inputs">Concating Strings in Inputs</h3>
+
+<p>The valueFrom field must be used instead of default.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">input</span><span class="pi">:</span>
+  <span class="na">valueFrom</span><span class="pi">:</span> <span class="pi">|</span>
+     <span class="s">My String: $(input.stringvalue)</span>
+</code></pre></div></div>
+
 <h3 id="cwltool-errors-due-to-filenames-with-space-characters-inside"><code class="language-plaintext highlighter-rouge">cwltool</code> errors due to filenames with space characters inside</h3>
 
 <p><code class="language-plaintext highlighter-rouge">cwltool</code> does not allow some characters in filenames by default.</p>

@@ -1,85 +1,8 @@
 
-Processing	file:///var/lib/cwl/stgf120df95-7f4d-499b-af9d-aaef85791629/index.html
+Processing	file:///var/lib/cwl/stg1abf5502-3574-422e-9a04-ad59f2764cf8/index.html
 
 
 List of broken links and other issues:
-file:///assets/img/donate-button2.png	
-  Line: 128
-  Code: 404 File `/assets/img/donate-button2.png' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
-file:///favicon/safari-pinned-tab.svg	
-  Line: 39
-  Code: 404 File `/favicon/safari-pinned-tab.svg' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
-file:///assets/video/subtitles/russian.vtt	
-  Line: 206
-  Code: 404 File `/assets/video/subtitles/russian.vtt' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
-file:///assets/video/subtitles/lithuanian.vtt	
-  Line: 204
-  Code: 404 File `/assets/video/subtitles/lithuanian.vtt' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
-file:///assets/video/subtitles/chinese_simplified.vtt	
-  Line: 200
-  Code: 404 File `/assets/video/subtitles/chinese_simplified.vtt' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
-file:///assets/img/intro_video_poster.png	
-  Line: 197
-  Code: 404 File `/assets/img/intro_video_poster.png' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
-file:///CWL-Logo-Header.png	
-  Line: 53
-  Code: 404 File `/CWL-Logo-Header.png' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
-file:///assets/js/bootstrap.min.js	
-  Line: 847
-  Code: 404 File `/assets/js/bootstrap.min.js' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
-file:///assets/video/subtitles/japanese.vtt	
-  Line: 203
-  Code: 404 File `/assets/video/subtitles/japanese.vtt' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
-file:///assets/video/subtitles/ukranian.vtt	
-  Line: 207
-  Code: 404 File `/assets/video/subtitles/ukranian.vtt' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
-file:///favicon/favicon.ico	
-  Line: 40
-  Code: 404 File `/favicon/favicon.ico' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
 file:///assets/video/subtitles/french.vtt	
   Line: 202
   Code: 404 File `/assets/video/subtitles/french.vtt' does not exist
@@ -87,51 +10,16 @@ file:///assets/video/subtitles/french.vtt
 	or mistake in copy-pasting. If the link points to a resource that
 	no longer exists, you may want to remove or fix the link.
 
-file:///favicon/favicon-16x16.png	
-  Line: 37
-  Code: 404 File `/favicon/favicon-16x16.png' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
-file:///sitemap.xml	
-  Line: 15
-  Code: 404 File `/sitemap.xml' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
-file:///assets/video/cwl-intro-video.mp4	
-  Line: 198
-  Code: 404 File `/assets/video/cwl-intro-video.mp4' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
-file:///var/lib/cwl/stgf120df95-7f4d-499b-af9d-aaef85791629/Common%20Workflow%20Language_files/openstand-128x128-blue.png	
+file:///var/lib/cwl/stg1abf5502-3574-422e-9a04-ad59f2764cf8/Common%20Workflow%20Language_files/openstand-128x128-blue.png	
   Line: 155
-  Code: 404 File `/var/lib/cwl/stgf120df95-7f4d-499b-af9d-aaef85791629/Common Workflow Language_files/openstand-128x128-blue.png' does not exist
+  Code: 404 File `/var/lib/cwl/stg1abf5502-3574-422e-9a04-ad59f2764cf8/Common Workflow Language_files/openstand-128x128-blue.png' does not exist
  To do: The link is broken. Double-check that you have not made any typo,
 	or mistake in copy-pasting. If the link points to a resource that
 	no longer exists, you may want to remove or fix the link.
 
-file:///favicon/site.webmanifest	
-  Line: 38
-  Code: 404 File `/favicon/site.webmanifest' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
-file:///assets/video/subtitles/urdu.vtt	
-  Line: 208
-  Code: 404 File `/assets/video/subtitles/urdu.vtt' does not exist
- To do: The link is broken. Double-check that you have not made any typo,
-	or mistake in copy-pasting. If the link points to a resource that
-	no longer exists, you may want to remove or fix the link.
-
-file:///favicon/apple-touch-icon.png	
-  Line: 35
-  Code: 404 File `/favicon/apple-touch-icon.png' does not exist
+file:///assets/img/donate-button2.png	
+  Line: 128
+  Code: 404 File `/assets/img/donate-button2.png' does not exist
  To do: The link is broken. Double-check that you have not made any typo,
 	or mistake in copy-pasting. If the link points to a resource that
 	no longer exists, you may want to remove or fix the link.
@@ -143,6 +31,13 @@ file:///assets/video/subtitles/english.vtt
 	or mistake in copy-pasting. If the link points to a resource that
 	no longer exists, you may want to remove or fix the link.
 
+file:///favicon/apple-touch-icon.png	
+  Line: 35
+  Code: 404 File `/favicon/apple-touch-icon.png' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+
 file:///assets/video/subtitles/romanian.vtt	
   Line: 205
   Code: 404 File `/assets/video/subtitles/romanian.vtt' does not exist
@@ -150,9 +45,93 @@ file:///assets/video/subtitles/romanian.vtt
 	or mistake in copy-pasting. If the link points to a resource that
 	no longer exists, you may want to remove or fix the link.
 
+file:///CWL-Logo-Header.png	
+  Line: 53
+  Code: 404 File `/CWL-Logo-Header.png' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+
 file:///assets/js/jquery-3.5.1.min.js	
-  Line: 846
+  Line: 854
   Code: 404 File `/assets/js/jquery-3.5.1.min.js' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+
+file:///assets/video/subtitles/russian.vtt	
+  Line: 206
+  Code: 404 File `/assets/video/subtitles/russian.vtt' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+
+file:///assets/img/intro_video_poster.png	
+  Line: 197
+  Code: 404 File `/assets/img/intro_video_poster.png' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+
+file:///assets/video/subtitles/lithuanian.vtt	
+  Line: 204
+  Code: 404 File `/assets/video/subtitles/lithuanian.vtt' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+
+file:///assets/css/style.css	
+  Line: 33
+  Code: 404 File `/assets/css/style.css' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+
+file:///favicon/site.webmanifest	
+  Line: 38
+  Code: 404 File `/favicon/site.webmanifest' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+
+file:///assets/video/cwl-intro-video.mp4	
+  Line: 198
+  Code: 404 File `/assets/video/cwl-intro-video.mp4' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+
+file:///favicon/favicon.ico	
+  Line: 40
+  Code: 404 File `/favicon/favicon.ico' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+
+file:///favicon/favicon-16x16.png	
+  Line: 37
+  Code: 404 File `/favicon/favicon-16x16.png' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+
+file:///assets/js/bootstrap.min.js	
+  Line: 855
+  Code: 404 File `/assets/js/bootstrap.min.js' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+
+file:///sitemap.xml	
+  Line: 15
+  Code: 404 File `/sitemap.xml' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+
+file:///favicon/safari-pinned-tab.svg	
+  Line: 39
+  Code: 404 File `/favicon/safari-pinned-tab.svg' does not exist
  To do: The link is broken. Double-check that you have not made any typo,
 	or mistake in copy-pasting. If the link points to a resource that
 	no longer exists, you may want to remove or fix the link.
@@ -171,21 +150,33 @@ file:///assets/plyr/plyr.min.js
 	or mistake in copy-pasting. If the link points to a resource that
 	no longer exists, you may want to remove or fix the link.
 
-file:///assets/css/style.css	
-  Line: 33
-  Code: 404 File `/assets/css/style.css' does not exist
+file:///assets/video/subtitles/urdu.vtt	
+  Line: 208
+  Code: 404 File `/assets/video/subtitles/urdu.vtt' does not exist
  To do: The link is broken. Double-check that you have not made any typo,
 	or mistake in copy-pasting. If the link points to a resource that
 	no longer exists, you may want to remove or fix the link.
 
-file:///var/lib/cwl/stgf120df95-7f4d-499b-af9d-aaef85791629/index.html	
- Lines: 65, 79, 92, 166, 246, 815
-  Code: 200 (no message)
- To do: Some of the links to this resource point to broken URI fragments
-	(such as index.html#fragment).
-The following fragments need to be fixed:
-	Support                       	Lines: 246, 815
-	CWL-Conference                	Line: 166
+file:///assets/video/subtitles/japanese.vtt	
+  Line: 203
+  Code: 404 File `/assets/video/subtitles/japanese.vtt' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+
+file:///assets/video/subtitles/chinese_simplified.vtt	
+  Line: 200
+  Code: 404 File `/assets/video/subtitles/chinese_simplified.vtt' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
+
+file:///assets/video/subtitles/ukranian.vtt	
+  Line: 207
+  Code: 404 File `/assets/video/subtitles/ukranian.vtt' does not exist
+ To do: The link is broken. Double-check that you have not made any typo,
+	or mistake in copy-pasting. If the link points to a resource that
+	no longer exists, you may want to remove or fix the link.
 
 file:///	
  Lines: 53, 134, 136, 138, 140, 142, 144, 146, 148, 150
@@ -193,18 +184,27 @@ file:///
  To do: Some of the links to this resource point to broken URI fragments
 	(such as index.html#fragment).
 The following fragments need to be fixed:
-	Getting_Started               	Line: 134
-	Software_for_working_with_CWL 	Line: 146
 	Implementations               	Line: 142
-	Projects_the_CWL_community_is_participating_in	Line: 148
-	vision-for-cwl                	Line: 136
-	Specification                 	Line: 140
-	Support                       	Line: 138
-	Contributers_and_Governance   	Line: 150
 	Repositories_of_CWL_Tools_and_Workflows	Line: 144
+	Getting_Started               	Line: 134
+	Contributers_and_Governance   	Line: 150
+	Specification                 	Line: 140
+	vision-for-cwl                	Line: 136
+	Projects_the_CWL_community_is_participating_in	Line: 148
+	Software_for_working_with_CWL 	Line: 146
+	Support                       	Line: 138
+
+file:///var/lib/cwl/stg1abf5502-3574-422e-9a04-ad59f2764cf8/index.html	
+ Lines: 65, 79, 92, 166, 246, 823
+  Code: 200 (no message)
+ To do: Some of the links to this resource point to broken URI fragments
+	(such as index.html#fragment).
+The following fragments need to be fixed:
+	CWL-Conference                	Line: 166
+	Support                       	Lines: 246, 823
 List of duplicate and empty anchors
-	Code_libraries	Line: 627
-	Editors_and_viewers	Line: 448
-	Converters_and_code_generators	Line: 558
-	Utilities	Line: 509
-	Participating_Organizations	Line: 718
+	Code_libraries	Line: 635
+	Participating_Organizations	Line: 726
+	Editors_and_viewers	Line: 456
+	Utilities	Line: 517
+	Converters_and_code_generators	Line: 566
