@@ -19,7 +19,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="last-modified" content="2021-08-23 11:45:58 +0000">
+    <meta http-equiv="last-modified" content="2021-09-03 11:42:14 +0000">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- meta "search-domain" used for google site search function google_search() -->
     <meta name="search-domain" value="">
@@ -799,7 +799,7 @@ instead the order is determined by the dependencies between steps (using
 another may run in parallel.</p>
 
 <p>The first step, <code class="language-plaintext highlighter-rouge">untar</code> runs <code class="language-plaintext highlighter-rouge">tar-param.cwl</code> (described previously in
-<a href="../06-params/index.html">Parameter references</a>).
+<a href="../06-params/index.html">Parameter References</a>).
 This tool has two input parameters, <code class="language-plaintext highlighter-rouge">tarfile</code> and <code class="language-plaintext highlighter-rouge">extractfile</code> and one output
 parameter <code class="language-plaintext highlighter-rouge">extracted_file</code>.</p>
 
@@ -821,7 +821,9 @@ expected from the tool.</p>
 
 <p>The second step <code class="language-plaintext highlighter-rouge">compile</code> depends on the results from the first step by
 connecting the input parameter <code class="language-plaintext highlighter-rouge">src</code> to the output parameter of <code class="language-plaintext highlighter-rouge">untar</code> using
-<code class="language-plaintext highlighter-rouge">untar/extracted_file</code>.  The output of this step <code class="language-plaintext highlighter-rouge">classfile</code> is connected to the
+<code class="language-plaintext highlighter-rouge">untar/extracted_file</code>.  It runs <code class="language-plaintext highlighter-rouge">arguments.cwl</code> (described previously in
+<a href="../08-arguments/index.html">Additional Arguments and Parameters</a>).
+The output of this step <code class="language-plaintext highlighter-rouge">classfile</code> is connected to the
 <code class="language-plaintext highlighter-rouge">outputs</code> section for the Workflow, described above.</p>
 
 

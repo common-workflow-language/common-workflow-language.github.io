@@ -19,7 +19,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="last-modified" content="2021-08-23 11:46:02 +0000">
+    <meta http-equiv="last-modified" content="2021-09-03 11:41:59 +0000">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- meta "search-domain" used for google site search function google_search() -->
     <meta name="search-domain" value="">
@@ -361,21 +361,16 @@ plain strings that may or may not be file paths.</p>
 
 <p>Note: if you don’t have example sequence data or the STAR index files, see <a href="/setup.html">setup</a>.</p>
 
-<div>
-<ul class="tab" data-tab="252414d7-ed74-438d-8ceb-4bd068e4069c">
+<div class="tabbed">
+  <ul class="tab">
     
-        <li class="active">
-            <a href="">generic </a>
-        </li>
+      <li><a href="#section-generic">generic</a></li>
     
-        <li>
-            <a href="">arvados </a>
-        </li>
+      <li><a href="#section-arvados">arvados</a></li>
     
-    </ul>
-    <ul class="tab-content" id="252414d7-ed74-438d-8ceb-4bd068e4069c">
-    
-        <li class="active">
+  </ul>
+
+  <section id="section-generic">
 <p>main-input.yaml</p>
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">fq</span><span class="pi">:</span>
   <span class="na">class</span><span class="pi">:</span> <span class="s">File</span>
@@ -401,10 +396,8 @@ plain strings that may or may not be file paths.</p>
 logging.  The logging you see, how access other logs, and how to
 track workflow progress will depend on your CWL runner platform.</p>
 </blockquote>
-
-</li>
-    
-        <li>
+</section>
+  <section id="section-arvados">
 <p>main-input.yaml</p>
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">fq</span><span class="pi">:</span>
   <span class="na">class</span><span class="pi">:</span> <span class="s">File</span>
@@ -425,10 +418,7 @@ track workflow progress will depend on your CWL runner platform.</p>
 then use the <code class="language-plaintext highlighter-rouge">Run CWL Workflow on Arvados</code> task.</p>
 
 </blockquote>
-</li>
-    
-</ul>
-
+</section>
 </div>
 
 <h1 id="debugging-the-workflow">Debugging the workflow</h1>
@@ -509,7 +499,7 @@ request more RAM, add a “requirements” section with
 <p>The CWL runner will print a results JSON object to standard output.  It will look something like this (it may include additional fields).</p>
 
 <div>
-<ul class="tab" data-tab="9b0f8280-c73e-4902-abc3-499e90118947">
+<ul class="tab" data-tab="c5d3efd2-cf01-4d01-9187-32c0b3a23d61">
     
         <li class="active">
             <a href="">generic </a>
@@ -520,7 +510,7 @@ request more RAM, add a “requirements” section with
         </li>
     
     </ul>
-    <ul class="tab-content" id="9b0f8280-c73e-4902-abc3-499e90118947">
+    <ul class="tab-content" id="c5d3efd2-cf01-4d01-9187-32c0b3a23d61">
     
         <li class="active">
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">{</span>
@@ -580,6 +570,7 @@ request more RAM, add a “requirements” section with
 <p>This has a similar structure as <code class="language-plaintext highlighter-rouge">main-input.yaml</code>.  The each output
 parameter is listed, with the <code class="language-plaintext highlighter-rouge">location</code> field of each <code class="language-plaintext highlighter-rouge">File</code> object
 indicating where the output file can be found.</p>
+
 
 
 
