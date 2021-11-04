@@ -19,7 +19,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="last-modified" content="2021-09-16 11:19:42 +0000">
+    <meta http-equiv="last-modified" content="2021-11-04 20:03:03 +0000">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- meta "search-domain" used for google site search function google_search() -->
     <meta name="search-domain" value="">
@@ -772,9 +772,18 @@ $ cat output.txt
 -A 2 -B baz -C 10 9 8 7 6 5 4 3 2 1
 </code></pre></div></div>
 
-<p>Note that requirements must be provided as an array, with each entry (in this
-case, only <code class="language-plaintext highlighter-rouge">class: InlineJavascriptRequirement</code>) marked by a <code class="language-plaintext highlighter-rouge">-</code>. The same
-syntax is used to describe the additional command line arguments.</p>
+<p>Note that requirements can be provided with the map syntax, as in the example above:</p>
+
+<div class="language-plaintext source highlighter-rouge"><div class="highlight"><pre class="highlight"><code>requirements:
+  InlineJavascriptRequirement: {}
+</code></pre></div></div>
+
+<p>Or as an array, with each entry (in this case, only <code class="language-plaintext highlighter-rouge">class: InlineJavascriptRequirement</code>) marked by a <code class="language-plaintext highlighter-rouge">-</code>. 
+The same syntax is used to describe the additional command line arguments.</p>
+
+<div class="language-plaintext source highlighter-rouge"><div class="highlight"><pre class="highlight"><code>requirements:
+  - class: InlineJavascriptRequirement
+</code></pre></div></div>
 
 <blockquote class="callout">
   <h2 id="where-are-javascript-expressions-allowed">Where are JavaScript expressions allowed?</h2>
