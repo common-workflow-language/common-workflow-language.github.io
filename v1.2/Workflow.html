@@ -122,7 +122,7 @@ href="https://www.commonwl.org/user_guide/assets/favicons/cwl/favicon-96x96.png"
 <li>Stian Soiland-Reyes, University of Manchester; <a href="https://orcid.org/0000-0001-9842-9718">https://orcid.org/0000-0001-9842-9718</a></li>
 </ul>
 <p>Incorporates the work of past authors and contributors to <a href="https://www.commonwl.org/v1.0/Workflow.html">CWL v1.0</a> and <a href="https://www.commonwl.org/v1.1/Workflow.html">CWL v1.1</a>.</p>
-<p>This standard was <a href="https://github.com/common-workflow-language/cwl-v1.2/pull/47">approved on 2020-08-07</a> by the CWL leadership team consisting of:</p>
+<p>This specification was <a href="https://github.com/common-workflow-language/cwl-v1.2/pull/47">approved on 2020-08-07</a> by the CWL leadership team consisting of:</p>
 <ul>
 <li>Peter Amstutz, Curii Inc. / Arvados; <a href="https://orcid.org/0000-0003-3566-7705">https://orcid.org/0000-0003-3566-7705</a></li>
 <li>John Chilton, Pennsylvania State University / Galaxy Project; <a href="https://orcid.org/0000-0002-6794-0756">https://orcid.org/0000-0002-6794-0756</a></li>
@@ -132,7 +132,6 @@ href="https://www.commonwl.org/user_guide/assets/favicons/cwl/favicon-96x96.png"
 <li>Hervé Ménager, Institut Pasteur; <a href="https://orcid.org/0000-0002-7552-1009">https://orcid.org/0000-0002-7552-1009</a></li>
 <li>Stian Soiland-Reyes, University of Manchester; <a href="https://orcid.org/0000-0001-9842-9718">https://orcid.org/0000-0001-9842-9718</a></li>
 </ul>
-<p>Publisher: <a href="https://www.commonwl.org">Common Workflow Language project</a>, a member project of <a href="https://sfconservancy.org/">Software Freedom Conservancy</a></p>
 <h1 id="Abstract" class="section">Abstract <a href="#Abstract">&sect;</a></h1><p>This specification defines the Common Workflow Language (CWL)
 Workflow description, a vendor-neutral standard for representing
 analysis tasks where a sequence of operations are described
@@ -743,18 +742,17 @@ would benefit the author, runtime, and users of the CWL document in question.</p
 requirement <code>InlineJavascriptRequirement</code>.  Expressions may be used in any
 field permitting the pseudo-type <code>Expression</code>, as specified by this
 document.</p>
-<p>Expressions are denoted by the syntax <code>$(...)</code> or <code>${...}</code>.</p>
-<p>A code fragment wrapped in the <code>$(...)</code> syntax must be evaluated as a
-<a href="http://www.ecma-international.org/ecma-262/5.1/#sec-11">ECMAScript expression</a>.</p>
-<p>A code fragment wrapped in the <code>${...}</code> syntax must be evaluated as a
+<p>Expressions are denoted by the syntax <code>$(...)</code> or <code>${...}</code>.  A code
+fragment wrapped in the <code>$(...)</code> syntax must be evaluated as a
+<a href="http://www.ecma-international.org/ecma-262/5.1/#sec-11">ECMAScript expression</a>.  A
+code fragment wrapped in the <code>${...}</code> syntax must be evaluated as a
 <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-13">ECMAScript function body</a>
-for an anonymous, zero-argument function.  This means the code will be
-evaluated as <code>(function() { ... })()</code>.</p>
-<p>Expressions must return a valid JSON data type: one of null, string, number,
-boolean, array, object. Other return values must result in a
-<code>permanentFailure</code>.  Implementations must permit any syntactically valid
-Javascript and account for nesting of parenthesis or braces and that strings
-that may contain parenthesis or braces when scanning for expressions.</p>
+for an anonymous, zero-argument function.  Expressions must return a valid JSON
+data type: one of null, string, number, boolean, array, object. Other return
+values must result in a <code>permanentFailure</code>. Implementations must permit any
+syntactically valid Javascript and account for nesting of parenthesis or braces
+and that strings that may contain parenthesis or braces when scanning for
+expressions.</p>
 <p>The runtime must include any code defined in the <a href="#InlineJavascriptRequirement">"expressionLib" field of
 InlineJavascriptRequirement</a> prior to
 executing the actual expression.</p>
@@ -878,7 +876,7 @@ used to generate and/or validate the output object.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>class</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">constant value <code>Workflow</code></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"></div>
 </div>
 <div class="row responsive-table-row">
@@ -1143,8 +1141,7 @@ File object as part of the Process invocation, they must also
 be present in <code>secondaryFiles</code> on <code>self</code>.</p>
 <p>The expression must return either: a filename string relative
 to the path to the primary File, a File or Directory object
-(<code>class: File</code> or <code>class: Directory</code>) with either <code>location</code>
-(for inputs) or <code>path</code> (for outputs) and <code>basename</code> fields
+(<code>class: File</code> or 'class: Directory<code>) with either</code>location<code>(for inputs) or</code>path<code>(for outputs) and</code>basename` fields
 set, or an array consisting of strings or File or Directory
 objects as previously described.</p>
 <p>It is legal to use <code>location</code> from a File or Directory object
@@ -1368,7 +1365,7 @@ of <code>basename</code> prior to evaluating parameter references or expressions
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>size</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">int</a> | <a href="#CWLType">long</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Optional file size</p>
 </div>
 </div>
@@ -2567,7 +2564,7 @@ interpolatation.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>class</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">constant value <code>InlineJavascriptRequirement</code></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Always 'InlineJavascriptRequirement'</p>
 </div>
 </div>
@@ -2581,7 +2578,7 @@ be called from CWL expressions.</p>
 </div>
 </div></div><h3 id="SchemaDefRequirement" class="section">4.3.5 SchemaDefRequirement <a href="#SchemaDefRequirement">&sect;</a></h3><p>This field consists of an array of type definitions which must be used when
 interpreting the <code>inputs</code> and <code>outputs</code> fields.  When a <code>type</code> field
-contains a IRI, the implementation must check if the type is defined in
+contain a IRI, the implementation must check if the type is defined in
 <code>schemaDefs</code> and use that definition.  If the type is not found in
 <code>schemaDefs</code>, it is an error.  The entries in <code>schemaDefs</code> must be
 processed in the order listed such that later schema definitions may refer
@@ -2603,7 +2600,7 @@ to earlier schema definitions.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>class</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">constant value <code>SchemaDefRequirement</code></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Always 'SchemaDefRequirement'</p>
 </div>
 </div>
@@ -2903,10 +2900,9 @@ CWL v2.0.  Use <code>InputParameter.loadContents</code> instead.</p>
 <div class="col-xs-3 col-lg-2"><code>position</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">int</a> | <a href="#Expression">Expression</a></div>
-<div class="col-xs-12 col-lg-6 description-col"><p>The sorting key.  Default position is 0. If a <a href="#Parameter_references">CWL Parameter Reference</a>
-or <a href="#Expressions_(Optional">CWL Expression</a>) is used and if the
-inputBinding is associated with an input parameter, then the value of
-<code>self</code> will be the value of the input parameter.  Input parameter
+<div class="col-xs-12 col-lg-6 description-col"><p>The sorting key.  Default position is 0. If the inputBinding is
+associated with an input parameter, then the value of <code>self</code> in the
+expression will be the value of the input parameter.  Input parameter
 defaults (as specified by the <code>InputParameter.default</code> field) must be
 applied before evaluating the expression. Expressions must return a
 single value of type int or a null.</p>
@@ -3027,7 +3023,7 @@ a Directory object for use by expressions.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>class</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">constant value <code>LoadListingRequirement</code></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Always 'LoadListingRequirement'</p>
 </div>
 </div>
@@ -3049,7 +3045,7 @@ the defined process.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>class</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">constant value <code>SoftwareRequirement</code></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Always 'SoftwareRequirement'</p>
 </div>
 </div>
@@ -3139,7 +3135,7 @@ Normally files are staged within the designated output directory. However, when 
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>class</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">constant value <code>InitialWorkDirRequirement</code></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>InitialWorkDirRequirement</p>
 </div>
 </div>
@@ -3274,7 +3270,7 @@ is enabled by default.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>class</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">constant value <code>WorkReuse</code></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Always 'WorkReuse'</p>
 </div>
 </div>
@@ -3306,7 +3302,7 @@ address or the ability to accept inbound connections.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>class</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">constant value <code>NetworkAccess</code></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Always 'NetworkAccess'</p>
 </div>
 </div>
@@ -3351,7 +3347,7 @@ not be enabled.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>class</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">constant value <code>InplaceUpdateRequirement</code></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Always 'InplaceUpdateRequirement'</p>
 </div>
 </div>
@@ -3378,14 +3374,14 @@ wall-time for the execution of the command line itself.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>class</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">constant value <code>ToolTimeLimit</code></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Always 'ToolTimeLimit'</p>
 </div>
 </div>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>timelimit</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">int</a> | <a href="#CWLType">long</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The time limit, in seconds.  A time limit of zero means no
 time limit.  Negative time limits are an error.</p>
 </div>
@@ -3402,7 +3398,7 @@ the <code>run</code> field of <a href="#WorkflowStep">WorkflowStep</a>.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>class</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">constant value <code>SubworkflowFeatureRequirement</code></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Always 'SubworkflowFeatureRequirement'</p>
 </div>
 </div></div><h3 id="ScatterFeatureRequirement" class="section">4.3.15 ScatterFeatureRequirement <a href="#ScatterFeatureRequirement">&sect;</a></h3><p>Indicates that the workflow platform must support the <code>scatter</code> and
@@ -3418,7 +3414,7 @@ the <code>run</code> field of <a href="#WorkflowStep">WorkflowStep</a>.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>class</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">constant value <code>ScatterFeatureRequirement</code></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Always 'ScatterFeatureRequirement'</p>
 </div>
 </div></div><h3 id="MultipleInputFeatureRequirement" class="section">4.3.16 MultipleInputFeatureRequirement <a href="#MultipleInputFeatureRequirement">&sect;</a></h3><p>Indicates that the workflow platform must support multiple inbound data links
@@ -3434,7 +3430,7 @@ listed in the <code>source</code> field of <a href="#WorkflowStepInput">Workflow
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>class</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">constant value <code>MultipleInputFeatureRequirement</code></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Always 'MultipleInputFeatureRequirement'</p>
 </div>
 </div></div><h3 id="StepInputExpressionRequirement" class="section">4.3.17 StepInputExpressionRequirement <a href="#StepInputExpressionRequirement">&sect;</a></h3><p>Indicate that the workflow platform must support the <code>valueFrom</code> field
@@ -3450,7 +3446,7 @@ of <a href="#WorkflowStepInput">WorkflowStepInput</a>.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>class</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">constant value <code>StepInputExpressionRequirement</code></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Always 'StepInputExpressionRequirement'</p>
 </div>
 </div></div><h3 id="ExpressionTool" class="section">4.3.18 ExpressionTool <a href="#ExpressionTool">&sect;</a></h3><p>An ExpressionTool is a type of Process object that can be run by itself
@@ -3495,7 +3491,7 @@ used to generate and/or validate the output object.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>class</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">constant value <code>ExpressionTool</code></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"></div>
 </div>
 <div class="row responsive-table-row">
@@ -3716,7 +3712,7 @@ used to generate and/or validate the output object.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>class</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">constant value <code>Operation</code></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"></div>
 </div>
 <div class="row responsive-table-row">

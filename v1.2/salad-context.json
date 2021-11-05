@@ -65,8 +65,7 @@
         "items": {
             "@id": "https://w3id.org/cwl/salad#items",
             "@type": "@vocab",
-            "refScope": 2,
-            "typeDSL": true
+            "refScope": 2
         },
         "jsonldPredicate": "sld:jsonldPredicate",
         "long": "http://www.w3.org/2001/XMLSchema#long",

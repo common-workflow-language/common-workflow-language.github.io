@@ -39,8 +39,6 @@
 @base:CommandLineTool a rdfs:Class ;
     rdfs:subClassOf @base:Process .
 
-<https://w3id.org/cwl/cwl#CommandLineTool/class/CommandLineTool_class> a rdfs:Class .
-
 @base:CommandOutputArraySchema a rdfs:Class ;
     rdfs:subClassOf @base:OutputArraySchema .
 
@@ -68,12 +66,8 @@
 @base:DockerRequirement a rdfs:Class ;
     rdfs:subClassOf @base:ProcessRequirement .
 
-<https://w3id.org/cwl/cwl#DockerRequirement/class/DockerRequirement_class> a rdfs:Class .
-
 @base:EnvVarRequirement a rdfs:Class ;
     rdfs:subClassOf @base:ProcessRequirement .
-
-<https://w3id.org/cwl/cwl#EnvVarRequirement/class/EnvVarRequirement_class> a rdfs:Class .
 
 @base:EnvironmentDef a rdfs:Class .
 
@@ -81,8 +75,6 @@
 
 @base:ExpressionTool a rdfs:Class ;
     rdfs:subClassOf @base:Process .
-
-<https://w3id.org/cwl/cwl#ExpressionTool/class/ExpressionTool_class> a rdfs:Class .
 
 @base:ExpressionToolOutputParameter a rdfs:Class ;
     rdfs:subClassOf @base:OutputParameter .
@@ -103,17 +95,11 @@
 @base:InitialWorkDirRequirement a rdfs:Class ;
     rdfs:subClassOf @base:ProcessRequirement .
 
-<https://w3id.org/cwl/cwl#InitialWorkDirRequirement/class/InitialWorkDirRequirement_class> a rdfs:Class .
-
 @base:InlineJavascriptRequirement a rdfs:Class ;
     rdfs:subClassOf @base:ProcessRequirement .
 
-<https://w3id.org/cwl/cwl#InlineJavascriptRequirement/class/InlineJavascriptRequirement_class> a rdfs:Class .
-
 @base:InplaceUpdateRequirement a rdfs:Class ;
     rdfs:subClassOf @base:ProcessRequirement .
-
-<https://w3id.org/cwl/cwl#InplaceUpdateRequirement/class/InplaceUpdateRequirement_class> a rdfs:Class .
 
 @base:InputArraySchema a rdfs:Class ;
     rdfs:subClassOf @base:InputSchema,
@@ -156,22 +142,14 @@
 @base:LoadListingRequirement a rdfs:Class ;
     rdfs:subClassOf @base:ProcessRequirement .
 
-<https://w3id.org/cwl/cwl#LoadListingRequirement/class/LoadListingRequirement_class> a rdfs:Class .
-
 @base:MultipleInputFeatureRequirement a rdfs:Class ;
     rdfs:subClassOf @base:ProcessRequirement .
-
-<https://w3id.org/cwl/cwl#MultipleInputFeatureRequirement/class/MultipleInputFeatureRequirement_class> a rdfs:Class .
 
 @base:NetworkAccess a rdfs:Class ;
     rdfs:subClassOf @base:ProcessRequirement .
 
-<https://w3id.org/cwl/cwl#NetworkAccess/class/NetworkAccess_class> a rdfs:Class .
-
 @base:Operation a rdfs:Class ;
     rdfs:subClassOf @base:Process .
-
-<https://w3id.org/cwl/cwl#Operation/class/Operation_class> a rdfs:Class .
 
 @base:OperationInputParameter a rdfs:Class ;
     rdfs:subClassOf @base:InputParameter .
@@ -222,26 +200,18 @@
 @base:ResourceRequirement a rdfs:Class ;
     rdfs:subClassOf @base:ProcessRequirement .
 
-<https://w3id.org/cwl/cwl#ResourceRequirement/class/ResourceRequirement_class> a rdfs:Class .
-
 @base:ScatterFeatureRequirement a rdfs:Class ;
     rdfs:subClassOf @base:ProcessRequirement .
-
-<https://w3id.org/cwl/cwl#ScatterFeatureRequirement/class/ScatterFeatureRequirement_class> a rdfs:Class .
 
 @base:ScatterMethod a rdfs:Class .
 
 @base:SchemaDefRequirement a rdfs:Class ;
     rdfs:subClassOf @base:ProcessRequirement .
 
-<https://w3id.org/cwl/cwl#SchemaDefRequirement/class/SchemaDefRequirement_class> a rdfs:Class .
-
 @base:SecondaryFileSchema a rdfs:Class .
 
 @base:ShellCommandRequirement a rdfs:Class ;
     rdfs:subClassOf @base:ProcessRequirement .
-
-<https://w3id.org/cwl/cwl#ShellCommandRequirement/class/ShellCommandRequirement_class> a rdfs:Class .
 
 @base:Sink a rdfs:Class .
 
@@ -250,32 +220,20 @@
 @base:SoftwareRequirement a rdfs:Class ;
     rdfs:subClassOf @base:ProcessRequirement .
 
-<https://w3id.org/cwl/cwl#SoftwareRequirement/class/SoftwareRequirement_class> a rdfs:Class .
-
 @base:StepInputExpressionRequirement a rdfs:Class ;
     rdfs:subClassOf @base:ProcessRequirement .
-
-<https://w3id.org/cwl/cwl#StepInputExpressionRequirement/class/StepInputExpressionRequirement_class> a rdfs:Class .
 
 @base:SubworkflowFeatureRequirement a rdfs:Class ;
     rdfs:subClassOf @base:ProcessRequirement .
 
-<https://w3id.org/cwl/cwl#SubworkflowFeatureRequirement/class/SubworkflowFeatureRequirement_class> a rdfs:Class .
-
 @base:ToolTimeLimit a rdfs:Class ;
     rdfs:subClassOf @base:ProcessRequirement .
-
-<https://w3id.org/cwl/cwl#ToolTimeLimit/class/ToolTimeLimit_class> a rdfs:Class .
 
 @base:WorkReuse a rdfs:Class ;
     rdfs:subClassOf @base:ProcessRequirement .
 
-<https://w3id.org/cwl/cwl#WorkReuse/class/WorkReuse_class> a rdfs:Class .
-
 @base:Workflow a rdfs:Class ;
     rdfs:subClassOf @base:Process .
-
-<https://w3id.org/cwl/cwl#Workflow/class/Workflow_class> a rdfs:Class .
 
 @base:WorkflowInputParameter a rdfs:Class ;
     rdfs:subClassOf @base:InputParameter .

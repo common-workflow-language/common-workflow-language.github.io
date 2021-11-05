@@ -165,7 +165,7 @@ under the terms of the Apache License, version 2.0.</p>
 </ol></li></ol><li><a href="#Domain_Specific_Language_for_types">3.8 Domain Specific Language for types</a><ol>
 <li><a href="#Type_DSL_example">3.8.1 Type DSL example</a><ol>
 </ol></li></ol><li><a href="#Domain_Specific_Language_for_secondary_files">3.9 Domain Specific Language for secondary files</a><ol>
-<li><a href="#Type_DSL_example">3.9.1 Type DSL example</a><ol>
+<li><a href="#Secondary_files_DSL_example">3.9.1 Secondary files DSL example</a><ol>
 </ol></li></ol></li></ol><li><a href="#SaladRecordSchema">4. SaladRecordSchema</a><ol>
 <li><a href="#SaladRecordField">4.1 SaladRecordField</a><ol>
 <li><a href="#PrimitiveType">4.1.1 PrimitiveType</a><ol>
@@ -938,7 +938,7 @@ following micro-DSL for secondary files:</p>
 stripped off and the value of the field <code>required</code> is set to <code>False</code></li>
 <li>The remaining value is assigned to the field <code>pattern</code></li>
 </ul>
-<h3 id="Type_DSL_example" class="section">3.9.1 Type DSL example <a href="#Type_DSL_example">&sect;</a></h3><p>Given the following schema:</p>
+<h3 id="Secondary_files_DSL_example" class="section">3.9.1 Secondary files DSL example <a href="#Secondary_files_DSL_example">&sect;</a></h3><p>Given the following schema:</p>
 <pre><code>{
   "$graph": [
   {
@@ -964,11 +964,11 @@ stripped off and the value of the field <code>required</code> is set to <code>Fa
 }, {
   "secondaryFiles": {
     "pattern": ".bai?"
-}}, {
+}, {
   "secondaryFiles": {
     "pattern": ".bai?",
     "required": true
-}}]
+}]
 </code></pre>
 <p>This becomes:</p>
 <pre><code>[
