@@ -19,7 +19,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="last-modified" content="2021-11-16 16:13:33 +0000">
+    <meta http-equiv="last-modified" content="2021-11-22 14:48:50 +0000">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- meta "search-domain" used for google site search function google_search() -->
     <meta name="search-domain" value="">
@@ -756,17 +756,16 @@ right. In purple we see the fixed string <code class="language-plaintext highlig
 </blockquote>
 
 <p>A CWL <code class="language-plaintext highlighter-rouge">Workflow</code> can be used as a <code class="language-plaintext highlighter-rouge">step</code> just like a <code class="language-plaintext highlighter-rouge">CommandLineTool</code>, its CWL
-file is included with <code class="language-plaintext highlighter-rouge">run</code>. The workflow inputs (<code class="language-plaintext highlighter-rouge">inp</code> and <code class="language-plaintext highlighter-rouge">ex</code>) and outputs
-(<code class="language-plaintext highlighter-rouge">classout</code>) then can be mapped to become the step’s input/outputs.</p>
+file is included with <code class="language-plaintext highlighter-rouge">run</code>. The workflow inputs (<code class="language-plaintext highlighter-rouge">tarball</code> and <code class="language-plaintext highlighter-rouge">name_of_file_to_extract</code>) and outputs
+(<code class="language-plaintext highlighter-rouge">compiled_class</code>) then can be mapped to become the step’s input/outputs.</p>
 
 <div class="language-plaintext source highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  compile:
     run: 1st-workflow.cwl
     in:
-      inp:
-        source: create-tar/tar
-      ex:
+      tarball: create-tar/tar_compressed_java_file
+      name_of_file_to_extract:
         default: "Hello.java"
-    out: [classout]
+    out: [compiled_class]
 </code></pre></div></div>
 
 <p>Our <code class="language-plaintext highlighter-rouge">1st-workflow.cwl</code> was parameterized with workflow inputs, so when running
@@ -774,9 +773,9 @@ it we had to provide a job file to denote the tar file and <code class="language
 This is generally best-practice, as it means it can be reused in multiple parent
 workflows, or even in multiple steps within the same workflow.</p>
 
-<p>Here we use <code class="language-plaintext highlighter-rouge">default:</code> to hard-code <code class="language-plaintext highlighter-rouge">"Hello.java"</code> as the <code class="language-plaintext highlighter-rouge">ex</code> input, however
-our workflow also requires a tar file at <code class="language-plaintext highlighter-rouge">inp</code>, which we will prepare in the
-<code class="language-plaintext highlighter-rouge">create-tar</code> step. At this point it is probably a good idea to refactor
+<p>Here we use <code class="language-plaintext highlighter-rouge">default:</code> to hard-code <code class="language-plaintext highlighter-rouge">"Hello.java"</code> as the <code class="language-plaintext highlighter-rouge">name_of_file_to_extract</code>
+input, however our workflow also requires a tar file at <code class="language-plaintext highlighter-rouge">tarball</code>, which we will
+prepare in the <code class="language-plaintext highlighter-rouge">create-tar</code> step. At this point it is probably a good idea to refactor
 <code class="language-plaintext highlighter-rouge">1st-workflow.cwl</code> to have more specific input/output names, as those also
 appear in its usage as a tool.</p>
 
@@ -799,33 +798,22 @@ requirement, before adding it to a tar file.</p>
 </code></pre></div></div>
 
 <p>In this case our step can assume <code class="language-plaintext highlighter-rouge">Hello.java</code> rather than be parameterized, so
-we can use a simpler <code class="language-plaintext highlighter-rouge">arguments</code> form as long as the CWL workflow engine
-supports the <code class="language-plaintext highlighter-rouge">ShellCommandRequirement</code>:</p>
+we can use hardcoded values <code class="language-plaintext highlighter-rouge">hello.tar</code> and <code class="language-plaintext highlighter-rouge">Hello.java</code> in a <code class="language-plaintext highlighter-rouge">baseCommand</code> and
+the resulting <code class="language-plaintext highlighter-rouge">outputs</code>:</p>
 
 <div class="language-plaintext source highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  run:
     class: CommandLineTool
-    requirements:
-      ShellCommandRequirement: {}
-    arguments:
-      - shellQuote: false
-        valueFrom: &gt;
-          tar cf hello.tar Hello.java
+    inputs: []
+    baseCommand: [tar, --create, --file=hello.tar, Hello.java]
+    outputs:
+      tar_compressed_java_file:
+        type: File
+        streamable: true
+        outputBinding:
+          glob: "hello.tar"
 </code></pre></div></div>
 
-<p>Note the use of <code class="language-plaintext highlighter-rouge">shellQuote: false</code> here, otherwise the shell will try to
-execute the quoted binary <code class="language-plaintext highlighter-rouge">"tar cf hello.tar Hello.java"</code>.</p>
-
-<p>Here the <code class="language-plaintext highlighter-rouge">&gt;</code> block means that newlines are stripped, so it’s possible to write
-the single command on multiple lines. Similarly, the <code class="language-plaintext highlighter-rouge">|</code> we used above will
-preserve newlines, combined with <code class="language-plaintext highlighter-rouge">ShellCommandRequirement</code> this would allow
-embedding a shell script.
-Shell commands should however be used sparingly in CWL, as it means you
-“jump out” of the workflow and no longer get reusable components, provenance or
-scalability. For reproducibility and portability it is recommended to only use
-shell commands together with a <code class="language-plaintext highlighter-rouge">DockerRequirement</code> hint, so that the commands
-are executed in a predictable shell environment.</p>
-
-<p>Did you notice that we didn’t split out the <code class="language-plaintext highlighter-rouge">tar cf</code> tool to a separate file,
+<p>Did you notice that we didn’t split out the <code class="language-plaintext highlighter-rouge">tar --create</code> tool to a separate file,
 but rather embedded it within the CWL Workflow file? This is generally not best
 practice, as the tool then can’t be reused. The reason for doing it in this case
 is because the command line is hard-coded with filenames that only make sense
