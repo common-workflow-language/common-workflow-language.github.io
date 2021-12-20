@@ -532,7 +532,7 @@ additional fields on any object.  Such extensions fields must use a namespace
 prefix listed in the <code>$namespaces</code> section of the document as described in the
 <a href="SchemaSalad.html#Explicit_context">Schema Salad specification</a>.</p>
 <p>It is recommended that concepts from schema.org are used whenever possible.
-For the <code>$schema</code> field we recommend their RDF encoding: <a href="http://schema.org/version/latest/schema.rdf">http://schema.org/version/latest/schema.rdf</a></p>
+For the <code>$schemas</code> field we recommend their RDF encoding: <a href="http://schema.org/version/latest/schema.rdf">http://schema.org/version/latest/schema.rdf</a></p>
 <p>Implementation extensions which modify execution semantics must be <a href="#Requirements_and_hints">listed in
 the <code>requirements</code> field</a>.</p>
 <h2 id="Packed_documents" class="section">2.6 Packed documents <a href="#Packed_documents">&sect;</a></h2><p>A "packed" CWL document is one that contains multiple process objects.
@@ -683,17 +683,25 @@ or more repeats, and all other characters are literal values.</p>
 </p><p>Use the following algorithm to resolve a parameter reference:</p>
 <ol>
 <li>Match the leading symbol as the key</li>
+<li>If the key is the special value 'null' then the
+value of the parameter reference is 'null'. If the key is 'null' it must be the only symbol in the parameter reference.</li>
 <li>Look up the key in the parameter context (described below) to get the current value.
 It is an error if the key is not found in the parameter context.</li>
 <li>If there are no subsequent segments, terminate and return current value</li>
 <li>Else, match the next segment</li>
 <li>Extract the symbol, string, or index from the segment as the key</li>
-<li>Look up the key in current value and assign as new current value.  If
-the key is a symbol or string, the current value must be an object.
-If the key is an index, the current value must be an array or string.
-It is an error if the key does not match the required type, or the key is not found or out
+<li>Look up the key in current value and assign as new current value.<ol>
+<li>If the key is a symbol or string, the current value must be an object.</li>
+<li>If the key is an index, the current value must be an array or string.</li>
+<li>If the next key is the last key and it has the special value 'length' and
+ the current value is an array, the value of the parameter reference is the
+ length of the array. If the value 'length' is encountered in other contexts, normal
+ evaluation rules apply.</li>
+<li>It is an error if the key does not match the required type, or the key is not found or out
 of range.</li>
-<li>Repeat steps 3-6</li>
+</ol>
+</li>
+<li>Repeat steps 3-8</li>
 </ol>
 <p>The root namespace is the parameter context.  The following parameters must
 be provided:</p>
@@ -1682,7 +1690,7 @@ of <code>basename</code> prior to evaluating parameter references or expressions
 <div class="col-xs-3 col-lg-2"><code>size</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">int</a> | <a href="#CWLType">long</a></div>
-<div class="col-xs-12 col-lg-6 description-col"><p>Optional file size</p>
+<div class="col-xs-12 col-lg-6 description-col"><p>Optional file size (in bytes)</p>
 </div>
 </div>
 <div class="row responsive-table-row">
@@ -1710,8 +1718,8 @@ input file format is the same, <code>owl:equivalentClass</code> or
 <code>owl:equivalentClass</code> is transitive with <code>rdfs:subClassOf</code>, e.g. if
 <code>&lt;B&gt; owl:equivalentClass &lt;C&gt;</code> and <code>&lt;B&gt; owl:subclassOf &lt;A&gt;</code> then infer
 <code>&lt;C&gt; owl:subclassOf &lt;A&gt;</code>.</p>
-<p>File format ontologies may be provided in the "$schema" metadata at the
-root of the document.  If no ontologies are specified in <code>$schema</code>, the
+<p>File format ontologies may be provided in the "$schemas" metadata at the
+root of the document.  If no ontologies are specified in <code>$schemas</code>, the
 runtime may perform exact file format matches.</p>
 </div>
 </div>
@@ -2917,7 +2925,7 @@ software installation or selection mechanism.
 Using <a href="https://www.identifiers.org/rrid/">RRID</a> as an example:
 <a href="https://identifiers.org/rrid/RRID:SCR_005476">https://identifiers.org/rrid/RRID:SCR_005476</a>
 could be fulfilled using the above mentioned Debian or bioconda
-package, a local installation managed by <a href="http://modules.sourceforge.net/">Environement Modules</a>,
+package, a local installation managed by <a href="http://modules.sourceforge.net/">Environment Modules</a>,
 or any other mechanism the platform chooses. IRIs can also be from
 identifer sources that are discipline specific yet still system
 independent. As an example, the equivalent <a href="https://bio.tools">ELIXIR Tools and Data
@@ -2927,7 +2935,7 @@ If supported by a given registry, implementations are encouraged to
 query these system independent sofware identifier IRIs directly for
 links to packaging systems.</p>
 <p>A site specific IRI can be listed as well. For example, an academic
-computing cluster using Environement Modules could list the IRI
+computing cluster using Environment Modules could list the IRI
 <code>https://hpc.example.edu/modules/bowtie-tbb/1.22</code> to indicate that
 <code>module load bowtie-tbb/1.1.2</code> should be executed to make available
 <code>bowtie</code> version 1.1.2 compiled with the TBB library prior to running

@@ -311,6 +311,7 @@ a bare string is not semantically valid, these fields must
 contain either a non-string value accepted by the field
 type, or a valid expression which returns a value having one
 of the the other types defined for that field.</li>
+<li>2021-11-22 Errata: Fixed <code>$schema</code> typo. It is <code>$schemas</code> (plural).</li>
 </ul>
 <p>See also the <a href="Workflow.html#Changelog">CWL Workflow Description, v1.1 changelog</a>.</p>
 <h2 id="Purpose" class="section">1.3 Purpose <a href="#Purpose">&sect;</a></h2><p>Standalone programs are a flexible and interoperable form of code reuse.
@@ -559,7 +560,7 @@ additional fields on any object.  Such extensions fields must use a namespace
 prefix listed in the <code>$namespaces</code> section of the document as described in the
 <a href="SchemaSalad.html#Explicit_context">Schema Salad specification</a>.</p>
 <p>It is recommended that concepts from schema.org are used whenever possible.
-For the <code>$schema</code> field we recommend their RDF encoding: <a href="http://schema.org/version/latest/schema.rdf">http://schema.org/version/latest/schema.rdf</a></p>
+For the <code>$schemas</code> field we recommend their RDF encoding: <a href="http://schema.org/version/latest/schema.rdf">http://schema.org/version/latest/schema.rdf</a></p>
 <p>Implementation extensions which modify execution semantics must be <a href="#Requirements_and_hints">listed in
 the <code>requirements</code> field</a>.</p>
 <h1 id="Execution_model" class="section">3. Execution model <a href="#Execution_model">&sect;</a></h1><h2 id="Execution_concepts" class="section">3.1 Execution concepts <a href="#Execution_concepts">&sect;</a></h2><p>A <strong>parameter</strong> is a named symbolic input or output of process, with an
@@ -1632,8 +1633,8 @@ input file format is the same, <code>owl:equivalentClass</code> or
 <code>owl:equivalentClass</code> is transitive with <code>rdfs:subClassOf</code>, e.g. if
 <code>&lt;B&gt; owl:equivalentClass &lt;C&gt;</code> and <code>&lt;B&gt; owl:subclassOf &lt;A&gt;</code> then infer
 <code>&lt;C&gt; owl:subclassOf &lt;A&gt;</code>.</p>
-<p>File format ontologies may be provided in the "$schema" metadata at the
-root of the document.  If no ontologies are specified in <code>$schema</code>, the
+<p>File format ontologies may be provided in the "$schemas" metadata at the
+root of the document.  If no ontologies are specified in <code>$schemas</code>, the
 runtime may perform exact file format matches.</p>
 </div>
 </div>
