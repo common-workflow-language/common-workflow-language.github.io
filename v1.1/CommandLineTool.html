@@ -4,8 +4,8 @@
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css integrity=sha384-604wwakM23pEysLJAhja8Lm42IIwYrJ0dEAqzFsj9pJ/P5buiujjywArgPCi8eoz crossorigin="anonymous" />
-<link rel="stylesheet" href=/assets/styles-fix.css />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" integrity="sha384-604wwakM23pEysLJAhja8Lm42IIwYrJ0dEAqzFsj9pJ/P5buiujjywArgPCi8eoz" crossorigin="anonymous" />
+<link rel="stylesheet" href="/assets/styles-fix.css" />
 <link rel="shortcut icon"
 href="https://www.commonwl.org/user_guide/assets/favicons/cwl/favicon-96x96.png" />
 <link rel="cite-as" href="https://doi.org/10.6084/m9.figshare.3115156.v2" />
@@ -560,7 +560,7 @@ additional fields on any object.  Such extensions fields must use a namespace
 prefix listed in the <code>$namespaces</code> section of the document as described in the
 <a href="SchemaSalad.html#Explicit_context">Schema Salad specification</a>.</p>
 <p>It is recommended that concepts from schema.org are used whenever possible.
-For the <code>$schemas</code> field we recommend their RDF encoding: <a href="http://schema.org/version/latest/schema.rdf">http://schema.org/version/latest/schema.rdf</a></p>
+For the <code>$schemas</code> field we recommend their RDF encoding: <a href="https://schema.org/version/latest/schemaorg-current-https.rdf">https://schema.org/version/latest/schemaorg-current-https.rdf</a></p>
 <p>Implementation extensions which modify execution semantics must be <a href="#Requirements_and_hints">listed in
 the <code>requirements</code> field</a>.</p>
 <h1 id="Execution_model" class="section">3. Execution model <a href="#Execution_model">&sect;</a></h1><h2 id="Execution_concepts" class="section">3.1 Execution concepts <a href="#Execution_concepts">&sect;</a></h2><p>A <strong>parameter</strong> is a named symbolic input or output of process, with an
@@ -848,7 +848,7 @@ object or process requirements.</p>
 directory when executing the tool must be the designated output
 directory.  The designated output directory should be empty, except
 for files or directories specified using
-<a href="InitialWorkDirRequirement">InitialWorkDirRequirement</a>.</p>
+<a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a>.</p>
 <p>Files may also be written to the <strong>designated temporary directory</strong>.  This
 directory must be isolated and not shared with other processes.  Any files
 written to the designated temporary directory may be automatically deleted by

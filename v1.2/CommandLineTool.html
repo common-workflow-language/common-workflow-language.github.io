@@ -4,8 +4,8 @@
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css integrity=sha384-604wwakM23pEysLJAhja8Lm42IIwYrJ0dEAqzFsj9pJ/P5buiujjywArgPCi8eoz crossorigin="anonymous" />
-<link rel="stylesheet" href=/assets/styles-fix.css />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" integrity="sha384-604wwakM23pEysLJAhja8Lm42IIwYrJ0dEAqzFsj9pJ/P5buiujjywArgPCi8eoz" crossorigin="anonymous" />
+<link rel="stylesheet" href="/assets/styles-fix.css" />
 <link rel="shortcut icon"
 href="https://www.commonwl.org/user_guide/assets/favicons/cwl/favicon-96x96.png" />
 <link rel="cite-as" href="https://doi.org/10.6084/m9.figshare.3115156.v2" />
@@ -122,7 +122,7 @@ href="https://www.commonwl.org/user_guide/assets/favicons/cwl/favicon-96x96.png"
 <li>Stian Soiland-Reyes, University of Manchester; <a href="https://orcid.org/0000-0001-9842-9718">https://orcid.org/0000-0001-9842-9718</a></li>
 </ul>
 <p>Incorporates the work of past authors and contributors to <a href="https://www.commonwl.org/v1.0/Workflow.html">CWL v1.0</a> and <a href="https://www.commonwl.org/v1.1/Workflow.html">CWL v1.1</a>.</p>
-<p>This standard was <a href="https://github.com/common-workflow-language/cwl-v1.2/pull/47">approved on 2020-08-07</a> by the CWL leadership team consisting of:</p>
+<p>This specification was <a href="https://github.com/common-workflow-language/cwl-v1.2/pull/47">approved on 2020-08-07</a> by the CWL leadership team consisting of:</p>
 <ul>
 <li>Peter Amstutz, Curii Inc. / Arvados; <a href="https://orcid.org/0000-0003-3566-7705">https://orcid.org/0000-0003-3566-7705</a></li>
 <li>John Chilton, Pennsylvania State University / Galaxy Project; <a href="https://orcid.org/0000-0002-6794-0756">https://orcid.org/0000-0002-6794-0756</a></li>
@@ -132,7 +132,6 @@ href="https://www.commonwl.org/user_guide/assets/favicons/cwl/favicon-96x96.png"
 <li>Hervé Ménager, Institut Pasteur; <a href="https://orcid.org/0000-0002-7552-1009">https://orcid.org/0000-0002-7552-1009</a></li>
 <li>Stian Soiland-Reyes, University of Manchester; <a href="https://orcid.org/0000-0001-9842-9718">https://orcid.org/0000-0001-9842-9718</a></li>
 </ul>
-<p>Publisher: <a href="https://www.commonwl.org">Common Workflow Language project</a>, a member project of <a href="https://sfconservancy.org/">Software Freedom Conservancy</a></p>
 <h1 id="Abstract" class="section">Abstract <a href="#Abstract">&sect;</a></h1><p>A Command Line Tool is a non-interactive executable program that reads
 some input, performs a computation, and terminates after producing some
 output.  Command line programs are a flexible unit of code sharing and
@@ -532,7 +531,7 @@ additional fields on any object.  Such extensions fields must use a namespace
 prefix listed in the <code>$namespaces</code> section of the document as described in the
 <a href="SchemaSalad.html#Explicit_context">Schema Salad specification</a>.</p>
 <p>It is recommended that concepts from schema.org are used whenever possible.
-For the <code>$schemas</code> field we recommend their RDF encoding: <a href="http://schema.org/version/latest/schema.rdf">http://schema.org/version/latest/schema.rdf</a></p>
+For the <code>$schema</code> field we recommend their RDF encoding: <a href="https://schema.org/version/latest/schemaorg-current-https.rdf">https://schema.org/version/latest/schemaorg-current-https.rdf</a></p>
 <p>Implementation extensions which modify execution semantics must be <a href="#Requirements_and_hints">listed in
 the <code>requirements</code> field</a>.</p>
 <h2 id="Packed_documents" class="section">2.6 Packed documents <a href="#Packed_documents">&sect;</a></h2><p>A "packed" CWL document is one that contains multiple process objects.
@@ -683,25 +682,17 @@ or more repeats, and all other characters are literal values.</p>
 </p><p>Use the following algorithm to resolve a parameter reference:</p>
 <ol>
 <li>Match the leading symbol as the key</li>
-<li>If the key is the special value 'null' then the
-value of the parameter reference is 'null'. If the key is 'null' it must be the only symbol in the parameter reference.</li>
 <li>Look up the key in the parameter context (described below) to get the current value.
 It is an error if the key is not found in the parameter context.</li>
 <li>If there are no subsequent segments, terminate and return current value</li>
 <li>Else, match the next segment</li>
 <li>Extract the symbol, string, or index from the segment as the key</li>
-<li>Look up the key in current value and assign as new current value.<ol>
-<li>If the key is a symbol or string, the current value must be an object.</li>
-<li>If the key is an index, the current value must be an array or string.</li>
-<li>If the next key is the last key and it has the special value 'length' and
- the current value is an array, the value of the parameter reference is the
- length of the array. If the value 'length' is encountered in other contexts, normal
- evaluation rules apply.</li>
-<li>It is an error if the key does not match the required type, or the key is not found or out
+<li>Look up the key in current value and assign as new current value.  If
+the key is a symbol or string, the current value must be an object.
+If the key is an index, the current value must be an array or string.
+It is an error if the key does not match the required type, or the key is not found or out
 of range.</li>
-</ol>
-</li>
-<li>Repeat steps 3-8</li>
+<li>Repeat steps 3-6</li>
 </ol>
 <p>The root namespace is the parameter context.  The following parameters must
 be provided:</p>
@@ -773,18 +764,17 @@ would benefit the author, runtime, and users of the CWL document in question.</p
 requirement <code>InlineJavascriptRequirement</code>.  Expressions may be used in any
 field permitting the pseudo-type <code>Expression</code>, as specified by this
 document.</p>
-<p>Expressions are denoted by the syntax <code>$(...)</code> or <code>${...}</code>.</p>
-<p>A code fragment wrapped in the <code>$(...)</code> syntax must be evaluated as a
-<a href="http://www.ecma-international.org/ecma-262/5.1/#sec-11">ECMAScript expression</a>.</p>
-<p>A code fragment wrapped in the <code>${...}</code> syntax must be evaluated as a
+<p>Expressions are denoted by the syntax <code>$(...)</code> or <code>${...}</code>.  A code
+fragment wrapped in the <code>$(...)</code> syntax must be evaluated as a
+<a href="http://www.ecma-international.org/ecma-262/5.1/#sec-11">ECMAScript expression</a>.  A
+code fragment wrapped in the <code>${...}</code> syntax must be evaluated as a
 <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-13">ECMAScript function body</a>
-for an anonymous, zero-argument function.  This means the code will be
-evaluated as <code>(function() { ... })()</code>.</p>
-<p>Expressions must return a valid JSON data type: one of null, string, number,
-boolean, array, object. Other return values must result in a
-<code>permanentFailure</code>.  Implementations must permit any syntactically valid
-Javascript and account for nesting of parenthesis or braces and that strings
-that may contain parenthesis or braces when scanning for expressions.</p>
+for an anonymous, zero-argument function.  Expressions must return a valid JSON
+data type: one of null, string, number, boolean, array, object. Other return
+values must result in a <code>permanentFailure</code>. Implementations must permit any
+syntactically valid Javascript and account for nesting of parenthesis or braces
+and that strings that may contain parenthesis or braces when scanning for
+expressions.</p>
 <p>The runtime must include any code defined in the <a href="#InlineJavascriptRequirement">"expressionLib" field of
 InlineJavascriptRequirement</a> prior to
 executing the actual expression.</p>
@@ -883,7 +873,7 @@ object or process requirements.</p>
 directory when executing the tool must be the designated output
 directory.  The designated output directory should be empty, except
 for files or directories specified using
-<a href="InitialWorkDirRequirement">InitialWorkDirRequirement</a>.</p>
+<a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a>.</p>
 <p>Files may also be written to the <strong>designated temporary directory</strong>.  This
 directory must be isolated and not shared with other processes.  Any files
 written to the designated temporary directory may be automatically deleted by
@@ -1001,7 +991,7 @@ used to generate and/or validate the output object.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>class</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">constant value <code>CommandLineTool</code></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"></div>
 </div>
 <div class="row responsive-table-row">
@@ -1364,10 +1354,9 @@ CWL v2.0.  Use <code>InputParameter.loadContents</code> instead.</p>
 <div class="col-xs-3 col-lg-2"><code>position</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">int</a> | <a href="#Expression">Expression</a></div>
-<div class="col-xs-12 col-lg-6 description-col"><p>The sorting key.  Default position is 0. If a <a href="#Parameter_references">CWL Parameter Reference</a>
-or <a href="#Expressions_(Optional">CWL Expression</a>) is used and if the
-inputBinding is associated with an input parameter, then the value of
-<code>self</code> will be the value of the input parameter.  Input parameter
+<div class="col-xs-12 col-lg-6 description-col"><p>The sorting key.  Default position is 0. If the inputBinding is
+associated with an input parameter, then the value of <code>self</code> in the
+expression will be the value of the input parameter.  Input parameter
 defaults (as specified by the <code>InputParameter.default</code> field) must be
 applied before evaluating the expression. Expressions must return a
 single value of type int or a null.</p>
@@ -1468,8 +1457,7 @@ File object as part of the Process invocation, they must also
 be present in <code>secondaryFiles</code> on <code>self</code>.</p>
 <p>The expression must return either: a filename string relative
 to the path to the primary File, a File or Directory object
-(<code>class: File</code> or <code>class: Directory</code>) with either <code>location</code>
-(for inputs) or <code>path</code> (for outputs) and <code>basename</code> fields
+(<code>class: File</code> or 'class: Directory<code>) with either</code>location<code>(for inputs) or</code>path<code>(for outputs) and</code>basename` fields
 set, or an array consisting of strings or File or Directory
 objects as previously described.</p>
 <p>It is legal to use <code>location</code> from a File or Directory object
@@ -1689,8 +1677,8 @@ of <code>basename</code> prior to evaluating parameter references or expressions
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>size</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">int</a> | <a href="#CWLType">long</a></div>
-<div class="col-xs-12 col-lg-6 description-col"><p>Optional file size (in bytes)</p>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>Optional file size</p>
 </div>
 </div>
 <div class="row responsive-table-row">
@@ -1718,8 +1706,8 @@ input file format is the same, <code>owl:equivalentClass</code> or
 <code>owl:equivalentClass</code> is transitive with <code>rdfs:subClassOf</code>, e.g. if
 <code>&lt;B&gt; owl:equivalentClass &lt;C&gt;</code> and <code>&lt;B&gt; owl:subclassOf &lt;A&gt;</code> then infer
 <code>&lt;C&gt; owl:subclassOf &lt;A&gt;</code>.</p>
-<p>File format ontologies may be provided in the "$schemas" metadata at the
-root of the document.  If no ontologies are specified in <code>$schemas</code>, the
+<p>File format ontologies may be provided in the "$schema" metadata at the
+root of the document.  If no ontologies are specified in <code>$schema</code>, the
 runtime may perform exact file format matches.</p>
 </div>
 </div>
@@ -2688,7 +2676,7 @@ interpolatation.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>class</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">constant value <code>InlineJavascriptRequirement</code></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Always 'InlineJavascriptRequirement'</p>
 </div>
 </div>
@@ -2702,7 +2690,7 @@ be called from CWL expressions.</p>
 </div>
 </div></div><h2 id="SchemaDefRequirement" class="section">5.4 SchemaDefRequirement <a href="#SchemaDefRequirement">&sect;</a></h2><p>This field consists of an array of type definitions which must be used when
 interpreting the <code>inputs</code> and <code>outputs</code> fields.  When a <code>type</code> field
-contains a IRI, the implementation must check if the type is defined in
+contain a IRI, the implementation must check if the type is defined in
 <code>schemaDefs</code> and use that definition.  If the type is not found in
 <code>schemaDefs</code>, it is an error.  The entries in <code>schemaDefs</code> must be
 processed in the order listed such that later schema definitions may refer
@@ -2724,7 +2712,7 @@ to earlier schema definitions.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>class</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">constant value <code>SchemaDefRequirement</code></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Always 'SchemaDefRequirement'</p>
 </div>
 </div>
@@ -2747,7 +2735,7 @@ a Directory object for use by expressions.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>class</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">constant value <code>LoadListingRequirement</code></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Always 'LoadListingRequirement'</p>
 </div>
 </div>
@@ -2808,7 +2796,7 @@ environment as defined by Docker.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>class</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">constant value <code>DockerRequirement</code></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Always 'DockerRequirement'</p>
 </div>
 </div>
@@ -2872,7 +2860,7 @@ the defined process.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>class</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">constant value <code>SoftwareRequirement</code></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Always 'SoftwareRequirement'</p>
 </div>
 </div>
@@ -2925,7 +2913,7 @@ software installation or selection mechanism.
 Using <a href="https://www.identifiers.org/rrid/">RRID</a> as an example:
 <a href="https://identifiers.org/rrid/RRID:SCR_005476">https://identifiers.org/rrid/RRID:SCR_005476</a>
 could be fulfilled using the above mentioned Debian or bioconda
-package, a local installation managed by <a href="http://modules.sourceforge.net/">Environment Modules</a>,
+package, a local installation managed by <a href="http://modules.sourceforge.net/">Environement Modules</a>,
 or any other mechanism the platform chooses. IRIs can also be from
 identifer sources that are discipline specific yet still system
 independent. As an example, the equivalent <a href="https://bio.tools">ELIXIR Tools and Data
@@ -2935,7 +2923,7 @@ If supported by a given registry, implementations are encouraged to
 query these system independent sofware identifier IRIs directly for
 links to packaging systems.</p>
 <p>A site specific IRI can be listed as well. For example, an academic
-computing cluster using Environment Modules could list the IRI
+computing cluster using Environement Modules could list the IRI
 <code>https://hpc.example.edu/modules/bowtie-tbb/1.22</code> to indicate that
 <code>module load bowtie-tbb/1.1.2</code> should be executed to make available
 <code>bowtie</code> version 1.1.2 compiled with the TBB library prior to running
@@ -2962,7 +2950,7 @@ Normally files are staged within the designated output directory. However, when 
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>class</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">constant value <code>InitialWorkDirRequirement</code></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>InitialWorkDirRequirement</p>
 </div>
 </div>
@@ -3091,7 +3079,7 @@ execution environment of the tool.  See <code>EnvironmentDef</code> for details.
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>class</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">constant value <code>EnvVarRequirement</code></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Always 'EnvVarRequirement'</p>
 </div>
 </div>
@@ -3143,7 +3131,7 @@ the use of shell metacharacters such as <code>|</code> for pipes.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>class</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">constant value <code>ShellCommandRequirement</code></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Always 'ShellCommandRequirement'</p>
 </div>
 </div></div><h2 id="ResourceRequirement" class="section">5.13 ResourceRequirement <a href="#ResourceRequirement">&sect;</a></h2><p>Specify basic hardware resource requirements.</p>
@@ -3175,14 +3163,14 @@ If "max" is specified by "min" is not, then "min" == "max".</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>class</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">constant value <code>ResourceRequirement</code></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Always 'ResourceRequirement'</p>
 </div>
 </div>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>coresMin</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">int</a> | <a href="#CWLType">long</a> | <a href="#CWLType">float</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#CWLType">float</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Minimum reserved number of CPU cores (default is 1).</p>
 <p>May be a fractional value to indicate to a scheduling
 algorithm that one core can be allocated to multiple
@@ -3208,7 +3196,7 @@ next whole number.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>coresMax</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">int</a> | <a href="#CWLType">long</a> | <a href="#CWLType">float</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#CWLType">float</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Maximum reserved number of CPU cores.</p>
 <p>See <code>coresMin</code> for discussion about fractional CPU requests.</p>
 </div>
@@ -3216,7 +3204,7 @@ next whole number.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>ramMin</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">int</a> | <a href="#CWLType">long</a> | <a href="#CWLType">float</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#CWLType">float</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Minimum reserved RAM in mebibytes (2**20) (default is 256)</p>
 <p>May be a fractional value.  If so, the actual RAM request must
 be rounded up to the next whole number.  The reported amount of
@@ -3228,7 +3216,7 @@ non-zero integer.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>ramMax</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">int</a> | <a href="#CWLType">long</a> | <a href="#CWLType">float</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#CWLType">float</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Maximum reserved RAM in mebibytes (2**20)</p>
 <p>See <code>ramMin</code> for discussion about fractional RAM requests.</p>
 </div>
@@ -3236,7 +3224,7 @@ non-zero integer.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>tmpdirMin</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">int</a> | <a href="#CWLType">long</a> | <a href="#CWLType">float</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#CWLType">float</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Minimum reserved filesystem based storage for the designated temporary directory, in mebibytes (2**20) (default is 1024)</p>
 <p>May be a fractional value.  If so, the actual storage request
 must be rounded up to the next whole number.  The reported
@@ -3248,7 +3236,7 @@ must be a non-zero integer.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>tmpdirMax</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">int</a> | <a href="#CWLType">long</a> | <a href="#CWLType">float</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#CWLType">float</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Maximum reserved filesystem based storage for the designated temporary directory, in mebibytes (2**20)</p>
 <p>See <code>tmpdirMin</code> for discussion about fractional storage requests.</p>
 </div>
@@ -3256,7 +3244,7 @@ must be a non-zero integer.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>outdirMin</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">int</a> | <a href="#CWLType">long</a> | <a href="#CWLType">float</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#CWLType">float</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Minimum reserved filesystem based storage for the designated output directory, in mebibytes (2**20) (default is 1024)</p>
 <p>May be a fractional value.  If so, the actual storage request
 must be rounded up to the next whole number.  The reported
@@ -3268,7 +3256,7 @@ must be a non-zero integer.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>outdirMax</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">int</a> | <a href="#CWLType">long</a> | <a href="#CWLType">float</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#CWLType">float</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Maximum reserved filesystem based storage for the designated output directory, in mebibytes (2**20)</p>
 <p>See <code>outdirMin</code> for discussion about fractional storage requests.</p>
 </div>
@@ -3291,7 +3279,7 @@ is enabled by default.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>class</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">constant value <code>WorkReuse</code></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Always 'WorkReuse'</p>
 </div>
 </div>
@@ -3323,7 +3311,7 @@ address or the ability to accept inbound connections.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>class</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">constant value <code>NetworkAccess</code></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Always 'NetworkAccess'</p>
 </div>
 </div>
@@ -3368,7 +3356,7 @@ not be enabled.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>class</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">constant value <code>InplaceUpdateRequirement</code></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Always 'InplaceUpdateRequirement'</p>
 </div>
 </div>
@@ -3395,14 +3383,14 @@ wall-time for the execution of the command line itself.</p>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>class</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3">constant value <code>ToolTimeLimit</code></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Always 'ToolTimeLimit'</p>
 </div>
 </div>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>timelimit</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">int</a> | <a href="#CWLType">long</a> | <a href="#Expression">Expression</a></div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">long</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The time limit, in seconds.  A time limit of zero means no
 time limit.  Negative time limits are an error.</p>
 </div>
