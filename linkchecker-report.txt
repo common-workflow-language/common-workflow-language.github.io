@@ -6,12 +6,12 @@ certain conditions. Look at the file `LICENSE' within this distribution.
 Get the newest version at https://linkchecker.github.io/linkchecker/
 Write comments and bugs to https://github.com/linkchecker/linkchecker/issues
 
-Start checking at 2022-01-20 12:46:05+000
+Start checking at 2022-01-22 08:50:12+000
 
 Statistics:
 Downloaded: 1.99MB.
-Content types: 30 image, 192 text, 1 video, 0 audio, 65 application, 26 mail and 95 other.
+Content types: 30 image, 193 text, 1 video, 0 audio, 65 application, 26 mail and 95 other.
 URL lengths: min=15, max=413, avg=60.
 
-That's it. 409 links in 462 URLs checked. 0 warnings found. 0 errors found.
-Stopped checking at 2022-01-20 12:46:32+000 (26 seconds)
+That's it. 410 links in 463 URLs checked. 0 warnings found. 0 errors found.
+Stopped checking at 2022-01-22 08:50:43+000 (31 seconds)
