@@ -19,7 +19,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="last-modified" content="2022-01-22 08:49:31 +0000">
+    <meta http-equiv="last-modified" content="2022-01-26 22:12:38 +0000">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- meta "search-domain" used for google site search function google_search() -->
     <meta name="search-domain" value="">
@@ -171,6 +171,9 @@
             
             
             <li><a href="../07-resources/index.html"> Resources for further learning</a></li>
+            
+            
+            <li><a href="../08-supplement-docker/index.html">Supplement: Creating Docker Images</a></li>
             
 	    <li role="separator" class="divider"></li>
             <li><a href="../aio/index.html">All in one page (Beta)</a></li>
@@ -1002,7 +1005,7 @@ request more RAM, add a “requirements” section with
 <p>The CWL runner will print a results JSON object to standard output.  It will look something like this (it may include additional fields).</p>
 
 <div>
-<ul class="tab" data-tab="54841609-c2ed-4df1-89a7-1d241919d8e4">
+<ul class="tab" data-tab="dcd1939a-8139-4572-9a89-e177ea94246c">
     
         <li class="active">
             <a href="">generic </a>
@@ -1013,7 +1016,7 @@ request more RAM, add a “requirements” section with
         </li>
     
     </ul>
-    <ul class="tab-content" id="54841609-c2ed-4df1-89a7-1d241919d8e4">
+    <ul class="tab-content" id="dcd1939a-8139-4572-9a89-e177ea94246c">
     
         <li class="active">
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">{</span>
@@ -2003,6 +2006,272 @@ search</p>
   <ul>
     
     <li><p>Learn more advanced techniques from CWL user guide, by asking questions on the CWL forum and chat channel, and reading the specification.</p>
+</li>
+    
+  </ul>
+</blockquote>
+
+<hr />
+
+<h1 id="supplement-creating-docker-images" class="maintitle">Supplement: Creating Docker Images</h1>
+
+<blockquote class="objectives">
+  <h2>Overview</h2>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Teaching:</strong> 10 min
+      <br />
+      <strong>Exercises:</strong> 1 min
+    </div>
+    <div class="col-md-9">
+      <strong>Questions</strong>
+      <ul>
+	
+	<li><p>How do I create Docker images from scratch?</p>
+</li>
+	
+	<li><p>What some best practices for Docker images?</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <strong>Objectives</strong>
+      <ul>
+	
+	<li>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+</blockquote>
+
+<p>Common Workflow Language supports running tasks inside software
+containers.  Software container systems (such as Docker) create an
+execution environment that is isolated from the host system, so that
+software installed on the host system does not conflict with the
+software installed inside the container.</p>
+
+<p>Programs running inside a software container get a different (and
+generally restricted) view of the system than processes running
+outside the container.  One of the most important and useful features
+is that the containerized program has a different view of the file
+system.  A program running inside a container, searching for
+libraries, modules, configuration files, data files, etc, only sees
+the files defined inside the container.</p>
+
+<p>This means that, usually, a given file <em>path</em> refers to <em>different
+actual files</em> depending from the persective of being inside or outside
+the container.  It is also possible to have a file from the host
+system appear at some location inside the container, meaning that the
+<em>same file</em> appears at <em>different paths</em> depending from the persective
+of being inside or outside the container.</p>
+
+<p>The complexity of translating between the container and its host
+environment is handled by the Common Workflow Language runner.  As a
+workflow author, you only need to worry about the environment <em>inside</em>
+the container.</p>
+
+<h1 id="what-are-docker-images">What are Docker images?</h1>
+
+<p>The Docker image describes the starting conditions for the container.
+Most importantly, this includes starting layout and contents of the
+container’s file system.  This file system is typically a lightweight
+POSIX environment, providing a standard set of POSIX utilities like a
+<code class="language-plaintext highlighter-rouge">sh</code>, <code class="language-plaintext highlighter-rouge">ls</code>, <code class="language-plaintext highlighter-rouge">cat</code>, etc and organized into standard POSIX directories
+like <code class="language-plaintext highlighter-rouge">/bin</code> and <code class="language-plaintext highlighter-rouge">/lib</code>.</p>
+
+<p>The image is is made up of multiple “layers”.  Each layer modifies the
+layer below it by adding, removing or modifying files to produce a new
+layer.  This allows lower layers to be re-used.</p>
+
+<h1 id="writing-a-dockerfile">Writing a Dockerfile</h1>
+
+<p>In this example, we will build a Docker image containing the
+Burrows-Wheeler Aligner (BWA) by Heng Li.  This is just for
+demonstration, in practice you should prefer to use existing
+containers from <a href="https://biocontainers.pro/">BioContainers</a>, which
+includes <code class="language-plaintext highlighter-rouge">bwa</code>.</p>
+
+<p>Each line of the Docker file consists of a COMMAND in all caps,
+following by the parameters of that command.</p>
+
+<p>The first line of the file will specify the base image that we are
+going to build from.  As mentioned, images are divided up into
+“layers”, so this tells Docker what to use for the first layer.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM debian:10-slim
+</code></pre></div></div>
+
+<p>This starts from the lightweight (“slim”) Debian 10 Docker image.</p>
+
+<p>Docker images have a special naming scheme.</p>
+
+<p>A bare name like “debian” or “ubuntu” means it is an official Docker
+image.  It has an implied prefix of “library”, so you may see the
+image referred to as “library/debian”.  Official images are published
+on <a href="https://hub.docker.com/search?type=image&amp;image_filter=official">Docker Hub</a>.</p>
+
+<p>A name with two parts separated by a slash is published on Docker Hub
+by someone else.  For example, <code class="language-plaintext highlighter-rouge">amazon/aws-cli</code> is published by
+Amazon.  These can also be found on <a href="https://hub.docker.com/search?type=image">Docker Hub</a>.</p>
+
+<p>A name with three parts separated by slashes means it is published on
+a different container register.  For example,
+<code class="language-plaintext highlighter-rouge">quay.io/biocontainers/subread</code> is published by <code class="language-plaintext highlighter-rouge">quay.io</code>.</p>
+
+<p>Following image name, separated by a colon is the “tag”.  This is
+typically the version of the image.  If not provided, the default tag
+is “latest”.  In this example, the tag is “10-slim” indicating Debian
+release 10.</p>
+
+<blockquote>
+  <h2 id="best-practice">Best practice</h2>
+
+  <p>You should always include the tag to refer to a specific image
+version, or you might run into problems when “latest” changes.</p>
+</blockquote>
+
+<p>The Docker file should also include a MAINTAINER (this is purely
+metadata, it is stored in the image but not used for execution).</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MAINTAINER Peter Amstutz &lt;peter.amstutz@curii.com&gt;
+</code></pre></div></div>
+
+<p>Next is the default user inside the image.  By making choosing root,
+we can change anything inside the image (but not outside).</p>
+
+<p>The body of the Dockerfile is a series of <code class="language-plaintext highlighter-rouge">RUN</code> commands.</p>
+
+<p>Each command is run with <code class="language-plaintext highlighter-rouge">/bin/sh</code> inside the Docker container.</p>
+
+<p>Each <code class="language-plaintext highlighter-rouge">RUN</code> command creates a new layer.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">RUN</code> command can span multiple lines by using a trailing
+backslash.</p>
+
+<p>For the first command, we use <code class="language-plaintext highlighter-rouge">apt-get</code> to install some packages that
+will be needed to compile <code class="language-plaintext highlighter-rouge">bwa</code>.  The <code class="language-plaintext highlighter-rouge">build-essential</code> package
+installs <code class="language-plaintext highlighter-rouge">gcc</code>, <code class="language-plaintext highlighter-rouge">make</code>, etc.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RUN apt-get update -qy &amp;&amp; \
+	apt-get install -qy build-essential wget unzip
+</code></pre></div></div>
+
+<p>Now we do everything else: download the source code of bwa, unzip it,
+make it, copy the resulting binary to <code class="language-plaintext highlighter-rouge">/usr/bin</code>, and clean up.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Install BWA 07.7.17
+RUN wget https://github.com/lh3/bwa/archive/v0.7.17.zip &amp;&amp; \
+	unzip v0.7.17 &amp;&amp; \
+	cd bwa-0.7.17 &amp;&amp; \
+	make &amp;&amp; \
+	cp bwa /usr/bin &amp;&amp; \
+	cd .. &amp;&amp; \
+	rm -rf bwa-0.7.17
+</code></pre></div></div>
+
+<p>Because each <code class="language-plaintext highlighter-rouge">RUN</code> command creates a new layer, having the build and
+clean up in separate <code class="language-plaintext highlighter-rouge">RUN</code> commands would mean creating a layer that
+includes the intermediate object files from the build.  These would
+then be carried around as part of the container image forever, despite
+being useless.  By doing the entire build and clean up in one <code class="language-plaintext highlighter-rouge">RUN</code>
+command, only the final state of the file system, with the binary
+copied to <code class="language-plaintext highlighter-rouge">/usr/bin</code>, is committed to a layer.</p>
+
+<p>To build a Docker image from a Dockerfile, use <code class="language-plaintext highlighter-rouge">docker build</code>.</p>
+
+<p>This command takes the name to use for the image with <code class="language-plaintext highlighter-rouge">-t</code>, and the
+directory that it should find the <code class="language-plaintext highlighter-rouge">Dockerfile</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker build -t training/bwa .
+</code></pre></div></div>
+
+<blockquote class="challenge">
+  <h2 id="exercise">Exercise</h2>
+
+  <p>Create a <code class="language-plaintext highlighter-rouge">Dockerfile</code> based on this lesson and build it for yourself.</p>
+
+</blockquote>
+
+<h1 id="adding-files-to-the-image-during-the-build">Adding files to the image during the build</h1>
+
+<p>Using the <code class="language-plaintext highlighter-rouge">COPY</code> command, you can copy files from the source directory
+(this is the directory your Dockerfile was located) into the image
+during the build.  For example, you have a <code class="language-plaintext highlighter-rouge">requirements.txt</code> next to
+Dockerfile:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>COPY requirements.txt /tmp/
+RUN pip install --requirement /tmp/requirements.txt
+</code></pre></div></div>
+
+<h1 id="best-practices-for-docker-images">Best practices for Docker images</h1>
+
+<p>Docker has published guidelines on building efficient images:</p>
+
+<p>https://docs.docker.com/develop/develop-images/dockerfile_best-practices/</p>
+
+<p>Some additional considerations when building images for use with Workflows:</p>
+
+<h2 id="store-dockerfiles-in-git-alongside-workflow-definitions">Store Dockerfiles in git, alongside workflow definitions</h2>
+
+<p>Dockerfiles are scripts and should be managed with version control
+just like other kinds of code.</p>
+
+<h2 id="be-specific-about-software-versions">Be specific about software versions</h2>
+
+<p>Instead of blindly installing the latest version of a package, or
+checking out the <code class="language-plaintext highlighter-rouge">master</code> branch of a git repository and building from
+that, be specific in your Dockerfile about what version of the
+software you are installing.  This will greatly aid the
+reproducibility of your Docker image builds.</p>
+
+<h2 id="tag-your-builds">Tag your builds</h2>
+
+<p>Use meaningful tags on the Docker image so you can tell versions of
+your Docker image apart as it is updated over time.  These can reflect
+the version of the underlying software, or the version of the
+Dockerfile itself.  These can be manually assigned version numbers
+(e.g. 1.0, 1.1, 1.2, 2.0), timestamps (e.g. YYYYMMDD like 20220126) or
+the hash of a git commit.</p>
+
+<h2 id="avoid-putting-reference-data-to-docker-images">Avoid putting reference data to Docker images</h2>
+
+<p>Bioinformatics tools often require large reference data sets to run.
+These should be supplied externally (as workflow inputs) rather than
+added to the container image.  This makes it easy to update reference
+data instead of having to rebuild and re-upload a new Docker image
+every time, which is much more time consuming.</p>
+
+<h2 id="small-scripts-can-be-inputs-too">Small scripts can be inputs, too</h2>
+
+<p>If you have a small script, e.g. a self-contained Python script which
+relies on modules installed inside the container, but is itself
+contained in a single file, you can supply the script as a workflow
+input.  This makes it easy to update the script instead of having to
+rebuild and re-upload a new Docker image every time, which is much
+more time consuming.</p>
+
+<h2 id="dont-use-entrypoint">Don’t use ENTRYPOINT</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">ENTRYPOINT</code> Dockerfile command modifies the command line that is executed
+inside the container.  This can result in confusion when the command
+line that was supplied to the container and the command that actually
+runs are different.</p>
+
+<blockquote class="keypoints">
+  <h2>Key Points</h2>
+  <ul>
+    
+    <li>
 </li>
     
   </ul>
