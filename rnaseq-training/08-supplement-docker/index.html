@@ -19,7 +19,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="last-modified" content="2022-01-31 17:01:15 +0000">
+    <meta http-equiv="last-modified" content="2022-01-31 17:21:38 +0000">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- meta "search-domain" used for google site search function google_search() -->
     <meta name="search-domain" value="">
@@ -487,20 +487,21 @@ by <code class="language-plaintext highlighter-rouge">COPY</code> (described bel
   <blockquote class="solution">
     <h2 id="solution">Solution</h2>
 
-    <p>FROM debian:10-slim
-MAINTAINER Peter Amstutz <a href="mailto:peter.amstutz@curii.com">peter.amstutz@curii.com</a></p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM debian:10-slim
+MAINTAINER Peter Amstutz &lt;peter.amstutz@curii.com&gt;
 
-    <p>RUN apt-get update -qy
-RUN apt-get install -qy build-essential wget unzip zlib1g-dev</p>
+RUN apt-get update -qy
+RUN apt-get install -qy build-essential wget unzip zlib1g-dev
 
-    <h1 id="install-bwa-07717">Install BWA 07.7.17</h1>
-    <p>RUN wget https://github.com/lh3/bwa/archive/v0.7.17.zip &amp;&amp; <br />
-	unzip v0.7.17 &amp;&amp; <br />
-	cd bwa-0.7.17 &amp;&amp; <br />
-	make &amp;&amp; <br />
-	cp bwa /usr/bin &amp;&amp; <br />
-	cd .. &amp;&amp; <br />
-	rm -rf bwa-0.7.17</p>
+# Install BWA 07.7.17
+RUN wget https://github.com/lh3/bwa/archive/v0.7.17.zip &amp;&amp; \
+	unzip v0.7.17 &amp;&amp; \
+	cd bwa-0.7.17 &amp;&amp; \
+	make &amp;&amp; \
+	cp bwa /usr/bin &amp;&amp; \
+	cd .. &amp;&amp; \
+	rm -rf bwa-0.7.17
+</code></pre></div>    </div>
 
   </blockquote>
 </blockquote>
