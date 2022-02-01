@@ -19,7 +19,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="last-modified" content="2022-01-31 17:21:38 +0000">
+    <meta http-equiv="last-modified" content="2022-02-01 19:21:57 +0000">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- meta "search-domain" used for google site search function google_search() -->
     <meta name="search-domain" value="">
@@ -240,21 +240,14 @@
 
 
 <article>
-<div>
-<ul class="tab" data-tab="de090110-aecf-4912-ba15-717518d6ee82">
-    
-        <li class="active">
-            <a href="">generic </a>
-        </li>
-    
-        <li>
-            <a href="">arvados </a>
-        </li>
-    
-    </ul>
-    <ul class="tab-content" id="de090110-aecf-4912-ba15-717518d6ee82">
-    
-        <li class="active">
+
+<div class="tabbed">
+  <ul class="tab">
+      <li><a href="#section-generic">generic</a></li>
+      <li><a href="#section-arvados">arvados</a></li>
+  </ul>
+
+  <section id="section-generic">
 <h1 id="setting-up-a-practice-repository">Setting up a practice repository</h1>
 
 <p>We will create a new git repository and import a library of existing
@@ -312,22 +305,34 @@ wget <span class="nt">--mirror</span> <span class="nt">--no-parent</span> <span 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cwl-runner bio-cwl-tools/STAR/STAR-Index.cwl chr1-star-index.yaml
 </code></pre></div></div>
 
-</li>
-    
-        <li>
+</section>
+  <section id="section-arvados">
 <h1 id="setting-up-a-practice-repository">Setting up a practice repository</h1>
 
 <p>We will create a new git repository and import a library of existing
 tool definitions that will help us build our workflow.</p>
 
-<p>When using the recommended VSCode environment to develop on Arvados, start by forking this repository:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/arvados/arvados-vscode-cwl-template.git rnaseq-cwl-training-exercises
-</code></pre></div></div>
+<p>When using the recommended <a href="https://doc.arvados.org/v2.3/user/cwl/arvados-vscode-training.html">VSCode environment to develop on Arvados</a>,
+start by forking the
+<a href="https://github.com/arvados/arvados-vscode-cwl-template">arvados-vscode-cwl-template</a>
+repository.</p>
 
-<p>Next, import bio-cwl-tools with this command:</p>
+<ol>
+  <li>Vscode: On the left sidebar, choose <code class="language-plaintext highlighter-rouge">Explorer</code> <img src="../assets/img/Explorer.png" alt="" /></li>
+  <li>Select <code class="language-plaintext highlighter-rouge">Clone Repository</code> and enter <a href="https://github.com/arvados/arvados-vscode-cwl-template">https://github.com/arvados/arvados-vscode-cwl-template</a>, then click <code class="language-plaintext highlighter-rouge">Open</code></li>
+  <li>If asked <code class="language-plaintext highlighter-rouge">Would you like to open the cloned repository?</code> choose <code class="language-plaintext highlighter-rouge">Open</code></li>
+</ol>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git submodule add https://github.com/common-workflow-library/bio-cwl-tools.git
-</code></pre></div></div>
+<p>Next, import the <a href="https://github.com/common-workflow-library/bio-cwl-tools">bio-cwl-tools</a> repository:</p>
+
+<ol class="language-bash">
+  <li>Vscode: In the top menu, select <code class="language-plaintext highlighter-rouge">Terminal</code> → <code class="language-plaintext highlighter-rouge">New Terminal</code></li>
+  <li>This will open a terminal window in the lower part of the screen</li>
+  <li>Run this command:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git submodule add https://github.com/common-workflow-library/bio-cwl-tools.git
+</code></pre></div>    </div>
+  </li>
+</ol>
 
 <h1 id="downloading-sample-and-reference-data">Downloading sample and reference data</h1>
 
@@ -342,7 +347,14 @@ arrived at a collection page instead of a “not found” error, then
 you do not need to perform this download step.</p>
 </blockquote>
 
-<p>Use <code class="language-plaintext highlighter-rouge">arv-copy</code> to copy the collection:</p>
+<ol>
+  <li>Go to https://workbench2.jutro.arvadosapi.com and sign in, this will create an account</li>
+  <li>Go to <code class="language-plaintext highlighter-rouge">Get an API token</code> under the user menu</li>
+  <li>Log into the shell node of your Arvados cluster</li>
+  <li>On the shell node, copy the host name and token for the ‘jutro’ cluster into the file <code class="language-plaintext highlighter-rouge">~/.config/arvados/jutro.conf</code> as described on the page for <a href="https://doc.arvados.org/user/topics/arv-copy.html">arv-copy</a>.</li>
+</ol>
+
+<p>Now, on shell node of your Arvados cluster, use <code class="language-plaintext highlighter-rouge">arv-copy</code> to copy the collection:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>arv-copy <span class="nt">--src</span> jutro 9178fe1b80a08a422dbe02adfd439764+925
 </code></pre></div></div>
@@ -388,17 +400,7 @@ if you already have access to this collection.</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>arvados-cwl-runner bio-cwl-tools/STAR/STAR-Index.cwl chr1-star-index.yaml
 </code></pre></div></div>
 
-<h2 id="sneak-peak">Sneak peak</h2>
-<p>If you want to jump ahead, here are links to some of the CWL concepts you just used</p>
-<ul>
-  <li>[YAML array] (https://www.commonwl.org/user_guide/yaml/#arrays)</li>
-  <li>[CWL array inputs] (https://www.commonwl.org/user_guide/09-array-inputs/index.html)</li>
-</ul>
-
-</li>
-    
-</ul>
-
+</section>
 </div>
 
 

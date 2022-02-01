@@ -19,7 +19,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="last-modified" content="2022-01-31 17:21:38 +0000">
+    <meta http-equiv="last-modified" content="2022-02-01 19:21:57 +0000">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- meta "search-domain" used for google site search function google_search() -->
     <meta name="search-domain" value="">
@@ -869,14 +869,11 @@ plain strings that may or may not be file paths.</p>
 
 <div class="tabbed">
   <ul class="tab">
-    
-      <li><a href="#section-generic">generic</a></li>
-    
-      <li><a href="#section-arvados">arvados</a></li>
-    
+      <li><a href="#section-generic-input">generic</a></li>
+      <li><a href="#section-arvados-input">arvados</a></li>
   </ul>
 
-  <section id="section-generic">
+  <section id="section-generic-input">
 <p>main-input.yaml</p>
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">fq</span><span class="pi">:</span>
   <span class="na">class</span><span class="pi">:</span> <span class="s">File</span>
@@ -903,7 +900,7 @@ logging.  The logging you see, how access other logs, and how to
 track workflow progress will depend on your CWL runner platform.</p>
 </blockquote>
 </section>
-  <section id="section-arvados">
+  <section id="section-arvados-input">
 <p>main-input.yaml</p>
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">fq</span><span class="pi">:</span>
   <span class="na">class</span><span class="pi">:</span> <span class="s">File</span>
@@ -1004,21 +1001,13 @@ request more RAM, add a “requirements” section with
 
 <p>The CWL runner will print a results JSON object to standard output.  It will look something like this (it may include additional fields).</p>
 
-<div>
-<ul class="tab" data-tab="a306b192-e90f-495a-962d-e38fb24bbd5a">
-    
-        <li class="active">
-            <a href="">generic </a>
-        </li>
-    
-        <li>
-            <a href="">arvados </a>
-        </li>
-    
-    </ul>
-    <ul class="tab-content" id="a306b192-e90f-495a-962d-e38fb24bbd5a">
-    
-        <li class="active">
+<div class="tabbed">
+  <ul class="tab">
+      <li><a href="#section-generic-output">generic</a></li>
+      <li><a href="#section-arvados-output">arvados</a></li>
+  </ul>
+
+  <section id="section-generic-output">
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">{</span>
     <span class="s2">"</span><span class="s">bam_sorted_indexed"</span><span class="pi">:</span> <span class="pi">{</span>
         <span class="s2">"</span><span class="s">location"</span><span class="pi">:</span> <span class="s2">"</span><span class="s">file:///home/username/rnaseq-cwl-training-exercises/Aligned.sortedByCoord.out.bam"</span><span class="pi">,</span>
@@ -1042,9 +1031,8 @@ request more RAM, add a “requirements” section with
     <span class="pi">}</span>
 <span class="pi">}</span>
 </code></pre></div></div>
-</li>
-    
-        <li>
+</section>
+  <section id="section-arvados-output">
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">{</span>
     <span class="s2">"</span><span class="s">bam_sorted_indexed"</span><span class="pi">:</span> <span class="pi">{</span>
         <span class="s2">"</span><span class="s">basename"</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Aligned.sortedByCoord.out.bam"</span><span class="pi">,</span>
@@ -1067,10 +1055,7 @@ request more RAM, add a “requirements” section with
     <span class="pi">}</span>
 <span class="pi">}</span>
 </code></pre></div></div>
-</li>
-    
-</ul>
-
+</section>
 </div>
 
 <p>This has a similar structure as <code class="language-plaintext highlighter-rouge">main-input.yaml</code>.  The each output
