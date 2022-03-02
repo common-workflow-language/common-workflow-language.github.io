@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <title>Getting Started | Common Workflow Language (CWL)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex" /><link rel="sitemap" type="application/xml" title="Sitemap" href=/sitemap.xml><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Getting Started | Common Workflow Language (CWL)</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Getting Started" />
+<meta name="author" content="Common Workflow Language (CWL)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The Common Workflow Language (CWL) is an open standard for describing analysis workflows and tools in a way that makes them portable and scalable across a variety of software and hardware environments, from workstations to cluster, cloud, and high performance computing (HPC) environments. CWL is designed to meet the needs of data-intensive science, such as Bioinformatics, Medical Imaging, Astronomy, High Energy Physics, and Machine Learning." />
+<meta property="og:description" content="The Common Workflow Language (CWL) is an open standard for describing analysis workflows and tools in a way that makes them portable and scalable across a variety of software and hardware environments, from workstations to cluster, cloud, and high performance computing (HPC) environments. CWL is designed to meet the needs of data-intensive science, such as Bioinformatics, Medical Imaging, Astronomy, High Energy Physics, and Machine Learning." />
+<link rel="canonical" href="https://www.commonwl.org/getting-started/" />
+<meta property="og:url" content="https://www.commonwl.org/getting-started/" />
+<meta property="og:site_name" content="Common Workflow Language (CWL)" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Getting Started" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@Common Workflow Language (CWL)" />
+<script type="application/ld+json">
+{"description":"The Common Workflow Language (CWL) is an open standard for describing analysis workflows and tools in a way that makes them portable and scalable across a variety of software and hardware environments, from workstations to cluster, cloud, and high performance computing (HPC) environments. CWL is designed to meet the needs of data-intensive science, such as Bioinformatics, Medical Imaging, Astronomy, High Energy Physics, and Machine Learning.","url":"https://www.commonwl.org/getting-started/","@type":"WebPage","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://www.commonwl.org/CWL-Logo-Header.png"},"name":"Common Workflow Language (CWL)"},"headline":"Getting Started","author":{"@type":"Person","name":"Common Workflow Language (CWL)"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<script type="text/javascript" src="/assets/js/redirects.js"></script><link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-iKbFRxucmOHIcpWdX9NTZ5WETOPm0Goy0WmfyNcl52qSYtc2Buk0NCe6jU1sWWNB" crossorigin="anonymous">
+  <link rel="stylesheet" href="/style.css"><link rel="apple-touch-icon" sizes="180x180" href=/favicon/apple-touch-icon.png>
+<link rel="icon" type="image/png" sizes="32x32" href=/favicon/favicon-32x32.png>
+<link rel="icon" type="image/png" sizes="16x16" href=/favicon/favicon-16x16.png>
+<link rel="manifest" href=/favicon/site.webmanifest>
+<link rel="mask-icon" href=/favicon/safari-pinned-tab.svg color="#b91d47">
+<link rel="shortcut icon" href=/favicon/favicon.ico>
+<meta name="msapplication-TileColor" content="#b91d47">
+<meta name="msapplication-config" content=/favicon/browserconfig.xml>
+<meta name="theme-color" content="#ffffff">
+
+<link rel="stylesheet" href="/assets/plyr/plyr.css">
+</head>
+<body class="body-page-short">
+
+  <ul class="skip-nav" id="skipNav">
+    <li><a class="sr-only sr-only-focusable skip-link" href="#main">Skip to main content</a></li>
+    <li><a class="sr-only sr-only-focusable skip-link" href="#site_footer">Skip to footer</a></li>
+  </ul>
+
+  <div class="site-wrapper page-short page-getting-started" id="siteTop"><nav class="navbar navbar-expand-lg navbar-light top-nav sticky-top" aria-label="main navigation">
+  <div class="nav-wrap container-fluid">
+    <a class="navbar-brand" href="/">
+      <img class="nav-logo" src="/assets/img/CWL-Logo-HD-cropped2.png" alt="CWL logo | Homepage link" height="50" width="106">
+    </a>
+    <button class="navbar-toggler navbar-toggler-right ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#topNav" aria-controls="topNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="topNav">
+      <ul class="nav navbar-nav ms-auto mt-2 mt-lg-0"><li class="nav-item"><a class="nav-link" href="https://www.commonwl.org/">Home</a></li><li class="dropdown nav-item">
+              <a href="#" class="dropdown-toggle nav-link" id="navbarDropdown" data-bs-toggle="dropdown" role="button" aria-expanded="false">About<span class="caret"></span></a><ul class="dropdown-menu"><li><a href="https://www.commonwl.org/about/#vision" class=" dropdown-item">Vision and Mission</a></li><li><a href="https://www.commonwl.org/timeline" class=" dropdown-item">Timeline</a></li><li><a href="https://www.commonwl.org/governance" class=" dropdown-item">Governance</a></li><li><a href="https://www.commonwl.org/contributors" class=" dropdown-item">Contributors</a></li></ul><li class="nav-item"><a class="nav-link" href="https://www.commonwl.org/features">Features</a></li><li class="nav-item"><a class="nav-link is-current-page" href="https://www.commonwl.org/getting-started" aria-current="page">Getting Started</a></li><li class="nav-item"><a class="nav-link" href="https://www.commonwl.org/community">Community</a></li><li class="dropdown nav-item">
+              <a href="#" class="dropdown-toggle nav-link" id="navbarDropdown" data-bs-toggle="dropdown" role="button" aria-expanded="false">Ecosystem<span class="caret"></span></a><ul class="dropdown-menu"><li><a href="https://www.commonwl.org/implementations" class=" dropdown-item">Implementations</a></li><li><a href="https://www.commonwl.org/tools" class=" dropdown-item">Development Tools</a></li><li><a href="https://www.commonwl.org/repos" class=" dropdown-item">Repositories</a></li><li><a href="https://www.commonwl.org/projects" class=" dropdown-item">Projects</a></li></ul><li class="nav-item"><a class="nav-link" href="https://www.commonwl.org/specification">Specification</a></li><li class="nav-item"><a class="nav-link" href="https://www.commonwl.org/gallery">User Gallery</a></li><li class="nav-item"><a class="nav-link" href="https://www.commonwl.org/donate">Donate</a></li><li class="nav-item nav-social-icons">
+        <a href="https://github.com/common-workflow-language/" aria-label="GitHub link"><i class="fab fa-github first-icon"></i></a>
+        <a href="https://twitter.com/commonwl" aria-label="Twitter link"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.youtube.com/c/CommonWLorgStandard/" aria-label="YouTube link"><i class="fab fa-youtube"></i></a>
+        <a href="https://gitter.im/common-workflow-language/common-workflow-language" aria-label="Gitter link"><i class="fab fa-gitter"></i></a>
+        <a href="https://cwl.discourse.group/" aria-label="Discourse link"><i class="fab fa-discourse"></i></a>
+      </li>
+    </ul>
+    </div>
+
+  <div>
+</nav>
+
+<div class="container content-wrapper">
+      <div class="row"><main class="col-lg-10" role="main" id="main"><article class="post"><header class="post-header">
+    <div class="container">
+      <div class="row">
+      <h1 class="post-title col-lg-10">
+        
+        
+          Getting Started
+        
+        
+      </h1>
+    </div>
+    </div>
+  </header>
+
+  <div class="post-content">
+    <div class="getting-started"><p>Below are some useful resources to getting started.  Additionally, help is available through <a href="/community">community resources</a> such as the <a href="https://gitter.im/common-workflow-language/common-workflow-language">CWL Gitter channel</a>.</p>
+
+<ul>
+  <li>Learn to write CWL using the <a href="/user_guide/">CWL user guide</a> which provides a gentle introduction to creating CWL command line tool and workflow descriptions.</li>
+  <li>Browse <a href="/implementations/">CWL Implementations</a> to find a software package that’s right for you.</li>
+  <li>Follow <a href="http://www.commonwl.org/user_guide/rec-practices/">CWL Recommended Practices</a> to make your CWL tools and workflows more efficent, reusable and transparent.</li>
+  <li>Read <a href="https://github.com/pitagora-galaxy/cwl/wiki/CWL-Start-Guide-JP" lang="ja" hreflang="ja">CWLの日本語での解説ドキュメント</a>  a 15 minute introduction to the CWL project in Japanese.</li>
+  <li>Watch a series of <a href="https://stepik.org/lesson/35918/step/1?unit=15070">video lessons about CWL</a> in Russian as part of the <a href="https://stepik.org/course/1612/syllabus" lang="ru">Управление вычислениями</a> (Computation Management) free online course.</li>
+  <li>Find <a href="https://github.com/common-workflow-library/bio-cwl-tools">CWL descriptions for life-science tools</a> to use directly or incoporate into your workflows.</li>
+</ul>
+</div>
+
+  </div>
+</article>
+</main>
+      </div>
+    </div><footer class="page-short site-footer" id="site_footer">
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 footer-text">
+    	<p>Copyright © 2014-2022<span> • </span><a href="https://www.commonwl.org">Common Workflow Language (CWL)</a> <span> • </span><a href="https://www.commonwl.org/code-of-conduct">Code of Conduct</a></p>
+    </div>
+  </div>
+</div>
+</footer>
+
+<!-- Back to Top button -->
+<a href="#siteTop" title="Back to Top" aria-label="Back to Top" class="up_btn btt-shrinked" id="backToTop" style="display: inline;"><i class="fa fa-arrow-up"></i></a>
+</div><script type="text/javascript" src="/assets/js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/assets/js/backToTop.js"></script>
+<script type="text/javascript" src="/assets/js/navCloseFix.js"></script>
+
+
+</body>
+
+</html>
