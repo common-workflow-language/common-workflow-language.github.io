@@ -2861,9 +2861,9 @@ video { background: #000; color: #f2f2f2; }
 
 .mini-gallery #manchester-escience-lab { height: 140px; width: 160px; }
 
-.mini-gallery #elixir-container { background: #000; overflow: visible; }
+.mini-gallery #elixir-container { overflow: visible; }
 
-.mini-gallery #elixir { background: #000; height: 80px; position: relative; top: 10px; }
+.mini-gallery #elixir { height: 80px; position: relative; top: 10px; }
 
 .mini-gallery #msk-access { height: 100px; max-width: initial; position: relative; right: 20px; width: 200px; }
 
