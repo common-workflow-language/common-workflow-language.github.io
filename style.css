@@ -2795,6 +2795,14 @@ li p { margin: 0; }
 
 .w-480 { width: 480px; }
 
+@media (min-width: 992px) { .mobile-br { display: none; } }
+
+.fas.govern-icon, .fab.govern-icon { font-size: 1.5rem; padding: 0 4px; }
+
+.fa-orcid { color: #a6ce39; }
+
+.fa-orcid.govern-icon { padding: 0 8px 0 2px; }
+
 @media (min-width: 992px) { .intro-container { display: flex; justify-content: space-around; } .intro-text { font-size: 20px; text-align: center; width: 40%; } }
 
 .features-grid { display: grid; gap: 32px; grid-template-columns: repeat(auto-fit, 1fr); margin: 2rem auto 3rem; padding: 0 5%; }
