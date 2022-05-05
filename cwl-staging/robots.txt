@@ -1,1 +1,0 @@
-Sitemap: https://www.commonwl.org/cwl-staging/sitemap.xml
