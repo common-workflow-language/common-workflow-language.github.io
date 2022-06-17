@@ -100,10 +100,21 @@
 tools, software libraries, connected specifications, and has shared CWL
 descriptions for popular tools.
 Other tools are also available in <a href="https://github.com/common-workflow-lab">Common Workflow Language Lab</a>.</p>
-      <h3 id="editors-and-viewers">
+
+<p><strong>Table of contents</strong>:</p>
+
+<ul>
+  <li><a href="#editors">Editors and Viewers</a></li>
+  <li><a href="#execution">Execution frameworks</a></li>
+  <li><a href="#utils">Utilities</a></li>
+  <li><a href="#converters">Converters And Code Generators</a></li>
+  <li><a href="#libs">Code Libraries</a></li>
+  <li><a href="#specs">Related specifications and frameworks</a></li>
+</ul>
+      <h3 id="editors">
         
         
-          Editors and Viewers <a href="#editors-and-viewers" class="heading__anchor-symbol">§</a>
+          Editors and Viewers <a href="#editors" class="heading__anchor-symbol">§</a>
         
         
       </h3>
@@ -142,7 +153,7 @@ Other tools are also available in <a href="https://github.com/common-workflow-la
       <td>A template to write CWL documents with VSCode with remote container extension</td>
     </tr>
     <tr>
-      <td><a href="https://github.com/manabuishii/language-cwl">atom-cwl</a></td>
+      <td><a href="https://github.com/manabuishii/language-cwl">atom language-cwl</a></td>
       <td>CWL editing mode for Atom</td>
     </tr>
     <tr>
@@ -159,10 +170,52 @@ Other tools are also available in <a href="https://github.com/common-workflow-la
     </tr>
   </tbody>
 </table>
-      <h3 id="utilities">
+      <h3 id="execution">
         
         
-          Utilities <a href="#utilities" class="heading__anchor-symbol">§</a>
+          Execution frameworks <a href="#execution" class="heading__anchor-symbol">§</a>
+        
+        
+      </h3>
+    
+
+<p>While <a href="/implementations/">CWL implementations</a> can execute workflows on different compute backends, the frameworks below 
+can be used to provide a programmatic API or user interface to orchestrate execution with an CWL implementation.</p>
+
+<table class="table table-striped cols-2">
+  <thead>
+    <tr>
+      <th>Software</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://github.com/elixir-cloud-aai/cwl-WES">cwl-WES</a></td>
+      <td>Microservice implementing GA4GH <a href="https://github.com/ga4gh/workflow-execution-service-schemas">Workflow Execution Service</a> (WES) API specification to run CWL workflows</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/athenarc/schema">SCHeMa</a></td>
+      <td>Web interface for running CWL workflows on Kubernetes/minikube clusters, based on cwl-WES</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/inab/WfExS-backend">WfExS</a></td>
+      <td>Workflow Execution Service supporting GA4GH Tools Registry Service (<a href="https://github.com/ga4gh/tool-registry-service-schemas">TRS</a>) API, <a href="https://w3id.org/ro/crate">RO-Crate</a>, Nextflow and CWL</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/common-workflow-language/workflow-service">workflow-service</a></td>
+      <td>An implementation of the <a href="https://github.com/ga4gh/workflow-execution-service-schemas">GA4GH Workflow Execution Service (WES)</a> API to run CWL workflows on remote clusters</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/workflux/workflUX">workflUX</a></td>
+      <td>Web interface for simplified execution of CWL workflows</td>
+    </tr>
+  </tbody>
+</table>
+      <h3 id="utils">
+        
+        
+          Utilities <a href="#utils" class="heading__anchor-symbol">§</a>
         
         
       </h3>
@@ -178,7 +231,7 @@ Other tools are also available in <a href="https://github.com/common-workflow-la
   <tbody>
     <tr>
       <td><a href="https://github.com/common-workflow-language/cwl-utils">cwl-utils</a></td>
-      <td>Example scripts using the new Python 3.6+ CWL parsing library</td>
+      <td>Example scripts using the Python 3.6+ CWL parsing library</td>
     </tr>
     <tr>
       <td><a href="http://looper.databio.org/">looper</a></td>
@@ -187,10 +240,6 @@ Other tools are also available in <a href="https://github.com/common-workflow-la
     <tr>
       <td><a href="https://github.com/common-workflow-language/cwltest">cwltest</a></td>
       <td>CWL testing framework,  automated testing of tools and workflows written with CWL</td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/common-workflow-language/workflow-service">workflow-service</a></td>
-      <td>An implementation of the <a href="https://github.com/ga4gh/workflow-execution-service-schemas">GA4GH Workflow Execution Service (WES)</a> API to run CWL workflows on remote clusters</td>
     </tr>
     <tr>
       <td><a href="https://github.com/tom-tan/cwl-inspector">cwl-inspector</a></td>
@@ -212,12 +261,16 @@ Other tools are also available in <a href="https://github.com/common-workflow-la
       <td><a href="https://github.com/kloetzl/cwl2zshcomp">cwl2zshcomp</a></td>
       <td>Generates ZSH auto completions from CWL command line tool descriptions</td>
     </tr>
+    <tr>
+      <td><a href="https://inutano.github.io/cwl-metrics/">CWL-metrics</a></td>
+      <td>Collect/analyze computational resource use of CWL workflow runs</td>
+    </tr>
   </tbody>
 </table>
-      <h3 id="converters-and-code-generators">
+      <h3 id="converters">
         
         
-          Converters And Code Generators <a href="#converters-and-code-generators" class="heading__anchor-symbol">§</a>
+          Converters And Code Generators <a href="#converters" class="heading__anchor-symbol">§</a>
         
         
       </h3>
@@ -277,7 +330,7 @@ Other tools are also available in <a href="https://github.com/common-workflow-la
     </tr>
     <tr>
       <td><a href="https://github.com/common-workflow-language/cwl-utils">cwl-utils</a></td>
-      <td>New Python 3.6+ CWL parsing library</td>
+      <td>Python 3.6+ CWL parsing library</td>
     </tr>
     <tr>
       <td><a href="https://github.com/giannisdoukas/ipython2cwl">ipython2cwl</a></td>
@@ -287,12 +340,24 @@ Other tools are also available in <a href="https://github.com/common-workflow-la
       <td><a href="https://pegasus.isi.edu/documentation/manpages/pegasus-cwl-converter.html">pegasus-cwl-converter</a></td>
       <td>Work in progress tool to convert a CWL workflow into a Pegasus workflow.</td>
     </tr>
+    <tr>
+      <td><a href="https://github.com/workflowhub-eu/galaxy2cwl">galaxy2cwl</a></td>
+      <td>Convert a Galaxy <code class="language-plaintext highlighter-rouge">.ga</code> workflow to <a href="https://github.com/common-workflow-language/cwl-v1.2/pull/3">Abstract CWL</a></td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/galaxyproject/gxformat2">gxformat2</a></td>
+      <td>Converter for Galaxy’s workflow formats, can generate <a href="https://github.com/common-workflow-language/cwl-v1.2/pull/3">Abstract CWL</a></td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/common-workflow-lab/wdl-cwl-translator">wdl-cwl-translator</a></td>
+      <td>Translate WDL workflows to CWL</td>
+    </tr>
   </tbody>
 </table>
-      <h3 id="code-libraries">
+      <h3 id="libs">
         
         
-          Code Libraries <a href="#code-libraries" class="heading__anchor-symbol">§</a>
+          Code Libraries <a href="#libs" class="heading__anchor-symbol">§</a>
         
         
       </h3>
@@ -344,15 +409,78 @@ Other tools are also available in <a href="https://github.com/common-workflow-la
     </tr>
     <tr>
       <td><a href="https://github.com/buchanae/cwl">buchanae/cwl</a></td>
-      <td>CWL document parsing and processing utilities in Go.</td>
+      <td>CWL document parsing and processing utilities in Go</td>
     </tr>
     <tr>
       <td><a href="https://github.com/otiai10/cwl.go">CWL for Go</a></td>
-      <td>Parser of CWL file and CWL input objects (JSON/YAML) files in Go.</td>
+      <td>Parser of CWL file and CWL input objects (JSON/YAML) files in Go</td>
     </tr>
     <tr>
       <td><a href="https://github.com/broadinstitute/cwl-proto">cwl-proto</a></td>
       <td>Reading and writing Common Workflow Language to Protocol Buffers</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/ResearchObject/ro-crate-py">ro-crate-py</a></td>
+      <td>Create an <a href="https://w3id.org/ro/crate">RO-Crate</a> of workflow, can generate Abstract CWL</td>
+    </tr>
+  </tbody>
+</table>
+      <h3 id="specs">
+        
+        
+          Related specifications and frameworks <a href="#specs" class="heading__anchor-symbol">§</a>
+        
+        
+      </h3>
+    
+
+<table class="table table-striped cols-2">
+  <thead>
+    <tr>
+      <th>Software</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://github.com/common-workflow-language/cwlprov">CWLProv</a></td>
+      <td>Profile of <a href="https://www.researchobject.org/">Research Object</a> and <a href="https://www.w3.org/TR/prov-overview/">W3C PROV</a> for provenance of a CWL workflow run</td>
+    </tr>
+    <tr>
+      <td><a href="https://w3id.org/ro/crate">RO-Crate</a></td>
+      <td>Research Object Crate, packaging research data with schema.org metadata. Profiles for <a href="https://w3id.org/workflowhub/workflow-ro-crate/">workflows</a> and <a href="https://www.researchobject.org/workflow-run-crate/">workflow runs</a></td>
+    </tr>
+    <tr>
+      <td><a href="https://edamontology.org/">EDAM</a></td>
+      <td>Ontology for categorizing operations and formats, useful in <a href="https://www.commonwl.org/user_guide/17-metadata/">CWL metadata</a>. Primarily used in bioscientific domains.</td>
+    </tr>
+    <tr>
+      <td><a href="https://schema.org/">schema.org</a></td>
+      <td>Vocabulary typically used in Web markup and in <a href="https://www.commonwl.org/user_guide/17-metadata/">CWL metadata</a></td>
+    </tr>
+    <tr>
+      <td><a href="https://bioschemas.org/">bioschemas</a></td>
+      <td><a href="https://bioschemas.org/profiles/">Profiles</a> for annotating life science on the Web, including <a href="https://bioschemas.org/profiles/ComputationalWorkflow/1.0-RELEASE">ComputationalWorkflow</a> and <a href="https://bioschemas.org/profiles/ComputationalTool/1.0-RELEASE">ComputationalTool</a></td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/ga4gh/tool-registry-service-schemas">GA4GH TRS</a></td>
+      <td>Tool Registry Service API specification for discovering tools/workflows. Used by <a href="/repos/">workflow registries</a> incl. WorkflowHub and Dockstore</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/ga4gh/task-execution-schemas">GA4GH TES</a></td>
+      <td>Task Execution Service API specification for batch run of container command line tools. Used by <a href="https://github.com/ohsu-comp-bio/cwl-tes">cwl-tes</a></td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/ga4gh/workflow-execution-service-schemas">GA4GH WES</a></td>
+      <td>Workflow Execution Service API specification, see implementations <a href="#execution">above</a></td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/openwdl/wdl">WDL</a></td>
+      <td>Workflow Description Language implemented by Cromwell &amp; dxWDL. <a href="https://github.com/dnanexus/dxCompiler/blob/main/doc/CWL_v1.2.0_to_WDL_v1.md">Comparable</a> to CWL, see the <a href="https://github.com/common-workflow-lab/wdl-cwl-translator">WDL to CWL translator</a>.</td>
+    </tr>
+    <tr>
+      <td><a href="https://doi.org/10.1109/IEEESTD.2020.9094416">IEEE 2791-2020</a></td>
+      <td>Standard for <a href="https://biocomputeobject.org/">BioCompute Objects</a>, recommends CWL. See <a href="https://www.research.manchester.ac.uk/portal/en/publications/ieee-standard-for-bioinformatics-analyses-generated-by-highthroughput-sequencing-hts-to-facilitate-communication(936de52b-ac53-4f0e-9927-77fd7073e88d).html">preprint</a>)</td>
     </tr>
   </tbody>
 </table>
