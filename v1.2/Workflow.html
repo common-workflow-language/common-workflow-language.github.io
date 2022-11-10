@@ -148,7 +148,7 @@ href="https://www.commonwl.org/user_guide/assets/favicons/cwl/favicon-96x96.png"
 <li>Stian Soiland-Reyes, University of Manchester; <a href="https://orcid.org/0000-0001-9842-9718">https://orcid.org/0000-0001-9842-9718</a></li>
 </ul>
 <p>Incorporates the work of past authors and contributors to <a href="https://www.commonwl.org/v1.0/Workflow.html">CWL v1.0</a> and <a href="https://www.commonwl.org/v1.1/Workflow.html">CWL v1.1</a>.</p>
-<p>This specification was <a href="https://github.com/common-workflow-language/cwl-v1.2/pull/47">approved on 2020-08-07</a> by the CWL leadership team consisting of:</p>
+<p>This standard was <a href="https://github.com/common-workflow-language/cwl-v1.2/pull/47">approved on 2020-08-07</a> by the CWL leadership team consisting of:</p>
 <ul>
 <li>Peter Amstutz, Curii Inc. / Arvados; <a href="https://orcid.org/0000-0003-3566-7705">https://orcid.org/0000-0003-3566-7705</a></li>
 <li>John Chilton, Pennsylvania State University / Galaxy Project; <a href="https://orcid.org/0000-0002-6794-0756">https://orcid.org/0000-0002-6794-0756</a></li>
@@ -158,6 +158,7 @@ href="https://www.commonwl.org/user_guide/assets/favicons/cwl/favicon-96x96.png"
 <li>Hervé Ménager, Institut Pasteur; <a href="https://orcid.org/0000-0002-7552-1009">https://orcid.org/0000-0002-7552-1009</a></li>
 <li>Stian Soiland-Reyes, University of Manchester; <a href="https://orcid.org/0000-0001-9842-9718">https://orcid.org/0000-0001-9842-9718</a></li>
 </ul>
+<p>Publisher: <a href="https://www.commonwl.org">Common Workflow Language project</a>, a member project of <a href="https://sfconservancy.org/">Software Freedom Conservancy</a></p>
 <h1 id="Abstract" class="section">Abstract <a href="#Abstract">&sect;</a></h1><p>This specification defines the Common Workflow Language (CWL)
 Workflow description, a vendor-neutral standard for representing
 analysis tasks where a sequence of operations are described
@@ -339,7 +340,7 @@ compatibility.  Portable CWL documents should not rely on deprecated behavior.
 Behavior marked as deprecated may be removed entirely from future revisions of
 the CWL specification.</p>
 <h1 id="Data_model" class="section">2. Data model <a href="#Data_model">&sect;</a></h1><h2 id="Data_concepts" class="section">2.1 Data concepts <a href="#Data_concepts">&sect;</a></h2><p>An <strong>object</strong> is a data structure equivalent to the "object" type in JSON,
-consisting of a unordered set of name/value pairs (referred to here as
+consisting of an unordered set of name/value pairs (referred to here as
 <strong>fields</strong>) and where the name is a string and the value is a string, number,
 boolean, array, or object.</p>
 <p>A <strong>document</strong> is a file containing a serialized object, or an array of objects.</p>
@@ -367,18 +368,18 @@ must declare the <code>cwlVersion</code> of that document.  Implementations must
 validate against the document's declared version.  Implementations
 should allow workflows to reference documents of both newer and older
 CWL versions (up to the highest version of CWL supported by that
-implementation).  Where the runtime enviroment or runtime behavior has
+implementation).  Where the runtime environment or runtime behavior has
 changed between versions, for that portion of the execution an
-implementation must provide runtime enviroment and behavior consistent
+implementation must provide runtime environment and behavior consistent
 with the document's declared version.  An implementation must not
 expose a newer feature when executing a document that specifies an
-older version that does not not include that feature.</p>
+older version that does not include that feature.</p>
 <h3 id="map" class="section">2.2.1 map <a href="#map">&sect;</a></h3><p>Note: This section is non-normative.</p>
 <blockquote><p>type: array&lt;ComplexType&gt; |
 map&lt;<code>key_field</code>, ComplexType&gt;</p>
 </blockquote>
 <p>The above syntax in the CWL specifications means there are two or more ways to write the given value.</p>
-<p>Option one is a array and is the most verbose option.</p>
+<p>Option one is an array and is the most verbose option.</p>
 <p>Option one generic example:</p>
 <pre><code>some_cwl_field:
   - key_field: a_complex_type1
@@ -414,7 +415,7 @@ value: <code>a_complex_type3: {}</code></p>
   a_complex_type2:
     field2: foo2
     field3: bar2
-  a_complex_type3: {}  # we accept the defualt values for "field2" and "field3"
+  a_complex_type3: {}  # we accept the default values for "field2" and "field3"
 </code></pre>
 <p>Option two specific example using <a href="Workflow.html#Workflow">Workflow</a>.<a href="Workflow.html#WorkflowInputParameter">inputs</a>:</p>
 <blockquote><p>array&lt;InputParameter&gt; |
@@ -440,8 +441,7 @@ map&lt;<code>package</code>, <code>specs</code> | SoftwarePackage&gt;</p>
         version: [ "1.0" ]
       python: {}
 </code></pre>
-<p>`
-Sometimes we have a third and even more compact option denoted like this:</p>
+<p>Sometimes we have a third and even more compact option denoted like this:</p>
 <blockquote><p>type: array&lt;ComplexType&gt; |
 map&lt;<code>key_field</code>, <code>field2</code> | ComplexType&gt;</p>
 </blockquote>
@@ -519,8 +519,8 @@ base and/or other identifiers following the rules are described in the
 <p>An implementation may choose to only honor references to object types for
 which the <code>id</code> field is explicitly listed in this specification.</p>
 <h2 id="Document_preprocessing" class="section">2.4 Document preprocessing <a href="#Document_preprocessing">&sect;</a></h2><p>An implementation must resolve <a href="SchemaSalad.html#Import">$import</a> and
-<a href="SchemaSalad.html#Import">$include</a> directives as described in the
-<a href="SchemaSalad.html">Schema Salad specification</a>.</p>
+<a href="SchemaSalad.html#Include">$include</a> directives as described in the
+<a href="SchemaSalad.html#Document_preprocessing">Schema Salad specification</a>.</p>
 <p>Another transformation defined in Schema salad is simplification of data type definitions.
 Type <code>&lt;T&gt;</code> ending with <code>?</code> should be transformed to <code>[&lt;T&gt;, "null"]</code>.
 Type <code>&lt;T&gt;</code> ending with <code>[]</code> should be transformed to <code>{"type": "array", "items": &lt;T&gt;}</code></p>
@@ -535,7 +535,7 @@ additional fields on any object.  Such extensions fields must use a namespace
 prefix listed in the <code>$namespaces</code> section of the document as described in the
 <a href="SchemaSalad.html#Explicit_context">Schema Salad specification</a>.</p>
 <p>It is recommended that concepts from schema.org are used whenever possible.
-For the <code>$schema</code> field we recommend their RDF encoding: <a href="https://schema.org/version/latest/schemaorg-current-https.rdf">https://schema.org/version/latest/schemaorg-current-https.rdf</a></p>
+For the <code>$schemas</code> field we recommend their RDF encoding: <a href="https://schema.org/version/latest/schemaorg-current-https.rdf">https://schema.org/version/latest/schemaorg-current-https.rdf</a></p>
 <p>Implementation extensions which modify execution semantics must be <a href="#Requirements_and_hints">listed in
 the <code>requirements</code> field</a>.</p>
 <h2 id="Packed_documents" class="section">2.6 Packed documents <a href="#Packed_documents">&sect;</a></h2><p>A "packed" CWL document is one that contains multiple process objects.
@@ -575,7 +575,7 @@ standalone, non-interactive program which is invoked on some input,
 produces output, and then terminates.</p>
 <p>A <strong>workflow</strong> is a process characterized by multiple subprocess steps,
 where step outputs are connected to the inputs of downstream steps to
-form a directed acylic graph, and independent steps may run concurrently.</p>
+form a directed acyclic graph, and independent steps may run concurrently.</p>
 <p>A <strong>runtime environment</strong> is the actual hardware and software environment when
 executing a command line tool.  It includes, but is not limited to, the
 hardware architecture, hardware resources, operating system, software runtime
@@ -612,7 +612,7 @@ platform include:</p>
 environment or workflow platform unless explicitly declared though the use
 of <a href="#Requirements_and_hints">process requirements</a>.</p>
 <h2 id="Generic_execution_process" class="section">3.2 Generic execution process <a href="#Generic_execution_process">&sect;</a></h2><p>The generic execution sequence of a CWL process (including workflows
-and command line line tools) is as follows.  Processes are
+and command line tools) is as follows.  Processes are
 modeled as functions that consume an input object and produce an
 output object.</p>
 <ol>
@@ -910,7 +910,7 @@ used to generate and/or validate the output object.</p>
 <div class="col-xs-2 col-lg-1">required</div>
 <div class="col-xs-7 col-lg-3">array&lt;<a href="#WorkflowStep">WorkflowStep</a>&gt; | <br><a href='#map'>map</a>&lt;<code>id</code>,&nbsp;<a href="#WorkflowStep">WorkflowStep</a>&gt</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The individual steps that make up the workflow.  Each step is executed when all of its
-input data links are fufilled.  An implementation may choose to execute
+input data links are fulfilled.  An implementation may choose to execute
 the steps in a different order than listed and/or execute steps
 concurrently, provided that dependencies between steps are met.</p>
 </div>
@@ -974,7 +974,7 @@ required for a Process embedded inside another Process.</p>
 Especially useful for "class: Operation", but can also be used for
 CommandLineTool, Workflow, or ExpressionTool.</p>
 <p>If provided, then this must be an IRI of a concept node that
-represents the type of operation, preferrably defined within an ontology.</p>
+represents the type of operation, preferably defined within an ontology.</p>
 <p>For example, in the domain of bioinformatics, one can use an IRI from
 the EDAM Ontology's <a href="http://edamontology.org/operation_0004">Operation concept nodes</a>,
 like <a href="http://edamontology.org/operation_2928">Alignment</a>,
@@ -1080,7 +1080,7 @@ pipe.  Default: <code>false</code>.</p>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>This must be one or more IRIs of concept nodes
 that represents file formats which are allowed as input to this
-parameter, preferrably defined within an ontology.  If no ontology is
+parameter, preferably defined within an ontology.  If no ontology is
 available, file formats may be tested by exact match.</p>
 </div>
 </div>
@@ -1126,7 +1126,7 @@ object is <code>null</code>.  Default values are applied before evaluating expre
 <div class="col-xs-3 col-lg-2"><code>inputBinding</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
 <div class="col-xs-7 col-lg-3"><a href="#InputBinding">InputBinding</a></div>
-<div class="col-xs-12 col-lg-6 description-col"><p>Deprecated.  Preserved for v1.0 backwards compatability.  Will be removed in
+<div class="col-xs-12 col-lg-6 description-col"><p>Deprecated.  Preserved for v1.0 backwards compatibility.  Will be removed in
 CWL v2.0.  Use <code>WorkflowInputParameter.loadContents</code> instead.</p>
 </div>
 </div></div><h3 id="SecondaryFileSchema" class="section">4.1.1 SecondaryFileSchema <a href="#SecondaryFileSchema">&sect;</a></h3><p>Secondary files are specified using the following micro-DSL for secondary files:</p>
@@ -1313,7 +1313,7 @@ then follow the rules above.</p>
 executed.  This field must be set by the implementation.  The final
 path component must match the value of <code>basename</code>.  This field
 must not be used in any other context.  The command line tool being
-executed must be able to to access the file at <code>path</code> using the POSIX
+executed must be able to access the file at <code>path</code> using the POSIX
 <code>open(2)</code> syscall.</p>
 <p>As a special case, if the <code>path</code> field is provided but the <code>location</code>
 field is not, an implementation may assign the value of the <code>path</code>
@@ -1361,7 +1361,7 @@ context.</p>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The basename root such that <code>nameroot + nameext == basename</code>, and
 <code>nameext</code> is empty or begins with a period and contains at most one
-period.  For the purposess of path splitting leading periods on the
+period.  For the purposes of path splitting leading periods on the
 basename are ignored; a basename of <code>.cshrc</code> will have a nameroot of
 <code>.cshrc</code>.</p>
 <p>The implementation must set this field automatically based on the value
@@ -1412,16 +1412,16 @@ which the same rules apply.</p>
 <div class="col-xs-2 col-lg-1">optional</div>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The format of the file: this must be an IRI of a concept node that
-represents the file format, preferrably defined within an ontology.
+represents the file format, preferably defined within an ontology.
 If no ontology is available, file formats may be tested by exact match.</p>
-<p>Reasoning about format compatability must be done by checking that an
+<p>Reasoning about format compatibility must be done by checking that an
 input file format is the same, <code>owl:equivalentClass</code> or
 <code>rdfs:subClassOf</code> the format required by the input parameter.
 <code>owl:equivalentClass</code> is transitive with <code>rdfs:subClassOf</code>, e.g. if
 <code>&lt;B&gt; owl:equivalentClass &lt;C&gt;</code> and <code>&lt;B&gt; owl:subclassOf &lt;A&gt;</code> then infer
 <code>&lt;C&gt; owl:subclassOf &lt;A&gt;</code>.</p>
-<p>File format ontologies may be provided in the "$schema" metadata at the
-root of the document.  If no ontologies are specified in <code>$schema</code>, the
+<p>File format ontologies may be provided in the "$schemas" metadata at the
+root of the document.  If no ontologies are specified in <code>$schemas</code>, the
 runtime may perform exact file format matches.</p>
 </div>
 </div>
@@ -1474,7 +1474,7 @@ the runtime to ensure that those files are staged to disk appropriately.
 Secondary files associated with files in <code>listing</code> must also be staged to
 the same Directory.</p>
 <p>When executing a CommandLineTool, Directories must be recursively staged
-first and have local values of <code>path</code> assigend.</p>
+first and have local values of <code>path</code> assigned.</p>
 <p>Directory objects in CommandLineTool output must provide either a
 <code>location</code> URI or a <code>path</code> property in the context of the tool execution
 runtime (local to the compute node, or within the executing container).</p>
@@ -1524,7 +1524,7 @@ then follow the rules above.</p>
 <div class="col-xs-12 col-lg-6 description-col"><p>The local path where the Directory is made available prior to executing a
 CommandLineTool.  This must be set by the implementation.  This field
 must not be used in any other context.  The command line tool being
-executed must be able to to access the directory at <code>path</code> using the POSIX
+executed must be able to access the directory at <code>path</code> using the POSIX
 <code>opendir(2)</code> syscall.</p>
 <p>If the <code>path</code> contains <a href="http://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_02">POSIX shell metacharacters</a>
 (<code>|</code>,<code>&amp;</code>, <code>;</code>, <code>&lt;</code>, <code>&gt;</code>, <code>(</code>,<code>)</code>, <code>$</code>,<code>`</code>, <code>\</code>, <code>"</code>, <code>'</code>,
@@ -1702,7 +1702,7 @@ pipe.  Default: <code>false</code>.</p>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>This must be one or more IRIs of concept nodes
 that represents file formats which are allowed as input to this
-parameter, preferrably defined within an ontology.  If no ontology is
+parameter, preferably defined within an ontology.  If no ontology is
 available, file formats may be tested by exact match.</p>
 </div>
 </div>
@@ -1830,7 +1830,7 @@ a Directory object for use by expressions.</p>
 <div class="col-xs-2 col-lg-1">optional</div>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">boolean</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Use of <code>loadContents</code> in <code>InputBinding</code> is deprecated.
-Preserved for v1.0 backwards compatability.  Will be removed in
+Preserved for v1.0 backwards compatibility.  Will be removed in
 CWL v2.0.  Use <code>InputParameter.loadContents</code> instead.</p>
 </div>
 </div></div><h2 id="WorkflowOutputParameter" class="section">4.2 WorkflowOutputParameter <a href="#WorkflowOutputParameter">&sect;</a></h2><p>Describe an output parameter of a workflow.  The parameter must be
@@ -2353,7 +2353,7 @@ produces a <code>null</code> on each output.</p>
 workflow inputs, or the outputs of other workflows steps) with the input
 parameters of the process specified by the <code>run</code> field. Only input parameters
 declared by the target process will be passed through at runtime to the process
-though additonal parameters may be specified (for use within <code>valueFrom</code>
+though additional parameters may be specified (for use within <code>valueFrom</code>
 expressions for instance) - unconnected or unused parameters do not represent an
 error condition.</p>
 <h4 id="Input_object" class="section">Input object <a href="#Input_object">&sect;</a></h4><p>A WorkflowStepInput object must contain an <code>id</code> field in the form
@@ -2404,7 +2404,7 @@ single elements.</li>
 <a href="#WorkflowStep">conditional execution</a>, where several upstream
 steps may be connected to a single input (<code>source</code> is a list), and
 skipped steps produce null values.</p>
-<p>Static type checkers should check for type consistency after infering what the type
+<p>Static type checkers should check for type consistency after inferring what the type
 will be after <code>pickValue</code> is applied, just as they do currently for <code>linkMerge</code>.</p>
 <ul>
 <li><p><strong>first_non_null</strong></p>
@@ -2538,7 +2538,7 @@ be specified in the workflow or workflow step requirements.</p>
 <p>If <code>valueFrom</code> is a constant string value, use this as the value for
 this input parameter.</p>
 <p>If <code>valueFrom</code> is a parameter reference or expression, it must be
-evaluated to yield the actual value to be assiged to the input field.</p>
+evaluated to yield the actual value to be assigned to the input field.</p>
 <p>The <code>self</code> value in the parameter reference or expression must be</p>
 <ol>
 <li><code>null</code> if there is no <code>source</code> field</li>
@@ -2578,7 +2578,7 @@ to connect the output value to downstream parameters.</p>
 </div></div><h3 id="ScatterMethod" class="section">4.3.3 ScatterMethod <a href="#ScatterMethod">&sect;</a></h3><p>The scatter method, as described in <a href="#WorkflowStep">workflow step scatter</a>.</p>
 <h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>dotproduct</code></td><td></td></tr><tr><td><code>nested_crossproduct</code></td><td></td></tr><tr><td><code>flat_crossproduct</code></td><td></td></tr></table><h3 id="InlineJavascriptRequirement" class="section">4.3.4 InlineJavascriptRequirement <a href="#InlineJavascriptRequirement">&sect;</a></h3><p>Indicates that the workflow platform must support inline Javascript expressions.
 If this requirement is not present, the workflow platform must not perform expression
-interpolatation.</p>
+interpolation.</p>
 <h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
@@ -2783,7 +2783,7 @@ pipe.  Default: <code>false</code>.</p>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>This must be one or more IRIs of concept nodes
 that represents file formats which are allowed as input to this
-parameter, preferrably defined within an ontology.  If no ontology is
+parameter, preferably defined within an ontology.  If no ontology is
 available, file formats may be tested by exact match.</p>
 </div>
 </div>
@@ -2871,7 +2871,7 @@ a Directory object for use by expressions.</p>
 <div class="col-xs-12 col-lg-6 description-col"><p>Describes how to turn this object into command line arguments.</p>
 </div>
 </div></div><h6 id="CommandLineBinding" class="section">4.3.5.1.1.2 CommandLineBinding <a href="#CommandLineBinding">&sect;</a></h6><p>When listed under <code>inputBinding</code> in the input schema, the term
-"value" refers to the the corresponding value in the input object.  For
+"value" refers to the corresponding value in the input object.  For
 binding objects listed in <code>CommandLineTool.arguments</code>, the term "value"
 refers to the effective value after evaluating <code>valueFrom</code>.</p>
 <p>The binding behavior when building the command line depends on the data
@@ -2918,7 +2918,7 @@ effective value.</p>
 <div class="col-xs-2 col-lg-1">optional</div>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">boolean</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Use of <code>loadContents</code> in <code>InputBinding</code> is deprecated.
-Preserved for v1.0 backwards compatability.  Will be removed in
+Preserved for v1.0 backwards compatibility.  Will be removed in
 CWL v2.0.  Use <code>InputParameter.loadContents</code> instead.</p>
 </div>
 </div>
@@ -2955,7 +2955,7 @@ into a single command line argument.</p>
 <div class="col-xs-2 col-lg-1">optional</div>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Join the array elements into a single string with the elements
-separated by by <code>itemSeparator</code>.</p>
+separated by <code>itemSeparator</code>.</p>
 </div>
 </div>
 <div class="row responsive-table-row">
@@ -3113,7 +3113,7 @@ compatible.</p>
 <div class="col-xs-12 col-lg-6 description-col"><p>One or more <a href="https://en.wikipedia.org/wiki/Internationalized_Resource_Identifier">IRI</a>s
 identifying resources for installing or enabling the software named in
 the <code>package</code> field. Implementations may provide resolvers which map
-these software identifer IRIs to some configuration action; or they can
+these software identifier IRIs to some configuration action; or they can
 use only the name from the <code>package</code> field on a best effort basis.</p>
 <p>For example, the IRI <a href="https://packages.debian.org/bowtie">https://packages.debian.org/bowtie</a> could
 be resolved with <code>apt-get install bowtie</code>. The IRI
@@ -3123,18 +3123,18 @@ install -c bioconda bowtie</code>.</p>
 software installation or selection mechanism.
 Using <a href="https://www.identifiers.org/rrid/">RRID</a> as an example:
 <a href="https://identifiers.org/rrid/RRID:SCR_005476">https://identifiers.org/rrid/RRID:SCR_005476</a>
-could be fulfilled using the above mentioned Debian or bioconda
-package, a local installation managed by <a href="http://modules.sourceforge.net/">Environement Modules</a>,
+could be fulfilled using the above-mentioned Debian or bioconda
+package, a local installation managed by <a href="https://modules.sourceforge.net/">Environment Modules</a>,
 or any other mechanism the platform chooses. IRIs can also be from
-identifer sources that are discipline specific yet still system
+identifier sources that are discipline specific yet still system
 independent. As an example, the equivalent <a href="https://bio.tools">ELIXIR Tools and Data
 Service Registry</a> IRI to the previous RRID example is
 <a href="https://bio.tools/tool/bowtie2/version/2.2.8">https://bio.tools/tool/bowtie2/version/2.2.8</a>.
 If supported by a given registry, implementations are encouraged to
-query these system independent sofware identifier IRIs directly for
+query these system independent software identifier IRIs directly for
 links to packaging systems.</p>
 <p>A site specific IRI can be listed as well. For example, an academic
-computing cluster using Environement Modules could list the IRI
+computing cluster using Environment Modules could list the IRI
 <code>https://hpc.example.edu/modules/bowtie-tbb/1.22</code> to indicate that
 <code>module load bowtie-tbb/1.1.2</code> should be executed to make available
 <code>bowtie</code> version 1.1.2 compiled with the TBB library prior to running
@@ -3280,7 +3280,7 @@ not explicitly marked as writable.</p>
 </div></div><h3 id="WorkReuse" class="section">4.3.10 WorkReuse <a href="#WorkReuse">&sect;</a></h3><p>For implementations that support reusing output from past work (on
 the assumption that same code and same input produce same
 results), control whether to enable or disable the reuse behavior
-for a particular tool or step (to accomodate situations where that
+for a particular tool or step (to accommodate situations where that
 assumption is incorrect).  A reused step is not executed but
 instead returns the same output as the original execution.</p>
 <p>If <code>WorkReuse</code> is not specified, correct tools should assume it
@@ -3315,7 +3315,7 @@ connections to network resources.  Resources may be on a private
 subnet or the public Internet.  However, implementations and sites
 may apply their own security policies to restrict what is
 accessible by the tool.</p>
-<p>Enabling network access does not imply a publically routable IP
+<p>Enabling network access does not imply a publicly routable IP
 address or the ability to accept inbound connections.</p>
 <h3>Fields</h3>
 <div class="responsive-table">
@@ -3350,7 +3350,7 @@ However, a file which has been updated in a previous completed
 step may be used as input to multiple steps, provided it is
 read-only in every step.</p>
 <p>Workflow steps which modify a file must produce the modified file
-as output.  Downstream steps which futher process the file must
+as output.  Downstream steps which further process the file must
 use the output of previous steps, and not refer to a common input
 (this is necessary for both ordering and correctness).</p>
 <p>Workflow authors should provide this in the <code>hints</code> section.  The
@@ -3588,7 +3588,7 @@ required for a Process embedded inside another Process.</p>
 Especially useful for "class: Operation", but can also be used for
 CommandLineTool, Workflow, or ExpressionTool.</p>
 <p>If provided, then this must be an IRI of a concept node that
-represents the type of operation, preferrably defined within an ontology.</p>
+represents the type of operation, preferably defined within an ontology.</p>
 <p>For example, in the domain of bioinformatics, one can use an IRI from
 the EDAM Ontology's <a href="http://edamontology.org/operation_0004">Operation concept nodes</a>,
 like <a href="http://edamontology.org/operation_2928">Alignment</a>,
@@ -3800,7 +3800,7 @@ required for a Process embedded inside another Process.</p>
 Especially useful for "class: Operation", but can also be used for
 CommandLineTool, Workflow, or ExpressionTool.</p>
 <p>If provided, then this must be an IRI of a concept node that
-represents the type of operation, preferrably defined within an ontology.</p>
+represents the type of operation, preferably defined within an ontology.</p>
 <p>For example, in the domain of bioinformatics, one can use an IRI from
 the EDAM Ontology's <a href="http://edamontology.org/operation_0004">Operation concept nodes</a>,
 like <a href="http://edamontology.org/operation_2928">Alignment</a>,
@@ -3907,7 +3907,7 @@ pipe.  Default: <code>false</code>.</p>
 <div class="col-xs-12 col-lg-6 description-col"><p>Only valid when <code>type: File</code> or is an array of <code>items: File</code>.</p>
 <p>This must be one or more IRIs of concept nodes
 that represents file formats which are allowed as input to this
-parameter, preferrably defined within an ontology.  If no ontology is
+parameter, preferably defined within an ontology.  If no ontology is
 available, file formats may be tested by exact match.</p>
 </div>
 </div>

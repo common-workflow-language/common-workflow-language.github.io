@@ -235,7 +235,7 @@ data interpretation of the content, enables generation of JSON-LD context
 and RDF schema, and production of RDF triples by applying the JSON-LD
 context.  The schema language also provides for robust support of inline
 documentation.</p>
-<h2 id="Introduction_to_v1.1" class="section">1.1 Introduction to v1.1 <a href="#Introduction_to_v1.1">&sect;</a></h2><p>This is the third version of of the Schema Salad specification.  It is
+<h2 id="Introduction_to_v1.1" class="section">1.1 Introduction to v1.1 <a href="#Introduction_to_v1.1">&sect;</a></h2><p>This is the third version of the Schema Salad specification.  It is
 developed concurrently with v1.1 of the Common Workflow Language for use in
 specifying the Common Workflow Language, however Schema Salad is intended to be
 useful to a broader audience.  Compared to the v1.0 schema salad
@@ -680,15 +680,16 @@ and other links.</p>
 }
 </code></pre>
 <h2 id="Vocabulary_resolution" class="section">3.4 Vocabulary resolution <a href="#Vocabulary_resolution">&sect;</a></h2><p>The schema may designate one or more vocabulary fields which use
-  terms defined in the vocabulary.  The vocabulary are the short
-  names of all the identifiers in the schema.  Processing must
-  resolve vocabulary fields to either vocabulary terms or absolute
-  URIs by first applying the link resolution rules defined above,
-  then applying the following additional rule:</p>
-<pre><code>* If a reference URI is a vocabulary field, and there is a vocabulary
-term which maps to the resolved URI, the reference must be replace with
-the vocabulary term.
-</code></pre>
+terms defined in the vocabulary.  The vocabulary are the short
+names of all the identifiers in the schema.  Processing must
+resolve vocabulary fields to either vocabulary terms or absolute
+URIs by first applying the link resolution rules defined above,
+then applying the following additional rule:</p>
+<ul>
+<li>If a reference URI is a vocabulary field, and there is a vocabulary
+term which maps to the resolved URI, the reference must be replaced with
+the vocabulary term.</li>
+</ul>
 <h3 id="Vocabulary_resolution_example" class="section">3.4.1 Vocabulary resolution example <a href="#Vocabulary_resolution_example">&sect;</a></h3><p>Given the following schema:</p>
 <pre><code>{
   "$namespaces": {
