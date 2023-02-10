@@ -249,7 +249,6 @@ under the terms of the Apache License, version 2.0.</p>
 </ol><li><a href="#ToolTimeLimit">5.17 ToolTimeLimit</a><ol>
 </ol><li><a href="#CWLVersion">5.18 CWLVersion</a><ol>
 </ol></li></ol></li></ol></nav>
-
 <h1 id="Introduction" class="section">1. Introduction <a href="#Introduction">&sect;</a></h1><p>The Common Workflow Language (CWL) working group is an informal, multi-vendor
 working group consisting of various organizations and individuals that have an
 interest in portability of data analysis workflows.  The goal is to create
@@ -266,29 +265,20 @@ CWL documents that relied on previously undefined or
 underspecified behavior may have slightly different behavior in
 v1.2.</p>
 <h2 id="Changelog" class="section">1.2 Changelog <a href="#Changelog">&sect;</a></h2><ul>
-<li><code>coresMin</code> and <code>coresMax</code> of
-  <a href="#ResourceRequirement">ResourceRequirement</a> may now request fractional CPUs.</li>
-<li><code>ramMin</code>, <code>ramMax</code>, <code>tmpdirMin</code>, <code>tmpdirMax</code>, <code>outdirMin</code>, and <code>outdirMax</code> of
-  <a href="#ResourceRequirement">ResourceRequirement</a> now accept floating point values.</li>
-<li><a href="#CommandLineTool">CommandLineTool</a> can now express <code>intent</code>
-with an identifier for the type of computational operation.</li>
-<li>Added conformance tests for order of operations evaluating <code>secondaryFiles</code> on input
-and ensure that input and output secondaryFiles expressions can return a File object.</li>
+<li><code>coresMin</code> and <code>coresMax</code> of <a href="#ResourceRequirement">ResourceRequirement</a> may now request fractional CPUs.</li>
+<li><code>ramMin</code>, <code>ramMax</code>, <code>tmpdirMin</code>, <code>tmpdirMax</code>, <code>outdirMin</code>, and <code>outdirMax</code> of <a href="#ResourceRequirement">ResourceRequirement</a> now accept floating point values.</li>
+<li><a href="#CommandLineTool">CommandLineTool</a> can now express <code>intent</code> with an identifier for the type of computational operation.</li>
+<li>Added conformance tests for order of operations evaluating <code>secondaryFiles</code> on input and ensure that input and output secondaryFiles expressions can return a File object.</li>
 <li>Clarify there are no limits on the size of file literal <code>contents</code>.</li>
-<li>When using <code>loadContents</code> it now must fail when attempting to
-load a file greater than 64 KiB instead of silently truncating
+<li>When using <code>loadContents</code> it now must fail when attempting to load a file greater than 64 KiB instead of silently truncating
 the data.</li>
-<li>Objects, arrays and numbers returned by parameter references
-or expressions in <code>Dirent.entry</code> that are not a <code>File</code> or
+<li>Objects, arrays and numbers returned by parameter references or expressions in <code>Dirent.entry</code> that are not a <code>File</code> or
 <code>Directory</code> object (or array of such) are now specified to be
 JSON serialized to produce file contents.</li>
 <li>Note that only enum and record types can be typedef-ed</li>
-<li>Added conformance tests for order of operations evaluating <code>secondaryFiles</code> on input
-and ensure that input and output secondaryFiles expressions can return a File object.</li>
-<li>Escaping in <a href="#String_Interpolation">string interpolation</a> has
-been added to the specification along with conformance tests.</li>
-<li>It is now possible to have an absolute path in the <code>entryname</code>
-field in
+<li>Added conformance tests for order of operations evaluating <code>secondaryFiles</code> on input and ensure that input and output secondaryFiles expressions can return a File object.</li>
+<li>Escaping in <a href="#String_Interpolation">string interpolation</a> has been added to the specification along with conformance tests.</li>
+<li>It is now possible to have an absolute path in the <code>entryname</code> field in
 <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a> when
 running in a mandatory container.  Together with
 <code>DockerRequirement.dockerOutputDirectory</code> this it possible to
@@ -397,7 +387,8 @@ with the document's declared version.  An implementation must not
 expose a newer feature when executing a document that specifies an
 older version that does not include that feature.</p>
 <h3 id="map" class="section">2.2.1 map <a href="#map">&sect;</a></h3><p>Note: This section is non-normative.</p>
-<blockquote><p>type: array&lt;ComplexType&gt; |
+<blockquote>
+<p>type: array&lt;ComplexType&gt; |
 map&lt;<code>key_field</code>, ComplexType&gt;</p>
 </blockquote>
 <p>The above syntax in the CWL specifications means there are two or more ways to write the given value.</p>
@@ -413,7 +404,8 @@ map&lt;<code>key_field</code>, ComplexType&gt;</p>
   - key_field: a_complex_type3
 </code></pre>
 <p>Option one specific example using <a href="Workflow.html#Workflow">Workflow</a>.<a href="Workflow.html#WorkflowInputParameter">inputs</a>:</p>
-<blockquote><p>array&lt;InputParameter&gt; |
+<blockquote>
+<p>array&lt;InputParameter&gt; |
 map&lt;<code>id</code>, <code>type</code> | InputParameter&gt;</p>
 </blockquote>
 <pre><code>inputs:
@@ -440,7 +432,8 @@ value: <code>a_complex_type3: {}</code></p>
   a_complex_type3: {}  # we accept the default values for "field2" and "field3"
 </code></pre>
 <p>Option two specific example using <a href="Workflow.html#Workflow">Workflow</a>.<a href="Workflow.html#WorkflowInputParameter">inputs</a>:</p>
-<blockquote><p>array&lt;InputParameter&gt; |
+<blockquote>
+<p>array&lt;InputParameter&gt; |
 map&lt;<code>id</code>, <code>type</code> | InputParameter&gt;</p>
 </blockquote>
 <pre><code>inputs:
@@ -451,7 +444,8 @@ map&lt;<code>id</code>, <code>type</code> | InputParameter&gt;</p>
     format: http://edamontology.org/format_2572
 </code></pre>
 <p>Option two specific example using <a href="#SoftwareRequirement">SoftwareRequirement</a>.<a href="#SoftwarePackage">packages</a>:</p>
-<blockquote><p>array&lt;SoftwarePackage&gt; |
+<blockquote>
+<p>array&lt;SoftwarePackage&gt; |
 map&lt;<code>package</code>, <code>specs</code> | SoftwarePackage&gt;</p>
 </blockquote>
 <pre><code>hints:
@@ -464,7 +458,8 @@ map&lt;<code>package</code>, <code>specs</code> | SoftwarePackage&gt;</p>
       python: {}
 </code></pre>
 <p>Sometimes we have a third and even more compact option denoted like this:</p>
-<blockquote><p>type: array&lt;ComplexType&gt; |
+<blockquote>
+<p>type: array&lt;ComplexType&gt; |
 map&lt;<code>key_field</code>, <code>field2</code> | ComplexType&gt;</p>
 </blockquote>
 <p>For this example, if we only need the <code>key_field</code> and <code>field2</code> when specifying
@@ -477,7 +472,8 @@ their default values) then we can abbreviate.</p>
   a_complex_type3: {}    # we accept the default values for "field2" and "field3"
 </code></pre>
 <p>Option three specific example using <a href="Workflow.html#Workflow">Workflow</a>.<a href="Workflow.html#WorkflowInputParameter">inputs</a>:</p>
-<blockquote><p>array&lt;InputParameter&gt; |
+<blockquote>
+<p>array&lt;InputParameter&gt; |
 map&lt;<code>id</code>, <code>type</code> | InputParameter&gt;</p>
 </blockquote>
 <pre><code>inputs:
@@ -485,7 +481,8 @@ map&lt;<code>id</code>, <code>type</code> | InputParameter&gt;</p>
   workflow_input02: File  # we accept the default of no File format
 </code></pre>
 <p>Option three specific example using <a href="#SoftwareRequirement">SoftwareRequirement</a>.<a href="#SoftwarePackage">packages</a>:</p>
-<blockquote><p>array&lt;SoftwarePackage&gt; |
+<blockquote>
+<p>array&lt;SoftwarePackage&gt; |
 map&lt;<code>package</code>, <code>specs</code> | SoftwarePackage&gt;</p>
 </blockquote>
 <pre><code>hints:
@@ -506,7 +503,8 @@ map&lt;<code>package</code>, <code>specs</code> | SoftwarePackage&gt;</p>
                           # "field2" and "field3"
 </code></pre>
 <p>Mixed option 2 and 3 specific example using <a href="Workflow.html#Workflow">Workflow</a>.<a href="Workflow.html#WorkflowInputParameter">inputs</a>:</p>
-<blockquote><p>array&lt;InputParameter&gt; |
+<blockquote>
+<p>array&lt;InputParameter&gt; |
 map&lt;<code>id</code>, <code>type</code> | InputParameter&gt;</p>
 </blockquote>
 <pre><code>inputs:
@@ -516,7 +514,8 @@ map&lt;<code>id</code>, <code>type</code> | InputParameter&gt;</p>
     format: http://edamontology.org/format_2572
 </code></pre>
 <p>Mixed option 2 and 3 specific example using <a href="#SoftwareRequirement">SoftwareRequirement</a>.<a href="#SoftwarePackage">packages</a>:</p>
-<blockquote><p>array&lt;SoftwarePackage&gt; |
+<blockquote>
+<p>array&lt;SoftwarePackage&gt; |
 map&lt;<code>package</code>, <code>specs</code> | SoftwarePackage&gt;</p>
 </blockquote>
 <pre><code>hints:
@@ -544,8 +543,8 @@ which the <code>id</code> field is explicitly listed in this specification.</p>
 <a href="SchemaSalad.html#Include">$include</a> directives as described in the
 <a href="SchemaSalad.html#Document_preprocessing">Schema Salad specification</a>.</p>
 <p>Another transformation defined in Schema salad is simplification of data type definitions.
-Type <code>&lt;T&gt;</code> ending with <code>?</code> should be transformed to <code>[&lt;T&gt;, "null"]</code>.
-Type <code>&lt;T&gt;</code> ending with <code>[]</code> should be transformed to <code>{"type": "array", "items": &lt;T&gt;}</code></p>
+Type <code>&lt;T&gt;</code> ending with <code>?</code> should be transformed to <code>[&lt;T&gt;, &quot;null&quot;]</code>.
+Type <code>&lt;T&gt;</code> ending with <code>[]</code> should be transformed to <code>{&quot;type&quot;: &quot;array&quot;, &quot;items&quot;: &lt;T&gt;}</code></p>
 <h2 id="Extensions_and_metadata" class="section">2.5 Extensions and metadata <a href="#Extensions_and_metadata">&sect;</a></h2><p>Input metadata (for example, a sample identifier) may be represented within
 a tool or workflow using input parameters which are explicitly propagated to
 output.  Future versions of this specification may define additional facilities
@@ -624,8 +623,7 @@ platform include:</p>
 <ul>
 <li>Data security and permissions</li>
 <li>Scheduling tool invocations on remote cluster or cloud compute nodes.</li>
-<li>Using virtual machines or operating system containers to manage the runtime
-(except as described in <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a>).</li>
+<li>Using virtual machines or operating system containers to manage the runtime (except as described in <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a>).</li>
 <li>Using remote or distributed file systems to manage input and output files.</li>
 <li>Transforming file paths.</li>
 <li>Pausing, resuming or checkpointing processes or workflows.</li>
@@ -639,11 +637,9 @@ modeled as functions that consume an input object and produce an
 output object.</p>
 <ol>
 <li>Load input object.</li>
-<li>Load, process and validate a CWL document, yielding one or more process objects.
-The <a href="SchemaSalad.html#Explicit_context"><code>$namespaces</code></a> present in the CWL document
+<li>Load, process and validate a CWL document, yielding one or more process objects. The <a href="SchemaSalad.html#Explicit_context"><code>$namespaces</code></a> present in the CWL document
 are also used when validating and processing the input object.</li>
-<li>If there are multiple process objects (due to <a href="SchemaSalad.html#Document_graph"><code>$graph</code></a>)
-and which process object to start with is not specified in the input object (via
+<li>If there are multiple process objects (due to <a href="SchemaSalad.html#Document_graph"><code>$graph</code></a>) and which process object to start with is not specified in the input object (via
 a <a href="#Executing_CWL_documents_as_scripts"><code>cwl:tool</code></a> entry) or by any other means
 (like a URL fragment) then choose the process with the <code>id</code> of "#main" or "main".</li>
 <li>Validate the input object against the <code>inputs</code> schema for the process.</li>
@@ -705,16 +701,15 @@ or more repeats, and all other characters are literal values.</p>
 <tr><td>segment::            </td><td>. {symbol} | {singleq} | {doubleq} | {index}</td></tr>
 <tr><td>parameter reference::</td><td>$( {symbol} {segment}*)</td></tr>
 </table>
-</p><p>Use the following algorithm to resolve a parameter reference:</p>
+</p>
+<p>Use the following algorithm to resolve a parameter reference:</p>
 <ol>
 <li>Match the leading symbol as the key</li>
-<li>Look up the key in the parameter context (described below) to get the current value.
-It is an error if the key is not found in the parameter context.</li>
+<li>Look up the key in the parameter context (described below) to get the current value. It is an error if the key is not found in the parameter context.</li>
 <li>If there are no subsequent segments, terminate and return current value</li>
 <li>Else, match the next segment</li>
 <li>Extract the symbol, string, or index from the segment as the key</li>
-<li>Look up the key in current value and assign as new current value.  If
-the key is a symbol or string, the current value must be an object.
+<li>Look up the key in current value and assign as new current value.  If the key is a symbol or string, the current value must be an object.
 If the key is an index, the current value must be an array or string.
 It is an error if the key does not match the required type, or the key is not found or out
 of range.</li>
@@ -724,12 +719,10 @@ of range.</li>
 be provided:</p>
 <ul>
 <li><code>inputs</code>: The input object to the current Process.</li>
-<li><code>self</code>: A context-specific value.  The contextual values for 'self' are
-documented for specific fields elsewhere in this specification.  If
+<li><code>self</code>: A context-specific value.  The contextual values for 'self' are documented for specific fields elsewhere in this specification.  If
 a contextual value of 'self' is not documented for a field, it
 must be 'null'.</li>
-<li><code>runtime</code>: An object containing configuration details.  Specific to the
-process type.  An implementation may provide
+<li><code>runtime</code>: An object containing configuration details.  Specific to the process type.  An implementation may provide
 opaque strings for any or all fields of <code>runtime</code>.  These must be
 filled in by the platform after processing the Tool but before actual
 execution.  Parameter references and expressions may only use the
@@ -746,8 +739,7 @@ followed by the string value of the parameter reference, followed by the
 trailing characters.  The string value of the parameter reference is its
 textual JSON representation with the following rules:</p>
 <ul>
-<li>Strings are replaced the literal text of the string, any escaped
-characters replaced by the literal characters they represent, and
+<li>Strings are replaced the literal text of the string, any escaped characters replaced by the literal characters they represent, and
 there are no leading or trailing quotes.</li>
 <li>Objects entries are sorted by key</li>
 </ul>
@@ -766,12 +758,10 @@ from start to end with 3-character lookahead.  After performing a
 replacement scanning resumes at the next character following the
 replaced substring.</p>
 <ol>
-<li>The substrings <code>\$(</code> and <code>\${</code> are replaced by <code>$(</code> and <code>${</code>
-respectively.  No parameter or expression evaluation
+<li>The substrings <code>\$(</code> and <code>\${</code> are replaced by <code>$(</code> and <code>${</code> respectively.  No parameter or expression evaluation
 interpolation occurs.</li>
 <li>A double backslash <code>\\</code> is replaced by a single backslash <code>\</code>.</li>
-<li>A substring starting with a backslash that does not match one of
-the previous rules is left unchanged.</li>
+<li>A substring starting with a backslash that does not match one of the previous rules is left unchanged.</li>
 </ol>
 <h2 id="Expressions_(Optional)" class="section">3.5 Expressions (Optional) <a href="#Expressions_(Optional)">&sect;</a></h2><p>An expression is a fragment of <a href="http://www.ecma-international.org/ecma-262/5.1/">Javascript/ECMAScript
 5.1</a> code evaluated by the
@@ -828,8 +818,7 @@ and be marked as executable (the POSIX "+x" permission bits) to enable it
 to be executed directly.  A workflow platform may support this mode of
 operation; if so, it must provide <code>cwl-runner</code> as an alias for the
 platform's CWL implementation.</p>
-<p>A CWL input object document may similarly begin with <code>#!/usr/bin/env
-cwl-runner</code> and be marked as executable.  In this case, the input object
+<p>A CWL input object document may similarly begin with <code>#!/usr/bin/env cwl-runner</code> and be marked as executable.  In this case, the input object
 must include the field <code>cwl:tool</code> supplying an IRI to the default CWL
 document that should be executed using the fields of the input object as
 input parameters.</p>
@@ -859,34 +848,28 @@ separately using the <code>arguments</code> field of the CommandLineTool.</p>
 the sort key is a list consisting of one or more numeric or string
 elements.  Strings are sorted lexicographically based on UTF-8 encoding.</p>
 <ol>
-<li><p>Collect <code>CommandLineBinding</code> objects from <code>arguments</code>.  Assign a sorting
-key <code>[position, i]</code> where <code>position</code> is
+<li><p>Collect <code>CommandLineBinding</code> objects from <code>arguments</code>.  Assign a sorting key <code>[position, i]</code> where <code>position</code> is
 <a href="#CommandLineBinding"><code>CommandLineBinding.position</code></a> and <code>i</code>
 is the index in the <code>arguments</code> list.</p>
 </li>
-<li><p>Collect <code>CommandLineBinding</code> objects from the <code>inputs</code> schema and
-associate them with values from the input object.  Where the input type
+<li><p>Collect <code>CommandLineBinding</code> objects from the <code>inputs</code> schema and associate them with values from the input object.  Where the input type
 is a record, array, or map, recursively walk the schema and input object,
 collecting nested <code>CommandLineBinding</code> objects and associating them with
 values from the input object.</p>
 </li>
-<li><p>Create a sorting key by taking the value of the <code>position</code> field at
-each level leading to each leaf binding object.  If <code>position</code> is not
+<li><p>Create a sorting key by taking the value of the <code>position</code> field at each level leading to each leaf binding object.  If <code>position</code> is not
 specified, it is not added to the sorting key.  For bindings on arrays
 and maps, the sorting key must include the array index or map key
 following the position.  If and only if two bindings have the same sort
 key, the tie must be broken using the ordering of the field or parameter
 name immediately containing the leaf binding.</p>
 </li>
-<li><p>Sort elements using the assigned sorting keys.  Numeric entries sort
-before strings.</p>
+<li><p>Sort elements using the assigned sorting keys.  Numeric entries sort before strings.</p>
 </li>
-<li><p>In the sorted order, apply the rules defined in
-<a href="#CommandLineBinding"><code>CommandLineBinding</code></a> to convert bindings to actual
+<li><p>In the sorted order, apply the rules defined in <a href="#CommandLineBinding"><code>CommandLineBinding</code></a> to convert bindings to actual
 command line elements.</p>
 </li>
-<li><p>Insert elements from <code>baseCommand</code> at the beginning of the command
-line.</p>
+<li><p>Insert elements from <code>baseCommand</code> at the beginning of the command line.</p>
 </li>
 </ol>
 <h2 id="Runtime_environment" class="section">4.2 Runtime environment <a href="#Runtime_environment">&sect;</a></h2><p>All files listed in the input object must be made available in the runtime
@@ -918,11 +901,9 @@ specified or at user option.</p>
 <ul>
 <li><code>HOME</code> must be set to the designated output directory.</li>
 <li><code>TMPDIR</code> must be set to the designated temporary directory.</li>
-<li><code>PATH</code> may be inherited from the parent process, except when run in a
-container that provides its own <code>PATH</code>.</li>
+<li><code>PATH</code> may be inherited from the parent process, except when run in a container that provides its own <code>PATH</code>.</li>
 <li>Variables defined by <a href="#EnvVarRequirement">EnvVarRequirement</a></li>
-<li>The default environment of the container, such as when using
-<a href="#DockerRequirement">DockerRequirement</a></li>
+<li>The default environment of the container, such as when using <a href="#DockerRequirement">DockerRequirement</a></li>
 </ul>
 <p>An implementation may forbid the tool from writing to any location in the
 runtime environment file system other than the designated temporary directory,
@@ -1233,10 +1214,8 @@ instead.</p>
 it specifies that the following pattern should be applied to the path
 of the primary file to yield a filename relative to the primary File:</p>
 <ol>
-<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark
-the resulting secondary file as optional.</li>
-<li>If string begins with one or more caret <code>^</code> characters, for each
-caret, remove the last file extension from the path (the last
+<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark the resulting secondary file as optional.</li>
+<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -1338,23 +1317,18 @@ effective value.</p>
 </li>
 <li><p><strong>number</strong>: Add <code>prefix</code> and decimal representation to command line.</p>
 </li>
-<li><p><strong>boolean</strong>: If true, add <code>prefix</code> to the command line.  If false, add
-  nothing.</p>
+<li><p><strong>boolean</strong>: If true, add <code>prefix</code> to the command line.  If false, add nothing.</p>
 </li>
-<li><p><strong>File</strong>: Add <code>prefix</code> and the value of
-<a href="#File"><code>File.path</code></a> to the command line.</p>
+<li><p><strong>File</strong>: Add <code>prefix</code> and the value of <a href="#File"><code>File.path</code></a> to the command line.</p>
 </li>
-<li><p><strong>Directory</strong>: Add <code>prefix</code> and the value of
-<a href="#Directory"><code>Directory.path</code></a> to the command line.</p>
+<li><p><strong>Directory</strong>: Add <code>prefix</code> and the value of <a href="#Directory"><code>Directory.path</code></a> to the command line.</p>
 </li>
-<li><p><strong>array</strong>: If <code>itemSeparator</code> is specified, add <code>prefix</code> and the join
-  the array into a single string with <code>itemSeparator</code> separating the
-  items.  Otherwise first add <code>prefix</code>, then recursively process
-  individual elements.
-  If the array is empty, it does not add anything to command line.</p>
+<li><p><strong>array</strong>: If <code>itemSeparator</code> is specified, add <code>prefix</code> and the join the array into a single string with <code>itemSeparator</code> separating the
+items.  Otherwise first add <code>prefix</code>, then recursively process
+individual elements.
+If the array is empty, it does not add anything to command line.</p>
 </li>
-<li><p><strong>object</strong>: Add <code>prefix</code> only, and recursively add object fields for
-  which <code>inputBinding</code> is specified.</p>
+<li><p><strong>object</strong>: Add <code>prefix</code> only, and recursively add object fields for which <code>inputBinding</code> is specified.</p>
 </li>
 <li><p><strong>null</strong>: Add nothing.</p>
 </li>
@@ -1447,12 +1421,9 @@ is declared and supported by the platform, the field must also allow
 Javascript expressions.</p>
 <h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>ExpressionPlaceholder</code></td><td></td></tr></table><h3 id="SecondaryFileSchema" class="section">5.1.3 SecondaryFileSchema <a href="#SecondaryFileSchema">&sect;</a></h3><p>Secondary files are specified using the following micro-DSL for secondary files:</p>
 <ul>
-<li>If the value is a string, it is transformed to an object with two fields
-<code>pattern</code> and <code>required</code></li>
-<li>By default, the value of <code>required</code> is <code>null</code>
-(this indicates default behavior, which may be based on the context)</li>
-<li>If the value ends with a question mark <code>?</code> the question mark is
-stripped off and the value of the field <code>required</code> is set to <code>False</code></li>
+<li>If the value is a string, it is transformed to an object with two fields <code>pattern</code> and <code>required</code></li>
+<li>By default, the value of <code>required</code> is <code>null</code> (this indicates default behavior, which may be based on the context)</li>
+<li>If the value ends with a question mark <code>?</code> the question mark is stripped off and the value of the field <code>required</code> is set to <code>False</code></li>
 <li>The remaining value is assigned to the field <code>pattern</code></li>
 </ul>
 <p>For implementation details and examples, please see
@@ -1505,10 +1476,8 @@ but should construct relative references using <code>basename</code> or
 it specifies that the following pattern should be applied to the path
 of the primary file to yield a filename relative to the primary File:</p>
 <ol>
-<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark
-the resulting secondary file as optional.</li>
-<li>If string begins with one or more caret <code>^</code> characters, for each
-caret, remove the last file extension from the path (the last
+<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark the resulting secondary file as optional.</li>
+<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -1631,7 +1600,7 @@ executed must be able to access the file at <code>path</code> using the POSIX
 field is not, an implementation may assign the value of the <code>path</code>
 field to <code>location</code>, and remove the <code>path</code> field.</p>
 <p>If the <code>path</code> contains <a href="http://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_02">POSIX shell metacharacters</a>
-(<code>|</code>,<code>&amp;</code>, <code>;</code>, <code>&lt;</code>, <code>&gt;</code>, <code>(</code>,<code>)</code>, <code>$</code>,<code>`</code>, <code>\</code>, <code>"</code>, <code>'</code>,
+(<code>|</code>,<code>&amp;</code>, <code>;</code>, <code>&lt;</code>, <code>&gt;</code>, <code>(</code>,<code>)</code>, <code>$</code>,<code>`</code>, <code>\</code>, <code>&quot;</code>, <code>'</code>,
 <code>&lt;space&gt;</code>, <code>&lt;tab&gt;</code>, and <code>&lt;newline&gt;</code>) or characters
 <a href="http://www.iana.org/assignments/idna-tables-6.3.0/idna-tables-6.3.0.xhtml">not allowed</a>
 for <a href="https://tools.ietf.org/html/rfc6452">Internationalized Domain Names for Applications</a>
@@ -1659,8 +1628,7 @@ with <code>basename</code>, i.e. the final component of the <code>path</code> fi
 <div class="col-xs-2 col-lg-1">optional</div>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The name of the directory containing file, that is, the path leading up
-to the final slash in the path such that <code>dirname + '/' + basename ==
-path</code>.</p>
+to the final slash in the path such that <code>dirname + '/' + basename == path</code>.</p>
 <p>The implementation must set this field based on the value of <code>path</code>
 prior to evaluating parameter references or expressions in a
 CommandLineTool document.  This field must not be used in any other
@@ -1839,7 +1807,7 @@ must not be used in any other context.  The command line tool being
 executed must be able to access the directory at <code>path</code> using the POSIX
 <code>opendir(2)</code> syscall.</p>
 <p>If the <code>path</code> contains <a href="http://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_02">POSIX shell metacharacters</a>
-(<code>|</code>,<code>&amp;</code>, <code>;</code>, <code>&lt;</code>, <code>&gt;</code>, <code>(</code>,<code>)</code>, <code>$</code>,<code>`</code>, <code>\</code>, <code>"</code>, <code>'</code>,
+(<code>|</code>,<code>&amp;</code>, <code>;</code>, <code>&lt;</code>, <code>&gt;</code>, <code>(</code>,<code>)</code>, <code>$</code>,<code>`</code>, <code>\</code>, <code>&quot;</code>, <code>'</code>,
 <code>&lt;space&gt;</code>, <code>&lt;tab&gt;</code>, and <code>&lt;newline&gt;</code>) or characters
 <a href="http://www.iana.org/assignments/idna-tables-6.3.0/idna-tables-6.3.0.xhtml">not allowed</a>
 for <a href="https://tools.ietf.org/html/rfc6452">Internationalized Domain Names for Applications</a>
@@ -2009,10 +1977,8 @@ instead.</p>
 it specifies that the following pattern should be applied to the path
 of the primary file to yield a filename relative to the primary File:</p>
 <ol>
-<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark
-the resulting secondary file as optional.</li>
-<li>If string begins with one or more caret <code>^</code> characters, for each
-caret, remove the last file extension from the path (the last
+<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark the resulting secondary file as optional.</li>
+<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -2230,10 +2196,8 @@ instead.</p>
 it specifies that the following pattern should be applied to the path
 of the primary file to yield a filename relative to the primary File:</p>
 <ol>
-<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark
-the resulting secondary file as optional.</li>
-<li>If string begins with one or more caret <code>^</code> characters, for each
-caret, remove the last file extension from the path (the last
+<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark the resulting secondary file as optional.</li>
+<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -2462,10 +2426,8 @@ instead.</p>
 it specifies that the following pattern should be applied to the path
 of the primary file to yield a filename relative to the primary File:</p>
 <ol>
-<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark
-the resulting secondary file as optional.</li>
-<li>If string begins with one or more caret <code>^</code> characters, for each
-caret, remove the last file extension from the path (the last
+<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark the resulting secondary file as optional.</li>
+<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -2723,8 +2685,7 @@ processed in the order listed such that later schema definitions may refer
 to earlier schema definitions.</p>
 <ul>
 <li><strong>Type definitions are allowed for <code>enum</code> and <code>record</code> types only.</strong></li>
-<li>Type definitions may be shared by defining them in a file and then
-<code>$include</code>-ing them in the <code>types</code> field.</li>
+<li>Type definitions may be shared by defining them in a file and then <code>$include</code>-ing them in the <code>types</code> field.</li>
 <li>A file can contain a list of type definitions</li>
 </ul>
 <h3>Fields</h3>
@@ -2932,8 +2893,7 @@ these software identifier IRIs to some configuration action; or they can
 use only the name from the <code>package</code> field on a best effort basis.</p>
 <p>For example, the IRI <a href="https://packages.debian.org/bowtie">https://packages.debian.org/bowtie</a> could
 be resolved with <code>apt-get install bowtie</code>. The IRI
-<a href="https://anaconda.org/bioconda/bowtie">https://anaconda.org/bioconda/bowtie</a> could be resolved with <code>conda
-install -c bioconda bowtie</code>.</p>
+<a href="https://anaconda.org/bioconda/bowtie">https://anaconda.org/bioconda/bowtie</a> could be resolved with <code>conda install -c bioconda bowtie</code>.</p>
 <p>IRIs can also be system independent and used to map to a specific
 software installation or selection mechanism.
 Using <a href="https://www.identifiers.org/rrid/">RRID</a> as an example:
@@ -2986,9 +2946,7 @@ Normally files are staged within the designated output directory. However, when 
 <div class="col-xs-7 col-lg-3"><a href="#Expression">Expression</a> | array&lt;<a href="#CWLType">null</a> | <a href="#Dirent">Dirent</a> | <a href="#Expression">Expression</a> | <a href="#File">File</a> | <a href="#Directory">Directory</a> | array&lt;<a href="#File">File</a>&nbsp;|&nbsp;<a href="#Directory">Directory</a>&gt;&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The list of files or subdirectories that must be staged prior
 to executing the command line tool.</p>
-<p>Return type of each expression must validate as <code>["null",
-File, Directory, Dirent, {type: array, items: [File,
-Directory]}]</code>.</p>
+<p>Return type of each expression must validate as <code>[&quot;null&quot;, File, Directory, Dirent, {type: array, items: [File, Directory]}]</code>.</p>
 <p>Each <code>File</code> or <code>Directory</code> that is returned by an Expression
 must be added to the designated output directory prior to
 executing the tool.</p>
@@ -3061,8 +3019,7 @@ with <code>../</code> or that resolves to location above the designated output d
 it is an error unless the following conditions are met:</p>
 <ul>
 <li><code>DockerRequirement</code> is present in <code>requirements</code></li>
-<li>The program is will run inside a software container
-where, from the perspective of the program, the root
+<li>The program is will run inside a software container where, from the perspective of the program, the root
 filesystem is not shared with any other user or
 running program.</li>
 </ul>
@@ -3347,8 +3304,7 @@ address or the ability to accept inbound connections.</p>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">boolean</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"></div>
 </div></div><h2 id="InplaceUpdateRequirement" class="section">5.16 InplaceUpdateRequirement <a href="#InplaceUpdateRequirement">&sect;</a></h2><p>If <code>inplaceUpdate</code> is true, then an implementation supporting this
-feature may permit tools to directly update files with <code>writable:
-true</code> in InitialWorkDirRequirement.  That is, as an optimization,
+feature may permit tools to directly update files with <code>writable: true</code> in InitialWorkDirRequirement.  That is, as an optimization,
 files may be destructively modified in place as opposed to copied
 and updated.</p>
 <p>An implementation must ensure that only one workflow step may

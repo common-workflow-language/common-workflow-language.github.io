@@ -228,7 +228,6 @@ under the terms of the Apache License, version 2.0.</p>
 </ol><li><a href="#ResourceRequirement">5.11 ResourceRequirement</a><ol>
 </ol><li><a href="#CWLVersions">5.12 CWLVersions</a><ol>
 </ol></li></ol></li></ol></nav>
-
 <h1 id="Introduction" class="section">1. Introduction <a href="#Introduction">&sect;</a></h1><p>The Common Workflow Language (CWL) working group is an informal, multi-vendor
 working group consisting of various organizations and individuals that have an
 interest in portability of data analysis workflows.  The goal is to create
@@ -238,17 +237,13 @@ reproducibility.</p>
 <h2 id="Introduction_to_draft_3" class="section">1.1 Introduction to draft 3 <a href="#Introduction_to_draft_3">&sect;</a></h2><p>This specification represents the third milestone of the CWL group.  Since
 draft-2, this draft introduces the following major changes and additions:</p>
 <ul>
-<li>Greatly simplified naming within a document with scoped identifiers, as
-described in the <a href="SchemaSalad.html">Schema Salad specification</a>.</li>
-<li>The draft-2 concept of pluggable expression engines has been replaced
-by a <a href="#Parameter_references">streamlined expression syntax</a>
+<li>Greatly simplified naming within a document with scoped identifiers, as described in the <a href="SchemaSalad.html">Schema Salad specification</a>.</li>
+<li>The draft-2 concept of pluggable expression engines has been replaced by a <a href="#Parameter_references">streamlined expression syntax</a>
 and standardization on <a href="#Expressions">Javascript</a>.</li>
-<li><a href="#File">File</a> objects can now include a <code>format</code> field to indicate
-the file type.</li>
+<li><a href="#File">File</a> objects can now include a <code>format</code> field to indicate the file type.</li>
 <li>The addition of <a href="#ShellCommandRequirement">ShellCommandRequirement</a>.</li>
 <li>The addition of <a href="#ResourceRequirement">ResourceRequirement</a>.</li>
-<li>The separation of CommandLineTool and Workflow components into
-separate specifications.</li>
+<li>The separation of CommandLineTool and Workflow components into separate specifications.</li>
 </ul>
 <h2 id="Purpose" class="section">1.2 Purpose <a href="#Purpose">&sect;</a></h2><p>Standalone programs are a flexible and interoperable form of code reuse.
 Unlike monolithic applications, applications and analysis workflows which
@@ -380,12 +375,10 @@ platform include:</p>
 <ul>
 <li>Data security and permissions.</li>
 <li>Scheduling tool invocations on remote cluster or cloud compute nodes.</li>
-<li>Using virtual machines or operating system containers to manage the runtime
-(except as described in <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a>).</li>
+<li>Using virtual machines or operating system containers to manage the runtime (except as described in <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a>).</li>
 <li>Using remote or distributed file systems to manage input and output files.</li>
 <li>Transforming file paths.</li>
-<li>Determining if a process has previously been executed, skipping it and
-reusing previous results.</li>
+<li>Determining if a process has previously been executed, skipping it and reusing previous results.</li>
 <li>Pausing, resuming or checkpointing processes or workflows.</li>
 </ul>
 <p>Conforming CWL processes must not assume anything about the runtime
@@ -445,16 +438,15 @@ one or more repeats, all other characters are literal values.</p>
 <tr><td>segment::  </td><td>. {symbol} | {singleq} | {doubleq} | {index}</td></tr>
 <tr><td>parameter::</td><td>$( {symbol} {segment}*)</td></tr>
 </table>
-</p><p>Use the following algorithm to resolve a parameter reference:</p>
+</p>
+<p>Use the following algorithm to resolve a parameter reference:</p>
 <ol>
 <li>Match the leading symbol as key</li>
-<li>Look up the key in the parameter context (described below) to get the current value.
-It is an error if the key is not found in the parameter context.</li>
+<li>Look up the key in the parameter context (described below) to get the current value. It is an error if the key is not found in the parameter context.</li>
 <li>If there are no subsequent segments, terminate and return current value</li>
 <li>Else, match the next segment</li>
 <li>Extract the symbol, string, or index from the segment as key</li>
-<li>Look up the key in current value and assign as new current value.  If
-the key is a symbol or string, the current value must be an object.
+<li>Look up the key in current value and assign as new current value.  If the key is a symbol or string, the current value must be an object.
 If the key is an index, the current value must be an array or string.
 It is an error if the key does not match the required type, or the key is not found or out
 of range.</li>
@@ -464,12 +456,10 @@ of range.</li>
 be provided:</p>
 <ul>
 <li><code>inputs</code>: The input object to the current Process.</li>
-<li><code>self</code>: A context-specific value.  The contextual values for 'self' are
-documented for specific fields elsewhere in this specification.  If
+<li><code>self</code>: A context-specific value.  The contextual values for 'self' are documented for specific fields elsewhere in this specification.  If
 a contextual value of 'self' is not documented for a field, it
 must be 'null'.</li>
-<li><code>runtime</code>: An object containing configuration details.  Specific to the
-process type.  An implementation may provide may provide
+<li><code>runtime</code>: An object containing configuration details.  Specific to the process type.  An implementation may provide may provide
 opaque strings for any or all fields of <code>runtime</code>.  These must be
 filled in by the platform after processing the Tool but before actual
 execution.  Parameter references and expressions may only use the
@@ -541,15 +531,12 @@ execution which resulted in <code>temporaryFailure</code>.  An implementation ma
 choose to either continue running other steps of a workflow, or terminate
 immediately upon <code>permanentFailure</code>.</p>
 <ul>
-<li><p>If any step of a workflow execution results in <code>permanentFailure</code>, then the
-workflow status is <code>permanentFailure</code>.</p>
+<li><p>If any step of a workflow execution results in <code>permanentFailure</code>, then the workflow status is <code>permanentFailure</code>.</p>
 </li>
-<li><p>If one or more steps result in <code>temporaryFailure</code> and all other steps
-complete <code>success</code> or are not executed, then the workflow status is
+<li><p>If one or more steps result in <code>temporaryFailure</code> and all other steps complete <code>success</code> or are not executed, then the workflow status is
 <code>temporaryFailure</code>.</p>
 </li>
-<li><p>If all workflow steps are executed and complete with <code>success</code>, then the workflow
-status is <code>success</code>.</p>
+<li><p>If all workflow steps are executed and complete with <code>success</code>, then the workflow status is <code>success</code>.</p>
 </li>
 </ul>
 <h2 id="Executing_CWL_documents_as_scripts" class="section">3.7 Executing CWL documents as scripts <a href="#Executing_CWL_documents_as_scripts">&sect;</a></h2><p>By convention, a CWL document may begin with <code>#!/usr/bin/env cwl-runner</code>
@@ -557,8 +544,7 @@ and be marked as executable (the POSIX "+x" permission bits) to enable it
 to be executed directly.  A workflow platform may support this mode of
 operation; if so, it must provide <code>cwl-runner</code> as an alias for the
 platform's CWL implementation.</p>
-<p>A CWL input object document may similarly begin with <code>#!/usr/bin/env
-cwl-runner</code> and be marked as executable.  In this case, the input object
+<p>A CWL input object document may similarly begin with <code>#!/usr/bin/env cwl-runner</code> and be marked as executable.  In this case, the input object
 must include the field <code>cwl:tool</code> supplying a URI to the default CWL
 document that should be executed using the fields of the input object as
 input parameters.</p>
@@ -575,34 +561,28 @@ separately using the <code>arguments</code> field of the CommandLineTool.</p>
 the sort key is a list consisting of one or more numeric or string
 elements.  Strings are sorted lexicographically based on UTF-8 encoding.</p>
 <ol>
-<li><p>Collect <code>CommandLineBinding</code> objects from <code>arguments</code>.  Assign a sorting
-key <code>[position, i]</code> where <code>position</code> is
+<li><p>Collect <code>CommandLineBinding</code> objects from <code>arguments</code>.  Assign a sorting key <code>[position, i]</code> where <code>position</code> is
 <a href="#CommandLineBinding"><code>CommandLineBinding.position</code></a> and <code>i</code>
 is the index in the <code>arguments</code> list.</p>
 </li>
-<li><p>Collect <code>CommandLineBinding</code> objects from the <code>inputs</code> schema and
-associate them with values from the input object.  Where the input type
+<li><p>Collect <code>CommandLineBinding</code> objects from the <code>inputs</code> schema and associate them with values from the input object.  Where the input type
 is a record, array, or map, recursively walk the schema and input object,
 collecting nested <code>CommandLineBinding</code> objects and associating them with
 values from the input object.</p>
 </li>
-<li><p>Create a sorting key by taking the value of the <code>position</code> field at
-each level leading to each leaf binding object.  If <code>position</code> is not
+<li><p>Create a sorting key by taking the value of the <code>position</code> field at each level leading to each leaf binding object.  If <code>position</code> is not
 specified, it is not added to the sorting key.  For bindings on arrays
 and maps, the sorting key must include the array index or map key
 following the position.  If and only if two bindings have the same sort
 key, the tie must be broken using the ordering of the field or parameter
 name immediately containing the leaf binding.</p>
 </li>
-<li><p>Sort elements using the assigned sorting keys.  Numeric entries sort
-before strings.</p>
+<li><p>Sort elements using the assigned sorting keys.  Numeric entries sort before strings.</p>
 </li>
-<li><p>In the sorted order, apply the rules defined in
-<a href="#CommandLineBinding"><code>CommandLineBinding</code></a> to convert bindings to actual
+<li><p>In the sorted order, apply the rules defined in <a href="#CommandLineBinding"><code>CommandLineBinding</code></a> to convert bindings to actual
 command line elements.</p>
 </li>
-<li><p>Insert elements from <code>baseCommand</code> at the beginning of the command
-line.</p>
+<li><p>Insert elements from <code>baseCommand</code> at the beginning of the command line.</p>
 </li>
 </ol>
 <h2 id="Runtime_environment" class="section">4.2 Runtime environment <a href="#Runtime_environment">&sect;</a></h2><p>All files listed in the input object must be made available in the runtime
@@ -631,13 +611,10 @@ not inherit environment variables from the parent process except as
 specified or at user option.</p>
 <ul>
 <li><code>HOME</code> must be set to the designated output directory.</li>
-<li><code>TMPDIR</code> must be set to the designated temporary directory.
-when the tool invocation and output collection is complete.</li>
-<li><code>PATH</code> may be inherited from the parent process, except when run in a
-container that provides its own <code>PATH</code>.</li>
+<li><code>TMPDIR</code> must be set to the designated temporary directory. when the tool invocation and output collection is complete.</li>
+<li><code>PATH</code> may be inherited from the parent process, except when run in a container that provides its own <code>PATH</code>.</li>
 <li>Variables defined by <a href="#EnvVarRequirement">EnvVarRequirement</a></li>
-<li>The default environment of the container, such as when using
-<a href="#DockerRequirement">DockerRequirement</a></li>
+<li>The default environment of the container, such as when using <a href="#DockerRequirement">DockerRequirement</a></li>
 </ul>
 <p>An implementation may forbid the tool from writing to any location in the
 runtime environment file system other than the designated temporary directory,
@@ -865,8 +842,7 @@ must be the primary input or output File to which this binding applies.</p>
 <p>If the value is a string, it specifies that the following pattern
 should be applied to the primary file:</p>
 <ol>
-<li>If string begins with one or more caret <code>^</code> characters, for each
-caret, remove the last file extension from the path (the last
+<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -1040,8 +1016,7 @@ must be the primary input or output File to which this binding applies.</p>
 <p>If the value is a string, it specifies that the following pattern
 should be applied to the primary file:</p>
 <ol>
-<li>If string begins with one or more caret <code>^</code> characters, for each
-caret, remove the last file extension from the path (the last
+<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -1141,8 +1116,7 @@ must be the primary input or output File to which this binding applies.</p>
 <p>If the value is a string, it specifies that the following pattern
 should be applied to the primary file:</p>
 <ol>
-<li>If string begins with one or more caret <code>^</code> characters, for each
-caret, remove the last file extension from the path (the last
+<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -1192,19 +1166,15 @@ effective value.</p>
 </li>
 <li><p><strong>number</strong>: Add <code>prefix</code> and decimal representation to command line.</p>
 </li>
-<li><p><strong>boolean</strong>: If true, add <code>prefix</code> to the command line.  If false, add
-  nothing.</p>
+<li><p><strong>boolean</strong>: If true, add <code>prefix</code> to the command line.  If false, add nothing.</p>
 </li>
-<li><p><strong>File</strong>: Add <code>prefix</code> and the value of
-<a href="#File"><code>File.path</code></a> to the command line.</p>
+<li><p><strong>File</strong>: Add <code>prefix</code> and the value of <a href="#File"><code>File.path</code></a> to the command line.</p>
 </li>
-<li><p><strong>array</strong>: If <code>itemSeparator</code> is specified, add <code>prefix</code> and the join
-  the array into a single string with <code>itemSeparator</code> separating the
-  items.  Otherwise first add <code>prefix</code>, then recursively process
-  individual elements.</p>
+<li><p><strong>array</strong>: If <code>itemSeparator</code> is specified, add <code>prefix</code> and the join the array into a single string with <code>itemSeparator</code> separating the
+items.  Otherwise first add <code>prefix</code>, then recursively process
+individual elements.</p>
 </li>
-<li><p><strong>object</strong>: Add <code>prefix</code> only, and recursively add object fields for
-  which <code>inputBinding</code> is specified.</p>
+<li><p><strong>object</strong>: Add <code>prefix</code> only, and recursively add object fields for which <code>inputBinding</code> is specified.</p>
 </li>
 <li><p><strong>null</strong>: Add nothing.</p>
 </li>
@@ -1313,8 +1283,7 @@ must be the primary input or output File to which this binding applies.</p>
 <p>If the value is a string, it specifies that the following pattern
 should be applied to the primary file:</p>
 <ol>
-<li>If string begins with one or more caret <code>^</code> characters, for each
-caret, remove the last file extension from the path (the last
+<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -1378,8 +1347,7 @@ must be the primary input or output File to which this binding applies.</p>
 <p>If the value is a string, it specifies that the following pattern
 should be applied to the primary file:</p>
 <ol>
-<li>If string begins with one or more caret <code>^</code> characters, for each
-caret, remove the last file extension from the path (the last
+<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -1470,8 +1438,7 @@ must be the primary input or output File to which this binding applies.</p>
 <p>If the value is a string, it specifies that the following pattern
 should be applied to the primary file:</p>
 <ol>
-<li>If string begins with one or more caret <code>^</code> characters, for each
-caret, remove the last file extension from the path (the last
+<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -1568,8 +1535,7 @@ must be the primary input or output File to which this binding applies.</p>
 <p>If the value is a string, it specifies that the following pattern
 should be applied to the primary file:</p>
 <ol>
-<li>If string begins with one or more caret <code>^</code> characters, for each
-caret, remove the last file extension from the path (the last
+<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -1649,11 +1615,7 @@ field of the file object for manipulation by <code>outputEval</code>.</p>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Evaluate an expression to generate the output value.  If <code>glob</code> was
 specified, the value of <code>self</code> must be an array containing file objects
-that were matched.  If no files were matched, <code>self' must be a zero
-length array; if a single file was matched, the value of</code>self<code>is an
-array of a single element.  Additionally, if</code>loadContents<code>is</code>true<code>,
-the File objects must include up to the first 64 KiB of file contents
-in the</code>contents` field.</p>
+that were matched.  If no files were matched, <code>self' must be a zero length array; if a single file was matched, the value of</code>self<code>is an array of a single element. Additionally, if</code>loadContents<code>is</code>true<code>, the File objects must include up to the first 64 KiB of file contents in the</code>contents` field.</p>
 </div>
 </div></div><h5 id="CommandOutputArraySchema" class="section">5.2.1.1.2 CommandOutputArraySchema <a href="#CommandOutputArraySchema">&sect;</a></h5><h3>Fields</h3>
 <div class="responsive-table">
@@ -1688,8 +1650,7 @@ must be the primary input or output File to which this binding applies.</p>
 <p>If the value is a string, it specifies that the following pattern
 should be applied to the primary file:</p>
 <ol>
-<li>If string begins with one or more caret <code>^</code> characters, for each
-caret, remove the last file extension from the path (the last
+<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -1812,8 +1773,7 @@ must be the primary input or output File to which this binding applies.</p>
 <p>If the value is a string, it specifies that the following pattern
 should be applied to the primary file:</p>
 <ol>
-<li>If string begins with one or more caret <code>^</code> characters, for each
-caret, remove the last file extension from the path (the last
+<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -1910,8 +1870,7 @@ must be the primary input or output File to which this binding applies.</p>
 <p>If the value is a string, it specifies that the following pattern
 should be applied to the primary file:</p>
 <ol>
-<li>If string begins with one or more caret <code>^</code> characters, for each
-caret, remove the last file extension from the path (the last
+<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -1980,8 +1939,7 @@ must be the primary input or output File to which this binding applies.</p>
 <p>If the value is a string, it specifies that the following pattern
 should be applied to the primary file:</p>
 <ol>
-<li>If string begins with one or more caret <code>^</code> characters, for each
-caret, remove the last file extension from the path (the last
+<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>

@@ -137,8 +137,7 @@ href="https://www.commonwl.org/user_guide/assets/favicons/cwl/favicon-96x96.png"
 <p>Authors:</p>
 <ul>
 <li>Peter Amstutz <a href="mailto:pamstutz@veritasgenetics.com">pamstutz@veritasgenetics.com</a>, Arvados Project, Veritas Genetics</li>
-<li>Michael R. Crusoe <a href="mailto:mrc@commonwl.org">mrc@commonwl.org</a>, Common Workflow Language
-project</li>
+<li>Michael R. Crusoe <a href="mailto:mrc@commonwl.org">mrc@commonwl.org</a>, Common Workflow Language project</li>
 <li>Nebojša Tijanić <a href="mailto:nebojsa.tijanic@sbgenomics.com">nebojsa.tijanic@sbgenomics.com</a>, Seven Bridges Genomics</li>
 </ul>
 <p>Contributors:</p>
@@ -227,7 +226,6 @@ under the terms of the Apache License, version 2.0.</p>
 </ol><li><a href="#ExpressionToolOutputParameter">4.2.13.2 ExpressionToolOutputParameter</a><ol>
 </ol><li><a href="#CWLVersion">4.2.13.3 CWLVersion</a><ol>
 </ol></li></ol></li></ol></li></ol></li></ol></nav>
-
 <h1 id="Introduction" class="section">1. Introduction <a href="#Introduction">&sect;</a></h1><p>The Common Workflow Language (CWL) working group is an informal, multi-vendor
 working group consisting of various organizations and individuals that have an
 interest in portability of data analysis workflows.  The goal is to create
@@ -241,31 +239,24 @@ to use <code>cwlVersion: v1.0</code> and existing v1.0 documents remain valid,
 however CWL documents that relied on previously undefined or
 underspecified behavior may have slightly different behavior in v1.0.2.</p>
 <ul>
-<li>12 March 2017:<ul>
+<li>12 March 2017:</li>
 <li>Mark <code>default</code> as not required for link checking.</li>
 <li>Add note that recursive subworkflows is not allowed.</li>
 <li>Fix mistake in discussion of extracting field names from workflow step ids.</li>
-</ul>
-</li>
-<li>23 July 2017: (v1.0.1)<ul>
+<li>23 July 2017: (v1.0.1)</li>
 <li>Add clarification about scattering over empty arrays.</li>
 <li>Clarify interpretation of <code>secondaryFiles</code> on inputs.</li>
 <li>Expanded discussion of semantics of <code>File</code> and <code>Directory</code> types</li>
 <li>Fixed typo "EMACScript" to "ECMAScript"</li>
 <li>Clarified application of input parameter default values when the input is <code>null</code> or undefined.</li>
-</ul>
-</li>
-<li>10 August 2017: (v1.0.2)<ul>
+<li>10 August 2017: (v1.0.2)</li>
 <li>Clarify behavior resolving expressions in <code>secondaryFile</code></li>
-</ul>
-</li>
 </ul>
 <p>Since draft-3, v1.0 introduces the following changes and additions
 to the CWL Workflow standard:</p>
 <ul>
 <li>The <code>inputs</code> and <code>outputs</code> fields have been renamed <code>in</code> and <code>out</code>.</li>
-<li>Syntax simplifcations: denoted by the <code>map&lt;&gt;</code> syntax. Example: <code>in</code>
-contains a list of items, each with an id. Now one can specify
+<li>Syntax simplifcations: denoted by the <code>map&lt;&gt;</code> syntax. Example: <code>in</code> contains a list of items, each with an id. Now one can specify
 a mapping of that identifier to the corresponding
 <code>InputParameter</code>.<pre><code>in:
  - id: one
@@ -359,8 +350,8 @@ which the <code>id</code> field is explicitly listed in this specification.</p>
 <a href="SchemaSalad.html#Import">$include</a> directives as described in the
 <a href="SchemaSalad.html">Schema Salad specification</a>.</p>
 <p>Another transformation defined in Schema salad is simplification of data type definitions.
-Type <code>&lt;T&gt;</code> ending with <code>?</code> should be transformed to <code>[&lt;T&gt;, "null"]</code>.
-Type <code>&lt;T&gt;</code> ending with <code>[]</code> should be transformed to <code>{"type": "array", "items": &lt;T&gt;}</code></p>
+Type <code>&lt;T&gt;</code> ending with <code>?</code> should be transformed to <code>[&lt;T&gt;, &quot;null&quot;]</code>.
+Type <code>&lt;T&gt;</code> ending with <code>[]</code> should be transformed to <code>{&quot;type&quot;: &quot;array&quot;, &quot;items&quot;: &lt;T&gt;}</code></p>
 <h2 id="Extensions_and_metadata" class="section">2.5 Extensions and metadata <a href="#Extensions_and_metadata">&sect;</a></h2><p>Input metadata (for example, a lab sample identifier) may be represented within
 a tool or workflow using input parameters which are explicitly propagated to
 output.  Future versions of this specification may define additional facilities
@@ -404,12 +395,10 @@ platform include:</p>
 <ul>
 <li>Data security and permissions</li>
 <li>Scheduling tool invocations on remote cluster or cloud compute nodes.</li>
-<li>Using virtual machines or operating system containers to manage the runtime
-(except as described in <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a>).</li>
+<li>Using virtual machines or operating system containers to manage the runtime (except as described in <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a>).</li>
 <li>Using remote or distributed file systems to manage input and output files.</li>
 <li>Transforming file paths.</li>
-<li>Determining if a process has previously been executed, and if so skipping it
-and reusing previous results.</li>
+<li>Determining if a process has previously been executed, and if so skipping it and reusing previous results.</li>
 <li>Pausing, resuming or checkpointing processes or workflows.</li>
 </ul>
 <p>Conforming CWL processes must not assume anything about the runtime
@@ -470,16 +459,15 @@ characters are literal values.</p>
 <tr><td>segment::            </td><td>. {symbol} | {singleq} | {doubleq} | {index}</td></tr>
 <tr><td>parameter reference::</td><td>$( {symbol} {segment}*)</td></tr>
 </table>
-</p><p>Use the following algorithm to resolve a parameter reference:</p>
+</p>
+<p>Use the following algorithm to resolve a parameter reference:</p>
 <ol>
 <li>Match the leading symbol as the key</li>
-<li>Look up the key in the parameter context (described below) to get the current value.
-It is an error if the key is not found in the parameter context.</li>
+<li>Look up the key in the parameter context (described below) to get the current value. It is an error if the key is not found in the parameter context.</li>
 <li>If there are no subsequent segments, terminate and return current value</li>
 <li>Else, match the next segment</li>
 <li>Extract the symbol, string, or index from the segment as the key</li>
-<li>Look up the key in current value and assign as new current value.  If
-the key is a symbol or string, the current value must be an object.
+<li>Look up the key in current value and assign as new current value.  If the key is a symbol or string, the current value must be an object.
 If the key is an index, the current value must be an array or string.
 It is an error if the key does not match the required type, or the key is not found or out
 of range.</li>
@@ -489,12 +477,10 @@ of range.</li>
 be provided:</p>
 <ul>
 <li><code>inputs</code>: The input object to the current Process.</li>
-<li><code>self</code>: A context-specific value.  The contextual values for 'self' are
-documented for specific fields elsewhere in this specification.  If
+<li><code>self</code>: A context-specific value.  The contextual values for 'self' are documented for specific fields elsewhere in this specification.  If
 a contextual value of 'self' is not documented for a field, it
 must be 'null'.</li>
-<li><code>runtime</code>: An object containing configuration details.  Specific to the
-process type.  An implementation may provide
+<li><code>runtime</code>: An object containing configuration details.  Specific to the process type.  An implementation may provide
 opaque strings for any or all fields of <code>runtime</code>.  These must be
 filled in by the platform after processing the Tool but before actual
 execution.  Parameter references and expressions may only use the
@@ -568,8 +554,7 @@ and be marked as executable (the POSIX "+x" permission bits) to enable it
 to be executed directly.  A workflow platform may support this mode of
 operation; if so, it must provide <code>cwl-runner</code> as an alias for the
 platform's CWL implementation.</p>
-<p>A CWL input object document may similarly begin with <code>#!/usr/bin/env
-cwl-runner</code> and be marked as executable.  In this case, the input object
+<p>A CWL input object document may similarly begin with <code>#!/usr/bin/env cwl-runner</code> and be marked as executable.  In this case, the input object
 must include the field <code>cwl:tool</code> supplying an IRI to the default CWL
 document that should be executed using the fields of the input object as
 input parameters.</p>
@@ -602,15 +587,12 @@ execution which resulted in <code>temporaryFailure</code>.  An implementation ma
 choose to either continue running other steps of a workflow, or terminate
 immediately upon <code>permanentFailure</code>.</p>
 <ul>
-<li><p>If any step of a workflow execution results in <code>permanentFailure</code>, then
-the workflow status is <code>permanentFailure</code>.</p>
+<li><p>If any step of a workflow execution results in <code>permanentFailure</code>, then the workflow status is <code>permanentFailure</code>.</p>
 </li>
-<li><p>If one or more steps result in <code>temporaryFailure</code> and all other steps
-complete <code>success</code> or are not executed, then the workflow status is
+<li><p>If one or more steps result in <code>temporaryFailure</code> and all other steps complete <code>success</code> or are not executed, then the workflow status is
 <code>temporaryFailure</code>.</p>
 </li>
-<li><p>If all workflow steps are executed and complete with <code>success</code>, then the
-workflow status is <code>success</code>.</p>
+<li><p>If all workflow steps are executed and complete with <code>success</code>, then the workflow status is <code>success</code>.</p>
 </li>
 </ul>
 <h2 id="Extensions" class="section">Extensions <a href="#Extensions">&sect;</a></h2><p><a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> and
@@ -766,8 +748,7 @@ instead.</p>
 it specifies that the following pattern should be applied to the path
 of the primary file to yield a filename relative to the primary File:</p>
 <ol>
-<li>If string begins with one or more caret <code>^</code> characters, for each
-caret, remove the last file extension from the path (the last
+<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -990,7 +971,7 @@ executed must be able to to access the file at <code>path</code> using the POSIX
 field is not, an implementation may assign the value of the <code>path</code>
 field to <code>location</code>, and remove the <code>path</code> field.</p>
 <p>If the <code>path</code> contains <a href="http://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_02">POSIX shell metacharacters</a>
-(<code>|</code>,<code>&amp;</code>, <code>;</code>, <code>&lt;</code>, <code>&gt;</code>, <code>(</code>,<code>)</code>, <code>$</code>,<code>`</code>, <code>\</code>, <code>"</code>, <code>'</code>,
+(<code>|</code>,<code>&amp;</code>, <code>;</code>, <code>&lt;</code>, <code>&gt;</code>, <code>(</code>,<code>)</code>, <code>$</code>,<code>`</code>, <code>\</code>, <code>&quot;</code>, <code>'</code>,
 <code>&lt;space&gt;</code>, <code>&lt;tab&gt;</code>, and <code>&lt;newline&gt;</code>) or characters
 <a href="http://www.iana.org/assignments/idna-tables-6.3.0/idna-tables-6.3.0.xhtml">not allowed</a>
 for <a href="https://tools.ietf.org/html/rfc6452">Internationalized Domain Names for Applications</a>
@@ -1018,8 +999,7 @@ with <code>basename</code>, i.e. the final component of the <code>path</code> fi
 <div class="col-xs-2 col-lg-1">optional</div>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The name of the directory containing file, that is, the path leading up
-to the final slash in the path such that <code>dirname + '/' + basename ==
-path</code>.</p>
+to the final slash in the path such that <code>dirname + '/' + basename == path</code>.</p>
 <p>The implementation must set this field based on the value of <code>path</code>
 prior to evaluating parameter references or expressions in a
 CommandLineTool document.  This field must not be used in any other
@@ -1188,7 +1168,7 @@ must not be used in any other context.  The command line tool being
 executed must be able to to access the directory at <code>path</code> using the POSIX
 <code>opendir(2)</code> syscall.</p>
 <p>If the <code>path</code> contains <a href="http://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_02">POSIX shell metacharacters</a>
-(<code>|</code>,<code>&amp;</code>, <code>;</code>, <code>&lt;</code>, <code>&gt;</code>, <code>(</code>,<code>)</code>, <code>$</code>,<code>`</code>, <code>\</code>, <code>"</code>, <code>'</code>,
+(<code>|</code>,<code>&amp;</code>, <code>;</code>, <code>&lt;</code>, <code>&gt;</code>, <code>(</code>,<code>)</code>, <code>$</code>,<code>`</code>, <code>\</code>, <code>&quot;</code>, <code>'</code>,
 <code>&lt;space&gt;</code>, <code>&lt;tab&gt;</code>, and <code>&lt;newline&gt;</code>) or characters
 <a href="http://www.iana.org/assignments/idna-tables-6.3.0/idna-tables-6.3.0.xhtml">not allowed</a>
 for <a href="https://tools.ietf.org/html/rfc6452">Internationalized Domain Names for Applications</a>
@@ -1378,19 +1358,16 @@ applicable scattering rules.</p>
 <p>If <code>scatter</code> declares more than one input parameter, <code>scatterMethod</code>
 describes how to decompose the input into a discrete set of jobs.</p>
 <ul>
-<li><p><strong>dotproduct</strong> specifies that each of the input arrays are aligned and one
-  element taken from each array to construct each job.  It is an error
-  if all input arrays are not the same length.</p>
+<li><p><strong>dotproduct</strong> specifies that each of the input arrays are aligned and one element taken from each array to construct each job.  It is an error
+if all input arrays are not the same length.</p>
 </li>
-<li><p><strong>nested_crossproduct</strong> specifies the Cartesian product of the inputs,
-  producing a job for every combination of the scattered inputs.  The
-  output must be nested arrays for each level of scattering, in the
-  order that the input arrays are listed in the <code>scatter</code> field.</p>
+<li><p><strong>nested_crossproduct</strong> specifies the Cartesian product of the inputs, producing a job for every combination of the scattered inputs.  The
+output must be nested arrays for each level of scattering, in the
+order that the input arrays are listed in the <code>scatter</code> field.</p>
 </li>
-<li><p><strong>flat_crossproduct</strong> specifies the Cartesian product of the inputs,
-  producing a job for every combination of the scattered inputs.  The
-  output arrays must be flattened to a single level, but otherwise listed in the
-  order that the input arrays are listed in the <code>scatter</code> field.</p>
+<li><p><strong>flat_crossproduct</strong> specifies the Cartesian product of the inputs, producing a job for every combination of the scattered inputs.  The
+output arrays must be flattened to a single level, but otherwise listed in the
+order that the input arrays are listed in the <code>scatter</code> field.</p>
 </li>
 </ul>
 <h3 id="Subworkflows" class="section">Subworkflows <a href="#Subworkflows">&sect;</a></h3><p>To specify a nested workflow as part of a workflow step,
@@ -1512,11 +1489,9 @@ from the link must be wrapped in a single-item list.</p>
 </li>
 <li><p><strong>merge_flattened</strong></p>
 <ol>
-<li>The source and sink parameters must be compatible types, or the source
-type must be compatible with single element from the "items" type of
+<li>The source and sink parameters must be compatible types, or the source type must be compatible with single element from the "items" type of
 the destination array parameter.</li>
-<li>Source parameters which are arrays are concatenated.
-Source parameters which are single element types are appended as
+<li>Source parameters which are arrays are concatenated. Source parameters which are single element types are appended as
 single elements.</li>
 </ol>
 </li>
@@ -1574,10 +1549,8 @@ evaluated to yield the actual value to be assiged to the input field.</p>
 <p>The <code>self</code> value in the parameter reference or expression must be</p>
 <ol>
 <li><code>null</code> if there is no <code>source</code> field</li>
-<li>the value of the parameter(s) specified in the <code>source</code> field when this
-workflow input parameter <strong>is not</strong> specified in this workflow step's <code>scatter</code> field.</li>
-<li>an element of the parameter specified in the <code>source</code> field when this workflow input 
-parameter <strong>is</strong> specified in this workflow step's <code>scatter</code> field.</li>
+<li>the value of the parameter(s) specified in the <code>source</code> field when this workflow input parameter <strong>is not</strong> specified in this workflow step's <code>scatter</code> field.</li>
+<li>an element of the parameter specified in the <code>source</code> field when this workflow input  parameter <strong>is</strong> specified in this workflow step's <code>scatter</code> field.</li>
 </ol>
 <p>The value of <code>inputs</code> in the parameter reference or expression must be
 the input object to the workflow step after assigning the <code>source</code>
@@ -1791,23 +1764,18 @@ effective value.</p>
 </li>
 <li><p><strong>number</strong>: Add <code>prefix</code> and decimal representation to command line.</p>
 </li>
-<li><p><strong>boolean</strong>: If true, add <code>prefix</code> to the command line.  If false, add
-  nothing.</p>
+<li><p><strong>boolean</strong>: If true, add <code>prefix</code> to the command line.  If false, add nothing.</p>
 </li>
-<li><p><strong>File</strong>: Add <code>prefix</code> and the value of
-<a href="#File"><code>File.path</code></a> to the command line.</p>
+<li><p><strong>File</strong>: Add <code>prefix</code> and the value of <a href="#File"><code>File.path</code></a> to the command line.</p>
 </li>
-<li><p><strong>Directory</strong>: Add <code>prefix</code> and the value of
-<a href="#Directory"><code>Directory.path</code></a> to the command line.</p>
+<li><p><strong>Directory</strong>: Add <code>prefix</code> and the value of <a href="#Directory"><code>Directory.path</code></a> to the command line.</p>
 </li>
-<li><p><strong>array</strong>: If <code>itemSeparator</code> is specified, add <code>prefix</code> and the join
-  the array into a single string with <code>itemSeparator</code> separating the
-  items.  Otherwise first add <code>prefix</code>, then recursively process
-  individual elements.
-  If the array is empty, it does not add anything to command line.</p>
+<li><p><strong>array</strong>: If <code>itemSeparator</code> is specified, add <code>prefix</code> and the join the array into a single string with <code>itemSeparator</code> separating the
+items.  Otherwise first add <code>prefix</code>, then recursively process
+individual elements.
+If the array is empty, it does not add anything to command line.</p>
 </li>
-<li><p><strong>object</strong>: Add <code>prefix</code> only, and recursively add object fields for
-  which <code>inputBinding</code> is specified.</p>
+<li><p><strong>object</strong>: Add <code>prefix</code> only, and recursively add object fields for which <code>inputBinding</code> is specified.</p>
 </li>
 <li><p><strong>null</strong>: Add nothing.</p>
 </li>
@@ -1980,8 +1948,7 @@ these software identifer IRIs to some configuration action; or they can
 use only the name from the <code>package</code> field on a best effort basis.</p>
 <p>For example, the IRI <a href="https://packages.debian.org/bowtie">https://packages.debian.org/bowtie</a> could
 be resolved with <code>apt-get install bowtie</code>. The IRI
-<a href="https://anaconda.org/bioconda/bowtie">https://anaconda.org/bioconda/bowtie</a> could be resolved with <code>conda
-install -c bioconda bowtie</code>.</p>
+<a href="https://anaconda.org/bioconda/bowtie">https://anaconda.org/bioconda/bowtie</a> could be resolved with <code>conda install -c bioconda bowtie</code>.</p>
 <p>IRIs can also be system independent and used to map to a specific
 software installation or selection mechanism.
 Using <a href="https://www.identifiers.org/rrid/">RRID</a> as an example:
@@ -2301,8 +2268,7 @@ instead.</p>
 it specifies that the following pattern should be applied to the path
 of the primary file to yield a filename relative to the primary File:</p>
 <ol>
-<li>If string begins with one or more caret <code>^</code> characters, for each
-caret, remove the last file extension from the path (the last
+<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -2410,8 +2376,7 @@ instead.</p>
 it specifies that the following pattern should be applied to the path
 of the primary file to yield a filename relative to the primary File:</p>
 <ol>
-<li>If string begins with one or more caret <code>^</code> characters, for each
-caret, remove the last file extension from the path (the last
+<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
