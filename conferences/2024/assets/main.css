@@ -81,9 +81,9 @@ th,td{
 .bottom-right {font-size:2.33rem; color: #8a2332; line-height: 1.5rem; width: auto; height: 100px; padding: 0 27px 27px 0; text-align: right; position: absolute; bottom: 0; right: 0; text-shadow: 0 0 0 #000000;}
 
 /* Conference Title Logo */
-.title1{color: #B5314C; text-shadow: 1px 1px 3px #c0c0c0;}
-.title2{color: #B5314C; text-shadow: 1px 1px 3px #c0c0c0;}
-.year{color: #B5314C; font-size:0.67rem; font-weight: lighter;}
+.title1{font-size:1em;color: #B5314C; text-shadow: 1px 1px 3px #c0c0c0;}
+.title2{font-size:1em;color: #B5314C; text-shadow: 1px 1px 3px #c0c0c0;}
+.year{font-size:0.67em;color: #B5314C;font-weight: lighter;}
 
 /* Navigation Links (Home, Registration, etc) */
 table.navigation{width:800px;}
