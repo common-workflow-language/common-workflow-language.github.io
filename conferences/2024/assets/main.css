@@ -78,7 +78,24 @@ th,td{
 /* Website Banner */
 .banner {position: relative; font-family:'Roboto Slab',serif;}
 .top-left {font-size:5.33rem; color: #9b9b9b; background: #ffffff; text-align: center; width: 1000px; height: 67px; position: absolute; padding: 36px 0 0 0; top: 0;}
-.bottom-right {font-size:2.33rem; color: #8a2332; line-height: 1.5rem; width: auto; height: 100px; padding: 0 27px 27px 0; text-align: right; position: absolute; bottom: 0; right: 0; text-shadow: 0 0 0 #000000;}
+.bottom-right {
+    width: auto;
+    height: 100px;
+    padding: 0 27px 27px 0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.bottom-right p {
+    font-size:2.33rem;
+    color: #8a2332;
+    line-height: 1.5rem;
+    text-shadow: 0 0 0 #000000;
+    text-align: right;
+    margin: 0 0 1rem 0;
+    padding: 0;
+}
 
 /* Conference Title Logo */
 .title1{font-size:1em;color: #B5314C; text-shadow: 1px 1px 3px #c0c0c0;}
