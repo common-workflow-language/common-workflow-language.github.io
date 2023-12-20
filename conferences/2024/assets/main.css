@@ -48,8 +48,9 @@ h2{font-size:2.00rem;}
 h3{font-size:1.67rem;}
 h4{font-size:1.33rem;}
 p{list-style:none; margin:24px auto 24px auto; padding:0; width:900px; text-align:left;}
-li a, p a {text-decoration:underline; text-decoration-color:#b8860b;}
+li a, p a {text-decoration:underline; text-decoration-color:#b8860b; }
 ul{list-style:none; margin:24px auto 24px auto; padding:0; width:800px; text-align:left;}
+ol{margin:24px auto 24px auto; padding:0; width:800px; text-align:left; line-height: 36px}
 ul li{list-style:none; margin:0 auto 0 auto; padding:0; text-align:left;}
 i,em{font-style:italic;}
 b,strong{font-weight:bold;}
