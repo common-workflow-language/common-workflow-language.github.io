@@ -128,13 +128,14 @@ href="https://www.commonwl.org/user_guide/assets/favicons/cwl/favicon-96x96.png"
     
     <div class="col-md-12" role="main" id="main"><h1 id="Semantic_Annotations_for_Linked_Avro_Data_(SALAD)" class="section">Semantic Annotations for Linked Avro Data (SALAD) <a href="#Semantic_Annotations_for_Linked_Avro_Data_(SALAD)">&sect;</a></h1><p>Author:</p>
 <ul>
-<li>Peter Amstutz <a href="mailto:peter.amstutz@curii.com">peter.amstutz@curii.com</a>, Arvados Project, Curii Corporation</li>
+<li>Peter Amstutz <a href="mailto:peter.amstutz@curii.com">peter.amstutz@curii.com</a>, Curii Corporation</li>
 </ul>
 <p>Contributors:</p>
 <ul>
 <li>The developers of Apache Avro</li>
 <li>The developers of JSON-LD</li>
 <li>Nebojša Tijanić <a href="mailto:nebojsa.tijanic@sbgenomics.com">nebojsa.tijanic@sbgenomics.com</a>, Seven Bridges Genomics</li>
+<li>Michael R. Crusoe, ELIXIR-DE</li>
 </ul>
 <h1 id="Abstract" class="section">Abstract <a href="#Abstract">&sect;</a></h1><p>Salad is a schema language for describing structured linked data documents
 in JSON or YAML documents.  A Salad schema provides rules for
@@ -157,9 +158,11 @@ under the terms of the Apache License, version 2.0.</p>
 </ol><li><a href="#Status_of_This_Document"> Status of This Document</a><ol>
 </ol><li><a href="#Introduction">1. Introduction</a><ol>
 <li><a href="#Introduction_to_v1.1">1.1 Introduction to v1.1</a><ol>
-</ol><li><a href="#References_to_Other_Specifications">1.2 References to Other Specifications</a><ol>
-</ol><li><a href="#Scope">1.3 Scope</a><ol>
-</ol><li><a href="#Terminology">1.4 Terminology</a><ol>
+</ol><li><a href="#Introduction_to_v1.2">1.2 Introduction to v1.2</a><ol>
+<li><a href="#Changelog_for_v1.2.1">1.2.1 Changelog for v1.2.1</a><ol>
+</ol></li></ol><li><a href="#References_to_Other_Specifications">1.3 References to Other Specifications</a><ol>
+</ol><li><a href="#Scope">1.4 Scope</a><ol>
+</ol><li><a href="#Terminology">1.5 Terminology</a><ol>
 </ol></li></ol><li><a href="#Document_model">2. Document model</a><ol>
 <li><a href="#Data_concepts">2.1 Data concepts</a><ol>
 </ol><li><a href="#Syntax">2.2 Syntax</a><ol>
@@ -183,7 +186,8 @@ under the terms of the Apache License, version 2.0.</p>
 </ol></li></ol><li><a href="#Vocabulary_resolution">3.4 Vocabulary resolution</a><ol>
 <li><a href="#Vocabulary_resolution_example">3.4.1 Vocabulary resolution example</a><ol>
 </ol></li></ol><li><a href="#Import">3.5 Import</a><ol>
-<li><a href="#Import_example">3.5.1 Import example</a><ol>
+<li><a href="#Import_example:_replacing_the_`$import`_node">3.5.1 Import example: replacing the `$import` node</a><ol>
+</ol><li><a href="#Import_example:_flattening_the_`$import`ed_array">3.5.2 Import example: flattening the `$import`ed array</a><ol>
 </ol></li></ol><li><a href="#Include">3.6 Include</a><ol>
 <li><a href="#Include_example">3.6.1 Include example</a><ol>
 </ol></li></ol><li><a href="#Identifier_maps">3.7 Identifier maps</a><ol>
@@ -191,7 +195,7 @@ under the terms of the Apache License, version 2.0.</p>
 </ol></li></ol><li><a href="#Domain_Specific_Language_for_types">3.8 Domain Specific Language for types</a><ol>
 <li><a href="#Type_DSL_example">3.8.1 Type DSL example</a><ol>
 </ol></li></ol><li><a href="#Domain_Specific_Language_for_secondary_files">3.9 Domain Specific Language for secondary files</a><ol>
-<li><a href="#Secondary_files_DSL_example">3.9.1 Secondary files DSL example</a><ol>
+<li><a href="#Type_DSL_example">3.9.1 Type DSL example</a><ol>
 </ol></li></ol></li></ol><li><a href="#SaladRecordSchema">4. SaladRecordSchema</a><ol>
 <li><a href="#SaladRecordField">4.1 SaladRecordField</a><ol>
 <li><a href="#PrimitiveType">4.1.1 PrimitiveType</a><ol>
@@ -247,20 +251,42 @@ specification, the following changes have been made:</p>
 <li>The <code>$mixin</code> feature has been removed from the specification, as it is poorly documented, not included in conformance testing,
 and not widely supported.</li>
 </ul>
-<h2 id="References_to_Other_Specifications" class="section">1.2 References to Other Specifications <a href="#References_to_Other_Specifications">&sect;</a></h2><p><strong>Javascript Object Notation (JSON)</strong>: <a href="http://json.org">http://json.org</a></p>
+<h2 id="Introduction_to_v1.2" class="section">1.2 Introduction to v1.2 <a href="#Introduction_to_v1.2">&sect;</a></h2><p>This is the fourth version of the Schema Salad specification. It was created to
+ease the development of extensions to CWL v1.2. The only change is that
+inherited records can narrow the types of fields if those fields are re-specified
+with a matching jsonldPredicate.</p>
+<h3 id="Changelog_for_v1.2.1" class="section">1.2.1 Changelog for v1.2.1 <a href="#Changelog_for_v1.2.1">&sect;</a></h3><p>There are no new features nor behavior changes in Schema Salad v1.2.1
+as compared to Schema-Salad v1.2. Schema Salad v1.2.1 only fixes typos and adds
+clarifications.</p>
+<ul>
+<li>The <code>salad</code> directory's contents have been trimmed to the bare necessities. The <code>salad/README.rst</code> has been refreshed from the <a href="https://github.com/common-workflow-language/schema_salad/">upstream repository</a>.</li>
+<li>The <a href="#Import">existing behaviour of <code>$import</code></a> has been clarified. If the <code>$import</code> node is in an array and the import operation yields an
+array, it is flattened to the parent array. Otherwise the <code>$import</code>
+node is replaced in the document structure by the object or array yielded
+from the import operation. An <a href="#import_example2">additional example</a>
+has been added to illustrate this better.</li>
+<li>A pair of missing brackets was added to the <a href="#Type_DSL_example">Type DSL Example</a>'s example input.</li>
+<li>Missing newlines have been added to the <a href="#Identifier_map_example">identifier map example</a>'s example source and example result.</li>
+<li><a href="#SaladRecordSchema">Inherited fields in Salad types</a> may be re-specified to narrow their type and/or to override the <code>doc</code> field.</li>
+<li>Clarify that fields with <code>jsonldPredicate: { _type: &quot;@id&quot; }</code> indicate that the field is a <a href="#SaladRecordSchema">link fields</a> and that if the <code>jsonldPredicate</code>
+also has the field <code>identity</code> with the value <code>true</code>, then field is
+resolved with <a href="#Identifier_resolution">identifier resolution</a>.
+Otherwise the field is resolved with <a href="#Link_resolution">link resolution</a>.</li>
+</ul>
+<h2 id="References_to_Other_Specifications" class="section">1.3 References to Other Specifications <a href="#References_to_Other_Specifications">&sect;</a></h2><p><strong>Javascript Object Notation (JSON)</strong>: <a href="http://json.org">http://json.org</a></p>
 <p><strong>JSON Linked Data (JSON-LD)</strong>: <a href="http://json-ld.org">http://json-ld.org</a></p>
 <p><strong>YAML</strong>: <a href="https://yaml.org/spec/1.2/spec.html">https://yaml.org/spec/1.2/spec.html</a></p>
 <p><strong>Avro</strong>: <a href="https://avro.apache.org/docs/current/spec.html">https://avro.apache.org/docs/current/spec.html</a></p>
 <p><strong>Uniform Resource Identifier (URI) Generic Syntax</strong>: <a href="https://tools.ietf.org/html/rfc3986">https://tools.ietf.org/html/rfc3986</a>)</p>
 <p><strong>Resource Description Framework (RDF)</strong>: <a href="http://www.w3.org/RDF/">http://www.w3.org/RDF/</a></p>
 <p><strong>UTF-8</strong>: <a href="https://www.ietf.org/rfc/rfc2279.txt">https://www.ietf.org/rfc/rfc2279.txt</a>)</p>
-<h2 id="Scope" class="section">1.3 Scope <a href="#Scope">&sect;</a></h2><p>This document describes the syntax, data model, algorithms, and schema
+<h2 id="Scope" class="section">1.4 Scope <a href="#Scope">&sect;</a></h2><p>This document describes the syntax, data model, algorithms, and schema
 language for working with Salad documents.  It is not intended to document
 a specific implementation of Salad, however it may serve as a reference for
 the behavior of conforming implementations.</p>
-<h2 id="Terminology" class="section">1.4 Terminology <a href="#Terminology">&sect;</a></h2><p>The terminology used to describe Salad documents is defined in the Concepts
+<h2 id="Terminology" class="section">1.5 Terminology <a href="#Terminology">&sect;</a></h2><p>The terminology used to describe Salad documents is defined in the Concepts
 section of the specification. The terms defined in the following list are
-used in building those definitions and in describing the actions of an
+used in building those definitions and in describing the actions of a
 Salad implementation:</p>
 <p><strong>may</strong>: Conforming Salad documents and Salad implementations are permitted but
 not required to be interpreted as described.</p>
@@ -350,18 +376,21 @@ rules:</p>
 <ul>
 <li><p>If the value of <code>jsonldPredicate</code> is <code>@id</code>, the field is an identifier field.</p>
 </li>
-<li><p>If the value of <code>jsonldPredicate</code> is an object, and that object contains the field <code>_type</code> with the value <code>@id</code>, the field is a
-link field subject to <a href="#Link_validation">link validation</a>.</p>
+<li><p>If the value of <code>jsonldPredicate</code> is an object, and that object contains the field <code>_type</code> with the value <code>@id</code>, the
+field is a link field.  If the field <code>jsonldPredicate</code> also
+has the field <code>identity</code> with the value <code>true</code>, the field is
+resolved with <a href="#Identifier_resolution">identifier resolution</a>.
+Otherwise it is resolved with <a href="#Link_resolution">link resolution</a>.</p>
 </li>
 <li><p>If the value of <code>jsonldPredicate</code> is an object which contains the field <code>_type</code> with the value <code>@vocab</code>, the field value is subject to
 <a href="#Vocabulary_resolution">vocabulary resolution</a>.</p>
 </li>
 </ul>
-<h2 id="Document_traversal" class="section">2.8 Document traversal <a href="#Document_traversal">&sect;</a></h2><p>To perform document document preprocessing, link validation and schema
+<h2 id="Document_traversal" class="section">2.8 Document traversal <a href="#Document_traversal">&sect;</a></h2><p>To perform document preprocessing, link validation and schema
 validation, the document must be traversed starting from the fields or
 array items of the root object or array and recursively visiting each child
 item which contains an object or arrays.</p>
-<h2 id="Short_names" class="section">2.9 Short names <a href="#Short_names">&sect;</a></h2><p>The "short name" of an fully qualified identifier is the portion of
+<h2 id="Short_names" class="section">2.9 Short names <a href="#Short_names">&sect;</a></h2><p>The "short name" of a fully qualified identifier is the portion of
 the identifier following the final slash <code>/</code> of either the fragment
 identifier following <code>#</code> or the path portion, if there is no fragment.
 Some examples:</p>
@@ -421,6 +450,7 @@ base URI.</p>
   "$graph": [{
     "name": "ExampleType",
     "type": "record",
+    "documentRoot": true,
     "fields": [{
       "name": "base",
       "type": "string",
@@ -493,6 +523,7 @@ absolute URI.</p>
   "$graph": [{
     "name": "ExampleType",
     "type": "record",
+    "documentRoot": true,
     "fields": [{
       "name": "id",
       "type": "string",
@@ -565,7 +596,7 @@ absolute URI.</p>
 }
 </code></pre>
 <h2 id="Link_resolution" class="section">3.3 Link resolution <a href="#Link_resolution">&sect;</a></h2><p>The schema may designate one or more fields as link fields that reference other
-objects.  Processing must resolve links to either absolute URIs using the
+objects.  Processing must resolve links to absolute URIs using the
 following rules:</p>
 <ul>
 <li><p>If a reference URI is prefixed with <code>#</code> it is a relative fragment identifier.  It is resolved relative to the base URI by setting
@@ -735,14 +766,15 @@ importing document, and the default base URI for processing the imported
 document must be the URI used to retrieve the imported document.  If the
 <code>$import</code> URI includes a document fragment, the fragment must be excluded
 from the base URI used to preprocess the imported document.</p>
-<p>Once loaded and processed, the <code>$import</code> node is replaced in the document
-structure by the object or array yielded from the import operation.</p>
+<p>If the <code>$import</code> node is in an array and the import operation yields an array,
+it is flattened to the parent array. Otherwise the <code>$import</code> node is replaced
+in the document structure by the object or array yielded from the import operation.</p>
 <p>URIs may reference document fragments which refer to specific an object in
 the target document.  This indicates that the <code>$import</code> node must be
 replaced by only the object with the appropriate fragment identifier.</p>
 <p>It is a fatal error if an import directive refers to an external resource
 or resource fragment which does not exist or is not accessible.</p>
-<h3 id="Import_example" class="section">3.5.1 Import example <a href="#Import_example">&sect;</a></h3><p>import.json:</p>
+<h3 id="Import_example:_replacing_the_<code>$import</code>_node" class="section">3.5.1 Import example: replacing the <code>$import</code> node <a href="#Import_example:_replacing_the_<code>$import</code>_node">&sect;</a></h3><p>import.json:</p>
 <pre><code>{
   "hello": "world"
 }
@@ -765,6 +797,31 @@ or resource fragment which does not exist or is not accessible.</p>
       "hello": "world"
     }
   }
+}
+</code></pre>
+<a name="import_example2" />
+### 3.5.2 Import example: flattening the `$import`ed array
+<p>import.json:</p>
+<pre><code>[ "hello", "world" ]
+</code></pre>
+<p>parent.json:</p>
+<pre><code>{
+  "form": [
+    "bar",
+    {
+      "$import": "import.json"
+    }
+  ]
+}
+
+</code></pre>
+<p>This becomes:</p>
+<pre><code>{
+  "form": [
+    "bar",
+    "hello",
+    "world"
+  ]
 }
 </code></pre>
 <h2 id="Include" class="section">3.6 Include <a href="#Include">&sect;</a></h2><p>During preprocessing traversal, an implementation must resolve <code>$include</code>
@@ -872,7 +929,7 @@ the value assigned to the field specified by <code>mapPredicate</code>.</p>
 following micro-DSL for schema salad types:</p>
 <ul>
 <li>If the type ends with a question mark <code>?</code>, the question mark is stripped off and the type is expanded to a union with <code>null</code></li>
-<li>If the type ends with square brackets <code>[]</code> it is expanded to an array with items of the preceeding type symbol</li>
+<li>If the type ends with square brackets <code>[]</code> it is expanded to an array with items of the preceding type symbol</li>
 <li>The type may end with both <code>[]?</code> to indicate it is an optional array.</li>
 <li>Identifier resolution is applied after type DSL expansion.</li>
 </ul>
@@ -942,7 +999,7 @@ following micro-DSL for secondary files:</p>
 <li>If the value ends with a question mark <code>?</code> the question mark is stripped off and the value of the field <code>required</code> is set to <code>False</code></li>
 <li>The remaining value is assigned to the field <code>pattern</code></li>
 </ul>
-<h3 id="Secondary_files_DSL_example" class="section">3.9.1 Secondary files DSL example <a href="#Secondary_files_DSL_example">&sect;</a></h3><p>Given the following schema:</p>
+<h3 id="Type_DSL_example" class="section">3.9.1 Type DSL example <a href="#Type_DSL_example">&sect;</a></h3><p>Given the following schema:</p>
 <pre><code>{
   "$graph": [
   {
@@ -968,11 +1025,11 @@ following micro-DSL for secondary files:</p>
 }, {
   "secondaryFiles": {
     "pattern": ".bai?"
-}, {
+}}, {
   "secondaryFiles": {
     "pattern": ".bai?",
     "required": true
-}]
+}}]
 </code></pre>
 <p>This becomes:</p>
 <pre><code>[
@@ -1093,14 +1150,16 @@ least one type in a schema must be tagged with <code>documentRoot: true</code>.<
 <div class="col-xs-2 col-lg-1">optional</div>
 <div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">boolean</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>If true, this record is abstract and may be used as a base for other
-records, but is not valid on its own.</p>
+records, but is not valid on its own. Inherited fields may be
+re-specified to narrow their type.</p>
 </div>
 </div>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>extends</code></div>
 <div class="col-xs-2 col-lg-1">optional</div>
 <div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a> | array&lt;<a href="#PrimitiveType">string</a>&gt;</div>
-<div class="col-xs-12 col-lg-6 description-col"><p>Indicates that this record inherits fields from one or more base records.</p>
+<div class="col-xs-12 col-lg-6 description-col"><p>Indicates that this record inherits fields from one or more base records.
+Inherited fields may be re-specified to narrow their type.</p>
 </div>
 </div>
 <div class="row responsive-table-row">
@@ -1155,8 +1214,8 @@ record, replace any instance of the type <code>specializeFrom</code> with
 <div class="col-xs-7 col-lg-3"><a href="#Any">Any</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The default value to use for this field if the field is missing or "null".</p>
 </div>
-</div></div><h3 id="PrimitiveType" class="section">4.1.1 PrimitiveType <a href="#PrimitiveType">&sect;</a></h3><p>Salad data types are based on Avro schema declarations.  Refer to the
-<a href="https://avro.apache.org/docs/current/spec.html#schemas">Avro schema declaration documentation</a> for
+</div></div><h3 id="PrimitiveType" class="section">4.1.1 PrimitiveType <a href="#PrimitiveType">&sect;</a></h3><p>Names of salad data types (based on Avro schema declarations).</p>
+<p>Refer to the <a href="https://avro.apache.org/docs/current/spec.html#schemas">Avro schema declaration documentation</a> for
 detailed information.</p>
 <h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>null</code></td><td> no value</td></tr><tr><td><code>boolean</code></td><td> a binary value</td></tr><tr><td><code>int</code></td><td> 32-bit signed integer</td></tr><tr><td><code>long</code></td><td> 64-bit signed integer</td></tr><tr><td><code>float</code></td><td> single precision (32-bit) IEEE 754 floating-point number</td></tr><tr><td><code>double</code></td><td> double precision (64-bit) IEEE 754 floating-point number</td></tr><tr><td><code>string</code></td><td> Unicode character sequence</td></tr></table><h3 id="Any" class="section">4.1.2 Any <a href="#Any">&sect;</a></h3><p>The <strong>Any</strong> type validates for any non-null value.</p>
 <h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>Any</code></td><td></td></tr></table><h3 id="RecordSchema" class="section">4.1.3 RecordSchema <a href="#RecordSchema">&sect;</a></h3><h3>Fields</h3>
@@ -1231,6 +1290,12 @@ detailed information.</p>
 <div class="col-xs-7 col-lg-3">constant value <code>enum</code></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Must be <code>enum</code></p>
 </div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>name</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"></div>
 </div></div><h4 id="ArraySchema" class="section">4.1.4.2 ArraySchema <a href="#ArraySchema">&sect;</a></h4><h3>Fields</h3>
 <div class="responsive-table">
 <div class="row responsive-table-header">
@@ -1346,7 +1411,7 @@ context <code>#foo/bar/baz</code> will first check for the existence of
 then finally <code>#foo</code>.  The first valid URI in the search order shall be
 used as the fully resolved value of the identifier.  The value of the
 refScope field is the specified number of levels from the containing
-identifer scope before starting the search, so if <code>refScope: 2</code> then
+identifier scope before starting the search, so if <code>refScope: 2</code> then
 "baz" and "bar" must be stripped to get the base <code>#foo</code> and search
 <code>#foo/foo</code> and the <code>#foo</code>.  The last scope searched must be the top
 level scope before determining if the identifier cannot be resolved.</p>
@@ -1404,13 +1469,6 @@ identifier resolution to objects under this field.</p>
 <div class="col-xs-12 col-lg-6 description-header">description</div>
 </div>
 <div class="row responsive-table-row">
-<div class="col-xs-3 col-lg-2"><code>name</code></div>
-<div class="col-xs-2 col-lg-1">required</div>
-<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a></div>
-<div class="col-xs-12 col-lg-6 description-col"><p>The identifier for this type</p>
-</div>
-</div>
-<div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>symbols</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
 <div class="col-xs-7 col-lg-3">array&lt;<a href="#PrimitiveType">string</a>&gt;</div>
@@ -1423,6 +1481,12 @@ identifier resolution to objects under this field.</p>
 <div class="col-xs-7 col-lg-3">constant value <code>enum</code></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>Must be <code>enum</code></p>
 </div>
+</div>
+<div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>name</code></div>
+<div class="col-xs-2 col-lg-1">optional</div>
+<div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"></div>
 </div>
 <div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>inVocab</code></div>

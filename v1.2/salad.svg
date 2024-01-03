@@ -84,10 +84,11 @@
 <!-- EnumSchema -->
 <g id="node4" class="node">
 <title>EnumSchema</title>
-<polygon fill="none" stroke="black" points="737,-167.98 645,-167.98 645,-114.98 737,-114.98 737,-167.98"/>
-<text text-anchor="middle" x="691" y="-152.78" font-family="Times,serif" font-size="14.00">EnumSchema</text>
-<text text-anchor="start" x="653" y="-137.78" font-family="Times,serif" font-size="14.00">* symbols</text>
-<text text-anchor="start" x="653" y="-122.78" font-family="Times,serif" font-size="14.00">* type</text>
+<polygon fill="none" stroke="black" points="737,-175.48 645,-175.48 645,-107.48 737,-107.48 737,-175.48"/>
+<text text-anchor="middle" x="691" y="-160.28" font-family="Times,serif" font-size="14.00">EnumSchema</text>
+<text text-anchor="start" x="653" y="-145.28" font-family="Times,serif" font-size="14.00">* name</text>
+<text text-anchor="start" x="653" y="-130.28" font-family="Times,serif" font-size="14.00">* symbols</text>
+<text text-anchor="start" x="653" y="-115.28" font-family="Times,serif" font-size="14.00">* type</text>
 </g>
 <!-- SaladEnumSchema -->
 <g id="node13" class="node">
@@ -99,8 +100,8 @@
 <!-- EnumSchema&#45;&gt;SaladEnumSchema -->
 <g id="edge9" class="edge">
 <title>EnumSchema&#45;&gt;SaladEnumSchema</title>
-<path fill="none" stroke="black" d="M660.91,-114.67C641.75,-98.25 617.04,-77.05 597.92,-60.66"/>
-<polygon fill="black" stroke="black" points="600.32,-58.1 590.45,-54.25 595.76,-63.42 600.32,-58.1"/>
+<path fill="none" stroke="black" d="M652.08,-107.1C634.62,-92.13 614.34,-74.74 598.08,-60.79"/>
+<polygon fill="black" stroke="black" points="600.51,-58.27 590.64,-54.42 595.96,-63.58 600.51,-58.27"/>
 </g>
 <!-- ArraySchema -->
 <g id="node5" class="node">
