@@ -1,146 +1,325 @@
 /* main.css */
 
-/* These are the colors and fonts used throughout the webpage.
- * I've listed them here so that a user may easily
- * do a search-and-replace for these to change the site theme.
- *   'Roboto',sans-serif; Font for the title text
- *   'Roboto-Slab',serif; Font for the body text
- *   #fafafa; Background color of the site
- *   #505050; Foreground (text) color of the site
- *   #52739e; Navy, "Template" in the logo, current page in navigation, special titles in the Program
- *   #b2132e; Reddish, "Conference" in the logo, hover color for links
- *   #813c54; Heading color, titles in the Program
- *   #b8860b; Dark Goldenrod, color for links
- */
+/*
+  We use semantic HTML elements (header, main, footer, etc., https://www.semrush.com/blog/semantic-html5-guide/).
+  This is useful for other developers, SEO, and - more importantly - accessibility.
+  The CSS selectors below modify each semantic component in the order they appear
+  in the page.
+*/
 
 @import url('https://fonts.googleapis.com/css?family=Roboto%7CRoboto+Slab');
 
-*{
-    border:0;
-    font:inherit;
-    font-size:1rem;
-    margin:0;
-    padding:0;
-    vertical-align:baseline;
+/* These are the variables used in this style. Modify these values as needed. */
+:root {
+    --cold-red-font-color: #9F2135;
+    --warm-red-font-color: #D4376B;
+    --gray-color: #C0C0C0;
+    /* This is the same color as the CWL website menu background. */
+    --medium-gray: rgb(244, 244, 244);
+    --light-gray-color: #FAFAFA;
+    --font-family: 'Roboto',sans-serif;
 }
 
-body{
-    background-color: #ffffff;
-    background-size: cover;
-    background-attachment: fixed;
-    color: #505050;
-    text-align:left;
-    font-family:'Roboto',sans-serif;
-    font-size:1rem;
-    line-height:1.5rem;
-    margin: 60px auto;
-    width: 1000px;
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    font-family: var(--font-family);
 }
 
-a{color: #b8860b; text-decoration:none;}
-a.current{color: #52739e;}
-a.current:hover{color: #e82945;}
-a:hover{color: #b2132e;}
-a:active{color: #e82945;}
-h1,h2,h3,h4{clear:left; color: #813c54; margin:1.5rem 0 1rem 0; font-family:'Roboto Slab',serif; text-shadow: 1px 1px 2px #d0d0d0;}
-h1{font-size:2.67rem;}
-h2{font-size:2.00rem;}
-h3{font-size:1.67rem;}
-h4{font-size:1.33rem;}
-p{list-style:none; margin:24px auto 24px auto; padding:0; width:900px; text-align:left;}
-li a, p a {text-decoration:underline; text-decoration-color:#b8860b; }
-ul{list-style:none; margin:24px auto 24px auto; padding:0; width:800px; text-align:left;}
-ol{margin:24px auto 24px auto; padding:0; width:800px; text-align:left; line-height: 36px}
-ul li{list-style:none; margin:0 auto 0 auto; padding:0; text-align:left;}
-i,em{font-style:italic;}
-b,strong{font-weight:bold;}
-sup{
-    vertical-align: super;
-    font-size: 0.8rem;
-    line-height: 0;
-}
-sub{
-    vertical-align: sub;
-    font-size: 0.8rem;
-    line-height: 0;
-}
-table{
-    width: 1000px;
-    margin: 12px auto 24px auto;
-    /* UNCOMMENT THIS FOR DEBUGGING THE ALIGNMENT */
-    /*border: 1px solid black;*/
-}
-th,td{
-    text-align: left;
-    /* UNCOMMENT THIS FOR DEBUGGING THE ALIGNMENT */
-    /*border: 1px solid black;*/
+/*
+  The header.
+
+  It contains three columns. On the left we display the logo. In the middle the Conference Name.
+  And on the right hand side we have information about venue and date. The middle column width
+  is dynamic, and stretches to fill.
+*/
+
+header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-content: center;
+    background-color: var(--light-gray-color);
+    align-items: stretch;
+    border-bottom: 0.5vw solid var(--warm-red-font-color);
 }
 
-/* Website Banner */
-.banner {position: relative; font-family:'Roboto Slab',serif;}
-.top-left {font-size:5.33rem; color: #9b9b9b; background: #ffffff; text-align: center; width: 1000px; height: 67px; position: absolute; padding: 36px 0 0 0; top: 0;}
-.bottom-right {
-    width: auto;
-    height: 100px;
-    padding: 0 27px 27px 0;
-    position: absolute;
-    bottom: 0;
-    right: 0;
+header > * {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 1.5vw;
 }
 
-.bottom-right p {
-    font-size:2.33rem;
-    color: #8a2332;
-    line-height: 1.5rem;
-    text-shadow: 0 0 0 #000000;
-    text-align: right;
-    margin: 0 0 1rem 0;
+/* First column and children elements. */
+
+header div:nth-child(1) {
+    width: 25%;
+}
+
+header div:nth-child(1) img {
+    max-width: 100%;
+}
+
+/* Middle column and children elements. */
+
+header div:nth-child(2) {
+    width: 50%;
+}
+
+header div:nth-child(2) h1 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 6vw;
+    font-family: 'Roboto Slab',serif;
+    color: var(--warm-red-font-color);
+    text-shadow: var(--gray-color) 1px 1px 3px;
     padding: 0;
+    margin: 0;
 }
 
-/* Conference Title Logo */
-.title1{font-size:1em;color: #B5314C; text-shadow: 1px 1px 3px #c0c0c0;}
-.title2{font-size:1em;color: #B5314C; text-shadow: 1px 1px 3px #c0c0c0;}
-.year{font-size:0.67em;color: #B5314C;font-weight: lighter;}
-
-/* Navigation Links (Home, Registration, etc) */
-table.navigation{width:800px;}
-td.navigation{font-size:1.67rem; white-space:nowrap; width:20%; text-align:center; vertical-align:middle; padding:0 0 0 0;}
-
-/* Sponsor Images */
-table.sponsors{width:800px;}
-td.sponsor{white-space:nowrap; width:33%; text-align:center; vertical-align:middle; padding:0 0 0 0;}
-td.sponsor img{width: 100%}
-
-/* The Table on the Program Page */
-td.room{padding: 4px 12px 4px 4px; width: 90%; vertical-align:bottom; font-size:1.67rem; color: #52739e; height:32px;}
-td.date{white-space:nowrap; width:130px; text-align:right; vertical-align:top; padding:4px 16px 0 0;}
-td.title{padding: 4px 12px 4px 4px; width: 90%; vertical-align:top; font-size:1.5rem; color: #8a2332; height:32px; font-family:'Roboto Slab',serif; text-shadow: 1px 1px 2px #d0d0d0; }
-td.title-special{padding: 4px 12px 4px 4px; width: 90%; vertical-align:top; font-size:1.67rem; color: #52739e; height:32px; font-family:'Roboto Slab',serif; text-shadow: 1px 1px 2px #d0d0d0;}
-td.speaker{padding: 4px 12px 4px 4px; font-style: italic; font-size:1rem; max-height:999999px}
-td.abstract{padding: 4px 12px 12px 4px; font-size:1rem; max-height:999999px}
-td.abstract img{display: block; margin: 4px auto 8px auto}
-table.plenary{padding-top: 8px; background: #ffffff;}
-
-/* Registration and Directions iframes and Images */
-iframe.registration{display:block; margin:1rem auto 2rem auto; width:700px; height:1400px; border:none;}
-iframe.directions{display:block; margin:1rem auto 2rem auto; width:800px; height:400px; border:none;}
-img.center{display:block; width:67%; margin:1rem auto 2rem auto;}
-
-/* Flyer Images */
-table.flyers{width:800px;}
-td.flyer{white-space:nowrap; width:50%; text-align:center; vertical-align:middle; padding:0 0 0 0;}
-td.sponsor img{width: 100%}
-
-footer{font-size:0.875rem; margin-top:12rem; text-align:center;}
-
-/* My hacky way of making the site mobile-friendly */
-@media only screen and (max-width: 1100px) {
-    h2{font-size:3.00rem;}
-    p{font-size:1.5rem; line-height:1.5rem;}
-    th,td,tr{font-size:1.5rem; line-height:1.5rem;}
-    td.date{font-size:1rem; padding-top:0.5rem;}
-    td.navigation{font-size:1.5rem; padding:0 20px 0 20px;}
-    table.footer{font-size:0.33rem;}
+header div:nth-child(2) > h1 > a {
+    color: inherit;
+    text-decoration: none;
 }
 
+header div:nth-child(2) span:nth-child(2) {
+    font-size:1em;
+    text-shadow: 1px 1px 3px #c0c0c0;
+}
+
+header div:nth-child(2) span:nth-child(3) {
+    font-size:0.67em;
+    color: #B5314C;
+    font-weight: lighter;
+}
+
+/* Third column and children elements. */
+
+header div:nth-child(3) {
+    width: 25%;
+    background-color: var(--warm-red-font-color);
+    align-self: end;
+    overflow: hidden;
+    position: relative;
+}
+
+header div:nth-child(3):before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-width: 0 0 16px 16px;
+    border-style: solid;
+    border-color: var(--light-gray-color) var(--cold-red-font-color) var(--cold-red-font-color) var(--light-gray-color);
+    background: var(--cold-red-font-color);
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+    /* Firefox 3.0 damage limitation */
+    display: block; width: 0;
+}
+
+header div:nth-child(3) > span {
+    margin: 0 auto;
+    padding: 0.25rem 0;
+    display: inline-block;
+    color: white;
+    font-size: 2vw;
+}
+
+/*
+  The navigation menu.
+*/
+
+nav {
+    align-items: center;
+    background-color: var(--medium-gray);
+    border-bottom: 1px solid var(--gray-color);
+}
+
+nav > ol {
+    max-width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav > ol > li {
+    padding: 0;
+    margin: 0;
+}
+
+nav > ol > li > a {
+    color: gray;
+    background-color: var(--medium-gray);
+    font-weight: normal;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 1rem 1rem;
+    display: block;
+}
+
+nav > ol > li > a.current {
+    color: var(--warm-red-font-color);
+}
+
+nav > ol > li > a:hover {
+    color: var(--warm-red-font-color);
+}
+
+/*
+  The main content.
+*/
+
+main {
+    display: flex;
+    flex-direction: column;
+    flex-flow: initial;
+    align-items: center;
+    background-color: white;
+}
+
+main > article {
+    max-width: 80%;
+    margin: 0 auto;
+    flex: 1;
+}
+
+main > article > section {
+    margin: 4rem 0;
+}
+
+main > article > section > h1,
+main > article > section > h2,
+main > article > section > h3,
+main > article > section > h4 {
+    color: var(--warm-red-font-color);
+    margin: 1rem 0;
+}
+
+main > article > section > h2 {
+    font-size: 3vw;
+}
+
+main > article > section > h3 {
+    font-size: 2.5vw;
+}
+
+main > article > section > h4 {
+    font-size: 2vw;
+}
+
+main > article > section > h1 > a,
+main > article > section > h2 > a,
+main > article > section > h3 > a,
+main > article > section > h4 > a {
+    color: inherit;
+    text-decoration: none;
+}
+
+main > article > section > h1 > a:hover:after,
+main > article > section > h2 > a:hover:after,
+main > article > section > h3 > a:hover:after,
+main > article > section > h4 > a:hover:after{
+    content: '\0a\00B6';
+    font-weight: normal;
+    opacity: 0.8;
+}
+
+main > article > section > p {
+    line-height: 1.5rem;
+    margin: 0.5rem 0;
+    text-align: justify;
+}
+
+main > article > section > * > i {
+    font-style: italic;
+}
+
+main > article > section > ul, main > article > section > ol {
+    margin: 0.5rem 0 0.5rem 2rem;
+}
+
+main > article > section > ul > li, main > article > section > ol > li {
+    display: list-item;
+    list-style: circle;
+    margin: 0.75rem 0;
+}
+
+main > article > section a[href="#body"] {
+    color: darkgray;
+    text-decoration: underline;
+}
+
+main > article > section a[href="#body"]:before {
+    content: '\2191';
+}
+
+/*
+  The footer.
+*/
+
+footer {
+    margin: auto 0 0 0;
+    padding: 2rem 0;
+    align-items: center;
+    color: gray;
+    background-color: var(--light-gray-color);
+}
+
+footer > * {
+    max-width: 80%;
+    margin: 0 auto;
+    text-align: right;
+}
+
+footer p {
+    line-height: 1.5rem;
+    margin: 0.5rem 0;
+}
+
+footer ol, footer ul {
+    margin: 0.5rem 0 0.5rem 0.5rem;
+    display: inline;
+}
+
+footer ol > li, footer ul > li {
+    display: inline list-item;
+    list-style: circle;
+    margin: 0.75rem 0;
+}
+
+footer a, footer a:active, footer a:visited {
+    color: gray;
+}
+
+footer p > a:hover {
+    color: black;
+}
+
+/*
+  Helper elements and classes.
+*/
+
+strong {
+    font-weight: bold;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: center;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}

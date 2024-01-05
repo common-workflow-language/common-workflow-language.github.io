@@ -4,6 +4,7 @@
 <head>
     <base href=".">
     <link rel="shortcut icon" type="image/png" href="assets/favicon.png"/>
+    <link rel="stylesheet" type="text/css" media="all" href="assets/reset.css"/>
     <link rel="stylesheet" type="text/css" media="all" href="assets/main.css"/>
     <meta name="resource-type" content="document">
     <meta name="distribution" content="global">
@@ -11,102 +12,201 @@
     <title>CWLCon 2024</title>
 </head>
 
-<body>
+<body id="body">
 
-    <div class="banner">
-        <img src="assets/CWL-Logo-4k-1000-by-400.png" alt="CWLCon 2024 Banner">
-        <div class="top-left">
-            <span class="title1">CWL</span><span class="title2">Con</span> <span class="year">2024</span>
+    <header>
+        <div>
+            <a href="https://www.commonwl.org/">
+                <img
+                    src="assets/cwl_logo.png"
+                    alt="Conference Template Banner"
+                />
+            </a>
         </div>
-        <div class="bottom-right">
-            <p>Week of May 13th, 2024</p>
-            <p>Amsterdam, NL (and online!)</p>
+        <div>
+            <h1 role="doc-subtitle">
+                <a href="">CWLCon 2024</a>
+            </h1>
         </div>
-    </div>
+        <div>
+            <span>Week of May 13th, 2024</span>
+            <span>Amsterdam, NL & online!</span>
+        </div>
+    </header>
 
-    <table class="navigation">
-        <tr>
-            <td class="navigation">
-                <a class="current" title="Conference Home Page" href=".">Home</a>
-            </td>
-            <td class="navigation">
-                <a title="Register for the Conference" href="registration">Registration (TBA)</a>
-            </td>
-            <td class="navigation">
-                <a title="Conference Program" href="program">Program (TBA)</a>
-            </td>
-            <td class="navigation">
-                <a title="Directions to the Conference" href="directions">Directions (TBA)</a>
-            </td>
-            <td class="navigation">
-                <a title="Health & Safety" href="health_and_safety">Health and Safety</a>
-            </td>
-            <td class="navigation">
-                <a title="Code of Conduct" href="code_of_conduct">Code of Conduct</a>
-            </td>
+    <nav>
+        <ol>
+            <li>
+                <a class="current" title="Conference Home Page" href="">Home</a>
+            </li>
+            <li>
+                <a title="Register for the Conference" href="#registration">Registration (TBA)</a>
+            </li>
+            <li>
+                <a title="Conference Program" href="#program">Program (TBA)</a>
+            </li>
+            <li>
+                <a title="Directions to the Conference" href="#directions">Directions (TBA)</a>
+            </li>
+            <li>
+                <a title="Health & Safety" href="#health-and-safety">Health and Safety</a>
+            </li>
+            <li>
+                <a title="Code of Conduct" href="#code-of-conduct">Code of Conduct</a>
+            </li>
+        </ol>
+    </nav>
 
-        </tr>
-    </table>
+    <main>
+        <article>
+            <section id="home">
+                <h2><a href="#home">CWLCon 2024</a></h2>
 
-    <h2>CWLCon 2024</h2>
-    <p>
-        The 2024 CWL Conference will be the week of May 13!
-        There will be an in-person component in the Netherlands, with the conference talks being shared in the CWL Matrix room. This means presenters and participants may choose to attend in-person event or engage remotely.
-    </p>
-    <p>
-        Submissions will open in February 2024
-    </p>
+                <p>
+                    The 2024 CWL Conference will be the week of May 13!
+                    There will be an in-person component in the Netherlands, with the conference talks being shared in the CWL Matrix room. This means presenters and participants may choose to attend in-person event or engage remotely.
+                </p>
 
-    <h2>Call for Submissions</h2>
+                <p>
+                    Submissions will open in February 2024
+                </p>
+            </section>
 
-    <p>JOIN US FOR THE 4th ANNUAL CWL CONFERENCE & 10th ANNIVERSARY CELEBRATION</p>
+            <section id="call-for-submissions">
+                <h3><a href="#call-for-submissions">Call for Submissions</a></h3>
 
-    <p>The Common Workflow Language (CWL) project originated from the conversations at the 2014 Bioinformatics Open Source Conference CodeFest.
-    CWL is a well-known and advocated standard for describing how to run command line tools and connect them to create workflows.
-        The CWL annual conference was first held online in 2021. It has since been held online and hybrid mode in the past two years.</p>
+                <p>JOIN US FOR THE 4th ANNUAL CWL CONFERENCE & 10th ANNIVERSARY CELEBRATION</p>
 
-    <p>Building on the experience from the past, the CWL 2024 conference will be hosted as a hybrid event in the Netherlands and online.
-    The conference will feature contributed talks from speakers, vendor presentations, training sessions, and a hackathon / collaboration-fest.
-        There will also be many networking opportunities at the conference.</p>
+                <p>The Common Workflow Language (CWL) project originated from the conversations at the 2014 Bioinformatics Open Source Conference CodeFest.
+                    CWL is a well-known and advocated standard for describing how to run command line tools and connect them to create workflows.
+                    The CWL annual conference was first held online in 2021. It has since been held online and hybrid mode in the past two years.</p>
 
-    <p>The conference organising committee will invite abstracts from any discipline.
-    The target audiences for this conference include existing or potential CWL users, research software engineers, and workflow engine developers.
-        We aim to provide immersive learning opportunities and stimulating environment for individuals from varying background and interests.</p>
+                <p>Building on the experience from the past, the CWL 2024 conference will be hosted as a hybrid event in the Netherlands and online.
+                    The conference will feature contributed talks from speakers, vendor presentations, training sessions, and a hackathon / collaboration-fest.
+                    There will also be many networking opportunities at the conference.</p>
 
-    <p>Moreover, our conference is dedicated to fostering inclusiveness, urging active involvement, and welcoming contributions from individuals with diverse backgrounds.
-    Collectively, we aim to create a collaborative and supportive environment that fosters the development of ideas and solutions.</p>
+                <p>The conference organising committee will invite abstracts from any discipline.
+                    The target audiences for this conference include existing or potential CWL users, research software engineers, and workflow engine developers.
+                    We aim to provide immersive learning opportunities and stimulating environment for individuals from varying background and interests.</p>
 
-    <p>Should you have any questions or concerns, please do not hesitate to reach out to the organisers directly.</p>
+                <p>Moreover, our conference is dedicated to fostering inclusiveness, urging active involvement, and welcoming contributions from individuals with diverse backgrounds.
+                    Collectively, we aim to create a collaborative and supportive environment that fosters the development of ideas and solutions.</p>
 
-    <h2>Organizers</h2>
+                <p>Should you have any questions or concerns, please do not hesitate to reach out to the organisers directly.</p>
+            </section>
 
-    <ul>
-        <li><a href="https://github.com/mr-c">Michael R. Crusoe</a></li>
-        <li><a href="https://github.com/GlassOfWhiskey">Iacopo Colonnelli</a></li>
-        <li><a href="https://github.com/manabuishii">Manabu ISHII</a></li>
-        <li><a href="https://github.com/kinow">Bruno P. Kinoshita</a></li>
-        <li><a href="https://github.com/skanwal">Sehrish Kanwal</a></li>
-        <li><a href="https://github.com/alexiswl">Alexis Lucattini</a></li>
-        <li><a href="https://github.com/inutano">Tazro Inutano Ohta</a></li>
-        <li><a href="https://github.com/tom-tan">Tomoya Tanjo</a></li>
-    </ul>
+            <section id="registration">
+                <h2><a href="#registration">Registration</a></h2>
 
-    <p>If you would like to be a conference organiser please reach out to one of us through the <a href="https://matrix.to/#/#common-workflow-language_common-workflow-language:gitter.im">CWL chat room</a>.</p>
+                <p>Registrations will open in February 2024 (please check again soon!)</p>
 
-    <h2>Sponsors</h2>
+                <p><a href="#body">Back to top</a></p>
+            </section>
 
-    <p> This could be your organization!! </p>
+            <section id="program">
+                <h2><a href="#program">Program</a></h2>
 
-    <h2>Previous Conference Links</h2>
-    <ul>
-        <li><a href="https://cwl.discourse.group/t/schedule-of-confirmed-talks/753">CWLCon2023</a></li>
-        <li><a href="https://cwl.discourse.group/t/2022-cwl-conference-feb-28-mar-4-2022/519">CWLCon2022</a></li>
-        <li><a href="https://pad.sfconservancy.org/p/CWLcon2021">CWLCon2021</a></li>
-    </ul>
+                <p>Please check again soon!</p>
+
+                <p><a href="#body">Back to top</a></p>
+            </section>
+
+            <section id="directions">
+                <h2><a href="#directions">Directions</a></h2>
+
+                <p>We are yet to find a venue for this conference.</p>
+
+                <p>If you know of suitable venue for this conference please contact an organizer ASAP, it would be greatly appreciated!</p>
+
+                <p><a href="#body">Back to top</a></p>
+            </section>
+
+            <section id="health-and-safety">
+                <h2><a href="#health-and-safety">Health and Safety</a></h2>
+
+                <p>The event has a Health and Safety policy (inspired by <a href="https://publichealthpledge.com">publichealthpledge.com</a>).</p>
+
+                <p>The policy comprises the following components:</p>
+
+                <ul>
+                    <li>In-person participants will be required to wear a FFP3 face mask.</li>
+                    <li>Any scheduled meals and coffee breaks will be outside.</li>
+                    <li>Attendees will be expected to perform a rapid COVID-19 test prior to participating each day.</li>
+                    <li>The CO2 level in the rooms will be monitored to ensure good ventilation (PPM under 1000).</li>
+                </ul>
+
+                <p><i>If the policy changes it is only strengthened - never weakened - between the event's announcement and the event itself.</i></p>
+
+                <p><a href="#body">Back to top</a></p>
+            </section>
+
+            <section id="code-of-conduct">
+                <h2><a href="#code-of-conduct">Code of Conduct</a></h2>
+
+                <p>
+                    This event will be held in accordance with the
+                    <a href="https://www.commonwl.org/community/#code-of-conduct"> CWL Code of conduct</a>.
+                </p>
+
+                <p>
+                    <i>The CWL Project is dedicated to providing a harassment-free experience for everyone, regardless of gender, gender identity and expression, sexual orientation, disability, physical appearance, body size, age, race, or religion.We do not tolerate harassment of participants in any form.</i>
+                </p>
+
+                <p>
+                    <i>This code of conduct applies to all CWL Project spaces, including the Google Group, the Matrix chat room, the Google Hangouts chats, both online and off.</i>
+                </p>
+
+                <p>
+                    <i>Anyone who violates this code of conduct may be sanctioned or expelled from these spaces at the discretion of the leadership team.</i>
+                </p>
+
+                <p>
+                    <i>For more details, see our <a href="https://github.com/common-workflow-language/common-workflow-language/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a>.</i>
+                </p>
+
+                <p><a href="#body">Back to top</a></p>
+            </section>
+
+            <section id="organizers">
+                <h2><a href="#organizers">Organizers</a></h2>
+
+                <ul>
+                    <li><a href="https://github.com/mr-c">Michael R. Crusoe</a></li>
+                    <li><a href="https://github.com/GlassOfWhiskey">Iacopo Colonnelli</a></li>
+                    <li><a href="https://github.com/manabuishii">Manabu Ishii</a></li>
+                    <li><a href="https://github.com/kinow">Bruno P. Kinoshita</a></li>
+                    <li><a href="https://github.com/skanwal">Sehrish Kanwal</a></li>
+                    <li><a href="https://github.com/alexiswl">Alexis Lucattini</a></li>
+                    <li><a href="https://github.com/inutano">Tazro Inutano Ohta</a></li>
+                    <li><a href="https://github.com/tom-tan">Tomoya Tanjo</a></li>
+                </ul>
+            </section>
+
+            <section id="sponsors">
+                <h2><a href="#sponsors">Sponsors</a></h2>
+
+                <p> This could be your organization!! </p>
+            </section>
+
+        </article>
+    </main>
 
     <footer>
-        &copy; Conference Organizers
-        &nbsp;|&nbsp; Design by <a href="https://github.com/mikepierce">Mike Pierce</a>
+        <div class="column">
+            <div class="row">
+                <div class="column">
+                    <div>
+                        <span><strong>Previous Conference Links:</strong></span>
+                        <a href="https://cwl.discourse.group/t/schedule-of-confirmed-talks/753">CWLCon2023</a> /
+                        <a href="https://cwl.discourse.group/t/2022-cwl-conference-feb-28-mar-4-2022/519">CWLCon2022</a> /
+                        <a href="https://pad.sfconservancy.org/p/CWLcon2021">CWLCon2021</a>
+
+                    </div>
+                </div>
+            </div>
+
+            <p>Copyright &copy; 2023-2024 <a href="https://www.commonwl.org/">Common Workflow Language</a> &mdash; <a href="#code-of-conduct">Code of Conduct</a></p>
+        </div>
     </footer>
 
 </body>
