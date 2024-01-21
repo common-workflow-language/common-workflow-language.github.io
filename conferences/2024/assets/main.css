@@ -17,7 +17,9 @@
     /* This is the same color as the CWL website menu background. */
     --medium-gray: rgb(244, 244, 244);
     --light-gray-color: #FAFAFA;
+    --black-color: #333333;
     --font-family: 'Roboto',sans-serif;
+    --font-size: 16px;
 }
 
 body {
@@ -25,6 +27,8 @@ body {
     min-height: 100vh;
     flex-direction: column;
     font-family: var(--font-family);
+    font-size: calc(var(--font-size) + 0.390625vw);
+    color: var(--black-color);
 }
 
 /*
@@ -67,13 +71,13 @@ header div:nth-child(1) img {
 /* Middle column and children elements. */
 
 header div:nth-child(2) {
-    width: 50%;
+    width: 100%;
 }
 
 header div:nth-child(2) h1 {
     text-align: center;
     font-weight: bold;
-    font-size: 6vw;
+    font-size: 8vw;
     font-family: 'Roboto Slab',serif;
     color: var(--warm-red-font-color);
     text-shadow: var(--gray-color) 1px 1px 3px;
@@ -101,34 +105,6 @@ header div:nth-child(2) span:nth-child(3) {
 
 header div:nth-child(3) {
     width: 25%;
-    background-color: var(--warm-red-font-color);
-    align-self: end;
-    overflow: hidden;
-    position: relative;
-}
-
-header div:nth-child(3):before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-width: 0 0 16px 16px;
-    border-style: solid;
-    border-color: var(--light-gray-color) var(--cold-red-font-color) var(--cold-red-font-color) var(--light-gray-color);
-    background: var(--cold-red-font-color);
-    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
-    -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
-    box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
-    /* Firefox 3.0 damage limitation */
-    display: block; width: 0;
-}
-
-header div:nth-child(3) > span {
-    margin: 0 auto;
-    padding: 0.25rem 0;
-    display: inline-block;
-    color: white;
-    font-size: 2vw;
 }
 
 /*
@@ -164,11 +140,12 @@ nav > ol > li > a {
     display: block;
 }
 
-nav > ol > li > a.current {
+nav > ol > li > a:hover {
     color: var(--warm-red-font-color);
 }
 
-nav > ol > li > a:hover {
+/* TBD: This cannot be done via CSS-only; only with JavaScript. */
+nav > ol > li > a.current {
     color: var(--warm-red-font-color);
 }
 
@@ -185,13 +162,14 @@ main {
 }
 
 main > article {
-    max-width: 80%;
-    margin: 0 auto;
     flex: 1;
 }
 
 main > article > section {
-    margin: 4rem 0;
+    margin: 2rem auto;
+    width: 90%;
+    max-width: 90%;
+    overflow: hidden;
 }
 
 main > article > section > h1,
@@ -199,19 +177,19 @@ main > article > section > h2,
 main > article > section > h3,
 main > article > section > h4 {
     color: var(--warm-red-font-color);
-    margin: 1rem 0;
+    margin: 0 0 1.5rem 0;
 }
 
 main > article > section > h2 {
-    font-size: 3vw;
+    font-size: clamp(1.75rem, 3vw, 3rem);
 }
 
 main > article > section > h3 {
-    font-size: 2.5vw;
+    font-size: clamp(1.5rem, 2.5vw, 2.5rem);
 }
 
 main > article > section > h4 {
-    font-size: 2vw;
+    font-size: clamp(1.25rem, 2vw, 2rem);
 }
 
 main > article > section > h1 > a,
@@ -232,7 +210,7 @@ main > article > section > h4 > a:hover:after{
 }
 
 main > article > section > p {
-    line-height: 1.5rem;
+    line-height: 1.5;
     margin: 0.5rem 0;
     text-align: justify;
 }
@@ -290,8 +268,18 @@ footer ol, footer ul {
 
 footer ol > li, footer ul > li {
     display: inline list-item;
-    list-style: circle;
+    list-style: none;
     margin: 0.75rem 0;
+}
+
+footer ol > li::after, footer ul > li::after {
+    content: '/';
+    margin-left: 0.5rem;
+}
+
+footer ol > li:last-child::after, footer ul > li:last-child::after {
+    content: '';
+    margin-left: 0;
 }
 
 footer a, footer a:active, footer a:visited {
@@ -322,4 +310,131 @@ strong {
     display: flex;
     flex-direction: column;
     flex: 1;
+}
+
+/* The banner text. */
+
+.banner-text {
+    background-color: var(--warm-red-font-color);
+    align-self: end;
+    overflow: hidden;
+    position: relative;
+}
+
+.banner-text:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-width: 0 0 16px 16px;
+    border-style: solid;
+    border-color: var(--light-gray-color) var(--cold-red-font-color) var(--cold-red-font-color) var(--light-gray-color);
+    background: var(--cold-red-font-color);
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+    /* Firefox 3.0 damage limitation */
+    display: block; width: 0;
+}
+
+.banner-text > * {
+    margin: 0 auto;
+    padding: 0.25rem 0;
+    display: inline-block;
+    color: white;
+    font-size: 1.5rem;
+}
+
+/* Hide the second banner. This is displayed only on smaller viewports. */
+
+main > article .banner-text {
+    display: none;
+}
+
+/*
+    For smaller viewports, like mobile.
+ */
+
+@media only screen and (max-width: 768px) {
+
+    header {
+        border: none;
+    }
+
+    header div:nth-child(1) {
+        width: 50%;
+    }
+
+    header div:nth-child(2) {
+        width: 100%;
+        text-align: right;
+        align-items: end;
+        margin-right: 1rem;
+    }
+
+    header div:nth-child(2) h1 {
+        color: var(--warm-red-font-color);
+    }
+
+    /* Hide the first banner. This is displayed only on wider viewports. */
+    header div.banner-text {
+        display: none;
+    }
+
+    /* Instead of a burger menu (hard to make it accessible, correctly, we use a horizontal-to-vertical menu approach.
+       Ref: https://www.accede-web.com/en/guidelines/rich-interface-components/hamburger-menu/.
+    */
+    nav > ol {
+        max-width: 100%;
+        display: block;
+    }
+
+    nav > ol > li + li:not(:first-child) {
+        border-top: 1px solid var(--gray-color);
+    }
+
+    nav > ol > li:hover {
+        background-color: var(--light-gray-color);
+    }
+
+    nav > ol > li > a {
+        max-width: 90%;
+        margin: 0 auto;
+        padding: 1rem 0;
+        background-color: transparent;
+    }
+
+    main > article .banner-text {
+        display: block;
+        margin: 0;
+        padding: 1rem 0;
+    }
+
+    main > article .banner-text > * {
+        display: block;
+        font-size: 1.5rem;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    main > article .banner-text:before {
+        display: none;
+    }
+
+    footer > * {
+        max-width: 100%;
+        margin: 0 1rem;
+        text-align: left;
+    }
+
+    footer ol > li, footer ul > li {
+        display: list-item;
+        list-style: circle;
+        margin: 0.75rem 1rem;
+    }
+
+    footer ol > li::after, footer ul > li::after {
+        content: none;
+        margin: 0;
+    }
 }
