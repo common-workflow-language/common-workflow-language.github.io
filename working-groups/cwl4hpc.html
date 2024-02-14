@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-  <title>Repositories | Common Workflow Language (CWL)</title>
+  <title>CWL4HPC Working Group | Common Workflow Language (CWL)</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="sitemap" type="application/xml" title="Sitemap" href=/sitemap.xml><!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.1" />
-<meta property="og:title" content="Repositories" />
+<meta property="og:title" content="CWL4HPC Working Group" />
 <meta name="author" content="Common Workflow Language (CWL)" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="The Common Workflow Language (CWL) is an open standard for describing analysis workflows and tools in a way that makes them portable and scalable across a variety of software and hardware environments, from workstations to cluster, cloud, and high performance computing (HPC) environments. CWL is designed to meet the needs of data-intensive science, such as Bioinformatics, Medical Imaging, Astronomy, High Energy Physics, and Machine Learning." />
 <meta property="og:description" content="The Common Workflow Language (CWL) is an open standard for describing analysis workflows and tools in a way that makes them portable and scalable across a variety of software and hardware environments, from workstations to cluster, cloud, and high performance computing (HPC) environments. CWL is designed to meet the needs of data-intensive science, such as Bioinformatics, Medical Imaging, Astronomy, High Energy Physics, and Machine Learning." />
-<link rel="canonical" href="https://www.commonwl.org/repos/" />
-<meta property="og:url" content="https://www.commonwl.org/repos/" />
+<link rel="canonical" href="https://www.commonwl.org/working-groups/cwl4hpc" />
+<meta property="og:url" content="https://www.commonwl.org/working-groups/cwl4hpc" />
 <meta property="og:site_name" content="Common Workflow Language (CWL)" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Repositories" />
+<meta property="twitter:title" content="CWL4HPC Working Group" />
 <script type="application/ld+json">
-{"description":"The Common Workflow Language (CWL) is an open standard for describing analysis workflows and tools in a way that makes them portable and scalable across a variety of software and hardware environments, from workstations to cluster, cloud, and high performance computing (HPC) environments. CWL is designed to meet the needs of data-intensive science, such as Bioinformatics, Medical Imaging, Astronomy, High Energy Physics, and Machine Learning.","@type":"WebPage","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://www.commonwl.org/CWL-Logo-Header.png"},"name":"Common Workflow Language (CWL)"},"headline":"Repositories","url":"https://www.commonwl.org/repos/","author":{"@type":"Person","name":"Common Workflow Language (CWL)"},"@context":"https://schema.org"}</script>
+{"description":"The Common Workflow Language (CWL) is an open standard for describing analysis workflows and tools in a way that makes them portable and scalable across a variety of software and hardware environments, from workstations to cluster, cloud, and high performance computing (HPC) environments. CWL is designed to meet the needs of data-intensive science, such as Bioinformatics, Medical Imaging, Astronomy, High Energy Physics, and Machine Learning.","@type":"WebPage","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://www.commonwl.org/CWL-Logo-Header.png"},"name":"Common Workflow Language (CWL)"},"headline":"CWL4HPC Working Group","url":"https://www.commonwl.org/working-groups/cwl4hpc","author":{"@type":"Person","name":"Common Workflow Language (CWL)"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <script src="/assets/js/redirects.js"></script><link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-iKbFRxucmOHIcpWdX9NTZ5WETOPm0Goy0WmfyNcl52qSYtc2Buk0NCe6jU1sWWNB" crossorigin="anonymous">
   <link rel="stylesheet" href="/style.css"><link rel="apple-touch-icon" sizes="180x180" href=/favicon/apple-touch-icon.png>
@@ -40,7 +40,7 @@
     <li><a class="sr-only sr-only-focusable skip-link" href="#site_footer">Skip to footer</a></li>
   </ul>
 
-  <div class="site-wrapper page-short page-repos" id="siteTop">
+  <div class="site-wrapper page-short page-working-groupscwl4hpc" id="siteTop">
     <nav class="navbar navbar-expand-lg navbar-light top-nav sticky-top" aria-label="main navigation">
   <div class="nav-wrap container-fluid">
     <a class="navbar-brand" href="/">
@@ -83,7 +83,7 @@
       <h1 class="post-title col-lg-10">
         
         
-          Repositories
+          CWL4HPC Working Group
         
         
       </h1>
@@ -92,53 +92,76 @@
   </header>
 
   <div class="post-content">
-      <h2 class="black-text" id="repositories-of-cwl-tools-and-workflows">
+      <h2 class="black-text" id="cwl-for-high-performance-computing-cwl4hpc">
         
         
-          Repositories of CWL Tools and Workflows <a href="#repositories-of-cwl-tools-and-workflows" class="heading__anchor-symbol">§</a>
+          CWL For High-Performance Computing (CWL4HPC) <a href="#cwl-for-high-performance-computing-cwl4hpc" class="heading__anchor-symbol">§</a>
         
         
       </h2>
     
 
-<table class="table table-striped rows-2">
+<p>The CWL4HPC Working group aims to identify workflow patterns capable of modelling large-scale scientific applications and implement the related CWL enhancement proposals. The main objective is to enable the CWL ecosystem to easily describe HPC workloads and orchestrate them at extreme scales without sacrificing the general and agnostic nature of the language.</p>
+
+<p>The main activities of the group are listed in the table below. For each CWL enhancement proposal, the group aims to:</p>
+<ul>
+  <li>Motivate it with two real use cases that would benefit from the proposed feature;</li>
+  <li>Agree on a first draft of the syntax and semantics of the proposed feature;</li>
+  <li>Implement it as an extension on <code class="language-plaintext highlighter-rouge">cwltool</code> (the CWL reference implementation) and at least another CWL-compliant workflow system, together with a suite of conformance tests;</li>
+  <li>Validate it on at least two existing CWL workflows where the proposal is applied, or with new example workflows created on purpose.</li>
+</ul>
+
+<p>The process just described is iterative. If some criticalities of further enhancements emerge during the implementation or validation phases, the syntax and semantics can be refined and the process restarts. After reaching a sufficient level of maturity, the group agrees to present the proposal to the CWL community for inclusion in the following standard version.</p>
+
+<p>Domain experts, HPC administrators, workflow designers and maintainers, and workflow system implementers are welcome to join the discussion, but the group is open to anyone wanting to contribute. Click <a href="https://matrix.to/#/!rnpqRUgCiUQaGeqAWG:matrix.org?via=matrix.org">here</a> to join the group’s matrix channel and participate in the discussion.</p>
+      <h3 id="leads">
+        
+        
+          Leads <a href="#leads" class="heading__anchor-symbol">§</a>
+        
+        
+      </h3>
+    
+
+<ul>
+  <li>Iacopo Colonnelli, University of Torino, Italy (iacopo.colonnelli@unito.it)</li>
+  <li>Bruno P. Kinoshita, Barcelona Supercomputing Center, Spain (bruno.depaulakinoshita@bsc.es)</li>
+</ul>
+      <h3 id="main-ongoing-activities">
+        
+        
+          Main ongoing activities <a href="#main-ongoing-activities" class="heading__anchor-symbol">§</a>
+        
+        
+      </h3>
+    
+
+<table class="table table-striped cols-2">
   <thead>
     <tr>
-      <th>Repository</th>
-      <th>Description</th>
+      <th>Feature</th>
+      <th>Status</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><a href="https://github.com/common-workflow-library">Common Workflow Library</a></td>
-      <td>Git organization for community maintenance of tools and workflows</td>
-    </tr>
-    <tr>
-      <td><a href="https://dockstore.org/">Dockstore tool registry</a></td>
-      <td>An open platform for sharing Docker-based tools described with the Common Workflow Language used by the GA4GH</td>
-    </tr>
-    <tr>
-      <td><a href="https://view.commonwl.org/workflows">CWLviewer</a></td>
-      <td>A web application to view and share Common Workflow Language workflows</td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/xDBio-Inc/cwl-source">cwl-source</a></td>
-      <td>Git repository for collections of tools, workflows, metadata, and input parameter files. Administered by xD Bio Inc. Integrates with <a href="https://truwl.com/">truwl.com</a></td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/search?q=language:%22Common+Workflow+Language%22&amp;type=code">GitHub</a></td>
-      <td>Search for CWL documents using <code class="language-plaintext highlighter-rouge">language:"Common Workflow Language" + &lt;your search terms&gt;</code>, for example <a href="https://github.com/search?q=language%3A%22Common+Workflow+Language%22++picard&amp;type=code"><code class="language-plaintext highlighter-rouge">language:"Common Workflow Language" picard</code></a></td>
-    </tr>
-    <tr>
-      <td><a href="https://www.google.com/search?q=filetype%3Acwl+cwlVersion">Google</a></td>
-      <td>Search for CWL documents using <code class="language-plaintext highlighter-rouge">filetype:cwl cwlVersion + &lt;your search terms&gt;</code>, for example <a href="https://www.google.com/search?q=filetype%3Acwl+cwlVersion+picard"><code class="language-plaintext highlighter-rouge">filetype:cwl cwlVersion picard</code></a></td>
-    </tr>
-    <tr>
-      <td><a href="https://workflowhub.eu/workflows?filter%5Bworkflow_type%5D=CWL">Workflow Hub</a></td>
-      <td>A registry for scientific workflows, sponsored by EOSC Life</td>
+      <td>Iterative patterns</td>
+      <td>A <code class="language-plaintext highlighter-rouge">cwltool:Loop</code> requirement has been <a href="https://github.com/common-workflow-language/common-workflow-language/issues/495">proposed</a> and implemented as a CWL extension in <a href="https://github.com/common-workflow-language/cwltool">cwltool</a> and <a href="https://streamflow.di.unito.it">StreamFlow</a>. Currently, its inclusion in the CWL v1.3 standard as a <a href="https://github.com/common-workflow-language/cwltool/pull/1779">native feature</a> is under discussion</td>
     </tr>
   </tbody>
 </table>
+      <h3 id="publications">
+        
+        
+          Publications <a href="#publications" class="heading__anchor-symbol">§</a>
+        
+        
+      </h3>
+    
+
+<ul>
+  <li>I. Colonnelli, B. Casella, G. Mittone, Y. Arfat, B. Cantalupo, R. Esposito, A. R. Martinelli, D. Medić, and M. Aldinucci, “Federated Learning meets HPC and cloud,” in <em>Astrophysics and Space Science Proceedings</em>, Catania, Italy, 2023, p. 193–199. doi:<a href="https://dx.doi.org/10.1007/978-3-031-34167-0_39">10.1007/978-3-031-34167-0_39</a></li>
+</ul>
 
   </div>
 </article>
