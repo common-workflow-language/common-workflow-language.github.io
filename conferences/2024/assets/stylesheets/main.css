@@ -14,12 +14,13 @@
     --cold-red-font-color: #9F2135;
     --warm-red-font-color: #D4376B;
     --gray-color: #C0C0C0;
+    --light-blue-color: #CADEFC;
     /* This is the same color as the CWL website menu background. */
     --medium-gray: rgb(244, 244, 244);
     --light-gray-color: #FAFAFA;
     --black-color: #333333;
     --font-family: 'Roboto',sans-serif;
-    --font-size: 16px;
+    --font-size: 14px;
 }
 
 body {
@@ -131,7 +132,7 @@ nav > ol > li {
 }
 
 nav > ol > li > a {
-    color: gray;
+    color: rgb(128, 128, 128);
     background-color: var(--medium-gray);
     font-weight: normal;
     text-decoration: none;
@@ -166,64 +167,76 @@ main > article {
 }
 
 main > article > section {
-    margin: 2rem auto;
-    width: 90%;
-    max-width: 90%;
+    padding: 1rem 0;
+    width: 100vw;
     overflow: hidden;
 }
 
-main > article > section > h1,
-main > article > section > h2,
-main > article > section > h3,
-main > article > section > h4 {
+main > article > section > div {
+    width: 90%;
+    margin: 0 auto;
+}
+
+main > article > section.gray-background {
+    background-color: var(--light-gray-color);
+}
+
+main > article > section.light-blue-background {
+    background-color: var(--light-blue-color);
+}
+
+main > article > section h1,
+main > article > section h2,
+main > article > section h3,
+main > article > section h4 {
     color: var(--warm-red-font-color);
     margin: 0 0 1.5rem 0;
 }
 
-main > article > section > h2 {
+main > article > section h2 {
     font-size: clamp(1.75rem, 3vw, 3rem);
 }
 
-main > article > section > h3 {
+main > article > section h3 {
     font-size: clamp(1.5rem, 2.5vw, 2.5rem);
 }
 
-main > article > section > h4 {
+main > article > section h4 {
     font-size: clamp(1.25rem, 2vw, 2rem);
 }
 
-main > article > section > h1 > a,
-main > article > section > h2 > a,
-main > article > section > h3 > a,
-main > article > section > h4 > a {
+main > article > section h1 > a,
+main > article > section h2 > a,
+main > article > section h3 > a,
+main > article > section h4 > a {
     color: inherit;
     text-decoration: none;
 }
 
-main > article > section > h1 > a:hover:after,
-main > article > section > h2 > a:hover:after,
-main > article > section > h3 > a:hover:after,
-main > article > section > h4 > a:hover:after{
+main > article > section h1 > a:hover:after,
+main > article > section h2 > a:hover:after,
+main > article > section h3 > a:hover:after,
+main > article > section h4 > a:hover:after{
     content: '\0a\00B6';
     font-weight: normal;
     opacity: 0.8;
 }
 
-main > article > section > p {
+main > article > section p {
     line-height: 1.5;
     margin: 0.5rem 0;
     text-align: justify;
 }
 
-main > article > section > * > i {
+main > article > section i {
     font-style: italic;
 }
 
-main > article > section > ul, main > article > section > ol {
+main > article > section ul, main > article > section ol {
     margin: 0.5rem 0 0.5rem 2rem;
 }
 
-main > article > section > ul > li, main > article > section > ol > li {
+main > article > section ul > li, main > article > section ol > li {
     display: list-item;
     list-style: circle;
     margin: 0.75rem 0;
@@ -232,6 +245,21 @@ main > article > section > ul > li, main > article > section > ol > li {
 main > article > section a[href="#body"] {
     color: darkgray;
     text-decoration: underline;
+}
+
+main > article > section img {
+    width: 100%;
+    max-width: 100vw;
+}
+
+main > article > section address {
+    line-height: 2rem;
+    margin: 0.5rem 0;
+}
+
+/* For contrast. */
+main > article > section.light-blue-background a[href="#body"] {
+    color: var(--black-color);
 }
 
 main > article > section a[href="#body"]:before {
@@ -246,7 +274,7 @@ footer {
     margin: auto 0 0 0;
     padding: 2rem 0;
     align-items: center;
-    color: gray;
+    color: rgb(128, 128, 128);
     background-color: var(--light-gray-color);
 }
 
@@ -283,7 +311,7 @@ footer ol > li:last-child::after, footer ul > li:last-child::after {
 }
 
 footer a, footer a:active, footer a:visited {
-    color: gray;
+    color: rgb(128, 128, 128);
 }
 
 footer p > a:hover {
@@ -302,8 +330,8 @@ strong {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 100%;
-    align-items: center;
+    align-items: start;
+    gap: 1rem;
 }
 
 .column {
@@ -343,6 +371,48 @@ strong {
     display: inline-block;
     color: white;
     font-size: 1.5rem;
+}
+
+div.cards {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+div.cards > div.card {
+    overflow: hidden;
+    border: 1px solid var(--gray-color);
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 22%;
+}
+
+div.cards > div.card > div.avatar {
+    width: 100%;
+}
+
+div.cards > div.card > div.avatar > img {
+    display: block;
+}
+
+div.cards > div.card > div.title {
+    text-align: center;
+    padding: 0.5rem 0.25rem;
+    border-top: 1px solid var(--gray-color);
+}
+
+div.cards > div.card > div.title > a {
+    color: var(--warm-red-font-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+div.cards > div.card > div.title > a:hover {
+    text-decoration: underline;
 }
 
 /* Hide the second banner. This is displayed only on smaller viewports. */
@@ -437,4 +507,67 @@ main > article .banner-text {
         content: none;
         margin: 0;
     }
+
+    .column {
+        display: block;
+        flex: unset;
+    }
+
+    div.cards > div.card {
+        /* -1rem to compensate for gutters and padding. */
+        flex: 0 0 calc(33.333% - 1rem);
+    }
+}
+
+/*
+For the program tables
+ */
+
+.tg {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.tg td {
+    border-color: #c0c0c0;
+    border-style: solid;
+    border-width: 1px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    overflow: hidden;
+    padding: 10px 5px;
+    word-break: normal;
+}
+
+.tg th {
+    border-color: #c0c0c0;
+    border-style: solid;
+    border-width: 1px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    overflow: hidden;
+    padding: 10px 5px;
+    word-break: normal;
+}
+
+.tg .tg-f7v4 {
+    background-color: #c0c0c0;
+    border-color: #000000;
+    text-align: left;
+    vertical-align: top
+}
+
+.tg .tg-73oq {
+    border-color: #000000;
+    text-align: left;
+    vertical-align: top
+}
+
+.tg .tg-zefg {
+    background-color: #c0c0c0;
+    border-color: #000000;
+    color: #000000;
+    text-align: left;
+    vertical-align: top
 }

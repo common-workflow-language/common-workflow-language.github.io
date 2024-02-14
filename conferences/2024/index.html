@@ -3,9 +3,9 @@
 
 <head>
     <base href=".">
-    <link rel="shortcut icon" type="image/png" href="assets/favicon.png"/>
-    <link rel="stylesheet" type="text/css" media="all" href="assets/reset.css"/>
-    <link rel="stylesheet" type="text/css" media="all" href="assets/main.css"/>
+    <link rel="shortcut icon" type="image/png" href="assets/images/favicon.png"/>
+    <link rel="stylesheet" type="text/css" media="all" href="assets/stylesheets/reset.css"/>
+    <link rel="stylesheet" type="text/css" media="all" href="assets/stylesheets/main.css"/>
     <meta name="resource-type" content="document">
     <meta name="distribution" content="global">
     <meta name="KeyWords" content="CWL, Common Workflow Language, Conference">
@@ -19,7 +19,7 @@
         <div>
             <a href="https://www.commonwl.org/">
                 <img
-                    src="assets/cwl_logo.png"
+                    src="assets/images/cwl_logo.png"
                     alt="CWL Logo"
                 />
             </a>
@@ -29,8 +29,9 @@
                 <a href="">CWLCon 2024</a>
             </h1>
         </div>
+        <!-- This banner is duplicated below for larger viewports. Please update it there as well. -->
         <div class="banner-text">
-            <span>Week of May 13th, 2024</span>
+            <span>8th - 17th May 2024</span>
             <span>Amsterdam, NL & online!</span>
         </div>
     </header>
@@ -44,10 +45,10 @@
                 <a title="Register for the Conference" href="#registration">Registration (TBA)</a>
             </li>
             <li>
-                <a title="Conference Program" href="#program">Program (TBA)</a>
+                <a title="Conference Program" href="#program">Program</a>
             </li>
             <li>
-                <a title="Directions to the Conference" href="#directions">Directions (TBA)</a>
+                <a title="Directions to the Conference" href="#directions">Directions</a>
             </li>
             <li>
                 <a title="Health & Safety" href="#health-and-safety">Health and Safety</a>
@@ -60,142 +61,367 @@
 
     <main>
         <article>
+            <!-- This banner is duplicated above for larger viewports. Please update it there as well. -->
             <div class="banner-text">
                 <p>
-                    <span>Week of May 13th, 2024</span>
-                    <span>Amsterdam, NL & online!</span>
+                    <span>Tue 14May - Fri 17May, 2024</span>
+                    <span>Amsterdam, NL & Online!</span>
                 </p>
             </div>
 
             <section id="home">
-                <h2><a href="#home">CWLCon 2024</a></h2>
+                <div class="row">
+                    <div class="column">
+                        <h2><a href="#home">CWLCon 2024</a></h2>
 
-                <p>
-                    The 2024 CWL Conference will be the week of May 13!
-                    There will be an in-person component in the Netherlands, with the conference talks being shared in the CWL Matrix room. This means presenters and participants may choose to attend in-person event or engage remotely.
-                </p>
+                        <p>
+                            The 2024 CWL Conference will be held in Amsterdam from the Wed 15 May to Fri 17 May!<br><br>
 
-                <p>
-                    Submissions will open in February 2024
-                </p>
+                            The conference talks will be shared in the CWL Matrix room.
+                            This means presenters and participants may choose to attend in-person event or engage remotely.<br><br>
+
+                            There will also be an in-person training event on Tue 14th of May<br><br>
+
+                            For those in different timezones, we will have two four-hour online-only presentations with Q&As the week before.
+                            These will span from Wed 8 May to Fri 10 May.<br><br>
+                        </p>
+
+                        <p>
+                            <strong>&triangleright; Submissions will open in February 2024 &triangleleft;</strong>
+                        </p>
+                    </div>
+                    <div class="column">
+                        <p>
+                            <img src="./assets/images/welcome-image.png" alt="Photo from a previous conference." />
+                        </p>
+                    </div>
+                </div>
             </section>
 
-            <section id="call-for-submissions">
-                <h3><a href="#call-for-submissions">Call for Submissions</a></h3>
+            <section>
+                <div class="row">
+                    <div id="call-for-submissions" class="column">
+                        <h3><a href="#call-for-submissions">Call for Submissions</a></h3>
 
-                <p>JOIN US FOR THE 4th ANNUAL CWL CONFERENCE & 10th ANNIVERSARY CELEBRATION</p>
+                        <p>JOIN US FOR THE 4th ANNUAL CWL CONFERENCE & 10th ANNIVERSARY CELEBRATION</p>
 
-                <p>The Common Workflow Language (CWL) project originated from the conversations at the 2014 Bioinformatics Open Source Conference CodeFest.
-                    CWL is a well-known and advocated standard for describing how to run command line tools and connect them to create workflows.
-                    The CWL annual conference was first held online in 2021. It has since been held online and hybrid mode in the past two years.</p>
+                        <p>The Common Workflow Language (CWL) project originated from the conversations at the 2014 Bioinformatics Open Source Conference CodeFest.
+                            CWL is a well-known and advocated standard for describing how to run command line tools and connect them to create workflows.
+                            The CWL annual conference was first held online in 2021. It has since been held online and hybrid mode in the past two years.</p>
 
-                <p>Building on the experience from the past, the CWL 2024 conference will be hosted as a hybrid event in the Netherlands and online.
-                    The conference will feature contributed talks from speakers, vendor presentations, training sessions, and a hackathon / collaboration-fest.
-                    There will also be many networking opportunities at the conference.</p>
+                        <p>Building on the experience from the past, the CWL 2024 conference will be hosted as a hybrid event in the Netherlands and online.
+                            The conference will feature contributed talks from speakers, vendor presentations, training sessions, and a hackathon / collaboration-fest.
+                            There will also be many networking opportunities at the conference.</p>
 
-                <p>The conference organising committee will invite abstracts from any discipline.
-                    The target audiences for this conference include existing or potential CWL users, research software engineers, and workflow engine developers.
-                    We aim to provide immersive learning opportunities and stimulating environment for individuals from varying background and interests.</p>
+                        <p>The conference organising committee will invite abstracts from any discipline.
+                            The target audiences for this conference include existing or potential CWL users, research software engineers, and workflow engine developers.
+                            We aim to provide immersive learning opportunities and stimulating environment for individuals from varying background and interests.</p>
 
-                <p>Moreover, our conference is dedicated to fostering inclusiveness, urging active involvement, and welcoming contributions from individuals with diverse backgrounds.
-                    Collectively, we aim to create a collaborative and supportive environment that fosters the development of ideas and solutions.</p>
+                        <p>Moreover, our conference is dedicated to fostering inclusiveness, urging active involvement, and welcoming contributions from individuals with diverse backgrounds.
+                            Collectively, we aim to create a collaborative and supportive environment that fosters the development of ideas and solutions.</p>
 
-                <p>Should you have any questions or concerns, please do not hesitate to reach out to the organisers directly.</p>
+                        <p>Should you have any questions or concerns, please do not hesitate to reach out to the organisers directly.</p>
+                    </div>
+                </div>
             </section>
 
-            <section id="registration">
-                <h2><a href="#registration">Registration</a></h2>
+            <section class="gray-background">
+                <div class="row">
+                    <div id="registration" class="column">
+                        <h2><a href="#registration">Registration</a></h2>
 
-                <p>Registrations will open in February 2024 (please check again soon!)</p>
+                        <p>Registrations will open in February 2024 (please check again soon!)</p>
 
-                <p><a href="#body">Back to top</a></p>
-            </section>
+                        <p><a href="#body">Back to top</a></p>
+                    </div>
+                    <div id="program" class="column">
+                        <h2><a href="#program">Program</a></h2>
 
-            <section id="program">
-                <h2><a href="#program">Program</a></h2>
+                        <br>
 
-                <p>Please check again soon!</p>
+                        <h3><a href="#onlinesession1">Americas Online Session</a></h3>
 
-                <p><a href="#body">Back to top</a></p>
+                        <p>
+                            A four-hour online conference session for those in the Americas, Europe, Middle East, and Africa.<br>
+                            The session time for your timezone can be found below.
+                        </p>
+                        <br>
+
+                        <table class="tg">
+                            <thead>
+                            <tr>
+                                <th class="tg-0pky">Date</th>
+                                <th class="tg-0pky">Time Zone</th>
+                                <th class="tg-0pky">Time</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="tg-0pky">Wed 8 May</td>
+                                <td class="tg-0pky">Pacific Daylight Time</td>
+                                <td class="tg-0pky">08:00 - 12:00</td>
+                            </tr>
+                            <tr>
+                                <td class="tg-0pky">Wed 8 May</td>
+                                <td class="tg-0pky">Eastern Daylight Time</td>
+                                <td class="tg-0pky">11:00 - 15:00</td>
+                            </tr>
+                            <tr>
+                                <td class="tg-0pky">Wed 8 May</td>
+                                <td class="tg-0pky">UTC Time</td>
+                                <td class="tg-0pky">15:00 - 19:00</td>
+                            </tr>
+                            <tr>
+                                <td class="tg-0pky">Wed 8 May</td>
+                                <td class="tg-0pky">Central European Summer Time</td>
+                                <td class="tg-0pky">17:00 - 21:00</td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <br><br>
+
+                        <h3><a href="#onlinesession2">APAC & Americas Online Session</a></h3>
+
+                        <p>
+                            A four-hour online conference session for Asia-Pacific / Americas timezones.<br>
+                            The session time for your timezone can be found below.
+                        </p>
+                        <br>
+
+                        <table class="tg">
+                            <thead>
+                            <tr>
+                                <th class="tg-0pky">Date</th>
+                                <th class="tg-0pky">Time Zone</th>
+                                <th class="tg-0pky">Time</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="tg-0pky">Thu 9 May</td>
+                                <td class="tg-0pky">Pacific Daylight Time</td>
+                                <td class="tg-0pky">16:00 - 20:00</td>
+                            </tr>
+                            <tr>
+                                <td class="tg-0pky">Thu 9 May</td>
+                                <td class="tg-0pky">Eastern Daylight Time</td>
+                                <td class="tg-0pky">19:00 - 23:00</td>
+                            </tr>
+                            <tr>
+                                <td class="tg-0pky">Fri 10 May</td>
+                                <td class="tg-0pky">Japanese Standard Time</td>
+                                <td class="tg-0pky">08:00 - 12:00</td>
+                            </tr>
+                            <tr>
+                                <td class="tg-0pky">Fri 10 May</td>
+                                <td class="tg-0pky">Australian Eastern Standard Time</td>
+                                <td class="tg-0pky">09:00 - 13:00</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br></br>
+                        <h3><a href="#inperson">In Person Event / Hybrid</a></h3>
+
+
+                        <table class="tg">
+                            <thead>
+                            <tr>
+                                <th class="tg-0pky">Date</th>
+                                <th class="tg-0pky">Time</th>
+                                <th class="tg-0pky">Event Description</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="tg-0pky">Tue 14 May</td>
+                                <td class="tg-0pky">13:00 - 17:30</td>
+                                <td class="tg-0pky">Novice Training (Separate signup, limited room)</td>
+                            </tr>
+                            <tr>
+                                <td class="tg-0pky">Wed 15 May</td>
+                                <td class="tg-0pky">08:00 - 18:00</td>
+                                <td class="tg-0pky">In-person conference day 1</td>
+                            </tr>
+                            <tr>
+                                <td class="tg-0pky">Thu 16 May</td>
+                                <td class="tg-0pky">08:00 - 12:00</td>
+                                <td class="tg-0pky">In-person conference day 2 (auditorium)</td>
+                            </tr>
+                            <tr>
+                                <td class="tg-0pky">Thu 16 May</td>
+                                <td class="tg-0pky">12:00 - 13:00</td>
+                                <td class="tg-0pky">Lunch</td>
+                            </tr>
+                            <tr>
+                                <td class="tg-0pky">Thu 16 May</td>
+                                <td class="tg-0pky">13:00 - 18:00</td>
+                                <td class="tg-0pky">Break out chats (small groups)</td>
+                            </tr>
+                            <tr>
+                                <td class="tg-0pky">Fri 17 May</td>
+                                <td class="tg-0pky">09:00 - 17:30</td>
+                                <td class="tg-0pky">Co-working (hackathon)</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        </p>
+
+                        <p><a href="#body">Back to top</a></p>
+                    </div>
+                </div>
             </section>
 
             <section id="directions">
-                <h2><a href="#directions">Directions</a></h2>
+                <div class="row">
+                    <div class="column">
+                        <h2><a href="#directions">Directions</a></h2>
+                        <address>
+                            <strong><a href="https://vu.nl/">Vrije Universiteit Amsterdam</a></strong><br/>
+                            De Boelelaan 1105, 1081 HV Amsterdam, Netherlands.<br/>
+                            <a href="https://www.google.com/maps/place/Vrije+Universiteit+Amsterdam/@52.334383,4.86892,16z/data=!4m5!3m4!1s0x47c60a085c443af1:0x2df2d7a997eccd84!8m2!3d52.3337568!4d4.8657199?hl=nl-NL">Location of VU Amsterdam on Google Maps</a>
+                        </address>
+                    </div>
+                </div>
 
-                <p>We are yet to find a venue for this conference.</p>
+                <img src="./assets/images/venue-map.png" alt="Event venue map." />
 
-                <p>If you know of suitable venue for this conference please contact an organizer ASAP, it would be greatly appreciated!</p>
-
-                <p><a href="#body">Back to top</a></p>
+                <div class="row">
+                    <div class="column">
+                        <p><a href="#body">Back to top</a></p>
+                    </div>
+                </div>
             </section>
 
-            <section id="health-and-safety">
-                <h2><a href="#health-and-safety">Health and Safety</a></h2>
+            <section class="light-blue-background">
+                <div class="row">
+                    <div id="health-and-safety" class="column" >
+                        <h2><a href="#health-and-safety">Health and Safety</a></h2>
 
-                <p>The event has a Health and Safety policy (inspired by <a href="https://publichealthpledge.com">publichealthpledge.com</a>).</p>
+                        <p>The event has a Health and Safety policy (inspired by <a href="https://publichealthpledge.com">publichealthpledge.com</a>).</p>
 
-                <p>The policy comprises the following components:</p>
+                        <p>The policy comprises the following components:</p>
 
-                <ul>
-                    <li>In-person participants will be required to wear a FFP3 face mask.</li>
-                    <li>Any scheduled meals and coffee breaks will be outside.</li>
-                    <li>Attendees will be expected to perform a rapid COVID-19 test prior to participating each day.</li>
-                    <li>The CO2 level in the rooms will be monitored to ensure good ventilation (PPM under 1000).</li>
-                </ul>
+                        <ul>
+                            <li>In-person participants will be required to wear a FFP3 face mask.</li>
+                            <li>Any scheduled meals and coffee breaks will be outside.</li>
+                            <li>Attendees will be expected to perform a rapid COVID-19 test prior to participating each day.</li>
+                            <li>The CO2 level in the rooms will be monitored to ensure good ventilation (PPM under 1000).</li>
+                        </ul>
 
-                <p><i>If the policy changes it is only strengthened - never weakened - between the event's announcement and the event itself.</i></p>
+                        <p><i>If the policy changes it is only strengthened - never weakened - between the event's announcement and the event itself.</i></p>
 
-                <p><a href="#body">Back to top</a></p>
+                        <p><a href="#body">Back to top</a></p>
+                    </div>
+                    <div id="code-of-conduct" class="column">
+                        <h2><a href="#code-of-conduct">Code of Conduct</a></h2>
+
+                        <p>
+                            This event will be held in accordance with the
+                            <a href="https://www.commonwl.org/community/#code-of-conduct"> CWL Code of conduct</a>.
+                        </p>
+
+                        <p>
+                            <i>The CWL Project is dedicated to providing a harassment-free experience for everyone, regardless of gender, gender identity and expression, sexual orientation, disability, physical appearance, body size, age, race, or religion.We do not tolerate harassment of participants in any form.</i>
+                        </p>
+
+                        <p>
+                            <i>This code of conduct applies to all CWL Project spaces, including the Google Group, the Matrix chat room, the Google Hangouts chats, both online and off.</i>
+                        </p>
+
+                        <p>
+                            <i>Anyone who violates this code of conduct may be sanctioned or expelled from these spaces at the discretion of the leadership team.</i>
+                        </p>
+
+                        <p>
+                            For more details, see our <a href="https://github.com/common-workflow-language/common-workflow-language/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a>.
+                        </p>
+
+                        <p><a href="#body">Back to top</a></p>
+                    </div>
+                </div>
             </section>
 
-            <section id="code-of-conduct">
-                <h2><a href="#code-of-conduct">Code of Conduct</a></h2>
+            <section>
+                <div class="row">
+                    <div id="organizers" class="column">
+                        <h2><a href="#organizers">Organizers</a></h2>
 
-                <p>
-                    This event will be held in accordance with the
-                    <a href="https://www.commonwl.org/community/#code-of-conduct"> CWL Code of conduct</a>.
-                </p>
+                        <div class="cards">
+                            <div class="card">
+                                <div class="avatar">
+                                    <img src="./assets/images/avatars/avatar-michael-r-crusoe.png" alt="The organizer's avatar" />
+                                </div>
+                                <div class="title">
+                                    <a href="https://github.com/mr-c">Michael R. Crusoe</a>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="avatar">
+                                    <img src="./assets/images/avatars/avatar-iacopo-colonelli.jpeg" alt="The organizer's avatar" />
+                                </div>
+                                <div class="title">
+                                    <a href="https://github.com/GlassOfWhiskey">Iacopo Colonnelli</a>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="avatar">
+                                    <img src="./assets/images/avatars/avatar-manabu-ishii.jpeg" alt="The organizer's avatar" />
+                                </div>
+                                <div class="title">
+                                    <a href="https://github.com/manabuishii">Manabu Ishii</a>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="avatar">
+                                    <img src="./assets/images/avatars/avatar-bruno-p-kinoshita.jpeg" alt="The organizer's avatar" />
+                                </div>
+                                <div class="title">
+                                    <a href="https://github.com/kinow">Bruno P. Kinoshita</a>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="avatar">
+                                    <img src="./assets/images/avatars/avatar-sehrish-kanwal.jpeg" alt="The organizer's avatar" />
+                                </div>
+                                <div class="title">
+                                    <a href="https://github.com/skanwal">Sehrish Kanwal</a>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="avatar">
+                                    <img src="./assets/images/avatars/avatar-alexis-lucattini.jpeg" alt="The organizer's avatar" />
+                                </div>
+                                <div class="title">
+                                    <a href="https://github.com/alexiswl">Alexis Lucattini</a>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="avatar">
+                                    <img src="./assets/images/avatars/avatar-tazro-inutano-ohta.png" alt="The organizer's avatar" />
+                                </div>
+                                <div class="title">
+                                    <a href="https://github.com/inutano">Tazro Inutano Ohta</a>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="avatar">
+                                    <img src="./assets/images/avatars/avatar-tomoya-tanjo.png" alt="The organizer's avatar" />
+                                </div>
+                                <div class="title">
+                                    <a href="https://github.com/tom-tan">Tomoya Tanjo</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="sponsors" class="column">
+                        <h2><a href="#sponsors">Sponsors</a></h2>
 
-                <p>
-                    <i>The CWL Project is dedicated to providing a harassment-free experience for everyone, regardless of gender, gender identity and expression, sexual orientation, disability, physical appearance, body size, age, race, or religion.We do not tolerate harassment of participants in any form.</i>
-                </p>
+                        <p> This could be your organization!! </p>
+                    </div>
+                </div>
 
-                <p>
-                    <i>This code of conduct applies to all CWL Project spaces, including the Google Group, the Matrix chat room, the Google Hangouts chats, both online and off.</i>
-                </p>
-
-                <p>
-                    <i>Anyone who violates this code of conduct may be sanctioned or expelled from these spaces at the discretion of the leadership team.</i>
-                </p>
-
-                <p>
-                    <i>For more details, see our <a href="https://github.com/common-workflow-language/common-workflow-language/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a>.</i>
-                </p>
-
-                <p><a href="#body">Back to top</a></p>
             </section>
-
-            <section id="organizers">
-                <h2><a href="#organizers">Organizers</a></h2>
-
-                <ul>
-                    <li><a href="https://github.com/mr-c">Michael R. Crusoe</a></li>
-                    <li><a href="https://github.com/GlassOfWhiskey">Iacopo Colonnelli</a></li>
-                    <li><a href="https://github.com/manabuishii">Manabu Ishii</a></li>
-                    <li><a href="https://github.com/kinow">Bruno P. Kinoshita</a></li>
-                    <li><a href="https://github.com/skanwal">Sehrish Kanwal</a></li>
-                    <li><a href="https://github.com/alexiswl">Alexis Lucattini</a></li>
-                    <li><a href="https://github.com/inutano">Tazro Inutano Ohta</a></li>
-                    <li><a href="https://github.com/tom-tan">Tomoya Tanjo</a></li>
-                </ul>
-            </section>
-
-            <section id="sponsors">
-                <h2><a href="#sponsors">Sponsors</a></h2>
-
-                <p> This could be your organization!! </p>
-            </section>
-
         </article>
     </main>
 
