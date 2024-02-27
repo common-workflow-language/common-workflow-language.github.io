@@ -177,8 +177,11 @@ main > article > section > div {
     margin: 0 auto;
 }
 
-main > article > section.gray-background {
+main > article > section.light-gray-background {
     background-color: var(--light-gray-color);
+}
+main > article > section.gray-background {
+    background-color: var(--gray-color);
 }
 
 main > article > section.light-blue-background {
@@ -191,6 +194,10 @@ main > article > section h3,
 main > article > section h4 {
     color: var(--warm-red-font-color);
     margin: 0 0 1.5rem 0;
+}
+
+main > article > section h1 {
+    font-size: clamp(2rem, 3.5vw, 3.5rem);
 }
 
 main > article > section h2 {
@@ -523,6 +530,11 @@ main > article .banner-text {
 For the program tables
  */
 
+table {
+    table-layout: auto;
+    width: 50%;
+}
+
 .tg {
     border-collapse: collapse;
     border-spacing: 0;
@@ -533,7 +545,6 @@ For the program tables
     border-style: solid;
     border-width: 1px;
     font-family: Arial, sans-serif;
-    font-size: 14px;
     overflow: hidden;
     padding: 10px 5px;
     word-break: normal;
@@ -544,7 +555,6 @@ For the program tables
     border-style: solid;
     border-width: 1px;
     font-family: Arial, sans-serif;
-    font-size: 14px;
     font-weight: bold;
     overflow: hidden;
     padding: 10px 5px;
