@@ -261,6 +261,7 @@ under the terms of the Apache License, version 2.0.</p>
 <li><a href="#OperationInputParameter">4.3.19.1 OperationInputParameter</a><ol>
 </ol><li><a href="#OperationOutputParameter">4.3.19.2 OperationOutputParameter</a><ol>
 </ol></li></ol></li></ol></li></ol></li></ol></nav>
+
 <h1 id="Introduction" class="section">1. Introduction <a href="#Introduction">&sect;</a></h1><p>The Common Workflow Language (CWL) working group is an informal, multi-vendor
 working group consisting of various organizations and individuals that have an
 interest in portability of data analysis workflows.  The goal is to create
@@ -279,12 +280,14 @@ all three components; for example "99% of CWL v1.2.0 required tests" or
 <p>See also the <a href="CommandLineTool.html#Changelog_for_v1.2.1">CommandLineTool v1.2.1 changelog</a>
 and the <a href="SchemaSalad.html#Changelog_for_v1.2.1">Schema-Salad v1.2.1 changelog</a>.</p>
 <h2 id="Changelog_for_v1.2.1" class="section">1.2 Changelog for v1.2.1 <a href="#Changelog_for_v1.2.1">&sect;</a></h2><ul>
-<li>CWL has been assigned an official IANA Media Type of <a href="https://www.iana.org/assignments/media-types/application/cwl"><code>application/cwl</code></a> for either JSON or YAML format. For JSON formatted CWL documents, <a href="https://www.iana.org/assignments/media-types/application/cwl+json"><code>application/cwl+json</code></a>
+<li>CWL has been assigned an official IANA Media Type of <a href="https://www.iana.org/assignments/media-types/application/cwl"><code>application/cwl</code></a>
+for either JSON or YAML format. For JSON formatted CWL documents, <a href="https://www.iana.org/assignments/media-types/application/cwl+json"><code>application/cwl+json</code></a>
 has also been assigned and can be used. For specifying a YAML formatted
 CWL document, one can use <code>application/cwl+yaml</code> but that is not an official
 IANA media-type yet; as of 2023-07-23 the <code>+yaml</code> suffix has yet to be approved.
 The above has been documented in the <a href="#Syntax">Syntax</a> section.</li>
-<li>There is now an unofficial <a href="https://github.com/common-workflow-language/cwl-v1.2/blob/1.2.1_proposed/json-schema/cwl.yaml">JSON Schema for CWL documents</a>, donated by Francis Charette-Migneault. This schema captures much, but not
+<li>There is now an unofficial <a href="https://github.com/common-workflow-language/cwl-v1.2/blob/1.2.1_proposed/json-schema/cwl.yaml">JSON Schema for CWL documents</a>,
+donated by Francis Charette-Migneault. This schema captures much, but not
 all, of the potential complexity of CWL documents. It was created for
 the <a href="https://docs.ogc.org/DRAFTS/20-044.html">draft</a>
 <a href="http://www.opengis.net/doc/IS/ogcapi-processes-2/1.0">OGC API - Processes - Part 2: Deploy, Replace, Undeploy</a>
@@ -292,21 +295,28 @@ standard.
 To support the testing of this unofficial JSON Schema for CWL, some of
 the <code>should_fail: true</code> tests have had the label <code>json_schema_invalid</code>
 added.</li>
-<li>For consistency, all references to <code>URI</code>s have been replaced with <code>IRI</code>s (Internationalized Resource Identifiers).</li>
-<li>The <a href="#WorkflowStep"><code>WorkflowStep.run</code></a> field description now explicitly states that it can be either a string referencing an external document
+<li>For consistency, all references to <code>URI</code>s have been replaced with <code>IRI</code>s
+(Internationalized Resource Identifiers).</li>
+<li>The <a href="#WorkflowStep"><code>WorkflowStep.run</code></a> field description now explicitly
+states that it can be either a string referencing an external document
 or an embedded Process. This was previously only stated indirectly.</li>
-<li>The <code>outputSource</code> field of <a href="#WorkflowOutputParameter"><code>WorkflowOutputParameter</code></a> now explicitly states that workflow inputs can be referenced. The
+<li>The <code>outputSource</code> field of <a href="#WorkflowOutputParameter"><code>WorkflowOutputParameter</code></a>
+now explicitly states that workflow inputs can be referenced. The
 mandatory conformance test <code>output_reference_workflow_input</code> has been
 added to confirm this.</li>
-<li>The example list of <a href="#Requirements_and_hints">process requirements</a> that can be inherited from a parent <code>Workflow</code> by a <code>CommandLineTool</code> was
+<li>The example list of <a href="#Requirements_and_hints">process requirements</a> that
+can be inherited from a parent <code>Workflow</code> by a <code>CommandLineTool</code> was
 incomplete in CWL v1.2; <code>LoadListingRequirement</code>, <code>WorkReuse</code>,
 <code>NetworkAccess</code>, <code>InplaceUpdateRequirement</code>, <code>ToolTimeLimit</code> are also
 valid.</li>
-<li>The <a href="#Parameter_references">BNF grammar description of CWL Parameter References</a> has been reformatted so that symbols get <code>code formatting</code>.</li>
-<li>In CWL v1.2, the <a href="#ExpressionToolOutputParameter">outputs of <code>ExpressionTool</code>s</a> are never type-checked due to a long-standing bug in the CWL reference
+<li>The <a href="#Parameter_references">BNF grammar description of CWL Parameter References</a>
+has been reformatted so that symbols get <code>code formatting</code>.</li>
+<li>In CWL v1.2, the <a href="#ExpressionToolOutputParameter">outputs of <code>ExpressionTool</code>s</a>
+are never type-checked due to a long-standing bug in the CWL reference
 implementation. This has been made explicit along with the plan to fix
 this oversight in CWL v1.3.</li>
-<li>The purpose and valid circumstances for using <code>Workflow.id</code>, <code>ExpressionTool.id</code>, or <code>Operation.id</code> have been made more explicit: It is a unique identifier
+<li>The purpose and valid circumstances for using <code>Workflow.id</code>, <code>ExpressionTool.id</code>,
+or <code>Operation.id</code> have been made more explicit: It is a unique identifier
 for that Process; Only useful for when those are in a <code>$graph</code>. This <code>id</code>
 value should not be exposed to users in graphical or terminal user interfaces.</li>
 </ul>
@@ -316,47 +326,59 @@ for various programming languages by using <a href="https://schema-salad.readthe
 parsing; or to produce better results for end users. These changes do not change
 the CWL syntax or its meaning; we are just now modeling it better.</p>
 <ul>
-<li>The schema for <code>Requirement</code>s has changed to enable faster parsing by autogenerated libraries. The <code>class</code> field is now a static enum with a
+<li>The schema for <code>Requirement</code>s has changed to enable faster parsing by
+autogenerated libraries. The <code>class</code> field is now a static enum with a
 single permissible value instead of a generic string (for example:
 <code>class: SubworkflowFeatureRequirement</code> for a <code>SubworkflowFeatureRequirement</code> hint or requirement.)
 This allows for autogenerated CWL parsers to recognize any requirement
 immediately instead of having to check for matching field names and
 valid values, as was done previously.</li>
-<li>Likewise, the schema for <code>Workflow</code>, <code>ExpressionTool</code>, and <code>Operation</code> has also been changed to enable faster parsing; the <code>class</code> field is now a
+<li>Likewise, the schema for <code>Workflow</code>, <code>ExpressionTool</code>, and <code>Operation</code>
+has also been changed to enable faster parsing; the <code>class</code> field is now a
 static enum with a single permissible value (<code>class: Workflow</code>,
 <code>class: ExpressionTool</code>, <code>class: Operation</code>) instead of a generic string.</li>
-<li>The schema for the <code>hints</code> field of <code>Workflow</code>, <code>ExpressionTool</code>, and <code>Operation</code> has been expanded from: <code>Any[]?</code> to <code>[&quot;null&quot;, { type: array, items: [ ProcessRequirement, Any] } ]</code>.
+<li>The schema for the <code>hints</code> field of <code>Workflow</code>, <code>ExpressionTool</code>, and <code>Operation</code>
+has been expanded from: <code>Any[]?</code> to <code>[&quot;null&quot;, { type: array, items: [ ProcessRequirement, Any] } ]</code>.
 This allows autogenerated CWL parsers to deserialize any of the standard
 CWL hints instead of forcing the users of those parsers to convert the
 unserialized hints to normal objects themselves.</li>
-<li>The schema for <a href="#WorkflowOutputParameter"><code>WorkflowOutputParameter.outputSource</code></a> had the wrong <a href="SchemaSalad.html#JsonldPredicate"><code>refScope</code></a> of <code>0</code> instead
+<li>The schema for <a href="#WorkflowOutputParameter"><code>WorkflowOutputParameter.outputSource</code></a>
+had the wrong <a href="SchemaSalad.html#JsonldPredicate"><code>refScope</code></a> of <code>0</code> instead
 of <code>1</code>; This will correctly remove the <code>id</code> of the workflow itself when
 searching for the source of this output.</li>
-<li>Everywhere the schema allows a value of type <code>long</code> we also explicitly allow a value of type <code>int</code>: <a href="#File"><code>File.size</code></a>, <a href="#ToolTimeLimit"><code>ToolTimeLimit.timelimt</code></a>.
+<li>Everywhere the schema allows a value of type <code>long</code> we also explicitly
+allow a value of type <code>int</code>: <a href="#File"><code>File.size</code></a>, <a href="#ToolTimeLimit"><code>ToolTimeLimit.timelimt</code></a>.
 By JSON rules this is implicit, but by making it explicit we aid
 autogenerated CWL libraries especially in languages such as Java.</li>
-<li>The schema for the <code>default</code> field of <a href="#WorkflowInputParameter">WorkflowInputParameter</a>, <a href="#WorkflowStepInput">WorkflowStepInput</a>, and <a href="#WorkflowStepInput">OperationInputParameter</a>
+<li>The schema for the <code>default</code> field of <a href="#WorkflowInputParameter">WorkflowInputParameter</a>,
+<a href="#WorkflowStepInput">WorkflowStepInput</a>, and <a href="#WorkflowStepInput">OperationInputParameter</a>
 has been expanded from <code>Any?</code> to <code>[&quot;null&quot;, File, Directory, Any]</code> so that
 autogenerated CWL libraries will deserialize any <code>File</code> or <code>Directory</code>
 objects automatically for the user.</li>
-<li>The schema for the <code>hints</code> field of <code>Workflow</code>, <code>ExpressionTool</code>, and <code>Operation</code> has been expanded from: <code>Any[]?</code> to <code>[&quot;null&quot;, { type: array, items: [ ProcessRequirement, Any] } ]</code>.
+<li>The schema for the <code>hints</code> field of <code>Workflow</code>, <code>ExpressionTool</code>, and <code>Operation</code>
+has been expanded from: <code>Any[]?</code> to <code>[&quot;null&quot;, { type: array, items: [ ProcessRequirement, Any] } ]</code>.
 This allows autogenerated CWL parsers to deserialize any of the standard
 CWL hints instead of forcing the users of those parsers to convert the
 unserialized hints to normal objects themselves.</li>
 </ul>
 <h3 id="Updated_Conformance_Tests_for_v1.2.1" class="section">1.2.2 Updated Conformance Tests for v1.2.1 <a href="#Updated_Conformance_Tests_for_v1.2.1">&sect;</a></h3><ul>
-<li>Conformance tests are now referred to by their textual identifiers (<code>id</code>). Previously this was the <code>label</code> field. Tests without a <code>label</code>/<code>id</code> have
+<li>Conformance tests are now referred to by their textual identifiers (<code>id</code>).
+Previously this was the <code>label</code> field. Tests without a <code>label</code>/<code>id</code> have
 been given one.</li>
-<li><code>direct_required</code>, <code>direct_required_nojs</code>, <code>conditionals_nested_cross_scatter</code>, <code>conditionals_nested_cross_scatter_nojs</code>: Marked the workflow outputs as
+<li><code>direct_required</code>, <code>direct_required_nojs</code>, <code>conditionals_nested_cross_scatter</code>,
+<code>conditionals_nested_cross_scatter_nojs</code>: Marked the workflow outputs as
 optional to remove ambiguity for these conditional <code>when</code> tests;
 allowing conformant CWL runners to be more strict in their interpretation
 of the typing rules, if they choose so.</li>
-<li><code>timelimit_basic_wf</code>: The timeout has been increased from three seconds to eight seconds to accommodate some runners who count container startup
+<li><code>timelimit_basic_wf</code>: The timeout has been increased from three seconds
+to eight seconds to accommodate some runners who count container startup
 time in the total.</li>
-<li><code>timelimit_invalid_wf</code>: The timing on this test was updated from shorter values to accommodate the startup time of certain container runners, the
+<li><code>timelimit_invalid_wf</code>: The timing on this test was updated from shorter
+values to accommodate the startup time of certain container runners, the
 previous timelimit of 5 seconds was too short, which is why it is now
 20 seconds.</li>
-<li>The file <code>tests/wc-tool.cwl</code> was adapted to produce the same results on BSD systems (like macOS) as GNU/Linux systems. This improved
+<li>The file <code>tests/wc-tool.cwl</code> was adapted to produce the same results on
+BSD systems (like macOS) as GNU/Linux systems. This improved
 compatibility for the following tests:
 <code>nested_workflow_noexp</code>, <code>wf_wc_parseInt</code>, <code>nested_workflow</code>, <code>embedded_subworkflow</code>,
 <code>step_input_default_value_overriden_2nd_step_noexp</code>, <code>step_input_default_value_overriden_2nd_step</code>,
@@ -369,26 +391,38 @@ compatibility for the following tests:
 <code>step_input_default_value</code>, <code>valuefrom_wf_step</code>.</li>
 </ul>
 <h3 id="New_Mandatory_Conformance_tests_for_v1.2.1" class="section">1.2.3 New Mandatory Conformance tests for v1.2.1 <a href="#New_Mandatory_Conformance_tests_for_v1.2.1">&sect;</a></h3><ul>
-<li><code>output_reference_workflow_input</code>: Test direct use of <code>Workflow</code> level input fields in the outputs.</li>
+<li><code>output_reference_workflow_input</code>: Test direct use of <code>Workflow</code> level
+input fields in the outputs.</li>
 </ul>
 <h3 id="New_Optional_Conformance_Tests_for_v1.2.1" class="section">1.2.4 New Optional Conformance Tests for v1.2.1 <a href="#New_Optional_Conformance_Tests_for_v1.2.1">&sect;</a></h3><h4 id="<code>SchemaDefRequirement</code>" class="section">1.2.4.1 <code>SchemaDefRequirement</code> <a href="#<code>SchemaDefRequirement</code>">&sect;</a></h4><ul>
-<li><code>schemadef_types_with_import</code>: Test <code>SchemaDefRequirement</code> with a workflow, with the <code>$import</code> under types. It is similar to <code>schemadef-wf</code>,
+<li><code>schemadef_types_with_import</code>: Test <code>SchemaDefRequirement</code> with a
+workflow, with the <code>$import</code> under types. It is similar to <code>schemadef-wf</code>,
 but the <code>$import</code> is different.</li>
 </ul>
 <h4 id="<code>ScatterFeatureRequirement</code>" class="section">1.2.4.2 <code>ScatterFeatureRequirement</code> <a href="#<code>ScatterFeatureRequirement</code>">&sect;</a></h4><ul>
 <li><code>simple_simple_scatter</code>: Two level nested scatter.</li>
-<li><code>dotproduct_simple_scatter</code>: Two level nested scatter: external dotproduct and internal simple.</li>
-<li><code>simple_dotproduct_scatter</code>: Two level nested scatter: external simple and internal dotproduct.</li>
-<li><code>dotproduct_dotproduct_scatter</code>: Two level nested scatter: external dotproduct and internal dotproduct.</li>
-<li><code>flat_crossproduct_simple_scatter</code>: Two level nested scatter: external flat_crossproduct and internal simple.</li>
-<li><code>simple_flat_crossproduct_scatter</code>: Two level nested scatter: external simple and internal flat_crossproduct.</li>
-<li><code>flat_crossproduct_flat_crossproduct_scatter</code>: Two level nested scatter: external flat_crossproduct and internal flat_crossproduct.</li>
-<li><code>nested_crossproduct_simple_scatter</code>: Two level nested scatter: external nested_crossproduct and internal simple.</li>
-<li><code>simple_nested_crossproduct_scatter</code>: Two level nested scatter: external simple and internal nested_crossproduct.</li>
-<li><code>nested_crossproduct_nested_crossproduct_scatter</code>: Two level nested scatter: external nested_crossproduct and internal nested_crossproduct.</li>
+<li><code>dotproduct_simple_scatter</code>: Two level nested scatter: external
+dotproduct and internal simple.</li>
+<li><code>simple_dotproduct_scatter</code>: Two level nested scatter: external simple
+and internal dotproduct.</li>
+<li><code>dotproduct_dotproduct_scatter</code>: Two level nested scatter: external
+dotproduct and internal dotproduct.</li>
+<li><code>flat_crossproduct_simple_scatter</code>: Two level nested scatter: external
+flat_crossproduct and internal simple.</li>
+<li><code>simple_flat_crossproduct_scatter</code>: Two level nested scatter: external
+simple and internal flat_crossproduct.</li>
+<li><code>flat_crossproduct_flat_crossproduct_scatter</code>: Two level nested scatter:
+external flat_crossproduct and internal flat_crossproduct.</li>
+<li><code>nested_crossproduct_simple_scatter</code>: Two level nested scatter: external
+nested_crossproduct and internal simple.</li>
+<li><code>simple_nested_crossproduct_scatter</code>: Two level nested scatter: external
+simple and internal nested_crossproduct.</li>
+<li><code>nested_crossproduct_nested_crossproduct_scatter</code>: Two level nested scatter:
+external nested_crossproduct and internal nested_crossproduct.</li>
 </ul>
 <h4 id="<code>StepInputExpressionRequirement</code>" class="section">1.2.4.3 <code>StepInputExpressionRequirement</code> <a href="#<code>StepInputExpressionRequirement</code>">&sect;</a></h4><ul>
-<li><code>default_with_falsey_value</code>: Confirms that "false"-like (but not 'null') values override any default.</li>
+<li><code>default_with_falsey_value</code>: Confirms that "false"-like (but not 'null')
+values override any default.</li>
 </ul>
 <h2 id="Introduction_to_CWL_Workflow_standard_v1.2" class="section">1.3 Introduction to CWL Workflow standard v1.2 <a href="#Introduction_to_CWL_Workflow_standard_v1.2">&sect;</a></h2><p>This specification represents the latest stable release from the
 CWL group.  Since the v1.1 release, v1.2 introduces the
@@ -400,19 +434,26 @@ CWL documents that relied on previously undefined or
 underspecified behavior may have slightly different behavior in
 v1.2.  See note about <code>cwl-upgrader</code> in the changelog.</p>
 <h2 id="Changelog" class="section">1.4 Changelog <a href="#Changelog">&sect;</a></h2><ul>
-<li>Adds <code>when</code> field to <a href="#WorkflowStep">WorkflowStep</a> for conditional execution</li>
-<li>Adds <code>pickValue</code> field to <a href="#WorkflowStepInput">WorkflowStepInput</a> and <a href="#WorkflowOutputParameter">WorkflowOutputParameter</a> for selecting among null and
+<li>Adds <code>when</code> field to <a href="#WorkflowStep">WorkflowStep</a> for conditional
+execution</li>
+<li>Adds <code>pickValue</code> field to <a href="#WorkflowStepInput">WorkflowStepInput</a> and
+<a href="#WorkflowOutputParameter">WorkflowOutputParameter</a> for selecting among null and
 non-null source values</li>
-<li>Add abstract <a href="#Operation">Operation</a> that can be used as a no-op stand-in to describe abstract workflows.</li>
-<li><a href="#Workflow">Workflow</a>, <a href="#ExpressionTool">ExpressionTool</a> and <a href="#Operation">Operation</a> can now express <code>intent</code> with an
+<li>Add abstract <a href="#Operation">Operation</a> that can be used as a
+no-op stand-in to describe abstract workflows.</li>
+<li><a href="#Workflow">Workflow</a>, <a href="#ExpressionTool">ExpressionTool</a> and
+<a href="#Operation">Operation</a> can now express <code>intent</code> with an
 identifier for the type of computational operation.</li>
 <li>Clarify there are no limits on the size of file literal <code>contents</code>.</li>
-<li>When using <code>loadContents</code> it now must fail when attempting to load a file greater than 64 KiB instead of silently truncating
+<li>When using <code>loadContents</code> it now must fail when attempting to
+load a file greater than 64 KiB instead of silently truncating
 the data.</li>
 <li>Note that only enum and record types can be typedef-ed</li>
-<li>Escaping in <a href="#String_Interpolation">string interpolation</a> has been added to the specification along with conformance tests.</li>
+<li>Escaping in <a href="#String_Interpolation">string interpolation</a> has
+been added to the specification along with conformance tests.</li>
 <li>Added discussion of <a href="#Packed_documents">packed documents</a>.</li>
-<li>Specify behavior when <code>source</code> is a single-item list and no linkMerge is set.</li>
+<li>Specify behavior when <code>source</code> is a single-item list and no
+linkMerge is set.</li>
 <li>Added discussion about handling different document versions.</li>
 <li>Added definition of <strong>data link</strong></li>
 </ul>
@@ -749,7 +790,8 @@ platform include:</p>
 <ul>
 <li>Data security and permissions</li>
 <li>Scheduling tool invocations on remote cluster or cloud compute nodes.</li>
-<li>Using virtual machines or operating system containers to manage the runtime (except as described in <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a>).</li>
+<li>Using virtual machines or operating system containers to manage the runtime
+(except as described in <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a>).</li>
 <li>Using remote or distributed file systems to manage input and output files.</li>
 <li>Transforming file paths.</li>
 <li>Pausing, resuming or checkpointing processes or workflows.</li>
@@ -763,9 +805,11 @@ modeled as functions that consume an input object and produce an
 output object.</p>
 <ol>
 <li>Load input object.</li>
-<li>Load, process and validate a CWL document, yielding one or more process objects. The <a href="SchemaSalad.html#Explicit_context"><code>$namespaces</code></a> present in the CWL document
+<li>Load, process and validate a CWL document, yielding one or more process objects.
+The <a href="SchemaSalad.html#Explicit_context"><code>$namespaces</code></a> present in the CWL document
 are also used when validating and processing the input object.</li>
-<li>If there are multiple process objects (due to <a href="SchemaSalad.html#Document_graph"><code>$graph</code></a>) and which process object to start with is not specified in the input object (via
+<li>If there are multiple process objects (due to <a href="SchemaSalad.html#Document_graph"><code>$graph</code></a>)
+and which process object to start with is not specified in the input object (via
 a <a href="#Executing_CWL_documents_as_scripts"><code>cwl:tool</code></a> entry) or by any other means
 (like a URL fragment) then choose the process with the <code>id</code> of "#main" or "main".</li>
 <li>Validate the input object against the <code>inputs</code> schema for the process.</li>
@@ -853,31 +897,40 @@ or more repeats, and all other characters are literal values.</p>
 </tr>
 </table>
 </div>
+
 <p>Use the following algorithm to resolve a parameter reference:</p>
 <ol>
 <li>Match the leading symbol as the key</li>
-<li>If the key is the special value 'null' then the value of the parameter reference is 'null'. If the key is 'null' it must be the only symbol in the parameter reference.</li>
-<li>Look up the key in the parameter context (described below) to get the current value. It is an error if the key is not found in the parameter context.</li>
+<li>If the key is the special value 'null' then the
+value of the parameter reference is 'null'. If the key is 'null' it must be the only symbol in the parameter reference.</li>
+<li>Look up the key in the parameter context (described below) to get the current value.
+It is an error if the key is not found in the parameter context.</li>
 <li>If there are no subsequent segments, terminate and return current value</li>
 <li>Else, match the next segment</li>
 <li>Extract the symbol, string, or index from the segment as the key</li>
-<li>Look up the key in current value and assign as new current value.</li>
+<li>Look up the key in current value and assign as new current value.<ol>
 <li>If the key is a symbol or string, the current value must be an object.</li>
 <li>If the key is an index, the current value must be an array or string.</li>
-<li>If the next key is the last key and it has the special value 'length' and the current value is an array, the value of the parameter reference is the
+<li>If the next key is the last key and it has the special value 'length' and
+the current value is an array, the value of the parameter reference is the
 length of the array. If the value 'length' is encountered in other contexts, normal
 evaluation rules apply.</li>
-<li>It is an error if the key does not match the required type, or the key is not found or out of range.</li>
+<li>It is an error if the key does not match the required type, or the key is not found or out
+of range.</li>
+</ol>
+</li>
 <li>Repeat steps 3-8</li>
 </ol>
 <p>The root namespace is the parameter context.  The following parameters must
 be provided:</p>
 <ul>
 <li><code>inputs</code>: The input object to the current Process.</li>
-<li><code>self</code>: A context-specific value.  The contextual values for 'self' are documented for specific fields elsewhere in this specification.  If
+<li><code>self</code>: A context-specific value.  The contextual values for 'self' are
+documented for specific fields elsewhere in this specification.  If
 a contextual value of 'self' is not documented for a field, it
 must be 'null'.</li>
-<li><code>runtime</code>: An object containing configuration details.  Specific to the process type.  An implementation may provide
+<li><code>runtime</code>: An object containing configuration details.  Specific to the
+process type.  An implementation may provide
 <a href="#opaque-strings">opaque strings</a> for any or all fields of <code>runtime</code>.
 These must be filled in by the platform after processing the Tool but
 before actual execution.  Parameter references and expressions may only
@@ -894,7 +947,8 @@ followed by the string value of the parameter reference, followed by the
 trailing characters.  The string value of the parameter reference is its
 textual JSON representation with the following rules:</p>
 <ul>
-<li>Strings are replaced the literal text of the string, any escaped characters replaced by the literal characters they represent, and
+<li>Strings are replaced the literal text of the string, any escaped
+characters replaced by the literal characters they represent, and
 there are no leading or trailing quotes.</li>
 <li>Objects entries are sorted by key</li>
 </ul>
@@ -913,10 +967,12 @@ from start to end with 3-character lookahead.  After performing a
 replacement scanning resumes at the next character following the
 replaced substring.</p>
 <ol>
-<li>The substrings <code>\$(</code> and <code>\${</code> are replaced by <code>$(</code> and <code>${</code> respectively.  No parameter or expression evaluation
+<li>The substrings <code>\$(</code> and <code>\${</code> are replaced by <code>$(</code> and <code>${</code>
+respectively.  No parameter or expression evaluation
 interpolation occurs.</li>
 <li>A double backslash <code>\\</code> is replaced by a single backslash <code>\</code>.</li>
-<li>A substring starting with a backslash that does not match one of the previous rules is left unchanged.</li>
+<li>A substring starting with a backslash that does not match one of
+the previous rules is left unchanged.</li>
 </ol>
 <h2 id="Expressions_(Optional)" class="section">3.5 Expressions (Optional) <a href="#Expressions_(Optional)">&sect;</a></h2><p>An expression is a fragment of <a href="http://www.ecma-international.org/ecma-262/5.1/">Javascript/ECMAScript
 5.1</a> code evaluated by the
@@ -1019,12 +1075,15 @@ execution which resulted in <code>temporaryFailure</code>.  An implementation ma
 choose to either continue running other steps of a workflow, or terminate
 immediately upon <code>permanentFailure</code>.</p>
 <ul>
-<li><p>If any step of a workflow execution results in <code>permanentFailure</code>, then the workflow status is <code>permanentFailure</code>.</p>
+<li><p>If any step of a workflow execution results in <code>permanentFailure</code>, then
+the workflow status is <code>permanentFailure</code>.</p>
 </li>
-<li><p>If one or more steps result in <code>temporaryFailure</code> and all other steps complete <code>success</code> or are not executed, then the workflow status is
+<li><p>If one or more steps result in <code>temporaryFailure</code> and all other steps
+complete <code>success</code> or are not executed, then the workflow status is
 <code>temporaryFailure</code>.</p>
 </li>
-<li><p>If all workflow steps are executed and complete with <code>success</code>, then the workflow status is <code>success</code>.</p>
+<li><p>If all workflow steps are executed and complete with <code>success</code>, then the
+workflow status is <code>success</code>.</p>
 </li>
 </ul>
 <h2 id="Extensions" class="section">Extensions <a href="#Extensions">&sect;</a></h2><p><a href="#ScatterFeatureRequirement">ScatterFeatureRequirement</a> and
@@ -1205,8 +1264,10 @@ instead.</p>
 it specifies that the following pattern should be applied to the path
 of the primary file to yield a filename relative to the primary File:</p>
 <ol>
-<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark the resulting secondary file as optional.</li>
-<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
+<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark
+the resulting secondary file as optional.</li>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -1296,9 +1357,12 @@ CWL v2.0.  Use <code>WorkflowInputParameter.loadContents</code> instead.</p>
 </div>
 </div></div><h3 id="SecondaryFileSchema" class="section">4.1.1 SecondaryFileSchema <a href="#SecondaryFileSchema">&sect;</a></h3><p>Secondary files are specified using the following micro-DSL for secondary files:</p>
 <ul>
-<li>If the value is a string, it is transformed to an object with two fields <code>pattern</code> and <code>required</code></li>
-<li>By default, the value of <code>required</code> is <code>null</code> (this indicates default behavior, which may be based on the context)</li>
-<li>If the value ends with a question mark <code>?</code> the question mark is stripped off and the value of the field <code>required</code> is set to <code>False</code></li>
+<li>If the value is a string, it is transformed to an object with two fields
+<code>pattern</code> and <code>required</code></li>
+<li>By default, the value of <code>required</code> is <code>null</code>
+(this indicates default behavior, which may be based on the context)</li>
+<li>If the value ends with a question mark <code>?</code> the question mark is
+stripped off and the value of the field <code>required</code> is set to <code>False</code></li>
 <li>The remaining value is assigned to the field <code>pattern</code></li>
 </ul>
 <p>For implementation details and examples, please see
@@ -1353,8 +1417,10 @@ from defined inputs.</p>
 it specifies that the following pattern should be applied to the path
 of the primary file to yield a filename relative to the primary File:</p>
 <ol>
-<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark the resulting secondary file as optional.</li>
-<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
+<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark
+the resulting secondary file as optional.</li>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -1835,8 +1901,10 @@ instead.</p>
 it specifies that the following pattern should be applied to the path
 of the primary file to yield a filename relative to the primary File:</p>
 <ol>
-<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark the resulting secondary file as optional.</li>
-<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
+<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark
+the resulting secondary file as optional.</li>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -2054,8 +2122,10 @@ instead.</p>
 it specifies that the following pattern should be applied to the path
 of the primary file to yield a filename relative to the primary File:</p>
 <ol>
-<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark the resulting secondary file as optional.</li>
-<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
+<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark
+the resulting secondary file as optional.</li>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -2235,8 +2305,10 @@ instead.</p>
 it specifies that the following pattern should be applied to the path
 of the primary file to yield a filename relative to the primary File:</p>
 <ol>
-<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark the resulting secondary file as optional.</li>
-<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
+<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark
+the resulting secondary file as optional.</li>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -2371,14 +2443,17 @@ applicable scattering rules.</p>
 <p>If <code>scatter</code> declares more than one input parameter, <code>scatterMethod</code>
 describes how to decompose the input into a discrete set of jobs.</p>
 <ul>
-<li><p><strong>dotproduct</strong> specifies that each of the input arrays are aligned and one element taken from each array to construct each job.  It is an error
+<li><p><strong>dotproduct</strong> specifies that each of the input arrays are aligned and one
+element taken from each array to construct each job.  It is an error
 if all input arrays are not the same length.</p>
 </li>
-<li><p><strong>nested_crossproduct</strong> specifies the Cartesian product of the inputs, producing a job for every combination of the scattered inputs.  The
+<li><p><strong>nested_crossproduct</strong> specifies the Cartesian product of the inputs,
+producing a job for every combination of the scattered inputs.  The
 output must be nested arrays for each level of scattering, in the
 order that the input arrays are listed in the <code>scatter</code> field.</p>
 </li>
-<li><p><strong>flat_crossproduct</strong> specifies the Cartesian product of the inputs, producing a job for every combination of the scattered inputs.  The
+<li><p><strong>flat_crossproduct</strong> specifies the Cartesian product of the inputs,
+producing a job for every combination of the scattered inputs.  The
 output arrays must be flattened to a single level, but otherwise listed in the
 order that the input arrays are listed in the <code>scatter</code> field.</p>
 </li>
@@ -2540,9 +2615,11 @@ from the link must be wrapped in a single-item list.</p>
 </li>
 <li><p><strong>merge_flattened</strong></p>
 <ol>
-<li>The source and sink parameters must be compatible types, or the source type must be compatible with single element from the "items" type of
+<li>The source and sink parameters must be compatible types, or the source
+type must be compatible with single element from the "items" type of
 the destination array parameter.</li>
-<li>Source parameters which are arrays are concatenated. Source parameters which are single element types are appended as
+<li>Source parameters which are arrays are concatenated.
+Source parameters which are single element types are appended as
 single elements.</li>
 </ol>
 </li>
@@ -2597,8 +2674,8 @@ The result is a list, which may be empty.  Examples:</p>
 <li><code>[null, null, null] -&gt; []</code></li>
 </ul>
 <p><em>Intended use case</em>: It is valid to have more than one source, but
- sources are conditional, so null sources (from skipped steps)
- should be filtered out.</p>
+sources are conditional, so null sources (from skipped steps)
+should be filtered out.</p>
 </li>
 </ul>
 <h3>Fields</h3>
@@ -2693,11 +2770,13 @@ be specified in the workflow or workflow step requirements.</p>
 this input parameter.</p>
 <p>If <code>valueFrom</code> is a parameter reference or expression, it must be
 evaluated to yield the actual value to be assigned to the input field.</p>
-<p>The <code>self</code> value in the parameter reference or expression must be</p>
+<p>The <code>self</code> value in the parameter reference or expression must be
+parameter <strong>is</strong> specified in this workflow step's <code>scatter</code> field.</p>
 <ol>
 <li><code>null</code> if there is no <code>source</code> field</li>
-<li>the value of the parameter(s) specified in the <code>source</code> field when this workflow input parameter <strong>is not</strong> specified in this workflow step's <code>scatter</code> field.</li>
-<li>an element of the parameter specified in the <code>source</code> field when this workflow input parameter <strong>is</strong> specified in this workflow step's <code>scatter</code> field.</li>
+<li>the value of the parameter(s) specified in the <code>source</code> field when this
+workflow input parameter <strong>is not</strong> specified in this workflow step's <code>scatter</code> field.</li>
+<li>an element of the parameter specified in the <code>source</code> field when this workflow input</li>
 </ol>
 <p>The value of <code>inputs</code> in the parameter reference or expression must be
 the input object to the workflow step after assigning the <code>source</code>
@@ -2763,7 +2842,8 @@ processed in the order listed such that later schema definitions may refer
 to earlier schema definitions.</p>
 <ul>
 <li><strong>Type definitions are allowed for <code>enum</code> and <code>record</code> types only.</strong></li>
-<li>Type definitions may be shared by defining them in a file and then <code>$include</code>-ing them in the <code>types</code> field.</li>
+<li>Type definitions may be shared by defining them in a file and then
+<code>$include</code>-ing them in the <code>types</code> field.</li>
 <li>A file can contain a list of type definitions</li>
 </ul>
 <h3>Fields</h3>
@@ -2906,8 +2986,10 @@ instead.</p>
 it specifies that the following pattern should be applied to the path
 of the primary file to yield a filename relative to the primary File:</p>
 <ol>
-<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark the resulting secondary file as optional.</li>
-<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
+<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark
+the resulting secondary file as optional.</li>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -3033,18 +3115,23 @@ effective value.</p>
 </li>
 <li><p><strong>number</strong>: Add <code>prefix</code> and decimal representation to command line.</p>
 </li>
-<li><p><strong>boolean</strong>: If true, add <code>prefix</code> to the command line.  If false, add nothing.</p>
+<li><p><strong>boolean</strong>: If true, add <code>prefix</code> to the command line.  If false, add
+nothing.</p>
 </li>
-<li><p><strong>File</strong>: Add <code>prefix</code> and the value of <a href="#File"><code>File.path</code></a> to the command line.</p>
+<li><p><strong>File</strong>: Add <code>prefix</code> and the value of
+<a href="#File"><code>File.path</code></a> to the command line.</p>
 </li>
-<li><p><strong>Directory</strong>: Add <code>prefix</code> and the value of <a href="#Directory"><code>Directory.path</code></a> to the command line.</p>
+<li><p><strong>Directory</strong>: Add <code>prefix</code> and the value of
+<a href="#Directory"><code>Directory.path</code></a> to the command line.</p>
 </li>
-<li><p><strong>array</strong>: If <code>itemSeparator</code> is specified, add <code>prefix</code> and the join the array into a single string with <code>itemSeparator</code> separating the
+<li><p><strong>array</strong>: If <code>itemSeparator</code> is specified, add <code>prefix</code> and the join
+the array into a single string with <code>itemSeparator</code> separating the
 items.  Otherwise, first add <code>prefix</code>, then recursively process
 individual elements.
 If the array is empty, it does not add anything to command line.</p>
 </li>
-<li><p><strong>object</strong>: Add <code>prefix</code> only, and recursively add object fields for which <code>inputBinding</code> is specified.</p>
+<li><p><strong>object</strong>: Add <code>prefix</code> only, and recursively add object fields for
+which <code>inputBinding</code> is specified.</p>
 </li>
 <li><p><strong>null</strong>: Add nothing.</p>
 </li>
@@ -3071,7 +3158,7 @@ CWL v2.0.  Use <code>InputParameter.loadContents</code> instead.</p>
 <div class="col-xs-2 col-lg-1">optional</div>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">int</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The sorting key.  Default position is 0. If a <a href="#Parameter_references">CWL Parameter Reference</a>
-or <a href="#Expressions_(Optional)">CWL Expression</a> is used and if the
+or <a href="#Expressions_(Optional">CWL Expression</a>) is used and if the
 inputBinding is associated with an input parameter, then the value of
 <code>self</code> will be the value of the input parameter.  Input parameter
 defaults (as specified by the <code>InputParameter.default</code> field) must be
@@ -3388,7 +3475,8 @@ with <code>../</code> or that resolves to location above the designated output d
 it is an error unless the following conditions are met:</p>
 <ul>
 <li><code>DockerRequirement</code> is present in <code>requirements</code></li>
-<li>The program is will run inside a software container where, from the perspective of the program, the root
+<li>The program is will run inside a software container
+where, from the perspective of the program, the root
 filesystem is not shared with any other user or
 running program.</li>
 </ul>
@@ -3797,8 +3885,10 @@ instead.</p>
 it specifies that the following pattern should be applied to the path
 of the primary file to yield a filename relative to the primary File:</p>
 <ol>
-<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark the resulting secondary file as optional.</li>
-<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
+<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark
+the resulting secondary file as optional.</li>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -4011,8 +4101,10 @@ instead.</p>
 it specifies that the following pattern should be applied to the path
 of the primary file to yield a filename relative to the primary File:</p>
 <ol>
-<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark the resulting secondary file as optional.</li>
-<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
+<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark
+the resulting secondary file as optional.</li>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -4149,8 +4241,10 @@ instead.</p>
 it specifies that the following pattern should be applied to the path
 of the primary file to yield a filename relative to the primary File:</p>
 <ol>
-<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark the resulting secondary file as optional.</li>
-<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
+<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark
+the resulting secondary file as optional.</li>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>

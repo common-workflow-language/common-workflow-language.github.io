@@ -137,7 +137,8 @@ href="https://www.commonwl.org/user_guide/assets/favicons/cwl/favicon-96x96.png"
 <p>Authors:</p>
 <ul>
 <li>Peter Amstutz <a href="mailto:pamstutz@veritasgenetics.com">pamstutz@veritasgenetics.com</a>, Arvados Project, Veritas Genetics</li>
-<li>Michael R. Crusoe <a href="mailto:mrc@commonwl.org">mrc@commonwl.org</a>, Common Workflow Language project</li>
+<li>Michael R. Crusoe <a href="mailto:mrc@commonwl.org">mrc@commonwl.org</a>, Common Workflow Language
+project</li>
 </ul>
 <p>Contributors:</p>
 <ul>
@@ -251,6 +252,7 @@ under the terms of the Apache License, version 2.0.</p>
 </ol><li><a href="#ToolTimeLimit">5.17 ToolTimeLimit</a><ol>
 </ol><li><a href="#CWLVersion">5.18 CWLVersion</a><ol>
 </ol></li></ol></li></ol></nav>
+
 <h1 id="Introduction" class="section">1. Introduction <a href="#Introduction">&sect;</a></h1><p>The Common Workflow Language (CWL) working group is an informal, multi-vendor
 working group consisting of various organizations and individuals that have an
 interest in portability of data analysis workflows.  The goal is to create
@@ -270,44 +272,67 @@ v1.1.</p>
 <li>Clarify behavior around <code>ENTRYPOINT</code> and <code>CMD</code> in containers.</li>
 <li>Clarify documentation around <code>valueFrom</code> and <code>null</code> inputs.</li>
 <li>Default values for some fields are now expressed in the schema.</li>
-<li>When defining record types with <code>CommandInputRecordSchema</code>, fields of type <code>File</code> may now include <code>format</code>, <code>loadContents</code>,
+<li>When defining record types with <code>CommandInputRecordSchema</code>, fields of
+type <code>File</code> may now include <code>format</code>, <code>loadContents</code>,
 <code>secondaryFiles</code> and <code>streamable</code>.</li>
-<li><code>CommandInputRecordSchema</code>, <code>CommandOutputRecordSchema</code>, <code>CommandInputEnumSchema and</code>CommandInputArraySchema<code>now have an optional</code>doc` field.</li>
-<li><code>inputBinding</code> has been added as an optional field for <code>CommandInputRecordSchema</code> (was previously in CWL <code>draft-3</code> but
+<li><code>CommandInputRecordSchema</code>, <code>CommandOutputRecordSchema</code>,
+<code>CommandInputEnumSchema and </code>CommandInputArraySchema<code>now have an optional</code>doc` field.</li>
+<li><code>inputBinding</code> has been added as an optional field for
+<code>CommandInputRecordSchema</code> (was previously in CWL <code>draft-3</code> but
 disappeared in <code>v1.0</code>).</li>
-<li>Any <code>doc</code> field may be an array of strings in addition to the previously allowed single string.</li>
-<li>Addition of <code>stdin</code> type shortcut for <a href="#CommandInputParameter"><code>CommandInputParameter</code></a>.</li>
-<li>Clarify that the designated output directory should be empty except for files or directories specified using
+<li>Any <code>doc</code> field may be an array of strings in addition to the
+previously allowed single string.</li>
+<li>Addition of <code>stdin</code> type shortcut for
+<a href="#CommandInputParameter"><code>CommandInputParameter</code></a>.</li>
+<li>Clarify that the designated output directory should be empty
+except for files or directories specified using
 <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a>.</li>
 <li>Clarify semantics of <code>shellQuote</code>.</li>
-<li>Expressions are now allowed to evaluate to <code>null</code> or <code>Dirent</code> in <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement.listing</a>.</li>
-<li>Items in <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement.listing</a> are now allowed to be <code>null</code> and <code>array&lt;File | Directory&gt;</code>.</li>
+<li>Expressions are now allowed to evaluate to <code>null</code> or <code>Dirent</code> in
+<a href="#InitialWorkDirRequirement">InitialWorkDirRequirement.listing</a>.</li>
+<li>Items in <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement.listing</a>
+are now allowed to be <code>null</code> and <code>array&lt;File | Directory&gt;</code>.</li>
 <li>Clarify behavior of secondaryFiles on output.</li>
-<li><a href="#Requirements_and_hints">Addition</a> of <code>cwl:requirements</code> field to input object documents.</li>
+<li><a href="#Requirements_and_hints">Addition</a> of <code>cwl:requirements</code> field to
+input object documents.</li>
 <li>Clarify behavior of <code>glob</code> for absolute paths and symlinks.</li>
 <li>Clarify behavior of <code>glob</code> to include directories.</li>
 <li><code>secondaryFiles</code> can now be explicitly marked as <code>required</code> or not.</li>
 <li>Clarify <code>CommandLineTool.arguments</code> documentation.</li>
-<li>Clarify that <code>runtime.outdir</code> and <code>runtime.tmpdir</code> must be distinct directories.</li>
-<li>Clarify that unspecified details related to execution are left open to the platform.</li>
-<li>Added <code>InputParameter.loadContents</code> field. Use of <code>loadContents</code> in <code>InputBinding</code> is deprecated; it is preserved for v1.0 backwards
+<li>Clarify that <code>runtime.outdir</code> and <code>runtime.tmpdir</code> must be distinct
+directories.</li>
+<li>Clarify that unspecified details related to execution are left open to
+the platform.</li>
+<li>Added <code>InputParameter.loadContents</code> field. Use of <code>loadContents</code> in
+<code>InputBinding</code> is deprecated; it is preserved for v1.0 backwards
 compatability and will be removed in CWL v2.0.</li>
-<li><a href="#ToolTimeLimit">Added</a> <code>ToolTimeLimit</code> feature, allows setting an upper limit on the execution time of a CommandLineTool.</li>
-<li><a href="#WorkReuse">Added</a> <code>WorkReuse</code> feature, allowing to enable or disable the reuse behavior for a particular tool or step for implementations that
+<li><a href="#ToolTimeLimit">Added</a> <code>ToolTimeLimit</code> feature, allows setting
+an upper limit on the execution time of a CommandLineTool.</li>
+<li><a href="#WorkReuse">Added</a> <code>WorkReuse</code> feature, allowing to enable or disable the reuse
+behavior for a particular tool or step for implementations that
 support reusing output from past work.</li>
-<li><a href="#NetworkAccess">Added</a> <code>NetworkAccess</code> feature, allowing to indicate whether a process requires outgoing network access.</li>
-<li><a href="#InplaceUpdateRequirement">Added</a> <code>InplaceUpdateRequirement</code> feature, allowing tools to directly update files with <code>writable: true</code> in <code>InitialWorkDirRequirement</code>.</li>
-<li><a href="#LoadListingRequirement">Added</a> <code>LoadListingRequirement</code> and <a href="#LoadContents">loadListing</a> to control whether and how
+<li><a href="#NetworkAccess">Added</a> <code>NetworkAccess</code> feature, allowing to indicate whether a
+process requires outgoing network access.</li>
+<li><a href="#InplaceUpdateRequirement">Added</a> <code>InplaceUpdateRequirement</code> feature, allowing tools to directly
+update files with <code>writable: true</code> in <code>InitialWorkDirRequirement</code>.</li>
+<li><a href="#LoadListingRequirement">Added</a> <code>LoadListingRequirement</code>
+and <a href="#LoadContents">loadListing</a> to control whether and how
 <code>Directory</code> listings should be loaded for use in expressions.</li>
-<li>The position field of the <a href="#CommandLineBinding">CommandLineBinding</a> can now be calculated from a CWL Expression.</li>
-<li>The exit code of a CommandLineTool invocation is now available to expressions in <code>outputEval</code> as <code>runtime.exitCode</code></li>
+<li>The position field of the <a href="#CommandLineBinding">CommandLineBinding</a> can
+now be calculated from a CWL Expression.</li>
+<li>The exit code of a CommandLineTool invocation is now
+available to expressions in <code>outputEval</code> as <code>runtime.exitCode</code></li>
 <li><a href="#map">Better explain</a> the <code>map&lt;…&gt;</code> notation that has existed since v1.0.</li>
-<li>Fixed schema error where the <code>type</code> field inside the <code>inputs</code> and <code>outputs</code> field was incorrectly listed as optional.</li>
-<li>For multi-Process CWL documents, if no particular process is named then the process with the <code>id</code> of <code>#main</code> is chosen.</li>
+<li>Fixed schema error where the <code>type</code> field inside the <code>inputs</code> and
+<code>outputs</code> field was incorrectly listed as optional.</li>
+<li>For multi-Process CWL documents, if no particular process is named then
+the process with the <code>id</code> of <code>#main</code> is chosen.</li>
 <li>Added explicit defaults for <a href="#ResourceRequirement">ResourceRequirement</a>s.</li>
-<li><a href="#Generic_execution_process">Made explicit</a> that the <code>$namespaces</code> of the top level CWL document are also available to the input object as
+<li><a href="#Generic_execution_process">Made explicit</a> that the <code>$namespaces</code> of
+the top level CWL document are also available to the input object as
 well.</li>
-<li>Fields with type "Expression" no longer include "string" in the type union unless a string is semantically valid.  Where
+<li>Fields with type "Expression" no longer include "string" in
+the type union unless a string is semantically valid.  Where
 a bare string is not semantically valid, these fields must
 contain either a non-string value accepted by the field
 type, or a valid expression which returns a value having one
@@ -604,7 +629,8 @@ platform include:</p>
 <ul>
 <li>Data security and permissions</li>
 <li>Scheduling tool invocations on remote cluster or cloud compute nodes.</li>
-<li>Using virtual machines or operating system containers to manage the runtime (except as described in <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a>).</li>
+<li>Using virtual machines or operating system containers to manage the runtime
+(except as described in <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a>).</li>
 <li>Using remote or distributed file systems to manage input and output files.</li>
 <li>Transforming file paths.</li>
 <li>Pausing, resuming or checkpointing processes or workflows.</li>
@@ -616,9 +642,11 @@ of <a href="#Requirements_and_hints">process requirements</a>.</p>
 command line line tools) is as follows.</p>
 <ol>
 <li>Load input object.</li>
-<li>Load, process and validate a CWL document, yielding one or more process objects. The <a href="SchemaSalad.html#Explicit_context"><code>$namespaces</code></a> present in the CWL document
+<li>Load, process and validate a CWL document, yielding one or more process objects.
+The <a href="SchemaSalad.html#Explicit_context"><code>$namespaces</code></a> present in the CWL document
 are also used when validating and processing the input object.</li>
-<li>If there are multiple process objects (due to <a href="SchemaSalad.html#Document_graph"><code>$graph</code></a>) and which process object to start with is not specified in the input object (via
+<li>If there are multiple process objects (due to <a href="SchemaSalad.html#Document_graph"><code>$graph</code></a>)
+and which process object to start with is not specified in the input object (via
 a <a href="#Executing_CWL_documents_as_scripts"><code>cwl:tool</code></a> entry) or by any other means
 (like a URL fragment) then choose the process with the <code>id</code> of "#main" or "main".</li>
 <li>Validate the input object against the <code>inputs</code> schema for the process.</li>
@@ -682,14 +710,17 @@ these special characters, and all other characters are literal values.</p>
 <tr><td>parameter reference::</td><td>$( {symbol} {segment}*)</td></tr>
 </table>
 </p>
+
 <p>Use the following algorithm to resolve a parameter reference:</p>
 <ol>
 <li>Match the leading symbol as the key</li>
-<li>Look up the key in the parameter context (described below) to get the current value. It is an error if the key is not found in the parameter context.</li>
+<li>Look up the key in the parameter context (described below) to get the current value.
+It is an error if the key is not found in the parameter context.</li>
 <li>If there are no subsequent segments, terminate and return current value</li>
 <li>Else, match the next segment</li>
 <li>Extract the symbol, string, or index from the segment as the key</li>
-<li>Look up the key in current value and assign as new current value.  If the key is a symbol or string, the current value must be an object.
+<li>Look up the key in current value and assign as new current value.  If
+the key is a symbol or string, the current value must be an object.
 If the key is an index, the current value must be an array or string.
 It is an error if the key does not match the required type, or the key is not found or out
 of range.</li>
@@ -699,10 +730,12 @@ of range.</li>
 be provided:</p>
 <ul>
 <li><code>inputs</code>: The input object to the current Process.</li>
-<li><code>self</code>: A context-specific value.  The contextual values for 'self' are documented for specific fields elsewhere in this specification.  If
+<li><code>self</code>: A context-specific value.  The contextual values for 'self' are
+documented for specific fields elsewhere in this specification.  If
 a contextual value of 'self' is not documented for a field, it
 must be 'null'.</li>
-<li><code>runtime</code>: An object containing configuration details.  Specific to the process type.  An implementation may provide
+<li><code>runtime</code>: An object containing configuration details.  Specific to the
+process type.  An implementation may provide
 opaque strings for any or all fields of <code>runtime</code>.  These must be
 filled in by the platform after processing the Tool but before actual
 execution.  Parameter references and expressions may only use the
@@ -811,28 +844,37 @@ separately using the <code>arguments</code> field of the CommandLineTool.</p>
 the sort key is a list consisting of one or more numeric or string
 elements.  Strings are sorted lexicographically based on UTF-8 encoding.</p>
 <ol>
-<li><p>Collect <code>CommandLineBinding</code> objects from <code>arguments</code>.  Assign a sorting key <code>[position, i]</code> where <code>position</code> is
+<li><p>Collect <code>CommandLineBinding</code> objects from <code>arguments</code>.  Assign a sorting
+key <code>[position, i]</code> where <code>position</code> is
 <a href="#CommandLineBinding"><code>CommandLineBinding.position</code></a> and <code>i</code>
 is the index in the <code>arguments</code> list.</p>
 </li>
-<li><p>Collect <code>CommandLineBinding</code> objects from the <code>inputs</code> schema and associate them with values from the input object.  Where the input type
-is a record, array, or map, recursively walk the schema and input object,
-collecting nested <code>CommandLineBinding</code> objects and associating them with
-values from the input object.</p>
+<li><p>Collect <code>CommandLineBinding</code> objects from the <code>inputs</code> schema and
+associate them with values from the input object.  Where the input type
+is a record, array, or map, recursively walk the schema and input object,</p>
 </li>
-<li><p>Create a sorting key by taking the value of the <code>position</code> field at each level leading to each leaf binding object.  If <code>position</code> is not
+</ol>
+  collecting nested `CommandLineBinding` objects and associating them with
+  values from the input object.
+
+<ol start="3">
+<li><p>Create a sorting key by taking the value of the <code>position</code> field at
+each level leading to each leaf binding object.  If <code>position</code> is not
 specified, it is not added to the sorting key.  For bindings on arrays
 and maps, the sorting key must include the array index or map key
 following the position.  If and only if two bindings have the same sort
 key, the tie must be broken using the ordering of the field or parameter
 name immediately containing the leaf binding.</p>
 </li>
-<li><p>Sort elements using the assigned sorting keys.  Numeric entries sort before strings.</p>
+<li><p>Sort elements using the assigned sorting keys.  Numeric entries sort
+before strings.</p>
 </li>
-<li><p>In the sorted order, apply the rules defined in <a href="#CommandLineBinding"><code>CommandLineBinding</code></a> to convert bindings to actual
+<li><p>In the sorted order, apply the rules defined in
+<a href="#CommandLineBinding"><code>CommandLineBinding</code></a> to convert bindings to actual
 command line elements.</p>
 </li>
-<li><p>Insert elements from <code>baseCommand</code> at the beginning of the command line.</p>
+<li><p>Insert elements from <code>baseCommand</code> at the beginning of the command
+line.</p>
 </li>
 </ol>
 <h2 id="Runtime_environment" class="section">4.2 Runtime environment <a href="#Runtime_environment">&sect;</a></h2><p>All files listed in the input object must be made available in the runtime
@@ -864,9 +906,11 @@ specified or at user option.</p>
 <ul>
 <li><code>HOME</code> must be set to the designated output directory.</li>
 <li><code>TMPDIR</code> must be set to the designated temporary directory.</li>
-<li><code>PATH</code> may be inherited from the parent process, except when run in a container that provides its own <code>PATH</code>.</li>
+<li><code>PATH</code> may be inherited from the parent process, except when run in a
+container that provides its own <code>PATH</code>.</li>
 <li>Variables defined by <a href="#EnvVarRequirement">EnvVarRequirement</a></li>
-<li>The default environment of the container, such as when using <a href="#DockerRequirement">DockerRequirement</a></li>
+<li>The default environment of the container, such as when using
+<a href="#DockerRequirement">DockerRequirement</a></li>
 </ul>
 <p>An implementation may forbid the tool from writing to any location in the
 runtime environment file system other than the designated temporary directory,
@@ -1157,8 +1201,10 @@ instead.</p>
 it specifies that the following pattern should be applied to the path
 of the primary file to yield a filename relative to the primary File:</p>
 <ol>
-<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark the resulting secondary file as optional.</li>
-<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
+<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark
+the resulting secondary file as optional.</li>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -1256,18 +1302,23 @@ effective value.</p>
 </li>
 <li><p><strong>number</strong>: Add <code>prefix</code> and decimal representation to command line.</p>
 </li>
-<li><p><strong>boolean</strong>: If true, add <code>prefix</code> to the command line.  If false, add nothing.</p>
+<li><p><strong>boolean</strong>: If true, add <code>prefix</code> to the command line.  If false, add
+nothing.</p>
 </li>
-<li><p><strong>File</strong>: Add <code>prefix</code> and the value of <a href="#File"><code>File.path</code></a> to the command line.</p>
+<li><p><strong>File</strong>: Add <code>prefix</code> and the value of
+<a href="#File"><code>File.path</code></a> to the command line.</p>
 </li>
-<li><p><strong>Directory</strong>: Add <code>prefix</code> and the value of <a href="#Directory"><code>Directory.path</code></a> to the command line.</p>
+<li><p><strong>Directory</strong>: Add <code>prefix</code> and the value of
+<a href="#Directory"><code>Directory.path</code></a> to the command line.</p>
 </li>
-<li><p><strong>array</strong>: If <code>itemSeparator</code> is specified, add <code>prefix</code> and the join the array into a single string with <code>itemSeparator</code> separating the
+<li><p><strong>array</strong>: If <code>itemSeparator</code> is specified, add <code>prefix</code> and the join
+the array into a single string with <code>itemSeparator</code> separating the
 items.  Otherwise first add <code>prefix</code>, then recursively process
 individual elements.
 If the array is empty, it does not add anything to command line.</p>
 </li>
-<li><p><strong>object</strong>: Add <code>prefix</code> only, and recursively add object fields for which <code>inputBinding</code> is specified.</p>
+<li><p><strong>object</strong>: Add <code>prefix</code> only, and recursively add object fields for
+which <code>inputBinding</code> is specified.</p>
 </li>
 <li><p><strong>null</strong>: Add nothing.</p>
 </li>
@@ -1394,8 +1445,10 @@ instead.</p>
 it specifies that the following pattern should be applied to the path
 of the primary file to yield a filename relative to the primary File:</p>
 <ol>
-<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark the resulting secondary file as optional.</li>
-<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
+<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark
+the resulting secondary file as optional.</li>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -1885,8 +1938,10 @@ instead.</p>
 it specifies that the following pattern should be applied to the path
 of the primary file to yield a filename relative to the primary File:</p>
 <ol>
-<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark the resulting secondary file as optional.</li>
-<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
+<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark
+the resulting secondary file as optional.</li>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -2100,8 +2155,10 @@ instead.</p>
 it specifies that the following pattern should be applied to the path
 of the primary file to yield a filename relative to the primary File:</p>
 <ol>
-<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark the resulting secondary file as optional.</li>
-<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
+<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark
+the resulting secondary file as optional.</li>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -2330,8 +2387,10 @@ instead.</p>
 it specifies that the following pattern should be applied to the path
 of the primary file to yield a filename relative to the primary File:</p>
 <ol>
-<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark the resulting secondary file as optional.</li>
-<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
+<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark
+the resulting secondary file as optional.</li>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>

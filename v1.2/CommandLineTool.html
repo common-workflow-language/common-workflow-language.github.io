@@ -259,6 +259,7 @@ under the terms of the Apache License, version 2.0.</p>
 </ol><li><a href="#ToolTimeLimit">5.17 ToolTimeLimit</a><ol>
 </ol><li><a href="#CWLVersion">5.18 CWLVersion</a><ol>
 </ol></li></ol></li></ol></nav>
+
 <h1 id="Introduction" class="section">1. Introduction <a href="#Introduction">&sect;</a></h1><p>The Common Workflow Language (CWL) working group is an informal, multi-vendor
 working group consisting of various organizations and individuals that have an
 interest in portability of data analysis workflows.  The goal is to create
@@ -276,12 +277,14 @@ all three components; for example "99% of CWL v1.2.0 required tests" or
 "100% of CWL v1.2.1 required tests".</p>
 <p>See also the <a href="SchemaSalad.html#Changelog_for_v1.2.1">Schema-Salad v1.2.1 changelog</a></p>
 <h2 id="Changelog_for_v1.2.1" class="section">1.2 Changelog for v1.2.1 <a href="#Changelog_for_v1.2.1">&sect;</a></h2><ul>
-<li>CWL has been assigned an official IANA Media Type of <a href="https://www.iana.org/assignments/media-types/application/cwl"><code>application/cwl</code></a> for either JSON or YAML format. For JSON formatted CWL documents, <a href="https://www.iana.org/assignments/media-types/application/cwl+json"><code>application/cwl+json</code></a>
+<li>CWL has been assigned an official IANA Media Type of <a href="https://www.iana.org/assignments/media-types/application/cwl"><code>application/cwl</code></a>
+for either JSON or YAML format. For JSON formatted CWL documents, <a href="https://www.iana.org/assignments/media-types/application/cwl+json"><code>application/cwl+json</code></a>
 has also been assigned and can be used. For specifying a YAML formatted
 CWL document, one can use <code>application/cwl+yaml</code> but that is not an official
 IANA media-type yet; as of 2023-07-23 the <code>+yaml</code> suffix has yet to be approved.
 The above has been documented in the <a href="#Syntax">Syntax</a> section.</li>
-<li>There is now an unofficial <a href="https://github.com/common-workflow-language/cwl-v1.2/blob/1.2.1_proposed/json-schema/cwl.yaml">JSON Schema for CWL documents</a>, donated by Francis Charette-Migneault. This schema captures much, but not
+<li>There is now an unofficial <a href="https://github.com/common-workflow-language/cwl-v1.2/blob/1.2.1_proposed/json-schema/cwl.yaml">JSON Schema for CWL documents</a>,
+donated by Francis Charette-Migneault. This schema captures much, but not
 all, of the potential complexity of CWL documents. It was created for
 the <a href="https://docs.ogc.org/DRAFTS/20-044.html">draft</a>
 <a href="http://www.opengis.net/doc/IS/ogcapi-processes-2/1.0">OGC API - Processes - Part 2: Deploy, Replace, Undeploy</a>
@@ -289,32 +292,42 @@ standard.
 To support the testing of this unofficial JSON Schema for CWL, some of
 the <code>should_fail: true</code> tests have had the label <code>json_schema_invalid</code>
 added.</li>
-<li>For consistency, all references to <code>URI</code>s have been replaced with <code>IRI</code>s (Internationalized Resource Identifiers).</li>
-<li>The <a href="#Expressions_(Optional)">difference between <code>$()</code> and <code>${}</code></a> were clarified. We now make more explicit that <code>${...}</code> evaluates to
+<li>For consistency, all references to <code>URI</code>s have been replaced with <code>IRI</code>s
+(Internationalized Resource Identifiers).</li>
+<li>The <a href="#Expressions_(Optional">difference between <code>$()</code> and <code>${}</code></a>) were
+clarified. We now make more explicit that <code>${...}</code> evaluates to
 <code>(function() { ... })()</code>.</li>
-<li>The publisher of this document is now explicitly named; it is the <a href="https://www.commonwl.org">Common Workflow Language project</a>, a member
+<li>The publisher of this document is now explicitly named; it is the
+<a href="https://www.commonwl.org">Common Workflow Language project</a>, a member
 project of <a href="https://sfconservancy.org/">Software Freedom Conservancy</a>.</li>
-<li>The <a href="#Parameter_references">Parameter References</a> section has been updated to clarify ambiguity on <code>null</code> and array <code>.length</code>. Three conformance tests to
+<li>The <a href="#Parameter_references">Parameter References</a> section has been updated
+to clarify ambiguity on <code>null</code> and array <code>.length</code>. Three conformance tests to
 verify this were added as well (<code>params_broken_null</code>, <code>length_for_non_array</code>,
 <code>user_defined_length_in_parameter_reference</code>).</li>
-<li>It is now explicit in the description of the <code>size</code> field of a <a href="#File"><code>File</code></a> object that <code>size</code> is measured in bytes, as was already
+<li>It is now explicit in the description of the <code>size</code> field of a
+<a href="#File"><code>File</code></a> object that <code>size</code> is measured in bytes, as was already
 stated in the introduction to the <code>File</code> object description.</li>
-<li>The concept of "opaque identifier(s)"/"opaque strings" as mentioned in the <a href="#SecondaryFileSchema"><code>SecondaryFileSchema</code></a>, <a href="#Parameter_references">Parameter References</a>,
+<li>The concept of "opaque identifier(s)"/"opaque strings" as mentioned in the
+<a href="#SecondaryFileSchema"><code>SecondaryFileSchema</code></a>, <a href="#Parameter_references">Parameter References</a>,
 and <a href="#Runtime_environment">Runtime Environment</a> sections is now defined
 in the newly added <a href="#Glossary">glossary</a>: they are nonsensical values
 that are swapped out with a real value later in the evaluation process.
 Workflow and tool expressions <strong>should not</strong> rely on it nor try to parse it.</li>
-<li>The purpose and valid circumstances for using <code>CommandLineTool.id</code> has been made more explicit: It is a unique identifier for that CommandLineTool;
+<li>The purpose and valid circumstances for using <code>CommandLineTool.id</code> has
+been made more explicit: It is a unique identifier for that CommandLineTool;
 Only useful for <code>CommandLineTool</code>s in a <code>$graph</code>. This <code>id</code> value should
 not be exposed to users in graphical or terminal user interfaces.</li>
-<li>How <code>cwl.output.json</code> is used to perform <a href="#Output_binding">output binding</a> has been clarified, especially with regard to any <code>path</code> and <code>location</code>
+<li>How <code>cwl.output.json</code> is used to perform <a href="#Output_binding">output binding</a>
+has been clarified, especially with regard to any <code>path</code> and <code>location</code>
 fields for <code>File</code> and <code>Directory</code> objects referenced within. Two new
 conformance tests (<code>json_output_path_relative</code>, <code>json_output_location_relative</code>)
 have been added to verify these clarifications.</li>
-<li>The <a href="#Parameter_references">BNF grammar description of CWL Parameter References</a> has been reformatted so that symbols get <code>code formatting</code>. <code>::</code> is
+<li>The <a href="#Parameter_references">BNF grammar description of CWL Parameter References</a>
+has been reformatted so that symbols get <code>code formatting</code>. <code>::</code> is
 replaced with <code>::=</code> (meaning that the symbol on the left must be
 replaced with the expression on the right).</li>
-<li>The example expansion of the <a href="#stdin"><code>stdin</code> shortcut</a> erroneously used <code>${ }</code> instead of <code>$( )</code>; this has been corrected.</li>
+<li>The example expansion of the <a href="#stdin"><code>stdin</code> shortcut</a> erroneously used
+<code>${ }</code> instead of <code>$( )</code>; this has been corrected.</li>
 </ul>
 <h3 id="Clarifications_to_the_schema_in_CWL_v1.2.1_to_aid_autogenerated_libraries" class="section">1.2.1 Clarifications to the schema in CWL v1.2.1 to aid autogenerated libraries <a href="#Clarifications_to_the_schema_in_CWL_v1.2.1_to_aid_autogenerated_libraries">&sect;</a></h3><p>Many different CWL parsers are autogenerated from the official CWL schema
 by using <a href="https://schema-salad.readthedocs.io/en/latest/#codegen-examples"><code>schema-salad --codegen</code></a>.</p>
@@ -322,52 +335,63 @@ by using <a href="https://schema-salad.readthedocs.io/en/latest/#codegen-example
 parsing; or to produce better results for end users. These changes do not change
 the CWL syntax or its meaning; we are just now modeling it better.</p>
 <ul>
-<li><p>The schema for <code>Requirement</code>s has changed to enable faster parsing by autogenerated libraries. The <code>class</code> field is now a static enum with a
+<li><p>The schema for <code>Requirement</code>s has changed to enable faster parsing by
+autogenerated libraries. The <code>class</code> field is now a static enum with a
 single permissible value instead of a generic string (for example:
 <code>class: DockerRequirement</code> for a <code>DockerRequirement</code> hint or requirement.)
 This allows for autogenerated CWL parsers to recognize any requirement
 immediately instead of having to check for matching field names and
 valid values, as was done previously.</p>
 </li>
-<li><p>Likewise, the schema for <code>CommandLineTool</code>; the <code>class</code> field is now a static enum with a single permissible value (<code>class: CommandLineTool</code>)
+<li><p>Likewise, the schema for <code>CommandLineTool</code>; the <code>class</code> field is now a
+static enum with a single permissible value (<code>class: CommandLineTool</code>)
 instead of a generic string.</p>
 </li>
-<li><p>The schema for the <code>CommandLineBinding.position</code> field now has an explicit default value of <code>0</code>. Previously this was only expression textually in
+<li><p>The schema for the <code>CommandLineBinding.position</code> field now has an explicit
+default value of <code>0</code>. Previously this was only expression textually in
 the description of that field.</p>
 </li>
-<li><p>The schema for the <code>File.streamable</code> field now has an explicit default value of <code>false</code> to match the textual description.</p>
+<li><p>The schema for the <code>File.streamable</code> field now has an explicit default
+value of <code>false</code> to match the textual description.</p>
 <p>Note: Other fields like <code>ResourceRequirement.coresMin</code>, <code>.coresMax</code>,
 <code>.ramMin</code>, <code>.ramMax</code>, <code>.tmpdirMin</code>, <code>.tmpdirMax</code> have not had defaults
 set in the schema so that parsers can discriminate easily between a
 value not provided and the default value (<code>0</code>).</p>
 </li>
-<li><p>Everywhere the schema allows a value of type <code>long</code> we also explicitly allow a value of type <code>int</code>: <a href="#File"><code>File.size</code></a>, <a href="#ResourceRequirement"><code>ResourceRequirement</code></a><code>.coresMin</code>,
+<li><p>Everywhere the schema allows a value of type <code>long</code> we also explicitly
+allow a value of type <code>int</code>: <a href="#File"><code>File.size</code></a>, <a href="#ResourceRequirement"><code>ResourceRequirement</code></a><code>.coresMin</code>,
 <code>ResourceRequirement.coresMax</code>, <code>ResourceRequirement.ramMin</code>, <code>ResourceRequirement.ramMax</code>,
 <code>ResourceRequirement.tmpdirMin</code>, <code>ResourceRequirement.tmpdirMax</code>, <code>ResourceRequirement.outdirMin</code>,
 <code>ResourceRequirement.outdirMax</code>, and <a href="#ToolTimeLimit"><code>ToolTimeLimit.timelimt</code></a>.</p>
 <p>By JSON rules this is implicit, but by making it explicit we aid
 autogenerated CWL libraries especially in languages such as Java.</p>
 </li>
-<li><p>The schema for the <code>default</code> field of <a href="#CommandInputParameter">CommandInputParameter</a> has been expanded from <code>Any?</code> to <code>[&quot;null&quot;, File, Directory, Any]</code>
+<li><p>The schema for the <code>default</code> field of <a href="#CommandInputParameter">CommandInputParameter</a>
+has been expanded from <code>Any?</code> to <code>[&quot;null&quot;, File, Directory, Any]</code>
 so that autogenerated CWL libraries will deserialize any 'File' or 'Directory'
 objects automatically for the user.</p>
 </li>
-<li><p>The schema for the <code>hints</code> field of <code>CommandLineTool</code> has been expanded from: <code>Any[]?</code> to <code>[&quot;null&quot;, { type: array, items: [ ProcessRequirement, Any] } ]</code>.
+<li><p>The schema for the <code>hints</code> field of <code>CommandLineTool</code> has been expanded
+from: <code>Any[]?</code> to <code>[&quot;null&quot;, { type: array, items: [ ProcessRequirement, Any] } ]</code>.
 This allows autogenerated CWL parsers to deserialize any of the standard
 CWL hints instead of forcing the users of those parsers to convert the
 unserialized hints to normal objects themselves.</p>
 </li>
 </ul>
 <h3 id="Updated_Conformance_Tests_for_v1.2.1" class="section">1.2.2 Updated Conformance Tests for v1.2.1 <a href="#Updated_Conformance_Tests_for_v1.2.1">&sect;</a></h3><ul>
-<li><p>Conformance tests are now referred to by their textual identifiers (<code>id</code>). Previously this was the <code>label</code> field. Tests without a <code>label</code>/<code>id</code>
+<li><p>Conformance tests are now referred to by their textual identifiers (<code>id</code>).
+Previously this was the <code>label</code> field. Tests without a <code>label</code>/<code>id</code>
 have been given one.</p>
 </li>
-<li><p><code>tests/loadContents/cwloutput-nolimit.cwl</code>: Made explicit that <code>bigstring</code> is an additional output as generated by the existing
+<li><p><code>tests/loadContents/cwloutput-nolimit.cwl</code>: Made explicit that
+<code>bigstring</code> is an additional output as generated by the existing
 <code>mkfilelist.py</code> script's use of <a href="#Output_binding"><code>cwl.output.json</code></a>.</p>
 </li>
-<li><p>The number of different software containers used in the conformance tests has been reduced to four. See <a href="https://github.com/common-workflow-language/cwl-v1.2/blob/1.2.1_proposed/CONFORMANCE_TESTS.md#writing-a-new-conformance-test">the list in the CONFORMANCE_TESTS.md instructions</a>.</p>
+<li><p>The number of different software containers used in the conformance tests
+has been reduced to four. See <a href="https://github.com/common-workflow-language/cwl-v1.2/blob/1.2.1_proposed/CONFORMANCE_TESTS.md#writing-a-new-conformance-test">the list in the CONFORMANCE_TESTS.md instructions</a>.</p>
 </li>
-<li><p><code>tests/secondaryfiles/rename-inputs.cwl</code> has been simplified by changing it to reference another input parameter instead of using <code>self</code>. The
+<li><p><code>tests/secondaryfiles/rename-inputs.cwl</code> has been simplified by changing
+it to reference another input parameter instead of using <code>self</code>. The
 behavior of processing secondary files patterns in order and being able
 to reference earlier ones later is not part of CWL v1.2.</p>
 <p>This doesn't exactly replicate the previous behavior, because it introduces
@@ -375,73 +399,106 @@ a new input parameter, however it does demonstrate the ability to rename
 a file and have it staged as a secondary file without having to use
 <code>InitialWorkDirRequirement</code>.</p>
 </li>
-<li><p><code>directory_input_docker</code> was incorrectly marked as required, it is optional unless the feature <code>ShellCommandRequirement</code> is stated as being supported.</p>
+<li><p><code>directory_input_docker</code> was incorrectly marked as required, it is optional
+unless the feature <code>ShellCommandRequirement</code> is stated as being supported.</p>
 </li>
-<li><p><code>glob_outside_outputs_fails</code> was incorrectly marked as required, it is optional unless the feature <code>DockerRequirement</code> is stated as being supported.</p>
+<li><p><code>glob_outside_outputs_fails</code> was incorrectly marked as required, it is
+optional unless the feature <code>DockerRequirement</code> is stated as being supported.</p>
 </li>
-<li><p><code>stage_file_array</code> was incorrectly marked as required, it is optional unless both the features <code>InlineJavascriptRequirement</code> and <code>DockerRequirement</code>
+<li><p><code>stage_file_array</code> was incorrectly marked as required, it is optional
+unless both the features <code>InlineJavascriptRequirement</code> and <code>DockerRequirement</code>
 are stated as being supported.</p>
 </li>
-<li><p><code>stage_file_array_basename</code> and <code>stage_file_array_entryname_overrides</code> were both incorrectly marked as required, they are optional unless the feature
+<li><p><code>stage_file_array_basename</code> and <code>stage_file_array_entryname_overrides</code> were
+both incorrectly marked as required, they are optional unless the feature
 <code>InitialWorkDirRequirement</code> and <code>InlineJavascriptRequirement</code> are both
 stated as being supported.</p>
 </li>
-<li><p><code>optional_numerical_output_returns_0_not_null</code> was incorrectly marked as required, it is optional unless <code>InlineJavascriptRequirement</code> is stated
+<li><p><code>optional_numerical_output_returns_0_not_null</code> was incorrectly marked as
+required, it is optional unless <code>InlineJavascriptRequirement</code> is stated
 as being supported.</p>
 </li>
-<li><p><code>cwloutput_nolimit</code> and <code>loadcontents_limit</code> were incorrectly marked as optional; this has been corrected as both are required.</p>
+<li><p><code>cwloutput_nolimit</code> and <code>loadcontents_limit</code> were incorrectly marked as
+optional; this has been corrected as both are required.</p>
 </li>
-<li><p>Made it explicit that if a <code>CommandLineTool</code> contains logically chained commands (e.g. <code>echo a &amp;&amp; echo b</code>) then the <code>stdout</code> File/object must
+<li><p>Made it explicit that if a <code>CommandLineTool</code> contains logically chained
+commands (e.g. <code>echo a &amp;&amp; echo b</code>) then the <code>stdout</code> File/object must
 include the output of every command. The <code>stdout_chained_commands</code> mandatory
 conformance test was added to verify this.</p>
 </li>
-<li><p><code>metadata</code>: The description and content of this test has been updated to be more focused on the metadata present in the CWL file.</p>
+<li><p><code>metadata</code>: The description and content of this test has been updated to
+be more focused on the metadata present in the CWL file.</p>
 </li>
 <li><p>The final references to Python 2 have been updated to Python 3.</p>
 </li>
-<li><p>A few conformance tests had <code>dockerPull</code>s without a registry specified. This has been fixed.</p>
+<li><p>A few conformance tests had <code>dockerPull</code>s without a registry specified.
+This has been fixed.</p>
 </li>
 </ul>
 <h3 id="New_Mandatory_Conformance_Tests_for_v1.2.1" class="section">1.2.3 New Mandatory Conformance Tests for v1.2.1 <a href="#New_Mandatory_Conformance_Tests_for_v1.2.1">&sect;</a></h3><ul>
-<li><code>params_broken_null</code>: Test parameter reference that refers to <code>null.something</code>.</li>
-<li><code>length_for_non_array</code>: Test parameter reference that refers to length of non-array input.</li>
-<li><code>user_defined_length_in_parameter_reference</code>: Test 'length' in a parameter reference where it does not refer to length of an array input.</li>
-<li><code>directory_literal_with_literal_file_in_subdir_nostdin</code>: Test non-<code>stdin</code> reference to literal <code>File</code> via a nested <code>Directory</code> literal.</li>
-<li><code>colon_in_paths</code>: Confirm that colons are tolerated in input paths, string values, stdout shortcut, and output file &amp; directory names.</li>
-<li><code>colon_in_output_path</code>: Confirm that colons are tolerated in output directory names.</li>
+<li><code>params_broken_null</code>: Test parameter reference that refers to
+<code>null.something</code>.</li>
+<li><code>length_for_non_array</code>: Test parameter reference that refers to length
+of non-array input.</li>
+<li><code>user_defined_length_in_parameter_reference</code>: Test 'length' in a parameter
+reference where it does not refer to length of an array input.</li>
+<li><code>directory_literal_with_literal_file_in_subdir_nostdin</code>: Test non-<code>stdin</code>
+reference to literal <code>File</code> via a nested <code>Directory</code> literal.</li>
+<li><code>colon_in_paths</code>: Confirm that colons are tolerated in input paths,
+string values, stdout shortcut, and output file &amp; directory names.</li>
+<li><code>colon_in_output_path</code>: Confirm that colons are tolerated in output
+directory names.</li>
 <li><code>record_with_default</code>: Confirm that records with defaults are accepted.</li>
-<li><code>record_outputeval_nojs</code>: Use of <code>outputEval</code> on a record itself, not the fields of the record (without javascript). An equivalent test with
+<li><code>record_outputeval_nojs</code>: Use of <code>outputEval</code> on a record itself, not
+the fields of the record (without javascript). An equivalent test with
 <code>InlineJavascriptRequirement</code> was added as well: <code>record_outputeval</code>.</li>
 <li><code>runtime-outdir</code>: Test use of <code>$(runtime.outdir)</code> for <code>outputBinding.glob</code>.</li>
-<li><code>stdout_chained_commands</code>: Test that chaining two <code>echo</code> calls causes the workflow runner to emit the combined output to <code>stdout</code>. This is to
+<li><code>stdout_chained_commands</code>: Test that chaining two <code>echo</code> calls causes
+the workflow runner to emit the combined output to <code>stdout</code>. This is to
 confirm that the workflow runner will <strong>not</strong> create an expression such as
 <code>echo a &amp;&amp; echo b &gt; out.txt</code>, but instead will produce the correct
 <code>echo a &amp;&amp; echo b</code>, and capture the output correctly.</li>
-<li><code>record_order_with_input_bindings</code>: Test sorting arguments at each level (<code>inputBinding</code> for all levels).</li>
-<li><code>json_output_path_relative</code>: Test support for reading cwl.output.json where 'path' is relative path in output dir.</li>
-<li><code>json_output_location_relative</code>: Test support for reading cwl.output.json where 'location' is relative reference to output dir.</li>
-<li><code>filename_with_hash_mark</code>: Test for correct handling of URL-quoting in a filename to refer to filename containing a hash mark.</li>
-<li><code>capture_files</code>: Test that a type error is raised if directories are returned by <code>glob</code> evaluation when type is <code>File</code>.</li>
-<li><code>capture_dirs</code>: Test that a type error is raised if files are returned by <code>glob</code> evaluation when type is <code>Directory</code>.</li>
-<li><code>capture_files_and_dirs</code>: Test that both files and directories are captured by <code>glob</code> evaluation when type is <code>[Directory, File]</code>.</li>
-<li><code>very_big_and_very_floats_nojs</code>: Confirm that very big and very small numbers are represented on the command line using decimals, not
+<li><code>record_order_with_input_bindings</code>: Test sorting arguments at each level
+(<code>inputBinding</code> for all levels).</li>
+<li><code>json_output_path_relative</code>: Test support for reading cwl.output.json
+where 'path' is relative path in output dir.</li>
+<li><code>json_output_location_relative</code>: Test support for reading cwl.output.json
+where 'location' is relative reference to output dir.</li>
+<li><code>filename_with_hash_mark</code>: Test for correct handling of URL-quoting in
+a filename to refer to filename containing a hash mark.</li>
+<li><code>capture_files</code>: Test that a type error is raised if directories are
+returned by <code>glob</code> evaluation when type is <code>File</code>.</li>
+<li><code>capture_dirs</code>: Test that a type error is raised if files are returned
+by <code>glob</code> evaluation when type is <code>Directory</code>.</li>
+<li><code>capture_files_and_dirs</code>: Test that both files and directories are
+captured by <code>glob</code> evaluation when type is <code>[Directory, File]</code>.</li>
+<li><code>very_big_and_very_floats_nojs</code>: Confirm that very big and very small
+numbers are represented on the command line using decimals, not
 scientific notation.</li>
-<li><code>paramref_arguments_runtime</code>: confirm that the <code>runtime</code> object is available to parameter references in arguments.</li>
-<li><code>paramref_arguments_self</code>: confirm that the <code>self</code> object is available and set to <code>null</code> in arguments.</li>
-<li><code>paramref_arguments_inputs</code>: confirm that the <code>inputs</code> object is available to parameter references in arguments.</li>
+<li><code>paramref_arguments_runtime</code>: confirm that the <code>runtime</code> object is
+available to parameter references in arguments.</li>
+<li><code>paramref_arguments_self</code>: confirm that the <code>self</code> object is available
+and set to <code>null</code> in arguments.</li>
+<li><code>paramref_arguments_inputs</code>: confirm that the <code>inputs</code> object is
+available to parameter references in arguments.</li>
 </ul>
 <h3 id="New_Optional_Conformance_Tests_for_v1.2.1" class="section">1.2.4 New Optional Conformance Tests for v1.2.1 <a href="#New_Optional_Conformance_Tests_for_v1.2.1">&sect;</a></h3><h4 id="<code>InlineJavaScriptRequirement</code>" class="section">1.2.4.1 <code>InlineJavaScriptRequirement</code> <a href="#<code>InlineJavaScriptRequirement</code>">&sect;</a></h4><ul>
-<li><code>record_outputeval</code>: Use of <code>outputEval</code> on a record itself, not the fields of the record.</li>
-<li><code>staging-basename</code>: Use of an <code>ExpressionTool</code> to change <code>basename</code> of file, then correctly staging the file using the new name.</li>
+<li><code>record_outputeval</code>: Use of <code>outputEval</code> on a record itself, not
+the fields of the record.</li>
+<li><code>staging-basename</code>: Use of an <code>ExpressionTool</code> to change <code>basename</code> of
+file, then correctly staging the file using the new name.</li>
 <li><code>js-input-record</code>:  A test case for JavaScript with an input record.</li>
-<li><code>very_big_and_very_floats</code>: Confirm that very big and very small numbers are represented on the command line using decimals, not
+<li><code>very_big_and_very_floats</code>: Confirm that very big and very small
+numbers are represented on the command line using decimals, not
 scientific notation.</li>
 </ul>
 <h4 id="<code>MultipleInputFeatureRequirement</code>" class="section">1.2.4.2 <code>MultipleInputFeatureRequirement</code> <a href="#<code>MultipleInputFeatureRequirement</code>">&sect;</a></h4><ul>
-<li><code>multiple-input-feature-requirement</code>: <code>MultipleInputFeatureRequirement</code> on workflow outputs.</li>
+<li><code>multiple-input-feature-requirement</code>: <code>MultipleInputFeatureRequirement</code> on
+workflow outputs.</li>
 </ul>
 <h4 id="<code>InitialWorkDirRequirement</code>" class="section">1.2.4.3 <code>InitialWorkDirRequirement</code> <a href="#<code>InitialWorkDirRequirement</code>">&sect;</a></h4><ul>
-<li><code>iwd-subdir</code>: Test emitting a subdirectory from the initial working directory.</li>
+<li><code>iwd-subdir</code>: Test emitting a subdirectory from the initial working
+directory.</li>
 </ul>
 <h2 id="Introduction_to_the_CWL_Command_Line_Tool_standard_v1.2" class="section">1.3 Introduction to the CWL Command Line Tool standard v1.2 <a href="#Introduction_to_the_CWL_Command_Line_Tool_standard_v1.2">&sect;</a></h2><p>Since the v1.1 release, v1.2 introduces the
 following updates to the CWL Command Line Tool standard.
@@ -452,20 +509,29 @@ CWL documents that relied on previously undefined or
 underspecified behavior may have slightly different behavior in
 v1.2.</p>
 <h2 id="Changelog" class="section">1.4 Changelog <a href="#Changelog">&sect;</a></h2><ul>
-<li><code>coresMin</code> and <code>coresMax</code> of <a href="#ResourceRequirement">ResourceRequirement</a> may now request fractional CPUs.</li>
-<li><code>ramMin</code>, <code>ramMax</code>, <code>tmpdirMin</code>, <code>tmpdirMax</code>, <code>outdirMin</code>, and <code>outdirMax</code> of <a href="#ResourceRequirement">ResourceRequirement</a> now accept floating point values.</li>
-<li><a href="#CommandLineTool">CommandLineTool</a> can now express <code>intent</code> with an identifier for the type of computational operation.</li>
-<li>Added conformance tests for order of operations evaluating <code>secondaryFiles</code> on input and ensure that input and output secondaryFiles expressions can return a File object.</li>
+<li><code>coresMin</code> and <code>coresMax</code> of
+<a href="#ResourceRequirement">ResourceRequirement</a> may now request fractional CPUs.</li>
+<li><code>ramMin</code>, <code>ramMax</code>, <code>tmpdirMin</code>, <code>tmpdirMax</code>, <code>outdirMin</code>, and <code>outdirMax</code> of
+<a href="#ResourceRequirement">ResourceRequirement</a> now accept floating point values.</li>
+<li><a href="#CommandLineTool">CommandLineTool</a> can now express <code>intent</code>
+with an identifier for the type of computational operation.</li>
+<li>Added conformance tests for order of operations evaluating <code>secondaryFiles</code> on input
+and ensure that input and output secondaryFiles expressions can return a File object.</li>
 <li>Clarify there are no limits on the size of file literal <code>contents</code>.</li>
-<li>When using <code>loadContents</code> it now must fail when attempting to load a file greater than 64 KiB instead of silently truncating
+<li>When using <code>loadContents</code> it now must fail when attempting to
+load a file greater than 64 KiB instead of silently truncating
 the data.</li>
-<li>Objects, arrays and numbers returned by parameter references or expressions in <code>Dirent.entry</code> that are not a <code>File</code> or
+<li>Objects, arrays and numbers returned by parameter references
+or expressions in <code>Dirent.entry</code> that are not a <code>File</code> or
 <code>Directory</code> object (or array of such) are now specified to be
 JSON serialized to produce file contents.</li>
 <li>Note that only enum and record types can be typedef-ed</li>
-<li>Added conformance tests for order of operations evaluating <code>secondaryFiles</code> on input and ensure that input and output secondaryFiles expressions can return a File object.</li>
-<li>Escaping in <a href="#String_Interpolation">string interpolation</a> has been added to the specification along with conformance tests.</li>
-<li>It is now possible to have an absolute path in the <code>entryname</code> field in
+<li>Added conformance tests for order of operations evaluating <code>secondaryFiles</code> on input
+and ensure that input and output secondaryFiles expressions can return a File object.</li>
+<li>Escaping in <a href="#String_Interpolation">string interpolation</a> has
+been added to the specification along with conformance tests.</li>
+<li>It is now possible to have an absolute path in the <code>entryname</code>
+field in
 <a href="#InitialWorkDirRequirement">InitialWorkDirRequirement</a> when
 running in a mandatory container.  Together with
 <code>DockerRequirement.dockerOutputDirectory</code> this it possible to
@@ -821,7 +887,8 @@ platform include:</p>
 <ul>
 <li>Data security and permissions</li>
 <li>Scheduling tool invocations on remote cluster or cloud compute nodes.</li>
-<li>Using virtual machines or operating system containers to manage the runtime (except as described in <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a>).</li>
+<li>Using virtual machines or operating system containers to manage the runtime
+(except as described in <a href="CommandLineTool.html#DockerRequirement">DockerRequirement</a>).</li>
 <li>Using remote or distributed file systems to manage input and output files.</li>
 <li>Transforming file paths.</li>
 <li>Pausing, resuming or checkpointing processes or workflows.</li>
@@ -835,9 +902,11 @@ modeled as functions that consume an input object and produce an
 output object.</p>
 <ol>
 <li>Load input object.</li>
-<li>Load, process and validate a CWL document, yielding one or more process objects. The <a href="SchemaSalad.html#Explicit_context"><code>$namespaces</code></a> present in the CWL document
+<li>Load, process and validate a CWL document, yielding one or more process objects.
+The <a href="SchemaSalad.html#Explicit_context"><code>$namespaces</code></a> present in the CWL document
 are also used when validating and processing the input object.</li>
-<li>If there are multiple process objects (due to <a href="SchemaSalad.html#Document_graph"><code>$graph</code></a>) and which process object to start with is not specified in the input object (via
+<li>If there are multiple process objects (due to <a href="SchemaSalad.html#Document_graph"><code>$graph</code></a>)
+and which process object to start with is not specified in the input object (via
 a <a href="#Executing_CWL_documents_as_scripts"><code>cwl:tool</code></a> entry) or by any other means
 (like a URL fragment) then choose the process with the <code>id</code> of "#main" or "main".</li>
 <li>Validate the input object against the <code>inputs</code> schema for the process.</li>
@@ -925,31 +994,40 @@ or more repeats, and all other characters are literal values.</p>
 </tr>
 </table>
 </div>
+
 <p>Use the following algorithm to resolve a parameter reference:</p>
 <ol>
 <li>Match the leading symbol as the key</li>
-<li>If the key is the special value 'null' then the value of the parameter reference is 'null'. If the key is 'null' it must be the only symbol in the parameter reference.</li>
-<li>Look up the key in the parameter context (described below) to get the current value. It is an error if the key is not found in the parameter context.</li>
+<li>If the key is the special value 'null' then the
+value of the parameter reference is 'null'. If the key is 'null' it must be the only symbol in the parameter reference.</li>
+<li>Look up the key in the parameter context (described below) to get the current value.
+It is an error if the key is not found in the parameter context.</li>
 <li>If there are no subsequent segments, terminate and return current value</li>
 <li>Else, match the next segment</li>
 <li>Extract the symbol, string, or index from the segment as the key</li>
-<li>Look up the key in current value and assign as new current value.</li>
+<li>Look up the key in current value and assign as new current value.<ol>
 <li>If the key is a symbol or string, the current value must be an object.</li>
 <li>If the key is an index, the current value must be an array or string.</li>
-<li>If the next key is the last key and it has the special value 'length' and the current value is an array, the value of the parameter reference is the
+<li>If the next key is the last key and it has the special value 'length' and
+the current value is an array, the value of the parameter reference is the
 length of the array. If the value 'length' is encountered in other contexts, normal
 evaluation rules apply.</li>
-<li>It is an error if the key does not match the required type, or the key is not found or out of range.</li>
+<li>It is an error if the key does not match the required type, or the key is not found or out
+of range.</li>
+</ol>
+</li>
 <li>Repeat steps 3-8</li>
 </ol>
 <p>The root namespace is the parameter context.  The following parameters must
 be provided:</p>
 <ul>
 <li><code>inputs</code>: The input object to the current Process.</li>
-<li><code>self</code>: A context-specific value.  The contextual values for 'self' are documented for specific fields elsewhere in this specification.  If
+<li><code>self</code>: A context-specific value.  The contextual values for 'self' are
+documented for specific fields elsewhere in this specification.  If
 a contextual value of 'self' is not documented for a field, it
 must be 'null'.</li>
-<li><code>runtime</code>: An object containing configuration details.  Specific to the process type.  An implementation may provide
+<li><code>runtime</code>: An object containing configuration details.  Specific to the
+process type.  An implementation may provide
 <a href="#opaque-strings">opaque strings</a> for any or all fields of <code>runtime</code>.
 These must be filled in by the platform after processing the Tool but
 before actual execution.  Parameter references and expressions may only
@@ -966,7 +1044,8 @@ followed by the string value of the parameter reference, followed by the
 trailing characters.  The string value of the parameter reference is its
 textual JSON representation with the following rules:</p>
 <ul>
-<li>Strings are replaced the literal text of the string, any escaped characters replaced by the literal characters they represent, and
+<li>Strings are replaced the literal text of the string, any escaped
+characters replaced by the literal characters they represent, and
 there are no leading or trailing quotes.</li>
 <li>Objects entries are sorted by key</li>
 </ul>
@@ -985,10 +1064,12 @@ from start to end with 3-character lookahead.  After performing a
 replacement scanning resumes at the next character following the
 replaced substring.</p>
 <ol>
-<li>The substrings <code>\$(</code> and <code>\${</code> are replaced by <code>$(</code> and <code>${</code> respectively.  No parameter or expression evaluation
+<li>The substrings <code>\$(</code> and <code>\${</code> are replaced by <code>$(</code> and <code>${</code>
+respectively.  No parameter or expression evaluation
 interpolation occurs.</li>
 <li>A double backslash <code>\\</code> is replaced by a single backslash <code>\</code>.</li>
-<li>A substring starting with a backslash that does not match one of the previous rules is left unchanged.</li>
+<li>A substring starting with a backslash that does not match one of
+the previous rules is left unchanged.</li>
 </ol>
 <h2 id="Expressions_(Optional)" class="section">3.5 Expressions (Optional) <a href="#Expressions_(Optional)">&sect;</a></h2><p>An expression is a fragment of <a href="http://www.ecma-international.org/ecma-262/5.1/">Javascript/ECMAScript
 5.1</a> code evaluated by the
@@ -1076,28 +1157,37 @@ separately using the <code>arguments</code> field of the CommandLineTool.</p>
 the sort key is a list consisting of one or more numeric or string
 elements.  Strings are sorted lexicographically based on UTF-8 encoding.</p>
 <ol>
-<li><p>Collect <code>CommandLineBinding</code> objects from <code>arguments</code>.  Assign a sorting key <code>[position, i]</code> where <code>position</code> is
+<li><p>Collect <code>CommandLineBinding</code> objects from <code>arguments</code>.  Assign a sorting
+key <code>[position, i]</code> where <code>position</code> is
 <a href="#CommandLineBinding"><code>CommandLineBinding.position</code></a> and <code>i</code>
 is the index in the <code>arguments</code> list.</p>
 </li>
-<li><p>Collect <code>CommandLineBinding</code> objects from the <code>inputs</code> schema and associate them with values from the input object.  Where the input type
-is a record, array, or map, recursively walk the schema and input object,
-collecting nested <code>CommandLineBinding</code> objects and associating them with
-values from the input object.</p>
+<li><p>Collect <code>CommandLineBinding</code> objects from the <code>inputs</code> schema and
+associate them with values from the input object.  Where the input type
+is a record, array, or map, recursively walk the schema and input object,</p>
 </li>
-<li><p>Create a sorting key by taking the value of the <code>position</code> field at each level leading to each leaf binding object.  If <code>position</code> is not
+</ol>
+  collecting nested `CommandLineBinding` objects and associating them with
+  values from the input object.
+
+<ol start="3">
+<li><p>Create a sorting key by taking the value of the <code>position</code> field at
+each level leading to each leaf binding object.  If <code>position</code> is not
 specified, it is not added to the sorting key.  For bindings on arrays
 and maps, the sorting key must include the array index or map key
 following the position.  If and only if two bindings have the same sort
 key, the tie must be broken using the ordering of the field or parameter
 name immediately containing the leaf binding.</p>
 </li>
-<li><p>Sort elements using the assigned sorting keys.  Numeric entries sort before strings.</p>
+<li><p>Sort elements using the assigned sorting keys.  Numeric entries sort
+before strings.</p>
 </li>
-<li><p>In the sorted order, apply the rules defined in <a href="#CommandLineBinding"><code>CommandLineBinding</code></a> to convert bindings to actual
+<li><p>In the sorted order, apply the rules defined in
+<a href="#CommandLineBinding"><code>CommandLineBinding</code></a> to convert bindings to actual
 command line elements.</p>
 </li>
-<li><p>Insert elements from <code>baseCommand</code> at the beginning of the command line.</p>
+<li><p>Insert elements from <code>baseCommand</code> at the beginning of the command
+line.</p>
 </li>
 </ol>
 <h2 id="Runtime_environment" class="section">4.2 Runtime environment <a href="#Runtime_environment">&sect;</a></h2><p>All files listed in the input object must be made available in the runtime
@@ -1129,9 +1219,11 @@ specified or at user option.</p>
 <ul>
 <li><code>HOME</code> must be set to the designated output directory.</li>
 <li><code>TMPDIR</code> must be set to the designated temporary directory.</li>
-<li><code>PATH</code> may be inherited from the parent process, except when run in a container that provides its own <code>PATH</code>.</li>
+<li><code>PATH</code> may be inherited from the parent process, except when run in a
+container that provides its own <code>PATH</code>.</li>
 <li>Variables defined by <a href="#EnvVarRequirement">EnvVarRequirement</a></li>
-<li>The default environment of the container, such as when using <a href="#DockerRequirement">DockerRequirement</a></li>
+<li>The default environment of the container, such as when using
+<a href="#DockerRequirement">DockerRequirement</a></li>
 </ul>
 <p>An implementation may forbid the tool from writing to any location in the
 runtime environment file system other than the designated temporary directory,
@@ -1468,8 +1560,10 @@ instead.</p>
 it specifies that the following pattern should be applied to the path
 of the primary file to yield a filename relative to the primary File:</p>
 <ol>
-<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark the resulting secondary file as optional.</li>
-<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
+<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark
+the resulting secondary file as optional.</li>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -1571,18 +1665,23 @@ effective value.</p>
 </li>
 <li><p><strong>number</strong>: Add <code>prefix</code> and decimal representation to command line.</p>
 </li>
-<li><p><strong>boolean</strong>: If true, add <code>prefix</code> to the command line.  If false, add nothing.</p>
+<li><p><strong>boolean</strong>: If true, add <code>prefix</code> to the command line.  If false, add
+nothing.</p>
 </li>
-<li><p><strong>File</strong>: Add <code>prefix</code> and the value of <a href="#File"><code>File.path</code></a> to the command line.</p>
+<li><p><strong>File</strong>: Add <code>prefix</code> and the value of
+<a href="#File"><code>File.path</code></a> to the command line.</p>
 </li>
-<li><p><strong>Directory</strong>: Add <code>prefix</code> and the value of <a href="#Directory"><code>Directory.path</code></a> to the command line.</p>
+<li><p><strong>Directory</strong>: Add <code>prefix</code> and the value of
+<a href="#Directory"><code>Directory.path</code></a> to the command line.</p>
 </li>
-<li><p><strong>array</strong>: If <code>itemSeparator</code> is specified, add <code>prefix</code> and the join the array into a single string with <code>itemSeparator</code> separating the
+<li><p><strong>array</strong>: If <code>itemSeparator</code> is specified, add <code>prefix</code> and the join
+the array into a single string with <code>itemSeparator</code> separating the
 items.  Otherwise, first add <code>prefix</code>, then recursively process
 individual elements.
 If the array is empty, it does not add anything to command line.</p>
 </li>
-<li><p><strong>object</strong>: Add <code>prefix</code> only, and recursively add object fields for which <code>inputBinding</code> is specified.</p>
+<li><p><strong>object</strong>: Add <code>prefix</code> only, and recursively add object fields for
+which <code>inputBinding</code> is specified.</p>
 </li>
 <li><p><strong>null</strong>: Add nothing.</p>
 </li>
@@ -1609,7 +1708,7 @@ CWL v2.0.  Use <code>InputParameter.loadContents</code> instead.</p>
 <div class="col-xs-2 col-lg-1">optional</div>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">int</a> | <a href="#Expression">Expression</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The sorting key.  Default position is 0. If a <a href="#Parameter_references">CWL Parameter Reference</a>
-or <a href="#Expressions_(Optional)">CWL Expression</a> is used and if the
+or <a href="#Expressions_(Optional">CWL Expression</a>) is used and if the
 inputBinding is associated with an input parameter, then the value of
 <code>self</code> will be the value of the input parameter.  Input parameter
 defaults (as specified by the <code>InputParameter.default</code> field) must be
@@ -1676,9 +1775,12 @@ is declared and supported by the platform, the field must also allow
 Javascript expressions.</p>
 <h3>Symbols</h3><table class="table table-striped"><tr><th>symbol</th><th>description</th></tr><tr><td><code>ExpressionPlaceholder</code></td><td></td></tr></table><h3 id="SecondaryFileSchema" class="section">5.1.3 SecondaryFileSchema <a href="#SecondaryFileSchema">&sect;</a></h3><p>Secondary files are specified using the following micro-DSL for secondary files:</p>
 <ul>
-<li>If the value is a string, it is transformed to an object with two fields <code>pattern</code> and <code>required</code></li>
-<li>By default, the value of <code>required</code> is <code>null</code> (this indicates default behavior, which may be based on the context)</li>
-<li>If the value ends with a question mark <code>?</code> the question mark is stripped off and the value of the field <code>required</code> is set to <code>False</code></li>
+<li>If the value is a string, it is transformed to an object with two fields
+<code>pattern</code> and <code>required</code></li>
+<li>By default, the value of <code>required</code> is <code>null</code>
+(this indicates default behavior, which may be based on the context)</li>
+<li>If the value ends with a question mark <code>?</code> the question mark is
+stripped off and the value of the field <code>required</code> is set to <code>False</code></li>
 <li>The remaining value is assigned to the field <code>pattern</code></li>
 </ul>
 <p>For implementation details and examples, please see
@@ -1733,8 +1835,10 @@ from defined inputs.</p>
 it specifies that the following pattern should be applied to the path
 of the primary file to yield a filename relative to the primary File:</p>
 <ol>
-<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark the resulting secondary file as optional.</li>
-<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
+<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark
+the resulting secondary file as optional.</li>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -2234,8 +2338,10 @@ instead.</p>
 it specifies that the following pattern should be applied to the path
 of the primary file to yield a filename relative to the primary File:</p>
 <ol>
-<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark the resulting secondary file as optional.</li>
-<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
+<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark
+the resulting secondary file as optional.</li>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -2453,8 +2559,10 @@ instead.</p>
 it specifies that the following pattern should be applied to the path
 of the primary file to yield a filename relative to the primary File:</p>
 <ol>
-<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark the resulting secondary file as optional.</li>
-<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
+<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark
+the resulting secondary file as optional.</li>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -2686,8 +2794,10 @@ instead.</p>
 it specifies that the following pattern should be applied to the path
 of the primary file to yield a filename relative to the primary File:</p>
 <ol>
-<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark the resulting secondary file as optional.</li>
-<li>If string begins with one or more caret <code>^</code> characters, for each caret, remove the last file extension from the path (the last
+<li>If string ends with <code>?</code> character, remove the last <code>?</code> and mark
+the resulting secondary file as optional.</li>
+<li>If string begins with one or more caret <code>^</code> characters, for each
+caret, remove the last file extension from the path (the last
 period <code>.</code> and all following characters).  If there are no file
 extensions, the path is unchanged.</li>
 <li>Append the remainder of the string to the end of the file path.</li>
@@ -2945,7 +3055,8 @@ processed in the order listed such that later schema definitions may refer
 to earlier schema definitions.</p>
 <ul>
 <li><strong>Type definitions are allowed for <code>enum</code> and <code>record</code> types only.</strong></li>
-<li>Type definitions may be shared by defining them in a file and then <code>$include</code>-ing them in the <code>types</code> field.</li>
+<li>Type definitions may be shared by defining them in a file and then
+<code>$include</code>-ing them in the <code>types</code> field.</li>
 <li>A file can contain a list of type definitions</li>
 </ul>
 <h3>Fields</h3>
@@ -3279,7 +3390,8 @@ with <code>../</code> or that resolves to location above the designated output d
 it is an error unless the following conditions are met:</p>
 <ul>
 <li><code>DockerRequirement</code> is present in <code>requirements</code></li>
-<li>The program is will run inside a software container where, from the perspective of the program, the root
+<li>The program is will run inside a software container
+where, from the perspective of the program, the root
 filesystem is not shared with any other user or
 running program.</li>
 </ul>

@@ -196,6 +196,7 @@ under the terms of the Apache License, version 2.0.</p>
 </ol></li></ol><li><a href="#SaladEnumSchema">5. SaladEnumSchema</a><ol>
 </ol><li><a href="#Documentation">6. Documentation</a><ol>
 </ol></li></ol></nav>
+
 <h1 id="Introduction" class="section">1. Introduction <a href="#Introduction">&sect;</a></h1><p>The JSON data model is an extremely popular way to represent structured
 data.  It is attractive because of it's relative simplicity and is a
 natural fit with the standard types of many programming languages.
@@ -284,12 +285,15 @@ load the document.  It may be overridden by an explicit context.</p>
 <h3 id="Explicit_context" class="section">2.3.2 Explicit context <a href="#Explicit_context">&sect;</a></h3><p>If a document consists of a root object, this object may contain the
 fields <code>$base</code>, <code>$namespaces</code>, <code>$schemas</code>, and <code>$graph</code>:</p>
 <ul>
-<li><p><code>$base</code>: Must be a string.  Set the base URI for the document used to resolve relative references.</p>
+<li><p><code>$base</code>: Must be a string.  Set the base URI for the document used to
+resolve relative references.</p>
 </li>
-<li><p><code>$namespaces</code>: Must be an object with strings as values.  The keys of the object are namespace prefixes used in the document; the values of
+<li><p><code>$namespaces</code>: Must be an object with strings as values.  The keys of
+the object are namespace prefixes used in the document; the values of
 the object are the prefix expansions.</p>
 </li>
-<li><p><code>$schemas</code>: Must be an array of strings.  This field may list URI references to documents in RDF-XML format which will be queried for RDF
+<li><p><code>$schemas</code>: Must be an array of strings.  This field may list URI
+references to documents in RDF-XML format which will be queried for RDF
 schema data.  The subjects and predicates described by the RDF schema
 may provide additional semantic context for the document, and may be
 used for validation of prefixed extension fields found in the document.</p>
@@ -305,12 +309,14 @@ document, such as authorship, may be declared in the root object.</p>
 <h2 id="Document_schema" class="section">2.6 Document schema <a href="#Document_schema">&sect;</a></h2><p>Document preprocessing, link validation and schema validation require a
 document schema.  A schema may consist of:</p>
 <ul>
-<li><p>At least one record definition object which defines valid fields that make up a record type.  Record field definitions include the valid types
+<li><p>At least one record definition object which defines valid fields that
+make up a record type.  Record field definitions include the valid types
 that may be assigned to each field and annotations to indicate fields
 that represent identifiers and links, described below in "Semantic
 Annotations".</p>
 </li>
-<li><p>Any number of enumerated type objects which define a set of finite set of symbols that are valid value of the type.</p>
+<li><p>Any number of enumerated type objects which define a set of finite set of symbols that are
+valid value of the type.</p>
 </li>
 <li><p>Any number of documentation objects which allow in-line documentation of the schema.</p>
 </li>
@@ -322,12 +328,15 @@ detail in "Schema validation".</p>
 must use the following document preprocessing of fields by the following
 rules:</p>
 <ul>
-<li><p>If the value of <code>jsonldPredicate</code> is <code>@id</code>, the field is an identifier field.</p>
+<li><p>If the value of <code>jsonldPredicate</code> is <code>@id</code>, the field is an identifier
+field.</p>
 </li>
-<li><p>If the value of <code>jsonldPredicate</code> is an object, and contains that object contains the field <code>_type</code> with the value <code>@id</code>, the field is a
+<li><p>If the value of <code>jsonldPredicate</code> is an object, and contains that
+object contains the field <code>_type</code> with the value <code>@id</code>, the field is a
 link field.</p>
 </li>
-<li><p>If the value of <code>jsonldPredicate</code> is an object, and contains that object contains the field <code>_type</code> with the value <code>@vocab</code>, the field is a
+<li><p>If the value of <code>jsonldPredicate</code> is an object, and contains that
+object contains the field <code>_type</code> with the value <code>@vocab</code>, the field is a
 vocabulary field, which is a subtype of link field.</p>
 </li>
 </ul>
@@ -350,12 +359,17 @@ part of the vocabulary and not resolvable to absolute URIs.  Fields names
 which are not part of the vocabulary are resolved using the following
 rules:</p>
 <ul>
-<li><p>If an field name URI begins with a namespace prefix declared in the document context (<code>@context</code>) followed by a colon <code>:</code>, the prefix and
-colon must be replaced by the namespace declared in <code>@context</code>.</p>
+<li>If an field name URI begins with a namespace prefix declared in the
+document context (<code>@context</code>) followed by a colon <code>:</code>, the prefix and</li>
+</ul>
+colon must be replaced by the namespace declared in `@context`.
+
+<ul>
+<li><p>If there is a vocabulary term which maps to the URI of a resolved
+field, the field name must be replace with the vocabulary term.</p>
 </li>
-<li><p>If there is a vocabulary term which maps to the URI of a resolved field, the field name must be replace with the vocabulary term.</p>
-</li>
-<li><p>If a field name URI is an absolute URI consisting of a scheme and path and is not part of the vocabulary, no processing occurs.</p>
+<li><p>If a field name URI is an absolute URI consisting of a scheme and path
+and is not part of the vocabulary, no processing occurs.</p>
 </li>
 </ul>
 <p>Field name resolution is not relative.  It must not be affected by the
@@ -400,19 +414,23 @@ base URI.</p>
 specific objects.  Processing must resolve relative identifiers to absolute
 identifiers using the following rules:</p>
 <ul>
-<li><p>If an identifier URI is prefixed with <code>#</code> it is a URI relative fragment identifier.  It is resolved relative to the base URI by setting
+<li><p>If an identifier URI is prefixed with <code>#</code> it is a URI relative
+fragment identifier.  It is resolved relative to the base URI by setting
 or replacing the fragment portion of the base URI.</p>
 </li>
-<li><p>If an identifier URI does not contain a scheme and is not prefixed <code>#</code> it is a parent relative fragment identifier.  It is resolved relative to the
+<li><p>If an identifier URI does not contain a scheme and is not prefixed <code>#</code> it
+is a parent relative fragment identifier.  It is resolved relative to the
 base URI by the following rule: if the base URI does not contain a
 document fragment, set the fragment portion of the base URI.  If the base
 URI does contain a document fragment, append a slash <code>/</code> followed by the
 identifier field to the fragment portion of the base URI.</p>
 </li>
-<li><p>If an identifier URI begins with a namespace prefix declared in <code>$namespaces</code> followed by a colon <code>:</code>, the prefix and colon must be
+<li><p>If an identifier URI begins with a namespace prefix declared in
+<code>$namespaces</code> followed by a colon <code>:</code>, the prefix and colon must be
 replaced by the namespace declared in <code>$namespaces</code>.</p>
 </li>
-<li><p>If an identifier URI is an absolute URI consisting of a scheme and path, no processing occurs.</p>
+<li><p>If an identifier URI is an absolute URI consisting of a scheme and path,
+no processing occurs.</p>
 </li>
 </ul>
 <p>When preprocessing visits a node containing an identifier, that identifier
@@ -483,10 +501,12 @@ absolute URI.</p>
 objects.  Processing must resolve links to either absolute URIs using the
 following rules:</p>
 <ul>
-<li><p>If a reference URI is prefixed with <code>#</code> it is a relative fragment identifier.  It is resolved relative to the base URI by setting
+<li><p>If a reference URI is prefixed with <code>#</code> it is a relative
+fragment identifier.  It is resolved relative to the base URI by setting
 or replacing the fragment portion of the base URI.</p>
 </li>
-<li><p>If a reference URI does not contain a scheme and is not prefixed with <code>#</code> it is a path relative reference.  If the reference URI contains <code>#</code> in any
+<li><p>If a reference URI does not contain a scheme and is not prefixed with <code>#</code>
+it is a path relative reference.  If the reference URI contains <code>#</code> in any
 position other than the first character, the reference URI must be divided
 into a path portion and a fragment portion split on the first instance of
 <code>#</code>.  The path portion is resolved relative to the base URI by the following
@@ -497,10 +517,12 @@ path segment with the path portion of the reference URI.  Replace the
 fragment portion of the base URI with the fragment portion of the reference
 URI.</p>
 </li>
-<li><p>If a reference URI begins with a namespace prefix declared in <code>$namespaces</code> followed by a colon <code>:</code>, the prefix and colon must be replaced by the
+<li><p>If a reference URI begins with a namespace prefix declared in <code>$namespaces</code>
+followed by a colon <code>:</code>, the prefix and colon must be replaced by the
 namespace declared in <code>$namespaces</code>.</p>
 </li>
-<li><p>If a reference URI is an absolute URI consisting of a scheme and path, no processing occurs.</p>
+<li><p>If a reference URI is an absolute URI consisting of a scheme and path,
+no processing occurs.</p>
 </li>
 </ul>
 <p>Link resolution must not affect the base URI used to resolve identifiers
@@ -570,14 +592,13 @@ and other links.</p>
 }
 </code></pre>
 <h2 id="Vocabulary_resolution" class="section">3.4 Vocabulary resolution <a href="#Vocabulary_resolution">&sect;</a></h2><p>The schema may designate one or more vocabulary fields which use terms
-  defined in the vocabulary.  Processing must resolve vocabulary fields to
-  either vocabulary terms or absolute URIs by first applying the link
-  resolution rules defined above, then applying the following additional
-  rule:</p>
-<pre><code>* If a reference URI is a vocabulary field, and there is a vocabulary term which maps to the resolved URI, the reference must be replace with
-  the vocabulary term.
-
-</code></pre>
+defined in the vocabulary.  Processing must resolve vocabulary fields to
+either vocabulary terms or absolute URIs by first applying the link
+resolution rules defined above, then applying the following additional
+rule:</p>
+<pre><code>* If a reference URI is a vocabulary field, and there is a vocabulary
+term which maps to the resolved URI, the reference must be replace with
+the vocabulary term.</code></pre>
 <h3 id="Vocabulary_resolution_example" class="section">3.4.1 Vocabulary resolution example <a href="#Vocabulary_resolution_example">&sect;</a></h3><p>Given the following schema:</p>
 <pre><code>{
   "$namespaces": {
@@ -973,11 +994,13 @@ Corresponds to JSON-LD <code>@id</code> directive.</p>
 <div class="col-xs-7 col-lg-3"><a href="#PrimitiveType">string</a></div>
 <div class="col-xs-12 col-lg-6 description-col"><p>The context type hint, corresponds to JSON-LD <code>@type</code> directive.</p>
 <ul>
-<li><p>If the value of this field is <code>@id</code> and <code>identity</code> is false or unspecified, the parent field must be resolved using the link
+<li><p>If the value of this field is <code>@id</code> and <code>identity</code> is false or
+unspecified, the parent field must be resolved using the link
 resolution rules.  If <code>identity</code> is true, the parent field must be
 resolved using the identifier expansion rules.</p>
 </li>
-<li><p>If the value of this field is <code>@vocab</code>, the parent field must be resolved using the vocabulary resolution rules.</p>
+<li><p>If the value of this field is <code>@vocab</code>, the parent field must be
+resolved using the vocabulary resolution rules.</p>
 </li>
 </ul>
 </div>
