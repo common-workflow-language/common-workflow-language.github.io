@@ -1,0 +1,136 @@
+{
+    "@context": {
+        "Any": "https://w3id.org/cwl/salad#Any",
+        "ArraySchema": "https://w3id.org/cwl/salad#ArraySchema",
+        "Array_name": "https://w3id.org/cwl/salad#ArraySchema/type/Array_name",
+        "DocType": "https://w3id.org/cwl/salad#DocType",
+        "Documentation": "https://w3id.org/cwl/salad#Documentation",
+        "Documentation_name": "https://w3id.org/cwl/salad#Documentation/type/Documentation_name",
+        "Documented": "https://w3id.org/cwl/salad#Documented",
+        "EnumSchema": "https://w3id.org/cwl/salad#EnumSchema",
+        "Enum_name": "https://w3id.org/cwl/salad#EnumSchema/type/Enum_name",
+        "JsonldPredicate": "https://w3id.org/cwl/salad#JsonldPredicate",
+        "MapSchema": "https://w3id.org/cwl/salad#MapSchema",
+        "Map_name": "https://w3id.org/cwl/salad#MapSchema/type/Map_name",
+        "NamedType": "https://w3id.org/cwl/salad#NamedType",
+        "PrimitiveType": "https://w3id.org/cwl/salad#PrimitiveType",
+        "RecordField": "https://w3id.org/cwl/salad#RecordField",
+        "RecordSchema": "https://w3id.org/cwl/salad#RecordSchema",
+        "Record_name": "https://w3id.org/cwl/salad#RecordSchema/type/Record_name",
+        "SaladEnumSchema": "https://w3id.org/cwl/salad#SaladEnumSchema",
+        "SaladMapSchema": "https://w3id.org/cwl/salad#SaladMapSchema",
+        "SaladRecordField": "https://w3id.org/cwl/salad#SaladRecordField",
+        "SaladRecordSchema": "https://w3id.org/cwl/salad#SaladRecordSchema",
+        "SaladUnionSchema": "https://w3id.org/cwl/salad#SaladUnionSchema",
+        "SchemaDefinedType": "https://w3id.org/cwl/salad#SchemaDefinedType",
+        "SpecializeDef": "https://w3id.org/cwl/salad#SpecializeDef",
+        "UnionSchema": "https://w3id.org/cwl/salad#UnionSchema",
+        "Union_name": "https://w3id.org/cwl/salad#UnionSchema/type/Union_name",
+        "_container": "https://w3id.org/cwl/salad#JsonldPredicate/_container",
+        "_id": {
+            "@id": "https://w3id.org/cwl/salad#_id",
+            "@type": "@id",
+            "identity": true
+        },
+        "_type": "https://w3id.org/cwl/salad#JsonldPredicate/_type",
+        "abstract": "https://w3id.org/cwl/salad#SaladRecordSchema/abstract",
+        "array": "https://w3id.org/cwl/salad#array",
+        "boolean": "http://www.w3.org/2001/XMLSchema#boolean",
+        "dct": "http://purl.org/dc/terms/",
+        "default": {
+            "@id": "https://w3id.org/cwl/salad#default",
+            "noLinkCheck": true
+        },
+        "doc": "rdfs:comment",
+        "docAfter": {
+            "@id": "https://w3id.org/cwl/salad#docAfter",
+            "@type": "@id"
+        },
+        "docChild": {
+            "@id": "https://w3id.org/cwl/salad#docChild",
+            "@type": "@id"
+        },
+        "docParent": {
+            "@id": "https://w3id.org/cwl/salad#docParent",
+            "@type": "@id"
+        },
+        "documentRoot": "sld:documentRoot",
+        "documentation": "https://w3id.org/cwl/salad#documentation",
+        "double": "http://www.w3.org/2001/XMLSchema#double",
+        "enum": "https://w3id.org/cwl/salad#enum",
+        "extends": {
+            "@id": "https://w3id.org/cwl/salad#extends",
+            "@type": "@id",
+            "refScope": 1
+        },
+        "fields": {
+            "@id": "https://w3id.org/cwl/salad#fields",
+            "mapPredicate": "type",
+            "mapSubject": "name"
+        },
+        "float": "http://www.w3.org/2001/XMLSchema#float",
+        "identity": "https://w3id.org/cwl/salad#JsonldPredicate/identity",
+        "inVocab": "https://w3id.org/cwl/salad#NamedType/inVocab",
+        "int": "http://www.w3.org/2001/XMLSchema#int",
+        "items": {
+            "@id": "https://w3id.org/cwl/salad#items",
+            "@type": "@vocab",
+            "refScope": 2
+        },
+        "jsonldPredicate": "sld:jsonldPredicate",
+        "long": "http://www.w3.org/2001/XMLSchema#long",
+        "map": "https://w3id.org/cwl/salad#map",
+        "mapPredicate": "https://w3id.org/cwl/salad#JsonldPredicate/mapPredicate",
+        "mapSubject": "https://w3id.org/cwl/salad#JsonldPredicate/mapSubject",
+        "name": "@id",
+        "names": {
+            "@id": "https://w3id.org/cwl/salad#names",
+            "@type": "@vocab",
+            "refScope": 2
+        },
+        "noLinkCheck": "https://w3id.org/cwl/salad#JsonldPredicate/noLinkCheck",
+        "null": "https://w3id.org/cwl/salad#null",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "record": "https://w3id.org/cwl/salad#record",
+        "refScope": "https://w3id.org/cwl/salad#JsonldPredicate/refScope",
+        "secondaryFilesDSL": "https://w3id.org/cwl/salad#JsonldPredicate/secondaryFilesDSL",
+        "sld": "https://w3id.org/cwl/salad#",
+        "specialize": {
+            "@id": "https://w3id.org/cwl/salad#specialize",
+            "mapPredicate": "specializeTo",
+            "mapSubject": "specializeFrom"
+        },
+        "specializeFrom": {
+            "@id": "https://w3id.org/cwl/salad#specializeFrom",
+            "@type": "@id",
+            "refScope": 1
+        },
+        "specializeTo": {
+            "@id": "https://w3id.org/cwl/salad#specializeTo",
+            "@type": "@id",
+            "refScope": 1
+        },
+        "string": "http://www.w3.org/2001/XMLSchema#string",
+        "subscope": "https://w3id.org/cwl/salad#JsonldPredicate/subscope",
+        "symbols": {
+            "@id": "https://w3id.org/cwl/salad#symbols",
+            "@type": "@id",
+            "identity": true
+        },
+        "type": {
+            "@id": "https://w3id.org/cwl/salad#type",
+            "@type": "@vocab",
+            "refScope": 2,
+            "typeDSL": true
+        },
+        "typeDSL": "https://w3id.org/cwl/salad#JsonldPredicate/typeDSL",
+        "union": "https://w3id.org/cwl/salad#union",
+        "values": {
+            "@id": "https://w3id.org/cwl/salad#values",
+            "@type": "@vocab",
+            "refScope": 2
+        },
+        "xsd": "http://www.w3.org/2001/XMLSchema#"
+    }
+}

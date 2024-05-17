@@ -1,0 +1,531 @@
+@prefix @base: <https://w3id.org/cwl/cwl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sld: <https://w3id.org/cwl/salad#> .
+
+@base:CWLArraySchema a rdfs:Class ;
+    rdfs:subClassOf sld:ArraySchema .
+
+@base:CWLRecordField a rdfs:Class ;
+    rdfs:subClassOf sld:RecordField .
+
+@base:CWLRecordSchema a rdfs:Class ;
+    rdfs:subClassOf sld:RecordSchema .
+
+@base:CWLType a rdfs:Class .
+
+@base:CWLVersion a rdfs:Class .
+
+@base:CommandInputArraySchema a rdfs:Class ;
+    rdfs:subClassOf @base:CommandInputSchema,
+        @base:CommandLineBindable,
+        @base:InputArraySchema .
+
+@base:CommandInputEnumSchema a rdfs:Class ;
+    rdfs:subClassOf @base:CommandInputSchema,
+        @base:CommandLineBindable,
+        @base:InputEnumSchema .
+
+@base:CommandInputParameter a rdfs:Class ;
+    rdfs:subClassOf @base:InputParameter .
+
+@base:CommandInputRecordField a rdfs:Class ;
+    rdfs:subClassOf @base:CommandLineBindable,
+        @base:InputRecordField .
+
+@base:CommandInputRecordSchema a rdfs:Class ;
+    rdfs:subClassOf @base:CommandInputSchema,
+        @base:CommandLineBindable,
+        @base:InputRecordSchema .
+
+@base:CommandInputSchema a rdfs:Class .
+
+@base:CommandLineBindable a rdfs:Class .
+
+@base:CommandLineBinding a rdfs:Class ;
+    rdfs:subClassOf @base:InputBinding .
+
+@base:CommandLineTool a rdfs:Class ;
+    rdfs:subClassOf @base:Process .
+
+<https://w3id.org/cwl/cwl#CommandLineTool/class/CommandLineTool_class> a rdfs:Class .
+
+@base:CommandOutputArraySchema a rdfs:Class ;
+    rdfs:subClassOf @base:OutputArraySchema .
+
+@base:CommandOutputBinding a rdfs:Class ;
+    rdfs:subClassOf @base:LoadContents .
+
+@base:CommandOutputEnumSchema a rdfs:Class ;
+    rdfs:subClassOf @base:OutputEnumSchema .
+
+@base:CommandOutputParameter a rdfs:Class ;
+    rdfs:subClassOf @base:OutputParameter .
+
+@base:CommandOutputRecordField a rdfs:Class ;
+    rdfs:subClassOf @base:OutputRecordField .
+
+@base:CommandOutputRecordSchema a rdfs:Class ;
+    rdfs:subClassOf @base:OutputRecordSchema .
+
+@base:Directory a rdfs:Class .
+
+<https://w3id.org/cwl/cwl#Directory/class/Directory_class> a rdfs:Class .
+
+@base:Dirent a rdfs:Class .
+
+@base:DockerRequirement a rdfs:Class ;
+    rdfs:subClassOf @base:ProcessRequirement .
+
+<https://w3id.org/cwl/cwl#DockerRequirement/class/DockerRequirement_class> a rdfs:Class .
+
+@base:EnvVarRequirement a rdfs:Class ;
+    rdfs:subClassOf @base:ProcessRequirement .
+
+<https://w3id.org/cwl/cwl#EnvVarRequirement/class/EnvVarRequirement_class> a rdfs:Class .
+
+@base:EnvironmentDef a rdfs:Class .
+
+@base:Expression a rdfs:Class .
+
+@base:ExpressionTool a rdfs:Class ;
+    rdfs:subClassOf @base:Process .
+
+<https://w3id.org/cwl/cwl#ExpressionTool/class/ExpressionTool_class> a rdfs:Class .
+
+@base:ExpressionToolOutputParameter a rdfs:Class ;
+    rdfs:subClassOf @base:OutputParameter .
+
+@base:FieldBase a rdfs:Class ;
+    rdfs:subClassOf @base:Labeled .
+
+@base:File a rdfs:Class .
+
+<https://w3id.org/cwl/cwl#File/class/File_class> a rdfs:Class .
+
+@base:IOSchema a rdfs:Class ;
+    rdfs:subClassOf @base:Labeled,
+        sld:Documented .
+
+@base:Identified a rdfs:Class .
+
+@base:InitialWorkDirRequirement a rdfs:Class ;
+    rdfs:subClassOf @base:ProcessRequirement .
+
+<https://w3id.org/cwl/cwl#InitialWorkDirRequirement/class/InitialWorkDirRequirement_class> a rdfs:Class .
+
+@base:InlineJavascriptRequirement a rdfs:Class ;
+    rdfs:subClassOf @base:ProcessRequirement .
+
+<https://w3id.org/cwl/cwl#InlineJavascriptRequirement/class/InlineJavascriptRequirement_class> a rdfs:Class .
+
+@base:InplaceUpdateRequirement a rdfs:Class ;
+    rdfs:subClassOf @base:ProcessRequirement .
+
+<https://w3id.org/cwl/cwl#InplaceUpdateRequirement/class/InplaceUpdateRequirement_class> a rdfs:Class .
+
+@base:InputArraySchema a rdfs:Class ;
+    rdfs:subClassOf @base:CWLArraySchema,
+        @base:InputSchema .
+
+@base:InputBinding a rdfs:Class .
+
+@base:InputEnumSchema a rdfs:Class ;
+    rdfs:subClassOf @base:InputSchema,
+        sld:EnumSchema .
+
+@base:InputFormat a rdfs:Class .
+
+@base:InputParameter a rdfs:Class ;
+    rdfs:subClassOf @base:InputFormat,
+        @base:LoadContents,
+        @base:Parameter .
+
+@base:InputRecordField a rdfs:Class ;
+    rdfs:subClassOf @base:CWLRecordField,
+        @base:FieldBase,
+        @base:InputFormat,
+        @base:LoadContents .
+
+@base:InputRecordSchema a rdfs:Class ;
+    rdfs:subClassOf @base:CWLRecordSchema,
+        @base:InputSchema .
+
+@base:InputSchema a rdfs:Class ;
+    rdfs:subClassOf @base:IOSchema .
+
+@base:InputSink a rdfs:Class ;
+    rdfs:subClassOf @base:Sink .
+
+@base:Labeled a rdfs:Class .
+
+@base:LinkMergeMethod a rdfs:Class .
+
+@base:LoadContents a rdfs:Class .
+
+@base:LoadListingEnum a rdfs:Class .
+
+@base:LoadListingRequirement a rdfs:Class ;
+    rdfs:subClassOf @base:ProcessRequirement .
+
+<https://w3id.org/cwl/cwl#LoadListingRequirement/class/LoadListingRequirement_class> a rdfs:Class .
+
+@base:MultipleInputFeatureRequirement a rdfs:Class ;
+    rdfs:subClassOf @base:ProcessRequirement .
+
+<https://w3id.org/cwl/cwl#MultipleInputFeatureRequirement/class/MultipleInputFeatureRequirement_class> a rdfs:Class .
+
+@base:NetworkAccess a rdfs:Class ;
+    rdfs:subClassOf @base:ProcessRequirement .
+
+<https://w3id.org/cwl/cwl#NetworkAccess/class/NetworkAccess_class> a rdfs:Class .
+
+@base:Operation a rdfs:Class ;
+    rdfs:subClassOf @base:Process .
+
+<https://w3id.org/cwl/cwl#Operation/class/Operation_class> a rdfs:Class .
+
+@base:OperationInputParameter a rdfs:Class ;
+    rdfs:subClassOf @base:InputParameter .
+
+@base:OperationOutputParameter a rdfs:Class ;
+    rdfs:subClassOf @base:OutputParameter .
+
+@base:OutputArraySchema a rdfs:Class ;
+    rdfs:subClassOf @base:CWLArraySchema,
+        @base:OutputSchema .
+
+@base:OutputEnumSchema a rdfs:Class ;
+    rdfs:subClassOf @base:OutputSchema,
+        sld:EnumSchema .
+
+@base:OutputFormat a rdfs:Class .
+
+@base:OutputParameter a rdfs:Class ;
+    rdfs:subClassOf @base:OutputFormat,
+        @base:Parameter .
+
+@base:OutputRecordField a rdfs:Class ;
+    rdfs:subClassOf @base:CWLRecordField,
+        @base:FieldBase,
+        @base:OutputFormat .
+
+@base:OutputRecordSchema a rdfs:Class ;
+    rdfs:subClassOf @base:CWLRecordSchema,
+        @base:OutputSchema .
+
+@base:OutputSchema a rdfs:Class ;
+    rdfs:subClassOf @base:IOSchema .
+
+@base:OutputSink a rdfs:Class ;
+    rdfs:subClassOf @base:Sink .
+
+@base:Parameter a rdfs:Class ;
+    rdfs:subClassOf @base:FieldBase,
+        @base:Identified,
+        sld:Documented .
+
+@base:PickValueMethod a rdfs:Class .
+
+@base:Process a rdfs:Class ;
+    rdfs:subClassOf @base:Identified,
+        @base:Labeled,
+        sld:Documented .
+
+@base:ProcessRequirement a rdfs:Class .
+
+@base:ResourceRequirement a rdfs:Class ;
+    rdfs:subClassOf @base:ProcessRequirement .
+
+<https://w3id.org/cwl/cwl#ResourceRequirement/class/ResourceRequirement_class> a rdfs:Class .
+
+@base:ScatterFeatureRequirement a rdfs:Class ;
+    rdfs:subClassOf @base:ProcessRequirement .
+
+<https://w3id.org/cwl/cwl#ScatterFeatureRequirement/class/ScatterFeatureRequirement_class> a rdfs:Class .
+
+@base:ScatterMethod a rdfs:Class .
+
+@base:SchemaDefRequirement a rdfs:Class ;
+    rdfs:subClassOf @base:ProcessRequirement .
+
+<https://w3id.org/cwl/cwl#SchemaDefRequirement/class/SchemaDefRequirement_class> a rdfs:Class .
+
+@base:SecondaryFileSchema a rdfs:Class .
+
+@base:ShellCommandRequirement a rdfs:Class ;
+    rdfs:subClassOf @base:ProcessRequirement .
+
+<https://w3id.org/cwl/cwl#ShellCommandRequirement/class/ShellCommandRequirement_class> a rdfs:Class .
+
+@base:Sink a rdfs:Class .
+
+@base:SoftwarePackage a rdfs:Class .
+
+@base:SoftwareRequirement a rdfs:Class ;
+    rdfs:subClassOf @base:ProcessRequirement .
+
+<https://w3id.org/cwl/cwl#SoftwareRequirement/class/SoftwareRequirement_class> a rdfs:Class .
+
+@base:StepInputExpressionRequirement a rdfs:Class ;
+    rdfs:subClassOf @base:ProcessRequirement .
+
+<https://w3id.org/cwl/cwl#StepInputExpressionRequirement/class/StepInputExpressionRequirement_class> a rdfs:Class .
+
+@base:SubworkflowFeatureRequirement a rdfs:Class ;
+    rdfs:subClassOf @base:ProcessRequirement .
+
+<https://w3id.org/cwl/cwl#SubworkflowFeatureRequirement/class/SubworkflowFeatureRequirement_class> a rdfs:Class .
+
+@base:ToolTimeLimit a rdfs:Class ;
+    rdfs:subClassOf @base:ProcessRequirement .
+
+<https://w3id.org/cwl/cwl#ToolTimeLimit/class/ToolTimeLimit_class> a rdfs:Class .
+
+@base:WorkReuse a rdfs:Class ;
+    rdfs:subClassOf @base:ProcessRequirement .
+
+<https://w3id.org/cwl/cwl#WorkReuse/class/WorkReuse_class> a rdfs:Class .
+
+@base:Workflow a rdfs:Class ;
+    rdfs:subClassOf @base:Process .
+
+<https://w3id.org/cwl/cwl#Workflow/class/Workflow_class> a rdfs:Class .
+
+@base:WorkflowInputParameter a rdfs:Class ;
+    rdfs:subClassOf @base:InputParameter .
+
+@base:WorkflowOutputParameter a rdfs:Class ;
+    rdfs:subClassOf @base:OutputParameter,
+        @base:OutputSink .
+
+@base:WorkflowStep a rdfs:Class ;
+    rdfs:subClassOf @base:Identified,
+        @base:Labeled,
+        sld:Documented .
+
+@base:WorkflowStepInput a rdfs:Class ;
+    rdfs:subClassOf @base:Identified,
+        @base:InputSink,
+        @base:Labeled,
+        @base:LoadContents .
+
+@base:WorkflowStepOutput a rdfs:Class ;
+    rdfs:subClassOf @base:Identified .
+
+@base:stderr a rdf:Property,
+        rdfs:Class ;
+    rdfs:domain @base:CommandLineTool .
+
+@base:stdin a rdf:Property,
+        rdfs:Class ;
+    rdfs:domain @base:CommandLineTool .
+
+@base:stdout a rdf:Property,
+        rdfs:Class ;
+    rdfs:domain @base:CommandLineTool .
+
+sld:Any a rdfs:Class .
+
+sld:ArraySchema a rdfs:Class .
+
+<https://w3id.org/cwl/salad#ArraySchema/type/Array_name> a rdfs:Class .
+
+sld:Documented a rdfs:Class .
+
+sld:EnumSchema a rdfs:Class .
+
+<https://w3id.org/cwl/salad#EnumSchema/type/Enum_name> a rdfs:Class .
+
+sld:MapSchema a rdfs:Class .
+
+<https://w3id.org/cwl/salad#MapSchema/type/Map_name> a rdfs:Class .
+
+sld:PrimitiveType a rdfs:Class .
+
+sld:RecordField a rdfs:Class ;
+    rdfs:subClassOf sld:Documented .
+
+sld:RecordSchema a rdfs:Class .
+
+<https://w3id.org/cwl/salad#RecordSchema/type/Record_name> a rdfs:Class .
+
+sld:UnionSchema a rdfs:Class .
+
+<https://w3id.org/cwl/salad#UnionSchema/type/Union_name> a rdfs:Class .
+
+rdfs:comment a rdf:Property ;
+    rdfs:domain sld:Documented .
+
+rdfs:label a rdf:Property ;
+    rdfs:domain @base:Labeled .
+
+<https://w3id.org/cwl/cwl#CommandLineBinding/itemSeparator> a rdf:Property ;
+    rdfs:domain @base:CommandLineBinding .
+
+<https://w3id.org/cwl/cwl#CommandLineBinding/position> a rdf:Property ;
+    rdfs:domain @base:CommandLineBinding .
+
+<https://w3id.org/cwl/cwl#CommandLineBinding/prefix> a rdf:Property ;
+    rdfs:domain @base:CommandLineBinding .
+
+<https://w3id.org/cwl/cwl#CommandLineBinding/separate> a rdf:Property ;
+    rdfs:domain @base:CommandLineBinding .
+
+<https://w3id.org/cwl/cwl#CommandLineBinding/shellQuote> a rdf:Property ;
+    rdfs:domain @base:CommandLineBinding .
+
+<https://w3id.org/cwl/cwl#CommandLineTool/permanentFailCodes> a rdf:Property ;
+    rdfs:domain @base:CommandLineTool .
+
+<https://w3id.org/cwl/cwl#CommandLineTool/successCodes> a rdf:Property ;
+    rdfs:domain @base:CommandLineTool .
+
+<https://w3id.org/cwl/cwl#CommandLineTool/temporaryFailCodes> a rdf:Property ;
+    rdfs:domain @base:CommandLineTool .
+
+<https://w3id.org/cwl/cwl#CommandOutputBinding/glob> a rdf:Property ;
+    rdfs:domain @base:CommandOutputBinding .
+
+<https://w3id.org/cwl/cwl#CommandOutputBinding/outputEval> a rdf:Property ;
+    rdfs:domain @base:CommandOutputBinding .
+
+<https://w3id.org/cwl/cwl#Dirent/writable> a rdf:Property ;
+    rdfs:domain @base:Dirent .
+
+<https://w3id.org/cwl/cwl#DockerRequirement/dockerFile> a rdf:Property ;
+    rdfs:domain @base:DockerRequirement .
+
+<https://w3id.org/cwl/cwl#DockerRequirement/dockerImageId> a rdf:Property ;
+    rdfs:domain @base:DockerRequirement .
+
+<https://w3id.org/cwl/cwl#DockerRequirement/dockerImport> a rdf:Property ;
+    rdfs:domain @base:DockerRequirement .
+
+<https://w3id.org/cwl/cwl#DockerRequirement/dockerLoad> a rdf:Property ;
+    rdfs:domain @base:DockerRequirement .
+
+<https://w3id.org/cwl/cwl#DockerRequirement/dockerOutputDirectory> a rdf:Property ;
+    rdfs:domain @base:DockerRequirement .
+
+<https://w3id.org/cwl/cwl#DockerRequirement/dockerPull> a rdf:Property ;
+    rdfs:domain @base:DockerRequirement .
+
+<https://w3id.org/cwl/cwl#EnvironmentDef/envName> a rdf:Property ;
+    rdfs:domain @base:EnvironmentDef .
+
+<https://w3id.org/cwl/cwl#EnvironmentDef/envValue> a rdf:Property ;
+    rdfs:domain @base:EnvironmentDef .
+
+<https://w3id.org/cwl/cwl#ExpressionTool/expression> a rdf:Property ;
+    rdfs:domain @base:ExpressionTool .
+
+<https://w3id.org/cwl/cwl#FieldBase/streamable> a rdf:Property ;
+    rdfs:domain @base:FieldBase .
+
+<https://w3id.org/cwl/cwl#File/checksum> a rdf:Property ;
+    rdfs:domain @base:File .
+
+<https://w3id.org/cwl/cwl#File/contents> a rdf:Property ;
+    rdfs:domain @base:File .
+
+<https://w3id.org/cwl/cwl#File/dirname> a rdf:Property ;
+    rdfs:domain @base:File .
+
+<https://w3id.org/cwl/cwl#File/nameext> a rdf:Property ;
+    rdfs:domain @base:File .
+
+<https://w3id.org/cwl/cwl#File/nameroot> a rdf:Property ;
+    rdfs:domain @base:File .
+
+<https://w3id.org/cwl/cwl#File/size> a rdf:Property ;
+    rdfs:domain @base:File .
+
+<https://w3id.org/cwl/cwl#InlineJavascriptRequirement/expressionLib> a rdf:Property ;
+    rdfs:domain @base:InlineJavascriptRequirement .
+
+<https://w3id.org/cwl/cwl#InplaceUpdateRequirement/inplaceUpdate> a rdf:Property ;
+    rdfs:domain @base:InplaceUpdateRequirement .
+
+<https://w3id.org/cwl/cwl#NetworkAccess/networkAccess> a rdf:Property ;
+    rdfs:domain @base:NetworkAccess .
+
+<https://w3id.org/cwl/cwl#ResourceRequirement/coresMax> a rdf:Property ;
+    rdfs:domain @base:ResourceRequirement .
+
+<https://w3id.org/cwl/cwl#ResourceRequirement/coresMin> a rdf:Property ;
+    rdfs:domain @base:ResourceRequirement .
+
+<https://w3id.org/cwl/cwl#ResourceRequirement/outdirMax> a rdf:Property ;
+    rdfs:domain @base:ResourceRequirement .
+
+<https://w3id.org/cwl/cwl#ResourceRequirement/outdirMin> a rdf:Property ;
+    rdfs:domain @base:ResourceRequirement .
+
+<https://w3id.org/cwl/cwl#ResourceRequirement/ramMax> a rdf:Property ;
+    rdfs:domain @base:ResourceRequirement .
+
+<https://w3id.org/cwl/cwl#ResourceRequirement/ramMin> a rdf:Property ;
+    rdfs:domain @base:ResourceRequirement .
+
+<https://w3id.org/cwl/cwl#ResourceRequirement/tmpdirMax> a rdf:Property ;
+    rdfs:domain @base:ResourceRequirement .
+
+<https://w3id.org/cwl/cwl#ResourceRequirement/tmpdirMin> a rdf:Property ;
+    rdfs:domain @base:ResourceRequirement .
+
+<https://w3id.org/cwl/cwl#SchemaDefRequirement/types> a rdf:Property ;
+    rdfs:domain @base:SchemaDefRequirement .
+
+<https://w3id.org/cwl/cwl#SecondaryFileSchema/pattern> a rdf:Property ;
+    rdfs:domain @base:SecondaryFileSchema .
+
+<https://w3id.org/cwl/cwl#SecondaryFileSchema/required> a rdf:Property ;
+    rdfs:domain @base:SecondaryFileSchema .
+
+<https://w3id.org/cwl/cwl#SoftwarePackage/package> a rdf:Property ;
+    rdfs:domain @base:SoftwarePackage .
+
+<https://w3id.org/cwl/cwl#SoftwarePackage/version> a rdf:Property ;
+    rdfs:domain @base:SoftwarePackage .
+
+<https://w3id.org/cwl/cwl#ToolTimeLimit/timelimit> a rdf:Property ;
+    rdfs:domain @base:ToolTimeLimit .
+
+<https://w3id.org/cwl/cwl#WorkReuse/enableReuse> a rdf:Property ;
+    rdfs:domain @base:WorkReuse .
+
+@base:basename a rdf:Property ;
+    rdfs:domain @base:Directory,
+        @base:File .
+
+@base:inputBinding a rdf:Property ;
+    rdfs:domain @base:CommandInputParameter,
+        @base:CommandLineBindable,
+        @base:WorkflowInputParameter .
+
+@base:linkMerge a rdf:Property ;
+    rdfs:domain @base:Sink .
+
+@base:loadContents a rdf:Property ;
+    rdfs:domain @base:InputBinding,
+        @base:LoadContents .
+
+@base:loadListing a rdf:Property ;
+    rdfs:domain @base:LoadContents,
+        @base:LoadListingRequirement .
+
+@base:outputBinding a rdf:Property ;
+    rdfs:domain @base:CommandOutputParameter,
+        @base:CommandOutputRecordField .
+
+@base:pickValue a rdf:Property ;
+    rdfs:domain @base:Sink .
+
+@base:valueFrom a rdf:Property ;
+    rdfs:domain @base:CommandLineBinding,
+        @base:WorkflowStepInput .
+
+@base:when a rdf:Property ;
+    rdfs:domain @base:WorkflowStep .
+
