@@ -182,9 +182,9 @@ under the terms of the Apache License, version 2.0.</p>
 </ol><li><a href="#Updated_Conformance_Tests_for_v1.2.1">1.2.2 Updated Conformance Tests for v1.2.1</a><ol>
 </ol><li><a href="#New_Mandatory_Conformance_tests_for_v1.2.1">1.2.3 New Mandatory Conformance tests for v1.2.1</a><ol>
 </ol><li><a href="#New_Optional_Conformance_Tests_for_v1.2.1">1.2.4 New Optional Conformance Tests for v1.2.1</a><ol>
-<li><a href="#`SchemaDefRequirement`">1.2.4.1 `SchemaDefRequirement`</a><ol>
-</ol><li><a href="#`ScatterFeatureRequirement`">1.2.4.2 `ScatterFeatureRequirement`</a><ol>
-</ol><li><a href="#`StepInputExpressionRequirement`">1.2.4.3 `StepInputExpressionRequirement`</a><ol>
+<li><a href="#SchemaDefRequirement_tests">1.2.4.1 SchemaDefRequirement tests</a><ol>
+</ol><li><a href="#ScatterFeatureRequirement_tests">1.2.4.2 ScatterFeatureRequirement tests</a><ol>
+</ol><li><a href="#StepInputExpressionRequirement_tests">1.2.4.3 StepInputExpressionRequirement tests</a><ol>
 </ol></li></ol></li></ol><li><a href="#Introduction_to_CWL_Workflow_standard_v1.2">1.3 Introduction to CWL Workflow standard v1.2</a><ol>
 </ol><li><a href="#Changelog">1.4 Changelog</a><ol>
 </ol><li><a href="#Purpose">1.5 Purpose</a><ol>
@@ -393,12 +393,12 @@ compatibility for the following tests:
 <li><code>output_reference_workflow_input</code>: Test direct use of <code>Workflow</code> level
 input fields in the outputs.</li>
 </ul>
-<h3 id="New_Optional_Conformance_Tests_for_v1.2.1" class="section">1.2.4 New Optional Conformance Tests for v1.2.1 <a href="#New_Optional_Conformance_Tests_for_v1.2.1">&sect;</a></h3><h4 id="<code>SchemaDefRequirement</code>" class="section">1.2.4.1 <code>SchemaDefRequirement</code> <a href="#<code>SchemaDefRequirement</code>">&sect;</a></h4><ul>
+<h3 id="New_Optional_Conformance_Tests_for_v1.2.1" class="section">1.2.4 New Optional Conformance Tests for v1.2.1 <a href="#New_Optional_Conformance_Tests_for_v1.2.1">&sect;</a></h3><h4 id="SchemaDefRequirement_tests" class="section">1.2.4.1 SchemaDefRequirement tests <a href="#SchemaDefRequirement_tests">&sect;</a></h4><ul>
 <li><code>schemadef_types_with_import</code>: Test <code>SchemaDefRequirement</code> with a
 workflow, with the <code>$import</code> under types. It is similar to <code>schemadef-wf</code>,
 but the <code>$import</code> is different.</li>
 </ul>
-<h4 id="<code>ScatterFeatureRequirement</code>" class="section">1.2.4.2 <code>ScatterFeatureRequirement</code> <a href="#<code>ScatterFeatureRequirement</code>">&sect;</a></h4><ul>
+<h4 id="ScatterFeatureRequirement_tests" class="section">1.2.4.2 ScatterFeatureRequirement tests <a href="#ScatterFeatureRequirement_tests">&sect;</a></h4><ul>
 <li><code>simple_simple_scatter</code>: Two level nested scatter.</li>
 <li><code>dotproduct_simple_scatter</code>: Two level nested scatter: external
 dotproduct and internal simple.</li>
@@ -419,7 +419,7 @@ simple and internal nested_crossproduct.</li>
 <li><code>nested_crossproduct_nested_crossproduct_scatter</code>: Two level nested scatter:
 external nested_crossproduct and internal nested_crossproduct.</li>
 </ul>
-<h4 id="<code>StepInputExpressionRequirement</code>" class="section">1.2.4.3 <code>StepInputExpressionRequirement</code> <a href="#<code>StepInputExpressionRequirement</code>">&sect;</a></h4><ul>
+<h4 id="StepInputExpressionRequirement_tests" class="section">1.2.4.3 StepInputExpressionRequirement tests <a href="#StepInputExpressionRequirement_tests">&sect;</a></h4><ul>
 <li><code>default_with_falsey_value</code>: Confirms that "false"-like (but not 'null')
 values override any default.</li>
 </ul>
