@@ -1,5 +1,6 @@
 {
     "@context": {
+        "AbstractWorkflowStep": "https://w3id.org/cwl/cwl#AbstractWorkflowStep",
         "Any": "https://w3id.org/cwl/salad#Any",
         "ArraySchema": "https://w3id.org/cwl/salad#ArraySchema",
         "Array_name": "https://w3id.org/cwl/salad#ArraySchema/type/Array_name",
@@ -66,6 +67,9 @@
         "LoadListingEnum": "https://w3id.org/cwl/cwl#LoadListingEnum",
         "LoadListingRequirement": "https://w3id.org/cwl/cwl#LoadListingRequirement",
         "LoadListingRequirement_class": "https://w3id.org/cwl/cwl#LoadListingRequirement/class/LoadListingRequirement_class",
+        "LoopInput": "https://w3id.org/cwl/cwl#LoopInput",
+        "LoopOutputMethod": "https://w3id.org/cwl/cwl#LoopOutputMethod",
+        "LoopWorkflowStep": "https://w3id.org/cwl/cwl#LoopWorkflowStep",
         "MapSchema": "https://w3id.org/cwl/salad#MapSchema",
         "Map_name": "https://w3id.org/cwl/salad#MapSchema/type/Map_name",
         "MultipleInputFeatureRequirement": "https://w3id.org/cwl/cwl#MultipleInputFeatureRequirement",
@@ -97,6 +101,7 @@
         "ScatterFeatureRequirement": "https://w3id.org/cwl/cwl#ScatterFeatureRequirement",
         "ScatterFeatureRequirement_class": "https://w3id.org/cwl/cwl#ScatterFeatureRequirement/class/ScatterFeatureRequirement_class",
         "ScatterMethod": "https://w3id.org/cwl/cwl#ScatterMethod",
+        "ScatterWorkflowStep": "https://w3id.org/cwl/cwl#ScatterWorkflowStep",
         "SchemaDefRequirement": "https://w3id.org/cwl/cwl#SchemaDefRequirement",
         "SchemaDefRequirement_class": "https://w3id.org/cwl/cwl#SchemaDefRequirement/class/SchemaDefRequirement_class",
         "SecondaryFileSchema": "https://w3id.org/cwl/cwl#SecondaryFileSchema",
@@ -123,6 +128,7 @@
         "WorkflowStepInput": "https://w3id.org/cwl/cwl#WorkflowStepInput",
         "WorkflowStepOutput": "https://w3id.org/cwl/cwl#WorkflowStepOutput",
         "Workflow_class": "https://w3id.org/cwl/cwl#Workflow/class/Workflow_class",
+        "all_iterations": "https://w3id.org/cwl/cwl#LoopOutputMethod/all_iterations",
         "all_non_null": "https://w3id.org/cwl/cwl#PickValueMethod/all_non_null",
         "arguments": {
             "@container": "@list",
@@ -238,6 +244,7 @@
             "refScope": 2
         },
         "label": "rdfs:label",
+        "last_iteration": "https://w3id.org/cwl/cwl#LoopOutputMethod/last_iteration",
         "linkMerge": "cwl:linkMerge",
         "listing": {
             "@id": "https://w3id.org/cwl/cwl#listing"
@@ -249,6 +256,11 @@
             "@type": "@id"
         },
         "long": "http://www.w3.org/2001/XMLSchema#long",
+        "loop": {
+            "@id": "https://w3id.org/cwl/cwl#loop",
+            "mapPredicate": "outputSource",
+            "mapSubject": "id"
+        },
         "map": "https://w3id.org/cwl/salad#map",
         "merge_flattened": "https://w3id.org/cwl/cwl#LinkMergeMethod/merge_flattened",
         "merge_nested": "https://w3id.org/cwl/cwl#LinkMergeMethod/merge_nested",
@@ -273,6 +285,10 @@
         "outdirMin": "https://w3id.org/cwl/cwl#ResourceRequirement/outdirMin",
         "outputBinding": "cwl:outputBinding",
         "outputEval": "https://w3id.org/cwl/cwl#CommandOutputBinding/outputEval",
+        "outputMethod": {
+            "@id": "https://w3id.org/cwl/cwl#outputMethod",
+            "@type": "@vocab"
+        },
         "outputSource": {
             "@id": "https://w3id.org/cwl/cwl#outputSource",
             "@type": "@id",

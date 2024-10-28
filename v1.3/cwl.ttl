@@ -3,6 +3,11 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sld: <https://w3id.org/cwl/salad#> .
 
+@base:AbstractWorkflowStep a rdfs:Class ;
+    rdfs:subClassOf @base:Identified,
+        @base:Labeled,
+        sld:Documented .
+
 @base:CWLArraySchema a rdfs:Class ;
     rdfs:subClassOf sld:ArraySchema .
 
@@ -170,6 +175,15 @@
 
 <https://w3id.org/cwl/cwl#LoadListingRequirement/class/LoadListingRequirement_class> a rdfs:Class .
 
+@base:LoopInput a rdfs:Class ;
+    rdfs:subClassOf @base:Identified,
+        @base:OutputSink .
+
+@base:LoopOutputMethod a rdfs:Class .
+
+@base:LoopWorkflowStep a rdfs:Class ;
+    rdfs:subClassOf @base:AbstractWorkflowStep .
+
 @base:MultipleInputFeatureRequirement a rdfs:Class ;
     rdfs:subClassOf @base:ProcessRequirement .
 
@@ -246,6 +260,9 @@
 
 @base:ScatterMethod a rdfs:Class .
 
+@base:ScatterWorkflowStep a rdfs:Class ;
+    rdfs:subClassOf @base:AbstractWorkflowStep .
+
 @base:SchemaDefRequirement a rdfs:Class ;
     rdfs:subClassOf @base:ProcessRequirement .
 
@@ -300,9 +317,7 @@
         @base:OutputSink .
 
 @base:WorkflowStep a rdfs:Class ;
-    rdfs:subClassOf @base:Identified,
-        @base:Labeled,
-        sld:Documented .
+    rdfs:subClassOf @base:AbstractWorkflowStep .
 
 @base:WorkflowStepInput a rdfs:Class ;
     rdfs:subClassOf @base:Identified,
@@ -524,8 +539,10 @@ rdfs:label a rdf:Property ;
 
 @base:valueFrom a rdf:Property ;
     rdfs:domain @base:CommandLineBinding,
+        @base:LoopInput,
         @base:WorkflowStepInput .
 
 @base:when a rdf:Property ;
-    rdfs:domain @base:WorkflowStep .
+    rdfs:domain @base:AbstractWorkflowStep,
+        @base:LoopWorkflowStep .
 
