@@ -2927,13 +2927,11 @@ video { background: #000; color: #f2f2f2; }
 
 .page-gallery h3 .heading__anchor-symbol:not(:focus), .page-gallery .h3 .heading__anchor-symbol:not(:focus), .page-gallery h3 .heading__anchor-symbol:not(:active), .page-gallery .h3 .heading__anchor-symbol:not(:active), .page-gallery h4 .heading__anchor-symbol:not(:focus), .page-gallery .h4 .heading__anchor-symbol:not(:focus), .page-gallery h4 .heading__anchor-symbol:not(:active), .page-gallery .h4 .heading__anchor-symbol:not(:active) { border: 0; clip: rect(0, 0, 0, 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
 
-.page-gallery.has-left-nav .left-nav a { margin: 5px 5px 0 15px; }
-
 .page-gallery.has-left-nav .left-nav .left-nav-links { list-style: none; padding: 2px 0; }
 
-.page-gallery.has-left-nav .left-nav .left-nav-links .no-indent { margin-left: 0; }
+.page-gallery.has-left-nav .left-nav .left-nav-links .no-indent { margin: 5px 5px 0 15px; }
 
-.page-gallery.has-left-nav .left-nav .indent { margin: 5px 5px 5px 30px; }
+.page-gallery.has-left-nav .left-nav .indent { margin: 5px 5px 5px 15px; text-indent: 0; }
 
 @media (min-width: 768px) { .page-gallery h3 .heading__anchor-symbol, .page-gallery .h3 .heading__anchor-symbol, .page-gallery h4 .heading__anchor-symbol, .page-gallery .h4 .heading__anchor-symbol { display: inline; } .page-gallery.has-left-nav .left-nav { margin: 58px 0 0; } .page-gallery.has-left-nav .left-nav .left-nav-title, .page-gallery.has-left-nav .left-nav .left-nav-links, .page-gallery.has-left-nav .left-nav .left-subnav { padding: 0; } .page-gallery .gallery-content { width: calc(100% - 210px); } }
 
