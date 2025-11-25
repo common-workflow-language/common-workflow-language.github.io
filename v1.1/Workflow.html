@@ -2340,13 +2340,13 @@ be specified in the workflow or workflow step requirements.</p>
 this input parameter.</p>
 <p>If <code>valueFrom</code> is a parameter reference or expression, it must be
 evaluated to yield the actual value to be assiged to the input field.</p>
-<p>The <code>self</code> value in the parameter reference or expression must be
-parameter <strong>is</strong> specified in this workflow step's <code>scatter</code> field.</p>
+<p>The <code>self</code> value in the parameter reference or expression must be</p>
 <ol>
 <li><code>null</code> if there is no <code>source</code> field</li>
 <li>the value of the parameter(s) specified in the <code>source</code> field when this
 workflow input parameter <strong>is not</strong> specified in this workflow step's <code>scatter</code> field.</li>
-<li>an element of the parameter specified in the <code>source</code> field when this workflow input</li>
+<li>an element of the parameter specified in the <code>source</code> field when this workflow input
+parameter <strong>is</strong> specified in this workflow step's <code>scatter</code> field.</li>
 </ol>
 <p>The value of <code>inputs</code> in the parameter reference or expression must be
 the input object to the workflow step after assigning the <code>source</code>

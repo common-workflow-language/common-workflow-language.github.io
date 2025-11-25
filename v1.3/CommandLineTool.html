@@ -875,13 +875,10 @@ is the index in the <code>arguments</code> list.</p>
 </li>
 <li><p>Collect <code>CommandLineBinding</code> objects from the <code>inputs</code> schema and
 associate them with values from the input object.  Where the input type
-is a record, array, or map, recursively walk the schema and input object,</p>
+is a record, array, or map, recursively walk the schema and input object,
+collecting nested <code>CommandLineBinding</code> objects and associating them with
+values from the input object.</p>
 </li>
-</ol>
-  collecting nested `CommandLineBinding` objects and associating them with
-  values from the input object.
-
-<ol start="3">
 <li><p>Create a sorting key by taking the value of the <code>position</code> field at
 each level leading to each leaf binding object.  If <code>position</code> is not
 specified, it is not added to the sorting key.  For bindings on arrays

@@ -372,12 +372,10 @@ part of the vocabulary and not resolvable to absolute URIs.  Fields names
 which are not part of the vocabulary are resolved using the following
 rules:</p>
 <ul>
-<li>If an field name URI begins with a namespace prefix declared in the
-document context (<code>@context</code>) followed by a colon <code>:</code>, the prefix and</li>
-</ul>
-colon must be replaced by the namespace declared in `@context`.
-
-<ul>
+<li><p>If an field name URI begins with a namespace prefix declared in the
+document context (<code>@context</code>) followed by a colon <code>:</code>, the prefix and
+colon must be replaced by the namespace declared in <code>@context</code>.</p>
+</li>
 <li><p>If there is a vocabulary term which maps to the URI of a resolved
 field, the field name must be replace with the vocabulary term.</p>
 </li>
