@@ -4,7 +4,7 @@
 @prefix sld: <https://w3id.org/cwl/salad#> .
 
 @base:AbstractWorkflowStep a rdfs:Class ;
-    rdfs:subClassOf @base:Identified,
+    rdfs:subClassOf @base:IdentifierRequired,
         @base:Labeled,
         sld:Documented .
 
@@ -113,6 +113,9 @@
         sld:Documented .
 
 @base:Identified a rdfs:Class .
+
+@base:IdentifierRequired a rdfs:Class ;
+    rdfs:subClassOf @base:Identified .
 
 @base:InitialWorkDirRequirement a rdfs:Class ;
     rdfs:subClassOf @base:ProcessRequirement .
@@ -236,7 +239,7 @@
 
 @base:Parameter a rdfs:Class ;
     rdfs:subClassOf @base:FieldBase,
-        @base:Identified,
+        @base:IdentifierRequired,
         sld:Documented .
 
 @base:PickValueMethod a rdfs:Class .
@@ -320,7 +323,7 @@
     rdfs:subClassOf @base:AbstractWorkflowStep .
 
 @base:WorkflowStepInput a rdfs:Class ;
-    rdfs:subClassOf @base:Identified,
+    rdfs:subClassOf @base:IdentifierRequired,
         @base:InputSink,
         @base:Labeled,
         @base:LoadContents .

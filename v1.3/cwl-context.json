@@ -46,6 +46,7 @@
         "File_class": "https://w3id.org/cwl/cwl#File/class/File_class",
         "IOSchema": "https://w3id.org/cwl/cwl#IOSchema",
         "Identified": "https://w3id.org/cwl/cwl#Identified",
+        "IdentifierRequired": "https://w3id.org/cwl/cwl#IdentifierRequired",
         "InitialWorkDirRequirement": "https://w3id.org/cwl/cwl#InitialWorkDirRequirement",
         "InitialWorkDirRequirement_class": "https://w3id.org/cwl/cwl#InitialWorkDirRequirement/class/InitialWorkDirRequirement_class",
         "InlineJavascriptRequirement": "https://w3id.org/cwl/cwl#InlineJavascriptRequirement",

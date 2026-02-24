@@ -163,7 +163,8 @@ under the terms of the Apache License, version 2.0.</p>
 </ol><li><a href="#Introduction">1. Introduction</a><ol>
 <li><a href="#Introduction_to_the_CWL_Command_Line_Tool_standard_v1.3.0-dev1">1.1 Introduction to the CWL Command Line Tool standard v1.3.0-dev1</a><ol>
 </ol><li><a href="#Changelog_for_v1.3.0-dev1">1.2 Changelog for v1.3.0-dev1</a><ol>
-</ol><li><a href="#Purpose">1.3 Purpose</a><ol>
+<li><a href="#Updated_Conformance_Tests_for_v1.3.0">1.2.1 Updated Conformance Tests for v1.3.0</a><ol>
+</ol></li></ol><li><a href="#Purpose">1.3 Purpose</a><ol>
 </ol><li><a href="#References_to_other_specifications">1.4 References to other specifications</a><ol>
 </ol><li><a href="#Scope">1.5 Scope</a><ol>
 </ol><li><a href="#Terminology">1.6 Terminology</a><ol>
@@ -247,7 +248,18 @@ should be trivially updatable by changing <code>cwlVersion</code>, however
 CWL documents that relied on previously undefined or
 underspecified behavior may have slightly different behavior in
 v1.3.0-dev1.</p>
-<h2 id="Changelog_for_v1.3.0-dev1" class="section">1.2 Changelog for v1.3.0-dev1 <a href="#Changelog_for_v1.3.0-dev1">&sect;</a></h2><p>See also the <a href="Workflow.html#Changelog">CWL Workflow Description, v1.3.0-dev1 changelog</a>.
+<h2 id="Changelog_for_v1.3.0-dev1" class="section">1.2 Changelog for v1.3.0-dev1 <a href="#Changelog_for_v1.3.0-dev1">&sect;</a></h2><ul>
+<li><a href="#Output_binding">Output Binding</a>: Any output present in the
+"cwl.output.json" file but not declared in the <code>outputs</code> section must
+be discarded from the output object. Previous versions of CWL did not
+define if undeclared outputs in "cwl.output.json" should be present
+in the output object.</li>
+</ul>
+<h3 id="Updated_Conformance_Tests_for_v1.3.0" class="section">1.2.1 Updated Conformance Tests for v1.3.0 <a href="#Updated_Conformance_Tests_for_v1.3.0">&sect;</a></h3><ul>
+<li>Reduced the usage of <code>ShellCommandRequirement</code> in the conformance tests,
+making several more of the <code>required</code>.</li>
+</ul>
+<p>See also the <a href="Workflow.html#Changelog">CWL Workflow Description, v1.3.0-dev1 changelog</a>.
 For other changes since CWL v1.0, see the
 <a href="https://www.commonwl.org/v1.1/CommandLineTool.html#Changelog">CWL Command Line Tool Description, v1.1 changelog</a>
 and
@@ -991,7 +1003,9 @@ non-zero exit codes to either <code>temporaryFailure</code> or <code>permanentFa
 <h2 id="Output_binding" class="section">4.4 Output binding <a href="#Output_binding">&sect;</a></h2><p>If the output directory contains a file named "cwl.output.json", that
 file must be loaded and used as the output object.  In this case, the
 output object should still be type-checked against the <code>outputs</code>
-section, but <code>outputBinding</code> is ignored.</p>
+section, but <code>outputBinding</code> is ignored. Any output is present in the
+"cwl.output.json" file but not declared in the <code>outputs</code> section must
+be discarded from the output object.</p>
 <p>For Files and Directories, if the value of <code>path</code> is a relative path
 pattern (does not begin with a slash '/') then it is resolved relative
 to the output directory.  If the value of the "path" is an absolute
@@ -1221,6 +1235,13 @@ If not specified, all exit codes except 0 are considered permanent failure.</p>
 <div class="col-xs-12 col-lg-6 description-header">description</div>
 </div>
 <div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>id</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The unique identifier for this Parameter.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>type</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">CWLType</a> | <a href="#stdin">stdin</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#CommandInputRecordSchema">CommandInputRecordSchema</a> | <a href="#CommandInputEnumSchema">CommandInputEnumSchema</a> | <a href="#CommandInputArraySchema">CommandInputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
@@ -1294,13 +1315,6 @@ pipe.  Default: <code>false</code>.</p>
 <div class="col-xs-2 col-lg-1">optional</div>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
-</div>
-</div>
-<div class="row responsive-table-row">
-<div class="col-xs-3 col-lg-2"><code>id</code></div>
-<div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
-<div class="col-xs-12 col-lg-6 description-col"><p>The unique identifier for this object.</p>
 </div>
 </div>
 <div class="row responsive-table-row">
@@ -2222,6 +2236,13 @@ a Directory object for use by expressions.</p>
 <div class="col-xs-12 col-lg-6 description-header">description</div>
 </div>
 <div class="row responsive-table-row">
+<div class="col-xs-3 col-lg-2"><code>id</code></div>
+<div class="col-xs-2 col-lg-1">required</div>
+<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
+<div class="col-xs-12 col-lg-6 description-col"><p>The unique identifier for this Parameter.</p>
+</div>
+</div>
+<div class="row responsive-table-row">
 <div class="col-xs-3 col-lg-2"><code>type</code></div>
 <div class="col-xs-2 col-lg-1">required</div>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">CWLType</a> | <a href="#stdout">stdout</a> | <a href="#stderr">stderr</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a> | array&lt;<a href="#CWLType">CWLType</a> | <a href="#CommandOutputRecordSchema">CommandOutputRecordSchema</a> | <a href="#CommandOutputEnumSchema">CommandOutputEnumSchema</a> | <a href="#CommandOutputArraySchema">CommandOutputArraySchema</a> | <a href="#CWLType">string</a>&gt;</div>
@@ -2295,13 +2316,6 @@ pipe.  Default: <code>false</code>.</p>
 <div class="col-xs-2 col-lg-1">optional</div>
 <div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a> | array&lt;<a href="#CWLType">string</a>&gt;</div>
 <div class="col-xs-12 col-lg-6 description-col"><p>A documentation string for this object, or an array of strings which should be concatenated.</p>
-</div>
-</div>
-<div class="row responsive-table-row">
-<div class="col-xs-3 col-lg-2"><code>id</code></div>
-<div class="col-xs-2 col-lg-1">optional</div>
-<div class="col-xs-7 col-lg-3"><a href="#CWLType">string</a></div>
-<div class="col-xs-12 col-lg-6 description-col"><p>The unique identifier for this object.</p>
 </div>
 </div>
 <div class="row responsive-table-row">
